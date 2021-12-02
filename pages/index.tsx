@@ -18,10 +18,11 @@ import { Provider } from 'react-redux';
 // serviceWorker.unregister();
 
 const Home: NextPage = () => {
+  const loginUrl = process.env.LINE_LOGINURL
 
-  if (process.browser) {
-    document.getElementById('root')
-  }
+  // if (process.browser) {
+  //   document.getElementById('root')
+  // }
 
   return (
     <div className={styles.container}>
@@ -49,10 +50,12 @@ const Home: NextPage = () => {
               <App />
             </Provider>
           </React.StrictMode>
-          {/* // document.getElementById('root') */}
-          {/* ); */}
-          {/* <p className="mb-2 text-center">sample text</p>
-          <button className="btn-blue">Let's Start!!</button> */}
+
+          <a href="https://access.line.me/oauth2/v2.1/authorize?app_id=1656650515-ENMoxvjb&client_id=1656650515&scope=chat_message.write+openid+profile&state=MTSFhIGGxsff&bot_prompt=aggressive&response_type=code&code_challenge_method=S256&code_challenge=Hx-YFyPAvO9ZQIg5pQpaGQuMChsOE11Raf_3DHDGFgY&liff_sdk_version=2.11.1&type=L&redirect_uri=https://redux-next.vercel.app/">
+            <div>
+              ログイン
+            </div>
+          </a>
         </section>
 
         <div className={styles.grid}>
