@@ -13,10 +13,10 @@ import PageA from '../src/PageA'
 // import { addUser, selectUser } from '../src/features/userSlice';
 // import { useDispatch, useSelector } from 'react-redux';
 // import liff from '@line/liff';
-import FirebaseAuthGoogleButton from '../src/firebase/FirebaseAuthGoogleButton';
-import FirebaseAuthSignoutButton from '../src/firebase/FirebaseAuthSignoutButton';
-import FirestoreAddButton from '../src/firebase/FirestoreAddButton';
-import FirestoreList from '../src/firebase/FirestoreList';
+// import FirebaseAuthGoogleButton from '../src/firebase/FirebaseAuthGoogleButton';
+// import FirebaseAuthSignoutButton from '../src/firebase/FirebaseAuthSignoutButton';
+// import FirestoreAddButton from '../src/firebase/FirestoreAddButton';
+// import FirestoreList from '../src/firebase/FirestoreList';
 import dynamic from 'next/dynamic'
 const Login = dynamic(
   () => import('./login'),
@@ -72,9 +72,9 @@ const Home: NextPage = () => {
 
         <div className={styles.grid}>
           {/* <FirebaseAuthGoogleButton /> */}
-          <FirebaseAuthSignoutButton />
+          {/* <FirebaseAuthSignoutButton /> */}
           {/* <FirestoreAddButton /> */}
-          <FirestoreList />
+          {/* <FirestoreList /> */}
           <Link href="http://localhost:3000/PageA">pageA</Link>
           <p>
             Instantly deploy your Next.js site to a public URL with Vercel.
