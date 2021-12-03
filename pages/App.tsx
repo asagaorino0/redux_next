@@ -5,9 +5,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import Link from 'next/link'
 import { useRouter } from "next/router";
 import PageA from '../src/PageA'
-
-
+// import Login from '../src/login'
+import dynamic from 'next/dynamic'
 function App() {
+  const Login = dynamic(
+    () => import('./login'),
+    { ssr: false }
+  )
   const [name, setName] = useState<string>('');
   const [age, setAge] = useState<number>(0);
   const dispatch = useDispatch();
@@ -32,6 +36,7 @@ function App() {
         {/* {user.name}/{user.age} */}
       </h1>
       <PageA />
+      <Login />
     </div>
   );
 }
