@@ -4,18 +4,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from "next/router";
 
 const PageA = () => {
-    // const [name, setName] = useState<string>('');
-    // const [age, setAge] = useState<number>(0);
-    // const dispatch = useDispatch();
-    // const user = useSelector(selectUser);
-    // const router = useRouter()
-    // const toPageA = () => {
-    //     router.push('/')
-    // }
-    // const registUser = () => {
-    //     dispatch(addUser({ name, age })),
-    //         toPageA()
-    // };
+    const [name, setName] = useState<string>('');
+    const [age, setAge] = useState<number>(0);
+    const dispatch = useDispatch();
+    const user = useSelector(selectUser);
+    const router = useRouter()
+    const toPageA = () => {
+        router.push('/')
+    }
+    const registUser = () => {
+        dispatch(addUser({ name, age })),
+            toPageA()
+    };
     // console.log(user.name)
     return (
         <div>
@@ -26,7 +26,7 @@ const PageA = () => {
 
             </div>
             <h1>
-                {/* {user.name}/{user.age} */}
+                {user.name}/{user.age}
             </h1>
         </div >
     );
