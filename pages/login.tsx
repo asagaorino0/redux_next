@@ -113,16 +113,16 @@ const Login: NextPage = () => {
     //   }
     // }
     // 現在ログインしているユーザーを取得する
-    useEffect(() => {
-        liff.getProfile()
-            .then(profile => {
-                setName(profile.displayName)
-                setUid(profile.userId)
-                //   setAvatar(profile.pictureUrl)
-                // myProfile()
-            })
-    }, []
-    );
+    // useEffect(() => {
+    //     liff.getProfile()
+    //         .then(profile => {
+    //             setName(profile.displayName)
+    //             setUid(profile.userId)
+    //             //   setAvatar(profile.pictureUrl)
+    //             // myProfile()
+    //         })
+    // }, []
+    // );
     return (
         <div className="h-screen w-4/5 max-w-5xl mx-auto flex items-center justifycenter flex-col">
             {/* <button onClick={lineClick}>
