@@ -8,8 +8,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@line/liff": "^2.17.0",
     "@reduxjs/toolkit": "^1.6.2",
     "autoprefixer": "^10.4.0",
+    "dotenv": "^10.0.0",
+    "firebase": "^9.5.0",
     "next": "12.0.4",
     "postcss": "^8.4.4",
     "postcss-preset-env": "^7.0.1",
