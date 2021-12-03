@@ -4,19 +4,22 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
+import Link from 'next/link'
 // import './index.css';
-import App from '../src/App';
+import App from './App';
 import { store } from '../src/app/store';
 import { Provider } from 'react-redux';
-
+import PageA from '../src/PageA'
+// import { addUser, selectUser } from '../src/features/userSlice';
+// import { useDispatch, useSelector } from 'react-redux';
 // import liff from '@line/liff';
 import FirebaseAuthGoogleButton from '../src/firebase/FirebaseAuthGoogleButton';
 import FirebaseAuthSignoutButton from '../src/firebase/FirebaseAuthSignoutButton';
 import FirestoreAddButton from '../src/firebase/FirestoreAddButton';
 import FirestoreList from '../src/firebase/FirestoreList';
 import dynamic from 'next/dynamic'
-const liff = dynamic(
-  () => import('@line/liff'),
+const Login = dynamic(
+  () => import('./login'),
   { ssr: false }
 )
 // import * as serviceWorker from '../src/serviceWorker';
@@ -29,10 +32,12 @@ const liff = dynamic(
 // serviceWorker.unregister();
 
 const Home: NextPage = () => {
+  // const user = useSelector(selectUser);
   // require('dotenv').config();
-  // const loginUrl = process.env.NEXT_PUBLIC_LINE_LOGINURL
+  // const loginUrl = process.env.NEXT_PUBLIC_LINE_LOGIN_URL
+  const LINEID = process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID
   const loginUrl = "https://access.line.me/oauth2/v2.1/authorize?app_id=1656650515-ENMoxvjb&client_id=1656650515&scope=chat_message.write+openid+profile&state=MTSFhIGGxsff&bot_prompt=aggressive&response_type=code&code_challenge_method=S256&code_challenge=Hx-YFyPAvO9ZQIg5pQpaGQuMChsOE11Raf_3DHDGFgY&liff_sdk_version=2.11.1&type=L&redirect_uri=http://localhost:3000/"
-  console.log('LINEURL', loginUrl)
+  console.log('LINEID', process.env.NEXT_PUBLIC_LINE_LOGIN_URL)
   const [avatar, setAvatar] = useState("");
   const [name, setName] = useState("");
   const [uid, setUid] = useState("");
@@ -46,7 +51,25 @@ const Home: NextPage = () => {
     window.location.href = loginUrl;
     onload()
   };
-  /* 追加: UserProfileをAlertで表示 */
+  // const lineClick = () => {
+
+  //   // liff.init({ liffId: LINEID as string }) // LIFF IDをセットする
+  //   //   .then(() => {
+  //   if (!liff.isLoggedIn()) {
+  //     liff.login({}) // ログインしていなければ最初にログインする
+  //   } else if (liff.isInClient()) { // LIFFので動いているのであれば
+  //     liff.sendMessages([{ // メッセージを送信する
+  //       'type': 'text',
+  //       'text': "You've successfully sent a message! Hooray!"
+  //     }]).then(function () {
+  //       window.alert('Message sent');
+  //     }).catch(function (error) {
+  //       window.alert('Error sending message: ' + error);
+  //     });
+  //   }
+  //   // })
+  // }
+  // /* 追加: UserProfileをAlertで表示 */
   const onload = () => {
     liff.init({ liffId: process.env.REACT_APP_LIFF_ID as string })
       .then(() => {
@@ -66,7 +89,6 @@ const Home: NextPage = () => {
             });
         }
       })
-
   }
   // const onload = function () {
   //   if (liff.isLoggedIn()) {
@@ -115,17 +137,14 @@ const Home: NextPage = () => {
           <React.StrictMode >
             <Provider store={store}>
               <App />
+              <Login />
+              {/* <PageA /> */}
             </Provider>
           </React.StrictMode>
-          <button onClick={lineClick}>
-            <h1 className="mb-4 text-green-500 text-3xl">ログイン</h1></button>
-          <p className="mb-2 text-center">sample text</p>
-          <button className="btn-blue">Let's Start!!</button>
-          <a href="https://access.line.me/oauth2/v2.1/authorize?app_id=1656650515-ENMoxvjb&client_id=1656650515&scope=chat_message.write+openid+profile&state=MTSFhIGGxsff&bot_prompt=aggressive&response_type=code&code_challenge_method=S256&code_challenge=Hx-YFyPAvO9ZQIg5pQpaGQuMChsOE11Raf_3DHDGFgY&liff_sdk_version=2.11.1&type=L&redirect_uri=http://localhost:3000">
-            <div>
-              ログイン
-            </div>
-          </a>
+          <div>
+            {/* <Login /> */}
+            {/* {user.name}/{user.age} */}
+          </div>
         </section>
 
         <div className={styles.grid}>
@@ -133,10 +152,10 @@ const Home: NextPage = () => {
           <FirebaseAuthSignoutButton />
           {/* <FirestoreAddButton /> */}
           <FirestoreList />
+          <Link href="http://localhost:3000/PageA">pageA</Link>
           <p>
             Instantly deploy your Next.js site to a public URL with Vercel.
           </p>
-
         </div>
       </main>
 

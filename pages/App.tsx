@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 // import './App.css';
-import { addUser, selectUser } from './features/userSlice';
+import { addUser, selectUser } from '../src/features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import Link from 'next/link'
 import { useRouter } from "next/router";
@@ -14,11 +14,11 @@ function App() {
   const user = useSelector(selectUser);
   const router = useRouter()
   const toPageA = () => {
-    router.push('../src/PageA')
+    router.push('./PageA')
   }
   const registUser = () => {
     dispatch(addUser({ name, age }))
-    toPageA()
+    // toPageA()
   };
   return (
     <div className="App">
