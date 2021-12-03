@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 // import './App.css';
 import { addUser, selectUser } from '../src/features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import Link from 'next/link'
 import { useRouter } from "next/router";
 import PageA from '../src/PageA'
 // import Login from '../src/login'
@@ -17,9 +16,9 @@ function App() {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const router = useRouter()
-  const toPageA = () => {
-    router.push('./PageA')
-  }
+  // const toPageA = () => {
+  //   router.push('./PageA')
+  // }
   const registUser = () => {
     dispatch(addUser({ name, age }))
     // toPageA()
@@ -33,7 +32,7 @@ function App() {
       <h1>登録</h1>
       <button onClick={registUser}>登録</button>
       <h1>
-        {/* {user.name}/{user.age} */}
+        {user.name}/{user.age}
       </h1>
       <PageA />
       <Login />

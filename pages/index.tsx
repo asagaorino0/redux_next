@@ -9,29 +9,12 @@ import Link from 'next/link'
 import App from './App';
 import { store } from '../src/app/store';
 import { Provider } from 'react-redux';
-import PageA from '../src/PageA'
-// import { addUser, selectUser } from '../src/features/userSlice';
-// import { useDispatch, useSelector } from 'react-redux';
-// import liff from '@line/liff';
-// import FirebaseAuthGoogleButton from '../src/firebase/FirebaseAuthGoogleButton';
-// import FirebaseAuthSignoutButton from '../src/firebase/FirebaseAuthSignoutButton';
-// import FirestoreAddButton from '../src/firebase/FirestoreAddButton';
-// import FirestoreList from '../src/firebase/FirestoreList';
 import dynamic from 'next/dynamic'
 const Login = dynamic(
   () => import('./login'),
   { ssr: false }
 )
 const Home: NextPage = () => {
-  // const user = useSelector(selectUser);
-  // require('dotenv').config();
-  const loginUrl = process.env.NEXT_PUBLIC_LINE_LOGIN_URL
-  const LINEID = process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID
-  // const loginUrl = "https://access.line.me/oauth2/v2.1/authorize?app_id=1656650515-ENMoxvjb&client_id=1656650515&scope=chat_message.write+openid+profile&state=MTSFhIGGxsff&bot_prompt=aggressive&response_type=code&code_challenge_method=S256&code_challenge=Hx-YFyPAvO9ZQIg5pQpaGQuMChsOE11Raf_3DHDGFgY&liff_sdk_version=2.11.1&type=L&redirect_uri=http://localhost:3000/"
-  console.log('LINEID', process.env.NEXT_PUBLIC_LINE_LOGIN_URL)
-  const [avatar, setAvatar] = useState("");
-  const [name, setName] = useState("");
-  const [uid, setUid] = useState("");
   // if (process.browser) {
   //   document.getElementById('root')
   // }
@@ -61,20 +44,13 @@ const Home: NextPage = () => {
             <Provider store={store}>
               <App />
               <Login />
-              {/* <PageA /> */}
             </Provider>
           </React.StrictMode>
           <div>
-            {/* <Login /> */}
-            {/* {user.name}/{user.age} */}
           </div>
         </section>
 
         <div className={styles.grid}>
-          {/* <FirebaseAuthGoogleButton /> */}
-          {/* <FirebaseAuthSignoutButton /> */}
-          {/* <FirestoreAddButton /> */}
-          {/* <FirestoreList /> */}
           <Link href="http://localhost:3000/PageA">pageA</Link>
           <p>
             Instantly deploy your Next.js site to a public URL with Vercel.
