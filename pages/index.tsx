@@ -43,7 +43,7 @@ const Home: NextPage = () => {
           <React.StrictMode >
             <Provider store={store}>
               <App />
-              <Login />
+              {/* <Login /> */}
             </Provider>
           </React.StrictMode>
           <div>
@@ -51,7 +51,7 @@ const Home: NextPage = () => {
         </section>
 
         <div className={styles.grid}>
-          <Link href="http://localhost:3000/PageA">pageA</Link>
+          {/* <Link href="http://localhost:3000/PageA">pageA</Link> */}
           <p>
             Instantly deploy your Next.js site to a public URL with Vercel.
           </p>

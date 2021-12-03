@@ -34,8 +34,8 @@ function App() {
       <h1>
         {user.name}/{user.age}
       </h1>
-      <PageA />
-      <Login />
+      {/* <PageA /> */}
+      {/* <Login /> */}
     </div>
   );
 }
