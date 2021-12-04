@@ -5,14 +5,14 @@ interface UserState {
   name: string,
   age: number,
   uid: string,
-  img: string | undefined
+  icon: string | undefined
 }
 
 const initialState: UserState = {
   name: 'user',
   age: -1,
   uid: '',
-  img: ''
+  icon: ''
 };
 
 export const userSlice = createSlice({
@@ -23,6 +23,7 @@ export const userSlice = createSlice({
       state.name = action.payload.name
       state.age = action.payload.age
       state.uid = action.payload.uid
+      state.icon = action.payload.icon
     }
   },
 });

@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 const PageAA = () => {
     const [uid, setUid] = useState<string>('');
     const [name, setName] = useState<string>('');
-    const [img, setImg] = useState<string | undefined>('');
+    const [icon, setIcon] = useState<string | undefined>('');
     const [age, setAge] = useState<number>(0);
     const dispatch = useDispatch();
     const user = useSelector(selectUser);
@@ -15,7 +15,7 @@ const PageAA = () => {
         router.push('/')
     }
     const registUser = () => {
-        dispatch(addUser({ name, uid, img }))
+        dispatch(addUser({ name, uid, icon }))
         // toPageA()
     };
 
@@ -26,7 +26,7 @@ const PageAA = () => {
                 <span >pageAA</span>
                 <br />
                 <img
-                    src={`${user.img}`}
+                    src={`${user.icon}`}
                     alt=""
                     style={{ borderRadius: '50%', width: '50px', height: '50px' }}
                 />

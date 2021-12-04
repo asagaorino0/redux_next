@@ -24,7 +24,7 @@ function App() {
   // )
   const [uid, setUid] = useState<string>('');
   const [name, setName] = useState<string>('');
-  const [img, setImg] = useState<string | undefined>('');
+  const [icon, setIcon] = useState<string | undefined>('');
   const [age, setAge] = useState<number>(0);
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
@@ -33,7 +33,7 @@ function App() {
     router.push('./PageA')
   }
   const registUser = () => {
-    dispatch(addUser({ name, age, uid, img }))
+    dispatch(addUser({ name, age, uid, icon }))
     // toPageA()
   };
   const loginUrl = process.env.NEXT_PUBLIC_LINE_LOGIN_URL
@@ -79,17 +79,17 @@ function App() {
           .then(profile => {
             const userId: string = profile.userId
             const displayName: string = profile.displayName
-            const displayimg: string | undefined = profile.pictureUrl
+            const displayicon: string | undefined = profile.pictureUrl
             setName(profile.displayName)
             setUid(userId)
             setName(displayName)
-            setImg(displayimg)
-            dispatch(addUser({ name, uid, img }))
+            setIcon(displayicon)
+            dispatch(addUser({ name, uid, icon }))
 
             const setRef = setDoc(doc(db, 'users', `${uid}`), {
               uid,
               name,
-              img,
+              icon,
               timestamp: Timestamp.fromDate(new Date()),
             }, { merge: true }//←上書きされないおまじない
             )
