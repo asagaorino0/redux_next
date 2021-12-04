@@ -45,6 +45,8 @@ function App() {
   const lineClick = function () {
     // liff.init({ liffId: LINEID as string })
     onload()
+    onload()
+    onload()
     // liff.login();
   };
   const onload = function () {
