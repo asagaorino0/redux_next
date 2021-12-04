@@ -11,7 +11,7 @@ interface UserState {
 const initialState: UserState = {
   name: '',
   age: -1,
-  uid: '',
+  uid: '11111',
   icon: ''
 };
 
