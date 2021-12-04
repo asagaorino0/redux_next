@@ -78,10 +78,11 @@ function App() {
           .then(profile => {
             const userId: string = profile.userId
             const displayName: string = profile.displayName
+            const displayimg: string | undefined = profile.pictureUrl
             setName(profile.displayName)
             setUid(userId)
             setName(displayName)
-            setUid(profile.userId)
+            setImg(displayimg)
             dispatch(addUser({ name, uid, img }))
 
             const setRef = setDoc(doc(db, 'users', `${uid}`), {
@@ -97,7 +98,7 @@ function App() {
             //     id: '003',
             //     name: user.user.name
             // })
-            console.log("login:", `${name}`);
+            console.log("login:", profile);
             alert(`Name: ${displayName}, userId: ${userId}`)
           }).catch(function (error) {
             // window.alert('Error sending message: ' + error);
@@ -154,7 +155,7 @@ function App() {
       <h1>
         {user.name}/{user.age}
       </h1>
-      <PageAA />
+      <PageA />
       <button onClick={lineClick}>
         <h3 className="mb-4 text-green-500 text-3xl">ログイン</h3></button>
       <a href="https://access.line.me/oauth2/v2.1/authorize?app_id=1656650515-ENMoxvjb&client_id=1656650515&scope=chat_message.write+openid+profile&state=MTSFhIGGxsff&bot_prompt=aggressive&response_type=code&code_challenge_method=S256&code_challenge=Hx-YFyPAvO9ZQIg5pQpaGQuMChsOE11Raf_3DHDGFgY&liff_sdk_version=2.11.1&type=L&redirect_uri=http://localhost:3000/">

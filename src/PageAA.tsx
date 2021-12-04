@@ -23,7 +23,11 @@ const PageAA = () => {
             </div>            <div>
                 <span >pageAA</span>
                 <br />
-
+                <img
+                    src={`${user.img}`}
+                    alt=""
+                    style={{ borderRadius: '50%', width: '50px', height: '50px' }}
+                />
             </div>
             <h1>
                 {user.name}/{user.uid}
