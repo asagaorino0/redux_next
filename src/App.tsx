@@ -54,8 +54,12 @@ function App() {
             // if (result) {
             // onload()
             // }
+            setName(profile.displayName)
+            setUid(userId)
+            setName(displayName)
+            setIcon(displayicon)
             dispatch(addUser({ name, uid, icon }))
-            onload()
+            // onload()
           }).catch(function (error) {
             // window.alert('Error sending message: ' + error);
           });
