@@ -20,21 +20,19 @@ const PageAA = () => {
     };
 
     return (
-        <div>
-            <div className="App">
-            </div>            <div>
-                <span >pageAA</span>
-                <br />
+        <div className="App">
+            {/* <span >pageAA</span> */}
+            <br />
+            {`${user.icon}`.length !== 0 &&
                 <img
                     src={`${user.icon}`}
                     alt=""
                     style={{ borderRadius: '50%', width: '50px', height: '50px' }}
                 />
-            </div>
+            }
             <h1>
-                {user.name}/{user.uid}
+                {user.name}
             </h1>
-
         </div >
     );
 }
