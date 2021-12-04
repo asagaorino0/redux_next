@@ -68,6 +68,11 @@ function App() {
     liff.init({ liffId: LINEID as string })
     // onload()
     liff.login();
+    let result = window.confirm("LINE Loginしますか？");
+    if (result) {
+      liff.login();
+      // window.location.href = loginUrl;
+    }
   };
   const onload = function () {
     liff
