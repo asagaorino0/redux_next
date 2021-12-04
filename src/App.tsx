@@ -18,12 +18,12 @@ function App() {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const router = useRouter()
-  // const toPageA = () => {
-  //   router.push('../pages/PageA')
-  // }
+  const toPageA = () => {
+    router.push('../pages/PageA')
+  }
   const registUser = () => {
     dispatch(addUser({ name, age }))
-    // toPageA()
+    toPageA()
   };
   const loginUrl = process.env.NEXT_PUBLIC_LINE_LOGIN_URL
   const LINEID = process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID
@@ -87,7 +87,8 @@ function App() {
             setUid(userId)
             setName(displayName)
             setUid(profile.userId)
-            console.log("{login}", `${name}`);
+            registUser()
+            // console.log("{login}", `${name}`);
             // alert(`Name: ${displayName}, userId: ${userId}`)
           }).catch(function (error) {
             // window.alert('Error sending message: ' + error);
