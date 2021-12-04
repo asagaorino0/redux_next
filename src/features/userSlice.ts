@@ -4,11 +4,13 @@ import { RootState } from '../app/store';
 interface UserState {
   name: string,
   age: number,
+  uid: string
 }
 
 const initialState: UserState = {
   name: 'user',
   age: -1,
+  uid: ''
 };
 
 export const userSlice = createSlice({
@@ -18,7 +20,7 @@ export const userSlice = createSlice({
     addUser: (state, action) => {
       state.name = action.payload.name
       state.age = action.payload.age
-
+      state.uid = action.payload.uid
     }
   },
 });
