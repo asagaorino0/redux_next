@@ -6,12 +6,12 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import Link from 'next/link'
 // import './index.css';
-import App from '../src/App';
+// import App from '../src/App';
 import { store } from '../src/app/store';
 import { Provider } from 'react-redux';
 import dynamic from 'next/dynamic'
-const Login = dynamic(
-  () => import('../src/login'),
+const App = dynamic(
+  () => import('../src/App'),
   { ssr: false }
 )
 const Home: NextPage = () => {
