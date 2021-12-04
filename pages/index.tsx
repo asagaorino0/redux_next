@@ -33,12 +33,13 @@ const Home: NextPage = () => {
       <main className={styles.main}>
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
-          <React.StrictMode >
-            <Provider store={store}>
-              <PageAA />
-            </Provider>
-          </React.StrictMode>
         </h1>
+        <React.StrictMode >
+          <Provider store={store}>
+            <PageAA />
+          </Provider>
+        </React.StrictMode>
+
 
         <p className={styles.description}>
           Get started by editing{' '}

@@ -43,10 +43,17 @@ function App() {
   // console.log('LINEID', LINEID)
 
   const lineClick = function () {
-    // liff.init({ liffId: LINEID as string })
-    onload()
-    // liff.login();
-  };
+    if (!liff.isLoggedIn()) {
+      // 未ログイン
+      liff
+        .init({ liffId: LINEID as string })
+      liff.login();
+
+    } else {
+      //ログイン済
+      onload()
+    }
+  }
   const onload = function () {
     liff
       .init({ liffId: LINEID as string })
@@ -63,7 +70,6 @@ function App() {
             setName(displayName)
             setIcon(displayicon)
             dispatch(addUser({ name, uid, icon }))
-
             const setRef = setDoc(doc(db, 'users', `${uid}`), {
               uid,
               name,
@@ -77,8 +83,8 @@ function App() {
             //     id: '003',
             //     name: user.user.name
             // })
-            console.log("login:", profile);
-            alert(`Name: ${displayName}, userId: ${userId}`)
+            // console.log("login:", profile);
+            // alert(`Name: ${displayName}, userId: ${userId}`)
           }).catch(function (error) {
             // window.alert('Error sending message: ' + error);
           });
