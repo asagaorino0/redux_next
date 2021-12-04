@@ -6,7 +6,6 @@ import { useRouter } from "next/router";
 const PageA = () => {
     // const [name, setName] = useState<string>('');
     // const [age, setAge] = useState<number>(0);
-
     // const user = useSelector(selectUser);
     // const router = useRouter()
     // const toPageA = () => {
