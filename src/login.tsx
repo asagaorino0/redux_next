@@ -40,44 +40,44 @@ const Login: NextPage = () => {
     //                 });
     //         })
     // };
-    function initializeApp() {
-        // ログインチェック
-        if (liff.isLoggedIn()) {
-            //ログイン済
-            // onload()
-            onload()
-        } else {
-            // 未ログイン
-            // let result = window.confirm("LINE Loginしますか？新着情報を確認する場合はキャンセルしてください。");
-            // if (result) {
-            liff.login();
-            // window.location.href = loginUrl;
-            // }
-        }
-    }
-    const lineClick = function () {
-        onload()
-        // liff.login();
-        // window.location.href = loginUrl;
-    };
-
-    // const lineClick = () => {
-    //     liff.init({ liffId: LINEID as string }) // LIFF IDをセットする
-    //         .then(() => {
-    //             if (!liff.isLoggedIn()) {
-    //                 liff.login({}) // ログインしていなければ最初にログインする
-    //             } else if (liff.isInClient()) { // LIFFので動いているのであれば
-    //                 liff.sendMessages([{ // メッセージを送信する
-    //                     'type': 'text',
-    //                     'text': "You've successfully sent a message! Hooray!"
-    //                 }]).then(function () {
-    //                     window.alert('Message sent');
-    //                 }).catch(function (error) {
-    //                     window.alert('Error sending message: ' + error);
-    //                 });
-    //             }
-    //         })
+    // function initializeApp() {
+    //     // ログインチェック
+    //     if (liff.isLoggedIn()) {
+    //         //ログイン済
+    //         // onload()
+    //         onload()
+    //     } else {
+    //         // 未ログイン
+    //         // let result = window.confirm("LINE Loginしますか？新着情報を確認する場合はキャンセルしてください。");
+    //         // if (result) {
+    //         liff.login();
+    //         // window.location.href = loginUrl;
+    //         // }
+    //     }
     // }
+    // const lineClick = function () {
+    //     onload()
+    //     // liff.login();
+    //     // window.location.href = loginUrl;
+    // };
+
+    const lineClick = () => {
+        liff.init({ liffId: LINEID as string }) // LIFF IDをセットする
+            .then(() => {
+                if (!liff.isLoggedIn()) {
+                    liff.login({}) // ログインしていなければ最初にログインする
+                } else if (liff.isInClient()) { // LIFFので動いているのであれば
+                    liff.sendMessages([{ // メッセージを送信する
+                        'type': 'text',
+                        'text': "You've successfully sent a message! Hooray!"
+                    }]).then(function () {
+                        window.alert('Message sent');
+                    }).catch(function (error) {
+                        window.alert('Error sending message: ' + error);
+                    });
+                }
+            })
+    }
     // /* 追加: UserProfileをAlertで表示 */
     const onload = () => {
         console.log(process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID)
