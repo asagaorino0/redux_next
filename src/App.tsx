@@ -25,7 +25,7 @@ function App() {
     router.push('./PageA')
   }
   const registUser = () => {
-    dispatch(addUser({ name, age }))
+    dispatch(addUser({ name, age, uid }))
     // toPageA()
   };
   const loginUrl = process.env.NEXT_PUBLIC_LINE_LOGIN_URL
@@ -45,8 +45,8 @@ function App() {
               const displayName: string = profile.displayName
               setName(profile.displayName)
               setUid(profile.userId)
+              dispatch(addUser({ name, age, uid }))
               console.log("{login}", `${name}`);
-              registUser()
               alert(`Name: ${displayName}, userId: ${userId}`)
             }).catch(function (error) {
               window.alert('Error sending message: ' + error);
