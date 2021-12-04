@@ -90,7 +90,7 @@ function App() {
             console.log("{login}", `${name}`);
             // alert(`Name: ${displayName}, userId: ${userId}`)
           }).catch(function (error) {
-            window.alert('Error sending message: ' + error);
+            // window.alert('Error sending message: ' + error);
           });
       })
   };
