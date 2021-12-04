@@ -4,13 +4,15 @@ import { RootState } from '../app/store';
 interface UserState {
   name: string,
   age: number,
-  uid: string
+  uid: string,
+  img: string | undefined
 }
 
 const initialState: UserState = {
   name: 'user',
   age: -1,
-  uid: ''
+  uid: '',
+  img: ''
 };
 
 export const userSlice = createSlice({

@@ -26,7 +26,7 @@ const PageAA = () => {
 
             </div>
             <h1>
-                {user.name}/{user.age}
+                {user.name}/{user.uid}
             </h1>
 
         </div >
