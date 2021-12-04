@@ -50,12 +50,11 @@ function App() {
             setIcon(displayicon)
             dispatch(addUser({ name, uid, icon }))
             alert(`Name1: ${displayName}, userId: ${userId}`)
+            onload()
           }).catch(function (error) {
             // window.alert('Error sending message: ' + error);
           });
       })
-    onload()
-    onload()
   };
   const onload = function () {
     liff
