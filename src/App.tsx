@@ -29,28 +29,28 @@ function App() {
   const LINEID = process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID
   // const LINEID = "1656149559-xXM4l4Gp"
   // const loginUrl = "https://access.line.me/oauth2/v2.1/authorize?app_id=1656650515-ENMoxvjb&client_id=1656650515&scope=chat_message.write+openid+profile&state=MTSFhIGGxsff&bot_prompt=aggressive&response_type=code&code_challenge_method=S256&code_challenge=Hx-YFyPAvO9ZQIg5pQpaGQuMChsOE11Raf_3DHDGFgY&liff_sdk_version=2.11.1&type=L&redirect_uri=http://localhost:3000/"
-  console.log('LINEID', LINEID)
-  const lineClick = () => {
-    liff.init({ liffId: LINEID as string }) // LIFF IDをセットする
-      .then(() => {
-        if (!liff.isLoggedIn()) {
-          liff.login({}) // ログインしていなければ最初にログインする
-        } else if (liff.isInClient()) {
-          liff.getProfile()  // ユーザ情報を取得する
-            .then(profile => {
-              const userId: string = profile.userId
-              const displayName: string = profile.displayName
-              setName(profile.displayName)
-              // setUid(profile.userId)
-              console.log("{login}", `${name}`);
-              registUser()
-              alert(`Name: ${displayName}, userId: ${userId}`)
-            }).catch(function (error) {
-              window.alert('Error sending message: ' + error);
-            });
-        }
-      })
-  }
+  // console.log('LINEID', LINEID)
+  // const lineClick = () => {
+  //   liff.init({ liffId: LINEID as string }) // LIFF IDをセットする
+  //     .then(() => {
+  //       if (!liff.isLoggedIn()) {
+  //         // liff.login({}) // ログインしていなければ最初にログインする
+  //       } else if (liff.isInClient()) {
+  //         liff.getProfile()  // ユーザ情報を取得する
+  //           .then(profile => {
+  //             const userId: string = profile.userId
+  //             const displayName: string = profile.displayName
+  //             setName(profile.displayName)
+  //             // setUid(profile.userId)
+  //             console.log("{login}", `${name}`);
+  //             registUser()
+  //             alert(`Name: ${displayName}, userId: ${userId}`)
+  //           }).catch(function (error) {
+  //             window.alert('Error sending message: ' + error);
+  //           });
+  //       }
+  //     })
+  // }
   // const onload = () => {
   //   liff.init({ liffId: process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID as string })
   //     .then(() => {
@@ -72,45 +72,46 @@ function App() {
   //       }
   //     })
   // }
-  // const lineClick = function () {
-  //   // onload()
-  //   liff.login();
-  //   // window.location.href = loginUrl;
-  // };
-  // const onload = function () {
-  //   liff
-  //     .init({ liffId: LINEID as string })
-  //     .then(() => {
-  //       // 初期化完了
-  //       initializeApp();
-  //       liff.getProfile()  // ユーザ情報を取得する
-  //         .then(profile => {
-  //           const userId: string = profile.userId
-  //           const displayName: string = profile.displayName
-  //           setName(profile.displayName)
-  //           setUid(userId)
-  //           setName(displayName)
-  //           setUid(profile.userId)
-  //           registUser()
-  //           // console.log("{login}", `${name}`);
-  //           // alert(`Name: ${displayName}, userId: ${userId}`)
-  //         }).catch(function (error) {
-  //           // window.alert('Error sending message: ' + error);
-  //         });
-  //     })
-  // };
+  const lineClick = function () {
+    // onload()
+    liff.init({ liffId: LINEID as string })
+    liff.login();
+    // window.location.href = loginUrl;
+  };
   const onload = function () {
-    if (liff.isLoggedIn()) {
-      liff.getProfile()
-        .then(profile => {
-          setName(profile.displayName)
-          setUid(profile.userId)
-          // setAvatar(profile.pictureUrl)
-          console.log("{login}", `${name}`, `${uid}`);
-          console.log('succes!')
-        })
-    }
-  }
+    liff
+      .init({ liffId: LINEID as string })
+      .then(() => {
+        // 初期化完了
+        // initializeApp();
+        liff.getProfile()  // ユーザ情報を取得する
+          .then(profile => {
+            const userId: string = profile.userId
+            const displayName: string = profile.displayName
+            setName(profile.displayName)
+            setUid(userId)
+            setName(displayName)
+            setUid(profile.userId)
+            registUser()
+            // console.log("{login}", `${name}`);
+            // alert(`Name: ${displayName}, userId: ${userId}`)
+          }).catch(function (error) {
+            // window.alert('Error sending message: ' + error);
+          });
+      })
+  };
+  // const onload = function () {
+  //   if (liff.isLoggedIn()) {
+  //     liff.getProfile()
+  //       .then(profile => {
+  //         setName(profile.displayName)
+  //         setUid(profile.userId)
+  //         // setAvatar(profile.pictureUrl)
+  //         console.log("{login}", `${name}`, `${uid}`);
+  //         console.log('succes!')
+  //       })
+  //   }
+  // }
   // 現在ログインしているユーザーを取得する
   // useEffect(() => {
   //   if (liff.isLoggedIn()) {
