@@ -43,17 +43,10 @@ function App() {
   // console.log('LINEID', LINEID)
 
   const lineClick = function () {
-    if (!liff.isLoggedIn()) {
-      // 未ログイン
-      liff
-        .init({ liffId: LINEID as string })
-      liff.login();
-
-    } else {
-      //ログイン済
-      onload()
-    }
-  }
+    // liff.init({ liffId: LINEID as string })
+    onload()
+    // liff.login();
+  };
   const onload = function () {
     liff
       .init({ liffId: LINEID as string })
@@ -70,6 +63,7 @@ function App() {
             setName(displayName)
             setIcon(displayicon)
             dispatch(addUser({ name, uid, icon }))
+
             const setRef = setDoc(doc(db, 'users', `${uid}`), {
               uid,
               name,

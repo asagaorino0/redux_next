@@ -34,15 +34,16 @@ const Home: NextPage = () => {
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
-        <React.StrictMode >
-          <Provider store={store}>
-            <PageAA />
-          </Provider>
-        </React.StrictMode>
+
 
 
         <p className={styles.description}>
           Get started by editing{' '}
+          <React.StrictMode >
+            <Provider store={store}>
+              <PageAA />
+            </Provider>
+          </React.StrictMode>
           <code className={styles.code}>pages/index.tsx</code>
         </p>
         <section className="h-screen w-4/5 max-w-5xl mx-auto flex items-center justifycenter flex-col">
