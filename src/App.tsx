@@ -93,25 +93,14 @@ function App() {
             setName(displayName)
             setUid(profile.userId)
             registUser()
-            // console.log("{login}", `${name}`);
-            // alert(`Name: ${displayName}, userId: ${userId}`)
+            console.log("login:", `${name}`);
+            alert(`Name: ${displayName}, userId: ${userId}`)
           }).catch(function (error) {
             // window.alert('Error sending message: ' + error);
           });
       })
   };
-  // const onload = function () {
-  //   if (liff.isLoggedIn()) {
-  //     liff.getProfile()
-  //       .then(profile => {
-  //         setName(profile.displayName)
-  //         setUid(profile.userId)
-  //         // setAvatar(profile.pictureUrl)
-  //         console.log("{login}", `${name}`, `${uid}`);
-  //         console.log('succes!')
-  //       })
-  //   }
-  // }
+
   // 現在ログインしているユーザーを取得する
   // useEffect(() => {
   //   if (liff.isLoggedIn()) {
