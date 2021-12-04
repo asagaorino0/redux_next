@@ -55,13 +55,12 @@ function App() {
             // onload()
             // }
             dispatch(addUser({ name, uid, icon }))
-
-
-
+            onload()
           }).catch(function (error) {
             // window.alert('Error sending message: ' + error);
           });
       })
+    onload()
   };
   const onload = function () {
     liff
@@ -92,7 +91,7 @@ function App() {
             //     name: user.user.name
             // })
             // console.log("login:", profile);
-            alert(`Name2: ${displayName}, userId: ${userId}`)
+            // alert(`Name2: ${displayName}, userId: ${userId}`)
           }).catch(function (error) {
             // window.alert('Error sending message: ' + error);
           });
