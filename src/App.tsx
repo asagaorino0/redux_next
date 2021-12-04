@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
-import { getAuth, onAuthStateChanged } from 'firebase/auth'
-import { firebaseAuth, db, app } from "./firebase"
+import { db } from "./firebase"
 import { getFirestore, collection, query, where, onSnapshot, doc, setDoc, Timestamp, addDoc } from 'firebase/firestore'
 // import { app } from "./firebase"
 // import './App.css';
@@ -11,9 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from "next/router";
 import PageAA from './PageAA'
 import PageA from '../pages/PageA'
-// import Login from '../src/login'
 // import dynamic from 'next/dynamic'
-// import { BrowserRouter as Router, MemoryRouter, Route } from 'react-router-dom'
 
 import liff from '@line/liff';
 import { stringify } from 'querystring';
@@ -38,23 +35,32 @@ function App() {
   };
   const loginUrl = process.env.NEXT_PUBLIC_LINE_LOGIN_URL
   const LINEID = process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID
-  // const LINEID = "1656149559-xXM4l4Gp"
-  // const loginUrl = "https://access.line.me/oauth2/v2.1/authorize?app_id=1656650515-ENMoxvjb&client_id=1656650515&scope=chat_message.write+openid+profile&state=MTSFhIGGxsff&bot_prompt=aggressive&response_type=code&code_challenge_method=S256&code_challenge=Hx-YFyPAvO9ZQIg5pQpaGQuMChsOE11Raf_3DHDGFgY&liff_sdk_version=2.11.1&type=L&redirect_uri=http://localhost:3000/"
-  // console.log('LINEID', LINEID)
-
   const lineClick = function () {
-    // liff.init({ liffId: LINEID as string })
+    liff
+      .init({ liffId: LINEID as string })
+      .then(() => {
+        liff.getProfile()  // ユーザ情報を取得する
+          .then(profile => {
+            const userId: string = profile.userId
+            const displayName: string = profile.displayName
+            const displayicon: string | undefined = profile.pictureUrl
+            setName(profile.displayName)
+            setUid(userId)
+            setName(displayName)
+            setIcon(displayicon)
+            dispatch(addUser({ name, uid, icon }))
+            alert(`Name1: ${displayName}, userId: ${userId}`)
+          }).catch(function (error) {
+            // window.alert('Error sending message: ' + error);
+          });
+      })
     onload()
     onload()
-    onload()
-    // liff.login();
   };
   const onload = function () {
     liff
       .init({ liffId: LINEID as string })
       .then(() => {
-        // 初期化完了
-        // initializeApp();
         liff.getProfile()  // ユーザ情報を取得する
           .then(profile => {
             const userId: string = profile.userId
@@ -80,7 +86,7 @@ function App() {
             //     name: user.user.name
             // })
             // console.log("login:", profile);
-            // alert(`Name: ${displayName}, userId: ${userId}`)
+            alert(`Name2: ${displayName}, userId: ${userId}`)
           }).catch(function (error) {
             // window.alert('Error sending message: ' + error);
           });
