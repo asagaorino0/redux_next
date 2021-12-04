@@ -30,11 +30,11 @@ const PageAA = () => {
                     style={{ borderRadius: '50%', width: '60px', height: '60px' }}
                 />
             }
-            {`${user.icon}`.length !== 0 &&
+            {/* {`${user.icon}`.length !== 0 &&
                 <h1>
                     {user.name}
                 </h1>
-            }
+            } */}
         </div >
     );
 }
