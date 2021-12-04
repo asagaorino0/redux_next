@@ -109,13 +109,16 @@ function App() {
   }
   // 現在ログインしているユーザーを取得する
   useEffect(() => {
-    liff.getProfile()
-      .then(profile => {
-        setName(profile.displayName)
-        setUid(profile.userId)
-        //   setAvatar(profile.pictureUrl)
-        // myProfile()
-      })
+    if (liff.isLoggedIn()) {
+      liff.getProfile()
+        .then(profile => {
+          setName(profile.displayName)
+          setUid(profile.userId)
+          console.log("{login}", `${name}`, `${uid}`);
+          //   setAvatar(profile.pictureUrl)
+          // myProfile()
+        })
+    }
   }, []
   );
   // function initializeApp() {
