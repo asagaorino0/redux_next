@@ -148,6 +148,7 @@ function App() {
       <input type="text" onChange={(e) => setAge(Number(e.target.value))} />
       <h1>登録</h1>
       <button onClick={registUser}>登録</button>
+      <button onClick={onload}>ロード</button>
       <h1>
         {user.name}/{user.age}
       </h1>
