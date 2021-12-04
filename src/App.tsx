@@ -126,7 +126,7 @@ function App() {
           </header>
         </Router>
       </MemoryRouter> */}
-      <h1>name</h1>
+      {/* <h1>name</h1>
       <input type="text" onChange={(e) => setName(e.target.value)} />
       <h1>age</h1>
       <input type="text" onChange={(e) => setAge(Number(e.target.value))} />
@@ -135,7 +135,7 @@ function App() {
       <button onClick={onload}>ロード</button>
       <h1>
         {user.name}/{user.age}
-      </h1>
+      </h1> */}
       <PageA />
       <button onClick={lineClick}>
         <h3 className="mb-4 text-green-500 text-3xl">ログイン</h3></button>
