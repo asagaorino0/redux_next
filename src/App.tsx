@@ -22,9 +22,7 @@ function App() {
   //   () => import('../pages/PageA'),
   //   { ssr: false }
   // )
-  const [uid, setUid] = useState<string>('');
-  const [name, setName] = useState<string>('');
-  const [icon, setIcon] = useState<string | undefined>('');
+
   const [age, setAge] = useState<number>(0);
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
@@ -32,10 +30,6 @@ function App() {
   const toPageA = () => {
     router.push('./PageA')
   }
-  const registUser = () => {
-    dispatch(addUser({ name, age, uid, icon }))
-    // toPageA()
-  };
   const loginUrl = process.env.NEXT_PUBLIC_LINE_LOGIN_URL
   const LINEID = process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID
   // const LINEID = "1656149559-xXM4l4Gp"
@@ -44,9 +38,37 @@ function App() {
 
   const lineClick = function () {
     // liff.init({ liffId: LINEID as string })
+    liff
+      .init({ liffId: LINEID as string })
+      .then(() => {
+        liff.getProfile()  // ユーザ情報を取得する
+          .then(profile => {
+            const userId: string = profile.userId
+            const displayName: string = profile.displayName
+            const displayicon: string | undefined = profile.pictureUrl
+            const [uid, setUid] = useState<string>(profile.userId);
+            const [name, setName] = useState<string>(profile.displayName);
+            const [icon, setIcon] = useState<string | undefined>(profile.pictureUrl);
+            setName(profile.displayName)
+            setUid(userId)
+            setName(displayName)
+            setIcon(displayicon)
+            dispatch(addUser({ name, uid, icon }))
+            const setRef = setDoc(doc(db, 'users', `${uid}`), {
+              uid,
+              name,
+              icon,
+              timestamp: Timestamp.fromDate(new Date()),
+            }, { merge: true }//←上書きされないおまじない
+            )
+
+            alert(`Name: ${displayName}, userId: ${userId}`)
+          }).catch(function (error) {
+            // window.alert('Error sending message: ' + error);
+          });
+      })
     onload()
-    onload()
-    onload()
+    // onload()
     // liff.login();
   };
   const onload = function () {
@@ -60,12 +82,14 @@ function App() {
             const userId: string = profile.userId
             const displayName: string = profile.displayName
             const displayicon: string | undefined = profile.pictureUrl
+            const [uid, setUid] = useState<string>(profile.userId);
+            const [name, setName] = useState<string>(profile.displayName);
+            const [icon, setIcon] = useState<string | undefined>(profile.pictureUrl);
             setName(profile.displayName)
             setUid(userId)
             setName(displayName)
             setIcon(displayicon)
             dispatch(addUser({ name, uid, icon }))
-
             const setRef = setDoc(doc(db, 'users', `${uid}`), {
               uid,
               name,
@@ -126,12 +150,12 @@ function App() {
           </header>
         </Router>
       </MemoryRouter> */}
-      <h1>name</h1>
+      {/* <h1>name</h1>
       <input type="text" onChange={(e) => setName(e.target.value)} />
       <h1>age</h1>
       <input type="text" onChange={(e) => setAge(Number(e.target.value))} />
       <h1>登録</h1>
-      <button onClick={registUser}>登録</button>
+      <button onClick={registUser}>登録</button> */}
       <button onClick={onload}>ロード</button>
       <h1>
         {user.name}/{user.age}
