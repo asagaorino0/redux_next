@@ -2,9 +2,16 @@ import React, { useState } from 'react';
 import { addUser, selectUser } from '../src/features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from "next/router";
+import { store } from '../src/app/store';
+import { Provider } from 'react-redux';
+import dynamic from 'next/dynamic'
+
 
 const PageA = () => {
-    // const [name, setName] = useState<string>('');
+    const PageAA = dynamic(
+        () => import('../src/PageAA'),
+        { ssr: false }
+    )    // const [name, setName] = useState<string>('');
     // const [age, setAge] = useState<number>(0);
     // const user = useSelector(selectUser);
     // const router = useRouter()
@@ -18,6 +25,11 @@ const PageA = () => {
             <br />
             <h1>
                 {/* {user.name}/{user.age} */}
+                <React.StrictMode >
+                    <Provider store={store}>
+                        <PageAA />
+                    </Provider>
+                </React.StrictMode>
             </h1>
         </div >
     );
