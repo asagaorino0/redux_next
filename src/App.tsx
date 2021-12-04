@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 // import './App.css';
 import { addUser, selectUser } from '../src/features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
@@ -69,47 +69,71 @@ function App() {
   //     })
   // }
   const lineClick = function () {
-    onload()
-    // liff.login();
+    // onload()
+    liff.login();
     // window.location.href = loginUrl;
   };
+  // const onload = function () {
+  //   liff
+  //     .init({ liffId: LINEID as string })
+  //     .then(() => {
+  //       // 初期化完了
+  //       initializeApp();
+  //       liff.getProfile()  // ユーザ情報を取得する
+  //         .then(profile => {
+  //           const userId: string = profile.userId
+  //           const displayName: string = profile.displayName
+  //           setName(profile.displayName)
+  //           setUid(userId)
+  //           setName(displayName)
+  //           setUid(profile.userId)
+  //           registUser()
+  //           // console.log("{login}", `${name}`);
+  //           // alert(`Name: ${displayName}, userId: ${userId}`)
+  //         }).catch(function (error) {
+  //           // window.alert('Error sending message: ' + error);
+  //         });
+  //     })
+  // };
   const onload = function () {
-    liff
-      .init({ liffId: LINEID as string })
-      .then(() => {
-        // 初期化完了
-        initializeApp();
-        liff.getProfile()  // ユーザ情報を取得する
-          .then(profile => {
-            const userId: string = profile.userId
-            const displayName: string = profile.displayName
-            setName(profile.displayName)
-            setUid(userId)
-            setName(displayName)
-            setUid(profile.userId)
-            registUser()
-            // console.log("{login}", `${name}`);
-            // alert(`Name: ${displayName}, userId: ${userId}`)
-          }).catch(function (error) {
-            // window.alert('Error sending message: ' + error);
-          });
-      })
-  };
-  function initializeApp() {
-    // ログインチェック
     if (liff.isLoggedIn()) {
-      //ログイン済
-      // onload()
-      onload()
-    } else {
-      // 未ログイン
-      // let result = window.confirm("LINE Loginしますか？新着情報を確認する場合はキャンセルしてください。");
-      // if (result) {
-      liff.login();
-      // window.location.href = loginUrl;
-      // }
+      liff.getProfile()
+        .then(profile => {
+          setName(profile.displayName)
+          setUid(profile.userId)
+          // setAvatar(profile.pictureUrl)
+          console.log("{login}", `${name}`, `${uid}`);
+          console.log('succes!')
+        })
     }
   }
+  // 現在ログインしているユーザーを取得する
+  useEffect(() => {
+    liff.getProfile()
+      .then(profile => {
+        setName(profile.displayName)
+        setUid(profile.userId)
+        //   setAvatar(profile.pictureUrl)
+        // myProfile()
+      })
+  }, []
+  );
+  // function initializeApp() {
+  //   // ログインチェック
+  //   if (liff.isLoggedIn()) {
+  //     //ログイン済
+  //     // onload()
+  //     onload()
+  //   } else {
+  //     // 未ログイン
+  //     // let result = window.confirm("LINE Loginしますか？新着情報を確認する場合はキャンセルしてください。");
+  //     // if (result) {
+  //     liff.login();
+  //     // window.location.href = loginUrl;
+  //     // }
+  //   }
+  // }
+
   return (
     <div className="App">
       <h1>name</h1>
