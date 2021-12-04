@@ -4,7 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from "next/router";
 
 const PageAA = () => {
+    const [uid, setUid] = useState<string>('');
     const [name, setName] = useState<string>('');
+    const [img, setImg] = useState<string | undefined>('');
     const [age, setAge] = useState<number>(0);
     const dispatch = useDispatch();
     const user = useSelector(selectUser);
@@ -13,7 +15,7 @@ const PageAA = () => {
         router.push('/')
     }
     const registUser = () => {
-        dispatch(addUser({ name, age }))
+        dispatch(addUser({ name, uid, img }))
         // toPageA()
     };
 

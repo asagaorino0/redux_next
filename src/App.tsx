@@ -64,9 +64,10 @@ function App() {
   //     })
   // }
   const lineClick = function () {
-    onload()
-    // liff.init({ liffId: LINEID as string })
-    // liff.login();
+
+    liff.init({ liffId: LINEID as string })
+    // onload()
+    liff.login();
   };
   const onload = function () {
     liff
