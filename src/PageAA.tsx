@@ -27,7 +27,7 @@ const PageAA = () => {
                 <img
                     src={`${user.icon}`}
                     alt=""
-                    style={{ borderRadius: '50%', width: '50px', height: '60px' }}
+                    style={{ borderRadius: '50%', width: '60px', height: '60px' }}
                 />
             }
             <h1>

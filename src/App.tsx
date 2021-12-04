@@ -42,37 +42,10 @@ function App() {
   // const loginUrl = "https://access.line.me/oauth2/v2.1/authorize?app_id=1656650515-ENMoxvjb&client_id=1656650515&scope=chat_message.write+openid+profile&state=MTSFhIGGxsff&bot_prompt=aggressive&response_type=code&code_challenge_method=S256&code_challenge=Hx-YFyPAvO9ZQIg5pQpaGQuMChsOE11Raf_3DHDGFgY&liff_sdk_version=2.11.1&type=L&redirect_uri=http://localhost:3000/"
   // console.log('LINEID', LINEID)
 
-  // const onload = () => {
-  //   liff.init({ liffId: process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID as string })
-  //     .then(() => {
-  //       if (!liff.isLoggedIn()) {
-  //         liff.login({}) // ログインしていなければ最初にログインする
-  //       } else if (liff.isInClient()) {
-  //         liff.getProfile()  // ユーザ情報を取得する
-  //           .then(profile => {
-  //             const userId: string = profile.userId
-  //             const displayName: string = profile.displayName
-  //             setName(profile.displayName)
-  //             // setUid(profile.userId)
-  //             console.log("{login}", `${name}`);
-  //             registUser()
-  //             alert(`Name: ${displayName}, userId: ${userId}`)
-  //           }).catch(function (error) {
-  //             window.alert('Error sending message: ' + error);
-  //           });
-  //       }
-  //     })
-  // }
   const lineClick = function () {
-
     liff.init({ liffId: LINEID as string })
     // onload()
     liff.login();
-    let result = window.confirm("LINE Loginしますか？");
-    if (result) {
-      liff.login();
-      // window.location.href = loginUrl;
-    }
   };
   const onload = function () {
     liff
