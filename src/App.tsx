@@ -80,7 +80,7 @@ function App() {
             console.log("login:", profile);
             alert(`Name: ${displayName}, userId: ${userId}`)
           }).catch(function (error) {
-            liff.login();
+            // window.alert('Error sending message: ' + error);
           });
       })
   };

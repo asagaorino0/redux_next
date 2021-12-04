@@ -33,7 +33,11 @@ const Home: NextPage = () => {
       <main className={styles.main}>
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
-          {/* {process.browser ? document.getElementById('root') : ""} */}
+          <React.StrictMode >
+            <Provider store={store}>
+              <PageAA />
+            </Provider>
+          </React.StrictMode>
         </h1>
 
         <p className={styles.description}>
@@ -46,7 +50,6 @@ const Home: NextPage = () => {
           <React.StrictMode >
             <Provider store={store}>
               <App />
-              <PageAA />
             </Provider>
           </React.StrictMode>
           <div>
