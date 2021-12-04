@@ -3,7 +3,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import React, { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 
 
 import liff from '@line/liff';
@@ -21,25 +21,25 @@ const Login: NextPage = () => {
     // if (process.browser) {
     //   document.getElementById('root')
     // }
-    const onload = function () {
-        liff
-            .init({ liffId: LINEID as string })
-            .then(() => {
-                // 初期化完了
-                initializeApp();
-                liff.getProfile()  // ユーザ情報を取得する
-                    .then(profile => {
-                        const userId: string = profile.userId
-                        const displayName: string = profile.displayName
-                        setName(profile.displayName)
-                        setUid(profile.userId)
-                        console.log("{login}", `${name}`, `${uid}`);
-                        alert(`Name: ${displayName}, userId: ${userId}`)
-                    }).catch(function (error) {
-                        window.alert('Error sending message: ' + error);
-                    });
-            })
-    };
+    // const onload = function () {
+    //     liff
+    //         .init({ liffId: LINEID as string })
+    //         .then(() => {
+    //             // 初期化完了
+    //             initializeApp();
+    //             liff.getProfile()  // ユーザ情報を取得する
+    //                 .then(profile => {
+    //                     const userId: string = profile.userId
+    //                     const displayName: string = profile.displayName
+    //                     setName(profile.displayName)
+    //                     setUid(profile.userId)
+    //                     console.log("{login}", `${name}`, `${uid}`);
+    //                     alert(`Name: ${displayName}, userId: ${userId}`)
+    //                 }).catch(function (error) {
+    //                     window.alert('Error sending message: ' + error);
+    //                 });
+    //         })
+    // };
     function initializeApp() {
         // ログインチェック
         if (liff.isLoggedIn()) {
@@ -79,7 +79,7 @@ const Login: NextPage = () => {
     //         })
     // }
     // /* 追加: UserProfileをAlertで表示 */
-    const onloadd = () => {
+    const onload = () => {
         console.log(process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID)
         liff.init({ liffId: process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID as string })
             .then(() => {
@@ -114,13 +114,13 @@ const Login: NextPage = () => {
     // }
     // // 現在ログインしているユーザーを取得する
     // useEffect(() => {
-    //   liff.getProfile()
-    //     .then(profile => {
-    //       setName(profile.displayName)
-    //       setUid(profile.userId)
-    //       setAvatar(profile.pictureUrl)
-    //       // myProfile()
-    //     })
+    //     liff.getProfile()
+    //         .then(profile => {
+    //             setName(profile.displayName)
+    //             setUid(profile.userId)
+    //             //   setAvatar(profile.pictureUrl)
+    //             // myProfile()
+    //         })
     // }, []
     // );
     return (
