@@ -69,7 +69,7 @@ function App() {
       })
     onload()
     // onload()
-    // liff.login();
+    liff.login();
   };
   const onload = function () {
     liff
