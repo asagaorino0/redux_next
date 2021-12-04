@@ -49,8 +49,11 @@ function App() {
             setName(displayName)
             setIcon(displayicon)
             dispatch(addUser({ name, uid, icon }))
-            alert(`Name1: ${displayName}, userId: ${userId}`)
-            onload()
+            let result = window.confirm(`Name1: ${displayName}さん、ログインします。`);
+            // alert(`Name1: ${displayName}, userId: ${userId}`)
+            if (result) {
+              onload()
+            }
           }).catch(function (error) {
             // window.alert('Error sending message: ' + error);
           });
