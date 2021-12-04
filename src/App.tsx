@@ -43,9 +43,9 @@ function App() {
   // console.log('LINEID', LINEID)
 
   const lineClick = function () {
-    liff.init({ liffId: LINEID as string })
-    // onload()
-    liff.login();
+    // liff.init({ liffId: LINEID as string })
+    onload()
+    // liff.login();
   };
   const onload = function () {
     liff
@@ -80,7 +80,7 @@ function App() {
             console.log("login:", profile);
             alert(`Name: ${displayName}, userId: ${userId}`)
           }).catch(function (error) {
-            // window.alert('Error sending message: ' + error);
+            liff.login();
           });
       })
   };
