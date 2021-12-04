@@ -88,7 +88,7 @@ function App() {
             setName(displayName)
             setUid(profile.userId)
             console.log("{login}", `${name}`);
-            alert(`Name: ${displayName}, userId: ${userId}`)
+            // alert(`Name: ${displayName}, userId: ${userId}`)
           }).catch(function (error) {
             window.alert('Error sending message: ' + error);
           });
