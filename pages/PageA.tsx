@@ -14,17 +14,12 @@ const PageA = () => {
     // }
 
     return (
-        <div>
-            <div className="App">
-            </div>            <div>
-                <span >pageA</span>
-                <br />
-
-            </div>
+        <div className="App">
+            <span >pageA</span>
+            <br />
             <h1>
                 {/* {user.name}/{user.age} */}
             </h1>
-
         </div >
     );
 }

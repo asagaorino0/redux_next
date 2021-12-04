@@ -14,11 +14,14 @@ const App = dynamic(
   () => import('../src/App'),
   { ssr: false }
 )
+const PageAA = dynamic(
+  () => import('../src/PageAA'),
+  { ssr: false }
+)
 const Home: NextPage = () => {
   // if (process.browser) {
   //   document.getElementById('root')
   // }
-
   return (
     <div className={styles.container}>
       <Head>
@@ -43,10 +46,11 @@ const Home: NextPage = () => {
           <React.StrictMode >
             <Provider store={store}>
               <App />
-              {/* <Login /> */}
+              {/* <PageAA /> */}
             </Provider>
           </React.StrictMode>
           <div>
+
           </div>
         </section>
 
