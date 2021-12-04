@@ -46,7 +46,7 @@ const Home: NextPage = () => {
           <React.StrictMode >
             <Provider store={store}>
               <App />
-              {/* <PageAA /> */}
+              <PageAA />
             </Provider>
           </React.StrictMode>
           <div>
