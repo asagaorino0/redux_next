@@ -152,8 +152,16 @@ function App() {
         {user.name}/{user.age}
       </h1> */}
       <PageA />
-      <button onClick={lineClick}>
-        <h3 className="mb-4 text-green-500 text-3xl">ログイン</h3></button>
+      {`${user.uid}` === '11111' &&
+        <button onClick={lineClick}>
+          <h3 className="mb-4 text-green-500 text-3xl">ログインはここを2回タップ</h3>
+        </button>
+      }
+      {`${user.uid}` === '' &&
+        <button onClick={lineClick}>
+          <h3 className="mb-4 text-green-500 text-3xl">もう一度タップ</h3>
+        </button>
+      }
       <a href="https://access.line.me/oauth2/v2.1/authorize?app_id=1656650515-ENMoxvjb&client_id=1656650515&scope=chat_message.write+openid+profile&state=MTSFhIGGxsff&bot_prompt=aggressive&response_type=code&code_challenge_method=S256&code_challenge=Hx-YFyPAvO9ZQIg5pQpaGQuMChsOE11Raf_3DHDGFgY&liff_sdk_version=2.11.1&type=L&redirect_uri=http://localhost:3000/">
         <div>
           localhost3000
