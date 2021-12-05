@@ -144,19 +144,22 @@ function App() {
   return (
     <div className="App">
       {`${user.uid}` === '11111' &&
-        <button onClick={lineClick}>
-          <h4 className="mb-4 text-green-500 text-3xl">ログインはここをタップ</h4>
-        </button>
+        <div>
+          <button onClick={lineClick}>
+            <h4 className="mb-4 text-green-500 text-3xl">ログインはここをタップ</h4>
+          </button>
+        </div>
       }
-      {`${user.uid}` === '' &&
+      {/* {`${user.uid}` === '' && */}
+      <div>
         <button onClick={onload}>
           <h3 className="mb-4 text-green-500 text-3xl">もう一度タップ</h3>
         </button>
-      }
+      </div>
+      {/* } */}
       {`${user.name}`.length !== 0 &&
         <button onClick={toPageA}>
-          <h1 className="mb-4 text-green-500 text-3xl">{user.name}さま </h1>
-          <h1 className="mb-4 text-green-500 text-3xl">ようこそ </h1>
+          <PageA />
         </button>
       }
       <a href=' https://access.line.me/oauth2/v2.1/authorize?app_id=1656149559-xXM4l4Gp&client_id=1656149559&scope=chat_message.write+openid+profile&state=MTSFhIGGxsff&bot_prompt=aggressive&response_type=code&code_challenge_method=S256&code_challenge=Hx-YFyPAvO9ZQIg5pQpaGQuMChsOE11Raf_3DHDGFgY&liff_sdk_version=2.11.1&type=L&redirect_uri=https://redux-next.vercel.app/'>
