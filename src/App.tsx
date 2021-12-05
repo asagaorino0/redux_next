@@ -35,32 +35,32 @@ function App() {
   };
   const loginUrl = process.env.NEXT_PUBLIC_LINE_LOGIN_URL
   const LINEID = process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID
-  const lineClick = () => {
-    liff.init({ liffId: LINEID as string }) // LIFF IDをセットする
-      .then(() => {
-        if (!liff.isLoggedIn()) {
-          liff.login({}) // ログインしていなければ最初にログインする
-        } else if (liff.isInClient()) {
-          liff.getProfile()  // ユーザ情報を取得する
-            .then(profile => {
-              const userId: string = profile.userId
-              const displayName: string = profile.displayName
-              const displayicon: string | undefined = profile.pictureUrl
-              setName(profile.displayName)
-              setUid(userId)
-              setName(displayName)
-              setIcon(displayicon)
-              dispatch(addUser({ name, uid, icon }))
-              // let result = window.confirm(`Name1: ${displayName}さん、ログインします。`);
-              // // alert(`Name1: ${displayName}, userId: ${userId}`)
-              // if (result) {
-              onload()
-            }).catch(function (error) {
-              window.alert('Error sending message: ' + error);
-            });
-        }
-      })
-  }
+  // const lineClick = () => {
+  //   liff.init({ liffId: LINEID as string }) // LIFF IDをセットする
+  //     .then(() => {
+  //       if (!liff.isLoggedIn()) {
+  //         liff.login({}) // ログインしていなければ最初にログインする
+  //       } else if (liff.isInClient()) {
+  //         liff.getProfile()  // ユーザ情報を取得する
+  //           .then(profile => {
+  //             const userId: string = profile.userId
+  //             const displayName: string = profile.displayName
+  //             const displayicon: string | undefined = profile.pictureUrl
+  //             setName(profile.displayName)
+  //             setUid(userId)
+  //             setName(displayName)
+  //             setIcon(displayicon)
+  //             dispatch(addUser({ name, uid, icon }))
+  //             // let result = window.confirm(`Name1: ${displayName}さん、ログインします。`);
+  //             // // alert(`Name1: ${displayName}, userId: ${userId}`)
+  //             // if (result) {
+  //             onload()
+  //           }).catch(function (error) {
+  //             window.alert('Error sending message: ' + error);
+  //           });
+  //       }
+  //     })
+  // }
   // const lineClick = function () {
   //   liff
   //     .init({ liffId: LINEID as string })
@@ -142,21 +142,16 @@ function App() {
   //   }
   // }, []
   // );
-  // function initializeApp() {
-  //   // ログインチェック
-  //   if (liff.isLoggedIn()) {
-  //     //ログイン済
-  //     // onload()
-  //     onload()
-  //   } else {
-  //     // 未ログイン
-  //     // let result = window.confirm("LINE Loginしますか？新着情報を確認する場合はキャンセルしてください。");
-  //     // if (result) {
-  //     liff.login();
-  //     // window.location.href = loginUrl;
-  //     // }
-  //   }
-  // }
+  const lineClick = () => {
+    liff.init({ liffId: LINEID as string }) // LIFF IDをセットする
+      .then(() => {
+        if (!liff.isLoggedIn()) {
+          liff.login({}) // ログインしていなければ最初にログインする
+        } else {
+          onload()
+        }
+      })
+  }
 
   return (
     <div className="App">
