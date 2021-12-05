@@ -35,37 +35,63 @@ function App() {
   };
   const loginUrl = process.env.NEXT_PUBLIC_LINE_LOGIN_URL
   const LINEID = process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID
-  const lineClick = function () {
-    liff
-      .init({ liffId: LINEID as string })
+  const lineClick = () => {
+    liff.init({ liffId: LINEID as string }) // LIFF IDをセットする
       .then(() => {
-        liff.getProfile()  // ユーザ情報を取得する
-          .then(profile => {
-            const userId: string = profile.userId
-            const displayName: string = profile.displayName
-            const displayicon: string | undefined = profile.pictureUrl
-            setName(profile.displayName)
-            setUid(userId)
-            setName(displayName)
-            setIcon(displayicon)
-            dispatch(addUser({ name, uid, icon }))
-            // let result = window.confirm(`Name1: ${displayName}さん、ログインします。`);
-            // // alert(`Name1: ${displayName}, userId: ${userId}`)
-            // if (result) {
-            // onload()
-            // }
-            // setName(profile.displayName)
-            // setUid(userId)
-            // setName(displayName)
-            // setIcon(displayicon)
-            // dispatch(addUser({ name, uid, icon }))
-            // onload()
-          }).catch(function (error) {
-            // window.alert('Error sending message: ' + error);
-          });
+        if (!liff.isLoggedIn()) {
+          liff.login({}) // ログインしていなければ最初にログインする
+        } else if (liff.isInClient()) {
+          liff.getProfile()  // ユーザ情報を取得する
+            .then(profile => {
+              const userId: string = profile.userId
+              const displayName: string = profile.displayName
+              const displayicon: string | undefined = profile.pictureUrl
+              setName(profile.displayName)
+              setUid(userId)
+              setName(displayName)
+              setIcon(displayicon)
+              dispatch(addUser({ name, uid, icon }))
+              // let result = window.confirm(`Name1: ${displayName}さん、ログインします。`);
+              // // alert(`Name1: ${displayName}, userId: ${userId}`)
+              // if (result) {
+              onload()
+            }).catch(function (error) {
+              window.alert('Error sending message: ' + error);
+            });
+        }
       })
-    onload()
-  };
+  }
+  // const lineClick = function () {
+  //   liff
+  //     .init({ liffId: LINEID as string })
+  //     .then(() => {
+  //       liff.getProfile()  // ユーザ情報を取得する
+  //         .then(profile => {
+  //           const userId: string = profile.userId
+  //           const displayName: string = profile.displayName
+  //           const displayicon: string | undefined = profile.pictureUrl
+  //           setName(profile.displayName)
+  //           setUid(userId)
+  //           setName(displayName)
+  //           setIcon(displayicon)
+  //           dispatch(addUser({ name, uid, icon }))
+  //           // let result = window.confirm(`Name1: ${displayName}さん、ログインします。`);
+  //           // // alert(`Name1: ${displayName}, userId: ${userId}`)
+  //           // if (result) {
+  //           // onload()
+  //           // }
+  //           // setName(profile.displayName)
+  //           // setUid(userId)
+  //           // setName(displayName)
+  //           // setIcon(displayicon)
+  //           // dispatch(addUser({ name, uid, icon }))
+  //           // onload()
+  //         }).catch(function (error) {
+  //           // window.alert('Error sending message: ' + error);
+  //         });
+  //     })
+  //   onload()
+  // };
   const onload = function () {
     liff
       .init({ liffId: LINEID as string })
@@ -97,7 +123,7 @@ function App() {
             // console.log("login:", profile);
             // alert(`Name2: ${displayName}, userId: ${userId}`)
           }).catch(function (error) {
-            liff.login();
+            // window.alert('Error sending message: ' + error);
           });
       })
   };
@@ -159,12 +185,12 @@ function App() {
         </button>
       }
       {`${user.uid}` === '' &&
-        <button onClick={lineClick}>
+        <button onClick={onload}>
           <h3 className="mb-4 text-green-500 text-3xl">もう一度タップ</h3>
         </button>
       }
       {`${user.name}`.length !== 0 &&
-        <button onClick={lineClick}>
+        <button onClick={toPageA}>
           <h1 className="mb-4 text-green-500 text-3xl">{user.name}さま </h1>
           <h1 className="mb-4 text-green-500 text-3xl">ようこそ </h1>
         </button>
