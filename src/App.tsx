@@ -52,9 +52,7 @@ function App() {
               setName(displayName)
               setIcon(displayicon)
               dispatch(addUser({ name, uid, icon }))
-              // let result = window.confirm(`Name1: ${displayName}さん、ログインします。`);
               alert(`Name1: ${displayName}, userId: ${userId}`)
-              // if (result) {
               onload()
             }).catch(function (error) {
               window.alert('Error sending message: ' + error);
@@ -143,38 +141,9 @@ function App() {
   //   }
   // }, []
   // );
-  // const lineClick = () => {
-  //   liff.init({ liffId: LINEID as string }) // LIFF IDをセットする
-  //     .then(() => {
-  //       if (!liff.isLoggedIn()) {
-  //         // liff.login({}) // ログインしていなければ最初にログインする
-  //         router.push('https://access.line.me/oauth2/v2.1/authorize?app_id=1656149559-xXM4l4Gp&client_id=1656149559&scope=chat_message.write+openid+profile&state=MTSFhIGGxsff&bot_prompt=aggressive&response_type=code&code_challenge_method=S256&code_challenge=Hx-YFyPAvO9ZQIg5pQpaGQuMChsOE11Raf_3DHDGFgY&liff_sdk_version=2.11.1&type=L&redirect_uri=https://redux-next.vercel.app/');
-  //       } else {
-  //         onload()
-  //       }
-  //     })
-  // }
 
   return (
     <div className="App">
-      {/* <MemoryRouter>
-        <Router>
-          <header className="App-header">
-            <PageAA />
-          </header>
-        </Router>
-      </MemoryRouter> */}
-      {/* <h1>name</h1>
-      <input type="text" onChange={(e) => setName(e.target.value)} />
-      <h1>age</h1>
-      <input type="text" onChange={(e) => setAge(Number(e.target.value))} />
-      <h1>登録</h1>
-      <button onClick={registUser}>登録</button>
-      <button onClick={onload}>ロード</button>
-      <h1>
-        {user.name}/{user.age}
-      </h1> */}
-
       {`${user.uid}` === '11111' &&
         <button onClick={lineClick}>
           <h4 className="mb-4 text-green-500 text-3xl">ログインはここをタップ</h4>
