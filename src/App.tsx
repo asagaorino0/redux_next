@@ -190,12 +190,7 @@ function App() {
           <h1 className="mb-4 text-green-500 text-3xl">ようこそ </h1>
         </button>
       }
-      <a href={loginUrl}>
-        <div>
-          <h4 className="mb-4 text-green-500 text-3xl">ログインはここをタップ</h4>
-          {/* <PageA /> */}
-        </div>
-      </a>
+
     </div>
   );
 }
