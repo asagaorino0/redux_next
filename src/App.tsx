@@ -54,11 +54,11 @@ function App() {
             // if (result) {
             // onload()
             // }
-            setName(profile.displayName)
-            setUid(userId)
-            setName(displayName)
-            setIcon(displayicon)
-            dispatch(addUser({ name, uid, icon }))
+            // setName(profile.displayName)
+            // setUid(userId)
+            // setName(displayName)
+            // setIcon(displayicon)
+            // dispatch(addUser({ name, uid, icon }))
             // onload()
           }).catch(function (error) {
             // window.alert('Error sending message: ' + error);
@@ -97,7 +97,7 @@ function App() {
             // console.log("login:", profile);
             // alert(`Name2: ${displayName}, userId: ${userId}`)
           }).catch(function (error) {
-            // window.alert('Error sending message: ' + error);
+            liff.login();
           });
       })
   };
