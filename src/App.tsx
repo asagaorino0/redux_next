@@ -36,11 +36,10 @@ function App() {
   const loginUrl: string | undefined = process.env.NEXT_PUBLIC_LINE_LOGIN_URL
   const LINEID = process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID
   const lineClick = () => {
-    liff.init({ liffId: LINEID as string }) // LIFF IDをセットする
+    liff.init({ liffId: process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID as string })
       .then(() => {
         if (!liff.isLoggedIn()) {
           liff.login({}) // ログインしていなければ最初にログインする
-          // router.push();
         } else if (liff.isInClient()) {
           liff.getProfile()  // ユーザ情報を取得する
             .then(profile => {
