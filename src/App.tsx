@@ -167,7 +167,7 @@ function App() {
       {`${user.uid}` === '' &&
         <div>
           <button onClick={onload}>
-            <h3 className="mb-4 text-green-500 text-3xl">もう一度タップ</h3>
+            <h3 className="mb-4 text-green-500 text-3xl">ようこそ</h3>
           </button>
         </div>
       }
