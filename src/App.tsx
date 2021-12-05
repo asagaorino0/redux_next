@@ -39,7 +39,7 @@ function App() {
     liff.init({ liffId: LINEID as string })
       .then(() => {
         if (!liff.isLoggedIn()) {
-          liff.login({}) // ログインしていなければ最初にログインする
+          liff.login() // ログインしていなければ最初にログインする
         } else if (liff.isInClient()) {
           liff.getProfile()  // ユーザ情報を取得する
             .then(profile => {
@@ -125,6 +125,12 @@ function App() {
           });
       })
   };
+  const logout = function () {
+    // ログアウト
+    if (liff.isLoggedIn()) {
+      liff.logout()
+    }
+  }
 
   // 現在ログインしているユーザーを取得する
   // useEffect(() => {
@@ -150,16 +156,16 @@ function App() {
           </button>
         </div>
       }
-      {/* {`${user.uid}` === '' && */}
-      <div>
-        <button onClick={onload}>
-          <h3 className="mb-4 text-green-500 text-3xl">もう一度タップ</h3>
-        </button>
-      </div>
-      {/* } */}
+      {`${user.uid}` === '' &&
+        <div>
+          <button onClick={onload}>
+            <h3 className="mb-4 text-green-500 text-3xl">もう一度タップ</h3>
+          </button>
+        </div>
+      }
       {`${user.name}`.length !== 0 &&
-        <button onClick={toPageA}>
-          <PageA />
+        <button onClick={logout}>
+          <h3 className="mb-4 text-green-500 text-3xl">ログアウト</h3>
         </button>
       }
       <a href=' https://access.line.me/oauth2/v2.1/authorize?app_id=1656149559-xXM4l4Gp&client_id=1656149559&scope=chat_message.write+openid+profile&state=MTSFhIGGxsff&bot_prompt=aggressive&response_type=code&code_challenge_method=S256&code_challenge=Hx-YFyPAvO9ZQIg5pQpaGQuMChsOE11Raf_3DHDGFgY&liff_sdk_version=2.11.1&type=L&redirect_uri=https://redux-next.vercel.app/'>
