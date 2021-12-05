@@ -143,16 +143,16 @@ function App() {
 
   return (
     <div className="App">
-      {/* {`${user.uid}` === '11111' && */}
-      <button onClick={lineClick}>
-        <h4 className="mb-4 text-green-500 text-3xl">ログインはここをタップ</h4>
-      </button>
-      {/* // } */}
-      {/* {`${user.uid}` === '' && */}
-      <button onClick={onload}>
-        <h3 className="mb-4 text-green-500 text-3xl">もう一度タップ</h3>
-      </button>
-      {/* } */}
+      {`${user.uid}` === '11111' &&
+        <button onClick={lineClick}>
+          <h4 className="mb-4 text-green-500 text-3xl">ログインはここをタップ</h4>
+        </button>
+      }
+      {`${user.uid}` === '' &&
+        <button onClick={onload}>
+          <h3 className="mb-4 text-green-500 text-3xl">もう一度タップ</h3>
+        </button>
+      }
       {`${user.name}`.length !== 0 &&
         <button onClick={toPageA}>
           <h1 className="mb-4 text-green-500 text-3xl">{user.name}さま </h1>
