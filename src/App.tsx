@@ -128,9 +128,9 @@ function App() {
   };
   const logout = function () {
     // ログアウト
-    if (liff.isLoggedIn()) {
-      liff.logout()
-    }
+    // if (liff.isLoggedIn()) {
+    liff.logout()
+    // }
   }
 
   // 現在ログインしているユーザーを取得する
