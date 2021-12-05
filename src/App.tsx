@@ -36,6 +36,7 @@ function App() {
   const loginUrl: string | undefined = process.env.NEXT_PUBLIC_LINE_LOGIN_URL
   const LINEID = process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID
   const lineClick = () => {
+    setUid('')
     liff.init({ liffId: LINEID as string })
       .then(() => {
         if (!liff.isLoggedIn()) {
@@ -156,13 +157,13 @@ function App() {
           </button>
         </div>
       }
-      {`${user.uid}` === '' &&
-        <div>
-          <button onClick={onload}>
-            <h3 className="mb-4 text-green-500 text-3xl">もう一度タップ</h3>
-          </button>
-        </div>
-      }
+      {/* {`${user.uid}` === '' && */}
+      <div>
+        <button onClick={onload}>
+          <h3 className="mb-4 text-green-500 text-3xl">もう一度タップ</h3>
+        </button>
+      </div>
+      {/* } */}
       {`${user.name}`.length !== 0 &&
         <button onClick={logout}>
           <h3 className="mb-4 text-green-500 text-3xl">ログアウト</h3>
