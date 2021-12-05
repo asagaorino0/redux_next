@@ -153,14 +153,14 @@ function App() {
       {`${user.uid}` === '11111' &&
         <div>
           <button onClick={lineClick}>
-            <h4 className="mb-4 text-green-500 text-3xl">ログインはここをタップ</h4>
+            <h4 className="mb-4 text-green-500 text-3xl">まずは友達追加</h4>
           </button>
         </div>
       }
       {`${user.uid}` === '11111' &&
         <div>
           <button onClick={onload}>
-            <h3 className="mb-4 text-green-500 text-3xl">次にこちらをタップ</h3>
+            <h3 className="mb-4 text-green-500 text-3xl">ログインはこちら</h3>
           </button>
         </div>
       }
