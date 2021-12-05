@@ -9,6 +9,7 @@ import Link from 'next/link'
 // import App from '../src/App';
 import { store } from '../src/app/store';
 import { Provider } from 'react-redux';
+import { useRouter } from "next/router";
 import dynamic from 'next/dynamic'
 const App = dynamic(
   () => import('../src/App'),
@@ -19,9 +20,10 @@ const PageAA = dynamic(
   { ssr: false }
 )
 const Home: NextPage = () => {
-  // if (process.browser) {
-  //   document.getElementById('root')
-  // }
+  const router = useRouter()
+  const toPageA = () => {
+    router.push('./PageA')
+  }
   return (
     <div className={styles.container}>
       <Head>
@@ -36,11 +38,13 @@ const Home: NextPage = () => {
         </h1>
         <p className={styles.description}>
           {/* Get started by editing{' '} */}
-          <React.StrictMode >
-            <Provider store={store}>
-              <PageAA />
-            </Provider>
-          </React.StrictMode>
+          <button onClick={toPageA}>
+            <React.StrictMode >
+              <Provider store={store}>
+                <PageAA />
+              </Provider>
+            </React.StrictMode>
+          </button>
           {/* <code className={styles.code}>pages/index.tsx</code> */}
         </p>
         <section className="h-screen w-4/5 max-w-5xl mx-auto flex items-center justifycenter flex-col">
