@@ -15,6 +15,7 @@ const PageB = () => {
     const [tokoro, setTokoro] = useState<string>('');
     const [erea, setErea] = useState<string>('');
     const [sns, setSns] = useState<string>('');
+    const [qr, setQr] = useState<string>('');
     const dispatch = useDispatch();
     const user = useSelector(selectUser);
     const router = useRouter()
@@ -29,14 +30,16 @@ const PageB = () => {
             sejyutsu,
             day,
             tokoro,
-            erea
+            erea,
+            sns,
+            qr
         }))
         // toPageA()
     };
 
     return (
         <div className="App">
-            <span >登録:PageA1</span>
+            <span >ユーザー情報登録:PageA1</span>
             <br />
             {/* {`${user.icon}`.length !== 0 &&
                 <img
@@ -62,7 +65,30 @@ const PageB = () => {
             <input type="text" onChange={(e) => setSejyutsu(e.target.value)} />
             <h1>SNS</h1>
             <input type="text" onChange={(e) => setSns(e.target.value)} />
+            <h1>QRコード</h1>
+            <input type="text" onChange={(e) => setQr(e.target.value)} />
+            <br />
             <button onClick={registUser}>登録</button>
+            <span >登録内容</span>
+            <br />
+            <h1>氏名</h1>
+            {user}
+            <h1>性別</h1>
+            {user}
+            <h1>生年月日</h1>
+            {user}
+            <h1>住所</h1>
+            {user}
+            <h1>活動地域</h1>
+            {user}
+            <h1>施術内容</h1>
+            {user}
+            <h1>SNS</h1>
+            {user}
+            <h1>QRコード</h1>
+            {user}
+
+
         </div >
     );
 }
