@@ -30,9 +30,9 @@ const PageAA = () => {
                     style={{ borderRadius: '50%', width: '60px', height: '60px' }}
                 />
             }
-            {/* {`${user.icon}`.length !== 0 &&
+            {`${user.icon}`.length !== 0 &&
                 <h1 className="mb-4 text-green-500 text-3xl">{user.name}さま </h1>
-            } */}
+            }
             {/* {`${user.icon}`.length !== 0 &&
                 <h1>
                     {user.name}
