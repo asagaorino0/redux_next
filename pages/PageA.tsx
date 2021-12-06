@@ -5,10 +5,10 @@ import { useRouter } from "next/router";
 import { store } from '../src/app/store';
 import { Provider } from 'react-redux';
 import dynamic from 'next/dynamic'
-
+import PageA1 from '../src/PageA1'
 
 const PageA = () => {
-    const PageAA = dynamic(
+    const PageA0 = dynamic(
         () => import('../src/PageAA'),
         { ssr: false }
     )    // const [name, setName] = useState<string>('');
@@ -27,7 +27,8 @@ const PageA = () => {
                 {/* {user.name}/{user.age} */}
                 <React.StrictMode >
                     <Provider store={store}>
-                        <PageAA />
+                        <PageA0 />
+                        <PageA1 />
                     </Provider>
                 </React.StrictMode>
             </h1>

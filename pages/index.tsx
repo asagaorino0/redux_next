@@ -19,11 +19,20 @@ const PageAA = dynamic(
   () => import('../src/PageAA'),
   { ssr: false }
 )
+const PageB = dynamic(
+  () => import('../src/PageB'),
+  { ssr: false }
+)
 const Home: NextPage = () => {
   const router = useRouter()
   const toPageA = () => {
     router.push('./PageA')
   }
+  <React.StrictMode >
+    <Provider store={store}>
+      <PageB />
+    </Provider>
+  </React.StrictMode>
   return (
     <div className={styles.container}>
       <Head>
@@ -41,7 +50,7 @@ const Home: NextPage = () => {
           <button onClick={toPageA}>
             <React.StrictMode >
               <Provider store={store}>
-                <PageAA />
+                {/* <PageAA /> */}
               </Provider>
             </React.StrictMode>
           </button>

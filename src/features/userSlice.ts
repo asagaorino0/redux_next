@@ -3,16 +3,32 @@ import { RootState } from '../app/store';
 
 interface UserState {
   name: string,
-  age: number,
   uid: string,
   icon: string | undefined
+  namae: string,
+  sei: string,
+  age: number,
+  sejyutsu: string,
+  day: string,
+  tokoro: string,
+  erea: string,
+  sns: string,
+  qr: string,
 }
 
 const initialState: UserState = {
   name: '',
-  age: -1,
   uid: '11111',
-  icon: ''
+  icon: '',
+  namae: '',
+  sei: '',
+  age: 0,
+  sejyutsu: '',
+  day: '',
+  tokoro: '',
+  erea: "",
+  sns: "",
+  qr: ""
 };
 
 export const userSlice = createSlice({
@@ -21,9 +37,16 @@ export const userSlice = createSlice({
   reducers: {
     addUser: (state, action) => {
       state.name = action.payload.name
-      state.age = action.payload.age
       state.uid = action.payload.uid
       state.icon = action.payload.icon
+      state.namae = action.payload.namae
+      state.sei = action.payload.sei
+      state.age = action.payload.age
+      state.sejyutsu = action.payload.sejyutsu
+      state.day = action.payload.day
+      state.tokoro = action.payload.tokoro
+      state.erea = action.payload.erea
+      state.qr = action.payload.qr
     }
   },
 });
