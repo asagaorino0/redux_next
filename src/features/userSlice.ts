@@ -46,6 +46,7 @@ export const userSlice = createSlice({
       state.day = action.payload.day
       state.tokoro = action.payload.tokoro
       state.erea = action.payload.erea
+      state.sns = action.payload.sns
       state.qr = action.payload.qr
     }
   },

@@ -40,23 +40,21 @@ const PageA1 = () => {
             sns,
             qr
         }))
-        // toPageA()
+        const setRef = setDoc(doc(db, 'users', `${user.uid}`), {
+            namae,
+            sei,
+            age,
+            sejyutsu,
+            day,
+            tokoro,
+            erea,
+            sns,
+            qr,
+            timestamp: Timestamp.fromDate(new Date()),
+        }, { merge: true }//←上書きされないおまじない
+        )
+        console.log('user', setRef)
     };
-    const setRef = setDoc(doc(db, 'users', `${user.uid}`), {
-        namae,
-        sei,
-        age,
-        sejyutsu,
-        day,
-        tokoro,
-        erea,
-        sns,
-        qr,
-        timestamp: Timestamp.fromDate(new Date()),
-    }, { merge: true }//←上書きされないおまじない
-    )
-    console.log('user', setRef)
-
     return (
         <div className="App">
             <span >ユーザー情報登録:PageA1</span>
