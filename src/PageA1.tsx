@@ -1,15 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { addUser, selectUser } from './features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from "next/router";
 import styles from '../styles/Home.module.css'
-// import 'firebase/compat/auth';
+import 'firebase/compat/auth';
 // import 'firebase/compat/firestore';
 import { db } from "./firebase"
 import { getFirestore, collection, query, where, onSnapshot, doc, setDoc, Timestamp, addDoc } from 'firebase/firestore'
 
 
 const PageA1 = () => {
+    const [users, setUsers] = useState<any>([]);
     const [uid, setUid] = useState<string>('');
     const [name, setName] = useState<string>('');
     const [icon, setIcon] = useState<string | undefined>('');
@@ -55,6 +56,28 @@ const PageA1 = () => {
         )
         console.log('user', setRef)
     };
+    useEffect(() => {
+        // if (user) {
+        // const db = getFirestore()
+        // clickButton()
+        // loginしてたら
+        let users: any = []
+        const q = query(collection(db, 'users'), where('uid', '==', `${user.uid}`))
+        onSnapshot(q, (snapshot) => {
+            snapshot.docChanges().forEach((change) => {
+                if (change.type === 'added') {
+                    console.log('added: ', change.doc.data())
+                    users.push({
+                        id: change.doc.id,
+                        name: change.doc.data().name
+                    })
+                    console.log(users)
+                }
+            })
+            setUsers(users)
+        })
+        // }
+    }, []);
     return (
         <div className="App">
             <span >ユーザー情報登録:PageA1</span>
@@ -119,6 +142,18 @@ const PageA1 = () => {
                         style={{ width: '80px', height: '80px' }}
                     />
                 }
+                <div>
+                    {
+                        users.map((user: any) => {
+                            <div key={user.uid}>
+                                {user.name}
+
+
+
+                            </div>
+                        })
+                    }
+                </div>
             </p>
         </div >
     );
