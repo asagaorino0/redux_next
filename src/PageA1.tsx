@@ -37,6 +37,8 @@ const PageB = () => {
         // toPageA()
     };
 
+
+
     return (
         <div className="App">
             <span >ユーザー情報登録:PageA1</span>
@@ -72,21 +74,21 @@ const PageB = () => {
             <span >登録内容</span>
             <br />
             <h1>氏名</h1>
-            {user}
+            {user.namae}
             <h1>性別</h1>
-            {user}
+            {user.sei}
             <h1>生年月日</h1>
-            {user}
+            {user.age}
             <h1>住所</h1>
-            {user}
+            {user.tokoro}
             <h1>活動地域</h1>
-            {user}
+            {user.erea}
             <h1>施術内容</h1>
-            {user}
+            {user.sejyutsu}
             <h1>SNS</h1>
-            {user}
+            {user.sns}
             <h1>QRコード</h1>
-            {user}
+            {user.qr}
 
 
         </div >
