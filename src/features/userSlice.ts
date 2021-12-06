@@ -14,6 +14,7 @@ interface UserState {
   erea: string,
   sns: string,
   qr: string,
+  users: any
 }
 
 const initialState: UserState = {
@@ -28,7 +29,8 @@ const initialState: UserState = {
   tokoro: '',
   erea: "",
   sns: "",
-  qr: ""
+  qr: "",
+  users: []
 };
 
 export const userSlice = createSlice({
@@ -48,6 +50,7 @@ export const userSlice = createSlice({
       state.erea = action.payload.erea
       state.sns = action.payload.sns
       state.qr = action.payload.qr
+      state.users = action.payload.users
     }
   },
 });

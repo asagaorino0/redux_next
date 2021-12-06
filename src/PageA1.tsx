@@ -75,6 +75,7 @@ const PageA1 = () => {
                 }
             })
             setUsers(users)
+            console.log(users.name)
         })
         // }
     }, []);
@@ -145,11 +146,10 @@ const PageA1 = () => {
                 <div>
                     {
                         users.map((users: any) => {
-                            <div key={users.uid}>
+                            <div key={uid}>
                                 {users.name}
-
-
-
+                                {name}
+                                {tokoro}
                             </div>
                         })
                     }
