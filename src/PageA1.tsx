@@ -68,15 +68,15 @@ const PageA1 = () => {
             snapshot.docChanges().forEach((change) => {
                 if (change.type === 'added') {
                     console.log('added: ', change.doc.data())
-                    users.push({
-                        id: change.doc.id,
-                        name: change.doc.data().name
-                    })
-                    console.log('users:', users)
+                    setUsers(change.doc.data())
+                    // users.push({
+                    //     id: change.doc.id,
+                    //     name: change.doc.data().name
+                    // })
+                    // console.log('users:', users)
                 }
             })
-            setUsers(users)
-            console.log('name:', users.name)
+            console.log('name:', users.namae)
         })
         // }
     }, []);
@@ -116,36 +116,36 @@ const PageA1 = () => {
                 <span >登録内容</span>
                 <br />
                 <h1>氏名</h1>
-                {user.namae}
+                {users.namae}
                 <h1>性別</h1>
-                {user.sei}
+                {users.sei}
                 <h1>生年月日</h1>
-                {user.age}
+                {users.age}
                 <h1>住所</h1>
-                {user.tokoro}
+                {users.tokoro}
                 <h1>活動地域</h1>
-                {user.erea}
+                {users.erea}
                 <h1>施術内容</h1>
-                {user.sejyutsu}
+                {users.sejyutsu}
                 {/* <h1>SNS</h1> */}
-                {`${user.sns}` !== "" &&
+                {`${users.sns}` !== "" &&
                     <a
-                        href={user.sns}
+                        href={users.sns}
                         target="_blank"
                     >
                         <h1>SNS</h1>
                     </a>
                 }
                 <h1>QRコード</h1>
-                {`${user.qr}`.length !== 0 &&
+                {`${users.qr}`.length !== 0 &&
                     <img
-                        src={`${user.qr}`}
+                        src={`${users.qr}`}
                         alt=""
                         style={{ width: '80px', height: '80px' }}
                     />
                 }
                 <div>
-                    {
+                    {/* {
                         users.map((user: any) => {
                             <div key={uid}>
                                 {user.name}
@@ -153,7 +153,8 @@ const PageA1 = () => {
                                 {user.tokoro}
                             </div>
                         })
-                    }
+                    } */}
+
                 </div>
             </p>
         </div >
