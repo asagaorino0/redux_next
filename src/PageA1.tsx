@@ -2,8 +2,14 @@ import React, { useState } from 'react';
 import { addUser, selectUser } from './features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from "next/router";
+import styles from '../styles/Home.module.css'
+// import 'firebase/compat/auth';
+// import 'firebase/compat/firestore';
+import { db } from "./firebase"
+import { getFirestore, collection, query, where, onSnapshot, doc, setDoc, Timestamp, addDoc } from 'firebase/firestore'
 
-const PageB = () => {
+
+const PageA1 = () => {
     const [uid, setUid] = useState<string>('');
     const [name, setName] = useState<string>('');
     const [icon, setIcon] = useState<string | undefined>('');
@@ -36,8 +42,20 @@ const PageB = () => {
         }))
         // toPageA()
     };
-
-
+    const setRef = setDoc(doc(db, 'users', `${user.uid}`), {
+        namae,
+        sei,
+        age,
+        sejyutsu,
+        day,
+        tokoro,
+        erea,
+        sns,
+        qr,
+        timestamp: Timestamp.fromDate(new Date()),
+    }, { merge: true }//←上書きされないおまじない
+    )
+    console.log('user', setRef)
 
     return (
         <div className="App">
@@ -71,29 +89,42 @@ const PageB = () => {
             <input type="text" onChange={(e) => setQr(e.target.value)} />
             <br />
             <button onClick={registUser}>登録</button>
-            <span >登録内容</span>
-            <br />
-            <h1>氏名</h1>
-            {user.namae}
-            <h1>性別</h1>
-            {user.sei}
-            <h1>生年月日</h1>
-            {user.age}
-            <h1>住所</h1>
-            {user.tokoro}
-            <h1>活動地域</h1>
-            {user.erea}
-            <h1>施術内容</h1>
-            {user.sejyutsu}
-            <h1>SNS</h1>
-            {user.sns}
-            <h1>QRコード</h1>
-            {user.qr}
-
-
+            <p className={styles.description}>
+                <span >登録内容</span>
+                <br />
+                <h1>氏名</h1>
+                {user.namae}
+                <h1>性別</h1>
+                {user.sei}
+                <h1>生年月日</h1>
+                {user.age}
+                <h1>住所</h1>
+                {user.tokoro}
+                <h1>活動地域</h1>
+                {user.erea}
+                <h1>施術内容</h1>
+                {user.sejyutsu}
+                {/* <h1>SNS</h1> */}
+                {`${user.sns}` !== "" &&
+                    <a
+                        href={user.sns}
+                        target="_blank"
+                    >
+                        <h1>SNS</h1>
+                    </a>
+                }
+                <h1>QRコード</h1>
+                {`${user.qr}`.length !== 0 &&
+                    <img
+                        src={`${user.qr}`}
+                        alt=""
+                        style={{ width: '80px', height: '80px' }}
+                    />
+                }
+            </p>
         </div >
     );
 }
 
-export default PageB
+export default PageA1
 

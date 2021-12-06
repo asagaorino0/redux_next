@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import { db } from "./firebase"
 import { getFirestore, collection, query, where, onSnapshot, doc, setDoc, Timestamp, addDoc } from 'firebase/firestore'
@@ -105,7 +104,6 @@ function App() {
             setName(displayName)
             setIcon(displayicon)
             dispatch(addUser({ name, uid, icon }))
-
             const setRef = setDoc(doc(db, 'users', `${uid}`), {
               uid,
               name,
@@ -126,12 +124,7 @@ function App() {
           });
       })
   };
-  const logout = function () {
-    // ログアウト
-    // if (liff.isLoggedIn()) {
-    liff.logout()
-    // }
-  }
+
 
   // 現在ログインしているユーザーを取得する
   // useEffect(() => {
