@@ -144,9 +144,9 @@ const PageA1 = () => {
                 }
                 <div>
                     {
-                        users.map((user: any) => {
-                            <div key={user.uid}>
-                                {user.name}
+                        users.map((users: any) => {
+                            <div key={users.uid}>
+                                {users.name}
 
 
 
