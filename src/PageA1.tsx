@@ -15,8 +15,8 @@ const PageA1 = () => {
     const [name, setName] = useState<string>('');
     const [icon, setIcon] = useState<string | undefined>('');
     const [age, setAge] = useState<number>(0);
-    const [namae, setNamae] = useState<string>('');
-    const [sei, setSei] = useState<string>('');
+    const [namae, setNamae] = useState<string>(users.namae);
+    const [sei, setSei] = useState<string>(users.sei);
     const [sejyutsu, setSejyutsu] = useState<string>('');
     const [day, setDay] = useState<string>('');
     const [tokoro, setTokoro] = useState<string>('');
@@ -39,7 +39,8 @@ const PageA1 = () => {
             tokoro,
             erea,
             sns,
-            qr
+            qr,
+            users
         }))
         const setRef = setDoc(doc(db, 'users', `${user.uid}`), {
             namae,
@@ -71,11 +72,11 @@ const PageA1 = () => {
                         id: change.doc.id,
                         name: change.doc.data().name
                     })
-                    console.log(users)
+                    console.log('users:', users)
                 }
             })
             setUsers(users)
-            console.log(users.name)
+            console.log('name:', users.name)
         })
         // }
     }, []);
@@ -145,11 +146,11 @@ const PageA1 = () => {
                 }
                 <div>
                     {
-                        users.map((users: any) => {
+                        users.map((user: any) => {
                             <div key={uid}>
-                                {users.name}
-                                {name}
-                                {tokoro}
+                                {user.name}
+                                {age}
+                                {user.tokoro}
                             </div>
                         })
                     }
