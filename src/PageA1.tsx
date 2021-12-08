@@ -15,8 +15,8 @@ const PageA1 = () => {
     const [name, setName] = useState<string>('');
     const [icon, setIcon] = useState<string | undefined>('');
     const [age, setAge] = useState<number>(0);
-    const [namae, setNamae] = useState<string>(users.namae);
-    const [sei, setSei] = useState<string>(users.sei);
+    const [namae, setNamae] = useState<string>('');
+    const [sei, setSei] = useState<string>('');
     const [sejyutsu, setSejyutsu] = useState<string>('');
     const [day, setDay] = useState<string>('');
     const [tokoro, setTokoro] = useState<string>('');

@@ -8,6 +8,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@line/bot-sdk": "^7.4.0",
     "@line/liff": "^2.17.0",
     "@reduxjs/toolkit": "^1.6.2",
     "autoprefixer": "^10.4.0",

@@ -10,7 +10,7 @@ import { useRouter } from "next/router";
 import PageAA from './PageAA'
 import PageA from '../pages/PageA'
 // import dynamic from 'next/dynamic'
-
+import * as line from '@line/bot-sdk';
 import liff from '@line/liff';
 import { stringify } from 'querystring';
 function App() {
@@ -59,36 +59,23 @@ function App() {
         }
       })
   }
+  // const config: any = {
+  //   channelAccessToken: process.env.ACCESS_TOKEN,
+  //   channelSecret: process.env.CHANNEL_SECRET
+  // };
   // const lineClick = function () {
-  //   liff
-  //     .init({ liffId: LINEID as string })
-  //     .then(() => {
-  //       liff.getProfile()  // ユーザ情報を取得する
-  //         .then(profile => {
-  //           const userId: string = profile.userId
-  //           const displayName: string = profile.displayName
-  //           const displayicon: string | undefined = profile.pictureUrl
-  //           setName(profile.displayName)
-  //           setUid(userId)
-  //           setName(displayName)
-  //           setIcon(displayicon)
-  //           dispatch(addUser({ name, uid, icon }))
-  //           // let result = window.confirm(`Name1: ${displayName}さん、ログインします。`);
-  //           // // alert(`Name1: ${displayName}, userId: ${userId}`)
-  //           // if (result) {
-  //           // onload()
-  //           // }
-  //           // setName(profile.displayName)
-  //           // setUid(userId)
-  //           // setName(displayName)
-  //           // setIcon(displayicon)
-  //           // dispatch(addUser({ name, uid, icon }))
-  //           // onload()
-  //         }).catch(function (error) {
-  //           // window.alert('Error sending message: ' + error);
-  //         });
-  //     })
-  //   onload()
+  // const client = new line.Client({
+  //   channelAccessToken: 'u/gxNRim4lRdiZrvvPhus23nEgxtWFAo4Q3Ju/WWoqK/4Wk5WJ4KGitGYC7oQ4O+rUcofpkjVddvZ8667cbk76d0MaQ68MlZs4hPu3DHY0YmLzd1JRiaFX87bT9+18RmfxYr/8B4lUQg0SyL2Eux5QdB04t89/1O/w1cDnyilFU='
+  // });
+  // client.getProfile('622174c0ed8b54e0d14ff83058f7b1d7')
+  //   .then((profile) => {
+  //     console.log(profile.displayName);
+  //     console.log(profile.userId);
+  //     console.log(profile.pictureUrl);
+  //     console.log(profile.statusMessage);
+  //   })
+  //   .catch((err) => {
+  //   });
   // };
   const onload = function () {
     liff
@@ -112,34 +99,10 @@ function App() {
             }, { merge: true }//←上書きされないおまじない
             )
             console.log('user', setRef)
-            // const docRef = addDoc(collection(db, 'tasks'), {
-            //     uid: user.user.uid,
-            //     id: '003',
-            //     name: user.user.name
-            // })
-            // console.log("login:", profile);
-            // alert(`Name2: ${displayName}, userId: ${userId}`)
           }).catch(function (error) {
-            // window.alert('Error sending message: ' + error);
           });
       })
   };
-
-
-  // 現在ログインしているユーザーを取得する
-  // useEffect(() => {
-  //   if (liff.isLoggedIn()) {
-  //     liff.getProfile()
-  //       .then(profile => {
-  //         setName(profile.displayName)
-  //         setUid(profile.userId)
-  //         console.log("{login}", `${name}`, `${uid}`);
-  //         //   setAvatar(profile.pictureUrl)
-  //         // myProfile()
-  //       })
-  //   }
-  // }, []
-  // );
 
   return (
     <div className="App">
