@@ -3,7 +3,9 @@ import { addUser, selectUser } from './features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from "next/router";
 
-const PageA0 = () => {
+export default function PageA0() {
+    // const PageA0 = () => {
+    // export const people = ["hello-"]
     const [uid, setUid] = useState<string>('');
     const [name, setName] = useState<string>('');
     const [icon, setIcon] = useState<string | undefined>('');
@@ -38,8 +40,9 @@ const PageA0 = () => {
                     {user.name}
                 </h1>
             } */}
+            {name}
         </div >
     );
 }
 
-export default PageA0
+// export default PageA0

@@ -3,7 +3,8 @@ import { addUser, selectUser } from './features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from "next/router";
 
-const PageAA = () => {
+export default function PageAA() {
+    // const PageAA = () => {
     const [uid, setUid] = useState<string>('');
     const [name, setName] = useState<string>('');
     const [icon, setIcon] = useState<string | undefined>('');
@@ -42,4 +43,4 @@ const PageAA = () => {
     );
 }
 
-export default PageAA
+// export default PageAA

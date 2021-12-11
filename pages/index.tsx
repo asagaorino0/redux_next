@@ -6,7 +6,7 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import Link from 'next/link'
 // import './index.css';
-// import App from '../src/App';
+import { people } from '../src/data';
 import { store } from '../src/app/store';
 import { Provider } from 'react-redux';
 import { useRouter } from "next/router";
@@ -28,6 +28,20 @@ const Home: NextPage = () => {
   const toPageA = () => {
     router.push('./PageA')
   }
+  const [name, setName] = useState<string>('');
+  // const fetchAPI = async () => {
+  //     const name: string = 'hogehoge';
+  //     const response = await fetch(`/api/[${name}]`);
+  //     const data = await response.json();
+  //     console.log(data);
+  // }
+  const fetchAPI = async () => {
+    const response = await fetch(`/api/people`);
+    const data = await response.json();
+    console.log(data);
+    alert(data)
+  }
+
 
   return (
     <div className={styles.container}>
@@ -47,8 +61,12 @@ const Home: NextPage = () => {
             <React.StrictMode >
               <Provider store={store}>
                 <PageAA />
+                {people}
               </Provider>
             </React.StrictMode>
+          </button>
+          <button onClick={fetchAPI}>
+            fetchAPI
           </button>
           {/* <code className={styles.code}>pages/index.tsx</code> */}
         </p>
@@ -61,7 +79,7 @@ const Home: NextPage = () => {
             </Provider>
           </React.StrictMode>
           <div>
-
+            {/* {data} */}
           </div>
         </section>
 

@@ -13,7 +13,7 @@ import PageA from '../pages/PageA'
 import * as line from '@line/bot-sdk';
 import liff from '@line/liff';
 import { stringify } from 'querystring';
-function App() {
+export default function App() {
   // const PageA = dynamic(
   //   () => import('../pages/PageA'),
   //   { ssr: false }
@@ -51,6 +51,7 @@ function App() {
               setName(displayName)
               setIcon(displayicon)
               dispatch(addUser({ name, uid, icon }))
+              fetchAPI()
               alert(`Name1: ${displayName}, userId: ${userId}`)
               onload()
             }).catch(function (error) {
@@ -59,6 +60,16 @@ function App() {
         }
       })
   }
+  const fetchAPI = async () => {
+    const name = 'HE';
+    setName(name)
+    dispatch(addUser({ name }))
+    // const response = await fetch(`/api/people/`);
+    const response = await fetch(`/api/people/${name}`);
+    const data = await response.json();
+    console.log(data);
+  }
+
   // const config: any = {
   //   channelAccessToken: process.env.ACCESS_TOKEN,
   //   channelSecret: process.env.CHANNEL_SECRET
@@ -98,6 +109,8 @@ function App() {
               timestamp: Timestamp.fromDate(new Date()),
             }, { merge: true }//←上書きされないおまじない
             )
+            fetchAPI()
+
             console.log('user', setRef)
           }).catch(function (error) {
           });
@@ -106,14 +119,14 @@ function App() {
 
   return (
     <div className="App">
-      {`${user.uid}` === '11111' &&
+      {`${user.uid}` === 'k11111' &&
         <div>
           <button onClick={lineClick}>
             <h4 className="mb-4 text-green-500 text-3xl">まずは友達追加</h4>
           </button>
         </div>
       }
-      {`${user.uid}` === '11111' &&
+      {`${user.uid}` === 'k11111' &&
         <div>
           <button onClick={onload}>
             <h3 className="mb-4 text-green-500 text-3xl">ログインはこちら</h3>
@@ -127,7 +140,9 @@ function App() {
           </button>
         </div>
       }
-
+      <button onClick={fetchAPI}>
+        fetchAPI
+      </button>
       {/* <a href=' https://access.line.me/oauth2/v2.1/authorize?app_id=1656149559-xXM4l4Gp&client_id=1656149559&scope=chat_message.write+openid+profile&state=MTSFhIGGxsff&bot_prompt=aggressive&response_type=code&code_challenge_method=S256&code_challenge=Hx-YFyPAvO9ZQIg5pQpaGQuMChsOE11Raf_3DHDGFgY&liff_sdk_version=2.11.1&type=L&redirect_uri=http://localhost:3000/'>
         <div>
           <h4 className="mb-4 text-green-500 text-3xl">ログインはここをタップ</h4>
@@ -136,6 +151,3 @@ function App() {
     </div >
   );
 }
-
-
-export default App;

@@ -116,6 +116,7 @@ const PageA1 = () => {
                 <span >登録内容</span>
                 <br />
                 <h1>氏名</h1>
+                {user.name}
                 {users.namae}
                 <h1>性別</h1>
                 {users.sei}
