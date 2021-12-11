@@ -36,7 +36,8 @@ const Home: NextPage = () => {
   //     console.log(data);
   // }
   const fetchAPI = async () => {
-    const response = await fetch(`/api/people`);
+    // const response = await fetch(`/api/people`);
+    const response = await fetch(`/api/people/${name}`);
     const data = await response.json();
     console.log(data);
     alert(data)
