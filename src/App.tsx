@@ -61,11 +61,11 @@ export default function App() {
       })
   }
   const fetchAPI = async () => {
-    const name = 'HE';
-    setName(name)
-    dispatch(addUser({ name }))
-    const response = await fetch(`/api/people/`);
-    // const response = await fetch(`/api/people/${name}`);
+    // const name = 'HE';
+    // setName(name)
+    // dispatch(addUser({ name }))
+    // const response = await fetch(`/api/people/`);
+    const response = await fetch(`/api/people/${name}`);
     const data = await response.json();
     console.log(data);
   }

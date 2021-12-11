@@ -1,4 +1,4 @@
-const name = "HE"
+const name = "HELLO"
 export const people = [name]
 // export const people = ["hello-"]
 // export const people = [

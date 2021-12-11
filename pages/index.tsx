@@ -28,7 +28,7 @@ const Home: NextPage = () => {
   const toPageA = () => {
     router.push('./PageA')
   }
-  const [name, setName] = useState<string>('');
+  // const [name, setName] = useState<string>('');
   // const fetchAPI = async () => {
   //     const name: string = 'hogehoge';
   //     const response = await fetch(`/api/[${name}]`);
@@ -36,8 +36,7 @@ const Home: NextPage = () => {
   //     console.log(data);
   // }
   const fetchAPI = async () => {
-    // const response = await fetch(`/api/people`);
-    const response = await fetch(`/api/people/${name}`);
+    const response = await fetch(`/api/people`);
     const data = await response.json();
     console.log(data);
     alert(data)
