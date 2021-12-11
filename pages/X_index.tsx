@@ -3,13 +3,12 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import React, { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom';
-import Link from 'next/link'
-// import './index.css';
-// import App from '../src/App';
+import { people } from '../src/data';
 import { store } from '../src/app/store';
 import { Provider } from 'react-redux';
 import { useRouter } from "next/router";
+import useSWR from 'swr'
+import Person from '../components/Person'
 import dynamic from 'next/dynamic'
 const App = dynamic(
     () => import('../src/App'),
@@ -28,15 +27,24 @@ const Home: NextPage = () => {
     const toPageA = () => {
         router.push('./PageA')
     }
-    const [name, setName] = useState<string>('');
+    const fetcher = (url: string) => fetch(url).then((res) => res.json())
+    const { data, error } = useSWR('/api/people', fetcher)
+    console.log({ data })
+    if (error) return <div>Failed to load</div>
+    if (!data) return <div>Loading...</div>
+    // const [name, setName] = useState<string>('');
+    // const fetchAPI = async () => {
+    //     const name: string = 'hogehoge';
+    //     const response = await fetch(`/api/[${name}]`);
+    //     const data = await response.json();
+    //     console.log(data);
+    // }
     const fetchAPI = async () => {
-
-        const name: string = 'hogehoge';
-        const response = await fetch(`http://localhost:3000/api/[${name}]`);
+        const response = await fetch(`/api/people`);
         const data = await response.json();
         console.log(data);
+        alert(data)
     }
-
 
     return (
         <div className={styles.container}>
@@ -56,11 +64,9 @@ const Home: NextPage = () => {
                         <React.StrictMode >
                             <Provider store={store}>
                                 <PageAA />
+                                {people}
                             </Provider>
                         </React.StrictMode>
-                    </button>
-                    <button onClick={fetchAPI}>
-                        fetchAPI
                     </button>
                     {/* <code className={styles.code}>pages/index.tsx</code> */}
                 </p>
@@ -73,10 +79,15 @@ const Home: NextPage = () => {
                         </Provider>
                     </React.StrictMode>
                     <div>
+                        <button onClick={fetchAPI}>
+                            fetchAPI
+                        </button>
 
+                        {data.map((p: any, i: any) => (
+                            <Person key={i} person={p} />
+                        ))}
                     </div>
                 </section>
-
                 <div className={styles.grid}>
                     {/* <Link href="http://localhost:3000/PageA">pageA</Link> */}
                     <p>
