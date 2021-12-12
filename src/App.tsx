@@ -145,7 +145,7 @@ export default function App() {
           </button>
         </div>
       }
-      <Link href="/[name]" as={`/${user.name}`}>
+      <Link href="/api/[name]" as={`/api/${user.name}`}>
         <a>{user.name}</a>
       </Link>
 
