@@ -114,12 +114,15 @@ export default function App() {
   console.log({ data })
   if (error) return <div>Failed to load</div>
   if (!data) return <div>Loading...</div>
-  // const [name, setName] = useState<string>('');
+
   const fetchAPI = async () => {
-    console.log(user.name)
-    const res = await fetch(`/api/[${user.name}]`);
-    const data = await res.json();
-    console.log(data);
+    const { data, error } = useSWR(user.name, fetcher)
+    console.log({ data })
+    if (error) return <div>Failed to load</div>
+    if (!data) return <div>Loading...</div>
+    // const res = await fetch(`/api/[${user.name}]`);
+    // const data = await res.json();
+    // console.log(data);
   }
 
   return (
