@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import 'firebase/compat/firestore';
 import { db } from "./firebase"
 import { getFirestore, collection, query, where, onSnapshot, doc, setDoc, Timestamp, addDoc } from 'firebase/firestore'
-// import { app } from "./firebase"
-// import './App.css';
 import { addUser, selectUser } from '../src/features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from "next/router";
@@ -13,7 +11,11 @@ import PageA from '../pages/PageA'
 import * as line from '@line/bot-sdk';
 import liff from '@line/liff';
 import { stringify } from 'querystring';
+import useSWR from 'swr'
+import Person from '../components/Person'
+import User from '../components/User'
 export default function App() {
+  const fetcher = (url: string) => fetch(url).then((res) => res.json())
   // const PageA = dynamic(
   //   () => import('../pages/PageA'),
   //   { ssr: false }
@@ -60,16 +62,6 @@ export default function App() {
         }
       })
   }
-  const fetchAPI = async () => {
-    // const name = 'HE';
-    // setName(name)
-    // dispatch(addUser({ name }))
-    // const response = await fetch(`/api/people/`);
-    const response = await fetch(`/api/people/${name}`);
-    const data = await response.json();
-    console.log(data);
-  }
-
   // const config: any = {
   //   channelAccessToken: process.env.ACCESS_TOKEN,
   //   channelSecret: process.env.CHANNEL_SECRET
@@ -117,6 +109,18 @@ export default function App() {
       })
   };
 
+  const { data, error } = useSWR('/api/uses', fetcher)
+  console.log({ data })
+  if (error) return <div>Failed to load</div>
+  if (!data) return <div>Loading...</div>
+  // const [name, setName] = useState<string>('');
+  const fetchAPI = async () => {
+    const name: string = 'hogehoge';
+    const response = await fetch(`http://localhost:3000/api/[${name}]`);
+    const data = await response.json();
+    console.log(data);
+  }
+
   return (
     <div className="App">
       {`${user.uid}` === 'k11111' &&
@@ -143,6 +147,9 @@ export default function App() {
       <button onClick={fetchAPI}>
         fetchAPI
       </button>
+      {data.map((p: any, id: any) => (
+        <User key={id} user={p} />
+      ))}
       {/* <a href=' https://access.line.me/oauth2/v2.1/authorize?app_id=1656149559-xXM4l4Gp&client_id=1656149559&scope=chat_message.write+openid+profile&state=MTSFhIGGxsff&bot_prompt=aggressive&response_type=code&code_challenge_method=S256&code_challenge=Hx-YFyPAvO9ZQIg5pQpaGQuMChsOE11Raf_3DHDGFgY&liff_sdk_version=2.11.1&type=L&redirect_uri=http://localhost:3000/'>
         <div>
           <h4 className="mb-4 text-green-500 text-3xl">ログインはここをタップ</h4>

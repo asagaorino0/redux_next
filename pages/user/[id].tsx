@@ -3,7 +3,7 @@ import useSWR from 'swr'
 
 const fetcher = async (url: string) => {
 
-    const res = await fetch('/api/people')
+    const res = await fetch('/api/users')
     const data = await res.json()
     // const data = Object.entries(await res.json());
     // console.log(data)
@@ -16,7 +16,7 @@ const fetcher = async (url: string) => {
 export default function Person() {
     const { query } = useRouter()
     const { data, error } = useSWR(
-        () => query.id && `/api/people/${query.id}`,
+        () => query.id && `/api/users/${query.id}`,
         fetcher
     )
     console.log(data)
@@ -30,7 +30,7 @@ export default function Person() {
         <table>
             <thead>
                 <tr>
-                    <th>id</th>
+                    <th>uid</th>
                     <th>Name</th>
                     {/* <th>Height</th>
                     <th>Mass</th>
@@ -52,12 +52,12 @@ export default function Person() {
                     <td>{data.gender}</td> */}
                 {
                     data
-                        .filter((data: any) => data.id === query.id)
+                        .filter((data: any) => data.uid === query.id)
                         .map((data: any) => {
                             return (
-                                <tr key={data.id}>
+                                <tr key={data.uid}>
                                     <td>
-                                        {data.id}
+                                        {data.uid}
                                     </td>
                                     <td>
                                         {data.name}

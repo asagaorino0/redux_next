@@ -12,7 +12,7 @@ import { Provider } from 'react-redux';
 import { useRouter } from "next/router";
 import dynamic from 'next/dynamic'
 import useSWR from 'swr'
-import Person from '../components/Person'
+import User from '../components/User'
 const fetcher = (url: string) => fetch(url).then((res) => res.json())
 const App = dynamic(
   () => import('../src/App'),
@@ -33,7 +33,7 @@ const Home: NextPage = () => {
     router.push('./PageA')
   }
 
-  const { data, error } = useSWR('/api/people', fetcher)
+  const { data, error } = useSWR('/api/users', fetcher)
   console.log({ data })
   if (error) return <div>Failed to load</div>
   if (!data) return <div>Loading...</div>
@@ -83,7 +83,7 @@ const Home: NextPage = () => {
           </React.StrictMode>
           <div>
             {data.map((p: any, id: any) => (
-              <Person key={id} person={p} />
+              <User key={id} user={p} />
             ))}
           </div>
         </section>
