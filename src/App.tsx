@@ -5,19 +5,16 @@ import { getFirestore, collection, query, where, onSnapshot, doc, setDoc, Timest
 import { addUser, selectUser } from '../src/features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from "next/router";
-import Link from 'next/link'
 import PageAA from './PageAA'
 import PageA from '../pages/PageA'
 // import dynamic from 'next/dynamic'
 import * as line from '@line/bot-sdk';
 import liff from '@line/liff';
 import { stringify } from 'querystring';
-import useSWR from 'swr'
 import Person from '../components/Person'
 import User from '../components/User'
 
 export default function App() {
-  const fetcher = (url: string) => fetch(url).then((res) => res.json())
   // const PageA = dynamic(
   //   () => import('../pages/PageA'),
   //   { ssr: false }
@@ -29,12 +26,13 @@ export default function App() {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const router = useRouter()
-  const toPageA = () => {
-    router.push('./PageA')
+  const toPageAA = () => {
+    router.push('./PageAA')
   }
   const registUser = () => {
     dispatch(addUser({ name, age, uid, icon }))
-    // toPageA()
+    onload
+    toPageAA()
   };
   const loginUrl: string | undefined = process.env.NEXT_PUBLIC_LINE_LOGIN_URL
   const LINEID = process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID
@@ -55,7 +53,6 @@ export default function App() {
               setName(displayName)
               setIcon(displayicon)
               dispatch(addUser({ name, uid, icon }))
-              fetchAPI()
               alert(`Name1: ${displayName}, userId: ${userId}`)
               onload()
             }).catch(function (error) {
@@ -103,29 +100,13 @@ export default function App() {
               timestamp: Timestamp.fromDate(new Date()),
             }, { merge: true }//←上書きされないおまじない
             )
-            fetchAPI()
-
-            console.log('user', setRef)
+            // fetchAPI()
+            // console.log('user', setRef)
           }).catch(function (error) {
           });
       })
   };
 
-  const { data, error } = useSWR('/api/users', fetcher)
-  // const { data, error } = useSWR({ user }, fetcher)//umakuikimasenndesita
-  console.log('user_App:', { data })
-  if (error) return <div>Failed to load</div>
-  if (!data) return <div>Loading...</div>
-
-  const fetchAPI = async () => {
-    const { data, error } = useSWR('/api/users', fetcher)
-    console.log('user_App:', { data })
-    if (error) return <div>Failed to load</div>
-    if (!data) return <div>Loading...</div>
-    // const res = await fetch(`/api/[${user.name}]`);
-    // const data = await res.json();
-    // console.log(data);
-  }
 
   return (
     <div className="App">
@@ -145,22 +126,11 @@ export default function App() {
       }
       {`${user.uid}` === '' &&
         <div>
-          <button onClick={onload}>
+          <button onClick={registUser}>
             <h3 className="mb-4 text-green-500 text-3xl">ようこそ</h3>
           </button>
         </div>
       }
-      <Link href="/user/[id]" as={`/user/${user.uid}`}>
-        <a>{user.name}</a>
-      </Link>
-
-      <button onClick={fetchAPI}>
-        fetchAPI
-      </button>
-      {/* {data.map((p: any, id: any) => (
-        <User key={id} user={p} />
-      ))} */}
-
     </div >
   );
 }

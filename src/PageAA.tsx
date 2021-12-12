@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { addUser, selectUser } from './features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from "next/router";
-
+import useSWR from 'swr'
+import Link from 'next/link'
 export default function PageAA() {
-    // const PageAA = () => {
+    const fetcher = (url: string) => fetch(url).then((res) => res.json())
     const [uid, setUid] = useState<string>('');
     const [name, setName] = useState<string>('');
     const [icon, setIcon] = useState<string | undefined>('');
@@ -15,14 +16,29 @@ export default function PageAA() {
     const toHome = () => {
         router.push('/')
     }
-    const registUser = () => {
-        dispatch(addUser({ name, uid, icon }))
-        // toPageA()
-    };
+    // const registUser = () => {
+    //     dispatch(addUser({ name, uid, icon }))
+    //     // toPageA()
+    // };
+
+    const { data, error } = useSWR('/api/users', fetcher)
+    // const { data, error } = useSWR({ user }, fetcher)//umakuikimasenndesita
+    console.log('user_App:', { data })
+    if (error) return <div>Failed to load</div>
+    if (!data) return <div>Loading...</div>
+
+    const fetchAPI = async () => {
+        const { data, error } = useSWR('/api/users', fetcher)
+        console.log('user_App:', { data })
+        if (error) return <div>Failed to load</div>
+        if (!data) return <div>Loading...</div>
+        // const res = await fetch(`/api/[${user.name}]`);
+        // const data = await res.json();
+        // console.log(data);
+    }
 
     return (
         <div className="App">
-            {/* <span >pageAA</span> */}
             <br />
             {`${user.icon}`.length !== 0 &&
                 <img
@@ -34,11 +50,16 @@ export default function PageAA() {
             {`${user.icon}`.length !== 0 &&
                 <h1 className="mb-4 text-green-500 text-3xl">{user.name}さま </h1>
             }
-            {/* {`${user.icon}`.length !== 0 &&
-                <h1>
-                    {user.name}
-                </h1>
-            } */}
+            <Link href="/user/[id]" as={`/user/${user.uid}`}>
+                <a>{user.name}</a>
+            </Link>
+
+            <button onClick={fetchAPI}>
+                fetchAPI
+            </button>
+            {/* {data.map((p: any, id: any) => (
+        <User key={id} user={p} />
+      ))} */}
         </div >
     );
 }
