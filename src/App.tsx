@@ -15,6 +15,8 @@ import { stringify } from 'querystring';
 import useSWR from 'swr'
 import Person from '../components/Person'
 import User from '../components/User'
+
+const user = useSelector(selectUser);
 export default function App() {
   const fetcher = (url: string) => fetch(url).then((res) => res.json())
   // const PageA = dynamic(
@@ -111,13 +113,12 @@ export default function App() {
   };
 
   const { data, error } = useSWR('/api/users', fetcher)
-  // const { data, error } = useSWR({ user }, fetcher)
-  console.log({ data })
+  // const { data, error } = useSWR({ user }, fetcher)//umakuikimasenndesita
+  console.log('user_App:', { data })
   if (error) return <div>Failed to load</div>
   if (!data) return <div>Loading...</div>
 
   const fetchAPI = async () => {
-    // const { data, error } = useSWR({ user }, fetcher)
     const { data, error } = useSWR('/api/users', fetcher)
     console.log('user_App:', { data })
     if (error) return <div>Failed to load</div>
@@ -154,11 +155,19 @@ export default function App() {
         <a>{user.name}</a>
       </Link>
 
-
+      <button onClick={fetchAPI}>
+        fetchAPI
+      </button>
       {/* {data.map((p: any, id: any) => (
         <User key={id} user={p} />
       ))} */}
 
     </div >
   );
+}
+import type { NextApiRequest, NextApiResponse } from 'next'
+export function handler(req: NextApiRequest, res: NextApiResponse) {
+  res.status(200).json(user)
+  // console.log(people)
+  // res.status(200).json({ message: `you requested for ${user} ` });
 }
