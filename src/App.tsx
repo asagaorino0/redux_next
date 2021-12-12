@@ -109,14 +109,14 @@ export default function App() {
       })
   };
 
-  const { data, error } = useSWR('/api/uses', fetcher)
+  const { data, error } = useSWR('/api/users', fetcher)
   console.log({ data })
   if (error) return <div>Failed to load</div>
   if (!data) return <div>Loading...</div>
   // const [name, setName] = useState<string>('');
   const fetchAPI = async () => {
     const name: string = 'hogehoge';
-    const response = await fetch(`http://localhost:3000/api/[${name}]`);
+    const response = await fetch(`http://localhost:3000/api/[${user.name}]`);
     const data = await response.json();
     console.log(data);
   }

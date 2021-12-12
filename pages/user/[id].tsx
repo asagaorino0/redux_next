@@ -13,7 +13,7 @@ const fetcher = async (url: string) => {
     return data
 }
 // export const Person = async (url: string) => {
-export default function Person() {
+export default function User() {
     const { query } = useRouter()
     const { data, error } = useSWR(
         () => query.id && `/api/users/${query.id}`,
