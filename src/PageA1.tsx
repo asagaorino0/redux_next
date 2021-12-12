@@ -125,7 +125,7 @@ const PageA1 = () => {
                 <h1>住所</h1>
                 {users.tokoro}
                 <h1>活動地域</h1>
-                {users.area}
+                {users.erea}
                 <h1>施術内容</h1>
                 {users.menu}
                 {/* <h1>SNS</h1> */}

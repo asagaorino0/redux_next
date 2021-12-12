@@ -5,6 +5,7 @@ import { getFirestore, collection, query, where, onSnapshot, doc, setDoc, Timest
 import { addUser, selectUser } from '../src/features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from "next/router";
+import Link from 'next/link'
 import PageAA from './PageAA'
 import PageA from '../pages/PageA'
 // import dynamic from 'next/dynamic'
@@ -144,9 +145,11 @@ export default function App() {
           </button>
         </div>
       }
-      <button onClick={fetchAPI}>
-        fetchAPI
-      </button>
+      <Link href="/[name]" as={`/${user.name}`}>
+        <a>{user.name}</a>
+      </Link>
+
+
       {data.map((p: any, id: any) => (
         <User key={id} user={p} />
       ))}
