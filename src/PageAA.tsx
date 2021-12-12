@@ -54,7 +54,7 @@ export default function PageAA() {
             {/* <Link href="/user/[id]" as={`/user/${user.uid}`}>
                 <a>{user.name}</a>
             </Link> */}
-            {users}
+            {/* {users} */}
         </div >
     );
 }
