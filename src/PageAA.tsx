@@ -4,13 +4,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from "next/router";
 import useSWR from 'swr'
 import Link from 'next/link'
+import { users } from './data'
 export default function PageAA() {
     const fetcher = (url: string) => fetch(url).then((res) => res.json())
-    const [uid, setUid] = useState<string>('');
-    const [name, setName] = useState<string>('');
-    const [icon, setIcon] = useState<string | undefined>('');
-    const [age, setAge] = useState<number>(0);
-    const dispatch = useDispatch();
+    // const [uid, setUid] = useState<string>('');
+    // const [name, setName] = useState<string>('');
+    // const [icon, setIcon] = useState<string | undefined>('');
+    // const [age, setAge] = useState<number>(0);
+    // const dispatch = useDispatch();
     const user = useSelector(selectUser);
     const router = useRouter()
     const toHome = () => {
@@ -27,15 +28,15 @@ export default function PageAA() {
     if (error) return <div>Failed to load</div>
     if (!data) return <div>Loading...</div>
 
-    const fetchAPI = async () => {
-        const { data, error } = useSWR('/api/users', fetcher)
-        console.log('user_App:', { data })
-        if (error) return <div>Failed to load</div>
-        if (!data) return <div>Loading...</div>
-        // const res = await fetch(`/api/[${user.name}]`);
-        // const data = await res.json();
-        // console.log(data);
-    }
+    // const fetchAPI = async () => {
+    //     const { data, error } = useSWR('/api/users', fetcher)
+    //     console.log('user_App:', { data })
+    //     if (error) return <div>Failed to load</div>
+    //     if (!data) return <div>Loading...</div>
+    // const res = await fetch(`/api/[${user.name}]`);
+    // const data = await res.json();
+    // console.log(data);
+    // }
 
     return (
         <div className="App">
@@ -53,13 +54,10 @@ export default function PageAA() {
             <Link href="/user/[id]" as={`/user/${user.uid}`}>
                 <a>{user.name}</a>
             </Link>
-
-            <button onClick={fetchAPI}>
+            {/* <button onClick={fetchAPI}>
                 fetchAPI
-            </button>
-            {/* {data.map((p: any, id: any) => (
-        <User key={id} user={p} />
-      ))} */}
+            </button> */}
+            {users}
         </div >
     );
 }

@@ -8,10 +8,11 @@ import dynamic from 'next/dynamic'
 import PageA1 from '../src/PageA1'
 
 const PageA = () => {
-    const PageA0 = dynamic(
-        () => import('../src/PageAA'),
-        { ssr: false }
-    )    // const [name, setName] = useState<string>('');
+    // const PageA0 = dynamic(
+    //     () => import('../src/PageAA'),
+    //     { ssr: false }
+    // )
+    // const [name, setName] = useState<string>('');
     // const [age, setAge] = useState<number>(0);
     // const user = useSelector(selectUser);
     // const router = useRouter()
@@ -27,7 +28,7 @@ const PageA = () => {
                 {/* {user.name}/{user.age} */}
                 <React.StrictMode >
                     <Provider store={store}>
-                        <PageA0 />
+                        {/* <PageA0 /> */}
                         <PageA1 />
                     </Provider>
                 </React.StrictMode>

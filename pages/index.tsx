@@ -18,10 +18,10 @@ const App = dynamic(
   () => import('../src/App'),
   { ssr: false }
 )
-const PageAA = dynamic(
-  () => import('../src/PageAA'),
-  { ssr: false }
-)
+// const PageAA = dynamic(
+//   () => import('../src/PageAA'),
+//   { ssr: false }
+// )
 const PageB = dynamic(
   () => import('../src/PageB'),
   { ssr: false }
