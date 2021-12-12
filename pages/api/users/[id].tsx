@@ -2,7 +2,6 @@ import { useRouter } from 'next/router'
 import useSWR from 'swr'
 
 const fetcher = async (url: string) => {
-
     const res = await fetch('/api/users')
     const data = await res.json()
     if (res.status !== 200) {
