@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from "next/router";
 import PageAA from './PageAA'
 import PageA from '../pages/PageA'
-// import dynamic from 'next/dynamic'
 import * as line from '@line/bot-sdk';
 import liff from '@line/liff';
 import { stringify } from 'querystring';
@@ -26,13 +25,13 @@ export default function App() {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const router = useRouter()
-  const toPageAA = () => {
-    router.push('./PageAA')
+  const toPageA = () => {
+    router.push('./PageA')
   }
   const registUser = () => {
     dispatch(addUser({ name, age, uid, icon }))
     onload
-    toPageAA()
+    toPageA()
   };
   const loginUrl: string | undefined = process.env.NEXT_PUBLIC_LINE_LOGIN_URL
   const LINEID = process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID
