@@ -149,7 +149,7 @@ export default function App() {
           </button>
         </div>
       }
-      <Link href="/api/users/[id]" as={`/api/${user.uid}`}>
+      <Link href="/user/[id]" as={`/user/${user.uid}`}>
         <a>{user.name}</a>
       </Link>
 
