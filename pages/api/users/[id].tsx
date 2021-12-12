@@ -5,8 +5,6 @@ const fetcher = async (url: string) => {
 
     const res = await fetch('/api/users')
     const data = await res.json()
-    // const data = Object.entries(await res.json());
-    // console.log(data)
     if (res.status !== 200) {
         throw new Error(data.message)
     }
@@ -22,8 +20,6 @@ export default function User() {
     console.log(data)
     if (error) return <div>{error.message}</div>
     if (!data) return <div>Loading...</div>
-    // const res = await fetch(url);
-    // const data = () => [query.id && data]
     // console.log(data)
 
     return (
