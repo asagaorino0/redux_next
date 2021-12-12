@@ -116,7 +116,7 @@ export default function App() {
   if (!data) return <div>Loading...</div>
 
   const fetchAPI = async () => {
-    const { data, error } = useSWR(user.name, fetcher)
+    const { data, error } = useSWR('/api', fetcher)
     console.log({ data })
     if (error) return <div>Failed to load</div>
     if (!data) return <div>Loading...</div>

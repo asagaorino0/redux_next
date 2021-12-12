@@ -15,7 +15,7 @@ const fetcher = async (url: string) => {
     }
     return data
 }
-export const Apiname = async (url: string) => {
+export const Name = async (url: string) => {
     const { query } = useRouter()
     const { data, error } = useSWR(
         () => query.id && `/api/${query.name}`,
