@@ -110,8 +110,8 @@ export default function App() {
       })
   };
 
-  // const { data, error } = useSWR('/api/users', fetcher)
-  const { data, error } = useSWR({ user }, fetcher)
+  const { data, error } = useSWR('/api/users', fetcher)
+  // const { data, error } = useSWR({ user }, fetcher)
   console.log({ data })
   if (error) return <div>Failed to load</div>
   if (!data) return <div>Loading...</div>
