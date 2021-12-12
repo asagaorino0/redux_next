@@ -5,7 +5,7 @@ const user = useSelector(selectUser);
 // const [uid, setUid] = useState<string>('');
 // const [name, setName] = useState<string>('');
 // const [icon, setIcon] = useState<string | undefined>('');
-console.log('useStete:', user)
+// console.log('useStete:', user)
 export const users = [
     // {
     //     uid: user.uid,
