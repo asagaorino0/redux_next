@@ -17,26 +17,25 @@ export default function PageAA() {
     const toHome = () => {
         router.push('/')
     }
-    // const registUser = () => {
-    //     dispatch(addUser({ name, uid, icon }))
-    //     // toPageA()
-    // };
+    // // const registUser = () => {
+    // //     dispatch(addUser({ name, uid, icon }))
+    // //     // toPageA()
+    // // };
 
-    const { data, error } = useSWR('/api/users', fetcher)
-    // const { data, error } = useSWR({ user }, fetcher)//umakuikimasenndesita
-    console.log('user_App:', { data })
-    if (error) return <div>Failed to load</div>
-    if (!data) return <div>Loading...</div>
+    // const { data, error } = useSWR('/api/users', fetcher)
+    // console.log('user_App:', { data })
+    // if (error) return <div>Failed to load</div>
+    // if (!data) return <div>Loading...</div>
 
-    // const fetchAPI = async () => {
-    //     const { data, error } = useSWR('/api/users', fetcher)
-    //     console.log('user_App:', { data })
-    //     if (error) return <div>Failed to load</div>
-    //     if (!data) return <div>Loading...</div>
-    // const res = await fetch(`/api/[${user.name}]`);
-    // const data = await res.json();
-    // console.log(data);
-    // }
+    // // const fetchAPI = async () => {
+    // //     const { data, error } = useSWR('/api/users', fetcher)
+    // //     console.log('user_App:', { data })
+    // //     if (error) return <div>Failed to load</div>
+    // //     if (!data) return <div>Loading...</div>
+    // // const res = await fetch(`/api/[${user.name}]`);
+    // // const data = await res.json();
+    // // console.log(data);
+    // // }
 
     return (
         <div className="App">
