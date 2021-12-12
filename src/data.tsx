@@ -1,17 +1,18 @@
-
-// // import { useDispatch, useSelector } from 'react-redux';
-// // import { addUser, selectUser } from './features/userSlice';
-// // const user = useSelector(selectUser);
-// // const name = user.name
-// const name = "HE"
-// export const people = [name]
+// import { useState } from 'react';
+import { selectUser } from './features/userSlice';
+import { useSelector } from 'react-redux';
+const user = useSelector(selectUser);
+// const [uid, setUid] = useState<string>('');
+// const [name, setName] = useState<string>('');
+// const [icon, setIcon] = useState<string | undefined>('');
+console.log('useStete:', user)
 export const users = [
     {
-        uid: 'Ud4659ddaee321b794de35beeb141cec5',
-        name: 'おりのだよ',
+        uid: user.uid,
+        name: user.name,
     },
     {
-        uid: 'Uda1c6a4e5b348c5ba3c95de639e32414',
+        uid: 'Uda1c6a4e5b348c5ba3c95de639e32415',
         name: 'おりのえりこ',
     },
     {
