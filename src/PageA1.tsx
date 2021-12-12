@@ -17,10 +17,10 @@ const PageA1 = () => {
     const [age, setAge] = useState<number>(0);
     const [namae, setNamae] = useState<string>('');
     const [sei, setSei] = useState<string>('');
-    const [sejyutsu, setSejyutsu] = useState<string>('');
+    const [menu, setMenu] = useState<string>('');
     const [day, setDay] = useState<string>('');
     const [tokoro, setTokoro] = useState<string>('');
-    const [erea, setErea] = useState<string>('');
+    const [area, setArea] = useState<string>('');
     const [sns, setSns] = useState<string>('');
     const [qr, setQr] = useState<string>('');
     const dispatch = useDispatch();
@@ -34,10 +34,10 @@ const PageA1 = () => {
             namae,
             sei,
             age,
-            sejyutsu,
+            menu,
             day,
             tokoro,
-            erea,
+            area,
             sns,
             qr,
             users
@@ -46,10 +46,10 @@ const PageA1 = () => {
             namae,
             sei,
             age,
-            sejyutsu,
+            menu,
             day,
             tokoro,
-            erea,
+            area,
             sns,
             qr,
             timestamp: Timestamp.fromDate(new Date()),
@@ -103,9 +103,9 @@ const PageA1 = () => {
             <h1>住所</h1>
             <input type="text" onChange={(e) => setTokoro(e.target.value)} />
             <h1>活動地域</h1>
-            <input type="text" onChange={(e) => setErea(e.target.value)} />
+            <input type="text" onChange={(e) => setArea(e.target.value)} />
             <h1>施術内容</h1>
-            <input type="text" onChange={(e) => setSejyutsu(e.target.value)} />
+            <input type="text" onChange={(e) => setMenu(e.target.value)} />
             <h1>SNS</h1>
             <input type="text" onChange={(e) => setSns(e.target.value)} />
             <h1>QRコード</h1>
@@ -125,9 +125,9 @@ const PageA1 = () => {
                 <h1>住所</h1>
                 {users.tokoro}
                 <h1>活動地域</h1>
-                {users.erea}
+                {users.area}
                 <h1>施術内容</h1>
-                {users.sejyutsu}
+                {users.menu}
                 {/* <h1>SNS</h1> */}
                 {`${users.sns}` !== "" &&
                     <a

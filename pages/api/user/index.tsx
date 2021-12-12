@@ -1,6 +1,6 @@
 // import { people } from '../../../src/data'
 import { people } from '../../../data'
-type UserState = {
+type People = {
     name: string
     id: string,
     height: string,

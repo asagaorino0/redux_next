@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import { initializeApp, getApps } from "firebase/app"

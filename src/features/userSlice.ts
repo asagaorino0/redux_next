@@ -8,10 +8,10 @@ interface UserState {
   namae: string,
   sei: string,
   age: number,
-  sejyutsu: string,
+  menu: string,
   day: string,
   tokoro: string,
-  erea: string,
+  area: string,
   sns: string,
   qr: string,
   users: any
@@ -24,10 +24,10 @@ const initialState: UserState = {
   namae: '',
   sei: '',
   age: 0,
-  sejyutsu: '',
+  menu: '',
   day: '',
   tokoro: '',
-  erea: "",
+  area: "",
   sns: "",
   qr: "",
   users: []
@@ -38,25 +38,27 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     addUser: (state, action) => {
-      state.name = action.payload.name
-      state.uid = action.payload.uid
-      state.icon = action.payload.icon
-      state.namae = action.payload.namae
-      state.sei = action.payload.sei
-      state.age = action.payload.age
-      state.sejyutsu = action.payload.sejyutsu
-      state.day = action.payload.day
-      state.tokoro = action.payload.tokoro
-      state.erea = action.payload.erea
-      state.sns = action.payload.sns
-      state.qr = action.payload.qr
-      state.users = action.payload.users
+      // state.user = action.payload
+      return action.payload
     }
+    //addUser: (state, action) => {
+    //   state.name = action.payload.name
+    //   state.uid = action.payload.uid
+    //   state.icon = action.payload.icon
+    //   state.namae = action.payload.namae
+    //   state.sei = action.payload.sei
+    //   state.age = action.payload.age
+    //   state.menu = action.payload.menu
+    //   state.day = action.payload.day
+    //   state.tokoro = action.payload.tokoro
+    //   state.area = action.payload.area
+    //   state.sns = action.payload.sns
+    //   state.qr = action.payload.qr
+    //   state.users = action.payload.users
+    // }
   },
 });
 
 export const { addUser } = userSlice.actions;
-
 export const selectUser = (state: RootState) => state.user;
-
 export default userSlice.reducer;

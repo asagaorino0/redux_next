@@ -10,7 +10,7 @@ const PageB = () => {
     const [age, setAge] = useState<number>(0);
     const [namae, setNamae] = useState<string>('');
     const [sei, setSei] = useState<string>('');
-    const [sejyutsu, setSejyutsu] = useState<string>('');
+    const [menu, setMenu] = useState<string>('');
     const [day, setDay] = useState<string>('');
     const [tokoro, setTokoro] = useState<string>('');
     const dispatch = useDispatch();
@@ -24,7 +24,7 @@ const PageB = () => {
             namae,
             sei,
             age,
-            sejyutsu,
+            menu,
             day,
             tokoro
         }))
@@ -52,7 +52,7 @@ const PageB = () => {
             <h1>年齢</h1>
             <input type="text" onChange={(e) => setAge(Number(e.target.value))} />
             <h1>施術内容</h1>
-            <input type="text" onChange={(e) => setSejyutsu(e.target.value)} />
+            <input type="text" onChange={(e) => setMenu(e.target.value)} />
             <h1>年月日</h1>
             <input type="text" onChange={(e) => setDay(e.target.value)} />
             <h1>住所</h1>
