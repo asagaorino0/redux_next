@@ -41,7 +41,7 @@ const Home: NextPage = () => {
   // const [name, setName] = useState<string>('');
   const fetchAPI = async () => {
     const name: string = 'hogehoge';
-    const response = await fetch(`http://localhost:3000/api/[${name}]`);
+    const response = await fetch(`/api/[${name}]`);
     const data = await response.json();
     console.log(data);
   }
