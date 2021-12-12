@@ -115,6 +115,7 @@ export default function App() {
   if (!data) return <div>Loading...</div>
   // const [name, setName] = useState<string>('');
   const fetchAPI = async () => {
+    console.log(user.name)
     const res = await fetch(`/api/[${user.name}]`);
     const data = await res.json();
     console.log(data);
