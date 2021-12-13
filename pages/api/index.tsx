@@ -1,6 +1,6 @@
-import { users } from '../../../src/data'
-
-
+import { users } from '../../src/data'
+// import { name } from '../../../data'
+// import { UserState } from "../../src/types/user";
 type UserState = {
     name: string,
     uid: string,

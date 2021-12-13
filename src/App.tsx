@@ -112,8 +112,7 @@ export default function App() {
   const fetchAPI = async () => {
     const fetcher = (url: string) => fetch(url).then((res) => res.json())
     const { data, error } = useSWR('/api/users', fetcher)
-    // const { data, error } = useSWR({ user }, fetcher)//umakuikimasenndesita
-    console.log('user_App:', { data })
+    console.log({ data })
     if (error) return <div>Failed to load</div>
     if (!data) return <div>Loading...</div>
 
@@ -151,7 +150,7 @@ export default function App() {
         </div>
       }
       <Link href="/user/[id]" as={`/user/${user.uid}`}>
-        <a>{user.name}さん</a>
+        <a>{user.name}</a>
       </Link>
 
       {/* <button onClick={fetchAPI}>

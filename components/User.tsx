@@ -1,10 +1,10 @@
 import Link from 'next/link'
 
-export default function Person({ user }: { user: any }) {
+export default function User({ user }: { user: any }) {
     // console.log(user.uid && { user })
     return (
         <li>
-            <Link href="/user/[id]" as={`/user/${user.uid}`}>
+            <Link href="/user/[uid]" as={`/user/${user.uid}`}>
                 <a>{user.name}</a>
             </Link>
         </li>
