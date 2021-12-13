@@ -53,7 +53,7 @@ export default function App() {
               setName(displayName)
               setIcon(displayicon)
               dispatch(addUser({ name, uid, icon }))
-              fetchAPI()
+              // fetchAPI()
               alert(`Name1: ${displayName}, userId: ${userId}`)
               onload()
             }).catch(function (error) {
@@ -110,9 +110,24 @@ export default function App() {
   };
 
 
+  // const fetchAPI = async () => {
+  const fetcher = (url: string) => fetch(url).then((res) => res.json())
+  const { data, error } = useSWR('/api/users', fetcher)
+  console.log({ data })
+  if (error) return <div>Failed to load</div>
+  if (!data) return <div>Loading...</div>
+  // router.push(`/user/${uid}`)
+  // const fetchAPI = async () => {
+  // const { data, error } = useSWR('/api/users', fetcher)
+  // console.log('user_App:', { data })
+  // if (error) return <div>Failed to load</div>
+  // if (!data) return <div>Loading...</div>
+  // const res = await fetch(`/user/${user.uid}`);
+  // router.push(`/user/${uid}`)
+  // const data = await res.json();
+  // console.log(data);
+  // }
   const fetchAPI = async () => {
-    console.log(user.uid)
-    console.log(uid)
     const fetcher = (url: string) => fetch(url).then((res) => res.json())
     const { data, error } = useSWR('/api/users', fetcher)
     console.log({ data })
@@ -125,9 +140,11 @@ export default function App() {
     // if (error) return <div>Failed to load</div>
     // if (!data) return <div>Loading...</div>
     const res = await fetch(`/user/${user.uid}`);
+    router.push(`/user/${uid}`)
     // const data = await res.json();
     // console.log(data);
   }
+
 
   return (
     <div className="App">
@@ -152,9 +169,9 @@ export default function App() {
           </button>
         </div>
       }
-      {/* <Link href="/user/[uid]" as={`/user/${user.uid}`}>
+      <Link href="/user/[uid]" as={`/user/${user.uid}`}>
         <a>{user.name}</a>
-      </Link> */}
+      </Link>
 
       <button onClick={fetchAPI}>
         <a>{user.name}</a>
