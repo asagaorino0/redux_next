@@ -16,7 +16,6 @@ import useSWR from 'swr'
 import Person from '../components/Person'
 import User from '../components/User'
 export default function App() {
-  const fetcher = (url: string) => fetch(url).then((res) => res.json())
   // const PageA = dynamic(
   //   () => import('../pages/PageA'),
   //   { ssr: false }
@@ -111,6 +110,7 @@ export default function App() {
   };
 
   const fetchAPI = async () => {
+    const fetcher = (url: string) => fetch(url).then((res) => res.json())
     const { data, error } = useSWR('/api/users', fetcher)
     // const { data, error } = useSWR({ user }, fetcher)//umakuikimasenndesita
     console.log('user_App:', { data })

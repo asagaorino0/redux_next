@@ -13,7 +13,7 @@ const fetcher = async (url: string) => {
 export default function User() {
     const { query } = useRouter()
     const { data, error } = useSWR(
-        () => query.id && `/api/users/${query.id}`,
+        () => query.uid && `/api/users/${query.uid}`,
         fetcher
     )
     console.log(data)
@@ -47,7 +47,7 @@ export default function User() {
                     <td>{data.gender}</td> */}
                 {
                     data
-                        .filter((data: any) => data.uid === query.id)
+                        .filter((data: any) => data.uid === query.uid)
                         .map((data: any) => {
                             return (
                                 <tr key={data.uid}>
