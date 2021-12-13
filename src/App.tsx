@@ -101,7 +101,7 @@ export default function App() {
               timestamp: Timestamp.fromDate(new Date()),
             }, { merge: true }//←上書きされないおまじない
             )
-            fetchAPI()
+            // fetchAPI()
 
             console.log('user', setRef)
           }).catch(function (error) {
@@ -109,13 +109,14 @@ export default function App() {
       })
   };
 
+
   const fetchAPI = async () => {
     const fetcher = (url: string) => fetch(url).then((res) => res.json())
     const { data, error } = useSWR('/api/users', fetcher)
     console.log({ data })
     if (error) return <div>Failed to load</div>
     if (!data) return <div>Loading...</div>
-
+    router.push(`/user/${user.uid}`)
     // const fetchAPI = async () => {
     // const { data, error } = useSWR('/api/users', fetcher)
     // console.log('user_App:', { data })
@@ -149,16 +150,16 @@ export default function App() {
           </button>
         </div>
       }
-      <Link href="/user/[uid]" as={`/user/${user.uid}`}>
+      {/* <Link href="/user/[uid]" as={`/user/${user.uid}`}>
         <a>{user.name}</a>
-      </Link>
+      </Link> */}
 
-      {/* <button onClick={fetchAPI}>
-        fetchAPI
-      </button> */}
+      <button onClick={fetchAPI}>
+        <a>{user.name}</a>
+      </button>
       {/* {data.map((p: any, id: any) => (
-        <User key={id} user={p} />
-      ))} */}
+              <User key={id} user={p} />
+            ))} */}
 
     </div >
   );
