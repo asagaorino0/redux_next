@@ -22,11 +22,11 @@ export default function PageAA() {
     // //     // toPageA()
     // // };
 
-    const fetcher = (url: string) => fetch(url).then((res) => res.json())
-    const { data, error } = useSWR('/api/users', fetcher)
-    console.log('user_App:', { data })
-    if (error) return <div>Failed to load</div>
-    if (!data) return <div>Loading...</div>
+    // const fetcher = (url: string) => fetch(url).then((res) => res.json())
+    // const { data, error } = useSWR('/api/users', fetcher)
+    // console.log('user_App:', { data })
+    // if (error) return <div>Failed to load</div>
+    // if (!data) return <div>Loading...</div>
 
     // // const fetchAPI = async () => {
     // //     const { data, error } = useSWR('/api/users', fetcher)
@@ -51,10 +51,11 @@ export default function PageAA() {
             {`${user.icon}`.length !== 0 &&
                 <h1 className="mb-4 text-green-500 text-3xl">{user.name}さま </h1>
             }
-            <Link href="/user/[id]" as={`/user/${user.uid}`}>
+            {/* <Link href="/user/[id]" as={`/user/${user.uid}`}>
                 <a>{user.name}</a>
-            </Link>
-            {/* {users} */}
+            </Link> */}
+
+            {users}
         </div >
     );
 }

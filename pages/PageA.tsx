@@ -12,7 +12,6 @@ const PageA = () => {
         () => import('../src/PageAA'),
         { ssr: false }
     )
-
     // const [name, setName] = useState<string>('');
     // const [age, setAge] = useState<number>(0);
     // const user = useSelector(selectUser);
@@ -30,7 +29,7 @@ const PageA = () => {
                 <React.StrictMode >
                     <Provider store={store}>
                         <PageAA />
-                        <PageA1 />
+                        {/* <PageA1 /> */}
                     </Provider>
                 </React.StrictMode>
             </h1>
