@@ -1,8 +1,8 @@
-import { users } from '../../../src/data'
+import { UsersItem } from '../../../src/data'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 export default function personHandler(query: { id: string }, res: NextApiResponse) {
-    const filtered = users.filter((p: any) => p.id === query.id)
+    const filtered = UsersItem.filter((p: any) => p.id === query.id)
 
     // User with id exists
     if (filtered.length > 0) {

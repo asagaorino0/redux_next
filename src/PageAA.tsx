@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from "next/router";
 import useSWR from 'swr'
 import Link from 'next/link'
-import { users } from './data'
+import { UsersItem } from './data'
 export default function PageAA() {
 
     const [uid, setUid] = useState<string>('');
@@ -54,7 +54,7 @@ export default function PageAA() {
             {/* <Link href="/user/[id]" as={`/user/${user.uid}`}>
                 <a>{user.name}</a>
             </Link> */}
-            {/* {users} */}
+            {/* {UsersItem} */}
         </div >
     );
 }

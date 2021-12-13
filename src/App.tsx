@@ -110,17 +110,18 @@ export default function App() {
       })
   };
 
-  const { data, error } = useSWR('/api/users', fetcher)
-  // const { data, error } = useSWR({ user }, fetcher)//umakuikimasenndesita
-  console.log('user_App:', { data })
-  if (error) return <div>Failed to load</div>
-  if (!data) return <div>Loading...</div>
-
   const fetchAPI = async () => {
     const { data, error } = useSWR('/api/users', fetcher)
+    // const { data, error } = useSWR({ user }, fetcher)//umakuikimasenndesita
     console.log('user_App:', { data })
     if (error) return <div>Failed to load</div>
     if (!data) return <div>Loading...</div>
+
+    // const fetchAPI = async () => {
+    // const { data, error } = useSWR('/api/users', fetcher)
+    // console.log('user_App:', { data })
+    // if (error) return <div>Failed to load</div>
+    // if (!data) return <div>Loading...</div>
     // const res = await fetch(`/api/[${user.name}]`);
     // const data = await res.json();
     // console.log(data);
@@ -153,9 +154,9 @@ export default function App() {
         <a>{user.name}</a>
       </Link>
 
-      <button onClick={fetchAPI}>
+      {/* <button onClick={fetchAPI}>
         fetchAPI
-      </button>
+      </button> */}
       {/* {data.map((p: any, id: any) => (
         <User key={id} user={p} />
       ))} */}

@@ -1,21 +1,22 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../app/store';
+import { UserState } from "../../src/types/user";
 
-interface UserState {
-  name: string,
-  uid: string,
-  icon: string | undefined
-  namae: string,
-  sei: string,
-  age: number,
-  menu: string,
-  day: string,
-  tokoro: string,
-  area: string,
-  sns: string,
-  qr: string,
-  users: any
-}
+// interface UserState {
+//   name: string,
+//   uid: string,
+//   icon: string | undefined
+//   namae: string,
+//   sei: string,
+//   age: number,
+//   menu: string,
+//   day: string,
+//   tokoro: string,
+//   area: string,
+//   sns: string,
+//   qr: string,
+//   users: any
+// }
 
 const initialState: UserState = {
   name: 'name',
@@ -31,7 +32,7 @@ const initialState: UserState = {
   sns: "",
   qr: "",
   users: []
-};
+} as UserState;
 
 export const userSlice = createSlice({
   name: 'user',
