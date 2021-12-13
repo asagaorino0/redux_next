@@ -116,7 +116,7 @@ export default function App() {
     console.log({ data })
     if (error) return <div>Failed to load</div>
     if (!data) return <div>Loading...</div>
-    router.push(`/user/${user.uid}`)
+    router.push(`/user/${uid}`)
     // const fetchAPI = async () => {
     // const { data, error } = useSWR('/api/users', fetcher)
     // console.log('user_App:', { data })
