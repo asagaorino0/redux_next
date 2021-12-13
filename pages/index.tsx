@@ -38,13 +38,6 @@ const Home: NextPage = () => {
   // if (error) return <div>Failed to load</div>
   // if (!data) return <div>Loading...</div>
 
-  // const [name, setName] = useState<string>('');
-  // const fetchAPI = async () => {
-  //   const name: string = 'hogehoge';
-  //   const response = await fetch(`/api/[${name}]`);
-  //   const data = await response.json();
-  //   console.log(data);
-  // }
 
   return (
     <div className={styles.container}>

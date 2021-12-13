@@ -5,12 +5,12 @@ const user = useSelector(selectUser);
 const [uid, setUid] = useState<string | null>('');
 const [name, setName] = useState<string | null>('');
 const [icon, setIcon] = useState<string | undefined>('');
-console.log('useStete:', user)
+// console.log('useStete:', users)
 
 export const users = [
     // {
-    //     uid: user.uid,
-    //     name: user.name,
+    //     uid: '1',
+    //     name: 'user.name',
     // },
     {
         uid: 'Uda1c6a4e5b348c5ba3c95de639e32414',
@@ -21,3 +21,4 @@ export const users = [
         name: 'CCCCCCC',
     },
 ]
+

@@ -53,7 +53,7 @@ export default function App() {
               setName(displayName)
               setIcon(displayicon)
               dispatch(addUser({ name, uid, icon }))
-              // fetchAPI()
+              fetchAPI()
               alert(`Name1: ${displayName}, userId: ${userId}`)
               onload()
             }).catch(function (error) {
@@ -109,42 +109,22 @@ export default function App() {
       })
   };
 
-
-  const fetchAPI = () => {
+  const fetchAPI = async () => {
     const fetcher = (url: string) => fetch(url).then((res) => res.json())
     const { data, error } = useSWR('/api/users', fetcher)
     console.log({ data })
     if (error) return <div>Failed to load</div>
     if (!data) return <div>Loading...</div>
-    // router.push(`/user/${uid}`)
-    // const fetchAPI = async () => {
-    // const { data, error } = useSWR('/api/users', fetcher)
-    // console.log('user_App:', { data })
-    // if (error) return <div>Failed to load</div>
-    // if (!data) return <div>Loading...</div>
-    // const res = await fetch(`/user/${user.uid}`);
-    // router.push(`/user/${uid}`)
-    // const data = await res.json();
-    // console.log(data);
-  }
-  const fetchAPPI = async () => {
-    const fetcher = (url: string) => fetch(url).then((res) => res.json())
-    const { data, error } = useSWR('/api/users', fetcher)
-    console.log({ data })
-    if (error) return <div>Failed to load</div>
-    if (!data) return <div>Loading...</div>
-    // router.push(`/user/${uid}`)
-    // const fetchAPI = async () => {
-    // const { data, error } = useSWR('/api/users', fetcher)
-    // console.log('user_App:', { data })
-    // if (error) return <div>Failed to load</div>
-    // if (!data) return <div>Loading...</div>
-    const res = await fetch(`/user/${user.uid}`);
-    router.push(`/user/[uid]`)
-    // const data = await res.json();
-    // console.log(data);
-  }
 
+    // const fetchAPI = async () => {
+    // const { data, error } = useSWR('/api/users', fetcher)
+    // console.log('user_App:', { data })
+    // if (error) return <div>Failed to load</div>
+    // if (!data) return <div>Loading...</div>
+    // const res = await fetch(`/api/[${user.name}]`);
+    // const data = await res.json();
+    // console.log(data);
+  }
 
   return (
     <div className="App">
@@ -173,12 +153,12 @@ export default function App() {
         <a>{user.name}</a>
       </Link>
 
-      <button onClick={fetchAPPI}>
-        <a>{user.name}</a>
-      </button>
+      {/* <button onClick={fetchAPI}>
+        fetchAPI
+      </button> */}
       {/* {data.map((p: any, id: any) => (
-              <User key={id} user={p} />
-            ))} */}
+        <User key={id} user={p} />
+      ))} */}
 
     </div >
   );
