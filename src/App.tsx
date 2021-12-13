@@ -16,6 +16,7 @@ import useSWR from 'swr'
 import Person from '../components/Person'
 import User from '../components/User'
 export default function App() {
+  const fetcher = (url: string) => fetch(url).then((res) => res.json())
   // const PageA = dynamic(
   //   () => import('../pages/PageA'),
   //   { ssr: false }
@@ -109,18 +110,17 @@ export default function App() {
       })
   };
 
+  const { data, error } = useSWR('/api/users', fetcher)
+  // const { data, error } = useSWR({ user }, fetcher)//umakuikimasenndesita
+  console.log('user_App:', { data })
+  if (error) return <div>Failed to load</div>
+  if (!data) return <div>Loading...</div>
+
   const fetchAPI = async () => {
-    const fetcher = (url: string) => fetch(url).then((res) => res.json())
     const { data, error } = useSWR('/api/users', fetcher)
-    console.log({ data })
+    console.log('user_App:', { data })
     if (error) return <div>Failed to load</div>
     if (!data) return <div>Loading...</div>
-
-    // const fetchAPI = async () => {
-    // const { data, error } = useSWR('/api/users', fetcher)
-    // console.log('user_App:', { data })
-    // if (error) return <div>Failed to load</div>
-    // if (!data) return <div>Loading...</div>
     // const res = await fetch(`/api/[${user.name}]`);
     // const data = await res.json();
     // console.log(data);
@@ -149,13 +149,13 @@ export default function App() {
           </button>
         </div>
       }
-      <Link href="/user/[uid]" as={`/user/${user.uid}`}>
+      <Link href="/user/[id]" as={`/user/${user.uid}`}>
         <a>{user.name}</a>
       </Link>
 
-      {/* <button onClick={fetchAPI}>
+      <button onClick={fetchAPI}>
         fetchAPI
-      </button> */}
+      </button>
       {/* {data.map((p: any, id: any) => (
         <User key={id} user={p} />
       ))} */}
