@@ -124,7 +124,7 @@ export default function App() {
     // console.log('user_App:', { data })
     // if (error) return <div>Failed to load</div>
     // if (!data) return <div>Loading...</div>
-    const res = await fetch(`/user/[${user.uid}]`);
+    const res = await fetch(`/user/${user.uid}`);
     // const data = await res.json();
     // console.log(data);
   }
