@@ -149,9 +149,9 @@ export default function App() {
           </button>
         </div>
       }
-      {/* <Link href="/user/[uid]" as={`/user/${user.uid}`}>
+      <Link href="/user/[uid]" as={`/user/${user.uid}`}>
         <a>{user.name}</a>
-      </Link> */}
+      </Link>
 
       {/* <button onClick={fetchAPI}>
         fetchAPI
