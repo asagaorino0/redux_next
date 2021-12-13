@@ -101,7 +101,7 @@ export default function App() {
               timestamp: Timestamp.fromDate(new Date()),
             }, { merge: true }//←上書きされないおまじない
             )
-            // fetchAPI()
+            fetchAPI()
 
             console.log('user', setRef)
           }).catch(function (error) {
@@ -110,23 +110,6 @@ export default function App() {
   };
 
 
-  // const fetchAPI = async () => {
-  const fetcher = (url: string) => fetch(url).then((res) => res.json())
-  const { data, error } = useSWR('/api/users', fetcher)
-  console.log({ data })
-  if (error) return <div>Failed to load</div>
-  if (!data) return <div>Loading...</div>
-  // router.push(`/user/${uid}`)
-  // const fetchAPI = async () => {
-  // const { data, error } = useSWR('/api/users', fetcher)
-  // console.log('user_App:', { data })
-  // if (error) return <div>Failed to load</div>
-  // if (!data) return <div>Loading...</div>
-  // const res = await fetch(`/user/${user.uid}`);
-  // router.push(`/user/${uid}`)
-  // const data = await res.json();
-  // console.log(data);
-  // }
   const fetchAPI = async () => {
     const fetcher = (url: string) => fetch(url).then((res) => res.json())
     const { data, error } = useSWR('/api/users', fetcher)
@@ -139,11 +122,28 @@ export default function App() {
     // console.log('user_App:', { data })
     // if (error) return <div>Failed to load</div>
     // if (!data) return <div>Loading...</div>
-    const res = await fetch(`/user/${user.uid}`);
-    router.push(`/user/${uid}`)
+    // const res = await fetch(`/user/${user.uid}`);
+    // router.push(`/user/${uid}`)
     // const data = await res.json();
     // console.log(data);
   }
+  // const fetchAPI = async () => {
+  //   const fetcher = (url: string) => fetch(url).then((res) => res.json())
+  //   const { data, error } = useSWR('/api/users', fetcher)
+  //   console.log({ data })
+  //   if (error) return <div>Failed to load</div>
+  //   if (!data) return <div>Loading...</div>
+  //   // router.push(`/user/${uid}`)
+  //   // const fetchAPI = async () => {
+  //   // const { data, error } = useSWR('/api/users', fetcher)
+  //   // console.log('user_App:', { data })
+  //   // if (error) return <div>Failed to load</div>
+  //   // if (!data) return <div>Loading...</div>
+  //   const res = await fetch(`/user/${user.uid}`);
+  //   router.push(`/user/${uid}`)
+  //   // const data = await res.json();
+  //   // console.log(data);
+  // }
 
 
   return (
