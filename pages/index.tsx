@@ -33,10 +33,10 @@ const Home: NextPage = () => {
     router.push('./PageA')
   }
 
-  // const { data, error } = useSWR('/api/users', fetcher)
-  // console.log({ data })
-  // if (error) return <div>Failed to load</div>
-  // if (!data) return <div>Loading...</div>
+  const { data, error } = useSWR('/api/users', fetcher)
+  console.log({ data })
+  if (error) return <div>Failed to load</div>
+  if (!data) return <div>Loading...</div>
 
 
   return (
@@ -75,9 +75,9 @@ const Home: NextPage = () => {
             </Provider>
           </React.StrictMode>
           <div>
-            {/* {data.map((p: any, id: any) => (
+            {data.map((p: any, id: any) => (
               <User key={id} user={p} />
-            ))} */}
+            ))}
           </div>
         </section>
         <div className={styles.grid}>

@@ -7,8 +7,8 @@ import 'firebase/compat/auth';
 // import 'firebase/compat/firestore';
 import { db } from "./firebase"
 import { getFirestore, collection, query, where, onSnapshot, doc, setDoc, Timestamp, addDoc } from 'firebase/firestore'
-
-
+import useSWR from 'swr'
+import Link from 'next/link'
 const PageA1 = () => {
     const [users, setUsers] = useState<any>([]);
     const [uid, setUid] = useState<string>('');
@@ -80,6 +80,24 @@ const PageA1 = () => {
         })
         // }
     }, []);
+
+    //   const fetchAPI = () => {
+    const fetcher = (url: string) => fetch(url).then((res) => res.json())
+    const { data, error } = useSWR('/api/users', fetcher)
+    console.log({ data })
+    if (error) return <div>Failed to load</div>
+    if (!data) return <div>Loading...</div>
+    // router.push(`/user/${uid}`)
+    // const fetchAPI = async () => {
+    // const { data, error } = useSWR('/api/users', fetcher)
+    // console.log('user_App:', { data })
+    // if (error) return <div>Failed to load</div>
+    // if (!data) return <div>Loading...</div>
+    // const res = await fetch(`/user/${user.uid}`);
+    // router.push(`/user/${uid}`)
+    // const data = await res.json();
+    // console.log(data);
+    //   }
     return (
         <div className="App">
             <span >ユーザー情報登録:PageA1</span>
@@ -155,6 +173,14 @@ const PageA1 = () => {
                             </div>
                         })
                     } */}
+                    <Link href="/user/[uid]" as={`/user/${user.uid}`}>
+                        <a>{user.name}</a>
+                    </Link>
+
+
+                    {/* {data.map((p: any, id: any) => (
+        <User key={id} user={p} />
+      ))} */}
 
                 </div>
             </p>
