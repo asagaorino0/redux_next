@@ -151,7 +151,7 @@ export default function App() {
         </div>
       }
       <Link href="/user/[id]" as={`/user/${user.uid}`}>
-        <a>{user.name}</a>
+        <a>{user.name}さん</a>
       </Link>
 
       {/* <button onClick={fetchAPI}>
