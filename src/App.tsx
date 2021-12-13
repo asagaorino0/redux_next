@@ -111,6 +111,8 @@ export default function App() {
 
 
   const fetchAPI = async () => {
+    console.log(user.uid)
+    console.log(uid)
     const fetcher = (url: string) => fetch(url).then((res) => res.json())
     const { data, error } = useSWR('/api/users', fetcher)
     console.log({ data })
