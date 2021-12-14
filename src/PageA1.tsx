@@ -83,23 +83,23 @@ const PageA1 = () => {
         // }
     }, []);
 
-    //   const fetchAPI = () => {
-    const fetcher = (url: string) => fetch(url).then((res) => res.json())
-    const { data, error } = useSWR('/api/users', fetcher)
-    console.log({ data })
-    if (error) return <div>Failed to load</div>
-    if (!data) return <div>Loading...</div>
-    // router.push(`/user/${uid}`)
-    // const fetchAPI = async () => {
-    // const { data, error } = useSWR('/api/users', fetcher)
-    // console.log('user_App:', { data })
-    // if (error) return <div>Failed to load</div>
-    // if (!data) return <div>Loading...</div>
-    // const res = await fetch(`/user/${user.uid}`);
-    // router.push(`/user/${uid}`)
-    // const data = await res.json();
-    // console.log(data);
-    //   }
+    const fetchAPI = () => {
+        const fetcher = (url: string) => fetch(url).then((res) => res.json())
+        const { data, error } = useSWR('/api/users', fetcher)
+        console.log({ data })
+        if (error) return <div>Failed to load</div>
+        if (!data) return <div>Loading...</div>
+        // router.push(`/user/${uid}`)
+        // const fetchAPI = async () => {
+        // const { data, error } = useSWR('/api/users', fetcher)
+        // console.log('user_App:', { data })
+        // if (error) return <div>Failed to load</div>
+        // if (!data) return <div>Loading...</div>
+        // const res = await fetch(`/user/${user.uid}`);
+        // router.push(`/user/${uid}`)
+        // const data = await res.json();
+        // console.log(data);
+    }
     return (
         <div className="App">
             <span >ユーザー情報登録:PageA1</span>
@@ -178,7 +178,9 @@ const PageA1 = () => {
                     <Link href="/user/[uid]" as={`/user/${user.uid}`}>
                         <a>{user.name}</a>
                     </Link>
-
+                    <button onClick={fetchAPI}>
+                        fetchAPI
+                    </button>
 
                     {/* {data.map((p: any, id: any) => (
         <User key={id} user={p} />
