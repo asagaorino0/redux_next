@@ -1,10 +1,10 @@
-import { selectUser } from './features/userSlice';
-import { useSelector } from 'react-redux';
-import React, { useState } from 'react';
-const user = useSelector(selectUser);
-const [uid, setUid] = useState<string | null>('');
-const [name, setName] = useState<string | null>('');
-const [icon, setIcon] = useState<string | undefined>('');
+// import { selectUser } from './features/userSlice';
+// import { useSelector } from 'react-redux';
+// import React, { useState } from 'react';
+// const user = useSelector(selectUser);
+// const [uid, setUid] = useState<string | null>('');
+// const [name, setName] = useState<string | null>('');
+// const [icon, setIcon] = useState<string | undefined>('');
 // console.log('useStete:', users)
 
 export const users = [

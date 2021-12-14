@@ -33,8 +33,18 @@ const Home: NextPage = () => {
     router.push('./PageA')
   }
 
+  const { data, error } = useSWR('/api/users', fetcher)
+  console.log({ data })
+  if (error) return <div>Failed to load</div>
+  if (!data) return <div>Loading...</div>
 
-
+  // const [name, setName] = useState<string>('');
+  // const fetchAPI = async () => {
+  //   const name: string = 'hogehoge';
+  //   const response = await fetch(`/api/[${name}]`);
+  //   const data = await response.json();
+  //   console.log(data);
+  // }
 
   return (
     <div className={styles.container}>
@@ -72,9 +82,9 @@ const Home: NextPage = () => {
             </Provider>
           </React.StrictMode>
           <div>
-            {/* {data.map((p: any, id: any) => (
+            {data.map((p: any, id: any) => (
               <User key={id} user={p} />
-            ))} */}
+            ))}
           </div>
         </section>
         <div className={styles.grid}>
