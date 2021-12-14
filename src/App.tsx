@@ -6,7 +6,8 @@ import { addUser, selectUser } from '../src/features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from "next/router";
 import PageAA from './PageAA'
-import PageA from '../pages/PageA'
+// import PageA from '../pages/PageA'
+import PageA from './PageA'
 import * as line from '@line/bot-sdk';
 import liff from '@line/liff';
 import { stringify } from 'querystring';
@@ -130,6 +131,7 @@ export default function App() {
           </button>
         </div>
       }
+      <PageA />
     </div >
   );
 }
