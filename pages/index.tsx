@@ -33,17 +33,15 @@ const Home: NextPage = () => {
     router.push('./PageA')
   }
 
-  const { data, error } = useSWR('/api/users', fetcher)
-  console.log({ data })
-  if (error) return <div>Failed to load</div>
-  if (!data) return <div>Loading...</div>
+  // const { data, error } = useSWR('/api/test', fetcher)
+  // console.log({ data })
+  // if (error) return <div>Failed to load</div>
+  // if (!data) return <div>Loading...</div>
 
   // const [name, setName] = useState<string>('');
   // const fetchAPI = async () => {
   //   const name: string = 'hogehoge';
   //   const response = await fetch(`/api/[${name}]`);
-  //   const data = await response.json();
-  //   console.log(data);
   // }
 
   return (
@@ -82,9 +80,15 @@ const Home: NextPage = () => {
             </Provider>
           </React.StrictMode>
           <div>
-            {data.map((p: any, id: any) => (
+            {/* {data.map((p: any, id: any) => (
               <User key={id} user={p} />
-            ))}
+            ))} */}
+            <Link href="/test/[uid]" as={`/test/416`}>
+              <a>test</a>
+            </Link>
+            <Link href="/user/[uid]" as={`/user/`}>
+              <a>user</a>
+            </Link>
           </div>
         </section>
         <div className={styles.grid}>

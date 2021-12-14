@@ -53,7 +53,7 @@ export default function App() {
               setName(displayName)
               setIcon(displayicon)
               dispatch(addUser({ name, uid, icon }))
-              fetchAPI()
+              // fetchAPI()
               alert(`Name1: ${displayName}, userId: ${userId}`)
               onload()
             }).catch(function (error) {
@@ -66,19 +66,19 @@ export default function App() {
   //   channelAccessToken: process.env.ACCESS_TOKEN,
   //   channelSecret: process.env.CHANNEL_SECRET
   // };
-  // const lineClick = function () {
-  // const client = new line.Client({
-  //   channelAccessToken: 'u/gxNRim4lRdiZrvvPhus23nEgxtWFAo4Q3Ju/WWoqK/4Wk5WJ4KGitGYC7oQ4O+rUcofpkjVddvZ8667cbk76d0MaQ68MlZs4hPu3DHY0YmLzd1JRiaFX87bT9+18RmfxYr/8B4lUQg0SyL2Eux5QdB04t89/1O/w1cDnyilFU='
-  // });
-  // client.getProfile('622174c0ed8b54e0d14ff83058f7b1d7')
-  //   .then((profile) => {
-  //     console.log(profile.displayName);
-  //     console.log(profile.userId);
-  //     console.log(profile.pictureUrl);
-  //     console.log(profile.statusMessage);
-  //   })
-  //   .catch((err) => {
+  // const lineTuchi = function () {
+  //   const client = new line.Client({
+  //     channelAccessToken: 'u/gxNRim4lRdiZrvvPhus23nEgxtWFAo4Q3Ju/WWoqK/4Wk5WJ4KGitGYC7oQ4O+rUcofpkjVddvZ8667cbk76d0MaQ68MlZs4hPu3DHY0YmLzd1JRiaFX87bT9+18RmfxYr/8B4lUQg0SyL2Eux5QdB04t89/1O/w1cDnyilFU='
   //   });
+  //   client.getProfile()
+  //     .then((profile) => {
+  //       console.log(profile.displayName);
+  //       console.log(profile.userId);
+  //       console.log(profile.pictureUrl);
+  //       console.log(profile.statusMessage);
+  //     })
+  //     .catch((err) => {
+  //     });
   // };
   const onload = function () {
     liff
@@ -101,7 +101,7 @@ export default function App() {
               timestamp: Timestamp.fromDate(new Date()),
             }, { merge: true }//←上書きされないおまじない
             )
-            fetchAPI()
+            // fetchAPI()
 
             console.log('user', setRef)
           }).catch(function (error) {
@@ -109,22 +109,12 @@ export default function App() {
       })
   };
 
-  const fetchAPI = async () => {
-    const fetcher = (url: string) => fetch(url).then((res) => res.json())
-    const { data, error } = useSWR('/api/users', fetcher)
-    console.log({ data })
-    if (error) return <div>Failed to load</div>
-    if (!data) return <div>Loading...</div>
-
-    // const fetchAPI = async () => {
-    // const { data, error } = useSWR('/api/users', fetcher)
-    // console.log('user_App:', { data })
-    // if (error) return <div>Failed to load</div>
-    // if (!data) return <div>Loading...</div>
-    // const res = await fetch(`/api/[${user.name}]`);
-    // const data = await res.json();
-    // console.log(data);
-  }
+  // const fetchAPI = async () => {
+  //   const fetcher = (url: string) => fetch(url).then((res) => res.json())
+  //   const { data, error } = useSWR('/api/users', fetcher)
+  //   if (error) return <div>Failed to load</div>
+  //   if (!data) return <div>Loading...</div>
+  // }
 
   return (
     <div className="App">
@@ -153,7 +143,15 @@ export default function App() {
       <Link href="/user/[uid]" as={`/user/${user.uid}`}>
         <a>{user.name}</a>
       </Link>
-
+      <Link href="/test/[uid]" as={`/test/416`}>
+        <a>test</a>
+      </Link>
+      <Link href="/user/[uid]" as={`/user/`}>
+        <a>user</a>
+      </Link>
+      {/* <button onClick={lineTuchi}>
+        /line
+      </button> */}
       {/* <button onClick={fetchAPI}>
         fetchAPI
       </button> */}

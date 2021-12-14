@@ -176,7 +176,6 @@ const PageA1 = () => {
                     {/* {data.map((p: any, id: any) => (
         <User key={id} user={p} />
       ))} */}
-
                 </div>
             </p>
         </div >

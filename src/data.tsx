@@ -17,7 +17,7 @@ export const users = [
         name: 'おりのえりこ',
     },
     {
-        uid: 'Uda1c6a4e5b348c5ba3c95de639e32416',
+        uid: '416',
         name: 'CCCCCCC',
     },
 ]
