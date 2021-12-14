@@ -25,13 +25,42 @@ export default function User() {
         <table>
             <thead>
                 <tr>
+                    <th>uid</th>
                     <th>Name</th>
+                    {/* <th>Height</th>
+                    <th>Mass</th>
+                    <th>Hair color</th>
+                    <th>Skin color</th>
+                    <th>Eye color</th>
+                    <th>Gender</th> */}
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>{data.name}</td>
-                </tr>
+                {/* <tr> */}
+                {/* <td>{query.id}</td>
+                    <td>{data.name}</td> */}
+                {/* <td>{data.height}</td>
+                    <td>{data.mass}</td>
+                    <td>{data.hair_color}</td>
+                    <td>{data.skin_color}</td>
+                    <td>{data.eye_color}</td>
+                    <td>{data.gender}</td> */}
+                {
+                    data
+                        .filter((data: any) => data.uid === query.uid)
+                        .map((data: any) => {
+                            return (
+                                <tr key={data.uid}>
+                                    <td>
+                                        {data.uid}
+                                    </td>
+                                    <td>
+                                        {data.name}
+                                    </td>
+                                </tr>
+                            )
+                        })
+                }
             </tbody>
         </table>
     )
