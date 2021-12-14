@@ -32,11 +32,11 @@ import * as line from '@line/bot-sdk';
 // };
 // const lineTuchi = function () {
 //   const client = new line.Client({
-//     channelAccessToken: 'u/gxNRim4lRdiZrvvPhus23nEgxtWFAo4Q3Ju/WWoqK/4Wk5WJ4KGitGYC7oQ4O+rUcofpkjVddvZ8667cbk76d0MaQ68MlZs4hPu3DHY0YmLzd1JRiaFX87bT9+18RmfxYr/8B4lUQg0SyL2Eux5QdB04t89/1O/w1cDnyilFU='
+//    channelAccessToken: process.env.ACCESS_TOKEN,
 //   });
-const config = {
-    channelSecret: "4d5f11ad200af09808a7b5057ffe45e1",//チャンネルシークレット
-    channelAccessToken: "RyGBqiciaprN0e4/UWor9L4kgra7M560lqinnyXyu6LWwnSNI5O7ZA2Ug4MHnpoViLyk0pwZfJ5bCdOVWNUmlM7PKtJPbIq1cevZtPmVuPsv0nKutgL8prDWKGc6NDnQgYosP8BwHh3Ss6ZRG+2tfwdB04t89/1O/w1cDnyilFU=" //アクセストークン
+const config: any = {
+    channelSecret: process.env.CHANNEL_SECRET,//チャンネルシークレット
+    channelAccessToken: process.env.ACCESS_TOKEN, //アクセストークン
 };
 const client = new line.Client(config);
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -48,7 +48,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
         })
 };
 async function handleEvent(event: any) {
-    // return client.replyMessage(event.replyToken, { type: "text", text: event.message.text + "ね" })
+    return client.replyMessage(event.replyToken, { type: "text", text: event.message.text + "ね" })
     //ユーザから送られた各メッセージに対する処理を実装する。
     //https://developers.line.biz/ja/reference/messaging-api/#message-event を参照。
     switch (event.message.type) {
