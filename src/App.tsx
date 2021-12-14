@@ -32,7 +32,7 @@ export default function App() {
   }
   const registUser = () => {
     dispatch(addUser({ name, age, uid, icon }))
-    // toPageA()
+    toPageA()
   };
   const loginUrl: string | undefined = process.env.NEXT_PUBLIC_LINE_LOGIN_URL
   const LINEID = process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID
@@ -144,7 +144,8 @@ export default function App() {
       }
       {`${user.uid}` === '' &&
         <div>
-          <button onClick={onload}>
+          <button onClick={registUser}>
+            {/* // <button onClick={onload}> */}
             <h3 className="mb-4 text-green-500 text-3xl">ようこそ</h3>
           </button>
         </div>
