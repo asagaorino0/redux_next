@@ -189,7 +189,7 @@ const PageA1 = () => {
     );
 }
 
-export default PageA1
+
 
 const user = useSelector(selectUser);
 console.log('App,', user)
@@ -208,3 +208,4 @@ export const users = [
     },
 ]
 
+export default PageA1
