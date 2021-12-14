@@ -57,6 +57,7 @@ const PageA1 = () => {
         )
         console.log('user', setRef)
     };
+
     useEffect(() => {
         // if (user) {
         // const db = getFirestore()
