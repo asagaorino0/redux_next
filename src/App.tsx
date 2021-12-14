@@ -141,19 +141,19 @@ export default function App() {
 // }
 
 
-const user = useSelector(selectUser);
-console.log('App,', user)
-export const users = [
-  {
-    uid: user.uid,
-    name: user.name,
-  },
-  {
-    uid: 'Uda1c6a4e5b348c5ba3c95de639e32415',
-    name: 'えりこ',
-  },
-  {
-    uid: 'Uda1c6a4e5b348c5ba3c95de639e32416',
-    name: 'CCCCCCC',
-  },
-]
+// const user = useSelector(selectUser);
+// console.log('App,', user)
+// export const users = [
+//   {
+//     uid: user.uid,
+//     name: user.name,
+//   },
+//   {
+//     uid: 'Uda1c6a4e5b348c5ba3c95de639e32415',
+//     name: 'えりこ',
+//   },
+//   {
+//     uid: 'Uda1c6a4e5b348c5ba3c95de639e32416',
+//     name: 'CCCCCCC',
+//   },
+// ]

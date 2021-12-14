@@ -9,7 +9,7 @@ import { db } from "./firebase"
 import { getFirestore, collection, query, where, onSnapshot, doc, setDoc, Timestamp, addDoc } from 'firebase/firestore'
 import useSWR from 'swr'
 import Link from 'next/link'
-const PageA1 = () => {
+export const PageA1 = () => {
     const [users, setUsers] = useState<any>([]);
     const [uid, setUid] = useState<string>('');
     const [name, setName] = useState<string>('');
@@ -190,4 +190,21 @@ const PageA1 = () => {
 }
 
 export default PageA1
+
+const user = useSelector(selectUser);
+console.log('App,', user)
+export const users = [
+    {
+        uid: user.uid,
+        name: user.name,
+    },
+    {
+        uid: 'Uda1c6a4e5b348c5ba3c95de639e32415',
+        name: 'えりこ',
+    },
+    {
+        uid: 'Uda1c6a4e5b348c5ba3c95de639e32416',
+        name: 'CCCCCCC',
+    },
+]
 
