@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from "next/router";
 import styles from '../styles/Home.module.css'
 import 'firebase/compat/auth';
+import { UserState } from "./types/user";
 // import 'firebase/compat/firestore';
 import { db } from "./firebase"
 import { getFirestore, collection, query, where, onSnapshot, doc, setDoc, Timestamp, addDoc } from 'firebase/firestore'
@@ -191,21 +192,21 @@ const PageA1 = () => {
 
 
 
-const user = useSelector(selectUser);
-console.log('App,', user)
-export const users = [
-    {
-        uid: user.uid,
-        name: user.name,
-    },
-    {
-        uid: 'Uda1c6a4e5b348c5ba3c95de639e32415',
-        name: 'えりこ',
-    },
-    {
-        uid: 'Uda1c6a4e5b348c5ba3c95de639e32416',
-        name: 'CCCCCCC',
-    },
-]
+// const user = useSelector(selectUser);
+// // console.log('App,', user)
+// export const users = [
+//     {
+//         uid: user.uid,
+//         name: user.name,
+//     },
+//     {
+//         uid: 'Uda1c6a4e5b348c5ba3c95de639e32415',
+//         name: 'えりこ',
+//     },
+//     {
+//         uid: 'Uda1c6a4e5b348c5ba3c95de639e32416',
+//         name: 'CCCCCCC',
+//     },
+// ]
 
 export default PageA1
