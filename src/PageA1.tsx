@@ -166,15 +166,6 @@ const PageA1 = () => {
                     />
                 }
                 <div>
-                    {/* {
-                        users.map((user: any) => {
-                            <div key={uid}>
-                                {user.name}
-                                {age}
-                                {user.tokoro}
-                            </div>
-                        })
-                    } */}
                     <Link href="/user/[uid]" as={`/user/${user.uid}`}>
                         <a>{user.name}</a>
                     </Link>
