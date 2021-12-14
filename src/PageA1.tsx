@@ -9,7 +9,7 @@ import { db } from "./firebase"
 import { getFirestore, collection, query, where, onSnapshot, doc, setDoc, Timestamp, addDoc } from 'firebase/firestore'
 import useSWR from 'swr'
 import Link from 'next/link'
-export const PageA1 = () => {
+const PageA1 = () => {
     const [users, setUsers] = useState<any>([]);
     const [uid, setUid] = useState<string>('');
     const [name, setName] = useState<string>('');
