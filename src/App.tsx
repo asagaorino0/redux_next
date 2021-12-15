@@ -117,7 +117,7 @@ export default function App() {
             }, { merge: true }//←上書きされないおまじない
             )
             // fetchAPI()
-            client.pushMessage({ uid }, message)
+            client.pushMessage(` ${uid}`, message)
               .then(() => {
                 alert(`AppName: ${name}, userId: ${uid}`)
               })

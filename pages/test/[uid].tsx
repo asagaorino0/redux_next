@@ -37,9 +37,9 @@ export default function Test() {
         type: 'text',
         text: 'Hello World!'
     };
-    client.pushMessage(query.uid, message)
+    client.pushMessage(` ${query.uid}`, message)
         .then(() => {
-            alert(`AppName: ${name}, userId: ${query.uid}`)
+            alert(` userId: ${query.uid}`)
         })
     return (
         <table>
