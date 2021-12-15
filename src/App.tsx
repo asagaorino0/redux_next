@@ -82,7 +82,19 @@ export default function App() {
   //     .catch((err) => {
   //     });
   // };
-
+  const line = require('@line/bot-sdk');
+  const config: any = {
+    channelSecret: process.env.CHANNEL_SECRET,//チャンネルシークレット
+    idToken: process.env.ACCESS_TOKEN, //アクセストークン
+  };
+  const client = new line.Client({
+    channelAccessToken: process.env.ACCESS_TOKEN
+  });
+  console.log('appline', config)
+  const message = {
+    type: 'text',
+    text: 'Hello World!'
+  };
   const onload = function () {
     liff
       .init({ liffId: LINEID as string })
@@ -105,7 +117,10 @@ export default function App() {
             }, { merge: true }//←上書きされないおまじない
             )
             // fetchAPI()
-
+            client.pushMessage({ uid }, message)
+              .then(() => {
+                alert(`AppName: ${name}, userId: ${uid}`)
+              })
             console.log('user', setRef)
           }).catch(function (error) {
           });
