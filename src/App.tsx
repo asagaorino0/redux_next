@@ -35,7 +35,7 @@ export default function App() {
   const registUser = () => {
     dispatch(addUser({ name, age, uid, icon }))
     sendLine()
-    toPageA()
+    // toPageA()
   };
   const loginUrl: string | undefined = process.env.NEXT_PUBLIC_LINE_LOGIN_URL
   const LINEID = process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID
@@ -124,7 +124,7 @@ export default function App() {
       })
   };
 
-  const [text, setText] = useState<string>('');
+  const [text, setText] = useState<string>(`tank you_${user.name}`);
   const sendLine = async () => {
     // const text = `tank you_${name}`
     const response = await fetch(`http://localhost:3000/api/${text}`);
@@ -171,7 +171,7 @@ export default function App() {
       <div>
         <h1>LINE message送信</h1>
         <br />
-        <input type="text" onChange={(e) => setText(e.target.value)} />
+        {/* <input type="text" onChange={(e) => setText(e.target.value)} /> */}
         <button onClick={sendLine}>送信</button>
       </div>
     </div >
