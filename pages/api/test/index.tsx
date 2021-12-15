@@ -27,10 +27,25 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     //     res.status(400).send(data.error);
     //     return;
     // }
-    res.json({ message: "Hello world" })
+    // res.json({ message: "Hello world" })
 
     // // LINE IDでfirebaseトークンを発行して返却
     // const token = await auth.createCustomToken(data.sub);
     // // const token = await firebase.auth().createCustomToken(data.sub);
-    // res.status(200).send(token);
+
+    const line = require('@line/bot-sdk');
+    const config: any = {
+        channelSecret: process.env.NEXT_PUBLIC_CHANNEL_SECRET,//チャンネルシークレット
+        idToken: process.env.NEXT_PUBLIC_ACCESS_TOKEN, //アクセストークン
+    };
+    const client = new line.Client({
+        channelAccessToken: process.env.ACCESS_TOKEN
+    });
+    console.log('appline', config)
+    const message = {
+        type: 'text',
+        text: 'Hello World!'
+    };
+    res.status(200).send(message);
+
 };
