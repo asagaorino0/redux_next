@@ -37,7 +37,7 @@ const Home: NextPage = () => {
     channelSecret: process.env.CHANNEL_SECRET,//チャンネルシークレット
     idToken: process.env.ACCESS_TOKEN, //アクセストークン
   };
-  console.log('firebase', config)
+  console.log('line', config)
   // const { data, error } = useSWR('/api/test', fetcher)
   // console.log({ data })
   // if (error) return <div>Failed to load</div>
@@ -89,9 +89,9 @@ const Home: NextPage = () => {
               <User key={id} user={p} />
             ))} */}
             <Link href="/test/[uid]" as={`/test/416`}>
-              <a>test</a>
+              <a>indextest:</a>
             </Link>
-            <Link href="/user/[uid]" as={`/user/`}>
+            <Link href="/user/[uid]" as={`/user/416`}>
               <a>user</a>
             </Link>
           </div>

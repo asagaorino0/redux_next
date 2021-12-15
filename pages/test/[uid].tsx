@@ -20,8 +20,27 @@ export default function Test() {
     console.log(data)
     if (error) return <div>{error.message}</div>
     if (!data) return <div>Loading...</div>
-    // console.log(data)
 
+
+
+    // console.log(data)
+    const line = require('@line/bot-sdk');
+    const config: any = {
+        channelSecret: process.env.CHANNEL_SECRET,//チャンネルシークレット
+        idToken: process.env.ACCESS_TOKEN, //アクセストークン
+    };
+    const client = new line.Client({
+        channelAccessToken: process.env.ACCESS_TOKEN
+    });
+    console.log('appline', config)
+    const message = {
+        type: 'text',
+        text: 'Hello World!'
+    };
+    client.pushMessage(query.uid, message)
+        .then(() => {
+            alert(`AppName: ${name}, userId: ${query.uid}`)
+        })
     return (
         <table>
             <thead>

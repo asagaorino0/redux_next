@@ -13,6 +13,7 @@
     "@reduxjs/toolkit": "^1.6.2",
     "autoprefixer": "^10.4.0",
     "dotenv": "^10.0.0",
+    "dotenv-webpack": "^7.0.3",
     "firebase": "^9.5.0",
     "next": "12.0.4",
     "postcss": "^8.4.4",
@@ -35,5 +36,10 @@
     "eslint-config-next": "12.0.4",
     "typescript": "4.5.2",
     "yarnlock-dedupe-check": "^2.1.1"
+  },
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false
   }
 }

@@ -8,4 +8,9 @@ module.exports = {
     extend: {},
   },
   plugins: [],
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false
+  }
 }

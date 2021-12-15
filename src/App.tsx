@@ -9,17 +9,19 @@ import Link from 'next/link'
 import PageAA from './PageAA'
 import PageA from '../pages/PageA'
 // import dynamic from 'next/dynamic'
-import * as line from '@line/bot-sdk';
+// import * as line from '@line/bot-sdk';
 import liff from '@line/liff';
 import { stringify } from 'querystring';
 import useSWR from 'swr'
 import Person from '../components/Person'
 import User from '../components/User'
+
 export default function App() {
   // const PageA = dynamic(
   //   () => import('../pages/PageA'),
   //   { ssr: false }
   // )
+
   const [uid, setUid] = useState<string>('');
   const [name, setName] = useState<string>('');
   const [icon, setIcon] = useState<string | undefined>('');
@@ -80,6 +82,7 @@ export default function App() {
   //     .catch((err) => {
   //     });
   // };
+
   const onload = function () {
     liff
       .init({ liffId: LINEID as string })
@@ -109,6 +112,8 @@ export default function App() {
       })
   };
 
+
+
   // const fetchAPI = async () => {
   //   const fetcher = (url: string) => fetch(url).then((res) => res.json())
   //   const { data, error } = useSWR('/api/users', fetcher)
@@ -116,6 +121,22 @@ export default function App() {
   //   if (!data) return <div>Loading...</div>
   // }
 
+  //   const client = new line.Client({
+  //   channelAccessToken: process.env.ACCESS_TOKEN
+  // });
+
+  // const message = {
+  //   type: 'text',
+  //   text: 'Hello World!'
+  // };
+
+  // client.pushMessage({uid}, message)
+  //   .then(() => {
+  //     alert(`Name1: ${name}, userId: ${uid}`)
+  //   })
+  // .catch((err) => {
+  //   // error handling
+  // });
   return (
     <div className="App">
       {`${user.uid}` === 'k11111' &&
@@ -148,6 +169,9 @@ export default function App() {
       </Link>
       <Link href="/user/[uid]" as={`/user/`}>
         <a>user</a>
+      </Link>
+      <Link href="/api/hello" >
+        <a>hello</a>
       </Link>
       {/* <button onClick={lineTuchi}>
         /line

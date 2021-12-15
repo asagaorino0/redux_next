@@ -18,8 +18,8 @@ type UserState = {
 }
 import type { NextApiRequest, NextApiResponse } from 'next'
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
-    res.status(200).json(users)
-    // res.json({ message: "Hello world" })
+    // res.status(200).json(users)
+    res.json({ message: "Hello world" })
     // res.json({ message: `you requested for ${users} ` })
     // console.log(people)
     // res.status(200).json({ message: `you requested for ${people} ` });

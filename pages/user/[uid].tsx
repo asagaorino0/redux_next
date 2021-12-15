@@ -27,25 +27,10 @@ export default function User() {
                 <tr>
                     <th>uid</th>
                     <th>Name</th>
-                    {/* <th>Height</th>
-                    <th>Mass</th>
-                    <th>Hair color</th>
-                    <th>Skin color</th>
-                    <th>Eye color</th>
-                    <th>Gender</th> */}
                 </tr>
             </thead>
             <tbody>
-                {/* <tr> */}
-                {/* <td>{query.id}</td>
-                    <td>{data.name}</td> */}
-                {/* <td>{data.height}</td>
-                    <td>{data.mass}</td>
-                    <td>{data.hair_color}</td>
-                    <td>{data.skin_color}</td>
-                    <td>{data.eye_color}</td>
-                    <td>{data.gender}</td> */}
-                {
+                {/* {
                     data
                         .filter((data: any) => data.uid === query.uid)
                         .map((data: any) => {
@@ -60,7 +45,8 @@ export default function User() {
                                 </tr>
                             )
                         })
-                }
+                } */}
+                {query.uid}
             </tbody>
         </table>
     )
