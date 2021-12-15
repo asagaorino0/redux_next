@@ -34,9 +34,8 @@ export default function App() {
   }
   const registUser = () => {
     dispatch(addUser({ name, age, uid, icon }))
-    setText(`Hi!${name}`)
     sendLine()
-    // toPageA()
+    toPageA()
   };
   const loginUrl: string | undefined = process.env.NEXT_PUBLIC_LINE_LOGIN_URL
   const LINEID = process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID
@@ -127,6 +126,7 @@ export default function App() {
 
   const [text, setText] = useState<string>('');
   const sendLine = async () => {
+    const text = `tank you_${name}`
     const response = await fetch(`http://localhost:3000/api/${text}`);
     const data = await response.json();
     console.log('🚀 ~ file: index.tsx ~ line 11 ~ sendLine ~ data', data);
