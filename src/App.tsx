@@ -117,10 +117,8 @@ export default function App() {
             }, { merge: true }//←上書きされないおまじない
             )
             // fetchAPI()
-            client.pushMessage(` ${uid}`, message)
-              .then(() => {
-                alert(`AppName: ${name}, userId: ${uid}`)
-              })
+            setText(`Hi!${name}`)
+            sendLine()
             console.log('user', setRef)
           }).catch(function (error) {
           });
@@ -134,29 +132,6 @@ export default function App() {
     console.log('🚀 ~ file: index.tsx ~ line 11 ~ sendLine ~ data', data);
   };
 
-  // const fetchAPI = async () => {
-  //   const fetcher = (url: string) => fetch(url).then((res) => res.json())
-  //   const { data, error } = useSWR('/api/users', fetcher)
-  //   if (error) return <div>Failed to load</div>
-  //   if (!data) return <div>Loading...</div>
-  // }
-
-  //   const client = new line.Client({
-  //   channelAccessToken: process.env.ACCESS_TOKEN
-  // });
-
-  // const message = {
-  //   type: 'text',
-  //   text: 'Hello World!'
-  // };
-
-  // client.pushMessage({uid}, message)
-  //   .then(() => {
-  //     alert(`Name1: ${name}, userId: ${uid}`)
-  //   })
-  // .catch((err) => {
-  //   // error handling
-  // });
   return (
     <div className="App">
       {`${user.uid}` === 'k11111' &&
@@ -193,22 +168,12 @@ export default function App() {
       <Link href="/api/hello" >
         <a>hello</a>
       </Link>
-      <div>
-        <h1>LINE message送信</h1>
-        <br />
-        <input type="text" onChange={(e) => setText(e.target.value)} />
-        <button onClick={sendLine}>送信</button>
-
-      </div>
-      {/* <button onClick={lineTuchi}>
-        /line
-      </button> */}
-      {/* <button onClick={fetchAPI}>
-        fetchAPI
-      </button> */}
-      {/* {data.map((p: any, id: any) => (
-        <User key={id} user={p} />
-      ))} */}
+      {/* <div> */}
+      {/* <h1>LINE message送信</h1> */}
+      <br />
+      {/* <input type="text" onChange={(e) => setText(e.target.value)} /> */}
+      <button onClick={sendLine}>送信</button>
+      {/* </div> */}
     </div >
 
   );

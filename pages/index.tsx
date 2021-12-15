@@ -33,21 +33,6 @@ const Home: NextPage = () => {
   const toPageA = () => {
     router.push('./PageA')
   }
-  const config: any = {
-    channelSecret: process.env.NEXT_PUBLIC_CHANNEL_SECRET,//チャンネルシークレット
-    idToken: process.env.NEXT_PUBLIC_ACCESS_TOKEN, //アクセストークン
-  };
-  console.log('line', config)
-  // const { data, error } = useSWR('/api/test', fetcher)
-  // console.log({ data })
-  // if (error) return <div>Failed to load</div>
-  // if (!data) return <div>Loading...</div>
-
-  // const [name, setName] = useState<string>('');
-  // const fetchAPI = async () => {
-  //   const name: string = 'hogehoge';
-  //   const response = await fetch(`/api/[${name}]`);
-  // }
 
   return (
     <div className={styles.container}>
@@ -70,15 +55,9 @@ const Home: NextPage = () => {
               </Provider>
             </React.StrictMode>
           </button>
-          {/* <button onClick={fetchAPI}>
-            fetchAPI
-          </button> */}
-          {/* <code className={styles.code}>pages/index.tsx</code> */}
         </p>
 
         <section className="h-screen w-4/5 max-w-5xl mx-auto flex items-center justifycenter flex-col">
-          {/* <h1 className="mb-4 text-green-500 text-3xl">サンプル</h1> */}
-          {/* ReactDOM.render( */}
           <React.StrictMode >
             <Provider store={store}>
               <App />
@@ -88,12 +67,12 @@ const Home: NextPage = () => {
             {/* {data.map((p: any, id: any) => (
               <User key={id} user={p} />
             ))} */}
-            <Link href="/test/[uid]" as={`/test/416`}>
+            {/* <Link href="/test/[uid]" as={`/test/416`}>
               <a>indextest:</a>
             </Link>
             <Link href="/user/[uid]" as={`/user/416`}>
               <a>user</a>
-            </Link>
+            </Link> */}
           </div>
         </section>
         <div className={styles.grid}>
