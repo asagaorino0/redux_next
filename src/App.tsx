@@ -126,10 +126,10 @@ export default function App() {
 
   const [text, setText] = useState<string>('');
   const sendLine = async () => {
-    const text = `tank you_${name}`
+    // const text = `tank you_${name}`
     const response = await fetch(`http://localhost:3000/api/${text}`);
     const data = await response.json();
-    console.log('🚀 ~ file: index.tsx ~ line 11 ~ sendLine ~ data', data);
+    // console.log('🚀 ~ file: index.tsx ~ line 11 ~ sendLine ~ data', data);
   };
 
   return (
@@ -168,12 +168,12 @@ export default function App() {
       <Link href="/api/hello" >
         <a>hello</a>
       </Link>
-      {/* <div> */}
-      {/* <h1>LINE message送信</h1> */}
-      <br />
-      {/* <input type="text" onChange={(e) => setText(e.target.value)} /> */}
-      <button onClick={sendLine}>送信</button>
-      {/* </div> */}
+      <div>
+        <h1>LINE message送信</h1>
+        <br />
+        <input type="text" onChange={(e) => setText(e.target.value)} />
+        <button onClick={sendLine}>送信</button>
+      </div>
     </div >
 
   );
