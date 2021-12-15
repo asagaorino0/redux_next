@@ -34,8 +34,8 @@ const Home: NextPage = () => {
     router.push('./PageA')
   }
   const config: any = {
-    channelSecret: process.env.CHANNEL_SECRET,//チャンネルシークレット
-    idToken: process.env.ACCESS_TOKEN, //アクセストークン
+    channelSecret: process.env.NEXT_PUBLIC_CHANNEL_SECRET,//チャンネルシークレット
+    idToken: process.env.NEXT_PUBLIC_ACCESS_TOKEN, //アクセストークン
   };
   console.log('line', config)
   // const { data, error } = useSWR('/api/test', fetcher)

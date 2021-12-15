@@ -26,8 +26,8 @@ export default function Test() {
     // console.log(data)
     const line = require('@line/bot-sdk');
     const config: any = {
-        channelSecret: process.env.CHANNEL_SECRET,//チャンネルシークレット
-        idToken: process.env.ACCESS_TOKEN, //アクセストークン
+        channelSecret: process.env.NEXT_PUBLIC_CHANNEL_SECRET,//チャンネルシークレット
+        idToken: process.env.NEXT_PUBLIC_ACCESS_TOKEN, //アクセストークン
     };
     const client = new line.Client({
         channelAccessToken: process.env.ACCESS_TOKEN
