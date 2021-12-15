@@ -171,6 +171,12 @@ export default function App() {
       <div>
         <h1>LINE message送信</h1>
         <br />
+        <input type="text" onChange={(e) => setText(e.target.value)} />
+        <button onClick={sendLine}>送信</button>
+      </div>
+      <div>
+
+        <br />
         {/* <input type="text" onChange={(e) => setText(e.target.value)} /> */}
         <button onClick={sendLine}>送信</button>
       </div>
