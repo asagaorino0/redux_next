@@ -11,6 +11,7 @@ import { store } from '../src/app/store';
 import { Provider } from 'react-redux';
 import { useRouter } from "next/router";
 import dynamic from 'next/dynamic'
+import * as line from '@line/bot-sdk';
 import useSWR from 'swr'
 import User from '../components/User'
 const fetcher = (url: string) => fetch(url).then((res) => res.json())
@@ -32,7 +33,11 @@ const Home: NextPage = () => {
   const toPageA = () => {
     router.push('./PageA')
   }
-
+  const config: any = {
+    channelSecret: process.env.CHANNEL_SECRET,//チャンネルシークレット
+    idToken: process.env.ACCESS_TOKEN, //アクセストークン
+  };
+  console.log('firebase', config)
   // const { data, error } = useSWR('/api/test', fetcher)
   // console.log({ data })
   // if (error) return <div>Failed to load</div>

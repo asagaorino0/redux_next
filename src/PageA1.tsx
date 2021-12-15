@@ -172,6 +172,9 @@ const PageA1 = () => {
                     <button onClick={fetchAPI}>
                         fetchAPI
                     </button>
+                    <Link href="/test/[uid]" as={`/test/416`}>
+                        <a>test</a>
+                    </Link>
 
                     {/* {data.map((p: any, id: any) => (
         <User key={id} user={p} />
