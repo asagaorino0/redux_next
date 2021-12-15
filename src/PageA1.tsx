@@ -104,7 +104,7 @@ const PageA1 = () => {
         <div className="App">
             <span >ユーザー情報登録:PageA1</span>
             <br />
-            {/* {`${user.icon}`.length !== 0 &&
+            {`${user.icon}`.length !== 0 &&
                 <img
                     src={`${user.icon}`}
                     alt=""
@@ -113,7 +113,7 @@ const PageA1 = () => {
             }
             {`${user.icon}`.length !== 0 &&
                 <h1 className="mb-4 text-green-500 text-3xl">{user.name}さま </h1>
-            } */}
+            }
             <h1>氏名</h1>
             <input type="text" onChange={(e) => setNamae(e.target.value)} />
             <h1>性別</h1>

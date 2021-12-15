@@ -13,13 +13,13 @@ const fetcher = async (url: string) => {
 // export const Person = async (url: string) => {
 export default function Test() {
     const { query } = useRouter()
-    const { data, error } = useSWR(
-        () => query.uid && `/api/test/${query.uid}`,
-        fetcher
-    )
-    console.log(data)
-    if (error) return <div>{error.message}</div>
-    if (!data) return <div>Loading...</div>
+    // const { data, error } = useSWR(
+    //     () => query.uid && `/api/test/${query.uid}`,
+    //     fetcher
+    // )
+    // console.log(data)
+    // if (error) return <div>{error.message}</div>
+    // if (!data) return <div>Loading...</div>
 
 
 
