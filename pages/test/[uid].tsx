@@ -30,7 +30,7 @@ export default function Test() {
         idToken: process.env.NEXT_PUBLIC_ACCESS_TOKEN, //アクセストークン
     };
     const client = new line.Client({
-        channelAccessToken: process.env.ACCESS_TOKEN
+        channelAccessToken: process.env.NEXT_PUBLIC_ACCESS_TOKEN
     });
     console.log('appline', config)
     const message = {
