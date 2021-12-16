@@ -168,12 +168,12 @@ export default function App() {
       <Link href="/api/hello" >
         <a>hello</a>
       </Link>
-      <div>
+      {/* <div>
         <h1>LINE message送信</h1>
         <br />
         <input type="text" onChange={(e) => setText(e.target.value)} />
         <button onClick={sendLine}>送信</button>
-      </div>
+      </div> */}
       <div>
 
         <br />

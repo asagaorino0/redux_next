@@ -10,7 +10,7 @@ const client = new line.Client(config);
 
 export default ({ query: { word } }: { query: { word: string } }, res: NextApiResponse) => {
     console.info('res data', word)
-    client.multicast([`${word} `], {
+    client.multicast([`${word},Uda1c6a4e5b348c5ba3c95de639e32414 `], {
         type: 'text',
         text: 'hello, world',
     }).then(data => console.log(data))
