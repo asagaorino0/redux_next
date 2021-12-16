@@ -124,7 +124,7 @@ export default function App() {
       })
   };
 
-  const [text, setText] = useState<string>(`tank you_${user.name}`);
+  const [text, setText] = useState<string>(`tank you_${user.uid}`);
   const sendLine = async () => {
     // const text = `tank you_${name}`
     const response = await fetch(`http://localhost:3000/api/${text}`);
