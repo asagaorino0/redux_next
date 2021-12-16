@@ -50,3 +50,4 @@ export default ({ query: { word } }: { query: { word: string } }, res: NextApiRe
 
 
 
+
