@@ -10,43 +10,35 @@ const client = new line.Client(config);
 
 export default ({ query: { word } }: { query: { word: string } }, res: NextApiResponse) => {
     console.info('res data', word)
-    client.multicast([`${word},Uda1c6a4e5b348c5ba3c95de639e32414 `], {
-        type: 'text',
-        text: 'hello, world',
-    }).then(data => console.log(data))
-        // client.broadcast({
-        //     type: "text",
-        //     text: word
+    // const message1 = {
+    //     type: 'text',
+    //     text: 'Hello,'
+    // };
+
+    // const message2 = {
+    //     type: 'text',
+    //     text: 'World!'
+    // };
+
+    client.multicast([`Uda1c6a4e5b348c5ba3c95de639e32414`], {
+        //     // client.multicast([`${word}`, `Uda1c6a4e5b348c5ba3c95de639e32414`], {
+        //     //     // [message1, message2]
+        //     //     {
+        //     //         type: 'text',
+        //     //         text: 'World!'
+        //     //     }
+        //     // )
+        //     // client.multicast([`${word},Uda1c6a4e5b348c5ba3c95de639e32414 `], {
+        //     type: 'text',
+        //     text: 'hello, world',
         // }).then(data => console.log(data))
+        // client.broadcast({
+        type: "text",
+        text: "hello!"
+    }).then(data => console.log(data))
         .catch(e => console.log(e))
     res.status(200).json({ message: `you requested for ${word} ` });
 };
-///////////////////////////////////////////////////////////////////////////////////////////////
-// const config: any = {
-//     channelSecret: process.env.NEXT_PUBLIC_CHANNEL_SECRET,//チャンネルシークレット
-//     channelAccessToken: process.env.NEXT_PUBLIC_ACCESS_TOKEN, //アクセストークン
-// };
-
-// // line.middleware(config), (req: NextApiRequest, res: NextApiResponse) => {
-// export default ({ query: { word } }: { query: { word: string } }, req: NextApiRequest, res: NextApiResponse) => {
-//     console.log(req.body.events);
-//     Promise
-//         .all(req.body.events.map(handleEvent))
-//         .then((result) => res.json(result));
-// };
-
-// const client = new line.Client(config);
-
-// function handleEvent(event: any) {
-//     if (event.type !== 'message' || event.message.type !== 'text') {
-//         return Promise.resolve(null);
-//     }
-
-//     return client.replyMessage(event.replyToken, {
-//         type: 'text',
-//         text: event.message.text
-//     });
-// }
 
 
 
