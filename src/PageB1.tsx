@@ -23,6 +23,7 @@ const PageB1 = () => {
     const dispatch = useDispatch();
     const user = useSelector(selectUser);
     const router = useRouter()
+
     const toHome = () => {
         router.push('/')
     }
