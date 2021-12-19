@@ -38,6 +38,7 @@ export default ({ query: { word } }: { query: { word: string } }, res: NextApiRe
     }).then(data => console.log(data))
         .catch(e => console.log(e))
     res.status(200).json({ message: `you requested for ${word} ` });
+
 };
 
 

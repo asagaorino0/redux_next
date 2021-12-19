@@ -1,5 +1,5 @@
-export type UserState = {
-    name: string,
+export type Album = {
+    image: string,
     uid: string,
     icon: string | undefined
     namae: string,
@@ -14,4 +14,5 @@ export type UserState = {
     sns: string,
     qr: string,
     users: [],
+    timestamp: any
 }

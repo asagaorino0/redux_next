@@ -6,7 +6,7 @@ import { db } from "./firebase"
 import { getFirestore, collection, query, where, onSnapshot, doc, setDoc, Timestamp, addDoc } from 'firebase/firestore'
 
 
-const PageB = () => {
+const PageB1 = () => {
     const [users, setUsers] = useState<any>([]);
     const [uid, setUid] = useState<string>('');
     const [name, setName] = useState<string>('');
@@ -27,10 +27,6 @@ const PageB = () => {
         router.push('/')
     }
     useEffect(() => {
-        // if (user) {
-        // const db = getFirestore()
-        // clickButton()
-        // loginしてたら
         let users: any = []
         const q = query(collection(db, 'users'), where('uid', '==', `${user.uid}`))
         onSnapshot(q, (snapshot) => {
@@ -53,7 +49,7 @@ const PageB = () => {
         //     uid,
         //     star,
         // }))
-        const setRef = setDoc(doc(db, 'users', `${user.uid}`), {
+        const setRef = setDoc(doc(db, 'yoyaku', `${user.uid}`), {
             sei,
             menu,
             option1,
@@ -64,7 +60,7 @@ const PageB = () => {
             timestamp: Timestamp.fromDate(new Date()),
         }, { merge: true }//←上書きされないおまじない
         )
-        console.log('user', setRef)
+        console.log('yoyaku', setRef)
     };
 
     return (
@@ -100,5 +96,5 @@ const PageB = () => {
     );
 }
 
-export default PageB
+export default PageB1
 
