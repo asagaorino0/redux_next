@@ -140,7 +140,7 @@ export default function App() {
   const userW: UserW = new UserW('Tom');
   userW.sayHi();
   const [uri, setUri] = useState('');
-  const [image, setImage] = useState<string>(null);
+  // const [image, setImage] = useState<string>(null);
   const [storagePath, setStoragePath] = useState("");
   const daytime = moment().format("YYYYMMDDhhmmss");
   // const timestamp = moment(album.timestamp.toDate()).form  at("YYYY/M/D");
