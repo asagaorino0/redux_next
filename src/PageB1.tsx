@@ -62,7 +62,7 @@ const PageB1 = () => {
             timestamp: Timestamp.fromDate(new Date()),
         }, { merge: true }//←上書きされないおまじない
         )
-        sendLine
+        sendLine()
         console.log('yoyaku', setRef)
 
     };
