@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 import Link from 'next/link'
 import PageAA from './PageAA'
 import PageA from '../pages/PageA'
-import PageB from './PageB'
+// import PageB from './PageB'
 // import dynamic from 'next/dynamic'
 // import * as line from '@line/bot-sdk';
 import liff from '@line/liff';
@@ -20,10 +20,10 @@ import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
 // import ImagePicker from 'react-native-image-picker';
 import * as ImagePicker from 'expo-image-picker';
 // import * as ImagePicker from 'expo-image-picker-multiple';
-import moment from "moment";
-import UserW from './user';
+// import moment from "moment";
+// import UserW from './user';
 import { Album } from './types/album'
-import { EventEmitter } from 'events';
+// import { EventEmitter } from 'events';
 // import EventEmitter, {type IEventEmitter} from '../vendor/emitter/EventEmitter'
 export default function App() {
   // const PageA = dynamic(
@@ -134,17 +134,17 @@ export default function App() {
       })
   };
 
-  type Props = {
-    album: Album;
-  };
-  const userW: UserW = new UserW('Tom');
-  userW.sayHi();
-  const [uri, setUri] = useState('');
-  // const [image, setImage] = useState<string>(null);
-  const [storagePath, setStoragePath] = useState("");
-  const daytime = moment().format("YYYYMMDDhhmmss");
-  // const timestamp = moment(album.timestamp.toDate()).form  at("YYYY/M/D");
-  const eventEmitter = new EventEmitter();
+  // type Props = {
+  //   album: Album;
+  // };
+  // // const userW: UserW = new UserW('Tom');
+  // // userW.sayHi();
+  // const [uri, setUri] = useState('');
+  // // const [image, setImage] = useState<string>(null);
+  // const [storagePath, setStoragePath] = useState("");
+  // const daytime = moment().format("YYYYMMDDhhmmss");
+  // // const timestamp = moment(album.timestamp.toDate()).form  at("YYYY/M/D");
+  // const eventEmitter = new EventEmitter();
 
   // イベントが発動された時の処理を記述する
   // eventEmitter.on('myEvent', () => {

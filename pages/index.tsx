@@ -23,10 +23,10 @@ const PageAA = dynamic(
   () => import('../src/PageAA'),
   { ssr: false }
 )
-const PageB = dynamic(
-  () => import('../src/PageB'),
-  { ssr: false }
-)
+// const PageB = dynamic(
+//   () => import('../src/PageB'),
+//   { ssr: false }
+// )
 
 const Home: NextPage = () => {
   const router = useRouter()
