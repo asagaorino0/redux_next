@@ -18,7 +18,6 @@ const config = {
     channelAccessToken: functions.config().line.channel_access_token,
     channelSecret: functions.config().line.channel_secret,
 };
-// const line = require('@line/bot-sdk');
 // const config: any = {
 //     channelSecret: process.env.NEXT_PUBLIC_CHANNEL_SECRET,//チャンネルシークレット
 //     idToken: process.env.NEXT_PUBLIC_ACCESS_TOKEN, //アクセストークン
