@@ -62,8 +62,9 @@ const PageB1 = () => {
             timestamp: Timestamp.fromDate(new Date()),
         }, { merge: true }//←上書きされないおまじない
         )
+        sendLine
         console.log('yoyaku', setRef)
-        // sendLine
+
     };
     const [text, setText] = useState<string>(user.namae);
     const sendLine = async () => {
@@ -102,7 +103,7 @@ const PageB1 = () => {
             <h1>住所</h1>
             <input type="text" onChange={(e) => setTokoro(e.target.value)} />
             <br />
-            <button onClick={sendLine}>登録</button>
+            <button onClick={registYoyaku}>登録</button>
         </div >
     );
 }
