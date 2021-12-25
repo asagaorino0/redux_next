@@ -70,8 +70,8 @@ const PageB1 = () => {
     const sendLine = async () => {
         const response = await fetch(`https://redux-next.vercel.app/api/${text}`);
         const data = await response.json();
-        // console.log('🚀 ~ file: index.tsx ~ line 11 ~ sendLine ~ data', data);
-        registYoyaku
+        console.log('🚀 ~ file: index.tsx ~ line 11 ~ sendLine ~ data', data);
+        // registYoyaku()
     };
 
     return (
