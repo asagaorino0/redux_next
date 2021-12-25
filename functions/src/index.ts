@@ -1,4 +1,7 @@
 import * as functions from "firebase-functions";
+// import { useState } from 'react';
+// import { db } from "../../src/firebase"
+// import { doc } from 'firebase/firestore'
 
 // // Start writing Firebase Functions
 // // https://firebase.google.com/docs/functions/typescript
@@ -13,51 +16,85 @@ export const helloWorld = functions.https.onRequest((request, response) => {
     response.send("Hello from Firebase!");
 });
 
-import * as line from '@line/bot-sdk';
-const config = {
-    channelAccessToken: functions.config().line.channel_access_token,
-    channelSecret: functions.config().line.channel_secret,
-};
-// const config: any = {
-//     channelSecret: process.env.NEXT_PUBLIC_CHANNEL_SECRET,//チャンネルシークレット
-//     idToken: process.env.NEXT_PUBLIC_ACCESS_TOKEN, //アクセストークン
-// };
-console.log('line_config', config)
-const client = new line.Client(config);
-export const lineWebhook = functions
-    .region("us-central1")
-    .https.onRequest(async (request, response) => {
-        const signature = request.get("x-line-signature");
-        if (!signature || !line.validateSignature(
-            request.rawBody, config.channelSecret, signature
-        )) {
-            throw new
-                line.SignatureValidationFailed(
-                    "signature validation failed",
-                    signature
-                );
-        }
-        Promise.all(request.body.events.map(lineEventHandler))
-            .then((result) => response.json(result))
-            .catch((error) => console.error(error));
+
+exports.createYoyaku = functions.firestore
+    .document('yoyaku/{uid}')
+    .onCreate((snap, context) => {
+        // Get an object representing the document
+        // e.g. {'name': 'Marie', 'age': 66}
+        const newValue = snap.data();
+
+        // access a particular field as you would any JS property
+        const uid = newValue.name;
+        console.log(uid)
+        // perform desired operations ...
     });
-const lineEventHandler = (event: line.WebhookEvent) => {
-    if (event.type !== "message") {
-        console.log("event type is not message");
-        return Promise.resolve(null);
-    }
-    try {
-        if (event.message.type === "text") {
-            // reply echo message
-            const message: line.TextMessage = {
-                type: "text", text: event.message.text,
-            };
-            return client.replyMessage(event.replyToken, message);
-        } else {
-            return Promise.resolve(null);
+// const [text, setText] = useState<string>();
+exports.updateUser = functions.firestore
+    .document('yoyaku/{uid}')
+    .onUpdate((change, context) => {
+        // Get an object representing the document
+        // e.g. {'name': 'Marie', 'age': 66}
+        const newValue = change.after.data();
+
+        // ...or the previous value before this update
+        // const previousValue = change.before.data();
+
+        // access a particular field as you would any JS property
+        const namae = newValue.namae;
+        console.log(namae)
+        // perform desired operations ...
+        const text = namae
+        // sendLine((namae)
+        async () => {
+            const response = await fetch(`http://localhost:3000/api/${text}`);
+            const data = await response.json();
+            console.log('🚀 ~ file: index.tsx ~ line 11 ~ sendLine ~ data', data);
         }
-    } catch (error) {
-        console.error(JSON.stringify(error));
-        return Promise.resolve(null);
-    }
-};
+    });
+// const sendLine = async () => {
+//     const text =namae
+//     // setText(namae)
+//     const response = await fetch(`http://localhost:3000/api/${text}`);
+//     const data = await response.json();
+//     console.log('🚀 ~ file: index.tsx ~ line 11 ~ sendLine ~ data', data);
+// };
+
+// exports.helloTrigger = functions.firestore
+// .document('users/{namae}')
+// .onUpdate((change, context) => {
+//     //     if (db.collection('messages/{uid}') == db.collection('users/{id}'))
+//     // db.collection('messages').set({
+//     //             name: change.after.data(),
+//     //             after: change.after.data(),
+//     //             before: change.before.data(),
+//     //             created_at: admin.firestore.FieldValue.serverTimestamp(),
+//     //         });
+//     //     console.log(db.collection('messages/uid'));
+//     //     
+//     //     return 0;
+//     // });
+//     console.log("Hello Trigger！");
+//     const data = change.after.data();
+//     // console.log('id', functions.firestore.document('users/{id}'));
+//     const previousData = change.before.id;
+//     if (data) {
+//         // db.collection('messages').where("uid", "==", previousData)
+//         doc(db, 'users', previousData)
+//             .get()
+//             .then(() => {
+
+//                 // db.collection('messages').where("uid", "==", previousData)
+//                 //     .set({
+//                 //         name: "namae"
+//                 //     }, { merge: true }//←上書きされないおまじない
+//                 //     )
+
+//                 // change.after.data() == { name: data }
+//                 // console.log(data);
+//                 console.log('succes!');
+//                 //     // return 0
+//                 // }
+//             })
+//     }
+// })

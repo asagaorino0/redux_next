@@ -20,19 +20,19 @@ export default ({ query: { word } }: { query: { word: string } }, res: NextApiRe
     //     text: 'World!'
     // };
 
-    client.multicast(['Uda1c6a4e5b348c5ba3c95de639e32414', 'c2710d94'], {
-        //     // client.multicast([`${word}`, `Uda1c6a4e5b348c5ba3c95de639e32414`], {
-        //     //     // [message1, message2]
-        //     //     {
-        //     //         type: 'text',
-        //     //         text: 'World!'
-        //     //     }
-        //     // )
-        //     // client.multicast([`${word},Uda1c6a4e5b348c5ba3c95de639e32414 `], {
-        //     type: 'text',
-        //     text: 'hello, world',
-        // }).then(data => console.log(data))
-        // client.broadcast({
+    // client.multicast([`Uda1c6a4e5b348c5ba3c95de639e32414`], {
+    //     //     // client.multicast([`${word}`, `Uda1c6a4e5b348c5ba3c95de639e32414`], {
+    //     //     //     // [message1, message2]
+    //     //     //     {
+    //     //     //         type: 'text',
+    //     //     //         text: 'World!'
+    //     //     //     }
+    //     //     // )
+    //     //     // client.multicast([`${word},Uda1c6a4e5b348c5ba3c95de639e32414 `], {
+    //     //     type: 'text',
+    //     //     text: 'hello, world',
+    //     // }).then(data => console.log(data))
+    client.broadcast({
         type: "text",
         text: "hello!"
     }).then(data => console.log(data))
