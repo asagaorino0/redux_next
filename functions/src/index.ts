@@ -63,16 +63,23 @@ exports.updateUser = functions.firestore
         const text = namae
         const url = `https://redux-next.vercel.app/api/${text}`
         console.log(url)
-        const sendLine = async () => {
-            // updateUser
-            const response = await fetch(url);
-            // const response = await fetch(`https://redux-next.vercel.app/api/${text}`);
+        async function getStaticProps() {
+            // exports.sendoshirase = async () => {
+            // const response = await fetch('https://redux-next.vercel.app/api/erikooooo');
+            const response = await fetch(`https://redux-next.vercel.app/api/${text}`);
             const data = await response.json();
             console.log('🚀 ~ file: index.tsx ~ line 11 ~ sendLine ~ data', data);
         }
-        sendLine
+        getStaticProps
     });
 
+// export async function getStaticProps() {
+//     // exports.sendoshirase = async () => {
+//     const response = await fetch('https://redux-next.vercel.app/api/erikooooo');
+//     // const response = await fetch(`https://redux-next.vercel.app/api/${text}`);
+//     const data = await response.json();
+//     console.log('🚀 ~ file: index.tsx ~ line 11 ~ sendLine ~ data', data);
+// }
 
 // exports.helloTrigger = functions.firestore
 // .document('users/{namae}')
