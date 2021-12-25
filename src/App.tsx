@@ -18,7 +18,7 @@ import Person from '../components/Person'
 import User from '../components/User'
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
 // import ImagePicker from 'react-native-image-picker';
-import * as ImagePicker from 'expo-image-picker';
+// import * as ImagePicker from 'expo-image-picker';
 // import * as ImagePicker from 'expo-image-picker-multiple';
 // import moment from "moment";
 // import UserW from './user';
