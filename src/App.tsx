@@ -38,14 +38,17 @@ export default function App() {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const router = useRouter()
+  const toPageA = () => {
+    router.push('./PageA')
+  }
   const toPageB = () => {
     router.push('./PageB')
   }
   const registUser = () => {
     dispatch(addUser({ name, age, uid, icon }))
     sendLine()
-    // toPageA()
-    toPageB()
+    toPageA()
+    // toPageB()
   };
   const loginUrl: string | undefined = process.env.NEXT_PUBLIC_LINE_LOGIN_URL
   const LINEID = process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID
@@ -265,12 +268,20 @@ export default function App() {
 
 
   const [text, setText] = useState<string>(`Uda1c6a4e5b348c5ba3c95de639e32414 `);
-  const sendLine = async () => {
-    // const text = `tank you_${name}`
-    // const response = await fetch(`http://localhost:3000/api/[word]`);
-    const response = await fetch(`https://redux-next.vercel.app/api/${text}`);
+  async function getStaticProps() {
+    // exports.sendoshirase = async () => {
+    const response = await fetch(`http://localhost:3000/api/[text]`);
+    // const response = await fetch(`https://redux-next.vercel.app/api/${text}`);
     const data = await response.json();
-    // console.log('🚀 ~ file: index.tsx ~ line 11 ~ sendLine ~ data', data);
+    console.log('🚀 ~ file: index.tsx ~ line 11 ~ sendLine ~ data', data);
+  }
+  const sendLine = async () => {
+    getStaticProps
+    // // const text = `tank you_${name}`
+    // // const response = await fetch(`http://localhost:3000/api/[text]`);
+    // const response = await fetch(`https://redux-next.vercel.app/api/${text}`);
+    // const data = await response.json();
+    // // console.log('🚀 ~ file: index.tsx ~ line 11 ~ sendLine ~ data', data);
   };
 
 
@@ -292,14 +303,14 @@ export default function App() {
           </button>
         </div>
       }
-      {`${user.uid}` === '' &&
-        <div>
-          <button onClick={registUser}>
-            {/* // <button onClick={onload}> */}
-            <h3 className="mb-4 text-green-500 text-3xl">ようこそ</h3>
-          </button>
-        </div>
-      }
+      {/* {`${user.uid}` === '' && */}
+      <div>
+        <button onClick={registUser}>
+          {/* // <button onClick={onload}> */}
+          <h3 className="mb-4 text-green-500 text-3xl">ようこそ</h3>
+        </button>
+      </div>
+      {/* } */}
       {/* <Link href="/user/[uid]" as={`/user/${user.uid}`}>
         <a>{user.name}</a>
       </Link>
@@ -318,6 +329,7 @@ export default function App() {
         <input type="text" onChange={(e) => setText(e.target.value)} />
         <button onClick={sendLine}>送信</button>
       </div> */}
+
       <div>
         {/* <PageB /> */}
         <br />

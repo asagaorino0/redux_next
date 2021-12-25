@@ -12,7 +12,7 @@ const PageB1 = () => {
     const [name, setName] = useState<string>('');
     const [icon, setIcon] = useState<string | undefined>('');
     const [age, setAge] = useState<number>(0);
-    const [namae, setNamae] = useState<string>('');
+    const [namae, setNamae] = useState<string>(`${users.namae}`);
     const [sei, setSei] = useState<string>('');
     const [menu, setMenu] = useState<string>('');
     const [option1, setOption1] = useState<string>('');
@@ -86,7 +86,8 @@ const PageB1 = () => {
                 <h1 className="mb-4 text-green-500 text-3xl">{user.name}さま </h1>
             }
             <h1>氏名</h1>
-            {users.namae}
+            {/* {users.namae} */}
+            <input type="text" onChange={(e) => setNamae(e.target.value)} />
             {/* <input type="text" onChange={(e) => setNamae(e.target.value)} /> */}
             {/* <h1>性別</h1>
             <input type="text" onChange={(e) => setSei(e.target.value)} />

@@ -8,11 +8,10 @@ import dynamic from 'next/dynamic'
 import PageB1 from '../src/PageB1'
 
 const PageB = () => {
-    const PageAA = dynamic(
-        () => import('../src/PageAA'),
-        { ssr: false }
-    )
-
+    const router = useRouter()
+    const toPageA = () => {
+        router.push('./PageA')
+    }
     // const [name, setName] = useState<string>('');
     // const [age, setAge] = useState<number>(0);
     // const user = useSelector(selectUser);
@@ -23,6 +22,12 @@ const PageB = () => {
 
     return (
         <div className="App">
+            <div>
+                <button onClick={toPageA}>
+                    {/* // <button onClick={onload}> */}
+                    <h3 className="mb-4 text-green-500 text-3xl">ユーザー登録</h3>
+                </button>
+            </div>
             <span >pageA</span>
             <br />
             <h1>
