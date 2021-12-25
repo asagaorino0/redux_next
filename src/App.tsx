@@ -267,7 +267,7 @@ export default function App() {
   const [text, setText] = useState<string>(`Uda1c6a4e5b348c5ba3c95de639e32414 `);
   const sendLine = async () => {
     // const text = `tank you_${name}`
-    // const response = await fetch(`http://localhost:3000/api/${text}`);
+    // const response = await fetch(`http://localhost:3000/api/[word]`);
     const response = await fetch(`https://redux-next.vercel.app/api/${text}`);
     const data = await response.json();
     // console.log('🚀 ~ file: index.tsx ~ line 11 ~ sendLine ~ data', data);

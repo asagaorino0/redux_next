@@ -16,7 +16,7 @@ export const helloWorld = functions.https.onRequest((request, response) => {
     response.send("Hello from Firebase!");
 });
 
-
+// const [name, setName] = useState<string>('');
 exports.createYoyaku = functions.firestore
     .document('yoyaku/{uid}')
     .onCreate((snap, context) => {
@@ -25,11 +25,29 @@ exports.createYoyaku = functions.firestore
         const newValue = snap.data();
 
         // access a particular field as you would any JS property
-        const uid = newValue.name;
-        console.log(uid)
+        const namae = newValue.name;
+        console.log(namae)
         // perform desired operations ...
     });
 // const [text, setText] = useState<string>();
+// exports.updateUser = functions.firestore
+//     .document('yoyaku/{uid}')
+//     .onUpdate((change, context) => {
+//         // Get an object representing the document
+//         // e.g. {'name': 'Marie', 'age': 66}
+//         const newValue = change.after.data();
+
+//         // ...or the previous value before this update
+//         // const previousValue = change.before.data();
+
+//         // access a particular field as you would any JS property
+//         const namae = newValue.namae;
+//         console.log(namae)
+//         // perform desired operations ...
+//         // const text = namae
+//     });
+
+
 exports.updateUser = functions.firestore
     .document('yoyaku/{uid}')
     .onUpdate((change, context) => {
@@ -42,23 +60,19 @@ exports.updateUser = functions.firestore
 
         // access a particular field as you would any JS property
         const namae = newValue.namae;
-        console.log(namae)
-        // perform desired operations ...
         const text = namae
-        // sendLine((namae)
-        async () => {
-            const response = await fetch(`http://localhost:3000/api/${text}`);
+        const url = `https://redux-next.vercel.app/api/${text}`
+        console.log(url)
+        const sendLine = async () => {
+            // updateUser
+            const response = await fetch(url);
+            // const response = await fetch(`https://redux-next.vercel.app/api/${text}`);
             const data = await response.json();
             console.log('🚀 ~ file: index.tsx ~ line 11 ~ sendLine ~ data', data);
         }
+        sendLine
     });
-// const sendLine = async () => {
-//     const text =namae
-//     // setText(namae)
-//     const response = await fetch(`http://localhost:3000/api/${text}`);
-//     const data = await response.json();
-//     console.log('🚀 ~ file: index.tsx ~ line 11 ~ sendLine ~ data', data);
-// };
+
 
 // exports.helloTrigger = functions.firestore
 // .document('users/{namae}')

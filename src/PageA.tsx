@@ -18,7 +18,7 @@ const PageA = () => {
             toPage()
     };
     const onload = () => {
-        console.log(process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID)
+        // console.log(process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID)
         liff.init({ liffId: process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID as string })
             .then(() => {
                 if (!liff.isLoggedIn()) {
