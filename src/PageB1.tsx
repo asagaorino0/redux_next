@@ -63,13 +63,14 @@ const PageB1 = () => {
         }, { merge: true }//←上書きされないおまじない
         )
         console.log('yoyaku', setRef)
-        sendLine
+        // sendLine
     };
     const [text, setText] = useState<string>(user.namae);
     const sendLine = async () => {
         const response = await fetch(`https://redux-next.vercel.app/api/${text}`);
         const data = await response.json();
         // console.log('🚀 ~ file: index.tsx ~ line 11 ~ sendLine ~ data', data);
+        registYoyaku
     };
 
     return (
@@ -101,7 +102,7 @@ const PageB1 = () => {
             <h1>住所</h1>
             <input type="text" onChange={(e) => setTokoro(e.target.value)} />
             <br />
-            <button onClick={registYoyaku}>登録</button>
+            <button onClick={sendLine}>登録</button>
         </div >
     );
 }
