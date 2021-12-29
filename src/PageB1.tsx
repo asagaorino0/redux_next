@@ -50,7 +50,20 @@ const PageB1 = () => {
         //     uid,
         //     star,
         // }))
-        const setRef = setDoc(doc(db, 'yoyaku', `${user.uid}`), {
+        // const setRef = setDoc(doc(db, 'yoyaku', `${user.uid}`), {
+        //     sei,
+        //     menu,
+        //     option1,
+        //     option2,
+        //     day,
+        //     uid: `${user.uid}`,
+        //     namae: namae,
+        //     tokoro,
+        //     star,
+        //     timestamp: Timestamp.fromDate(new Date()),
+        // }, { merge: true }//←上書きされないおまじない
+        // )
+        const addRef = addDoc(collection(db, 'yoyaku', `${user.uid}`, 'ukeru'), {
             sei,
             menu,
             option1,
@@ -61,9 +74,8 @@ const PageB1 = () => {
             tokoro,
             star,
             timestamp: Timestamp.fromDate(new Date()),
-        }, { merge: true }//←上書きされないおまじない
-        )
-        console.log('yoyaku', setRef)
+        })
+        console.log('yoyaku', addRef)
     };
 
     return (
