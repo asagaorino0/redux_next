@@ -26,7 +26,7 @@ const app = getApps
 if (!app.length) {
     initializeApp(firebaseConfig)
 }
-console.log('firebase', firebaseConfig)
+// console.log('firebase', firebaseConfig)
 
 const db = getFirestore()
 const firebaseAuth = getAuth()

@@ -64,12 +64,6 @@ const PageB1 = () => {
         )
         console.log('yoyaku', setRef)
     };
-    const [text, setText] = useState<string>(user.namae);
-    const sendLine = async () => {
-        const response = await fetch(`http://localhost:3000/api/${text}`);
-        const data = await response.json();
-        // console.log('🚀 ~ file: index.tsx ~ line 11 ~ sendLine ~ data', data);
-    };
 
     return (
         <div className="App">

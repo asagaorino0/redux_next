@@ -48,7 +48,7 @@ export default function App() {
     dispatch(addUser({ name, uid, icon }))
     onload()
     // toPageA()
-    toPageB()
+    // toPageB()
   };
   const loginUrl: string | undefined = process.env.NEXT_PUBLIC_LINE_LOGIN_URL
   const LINEID = process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID
@@ -99,37 +99,38 @@ export default function App() {
   const client = new line.Client({
     channelAccessToken: process.env.NEXT_PUBLIC_ACCESS_TOKEN
   });
-  console.log('appline', config)
+  // console.log('appline', config)
   const message = {
     type: 'text',
     text: 'Hello World!'
   };
   const onload = function () {
-    liff
-      .init({ liffId: LINEID as string })
-      .then(() => {
-        liff.getProfile()  // ユーザ情報を取得する
-          .then(profile => {
-            const userId: string = profile.userId
-            const displayName: string = profile.displayName
-            const displayicon: string | undefined = profile.pictureUrl
-            setName(profile.displayName)
-            setUid(userId)
-            setName(displayName)
-            setIcon(displayicon)
-            dispatch(addUser({ name, uid, icon }))
-            const setRef = setDoc(doc(db, 'users', `${uid}`), {
-              uid,
-              name,
-              icon,
-              timestamp: Timestamp.fromDate(new Date()),
-            }, { merge: true }//←上書きされないおまじない
-            )
-            // fetchAPI()
-            console.log('user', setRef)
-          }).catch(function (error) {
-          });
-      })
+    // liff
+    //   .init({ liffId: LINEID as string })
+    //   .then(() => {
+    //     liff.getProfile()  // ユーザ情報を取得する
+    //       .then(profile => {
+    //         const userId: string = profile.userId
+    //         const displayName: string = profile.displayName
+    //         const displayicon: string | undefined = profile.pictureUrl
+    //         setName(profile.displayName)
+    //         // setUid(userId)
+    setUid(`797`)
+    //         setName(displayName)
+    //         setIcon(displayicon)
+    //         dispatch(addUser({ name, uid, icon }))
+    console.log('uid', { uid })
+    const setRef = setDoc(doc(db, `users/${uid}`), {
+      uid: '77R',
+      name: "aoi",
+      icon: "uuu",
+      timestamp: Timestamp.fromDate(new Date()),
+    }, { merge: true }//←上書きされないおまじない
+    )
+    console.log('user', setRef)
+    //   }).catch (function (error) {
+    //   });
+    // })
   };
 
   // type Props = {
