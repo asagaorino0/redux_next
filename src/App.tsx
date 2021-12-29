@@ -46,7 +46,7 @@ export default function App() {
   }
   const registUser = () => {
     dispatch(addUser({ name, age, uid, icon }))
-    sendLine()
+    onload()
     // toPageA()
     toPageB()
   };
@@ -69,12 +69,7 @@ export default function App() {
               setName(displayName)
               setIcon(displayicon)
               dispatch(addUser({ name, uid, icon }))
-              // fetchAPI()
-              alert(`Name1: ${displayName}, userId: ${userId}`)
-              onload()
-            }).catch(function (error) {
-              window.alert('Error sending message: ' + error);
-            });
+            })
         }
       })
   }
@@ -303,14 +298,14 @@ export default function App() {
           </button>
         </div>
       }
-      {/* {`${user.uid}` === '' && */}
-      <div>
-        <button onClick={registUser}>
-          {/* // <button onClick={onload}> */}
-          <h3 className="mb-4 text-green-500 text-3xl">ようこそ</h3>
-        </button>
-      </div>
-      {/* } */}
+      {`${user.uid}` === '' &&
+        <div>
+          <button onClick={registUser}>
+            {/* // <button onClick={onload}> */}
+            <h3 className="mb-4 text-green-500 text-3xl">ようこそ</h3>
+          </button>
+        </div>
+      }
       {/* <Link href="/user/[uid]" as={`/user/${user.uid}`}>
         <a>{user.name}</a>
       </Link>
