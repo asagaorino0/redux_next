@@ -105,33 +105,33 @@ export default function App() {
     text: 'Hello World!'
   };
   const onload = function () {
-    // liff
-    //   .init({ liffId: LINEID as string })
-    //   .then(() => {
-    //     liff.getProfile()  // ユーザ情報を取得する
-    //       .then(profile => {
-    //         const userId: string = profile.userId
-    //         const displayName: string = profile.displayName
-    //         const displayicon: string | undefined = profile.pictureUrl
-    //         setName(profile.displayName)
-    //         // setUid(userId)
-    setUid(`797`)
-    //         setName(displayName)
-    //         setIcon(displayicon)
-    //         dispatch(addUser({ name, uid, icon }))
-    console.log('uid', { uid })
-    const setRef = setDoc(doc(db, `users/${uid}`), {
-      uid: '77R',
-      name: "aoi",
-      icon: "uuu",
-      timestamp: Timestamp.fromDate(new Date()),
-    }, { merge: true }//←上書きされないおまじない
-    )
-    console.log('user', setRef)
-    //   }).catch (function (error) {
-    //   });
-    // })
-  };
+    liff
+      .init({ liffId: LINEID as string })
+      .then(() => {
+        liff.getProfile()  // ユーザ情報を取得する
+          .then(profile => {
+            const userId: string = profile.userId
+            const displayName: string = profile.displayName
+            const displayicon: string | undefined = profile.pictureUrl
+            setName(profile.displayName)
+            // setUid(userId)
+            setName(displayName)
+            setIcon(displayicon)
+            dispatch(addUser({ name, uid, icon }))
+            console.log('uid', { uid })
+            const setRef = setDoc(doc(db, 'users', `${uid}`), {
+              uid,
+              name,
+              icon,
+              timestamp: Timestamp.fromDate(new Date()),
+            }, { merge: true }//←上書きされないおまじない
+            )
+            // fetchAPI()
+            console.log('user', setRef)
+          }).catch(function (error) {
+          });
+      })
+  }
 
   // type Props = {
   //   album: Album;
