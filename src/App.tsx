@@ -61,11 +61,11 @@ export default function App() {
         } else if (liff.isInClient()) {
           liff.getProfile()  // ユーザ情報を取得する
             .then(profile => {
-              const userId: string = profile.userId
+              // const userId: string = profile.userId
               const displayName: string = profile.displayName
               const displayicon: string | undefined = profile.pictureUrl
               setName(profile.displayName)
-              setUid(userId)
+              setUid(profile.userId)
               setName(displayName)
               setIcon(displayicon)
               dispatch(addUser({ name, uid, icon }))
@@ -114,7 +114,7 @@ export default function App() {
             const displayName: string = profile.displayName
             const displayicon: string | undefined = profile.pictureUrl
             setName(profile.displayName)
-            // setUid(userId)
+            setUid(userId)
             setName(displayName)
             setIcon(displayicon)
             dispatch(addUser({ name, uid, icon }))
