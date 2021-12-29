@@ -45,7 +45,7 @@ export default function App() {
     router.push('./PageB')
   }
   const registUser = () => {
-    dispatch(addUser({ name, age, uid, icon }))
+    dispatch(addUser({ name, uid, icon }))
     onload()
     // toPageA()
     toPageB()
