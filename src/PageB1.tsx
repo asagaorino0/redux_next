@@ -56,8 +56,9 @@ const PageB1 = () => {
             option1,
             option2,
             day,
-            uid: uid,
+            uid: `${user.uid}`,
             namae: namae,
+            tokoro,
             star,
             timestamp: Timestamp.fromDate(new Date()),
         }, { merge: true }//←上書きされないおまじない
