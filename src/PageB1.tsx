@@ -62,15 +62,13 @@ const PageB1 = () => {
             timestamp: Timestamp.fromDate(new Date()),
         }, { merge: true }//←上書きされないおまじない
         )
-        // sendLine()
         console.log('yoyaku', setRef)
     };
     const [text, setText] = useState<string>(user.namae);
     const sendLine = async () => {
-        const response = await fetch(`https://redux-next.vercel.app/api/${text}`);
+        const response = await fetch(`http://localhost:3000/api/${text}`);
         const data = await response.json();
-        console.log('🚀 ~ file: index.tsx ~ line 11 ~ sendLine ~ data', data);
-        // registYoyaku()
+        // console.log('🚀 ~ file: index.tsx ~ line 11 ~ sendLine ~ data', data);
     };
 
     return (
