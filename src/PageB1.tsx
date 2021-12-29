@@ -8,7 +8,7 @@ import { getFirestore, collection, query, where, onSnapshot, doc, setDoc, Timest
 
 const PageB1 = () => {
     const [users, setUsers] = useState<any>([]);
-    const [uid, setUid] = useState<string>('');
+    const [uid, setUid] = useState<string>(`${users.uid}`);
     const [name, setName] = useState<string>('');
     const [icon, setIcon] = useState<string | undefined>('');
     const [age, setAge] = useState<number>(0);
@@ -56,7 +56,7 @@ const PageB1 = () => {
             option1,
             option2,
             day,
-            uid: { uid },
+            uid,
             namae: namae,
             star,
             timestamp: Timestamp.fromDate(new Date()),
