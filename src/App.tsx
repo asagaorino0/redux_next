@@ -48,7 +48,7 @@ export default function App() {
     dispatch(addUser({ name, uid, icon }))
     onload()
     // toPageA()
-    // toPageB()
+    toPageB()
   };
   const loginUrl: string | undefined = process.env.NEXT_PUBLIC_LINE_LOGIN_URL
   const LINEID = process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID
