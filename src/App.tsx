@@ -55,11 +55,12 @@ export default function App() {
   const registUser = () => {
     dispatch(addUser({ name, uid, icon }))
     onload()
+    toPageB()
   };
   const loginUrl: string | undefined = process.env.NEXT_PUBLIC_LINE_LOGIN_URL
   const LINEID = process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID
   const lineClick = () => {
-    // setUid('')
+    setUid('')
     liff.init({ liffId: LINEID as string })
       .then(() => {
         if (!liff.isLoggedIn()) {
@@ -67,12 +68,10 @@ export default function App() {
         } else if (liff.isInClient()) {
           liff.getProfile()  // ユーザ情報を取得する
             .then(profile => {
-              // const [userliff, setUserliff] = useState<any>(profile);
-              // setUserliff(profile)
               // const userId: string = profile.userId
               const displayName: string = profile.displayName
               const displayicon: string | undefined = profile.pictureUrl
-              // setName(profile.displayName)
+              setName(profile.displayName)
               setUid(profile.userId)
               setName(displayName)
               setIcon(displayicon)
