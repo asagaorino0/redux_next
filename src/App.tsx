@@ -68,7 +68,7 @@ export default function App() {
           liff.getProfile()  // ユーザ情報を取得する
             .then(profile => {
               // const [userliff, setUserliff] = useState<any>(profile);
-              setUserliff(profile)
+              // setUserliff(profile)
               // const userId: string = profile.userId
               const displayName: string = profile.displayName
               const displayicon: string | undefined = profile.pictureUrl
