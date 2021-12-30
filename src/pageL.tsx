@@ -104,7 +104,7 @@ const PageL = () => {
         <div className="App">
             {`${user.uid}` === 'k11111' &&
                 <div>
-                    <button onClick={registUser}>
+                    <button onClick={lineClick}>
                         <h3 className="mb-4 text-green-500 text-3xl">ログインはこちら</h3>
                     </button>
                 </div>
