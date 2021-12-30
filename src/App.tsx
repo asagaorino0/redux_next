@@ -33,6 +33,8 @@ export default function App() {
   //   () => import('../pages/PageA'),
   //   { ssr: false }
   // )
+
+  // const profile = liff.getProfile()
   const [userliff, setUserliff] = useState<any>('');
   const [uid, setUid] = useState<string>('');
   const [name, setName] = useState<string>('');
@@ -57,7 +59,7 @@ export default function App() {
   const loginUrl: string | undefined = process.env.NEXT_PUBLIC_LINE_LOGIN_URL
   const LINEID = process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID
   const lineClick = () => {
-    setUid('')
+    // setUid('')
     liff.init({ liffId: LINEID as string })
       .then(() => {
         if (!liff.isLoggedIn()) {
@@ -65,10 +67,12 @@ export default function App() {
         } else if (liff.isInClient()) {
           liff.getProfile()  // ユーザ情報を取得する
             .then(profile => {
+              // const [userliff, setUserliff] = useState<any>(profile);
+              setUserliff(profile)
               // const userId: string = profile.userId
               const displayName: string = profile.displayName
               const displayicon: string | undefined = profile.pictureUrl
-              setName(profile.displayName)
+              // setName(profile.displayName)
               setUid(profile.userId)
               setName(displayName)
               setIcon(displayicon)
@@ -114,6 +118,7 @@ export default function App() {
       .then(() => {
         liff.getProfile()  // ユーザ情報を取得する
           .then(profile => {
+            // const [userliff, setUserliff] = useState<any>(profile);
             setUserliff(profile)
             const userId: string = profile.userId
             const displayName: string = profile.displayName
@@ -135,9 +140,7 @@ export default function App() {
             console.log('user', setRef)
           }).catch(function (error) {
           });
-      }).catch(
-        toPageB
-      )
+      })
   }
 
   // type Props = {
@@ -299,7 +302,7 @@ export default function App() {
           </button>
         </div>
       }
-      {`${user.uid}` === 'k11111' &&
+      {`${user.uid}` === '' &&
         <div>
           <button onClick={registUser}>
             <h3 className="mb-4 text-green-500 text-3xl">ログインはこちら</h3>
@@ -310,7 +313,23 @@ export default function App() {
         <div>
           <button onClick={registUser}>
             {/* // <button onClick={onload}> */}
-            <h3 className="mb-4 text-green-500 text-3xl">ようこそ</h3>
+            <h3 className="mb-4 text-green-500 text-3xl">個人で申し込む</h3>
+          </button>
+        </div>
+      }
+      {`${user.uid}` === '' &&
+        <div>
+          <button onClick={registUser}>
+            {/* // <button onClick={onload}> */}
+            <h3 className="mb-4 text-green-500 text-3xl">施設で申し込む</h3>
+          </button>
+        </div>
+      }
+      {`${user.uid}` === '' &&
+        <div>
+          <button onClick={registUser}>
+            {/* // <button onClick={onload}> */}
+            <h3 className="mb-4 text-green-500 text-3xl">プレゼントとして申し込む</h3>
           </button>
         </div>
       }
