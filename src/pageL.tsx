@@ -21,7 +21,7 @@ const PageL = () => {
         router.push('./PageB')
     }
     const registUser = () => {
-        dispatch(addUser({ name, uid, icon }))
+        // dispatch(addUser({ name, uid, icon }))
         onload()
         // toPageA()
         toPageB()
