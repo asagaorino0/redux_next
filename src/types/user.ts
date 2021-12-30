@@ -14,4 +14,5 @@ export type UserState = {
     sns: string,
     qr: string,
     users: [],
+    userliff: []
 }

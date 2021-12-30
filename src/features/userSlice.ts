@@ -31,7 +31,8 @@ const initialState: UserState = {
   area: "",
   sns: "",
   qr: "",
-  users: []
+  users: [],
+  userliff: []
 } as UserState;
 
 export const userSlice = createSlice({

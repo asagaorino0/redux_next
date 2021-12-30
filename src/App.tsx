@@ -33,7 +33,7 @@ export default function App() {
   //   () => import('../pages/PageA'),
   //   { ssr: false }
   // )
-
+  const [userliff, setUserliff] = useState<any>('');
   const [uid, setUid] = useState<string>('');
   const [name, setName] = useState<string>('');
   const [icon, setIcon] = useState<string | undefined>('');
@@ -120,6 +120,7 @@ export default function App() {
       .then(() => {
         liff.getProfile()  // ユーザ情報を取得する
           .then(profile => {
+            setUserliff(profile)
             const userId: string = profile.userId
             const displayName: string = profile.displayName
             const displayicon: string | undefined = profile.pictureUrl
@@ -128,7 +129,7 @@ export default function App() {
             setName(displayName)
             setIcon(displayicon)
             dispatch(addUser({ name, uid, icon }))
-            console.log('uid', { uid })
+            console.log('liff', { userliff })
             const setRef = setDoc(doc(db, 'users', `${uid}`), {
               uid,
               name,
@@ -304,13 +305,13 @@ export default function App() {
           </button>
         </div>
       }
-      {/* {`${user.uid}` === 'k11111' &&
+      {`${user.uid}` === 'k11111' &&
         <div>
           <button onClick={registUser}>
             <h3 className="mb-4 text-green-500 text-3xl">ログインはこちら</h3>
           </button>
         </div>
-      } */}
+      }
       {`${user.uid}` === '' &&
         <div>
           <button onClick={registUser}>

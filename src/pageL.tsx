@@ -11,6 +11,7 @@ const PageL = () => {
     const [uid, setUid] = useState<string>('');
     const [name, setName] = useState<string>('');
     const [icon, setIcon] = useState<string | undefined>('');
+    const [userliff, setUserliff] = useState<any>('');
     const dispatch = useDispatch();
     const user = useSelector(selectUser);
     const router = useRouter()
@@ -71,6 +72,7 @@ const PageL = () => {
                         const userId: string = profile.userId
                         const displayName: string = profile.displayName
                         const displayicon: string | undefined = profile.pictureUrl
+                        setUserliff(profile)
                         setName(profile.displayName)
                         setUid(userId)
                         setName(displayName)
