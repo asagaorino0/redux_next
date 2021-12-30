@@ -35,7 +35,7 @@ export default function App() {
   // )
 
   // const profile = liff.getProfile()
-  const [userliff, setUserliff] = useState<any>('');
+  // const [userliff, setUserliff] = useState<any>('');
   const [uid, setUid] = useState<string>('');
   const [name, setName] = useState<string>('');
   const [icon, setIcon] = useState<string | undefined>('');
