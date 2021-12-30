@@ -302,7 +302,7 @@ export default function App() {
           </button>
         </div>
       }
-      {`${user.uid}` === '' &&
+      {`${user.uid}` === 'k11111' &&
         <div>
           <button onClick={registUser}>
             <h3 className="mb-4 text-green-500 text-3xl">ログインはこちら</h3>
