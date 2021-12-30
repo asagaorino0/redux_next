@@ -5,6 +5,9 @@ import { getFirestore, collection, query, where, onSnapshot, doc, setDoc, Timest
 import { addUser, selectUser } from '../src/features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from "next/router";
+import { store } from '../src/app/store';
+import { Provider } from 'react-redux';
+
 import Link from 'next/link'
 import PageAA from './PageAA'
 import PageA from '../pages/PageA'
@@ -44,11 +47,18 @@ export default function App() {
   const toPageB = () => {
     router.push('./PageB')
   }
+  const toPageLogin = () => {
+    router.push('./PageLogin')
+  }
   const registUser = () => {
     dispatch(addUser({ name, uid, icon }))
-    onload()
-    // toPageA()
-    toPageB()
+    onload(),
+      // toPageA()
+      <React.StrictMode >
+        <Provider store={store}>
+        </Provider>
+      </React.StrictMode>
+    toPageLogin()
   };
   const loginUrl: string | undefined = process.env.NEXT_PUBLIC_LINE_LOGIN_URL
   const LINEID = process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID
@@ -130,7 +140,9 @@ export default function App() {
             console.log('user', setRef)
           }).catch(function (error) {
           });
-      })
+      }).catch(
+
+      )
   }
 
   // type Props = {
@@ -285,16 +297,16 @@ export default function App() {
     <div className="App">
       {/* <button onClick={pickImage} >画像</button> */}
 
-      {`${user.uid}` === 'k11111' &&
+      {/* {`${user.uid}` === 'k11111' &&
         <div>
           <button onClick={lineClick}>
             <h4 className="mb-4 text-green-500 text-3xl">まずは友達追加</h4>
           </button>
         </div>
-      }
+      } */}
       {`${user.uid}` === 'k11111' &&
         <div>
-          <button onClick={onload}>
+          <button onClick={registUser}>
             <h3 className="mb-4 text-green-500 text-3xl">ログインはこちら</h3>
           </button>
         </div>
