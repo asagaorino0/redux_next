@@ -5,9 +5,6 @@ import { getFirestore, collection, query, where, onSnapshot, doc, setDoc, Timest
 import { addUser, selectUser } from '../src/features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from "next/router";
-import { store } from '../src/app/store';
-import { Provider } from 'react-redux';
-
 import Link from 'next/link'
 import PageAA from './PageAA'
 import PageA from '../pages/PageA'
@@ -34,8 +31,6 @@ export default function App() {
   //   { ssr: false }
   // )
 
-  // const profile = liff.getProfile()
-  // const [userliff, setUserliff] = useState<any>('');
   const [uid, setUid] = useState<string>('');
   const [name, setName] = useState<string>('');
   const [icon, setIcon] = useState<string | undefined>('');
@@ -49,12 +44,10 @@ export default function App() {
   const toPageB = () => {
     router.push('./PageB')
   }
-  const toPageLogin = () => {
-    router.push('./PageLogin')
-  }
   const registUser = () => {
     dispatch(addUser({ name, uid, icon }))
     onload()
+    // toPageA()
     toPageB()
   };
   const loginUrl: string | undefined = process.env.NEXT_PUBLIC_LINE_LOGIN_URL
@@ -117,8 +110,6 @@ export default function App() {
       .then(() => {
         liff.getProfile()  // ユーザ情報を取得する
           .then(profile => {
-            const [userliff, setUserliff] = useState<any>(profile);
-            setUserliff(profile)
             const userId: string = profile.userId
             const displayName: string = profile.displayName
             const displayicon: string | undefined = profile.pictureUrl
@@ -127,7 +118,7 @@ export default function App() {
             setName(displayName)
             setIcon(displayicon)
             dispatch(addUser({ name, uid, icon }))
-            console.log('liff', { userliff })
+            console.log('uid', { uid })
             const setRef = setDoc(doc(db, 'users', `${uid}`), {
               uid,
               name,
@@ -303,9 +294,17 @@ export default function App() {
       }
       {`${user.uid}` === 'k11111' &&
         <div>
-          <button onClick={registUser}>
+          <button onClick={onload}>
             <h3 className="mb-4 text-green-500 text-3xl">ログインはこちら</h3>
           </button>
+        </div>
+      }
+      {`${user.uid}` === '' &&
+        <div>
+          {/* <button onClick={registUser}> */}
+          {/* // <button onClick={onload}> */}
+          <h2 className="mb-4 text-green-500 text-3xl">ようこそ</h2>
+          {/* </button> */}
         </div>
       }
       {`${user.uid}` === '' &&
