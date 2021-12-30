@@ -53,12 +53,7 @@ export default function App() {
   const registUser = () => {
     dispatch(addUser({ name, uid, icon }))
     onload(),
-      // toPageA()
-      <React.StrictMode >
-        <Provider store={store}>
-        </Provider>
-      </React.StrictMode>
-    toPageLogin()
+      toPageB()
   };
   const loginUrl: string | undefined = process.env.NEXT_PUBLIC_LINE_LOGIN_URL
   const LINEID = process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID
