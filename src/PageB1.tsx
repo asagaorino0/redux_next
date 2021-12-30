@@ -63,6 +63,7 @@ const PageB1 = () => {
             ukeruId: `${user.uid}:${day}`,
             timestamp: Timestamp.fromDate(new Date()),
         })
+        alert('登録しました。ありがとうございます。')
     };
 
     return (
