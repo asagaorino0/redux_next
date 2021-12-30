@@ -21,12 +21,12 @@ const PageL = () => {
         router.push('./PageB')
     }
     const registUser = () => {
-        // dispatch(addUser({ name, uid, icon }))
+        dispatch(addUser({ name, uid, icon }))
         onload()
         // toPageA()
         toPageB()
     };
-    const loginUrl: string | undefined = process.env.NEXT_PUBLIC_LINE_LOGIN_URL
+    // const loginUrl: string | undefined = process.env.NEXT_PUBLIC_LINE_LOGIN_URL
     const LINEID = process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID
     const lineClick = () => {
         setUid('')
@@ -50,18 +50,18 @@ const PageL = () => {
             })
     }
 
-    const line = require('@line/bot-sdk');
-    const config: any = {
-        channelSecret: process.env.NEXT_PUBLIC_CHANNEL_SECRET,//チャンネルシークレット
-        idToken: process.env.NEXT_PUBLIC_ACCESS_TOKEN, //アクセストークン
-    };
-    const client = new line.Client({
-        channelAccessToken: process.env.NEXT_PUBLIC_ACCESS_TOKEN
-    });
-    const message = {
-        type: 'text',
-        text: 'Hello World!'
-    };
+    // const line = require('@line/bot-sdk');
+    // const config: any = {
+    //     channelSecret: process.env.NEXT_PUBLIC_CHANNEL_SECRET,//チャンネルシークレット
+    //     idToken: process.env.NEXT_PUBLIC_ACCESS_TOKEN, //アクセストークン
+    // };
+    // const client = new line.Client({
+    //     channelAccessToken: process.env.NEXT_PUBLIC_ACCESS_TOKEN
+    // });
+    // const message = {
+    //     type: 'text',
+    //     text: 'Hello World!'
+    // };
     const onload = function () {
         liff
             .init({ liffId: LINEID as string })
@@ -104,8 +104,8 @@ const PageL = () => {
         <div className="App">
             {`${user.uid}` === 'k11111' &&
                 <div>
-                    <button onClick={lineClick}>
-                        <h4 className="mb-4 text-green-500 text-3xl">まずは友達追加</h4>
+                    <button onClick={registUser}>
+                        <h3 className="mb-4 text-green-500 text-3xl">ログインはこちら</h3>
                     </button>
                 </div>
             }

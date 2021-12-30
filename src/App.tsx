@@ -297,20 +297,20 @@ export default function App() {
     <div className="App">
       {/* <button onClick={pickImage} >画像</button> */}
 
-      {/* {`${user.uid}` === 'k11111' &&
+      {`${user.uid}` === 'k11111' &&
         <div>
           <button onClick={lineClick}>
             <h4 className="mb-4 text-green-500 text-3xl">まずは友達追加</h4>
           </button>
         </div>
-      } */}
-      {`${user.uid}` === 'k11111' &&
+      }
+      {/* {`${user.uid}` === 'k11111' &&
         <div>
           <button onClick={registUser}>
             <h3 className="mb-4 text-green-500 text-3xl">ログインはこちら</h3>
           </button>
         </div>
-      }
+      } */}
       {`${user.uid}` === '' &&
         <div>
           <button onClick={registUser}>
