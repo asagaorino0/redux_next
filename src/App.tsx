@@ -57,6 +57,7 @@ export default function App() {
     liff.init({ liffId: LINEID as string })
       .then(() => {
         if (!liff.isLoggedIn()) {
+          setUid('k00000')
           liff.login() // ログインしていなければ最初にログインする
         } else if (liff.isInClient()) {
           liff.getProfile()  // ユーザ情報を取得する
@@ -292,7 +293,7 @@ export default function App() {
           </button>
         </div>
       }
-      {`${user.uid}` === 'k11111' &&
+      {`${user.uid}` === 'k00000' &&
         <div>
           <button onClick={onload}>
             <h3 className="mb-4 text-green-500 text-3xl">ログインはこちら</h3>
