@@ -5,7 +5,7 @@ import styles from '../styles/Home.module.css'
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import Link from 'next/link'
-import './index.css';
+// import './index.css';
 // import App from '../src/App';
 import { store } from '../src/app/store';
 import { Provider } from 'react-redux';

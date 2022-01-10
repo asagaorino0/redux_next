@@ -4,7 +4,9 @@ import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import { initializeApp, getApps } from "firebase/app"
-import { getFirestore, collection, addDoc, doc, setDoc, Timestamp } from 'firebase/firestore'
+// import { getFirestore, collection, addDoc, doc, setDoc, Timestamp } from 'firebase/firestore'
+import { getFirestore, getDocs, collection, query, where, onSnapshot, doc, setDoc, Timestamp, addDoc } from 'firebase/firestore'
+import { TomareState } from "./types/tomare";
 // import { app } from "../firebase"
 // import { getFirestore, collection, query, where, onSnapshot } from 'firebase/firestore'
 // import { initializeFirestore } from 'firebase/firestore'
@@ -30,4 +32,14 @@ if (!app.length) {
 
 const db = getFirestore()
 const firebaseAuth = getAuth()
-export { app, firebaseAuth, db, firebaseConfig }
+export { app, firebaseAuth, db, firebaseConfig, setRefMenu }
+
+const setRefMenu = async ({ gappi, uid, menu }: TomareState) => {
+    await setDoc(doc(db, 'users', uid, 'tomare', `${gappi}oo`), {
+        gappi,
+        uid,
+        menu,
+        timestamp: Timestamp.fromDate(new Date()),
+    }, { merge: true }//←上書きされないおまじない
+    )
+}

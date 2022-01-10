@@ -6,6 +6,7 @@ import { store } from '../src/app/store';
 import { Provider } from 'react-redux';
 import dynamic from 'next/dynamic'
 import PageB1 from '../src/PageB1'
+import PageB2 from '../src/PageB2'
 
 const PageB = () => {
     const router = useRouter()
@@ -25,16 +26,17 @@ const PageB = () => {
             <div>
                 <button onClick={toPageA}>
                     {/* // <button onClick={onload}> */}
-                    <h3 className="mb-4 text-green-500 text-3xl">ユーザー登録</h3>
+                    <h3 className="mb-4 text-green-500 text-3xl">施術の申込み（個人）</h3>
                 </button>
             </div>
-            <span >pageA</span>
+            {/* <span >pageA</span> */}
             <br />
             <h1>
                 {/* {user.name}/{user.age} */}
                 <React.StrictMode >
                     <Provider store={store}>
                         <PageB1 />
+                        <PageB2 />
                     </Provider>
                 </React.StrictMode>
             </h1>
