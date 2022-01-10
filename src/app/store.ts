@@ -2,6 +2,7 @@ import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import userReducer from '../features/userSlice'
 import usersReducer from '../features/usersSlice';
 import tomareReducer from '../features/tomareSlice';
+import targetTomareReducer from '../features/targetTomareSlice';
 import formatdateReducer from '../features/formatDateSlice';
 import menuReducer from '../features/menuSlice';
 
@@ -11,6 +12,7 @@ export const store = configureStore({
     user: userReducer,
     users: usersReducer,
     tomare: tomareReducer,
+    targetTomare: targetTomareReducer,
     formatdate: formatdateReducer,
     menu: menuReducer,
   },

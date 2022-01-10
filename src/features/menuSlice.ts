@@ -3,10 +3,10 @@ import { RootState } from '../app/store';
 import { MenuState } from "../../src/types/menu";
 
 const initialState: MenuState = {
-    menu: "",
-    make: "",
-    nail: "",
-    este: "",
+    menu: [],
+    make: false,
+    nail: false,
+    este: false,
     sonota: "",
 
 } as MenuState;
