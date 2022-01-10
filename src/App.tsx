@@ -293,13 +293,13 @@ export default function App() {
           </button>
         </div>
       }
-      {`${user.uid}` === 'k00000' &&
-        <div>
-          <button onClick={onload}>
-            <h3 className="mb-4 text-green-500 text-3xl">ログインはこちら</h3>
-          </button>
-        </div>
-      }
+      {/* {`${user.uid}` === 'k00000' && */}
+      <div>
+        <button onClick={onload}>
+          <h3 className="mb-4 text-green-500 text-3xl">ログインはこちら</h3>
+        </button>
+      </div>
+      {/* } */}
       {`${user.uid}` === '' &&
         <div>
           {/* <button onClick={registUser}> */}
