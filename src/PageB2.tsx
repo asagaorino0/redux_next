@@ -72,7 +72,7 @@ const PageB = () => {
     // const [users, setUsers] = useState<any>();
     const [tomare, setTomare] = useState<any>([]);
     const [formatDate, setFormatDate] = useState<any>([]);
-    const uid = "Uda1c6a4e5b348c5ba3c95de639e32414"
+    // const uid = "Uda1c6a4e5b348c5ba3c95de639e32414"
     // const registUsers = () => {
     //     dispatch(addUsers({
     //         users,
