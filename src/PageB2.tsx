@@ -6,7 +6,7 @@ import { addUsers, selectUsers, } from './features/usersSlice';
 import { addUser, selectUser } from './features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { db } from "./firebase";
-import { getFirestore, getDocs, collection, collectionGroup, query, where, onSnapshot, doc, setDoc, Timestamp, addDoc } from 'firebase/firestore'
+import { getFirestore, getDocs, collection, collectionGroup, query, where, onSnapshot, doc, setDoc, Timestamp, deleteDoc } from 'firebase/firestore'
 import { store } from './app/store';
 import { Provider } from 'react-redux';
 import { UsersState } from "./types/users";
@@ -146,6 +146,8 @@ const PageB2 = () => {
     // const [val4, setVal4] = React.useState<string>('');
     // const [text, setText] = React.useState('');
     const clickDay = async (calendar: any) => {
+        console.log('user:', user.uid)
+        console.log('tomare:', tomare.uid)
         let year = calendar.getFullYear();
         let month = calendar.getMonth() + 1;
         let day = calendar.getDate();
@@ -161,18 +163,8 @@ const PageB2 = () => {
         dispatch(addTargetTomare(tomareData))
         setTargetTomare(tomareData)
         console.log(tomareData)
-
         if (tomareData === 0) {
             setAdd(1)
-            // alert('登録しました。オファーを楽しみにお待ちください。')
-            // setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}oo`), {
-            //     gappi,
-            //     uid: user.uid,
-            //     menu: "〇",
-            //     // timestamp: Timestamp.fromDate(new Date()),
-            // }, { merge: true })
-
-            // fetchTomare()
         }
     };
 
@@ -232,9 +224,7 @@ const PageB2 = () => {
         setTargetTomare(0)
     }
     const clickMenu9 = () => {
-        setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}oo`), {
-            gappi, uid: user.uid, menu: "", timestamp: Timestamp.fromDate(new Date()),
-        }, { merge: true })
+        deleteDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}oo`))
         fetchTomare()
         setTargetTomare(0)
     }
@@ -331,7 +321,7 @@ const PageB2 = () => {
 
                     // <span >App</span>
                     <p >
-                        {
+                        {/* {
                             `${formatDate}の予約です`
                         }
                         <br />
@@ -349,16 +339,14 @@ const PageB2 = () => {
                         <br />
                         <button onClick={clickMenu4}>
                             その他
-                        </button>
+                        </button> */}
                         <br />
-                        {tomare.uid === user.uid &&
-                            <p>
-                                <br />
-                                <button onClick={clickMenu9}>
-                                    予約枠の取り消し
-                                </button>
-                            </p>
-                        }
+                        <p>
+                            <br />
+                            <button onClick={clickMenu9}>
+                                予約枠の取り消し
+                            </button>
+                        </p>
                         {tomare.menu}
                         {users.uid}
                         {tomare.uid}
