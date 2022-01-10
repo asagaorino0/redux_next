@@ -3,7 +3,7 @@ import { RootState } from '../app/store';
 import { MenuState } from "../../src/types/menu";
 
 const initialState: MenuState = {
-    menu: [],
+    menu: "",
     make: "",
     nail: "",
     este: "",
