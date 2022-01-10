@@ -72,7 +72,7 @@ const PageB2 = () => {
     // const [users, setUsers] = useState<any>();
     const [tomare, setTomare] = useState<any>([]);
     const [formatDate, setFormatDate] = useState<any>([]);
-    const uid = "Uda1c6a4e5b348c5ba3c95de639e32414"
+    // const uid = "Uda1c6a4e5b348c5ba3c95de639e32414"
     // const registUsers = () => {
     //     dispatch(addUsers({
     //         users,
@@ -127,8 +127,8 @@ const PageB2 = () => {
                     tomare
                         // .filter(() => tomare.uid === user.uid)//無効
                         .map((data: any) => {
-                            if (formatDate === data.gappi && tomare.uid === "Uda1c6a4e5b348c5ba3c95de639e32414") {
-                                // if (formatDate === data.gappi && data.uid === user.uid) {
+                            // if (formatDate === data.gappi && tomare.uid === "Uda1c6a4e5b348c5ba3c95de639e32414") {
+                            if (formatDate === data.gappi && data.uid === user.uid) {
                                 // if (formatDate === data.gappi) {
                                 return (
                                     <div key={data.id}>
@@ -170,8 +170,8 @@ const PageB2 = () => {
 
     const clickMenu1 = () => {
         setMenu("1")
-        setDoc(doc(db, 'users', uid, 'tomare', `${formatDate}oo`), {
-            gappi, uid, menu: "1", timestamp: Timestamp.fromDate(new Date()),
+        setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}oo`), {
+            gappi, uid: user.uid, menu: "1", timestamp: Timestamp.fromDate(new Date()),
         }, { merge: true })
     }
 
@@ -233,12 +233,24 @@ const PageB2 = () => {
                         }
                         <br />
                         <button onClick={clickMenu1}>
-                            meiku:
+                            ケアメイク
+                        </button>
+                        <br />
+                        <button onClick={clickMenu1}>
+                            ケアネイル
+                        </button>
+                        <br />
+                        <button onClick={clickMenu1}>
+                            ケアエステ
+                        </button>
+                        <br />
+                        <button onClick={clickMenu1}>
+                            その他
                         </button>
                         {menu}
                         {gappi}
                         {formatDate}
-                        {uid}
+                        {user.uid}
                         {tomare.uid}
 
                     </p>
