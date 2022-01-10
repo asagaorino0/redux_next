@@ -15,7 +15,7 @@ import 'react-calendar/dist/Calendar.css';
 import { setUncaughtExceptionCaptureCallback } from 'process';
 import ReactDOM from 'react-dom';
 
-const PageB = () => {
+const PageB2 = () => {
     const [users, setUsers] = useState<any>([]);
     // const [uid, setUid] = useState<string>(user.uid);
     const [name, setName] = useState<string>('');
@@ -237,12 +237,12 @@ const PageB = () => {
                         {
                             `${formatDate}の予約です`
                         }
-
+                        <br />
                         <button onClick={clickMenu1}>
-
-                            meiku: {val1}
-
+                            meiku: {menu}
                         </button>
+
+
                     </p>
                 }
             </div>
@@ -263,5 +263,5 @@ const PageB = () => {
     )
 }
 
-export default PageB
+export default PageB2
 
