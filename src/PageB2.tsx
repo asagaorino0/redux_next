@@ -86,8 +86,8 @@ const PageB2 = () => {
             const q = query(collection(db, 'users'), where("uid", "==", user.uid));
             const snapshot = await getDocs(q)
             const usersData = snapshot.docs.map(
-                (doc: any) => ({ ...doc.data() }))
-            // console.log('usersData:', usersData)
+                (doc: any) => ({ ...doc.data().menu }))
+            console.log('usersData:', usersData)
             dispatch(addUsers(usersData))
             setUsers(usersData)
             console.log('users:', users)
@@ -163,69 +163,80 @@ const PageB2 = () => {
         console.log(tomareData)
 
         if (tomareData === 0) {
-            alert('登録しました。オファーを楽しみにお待ちください。')
-            setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}oo`), {
-                gappi,
-                uid: user.uid,
-                menu: "〇",
-                // timestamp: Timestamp.fromDate(new Date()),
-            }, { merge: true })
+            setAdd(1)
+            // alert('登録しました。オファーを楽しみにお待ちください。')
+            // setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}oo`), {
+            //     gappi,
+            //     uid: user.uid,
+            //     menu: "〇",
+            //     // timestamp: Timestamp.fromDate(new Date()),
+            // }, { merge: true })
 
-            fetchTomare()
+            // fetchTomare()
         }
     };
 
-    const clickAddmenu = (formatDate: string) => {
-        // setMenu("〇")
+    // const clickAddmenu = (formatDate: string) => {
+    //     // setMenu("〇")
+    //     setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}oo`), {
+    //         gappi, uid: user.uid, menu: "〇", timestamp: Timestamp.fromDate(new Date()),
+    //     }, { merge: true })
+
+    //     console.log('tomare:', tomare)
+    // };
+    // const clickMenuInput = (formatDate: string) => {
+    //     // let year = calendar.getFullYear();
+    //     // let month = calendar.getMonth() + 1;
+    //     // let day = calendar.getDate();
+    //     // month = ('0' + month).slice(-2);
+    //     // day = ('0' + day).slice(-2);
+    //     // const formatDate = year + month + day;
+    //     dispatch(addFormatdate(formatDate))
+    //     setFormatDate(formatDate)
+    //     setGappi(formatDate)
+    // };
+
+    const clickMenu0 = () => {
         setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}oo`), {
             gappi, uid: user.uid, menu: "〇", timestamp: Timestamp.fromDate(new Date()),
         }, { merge: true })
-
-        console.log('tomare:', tomare)
-    };
-    const clickMenuInput = (formatDate: string) => {
-        // let year = calendar.getFullYear();
-        // let month = calendar.getMonth() + 1;
-        // let day = calendar.getDate();
-        // month = ('0' + month).slice(-2);
-        // day = ('0' + day).slice(-2);
-        // const formatDate = year + month + day;
-        dispatch(addFormatdate(formatDate))
-        setFormatDate(formatDate)
-        setGappi(formatDate)
-    };
-
-
+        fetchTomare()
+        setAdd(0)
+    }
     const clickMenu1 = () => {
-        // setMenu("1")
         setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}oo`), {
             gappi, uid: user.uid, menu: "1", timestamp: Timestamp.fromDate(new Date()),
         }, { merge: true })
         fetchTomare()
-        // console.log('tomare:', tomare)
+        setTargetTomare(0)
     }
     const clickMenu2 = () => {
-        // setMenu("2")
         setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}oo`), {
             gappi, uid: user.uid, menu: "2", timestamp: Timestamp.fromDate(new Date()),
         }, { merge: true })
         fetchTomare()
-        // console.log('tomare:', tomare)
+        setTargetTomare(0)
     }
     const clickMenu3 = () => {
-        // setMenu("3")
         setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}oo`), {
             gappi, uid: user.uid, menu: "3", timestamp: Timestamp.fromDate(new Date()),
         }, { merge: true })
         fetchTomare()
-        // console.log('tomare:', tomare)
+        setTargetTomare(0)
     }
     const clickMenu4 = () => {
-        // setMenu("4")
         setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}oo`), {
             gappi, uid: user.uid, menu: "4", timestamp: Timestamp.fromDate(new Date()),
         }, { merge: true })
         fetchTomare()
+        setTargetTomare(0)
+    }
+    const clickMenu9 = () => {
+        setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}oo`), {
+            gappi, uid: user.uid, menu: "", timestamp: Timestamp.fromDate(new Date()),
+        }, { merge: true })
+        fetchTomare()
+        setTargetTomare(0)
     }
     const fetchTomare = async () => {
         const q = query(collectionGroup(db, 'tomare'));
@@ -236,21 +247,21 @@ const PageB2 = () => {
         setTomare(tomareData)
     }
     const [targetTomare, setTargetTomare] = useState<any>([])
-    const fetchTomare_menu = async () => {
-        // const q = query(collection(db, "users", user.uid, 'tomare'), where("gappi", "==", formatDate));
-        // const snapshot = await getDocs(q)
-        // const tomareData = snapshot.docs.length
-        // dispatch(addTargetTomare(tomareData))
-        // setTargetTomare(tomareData)
-        // if (tomareData === 0) {
-        //     setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}oo`), {
-        //         gappi, uid: user.uid, menu: "〇", timestamp: Timestamp.fromDate(new Date()),
-        //     }, { merge: true })
+    // const fetchTomare_menu = async () => {
+    //     // const q = query(collection(db, "users", user.uid, 'tomare'), where("gappi", "==", formatDate));
+    //     // const snapshot = await getDocs(q)
+    //     // const tomareData = snapshot.docs.length
+    //     // dispatch(addTargetTomare(tomareData))
+    //     // setTargetTomare(tomareData)
+    //     // if (tomareData === 0) {
+    //     //     setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}oo`), {
+    //     //         gappi, uid: user.uid, menu: "〇", timestamp: Timestamp.fromDate(new Date()),
+    //     //     }, { merge: true })
 
-        //     alert('登録しました。オファーを楽しみにお待ちください。')
-        //     fetchTomare()
-        // }
-    }
+    //     //     alert('登録しました。オファーを楽しみにお待ちください。')
+    //     //     fetchTomare()
+    //     // }
+    // }
 
 
 
@@ -284,7 +295,7 @@ const PageB2 = () => {
             <input type="text" onChange={(e) => setArea(e.target.value)} />
             <br />
             <h1>メニュー</h1>
-            {/* {users.menu.make} */}
+            {users.sonota}
             *********************************************************************
             <br />
             <div >
@@ -301,6 +312,20 @@ const PageB2 = () => {
                 />
             </div>
             <br />
+            <div>
+                {add === 1 &&
+                    <p>
+                        {
+                            `${formatDate}に予約枠を設定します。`
+                        }
+
+                        <br />
+                        <button onClick={clickMenu0}>
+                            o.k.
+                        </button>
+                    </p>
+                }
+            </div>
             <div>
                 {targetTomare === 1 &&
 
@@ -325,10 +350,17 @@ const PageB2 = () => {
                         <button onClick={clickMenu4}>
                             その他
                         </button>
-                        {menu}
-                        {gappi}
-                        {formatDate}
-                        {user.uid}
+                        <br />
+                        {tomare.uid === user.uid &&
+                            <p>
+                                <br />
+                                <button onClick={clickMenu9}>
+                                    予約枠の取り消し
+                                </button>
+                            </p>
+                        }
+                        {tomare.menu}
+                        {users.uid}
                         {tomare.uid}
 
                     </p>
