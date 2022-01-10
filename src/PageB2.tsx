@@ -128,7 +128,7 @@ const PageB = () => {
                         // .filter(() => tomare.uid === user.uid)//無効
                         .map((data: any) => {
                             // if (formatDate === data.gappi && tomare.uid === user.uid) {
-                            if (formatDate === data.gappi && data.uid === " U623ff15cee99e48dd6112467e6cab380") {
+                            if (formatDate === data.gappi && data.uid === user.uid) {
                                 // if (formatDate === data.gappi) {
                                 return (
                                     <div key={data.id}>
