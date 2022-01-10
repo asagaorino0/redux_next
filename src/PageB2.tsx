@@ -72,7 +72,7 @@ const PageB = () => {
     // const [users, setUsers] = useState<any>();
     const [tomare, setTomare] = useState<any>([]);
     const [formatDate, setFormatDate] = useState<any>([]);
-    // const uid = "Uda1c6a4e5b348c5ba3c95de639e32414"
+    const uid = "Uda1c6a4e5b348c5ba3c95de639e32414"
     // const registUsers = () => {
     //     dispatch(addUsers({
     //         users,
@@ -170,15 +170,15 @@ const PageB = () => {
 
     const clickMenu1 = () => {
         setMenu("1")
-        const setRefMenu = async ({ gappi, uid, menu }: TomareState) => {
-            await setDoc(doc(db, 'users', uid, 'tomare', `${gappi}oo`), {
+        const setRefMenu =
+            setDoc(doc(db, 'users', tomare.uid, 'tomare', `${gappi}oo`), {
                 gappi,
-                uid,
+                uid: tomare.uid,
                 menu,
                 timestamp: Timestamp.fromDate(new Date()),
             }, { merge: true }//←上書きされないおまじない
             )
-        }
+
     }
 
 
