@@ -170,14 +170,13 @@ const PageB2 = () => {
 
     const clickMenu1 = () => {
         setMenu("1")
-        const setRefMenu =
-            setDoc(doc(db, 'users', tomare.uid, 'tomare', `${gappi}oo`), {
-                gappi,
-                uid: tomare.uid,
-                menu,
-                timestamp: Timestamp.fromDate(new Date()),
-            }, { merge: true }//←上書きされないおまじない
-            )
+        setDoc(doc(db, 'users', tomare.uid, 'tomare', `${gappi}oo`), {
+            gappi: formatDate,
+            uid: tomare.uid,
+            menu: menu,
+            timestamp: Timestamp.fromDate(new Date()),
+        }, { merge: true }//←上書きされないおまじない
+        )
 
     }
 
