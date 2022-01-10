@@ -6,7 +6,6 @@ import { addUser, selectUser } from './features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { db } from "./firebase";
 import { getFirestore, getDocs, collection, collectionGroup, query, where, onSnapshot, doc, setDoc, Timestamp, addDoc } from 'firebase/firestore'
-import CalendarPage from "./PageCalendar";
 import { store } from './app/store';
 import { Provider } from 'react-redux';
 import { UsersState } from "./types/users";
@@ -73,7 +72,7 @@ const PageB = () => {
     // const [users, setUsers] = useState<any>();
     const [tomare, setTomare] = useState<any>([]);
     const [formatDate, setFormatDate] = useState<any>([]);
-    const uid = "Uda1c6a4e5b348c5ba3c95de639e32414"
+    // const uid = "Uda1c6a4e5b348c5ba3c95de639e32414"
     // const registUsers = () => {
     //     dispatch(addUsers({
     //         users,

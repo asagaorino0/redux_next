@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from "next/router";
 import { db } from "./firebase";
 import { getFirestore, getDocs, collection, collectionGroup, query, where, onSnapshot, doc, setDoc, Timestamp, addDoc } from 'firebase/firestore'
-import CalendarPage from "./PageCalendar";
+import CalendarPage from "./Calendar";
 import { store } from '../src/app/store';
 import { Provider } from 'react-redux';
 import { UserState } from "../src/types/user";

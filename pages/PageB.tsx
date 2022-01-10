@@ -35,7 +35,7 @@ const PageB = () => {
                 {/* {user.name}/{user.age} */}
                 <React.StrictMode >
                     <Provider store={store}>
-                        <PageB1 />
+                        {/* <PageB1 /> */}
                         <PageB2 />
                     </Provider>
                 </React.StrictMode>
