@@ -14,6 +14,6 @@ export type UsersState = {
     // qr: string,
     users: [],
     // userliff: []
-    menu: { manu: MenuState },
+    menu: { menu: MenuState },
     // gappi: string,
 }

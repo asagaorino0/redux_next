@@ -1,5 +1,5 @@
 export type MenuState = {
-    menu: [],
+    menu: string,
     make: string | undefined,
     nail: string | undefined,
     este: string | undefined,

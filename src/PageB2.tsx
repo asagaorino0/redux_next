@@ -72,7 +72,7 @@ const PageB2 = () => {
     // const [users, setUsers] = useState<any>();
     const [tomare, setTomare] = useState<any>([]);
     const [formatDate, setFormatDate] = useState<any>([]);
-    // const uid = "Uda1c6a4e5b348c5ba3c95de639e32414"
+    const uid = "Uda1c6a4e5b348c5ba3c95de639e32414"
     // const registUsers = () => {
     //     dispatch(addUsers({
     //         users,
@@ -127,8 +127,8 @@ const PageB2 = () => {
                     tomare
                         // .filter(() => tomare.uid === user.uid)//無効
                         .map((data: any) => {
-                            // if (formatDate === data.gappi && tomare.uid === user.uid) {
-                            if (formatDate === data.gappi && data.uid === user.uid) {
+                            if (formatDate === data.gappi && tomare.uid === "Uda1c6a4e5b348c5ba3c95de639e32414") {
+                                // if (formatDate === data.gappi && data.uid === user.uid) {
                                 // if (formatDate === data.gappi) {
                                 return (
                                     <div key={data.id}>
@@ -160,7 +160,7 @@ const PageB2 = () => {
         let day = calendar.getDate();
         month = ('0' + month).slice(-2);
         day = ('0' + day).slice(-2);
-        const formatDate = year + "/" + month + "/" + day;
+        const formatDate = year + month + day;
         dispatch(addFormatdate(formatDate))
         setFormatDate(formatDate)
         setGappi(formatDate)
@@ -170,14 +170,9 @@ const PageB2 = () => {
 
     const clickMenu1 = () => {
         setMenu("1")
-        setDoc(doc(db, 'users', tomare.uid, 'tomare', `${gappi}oo`), {
-            gappi: formatDate,
-            uid: tomare.uid,
-            menu: menu,
-            timestamp: Timestamp.fromDate(new Date()),
-        }, { merge: true }//←上書きされないおまじない
-        )
-
+        setDoc(doc(db, 'users', uid, 'tomare', `${formatDate}oo`), {
+            gappi, uid, menu: "1", timestamp: Timestamp.fromDate(new Date()),
+        }, { merge: true })
     }
 
 
@@ -238,9 +233,13 @@ const PageB2 = () => {
                         }
                         <br />
                         <button onClick={clickMenu1}>
-                            meiku: {menu}
+                            meiku:
                         </button>
-
+                        {menu}
+                        {gappi}
+                        {formatDate}
+                        {uid}
+                        {tomare.uid}
 
                     </p>
                 }
