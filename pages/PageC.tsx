@@ -8,7 +8,7 @@ import dynamic from 'next/dynamic'
 import PageC1 from '../src/PageC1'
 import PageB2 from '../src/PageB2'
 
-const PageB = () => {
+const PageC = () => {
     const router = useRouter()
     const toPageA = () => {
         router.push('./PageA')
@@ -44,4 +44,4 @@ const PageB = () => {
     );
 }
 
-export default PageB
+export default PageC
