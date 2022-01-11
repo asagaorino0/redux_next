@@ -38,17 +38,23 @@ export default function App() {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const router = useRouter()
-  const toPageA = () => {
-    router.push('./PageA')
+  const toPageC = () => {
+    router.push('./PageC')
   }
   const toPageB = () => {
     router.push('./PageB')
   }
-  const registUser = () => {
+  const registB = () => {
     dispatch(addUser({ name, uid, icon }))
     onload()
     // toPageA()
     toPageB()
+  };
+  const registC = () => {
+    dispatch(addUser({ name, uid, icon }))
+    onload()
+    // toPageA()
+    toPageC()
   };
   const loginUrl: string | undefined = process.env.NEXT_PUBLIC_LINE_LOGIN_URL
   const LINEID = process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID
@@ -310,7 +316,15 @@ export default function App() {
       }
       {`${user.uid}` === '' &&
         <div>
-          <button onClick={registUser}>
+          <button onClick={registC}>
+            {/* // <button onClick={onload}> */}
+            <h3 className="mb-4 text-green-500 text-3xl">ケアビューティスト専用</h3>
+          </button>
+        </div>
+      }
+      {`${user.uid}` === '' &&
+        <div>
+          <button onClick={registB}>
             {/* // <button onClick={onload}> */}
             <h3 className="mb-4 text-green-500 text-3xl">個人で申し込む</h3>
           </button>
@@ -318,7 +332,7 @@ export default function App() {
       }
       {`${user.uid}` === '' &&
         <div>
-          <button onClick={registUser}>
+          <button onClick={registB}>
             {/* // <button onClick={onload}> */}
             <h3 className="mb-4 text-green-500 text-3xl">施設で申し込む</h3>
           </button>
@@ -326,7 +340,7 @@ export default function App() {
       }
       {`${user.uid}` === '' &&
         <div>
-          <button onClick={registUser}>
+          <button onClick={registB}>
             {/* // <button onClick={onload}> */}
             <h3 className="mb-4 text-green-500 text-3xl">プレゼントとして申し込む</h3>
           </button>

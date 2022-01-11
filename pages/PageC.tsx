@@ -26,7 +26,7 @@ const PageC = () => {
             <div>
                 <button onClick={toPageA}>
                     {/* // <button onClick={onload}> */}
-                    <h3 className="mb-4 text-green-500 text-3xl">施術の申込み（個人）</h3>
+                    <h3 className="mb-4 text-green-500 text-3xl">予約枠の設定</h3>
                 </button>
             </div>
             {/* <span >pageA</span> */}
