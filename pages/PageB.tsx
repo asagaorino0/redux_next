@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import dynamic from 'next/dynamic'
 import PageC1 from '../src/PageC1'
 import PageB2 from '../src/PageB2'
-
+import PageB1 from '../src/PageB1'
 const PageB = () => {
     const router = useRouter()
     const toPageA = () => {
@@ -35,8 +35,8 @@ const PageB = () => {
                 {/* {user.name}/{user.age} */}
                 <React.StrictMode >
                     <Provider store={store}>
-                        {/* <PageB1 /> */}
-                        <PageC1 />
+                        <PageB1 />
+                        {/* <PageC1 /> */}
                     </Provider>
                 </React.StrictMode>
             </h1>

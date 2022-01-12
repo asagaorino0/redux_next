@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { addUser, selectUser } from './features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from "next/router";
+import { addMenu } from './features/menuSlice';
 import { db } from "./firebase";
 import { getFirestore, getDocs, collection, collectionGroup, query, where, onSnapshot, doc, setDoc, Timestamp, addDoc } from 'firebase/firestore'
 import CalendarPage from "./Calendar";
@@ -25,6 +26,7 @@ const PageB1 = () => {
     const [gappi, setGappi] = useState<string>('');
     const [tokoro, setTokoro] = useState<string>('');
     const [star, setStar] = useState<number>(0);
+    const [menus, setMenus] = useState<any>([]);
     const dispatch = useDispatch();
     const user = useSelector(selectUser);
     const router = useRouter()
@@ -96,26 +98,21 @@ const PageB1 = () => {
         console.log('users:', users)
         // fetchTomare(uid)
     }, []);
-
     // useEffect(() => {
-    //     const fetchUsers = async () => {
-    //         // // const snapshot = await getDocs(collection(db, 'users', uid, 'tomare'))
-    //         const snapshot = await getDocs(collection(db, 'users'))
-    //         const usersData = snapshot.docs.map((doc) => {
-    //             return doc.id &&
-    //                 doc.data()
-    //         });
-    //         // (docT: any) => ({ ...docT.data() } as UserState))
-    //         setUsers(usersData)
-    //         // setUid(tomare.uid)
-    //         console.log({ usersData })
-    //         // console.log(users)
-    //         registUser()
+    //     const fetchMenus = async () => {
+    //         const q = query(collection(db, 'users'), where("uid", "==", user.uid));
+    //         const snapshot = await getDocs(q)
+    //         const menuData = snapshot.docs.map(
+    //             (doc: any) => ({ ...doc.data().menu }))
+    //         console.log('usersData:', menuData)
+    //         dispatch(addMenu(menuData))
+    //         setMenus(menuData)
+    //         console.log('menus:', menus)
     //     }
-    //     fetchUsers()
-    //     console.log(users)
-    //     // registUser()
+    //     fetchMenus()
+    //     console.log('menus:', menus)
     // }, []);
+
 
     return (
         <div className="App">
@@ -141,7 +138,7 @@ const PageB1 = () => {
             <h1>住所</h1>
             <input type="text" onChange={(e) => setTokoro(e.target.value)} />
             <br />
-            *********************************************************************
+            ******************************************************
             <br />
             {/* <div > */}
             {/* {users.length !== 0 && */}
@@ -173,8 +170,6 @@ const PageB1 = () => {
                 //         );
                 //     })
             }
-
-
         </div >
     )
 }

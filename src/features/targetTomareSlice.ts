@@ -6,7 +6,12 @@ const initialState: TomareState = {
     menu: '',
     gappi: '',
     tomareId: '',
-    uid: ''
+    uid: '',
+    am_pm: '',
+    make: false,
+    nail: false,
+    este: false,
+    sonota: ''
 } as TomareState;
 
 export const targetTomareSlice = createSlice({
@@ -18,6 +23,10 @@ export const targetTomareSlice = createSlice({
             state.gappi = action.payload.gappi
             state.uid = action.payload.uid
             state.tomareId = action.payload.tpmareId
+            state.make = action.payload.make
+            state.nail = action.payload.nail
+            state.este = action.payload.este
+            state.sonota = action.payload.sonota
         }
     },
 });

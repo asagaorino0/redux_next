@@ -6,7 +6,8 @@ const initialState: TomareState = {
   menu: '',
   gappi: '',
   tomareId: '',
-  uid: ''
+  uid: '',
+  am_pm: ''
 } as TomareState;
 
 export const tomareSlice = createSlice({
@@ -19,6 +20,7 @@ export const tomareSlice = createSlice({
       state.gappi = action.payload.gappi
       state.uid = action.payload.uid
       state.tomareId = action.payload.tpmareId
+      state.am_pm = action.payload.am_pm
     }
   },
 });

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { addFormatdate, } from './features/formatDateSlice';
 import { addTomare } from './features/tomareSlice';
 import { addTargetTomare } from './features/targetTomareSlice';
-import { addUsers } from './features/usersSlice';
+import { addMenu } from './features/menuSlice';
 import { selectUser } from './features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { db } from "./firebase";
@@ -10,29 +10,33 @@ import { getDocs, collection, collectionGroup, query, where, doc, setDoc, Timest
 import { TomareState } from "./types/tomare";
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
+import { computeSegDraggable } from '@fullcalendar/common';
+import { truncate } from 'fs';
 
 const PageC1 = () => {
     const [users, setUsers] = useState<any>([]);
+    const [menus, setMenus] = useState<any>([]);
     const [area, setArea] = useState<string>("未登録");
     const [gappi, setGappi] = useState<string>('');
+    const [ampm, setAmpm] = useState<string>('');
     const [add, setAdd] = useState<number>(0);
     const dispatch = useDispatch();
     const user = useSelector(selectUser);
     const [tomare, setTomare] = useState<any>([]);
     const [formatDate, setFormatDate] = useState<any>([]);
     useEffect(() => {
-        const fetchUsers = async () => {
+        const fetchMenus = async () => {
             const q = query(collection(db, 'users'), where("uid", "==", user.uid));
             const snapshot = await getDocs(q)
-            const usersData = snapshot.docs.map(
+            const menuData = snapshot.docs.map(
                 (doc: any) => ({ ...doc.data().menu }))
-            console.log('usersData:', usersData)
-            dispatch(addUsers(usersData))
-            setUsers(usersData)
-            console.log('users:', users)
+            console.log('usersData:', menuData)
+            dispatch(addMenu(menuData))
+            setMenus(menuData)
+            console.log('menus:', menus)
         }
-        fetchUsers()
-        console.log('users:', users)
+        fetchMenus()
+        console.log('menus:', menus)
     }, []);
 
     useEffect(() => {
@@ -73,8 +77,8 @@ const PageC1 = () => {
     };
 
     const clickDay = async (calendar: any) => {
-        console.log('user:', user.uid)
-        console.log('tomare:', tomare.uid)
+        // console.log('user:', user.uid)
+        // console.log('tomare:', tomare.uid)
         let year = calendar.getFullYear();
         let month = calendar.getMonth() + 1;
         let day = calendar.getDate();
@@ -86,26 +90,67 @@ const PageC1 = () => {
         setGappi(formatDate)
         const q = query(collection(db, "users", user.uid, 'tomare'), where("gappi", "==", formatDate));
         const snapshot = await getDocs(q)
-        const tomareData = snapshot.docs.length
+        const tomareLength = snapshot.docs.length
+        const tomareData = snapshot.docs.map(
+            (docT: any) => ({ ...docT.data() } as TomareState))
         dispatch(addTargetTomare(tomareData))
         setTargetTomare(tomareData)
-        console.log(tomareData)
-        if (tomareData === 0) {
-            setAdd(1)
-        }
+        console.log(`targetTomareLength`, tomareLength)
     };
 
-    const clickMenu0 = () => {
-        setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}oo`), {
-            gappi, uid: user.uid, menu: "〇", timestamp: Timestamp.fromDate(new Date()),
+    const clickMenuAm = () => {
+        setAmpm("AM")
+        setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}AM`), {
+            gappi, uid: user.uid, menu: "AM", am_pm: "AM", timestamp: Timestamp.fromDate(new Date()),
         }, { merge: true })
         fetchTomare()
         setAdd(0)
     }
-    const clickMenu9 = () => {
-        deleteDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}oo`))
+    const clickMenuPm = () => {
+        setAmpm("PM")
+        setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}PM`), {
+            gappi, uid: user.uid, menu: "PM", am_pm: "PM", timestamp: Timestamp.fromDate(new Date()),
+        }, { merge: true })
         fetchTomare()
-        setTargetTomare(0)
+        setAdd(0)
+    }
+    const clickMenu1 = () => {
+        setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}${ampm}`), {
+            make: true, timestamp: Timestamp.fromDate(new Date()),
+        }, { merge: true })
+        fetchTomare()
+        fetchTargetTomare()
+    }
+    const clickMenu2 = () => {
+        setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}${ampm}`), {
+            neil: true, timestamp: Timestamp.fromDate(new Date()),
+        }, { merge: true })
+        fetchTomare()
+        fetchTargetTomare()
+    }
+    const clickMenu3 = () => {
+        setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}${ampm}`), {
+            este: true, timestamp: Timestamp.fromDate(new Date()),
+        }, { merge: true })
+        fetchTomare()
+        fetchTargetTomare()
+    }
+    const clickMenu4 = () => {
+        setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}${ampm}`), {
+            sonota: "その他", timestamp: Timestamp.fromDate(new Date()),
+        }, { merge: true })
+        fetchTomare()
+        fetchTargetTomare()
+    }
+    const clickMenu9am = () => {
+        deleteDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}AM`))
+        fetchTomare()
+        // setTargetTomare(0)
+    }
+    const clickMenu9pm = () => {
+        deleteDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}PM`))
+        fetchTomare()
+        // setTargetTomare(0)
     }
     const fetchTomare = async () => {
         const q = query(collectionGroup(db, 'tomare'));
@@ -114,6 +159,16 @@ const PageC1 = () => {
             (docT: any) => ({ ...docT.data() } as TomareState))
         dispatch(addTomare(tomareData))
         setTomare(tomareData)
+    }
+    const fetchTargetTomare = async () => {
+        const q = query(collection(db, "users", user.uid, 'tomare'), where("gappi", "==", formatDate));
+        const snapshot = await getDocs(q)
+        const tomareLength = snapshot.docs.length
+        const tomareData = snapshot.docs.map(
+            (docT: any) => ({ ...docT.data() } as TomareState))
+        dispatch(addTargetTomare(tomareData))
+        setTargetTomare(tomareData)
+        console.log(`targetTomareLength`, tomareLength)
     }
     const [targetTomare, setTargetTomare] = useState<any>([])
 
@@ -141,8 +196,18 @@ const PageC1 = () => {
             <input type="text" onChange={(e) => setArea(e.target.value)} />
             <br />
             <h1>メニュー</h1>
-            {users.sonota}
-            *********************************************************************
+            {menus
+                .map(
+                    (doc: any) => {
+                        return (
+                            <div>
+                                {doc.make === true && <p>めいく</p>}
+                                {doc.nail === true && <p>ねいる</p>}
+                                {doc.este === true && <p>えすて</p>}
+                                {doc.sonota}
+                            </div>)
+                    })}
+            ******************************************************
             <br />
             <div >
                 <Calendar
@@ -158,30 +223,77 @@ const PageC1 = () => {
                 />
             </div>
             <br />
-            <div>
-                {add === 1 &&
-                    <p>
-                        {
-                            `${formatDate}に予約枠を設定します。`
-                        }
+            {
+                targetTomare.length === 0 &&
+                // <div>
+                <p>
+                    {
+                        `${formatDate}に予約枠を設定します。`
+                    }
+                    <br />
+                    <button onClick={clickMenuAm}>
+                        AM:(午前)
+                    </button>
+                    <button onClick={clickMenuPm}>
+                        PM:(午前)
+                    </button>
+                </p>
+            }
+            {targetTomare.am_pm !== "" &&
+                <p >
+
+                    <br />
+                    <button onClick={clickMenu1}>
+                        ケアメイク
+                    </button>
+                    <br />
+                    <button onClick={clickMenu2}>
+                        ケアネイル
+                    </button>
+                    <br />
+                    <button onClick={clickMenu3}>
+                        ケアエステ
+                    </button>
+                    <br />
+                    <button onClick={clickMenu4}>
+                        その他
+                    </button>
+                    <br />
+                </p>
+            }
+            <p>
+                <br />
+                ***登録内容***
+                {targetTomare
+                    .map(
+                        (targetTomare: any) => {
+                            return (
+                                <div>
+                                    {targetTomare.gappi}{targetTomare.am_pm}
+                                    <br />
+                                    {targetTomare.make === true && <p>めいく</p>}
+                                    {targetTomare.neil === true && <p>ねいる</p>}
+                                    {targetTomare.este === true && <p>えすて</p>}
+                                    {targetTomare.sonota}
+                                </div>)
+                        })}
+                {
+                    targetTomare.length !== 0 &&
+                    <div>
                         <br />
-                        <button onClick={clickMenu0}>
-                            o.k.
-                        </button>
-                    </p>
-                }
-            </div>
-            <div>
-                {targetTomare === 1 &&
-                    <p >
+                        予約枠の取り消し
                         <br />
-                        <button onClick={clickMenu9}>
-                            予約枠の取り消し
+                        <button onClick={clickMenu9am}>
+                            AM
                         </button>
-                    </p>
+                        /
+                        <button onClick={clickMenu9pm}>
+                            PM
+                        </button>
+                    </div>
                 }
-            </div>
-        </div >
+            </p>
+        </div>
     )
 }
 
