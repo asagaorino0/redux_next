@@ -116,28 +116,28 @@ const PageC1 = () => {
     }
     const clickMenu1 = () => {
         setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}${am_pm}`), {
-            make: true, menu: am_pm, timestamp: serverTimestamp(),
+            make: true, timestamp: serverTimestamp(),
         }, { merge: true })
         fetchTomare()
         fetchTargetTomare()
     }
     const clickMenu2 = () => {
         setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}${am_pm}`), {
-            neil: true, menu: am_pm, timestamp: serverTimestamp(),
+            neil: true, timestamp: serverTimestamp(),
         }, { merge: true })
         fetchTomare()
         fetchTargetTomare()
     }
     const clickMenu3 = () => {
         setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}${am_pm}`), {
-            este: true, menu: am_pm, timestamp: serverTimestamp(),
+            este: true, timestamp: serverTimestamp(),
         }, { merge: true })
         fetchTomare()
         fetchTargetTomare()
     }
     const clickMenu4 = () => {
         setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}${am_pm}`), {
-            sonota: "その他", menu: am_pm, timestamp: serverTimestamp(),
+            sonota: "その他", timestamp: serverTimestamp(),
         }, { merge: true })
         fetchTomare()
         fetchTargetTomare()
