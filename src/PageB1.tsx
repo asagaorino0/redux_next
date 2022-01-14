@@ -31,9 +31,9 @@ const PageB1 = () => {
     const user = useSelector(selectUser);
     const router = useRouter()
 
-    const toHome = () => {
-        router.push('/')
-    }
+    // const toHome = () => {
+    //     router.push('/')
+    // }
     // useEffect(() => {
     //     let user: any = []
     //     const q = query(collection(db, 'users'), where('uid', '==', `${user.uid}`))
@@ -88,7 +88,6 @@ const PageB1 = () => {
             const usersData = querrySnapshot.docs.map(
                 (doc: any) => ({ ...doc.data() } as UserState))
             setUsers(usersData)
-            // setUid(users.uid)
             console.log('usersData:', usersData)
             console.log('users:', users)
             registUser()
