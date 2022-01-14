@@ -5,7 +5,7 @@ import { addUsers, selectUsers, } from './features/usersSlice';
 import { addUser, selectUser } from './features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { db } from "./firebase";
-import { getFirestore, getDocs, collection, collectionGroup, query, where, onSnapshot, doc, setDoc, Timestamp, addDoc } from 'firebase/firestore'
+import { getFirestore, getDocs, collection, collectionGroup, query, where, onSnapshot, doc, setDoc, Timestamp, serverTimestamp, addDoc } from 'firebase/firestore'
 import { store } from './app/store';
 import { Provider } from 'react-redux';
 import { UsersState } from "./types/users";

@@ -6,7 +6,7 @@ import { addUsers, selectUsers, } from './features/usersSlice';
 import { addUser, selectUser } from './features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { db } from "./firebase";
-import { getFirestore, getDocs, collection, collectionGroup, query, where, onSnapshot, doc, setDoc, Timestamp, deleteDoc } from 'firebase/firestore'
+import { getFirestore, getDocs, collection, collectionGroup, query, where, onSnapshot, doc, setDoc, Timestamp, serverTimestamp, deleteDoc } from 'firebase/firestore'
 import { store } from './app/store';
 import { Provider } from 'react-redux';
 import { UsersState } from "./types/users";
@@ -57,13 +57,13 @@ const PageB2 = () => {
         //     namae: namae,
         //     tokoro,
         //     ukeruId: `${gappi}oo`,
-        //     timestamp: Timestamp.fromDate(new Date()),
+        //     timestamp: serverTimestamp(),
         // })
         const setRef = setDoc(doc(db, 'users', `${user.uid}`, 'tomare', `${gappi}oo`), {
             gappi,
             uid: `${user.uid}`,
             namae: namae,
-            timestamp: Timestamp.fromDate(new Date()),
+            timestamp: serverTimestamp(),
         }, { merge: true }//←上書きされないおまじない
         )
         // console.log('ukeru:', addRef)
@@ -171,7 +171,7 @@ const PageB2 = () => {
     // const clickAddmenu = (formatDate: string) => {
     //     // setMenu("〇")
     //     setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}oo`), {
-    //         gappi, uid: user.uid, menu: "〇", timestamp: Timestamp.fromDate(new Date()),
+    //         gappi, uid: user.uid, menu: "〇", timestamp: serverTimestamp(),
     //     }, { merge: true })
 
     //     console.log('tomare:', tomare)
@@ -190,35 +190,35 @@ const PageB2 = () => {
 
     const clickMenu0 = () => {
         setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}oo`), {
-            gappi, uid: user.uid, menu: "〇", timestamp: Timestamp.fromDate(new Date()),
+            gappi, uid: user.uid, menu: "〇", timestamp: serverTimestamp(),
         }, { merge: true })
         fetchTomare()
         setAdd(0)
     }
     const clickMenu1 = () => {
         setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}oo`), {
-            gappi, uid: user.uid, menu: "1", timestamp: Timestamp.fromDate(new Date()),
+            gappi, uid: user.uid, menu: "1", timestamp: serverTimestamp(),
         }, { merge: true })
         fetchTomare()
         setTargetTomare(0)
     }
     const clickMenu2 = () => {
         setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}oo`), {
-            gappi, uid: user.uid, menu: "2", timestamp: Timestamp.fromDate(new Date()),
+            gappi, uid: user.uid, menu: "2", timestamp: serverTimestamp(),
         }, { merge: true })
         fetchTomare()
         setTargetTomare(0)
     }
     const clickMenu3 = () => {
         setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}oo`), {
-            gappi, uid: user.uid, menu: "3", timestamp: Timestamp.fromDate(new Date()),
+            gappi, uid: user.uid, menu: "3", timestamp: serverTimestamp(),
         }, { merge: true })
         fetchTomare()
         setTargetTomare(0)
     }
     const clickMenu4 = () => {
         setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}oo`), {
-            gappi, uid: user.uid, menu: "4", timestamp: Timestamp.fromDate(new Date()),
+            gappi, uid: user.uid, menu: "4", timestamp: serverTimestamp(),
         }, { merge: true })
         fetchTomare()
         setTargetTomare(0)
@@ -245,7 +245,7 @@ const PageB2 = () => {
     //     // setTargetTomare(tomareData)
     //     // if (tomareData === 0) {
     //     //     setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}oo`), {
-    //     //         gappi, uid: user.uid, menu: "〇", timestamp: Timestamp.fromDate(new Date()),
+    //     //         gappi, uid: user.uid, menu: "〇", timestamp: serverTimestamp(),
     //     //     }, { merge: true })
 
     //     //     alert('登録しました。オファーを楽しみにお待ちください。')

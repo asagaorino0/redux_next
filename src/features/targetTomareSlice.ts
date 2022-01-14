@@ -11,7 +11,7 @@ const initialState: TomareState = {
     make: false,
     nail: false,
     este: false,
-    sonota: ''
+    sonota: '',
 } as TomareState;
 
 export const targetTomareSlice = createSlice({
@@ -27,6 +27,7 @@ export const targetTomareSlice = createSlice({
             state.nail = action.payload.nail
             state.este = action.payload.este
             state.sonota = action.payload.sonota
+            state.am_pm = action.payload.am_pm
         }
     },
 });

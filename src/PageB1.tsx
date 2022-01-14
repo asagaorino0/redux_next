@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from "next/router";
 import { addMenu } from './features/menuSlice';
 import { db } from "./firebase";
-import { getFirestore, getDocs, collection, collectionGroup, query, where, onSnapshot, doc, setDoc, Timestamp, addDoc } from 'firebase/firestore'
+import { getFirestore, getDocs, collection, collectionGroup, query, where, onSnapshot, doc, setDoc, Timestamp, serverTimestamp, addDoc } from 'firebase/firestore'
 import CalendarPage from "./Calendar";
 import { store } from '../src/app/store';
 import { Provider } from 'react-redux';
@@ -55,7 +55,7 @@ const PageB1 = () => {
     //         namae: namae,
     //         tokoro,
     //         ukeruId: `${gappi}oo`,
-    //         timestamp: Timestamp.fromDate(new Date()),
+    //         timestamp: serverTimestamp(),
     //     })
     // //     const setRef = setDoc(doc(db, 'users', `${user.uid}`, 'tomare', `${gappi}oo`), {
     // //         gappi,
@@ -64,7 +64,7 @@ const PageB1 = () => {
     // //         namae: namae,
     // //         tokoro,
     // //         ukeruId: `${gappi}oo`,
-    // //         timestamp: Timestamp.fromDate(new Date()),
+    // //         timestamp: serverTimestamp(),
     // //     }, { merge: true }//←上書きされないおまじない
     // //     )
     // //     console.log('ukeru:', addRef)

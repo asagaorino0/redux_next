@@ -6,7 +6,7 @@ import { addMenu } from './features/menuSlice';
 import { selectUser } from './features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { db } from "./firebase";
-import { getDocs, collection, collectionGroup, query, where, doc, setDoc, Timestamp, deleteDoc } from 'firebase/firestore'
+import { getDocs, collection, collectionGroup, query, where, doc, setDoc, Timestamp, serverTimestamp, deleteDoc } from 'firebase/firestore'
 import { TomareState } from "./types/tomare";
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
@@ -18,7 +18,7 @@ const PageC1 = () => {
     const [menus, setMenus] = useState<any>([]);
     const [area, setArea] = useState<string>("未登録");
     const [gappi, setGappi] = useState<string>('');
-    const [ampm, setAmpm] = useState<string>('');
+    const [am_pm, setAm_pm] = useState<string>('');
     const [add, setAdd] = useState<number>(0);
     const dispatch = useDispatch();
     const user = useSelector(selectUser);
@@ -99,57 +99,64 @@ const PageC1 = () => {
     };
 
     const clickMenuAm = () => {
-        setAmpm("AM")
+        setAm_pm("AM")
         setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}AM`), {
-            gappi, uid: user.uid, menu: "AM", am_pm: "AM", timestamp: Timestamp.fromDate(new Date()),
+            gappi, uid: user.uid, am_pm: "AM", timestamp: serverTimestamp(),
         }, { merge: true })
         fetchTomare()
         setAdd(0)
     }
     const clickMenuPm = () => {
-        setAmpm("PM")
+        setAm_pm("PM")
         setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}PM`), {
-            gappi, uid: user.uid, menu: "PM", am_pm: "PM", timestamp: Timestamp.fromDate(new Date()),
+            gappi, uid: user.uid, am_pm: "PM", timestamp: serverTimestamp(),
         }, { merge: true })
         fetchTomare()
         setAdd(0)
     }
     const clickMenu1 = () => {
-        setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}${ampm}`), {
-            make: true, timestamp: Timestamp.fromDate(new Date()),
+        setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}${am_pm}`), {
+            make: true, menu: am_pm, timestamp: serverTimestamp(),
         }, { merge: true })
         fetchTomare()
         fetchTargetTomare()
     }
     const clickMenu2 = () => {
-        setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}${ampm}`), {
-            neil: true, timestamp: Timestamp.fromDate(new Date()),
+        setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}${am_pm}`), {
+            neil: true, menu: am_pm, timestamp: serverTimestamp(),
         }, { merge: true })
         fetchTomare()
         fetchTargetTomare()
     }
     const clickMenu3 = () => {
-        setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}${ampm}`), {
-            este: true, timestamp: Timestamp.fromDate(new Date()),
+        setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}${am_pm}`), {
+            este: true, menu: am_pm, timestamp: serverTimestamp(),
         }, { merge: true })
         fetchTomare()
         fetchTargetTomare()
     }
     const clickMenu4 = () => {
-        setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}${ampm}`), {
-            sonota: "その他", timestamp: Timestamp.fromDate(new Date()),
+        setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}${am_pm}`), {
+            sonota: "その他", menu: am_pm, timestamp: serverTimestamp(),
+        }, { merge: true })
+        fetchTomare()
+        fetchTargetTomare()
+    }
+    const clickMenu888 = () => {
+        setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}${am_pm}`), {
+            menu: am_pm, timestamp: serverTimestamp(),
         }, { merge: true })
         fetchTomare()
         fetchTargetTomare()
     }
     const clickMenu9am = () => {
         deleteDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}AM`))
-        fetchTomare()
+        fetchTargetTomare()
         // setTargetTomare(0)
     }
     const clickMenu9pm = () => {
         deleteDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}PM`))
-        fetchTomare()
+        fetchTargetTomare()
         // setTargetTomare(0)
     }
     const fetchTomare = async () => {
@@ -223,79 +230,82 @@ const PageC1 = () => {
                 />
             </div>
             <br />
-            {
-                targetTomare.length === 0 &&
-                // <div>
-                <p>
-                    {
-                        `${formatDate}に予約枠を設定します。`
-                    }
-                    <br />
-                    <button onClick={clickMenuAm}>
-                        AM:(午前)
-                    </button>
-                    <button onClick={clickMenuPm}>
-                        PM:(午前)
-                    </button>
-                </p>
-            }
-            {targetTomare.am_pm !== "" &&
-                <p >
+            {`${formatDate}`.length !== 0 &&
+                <div>
+                    <p>
+                        {
+                            `${formatDate}の`
+                        }
+                        <br />
+                        <button onClick={clickMenuAm}>
+                            AM:(午前)
+                        </button>
+                        <button onClick={clickMenuPm}>
+                            PM:(午前)
+                        </button>
+                    </p>
 
-                    <br />
-                    <button onClick={clickMenu1}>
-                        ケアメイク
-                    </button>
-                    <br />
-                    <button onClick={clickMenu2}>
-                        ケアネイル
-                    </button>
-                    <br />
-                    <button onClick={clickMenu3}>
-                        ケアエステ
-                    </button>
-                    <br />
-                    <button onClick={clickMenu4}>
-                        その他
-                    </button>
-                    <br />
-                </p>
+                    {/* // {`${targetTomare.am_pm}`.length !== 0 && */}
+                    <p >
+
+                        <br />
+                        <button onClick={clickMenu1}>
+                            ケアメイク
+                        </button>
+                        <br />
+                        <button onClick={clickMenu2}>
+                            ケアネイル
+                        </button>
+                        <br />
+                        <button onClick={clickMenu3}>
+                            ケアエステ
+                        </button>
+                        <br />
+                        <button onClick={clickMenu4}>
+                            その他
+                        </button>
+                        <br />
+                    </p>
+
+                    <p>
+                        <br />
+                        ***登録内容***
+                        {targetTomare
+                            .map(
+                                (targetTomare: any) => {
+                                    return (
+                                        <div>
+                                            {targetTomare.gappi}{targetTomare.am_pm}
+                                            <br />
+                                            {targetTomare.make === true && <p>めいく</p>}
+                                            {targetTomare.neil === true && <p>ねいる</p>}
+                                            {targetTomare.este === true && <p>えすて</p>}
+                                            {targetTomare.sonota}
+
+                                        </div>
+                                    )
+                                })
+                        }
+                        <button onClick={clickMenu888}>
+                            この内容で登録する
+                        </button>
+                        {/* /* {                    targetTomare.length !== 0 && */}
+                        <div>
+                            <br />
+                            予約枠の取り消し
+                            <br />
+                            <button onClick={clickMenu9am}>AM:午前　</button>
+                            /
+                            <button onClick={clickMenu9pm}>　PM：午後</button>
+                        </div>
+
+                    </p>
+
+                </div>
             }
-            <p>
-                <br />
-                ***登録内容***
-                {targetTomare
-                    .map(
-                        (targetTomare: any) => {
-                            return (
-                                <div>
-                                    {targetTomare.gappi}{targetTomare.am_pm}
-                                    <br />
-                                    {targetTomare.make === true && <p>めいく</p>}
-                                    {targetTomare.neil === true && <p>ねいる</p>}
-                                    {targetTomare.este === true && <p>えすて</p>}
-                                    {targetTomare.sonota}
-                                </div>)
-                        })}
-                {
-                    targetTomare.length !== 0 &&
-                    <div>
-                        <br />
-                        予約枠の取り消し
-                        <br />
-                        <button onClick={clickMenu9am}>
-                            AM
-                        </button>
-                        /
-                        <button onClick={clickMenu9pm}>
-                            PM
-                        </button>
-                    </div>
-                }
-            </p>
+
         </div>
     )
 }
 
 export default PageC1
-

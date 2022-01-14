@@ -4,7 +4,7 @@ import styles from '../styles/Home.module.css'
 import Head from 'next/head'
 import Image from 'next/image'
 import { db } from "../src/firebase"
-import { getFirestore, collection, query, where, onSnapshot, doc, setDoc, Timestamp, addDoc } from 'firebase/firestore'
+import { getFirestore, collection, query, where, onSnapshot, doc, setDoc, Timestamp, serverTimestamp, addDoc } from 'firebase/firestore'
 import { addUser, selectUser } from '../src/features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from "next/router";
@@ -94,7 +94,7 @@ export default function PageLogin() {
     //                         uid,
     //                         name,
     //                         icon,
-    //                         timestamp: Timestamp.fromDate(new Date()),
+    //                         timestamp: serverTimestamp(),
     //                     }, { merge: true }//←上書きされないおまじない
     //                     )
     //                     // fetchAPI()

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import 'firebase/compat/firestore';
 import { db } from "./firebase"
-import { getFirestore, collection, query, where, onSnapshot, doc, setDoc, Timestamp, addDoc } from 'firebase/firestore'
+import { getFirestore, collection, query, where, onSnapshot, doc, setDoc, Timestamp, serverTimestamp, addDoc } from 'firebase/firestore'
 import { addUser, selectUser } from '../src/features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from "next/router";
@@ -130,7 +130,7 @@ export default function App() {
               uid,
               name,
               icon,
-              timestamp: Timestamp.fromDate(new Date()),
+              timestamp: serverTimestamp(),
             }, { merge: true }//←上書きされないおまじない
             )
             // fetchAPI()
