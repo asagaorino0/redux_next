@@ -3,21 +3,25 @@ import { addFormatdate, } from './features/formatDateSlice';
 import { addTomare } from './features/tomareSlice';
 import { addTargetTomare } from './features/targetTomareSlice';
 import { addMenu } from './features/menuSlice';
-import { selectUser } from './features/userSlice';
+import { addUser, selectUser } from '../src/features/userSlice';
+// import { selectUser } from './features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { db } from "./firebase";
 import { getDocs, collection, collectionGroup, query, where, doc, setDoc, Timestamp, serverTimestamp, deleteDoc } from 'firebase/firestore'
 import { TomareState } from "./types/tomare";
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
+// import liff from '@line/liff';
 import { computeSegDraggable } from '@fullcalendar/common';
 import { truncate } from 'fs';
 
 const PageC1 = () => {
     const [users, setUsers] = useState<any>([]);
     const [menus, setMenus] = useState<any>([]);
+    const [make, setMake] = useState<boolean>(false);
+    const [nail, setNail] = useState<boolean>(false);
+    const [este, setEste] = useState<boolean>(false);
     const [sonota, setSonota] = useState<string>("");
-
     const [area, setArea] = useState<string>("未登録");
     const [gappi, setGappi] = useState<string>('');
     const [am_pm, setAm_pm] = useState<string>('');
@@ -26,7 +30,31 @@ const PageC1 = () => {
     const user = useSelector(selectUser);
     const [tomare, setTomare] = useState<any>([]);
     const [formatDate, setFormatDate] = useState<any>([]);
+    // const [uid, setUid] = useState<string>('');
+    // const [name, setName] = useState<string>('');
+    // const [icon, setIcon] = useState<string | undefined>('');
+    // const LINEID = process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID
+
     useEffect(() => {
+        // liff.init({ liffId: LINEID as string })
+        //     .then(() => {
+        //         if (!liff.isLoggedIn()) {
+        //             setUid('k00000')
+        //             liff.login() // ログインしていなければ最初にログインする
+        //         } else if (liff.isInClient()) {
+        //             liff.getProfile()  // ユーザ情報を取得する
+        //                 .then(profile => {
+        //                     // const userId: string = profile.userId
+        //                     const displayName: string = profile.displayName
+        //                     const displayicon: string | undefined = profile.pictureUrl
+        //                     setName(profile.displayName)
+        //                     setUid(profile.userId)
+        //                     setName(displayName)
+        //                     setIcon(displayicon)
+        //                     dispatch(addUser({ name, uid, icon }))
+        //                 })
+        //         }
+        //     })
         const fetchMenus = async () => {
             const q = query(collection(db, 'users'), where("uid", "==", user.uid));
             const snapshot = await getDocs(q)
@@ -79,6 +107,7 @@ const PageC1 = () => {
     };
 
     const clickDay = async (calendar: any) => {
+        // setMake(false), setNail(false), setEste(false), setSonota(""), setAm_pm("")
         // console.log('user:', user.uid)
         // console.log('tomare:', tomare.uid)
         let year = calendar.getFullYear();
@@ -102,41 +131,48 @@ const PageC1 = () => {
 
     const clickMenuAm = () => {
         setAm_pm("AM")
-        // setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}AM`), {
-        //     gappi, uid: user.uid, am_pm: "AM",
-        //     //  timestamp: serverTimestamp(),
-        // }, { merge: true })
+        setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}AM`), {
+            gappi, uid: user.uid, am_pm: "AM",
+            //  timestamp: serverTimestamp(),
+        }, { merge: true })
         fetchTomare()
+        fetchTargetTomare()
+        setMake(targetTomare.make), setNail(targetTomare.nail), setEste(targetTomare.este), setSonota(targetTomare.sonota)
     }
     const clickMenuPm = () => {
         setAm_pm("PM")
-        // setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}PM`), {
-        //     gappi, uid: user.uid, am_pm: "PM",
-        //     // timestamp: serverTimestamp(),
-        // }, { merge: true })
-        fetchTomare()
-    }
-    const clickMenu1 = () => {
-        setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}${am_pm}`), {
-            make: true,
+        setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}PM`), {
+            gappi, uid: user.uid, am_pm: "PM",
             // timestamp: serverTimestamp(),
         }, { merge: true })
         fetchTomare()
+        fetchTargetTomare()
+        setMake(targetTomare.make), setNail(targetTomare.nail), setEste(targetTomare.este), setSonota(targetTomare.sonota)
+    }
+    const clickMenu1 = () => {
+        setMake(true)
+        // setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}${am_pm}`), {
+        //     make:true
+        //     // timestamp: serverTimestamp(),
+        // }, { merge: true })
+        // fetchTomare()
         fetchTargetTomare()
     }
     const clickMenu2 = () => {
-        setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}${am_pm}`), {
-            neil: true,
-            // timestamp: serverTimestamp(),
-        }, { merge: true })
-        fetchTomare()
+        setNail(true)
+        // setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}${am_pm}`), {
+        //     neil: true,
+        //     // timestamp: serverTimestamp(),
+        // }, { merge: true })
+        // fetchTomare()
         fetchTargetTomare()
     }
     const clickMenu3 = () => {
-        setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}${am_pm}`), {
-            este: true, timestamp: serverTimestamp(),
-        }, { merge: true })
-        fetchTomare()
+        setEste(true)
+        // setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}${am_pm}`), {
+        //     este: true, timestamp: serverTimestamp(),
+        // }, { merge: true })
+        // fetchTomare()
         fetchTargetTomare()
     }
     const clickMenu4 = () => {
@@ -159,10 +195,11 @@ const PageC1 = () => {
     }
     const clickMenu888 = () => {
         setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}${am_pm}`), {
-            sonota, gappi, uid: user.uid, am_pm: am_pm, menu: am_pm, timestamp: serverTimestamp(),
+            make, nail, este, sonota, gappi, uid: user.uid, am_pm: am_pm, menu: am_pm, timestamp: serverTimestamp(),
         }, { merge: true })
         fetchTomare()
         fetchTargetTomare()
+        setMake(false), setNail(false), setEste(false), setSonota(""), setAm_pm("")
     }
     const clickMenu9am = () => {
         deleteDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}AM`))
@@ -183,7 +220,31 @@ const PageC1 = () => {
         setTomare(tomareData)
     }
     const fetchTargetTomare = async () => {
+        const targetDate = `${formatDate}${am_pm}`
+        // const q = query(collection(db, "users", user.uid, 'tomare'), where("gappi", "==", formatDate));
+        const q = query(collection(db, "users", user.uid, 'tomare', targetDate))
+        const snapshot = await getDocs(q)
+        const tomareLength = snapshot.docs.length
+        const tomareData = snapshot.docs.map(
+            (docT: any) => ({ ...docT.data() } as TomareState))
+        dispatch(addTargetTomare(tomareData))
+        setTargetTomare(tomareData)
+        console.log(`targetTomareLength`, tomareLength)
+    }
+    const fetchTargetTomareAM = async () => {
         const q = query(collection(db, "users", user.uid, 'tomare'), where("gappi", "==", formatDate));
+        // const q = query(collection(db, "users", user.uid, 'tomare', `${formatDate}AM`))
+        const snapshot = await getDocs(q)
+        const tomareLength = snapshot.docs.length
+        const tomareData = snapshot.docs.map(
+            (docT: any) => ({ ...docT.data() } as TomareState))
+        dispatch(addTargetTomare(tomareData))
+        setTargetTomare(tomareData)
+        console.log(`targetTomareLength`, tomareLength)
+    }
+    const fetchTargetTomarePM = async () => {
+        // const q = query(collection(db, "users", user.uid, 'tomare'), where("gappi", "==", formatDate));
+        const q = query(collection(db, "users", user.uid, 'tomare', `${formatDate}PM`))
         const snapshot = await getDocs(q)
         const tomareLength = snapshot.docs.length
         const tomareData = snapshot.docs.map(
@@ -252,9 +313,9 @@ const PageC1 = () => {
                             `${formatDate}`
                         }
                         <br />
-                        <button onClick={clickMenuAm}>AM:午前 </button>
+                        <button onClick={clickMenuAm}>AM:午前　</button>
                         /
-                        <button onClick={clickMenuPm}> PM:午後</button>
+                        <button onClick={clickMenuPm}>　PM:午後</button>
                     </p>
 
                     {/* // {`${targetTomare.am_pm}`.length !== 0 && */}
@@ -290,7 +351,7 @@ const PageC1 = () => {
                                             {targetTomare.gappi}{targetTomare.am_pm}
                                             <br />
                                             {targetTomare.make === true && <p>めいく</p>}
-                                            {targetTomare.neil === true && <p>ねいる</p>}
+                                            {targetTomare.nail === true && <p>ねいる</p>}
                                             {targetTomare.este === true && <p>えすて</p>}
                                             {targetTomare.sonota}
 
@@ -298,6 +359,12 @@ const PageC1 = () => {
                                     )
                                 })
                         }
+                        <br />
+                        {formatDate}{am_pm}
+                        {make === true && <p>ケアメイク</p>}
+                        {nail === true && <p>ケアネイル</p>}
+                        {este === true && <p>ケアエステ</p>}
+                        {sonota !== "" && <p>その他</p>}
                         <br />
                         <button onClick={clickMenu888}>
                             この内容で登録する
