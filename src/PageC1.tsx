@@ -10,14 +10,19 @@ import { getDocs, collection, collectionGroup, query, where, doc, setDoc, Timest
 import { TomareState } from "./types/tomare";
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
+import styles from '../styles/Home.module.css'
+
+import P_make from "./img/P_make.png"
 import { computeSegDraggable } from '@fullcalendar/common';
 import { truncate } from 'fs';
 
 const PageC1 = () => {
     const [users, setUsers] = useState<any>([]);
     const [menus, setMenus] = useState<any>([]);
+    const [make, setMake] = useState<boolean>(false);
+    const [nail, setNail] = useState<boolean>(false);
+    const [este, setEste] = useState<boolean>(false);
     const [sonota, setSonota] = useState<string>("");
-
     const [area, setArea] = useState<string>("未登録");
     const [gappi, setGappi] = useState<string>('');
     const [am_pm, setAm_pm] = useState<string>('');
@@ -117,26 +122,29 @@ const PageC1 = () => {
         fetchTomare()
     }
     const clickMenu1 = () => {
-        setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}${am_pm}`), {
-            make: true,
-            // timestamp: serverTimestamp(),
-        }, { merge: true })
-        fetchTomare()
+        setMake(true)
+        // setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}${am_pm}`), {
+        //     make:true
+        //     // timestamp: serverTimestamp(),
+        // }, { merge: true })
+        // fetchTomare()
         fetchTargetTomare()
     }
     const clickMenu2 = () => {
-        setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}${am_pm}`), {
-            neil: true,
-            // timestamp: serverTimestamp(),
-        }, { merge: true })
-        fetchTomare()
+        setNail(true)
+        // setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}${am_pm}`), {
+        //     neil: true,
+        //     // timestamp: serverTimestamp(),
+        // }, { merge: true })
+        // fetchTomare()
         fetchTargetTomare()
     }
     const clickMenu3 = () => {
-        setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}${am_pm}`), {
-            este: true, timestamp: serverTimestamp(),
-        }, { merge: true })
-        fetchTomare()
+        setEste(true)
+        // setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}${am_pm}`), {
+        //     este: true, timestamp: serverTimestamp(),
+        // }, { merge: true })
+        // fetchTomare()
         fetchTargetTomare()
     }
     const clickMenu4 = () => {
@@ -159,18 +167,21 @@ const PageC1 = () => {
     }
     const clickMenu888 = () => {
         setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}${am_pm}`), {
-            sonota, gappi, uid: user.uid, am_pm: am_pm, menu: am_pm, timestamp: serverTimestamp(),
+            make, nail, este, sonota, gappi, uid: user.uid, am_pm: am_pm, menu: am_pm, timestamp: serverTimestamp(),
         }, { merge: true })
         fetchTomare()
         fetchTargetTomare()
+        setMake(false), setNail(false), setEste(false), setSonota(""), setAm_pm("")
     }
     const clickMenu9am = () => {
         deleteDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}AM`))
+        fetchTomare()
         fetchTargetTomare()
         // setTargetTomare(0)
     }
     const clickMenu9pm = () => {
         deleteDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}PM`))
+        fetchTomare()
         fetchTargetTomare()
         // setTargetTomare(0)
     }
@@ -193,9 +204,12 @@ const PageC1 = () => {
         console.log(`targetTomareLength`, tomareLength)
     }
     const [targetTomare, setTargetTomare] = useState<any>([])
-
+    const img_make: any = { src: "https://firebasestorage.googleapis.com/v0/b/next-app-db888.appspot.com/o/P_make.png?alt=media&token=eeaf12cd-39be-4fda-8945-ec2bcb1b24dd", alt: "ケアメイク", style: { width: '60px', height: '45px' } }
+    const img_nail: any = { src: "https://firebasestorage.googleapis.com/v0/b/next-app-db888.appspot.com/o/P_nail.png?alt=media&token=42117e21-66df-4049-a948-46840912645a", alt: "ケアネイル", style: { width: '60px', height: '45px' } }
+    const img_este: any = { src: "https://firebasestorage.googleapis.com/v0/b/next-app-db888.appspot.com/o/P_este.png?alt=media&token=5fe75701-ec95-424a-8ba7-a547e313dd19", alt: "ケアエステ", style: { width: '60px', height: '45px' } }
+    const img_sonota: any = { src: "https://firebasestorage.googleapis.com/v0/b/next-app-db888.appspot.com/o/P_hoka.png?alt=media&token=0d98a224-f460-4527-8208-209f6a52a55c", alt: "その他", style: { width: '60px', height: '45px' } }
     return (
-        <div className="App">
+        <div className={styles.main}>
             <span >pageB2：枠登録</span>
             <br />
             {`${user.icon}`.length !== 0 &&
@@ -247,65 +261,104 @@ const PageC1 = () => {
             <br />
             {`${formatDate}`.length !== 0 &&
                 <div>
-                    <p>
-                        {
-                            `${formatDate}`
-                        }
-                        <br />
-                        <button onClick={clickMenuAm}>AM:午前 </button>
-                        /
-                        <button onClick={clickMenuPm}> PM:午後</button>
-                    </p>
+                    <div className={styles.grid}>
+                        <h3 className="mb-4  text-3xl">
+                            {formatDate}＿
+                        </h3>
+                        <h3 className="mb-4 text-green-500 text-3xl">
+                            <div className={styles.grid}>
+                                {/* <h3 className="mb-4 text-green-500 text-3xl"> */}
+                                <button onClick={clickMenuAm}>午前  </button>
+                                {/* </h3> */}
+                                ／
+                                {/* <h3 className="mb-4 text-green-500 text-3xl"> */}
+                                <button onClick={clickMenuPm}>   午後</button>
+
+                            </div>
+                        </h3>
+                    </div>
 
                     {/* // {`${targetTomare.am_pm}`.length !== 0 && */}
-                    <p >
-
-                        <br />
-                        <button onClick={clickMenu1}>
-                            ケアメイク
-                        </button>
-                        <br />
-                        <button onClick={clickMenu2}>
-                            ケアネイル
-                        </button>
-                        <br />
-                        <button onClick={clickMenu3}>
-                            ケアエステ
-                        </button>
-                        <br />
-                        <button onClick={clickMenu4}>
-                            その他
-                        </button>
-                        <br />
+                    <p >menuをクリック
+                        <div className={styles.grid}>
+                            <div >
+                                <button onClick={clickMenu1}>
+                                    <img　{...img_make} />
+                                    ケアメイク
+                                </button>
+                            </div>
+                            <div>
+                                <button onClick={clickMenu2}>
+                                    <img {...img_nail} />
+                                    ケアネイル
+                                </button>
+                            </div>
+                            <div>
+                                <button onClick={clickMenu3}>
+                                    <img {...img_este} />
+                                    ケアエステ
+                                </button>
+                            </div>
+                            <div>
+                                <button onClick={clickMenu4}>
+                                    <img {...img_sonota} />
+                                    その他
+                                </button>
+                            </div>
+                            <br />
+                        </div>
                     </p>
 
                     <p>
                         <br />
-                        ***登録内容***
+                        ***現在の登録内容***
+
                         {targetTomare
                             .map(
                                 (targetTomare: any) => {
                                     return (
-                                        <div>
-                                            {targetTomare.gappi}{targetTomare.am_pm}
-                                            <br />
-                                            {targetTomare.make === true && <p>めいく</p>}
-                                            {targetTomare.neil === true && <p>ねいる</p>}
-                                            {targetTomare.este === true && <p>えすて</p>}
-                                            {targetTomare.sonota}
-
+                                        <div className={styles.grid}>
+                                            <h3 className="mb-4  text-3xl">
+                                                {/* {targetTomare.gappi} */}
+                                                {targetTomare.am_pm}:
+                                            </h3>
+                                            <div className={styles.grid}>
+                                                {targetTomare.make === true && <p><img {...img_make} /></p>}
+                                                {targetTomare.nail === true && <p><img {...img_nail} /></p>}
+                                                {targetTomare.este === true && <p><img {...img_este} /></p>}
+                                                {`${targetTomare.sonota}`.length !== 0 &&
+                                                    <img {...img_sonota} />
+                                                }
+                                            </div>
                                         </div>
                                     )
                                 })
                         }
                         <br />
-                        <button onClick={clickMenu888}>
-                            この内容で登録する
-                        </button>
-                        {/* /* {                    targetTomare.length !== 0 && */}
+                        {`${am_pm}`.length !== 0 &&
+                            <div>
+                                ***設定した内容*****
+
+                                <h3 className="mb-4  text-3xl">
+                                    {formatDate}{am_pm}
+                                </h3>
+                                <div className={styles.grid}>
+                                    {make === true && <p><img {...img_make} /></p>}
+                                    {nail === true && <p><img {...img_nail} /></p>}
+                                    {este === true && <p><img {...img_este} /></p>}
+                                    {sonota !== "" && <p><img {...img_sonota} /></p>}
+                                </div>
+                                <br />
+                                <h3 className="mb-4 text-green-500 text-3xl">
+                                    <button onClick={clickMenu888}>
+                                        この内容で登録する
+                                    </button>
+                                </h3>
+                            </div>
+                        }
                         <div>
                             <br />
-                            予約枠の取り消し
+                            ***予約枠の取り消し***
                             <br />
                             <button onClick={clickMenu9am}>AM:午前　</button>
                             /
