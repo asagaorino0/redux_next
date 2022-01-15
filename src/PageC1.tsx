@@ -101,7 +101,8 @@ const PageC1 = () => {
     const clickMenuAm = () => {
         setAm_pm("AM")
         setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}AM`), {
-            gappi, uid: user.uid, am_pm: "AM", timestamp: serverTimestamp(),
+            gappi, uid: user.uid, am_pm: "AM",
+            //  timestamp: serverTimestamp(),
         }, { merge: true })
         fetchTomare()
         setAdd(0)
@@ -109,21 +110,24 @@ const PageC1 = () => {
     const clickMenuPm = () => {
         setAm_pm("PM")
         setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}PM`), {
-            gappi, uid: user.uid, am_pm: "PM", timestamp: serverTimestamp(),
+            gappi, uid: user.uid, am_pm: "PM",
+            // timestamp: serverTimestamp(),
         }, { merge: true })
         fetchTomare()
         setAdd(0)
     }
     const clickMenu1 = () => {
         setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}${am_pm}`), {
-            make: true, timestamp: serverTimestamp(),
+            make: true,
+            // timestamp: serverTimestamp(),
         }, { merge: true })
         fetchTomare()
         fetchTargetTomare()
     }
     const clickMenu2 = () => {
         setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}${am_pm}`), {
-            neil: true, timestamp: serverTimestamp(),
+            neil: true,
+            // timestamp: serverTimestamp(),
         }, { merge: true })
         fetchTomare()
         fetchTargetTomare()
@@ -137,7 +141,8 @@ const PageC1 = () => {
     }
     const clickMenu4 = () => {
         setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}${am_pm}`), {
-            sonota: "その他", timestamp: serverTimestamp(),
+            sonota: "その他",
+            // timestamp: serverTimestamp(),
         }, { merge: true })
         fetchTomare()
         fetchTargetTomare()
@@ -234,15 +239,12 @@ const PageC1 = () => {
                 <div>
                     <p>
                         {
-                            `${formatDate}の`
+                            `${formatDate}`
                         }
                         <br />
-                        <button onClick={clickMenuAm}>
-                            AM:(午前)
-                        </button>
-                        <button onClick={clickMenuPm}>
-                            PM:(午前)
-                        </button>
+                        <button onClick={clickMenuAm}>AM:午前 </button>
+                        /
+                        <button onClick={clickMenuPm}> PM:午後</button>
                     </p>
 
                     {/* // {`${targetTomare.am_pm}`.length !== 0 && */}
