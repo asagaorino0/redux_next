@@ -105,63 +105,13 @@ const PageC1 = () => {
         console.log(`targetTomareLength`, tomareLength)
     };
 
-    const clickMenuAm = () => {
-        setAm_pm("AM")
-        // setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}AM`), {
-        //     gappi, uid: user.uid, am_pm: "AM",
-        //     //  timestamp: serverTimestamp(),
-        // }, { merge: true })
-        fetchTomare()
-    }
-    const clickMenuPm = () => {
-        setAm_pm("PM")
-        // setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}PM`), {
-        //     gappi, uid: user.uid, am_pm: "PM",
-        //     // timestamp: serverTimestamp(),
-        // }, { merge: true })
-        fetchTomare()
-    }
-    const clickMenu1 = () => {
-        setMake(true)
-        // setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}${am_pm}`), {
-        //     make:true
-        //     // timestamp: serverTimestamp(),
-        // }, { merge: true })
-        // fetchTomare()
-        fetchTargetTomare()
-    }
-    const clickMenu2 = () => {
-        setNail(true)
-        // setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}${am_pm}`), {
-        //     neil: true,
-        //     // timestamp: serverTimestamp(),
-        // }, { merge: true })
-        // fetchTomare()
-        fetchTargetTomare()
-    }
-    const clickMenu3 = () => {
-        setEste(true)
-        // setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}${am_pm}`), {
-        //     este: true, timestamp: serverTimestamp(),
-        // }, { merge: true })
-        // fetchTomare()
-        fetchTargetTomare()
-    }
+    const clickMenuAm = () => { setAm_pm("AM"); fetchTomare() }
+    const clickMenuPm = () => { setAm_pm("PM"); fetchTomare() }
+    const clickMenu1 = () => { setMake(true); fetchTargetTomare() }
+    const clickMenu2 = () => { setNail(true); fetchTargetTomare() }
+    const clickMenu3 = () => { setEste(true); fetchTargetTomare() }
     const clickMenu4 = () => {
         setSonota("その他")
-        // setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}${am_pm}`), {
-        //     sonota: "その他",
-        //     // timestamp: serverTimestamp(),
-        // }, { merge: true })
-        fetchTomare()
-        fetchTargetTomare()
-    }
-    const clickMenu88 = () => {
-        const am_pm = "AM"
-        const gappi = 20220102
-        setDoc(doc(db, 'users', user.uid, 'tomare', '20220102AM'), {
-            menu: am_pm, timestamp: serverTimestamp(),
-        }, { merge: true })
         fetchTomare()
         fetchTargetTomare()
     }
@@ -210,8 +160,8 @@ const PageC1 = () => {
     const img_sonota: any = { src: "https://firebasestorage.googleapis.com/v0/b/next-app-db888.appspot.com/o/P_hoka.png?alt=media&token=0d98a224-f460-4527-8208-209f6a52a55c", alt: "その他", style: { width: '60px', height: '45px' } }
     return (
         <div className={styles.main}>
-            <span >pageB2：枠登録</span>
-            <br />
+            {/* <span >pageB2：枠登録</span>
+            <br /> */}
             {`${user.icon}`.length !== 0 &&
                 <img
                     src={`${user.icon}`}
