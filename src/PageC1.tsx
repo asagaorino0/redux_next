@@ -16,6 +16,11 @@ import { truncate } from 'fs';
 const PageC1 = () => {
     const [users, setUsers] = useState<any>([]);
     const [menus, setMenus] = useState<any>([]);
+    const [make, setMake] = useState<boolean>(false);
+    const [nail, setNail] = useState<boolean>(false);
+    const [este, setEste] = useState<boolean>(false);
+    const [sonota, setSonota] = useState<string>("");
+
     const [area, setArea] = useState<string>("未登録");
     const [gappi, setGappi] = useState<string>('');
     const [am_pm, setAm_pm] = useState<string>('');
@@ -100,59 +105,71 @@ const PageC1 = () => {
 
     const clickMenuAm = () => {
         setAm_pm("AM")
-        setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}AM`), {
-            gappi, uid: user.uid, am_pm: "AM",
-            //  timestamp: serverTimestamp(),
-        }, { merge: true })
+        // setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}AM`), {
+        //     gappi, uid: user.uid, am_pm: "AM",
+        //     //  timestamp: serverTimestamp(),
+        // }, { merge: true })
         fetchTomare()
-        setAdd(0)
     }
     const clickMenuPm = () => {
         setAm_pm("PM")
-        setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}PM`), {
-            gappi, uid: user.uid, am_pm: "PM",
-            // timestamp: serverTimestamp(),
-        }, { merge: true })
+        // setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}PM`), {
+        //     gappi, uid: user.uid, am_pm: "PM",
+        //     // timestamp: serverTimestamp(),
+        // }, { merge: true })
         fetchTomare()
-        setAdd(0)
     }
     const clickMenu1 = () => {
-        setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}${am_pm}`), {
-            make: true,
-            // timestamp: serverTimestamp(),
-        }, { merge: true })
-        fetchTomare()
+        setMake(true)
+        // setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}${am_pm}`), {
+        //     make:true
+        //     // timestamp: serverTimestamp(),
+        // }, { merge: true })
+        // fetchTomare()
         fetchTargetTomare()
     }
     const clickMenu2 = () => {
-        setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}${am_pm}`), {
-            neil: true,
-            // timestamp: serverTimestamp(),
-        }, { merge: true })
-        fetchTomare()
+        setNail(true)
+        // setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}${am_pm}`), {
+        //     neil: true,
+        //     // timestamp: serverTimestamp(),
+        // }, { merge: true })
+        // fetchTomare()
         fetchTargetTomare()
     }
     const clickMenu3 = () => {
-        setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}${am_pm}`), {
-            este: true, timestamp: serverTimestamp(),
-        }, { merge: true })
-        fetchTomare()
+        setEste(true)
+        // setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}${am_pm}`), {
+        //     este: true, timestamp: serverTimestamp(),
+        // }, { merge: true })
+        // fetchTomare()
         fetchTargetTomare()
     }
     const clickMenu4 = () => {
-        setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}${am_pm}`), {
-            sonota: "その他",
-            // timestamp: serverTimestamp(),
+        setSonota("その他")
+        // setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}${am_pm}`), {
+        //     sonota: "その他",
+        //     // timestamp: serverTimestamp(),
+        // }, { merge: true })
+        fetchTomare()
+        fetchTargetTomare()
+    }
+    const clickMenu88 = () => {
+        const am_pm = "AM"
+        const gappi = 20220102
+        setDoc(doc(db, 'users', user.uid, 'tomare', '20220102AM'), {
+            menu: am_pm, timestamp: serverTimestamp(),
         }, { merge: true })
         fetchTomare()
         fetchTargetTomare()
     }
     const clickMenu888 = () => {
         setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}${am_pm}`), {
-            menu: am_pm, timestamp: serverTimestamp(),
+            make, nail, este, sonota, gappi, uid: user.uid, am_pm: am_pm, menu: am_pm, timestamp: serverTimestamp(),
         }, { merge: true })
         fetchTomare()
         fetchTargetTomare()
+        setMake(false), setNail(false), setEste(false)
     }
     const clickMenu9am = () => {
         deleteDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}AM`))
@@ -242,9 +259,9 @@ const PageC1 = () => {
                             `${formatDate}`
                         }
                         <br />
-                        <button onClick={clickMenuAm}>AM:午前 </button>
+                        <button onClick={clickMenuAm}>AM:午前　</button>
                         /
-                        <button onClick={clickMenuPm}> PM:午後</button>
+                        <button onClick={clickMenuPm}>　PM:午後</button>
                     </p>
 
                     {/* // {`${targetTomare.am_pm}`.length !== 0 && */}
@@ -272,7 +289,7 @@ const PageC1 = () => {
                     <p>
                         <br />
                         ***登録内容***
-                        {targetTomare
+                        {/* {targetTomare
                             .map(
                                 (targetTomare: any) => {
                                     return (
@@ -280,14 +297,21 @@ const PageC1 = () => {
                                             {targetTomare.gappi}{targetTomare.am_pm}
                                             <br />
                                             {targetTomare.make === true && <p>めいく</p>}
-                                            {targetTomare.neil === true && <p>ねいる</p>}
+                                            {targetTomare.nail === true && <p>ねいる</p>}
                                             {targetTomare.este === true && <p>えすて</p>}
                                             {targetTomare.sonota}
 
                                         </div>
                                     )
                                 })
-                        }
+                        } */}
+                        <br />
+                        {formatDate}{am_pm}
+                        {make === true && <p>ケアメイク</p>}
+                        {nail === true && <p>ケアネイル</p>}
+                        {este === true && <p>ケアエステ</p>}
+                        {sonota !== "" && <p>その他</p>}
+                        <br />
                         <button onClick={clickMenu888}>
                             この内容で登録する
                         </button>
