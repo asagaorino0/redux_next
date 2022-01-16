@@ -1,38 +1,18 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import type { NextPage } from 'next';
+import Head from 'next/head';
+import Image from 'next/image';
+import styles from '../styles/Home.module.css';
 import React, { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom';
-import Link from 'next/link'
-// import './index.css';
-// import App from '../src/App';
 import { store } from '../src/app/store';
 import { Provider } from 'react-redux';
-import { useRouter } from "next/router";
-import dynamic from 'next/dynamic'
-import * as line from '@line/bot-sdk';
-import useSWR from 'swr'
-import User from '../components/User'
-const fetcher = (url: string) => fetch(url).then((res) => res.json())
-const App = dynamic(
-  () => import('../src/App'),
-  { ssr: false }
-)
-const PageAA = dynamic(
-  () => import('../src/PageAA'),
-  { ssr: false }
-)
-// const PageB = dynamic(
-//   () => import('../src/PageB'),
-//   { ssr: false }
-// )
-
+import { useRouter } from 'next/router';
+import dynamic from 'next/dynamic';
+const App = dynamic(() => import('../src/App'), { ssr: false });
 const Home: NextPage = () => {
-  const router = useRouter()
+  const router = useRouter();
   const toPageA = () => {
-    router.push('./PageA')
-  }
+    router.push('./PageA');
+  };
 
   return (
     <div className={styles.container}>
@@ -46,42 +26,14 @@ const Home: NextPage = () => {
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
-        <p className={styles.description}>
-          {/* Get started by editing{' '} */}
-          <button onClick={toPageA}>
-            <React.StrictMode >
-              <Provider store={store}>
-                {/* <PageAA /> */}
-              </Provider>
-            </React.StrictMode>
-          </button>
-        </p>
 
         <section className="h-screen w-4/5 max-w-5xl mx-auto flex items-center justifycenter flex-col">
-          {/* <h1 className="mb-4 text-green-500 text-3xl">サンプル</h1> */}
-          {/* ReactDOM.render( */}
-          <React.StrictMode >
-            <Provider store={store}>
-              <App />
-            </Provider>
-          </React.StrictMode>
-          <div>
-            {/* {data.map((p: any, id: any) => (
-              <User key={id} user={p} />
-            ))} */}
-            {/* <Link href="/test/[uid]" as={`/test/416`}>
-              <a>indextest:</a>
-            </Link>
-            <Link href="/user/[uid]" as={`/user/416`}>
-              <a>user</a>
-            </Link> */}
-          </div>
+          <Provider store={store}>
+            <App />
+          </Provider>
         </section>
         <div className={styles.grid}>
-          {/* <Link href="http://localhost:3000/PageA">pageA</Link> */}
-          <p>
-            Instantly deploy your Next.js site to a public URL with Vercel.
-          </p>
+          <p>Instantly deploy your Next.js site to a public URL with Vercel.</p>
         </div>
       </main>
 
@@ -98,7 +50,7 @@ const Home: NextPage = () => {
         </a>
       </footer>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
