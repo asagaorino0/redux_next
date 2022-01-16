@@ -64,7 +64,8 @@ const CalendarPage = ({ users }: { users: UsersState }) => {
                 {
                     tomare
                         .map((data: any) => {
-                            if (formatDate === data.gappi && data.uid === users.uid) {
+                            // if (formatDate === data.gappi && data.uid === users.uid) {
+                            if (formatDate === data.gappi) {
                                 return (
                                     <div key={data.uid}>
                                         <div>

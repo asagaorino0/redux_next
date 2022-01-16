@@ -268,10 +268,12 @@ const PageC1 = () => {
                                 (targetTomare: any) => {
                                     return (
                                         <div className={styles.grid}>
+                                            <br />
                                             <h3 className="mb-4  text-3xl">
                                                 {/* {targetTomare.gappi} */}
-                                                {targetTomare.am_pm}:
+                                                {targetTomare.am_pm}
                                             </h3>
+
                                             <div className={styles.grid}>
                                                 {targetTomare.make === true && <p><img {...img_make} /></p>}
                                                 {targetTomare.nail === true && <p><img {...img_nail} /></p>}

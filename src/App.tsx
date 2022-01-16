@@ -112,7 +112,7 @@ export default function App() {
         <div>
           {/* <button onClick={registUser}> */}
           {/* // <button onClick={onload}> */}
-          <h2 className="mb-4 text-green-500 text-3xl">ようこそ</h2>
+          <h2 className="mb-4  text-3xl">ようこそ</h2>
           {/* </button> */}
         </div>
       }

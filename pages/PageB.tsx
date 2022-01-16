@@ -5,8 +5,9 @@ import { useRouter } from "next/router";
 import { store } from '../src/app/store';
 import { Provider } from 'react-redux';
 import dynamic from 'next/dynamic'
-import PageC1 from '../src/PageC1'
+import PageB1 from '../src/PageB1'
 import PageB2 from '../src/PageB2'
+import CalendarPage from '../src/Calendar'
 // import PageB1 from '../src/PageB1'
 const PageB = () => {
     const router = useRouter()
@@ -35,8 +36,9 @@ const PageB = () => {
                 {/* {user.name}/{user.age} */}
                 <React.StrictMode >
                     <Provider store={store}>
-                        {/* <PageB1 /> */}
-                        <PageC1 />
+                        <PageB1 />
+                        {/* <PageB2 /> */}
+                        {/* <CalendarPage /> */}
                     </Provider>
                 </React.StrictMode>
             </h1>

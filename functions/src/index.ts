@@ -31,7 +31,7 @@ export const updateYoyaku = functions.firestore
     .onUpdate((change, context) => {
         const newValue = change.after.data();
         const gappi = newValue.gappi;
-        const uid = newValue.uid;
+        // const uid = newValue.uid;
         const am_pm = newValue.am_pm;
         const config = {
             channelAccessToken: process.env.NEXT_PUBLIC_LINE_ACCESS_TOKEN!,
@@ -44,8 +44,9 @@ export const updateYoyaku = functions.firestore
         };
         const message2: any = {
             type: 'text',
-            text: `hello!${gappi}${am_pm}に予約枠を設定しました。オファーをお待ちください。`
+            text: `オファーをお待ちください。`
         };
+        const uid = "Uda1c6a4e5b348c5ba3c95de639e32414"
         client.pushMessage(
             uid,
             [message1, message2],

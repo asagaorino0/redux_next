@@ -1,13 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { addUser, selectUser } from './features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { addUsers, selectUsers } from './features/usersSlice';
+
 import { useRouter } from "next/router";
-import { addMenu } from './features/menuSlice';
+
 import { db } from "./firebase";
-import { getFirestore, getDocs, collection, collectionGroup, query, where, onSnapshot, doc, setDoc, Timestamp, serverTimestamp, addDoc } from 'firebase/firestore'
+
+import { getFirestore, getDocs, collection, collectionGroup, query, where, onSnapshot, doc, setDoc, Timestamp, addDoc } from 'firebase/firestore'
+
 import CalendarPage from "./Calendar";
+
 import { store } from '../src/app/store';
+
 import { Provider } from 'react-redux';
+
 import { UserState } from "../src/types/user";
 
 
@@ -26,14 +33,13 @@ const PageB1 = () => {
     const [gappi, setGappi] = useState<string>('');
     const [tokoro, setTokoro] = useState<string>('');
     const [star, setStar] = useState<number>(0);
-    const [menus, setMenus] = useState<any>([]);
     const dispatch = useDispatch();
     const user = useSelector(selectUser);
     const router = useRouter()
 
-    // const toHome = () => {
-    //     router.push('/')
-    // }
+    const toHome = () => {
+        router.push('/')
+    }
     // useEffect(() => {
     //     let user: any = []
     //     const q = query(collection(db, 'users'), where('uid', '==', `${user.uid}`))
@@ -47,16 +53,16 @@ const PageB1 = () => {
     //         console.log('name:', user.namae)
     //     })
     // }, []);
-    // const registYoyaku = () => {
-    //     const addRef = addDoc(collection(db, 'yoyaku', `${user.uid}`, 'ukeru', `${gappi}oo`), {
-    //         sei,
-    //         menu,
-    //         uid: `${user.uid}`,
-    //         namae: namae,
-    //         tokoro,
-    //         ukeruId: `${gappi}oo`,
-    //         timestamp: serverTimestamp(),
-    //     })
+    // // const registYoyaku = () => {
+    // //     const addRef = addDoc(collection(db, 'yoyaku', `${user.uid}`, 'ukeru', `${gappi}oo`), {
+    // //         sei,
+    // //         menu,
+    // //         uid: `${user.uid}`,
+    // //         namae: namae,
+    // //         tokoro,
+    // //         ukeruId: `${gappi}oo`,
+    // //         timestamp: Timestamp.fromDate(new Date()),
+    // //     })
     // //     const setRef = setDoc(doc(db, 'users', `${user.uid}`, 'tomare', `${gappi}oo`), {
     // //         gappi,
     // //         menu,
@@ -64,7 +70,7 @@ const PageB1 = () => {
     // //         namae: namae,
     // //         tokoro,
     // //         ukeruId: `${gappi}oo`,
-    // //         timestamp: serverTimestamp(),
+    // //         timestamp: Timestamp.fromDate(new Date()),
     // //     }, { merge: true }//←上書きされないおまじない
     // //     )
     // //     console.log('ukeru:', addRef)
@@ -84,34 +90,37 @@ const PageB1 = () => {
     useEffect(() => {
         // let users: any = []
         const fetchUsers = async () => {
-            const querrySnapshot = await getDocs(collection(db, 'users'))
-            const usersData = querrySnapshot.docs.map(
+            const q = query(collection(db, 'users'));
+            const snapshot = await getDocs(q)
+            const usersData = snapshot.docs.map(
                 (doc: any) => ({ ...doc.data() } as UserState))
+            dispatch(addUsers({ usersData }))
             setUsers(usersData)
             console.log('usersData:', usersData)
-            console.log('users:', users)
-            registUser()
         }
         fetchUsers()
-        // registUser()
         console.log('users:', users)
-        // fetchTomare(uid)
     }, []);
-    // useEffect(() => {
-    //     const fetchMenus = async () => {
-    //         const q = query(collection(db, 'users'), where("uid", "==", user.uid));
-    //         const snapshot = await getDocs(q)
-    //         const menuData = snapshot.docs.map(
-    //             (doc: any) => ({ ...doc.data().menu }))
-    //         console.log('usersData:', menuData)
-    //         dispatch(addMenu(menuData))
-    //         setMenus(menuData)
-    //         console.log('menus:', menus)
-    //     }
-    //     fetchMenus()
-    //     console.log('menus:', menus)
-    // }, []);
 
+    // useEffect(() => {
+    //     const fetchUsers = async () => {
+    //         // // const snapshot = await getDocs(collection(db, 'users', uid, 'tomare'))
+    //         const snapshot = await getDocs(collection(db, 'users'))
+    //         const usersData = snapshot.docs.map((doc) => {
+    //             return doc.id &&
+    //                 doc.data()
+    //         });
+    //         // (docT: any) => ({ ...docT.data() } as UserState))
+    //         setUsers(usersData)
+    //         // setUid(tomare.uid)
+    //         console.log({ usersData })
+    //         // console.log(users)
+    //         registUser()
+    //     }
+    //     fetchUsers()
+    //     console.log(users)
+    //     // registUser()
+    // }, []);
 
     return (
         <div className="App">
@@ -137,41 +146,42 @@ const PageB1 = () => {
             <h1>住所</h1>
             <input type="text" onChange={(e) => setTokoro(e.target.value)} />
             <br />
-            ************************************************
+            *********************************************************************
             <br />
             {/* <div > */}
             {/* {users.length !== 0 && */}
             {
-                // users
-                //     .map((data: any) => {
-                //         return (
-                //             <div key={data.uid}>
-                //                 <div>
-                //                     <img
-                //                         src={`${data.icon}`}
-                //                         alt=""
-                //                         style={{ borderRadius: '50%', width: '60px', height: '60px' }}
-                //                     />
-                //                 </div>
-                //                 <h1>氏名（屋号）</h1>
-                //                 {data.name}
-                //                 <div>
-                //                 </div>
-                //                 {/* <React.StrictMode > */}
-                //                 {/* <Provider store={store}> */}
-                //                 {/* <CalendarPage tomareId={data.uid} key={data.uid} /> */}
-                //                 {/* </Provider> */}
-                //                 {/* </React.StrictMode> */}
-                //                 {/* <CalendarPage tomareId={tomareId} key={tomare.uid} /> */}
-                //                 <br />
-                // <button onClick={registYoyaku}>登録</button>
-                //             </div >
-                //         );
-                //     })
+                users
+                    .map((data: any) => {
+                        return (
+                            <div key={data.uid}>
+                                <div>
+                                    <img
+                                        src={`${data.icon}`}
+                                        alt=""
+                                        style={{ borderRadius: '50%', width: '60px', height: '60px' }}
+                                    />
+                                </div>
+                                <h1>氏名（屋号）</h1>
+                                {data.name}
+                                <div>
+                                </div>
+                                {/* <React.StrictMode > */}
+                                {/* <Provider store={store}> */}
+                                {/* <CalendarPage tomareId={data.uid} key={data.uid} /> */}
+                                {/* </Provider> */}
+                                {/* </React.StrictMode> */}
+                                {/* <CalendarPage tomareId={tomareId} key={tomare.uid} /> */}
+                                <br />
+                                {/* <button onClick={registYoyaku}>登録</button> */}
+                            </div >
+                        );
+                    })
             }
+
+
         </div >
     )
 }
 
 export default PageB1
-
