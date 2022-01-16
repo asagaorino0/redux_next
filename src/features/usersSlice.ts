@@ -4,11 +4,17 @@ import { UsersState } from "../../src/types/users";
 import { MenuState } from "../../src/types/menu";
 
 const initialState: UsersState = {
+    // menu:{menu:[]},
+    users: [],
     name: '',
     uid: '',
     icon: '',
-    // menu:{menu:[]},
-    users: []
+    tokoro: '',
+    erea: '',
+    namae: '',
+    qr: '',
+    sei: '',
+    sns: '',
 } as UsersState;
 
 export const usersSlice = createSlice({
@@ -20,7 +26,16 @@ export const usersSlice = createSlice({
             state.name = action.payload.name
             state.uid = action.payload.uid
             state.icon = action.payload.icon
-            state.menu = action.payload.menu
+            state.tokoro = action.payload.tokoro
+            state.erea = action.payload.erea
+            state.users = action.payload.users
+            state.namae = action.payload.namae
+            state.qr = action.payload.qr
+            state.sei = action.payload.sei
+            state.sns = action.payload.sns
+
+
+
         }
     },
 });

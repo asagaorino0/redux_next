@@ -2,22 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { addUser, selectUser } from './features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { addUsers, selectUsers } from './features/usersSlice';
-
 import { useRouter } from "next/router";
-
 import { db } from "./firebase";
-
 import { getFirestore, getDocs, collection, collectionGroup, query, where, onSnapshot, doc, setDoc, Timestamp, addDoc } from 'firebase/firestore'
-
 import CalendarPage from "./Calendar";
-
 import { store } from '../src/app/store';
-
 import { Provider } from 'react-redux';
-
 import { UserState } from "../src/types/user";
-
-
 
 const PageB1 = () => {
     // const [user, setUser] = useState<any>([]);
@@ -168,7 +159,7 @@ const PageB1 = () => {
                                 </div>
                                 {/* <React.StrictMode > */}
                                 {/* <Provider store={store}> */}
-                                {/* <CalendarPage tomareId={data.uid} key={data.uid} /> */}
+                                <CalendarPage users={data.uid} key={data.uid} />
                                 {/* </Provider> */}
                                 {/* </React.StrictMode> */}
                                 {/* <CalendarPage tomareId={tomareId} key={tomare.uid} /> */}
