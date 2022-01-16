@@ -142,32 +142,32 @@ const PageB1 = () => {
             {/* <div > */}
             {/* {users.length !== 0 && */}
             {
-                users
-                    .map((data: any) => {
-                        return (
-                            <div key={data.uid}>
-                                <div>
-                                    <img
-                                        src={`${data.icon}`}
-                                        alt=""
-                                        style={{ borderRadius: '50%', width: '60px', height: '60px' }}
-                                    />
-                                </div>
-                                <h1>氏名（屋号）</h1>
-                                {data.name}
-                                <div>
-                                </div>
-                                {/* <React.StrictMode > */}
-                                {/* <Provider store={store}> */}
-                                <CalendarPage users={data.uid} key={data.uid} />
-                                {/* </Provider> */}
-                                {/* </React.StrictMode> */}
-                                {/* <CalendarPage tomareId={tomareId} key={tomare.uid} /> */}
-                                <br />
-                                {/* <button onClick={registYoyaku}>登録</button> */}
-                            </div >
-                        );
-                    })
+                // users
+                //     .map((data: any) => {
+                //         return (
+                //             <div key={data.uid}>
+                //                 <div>
+                //                     <img
+                //                         src={`${data.icon}`}
+                //                         alt=""
+                //                         style={{ borderRadius: '50%', width: '60px', height: '60px' }}
+                //                     />
+                //                 </div>
+                //                 <h1>氏名（屋号）</h1>
+                //                 {data.name}
+                //                 <div>
+                //                 </div>
+                //                 {/* <React.StrictMode > */}
+                //                 {/* <Provider store={store}> */}
+                //                 <CalendarPage users={data.uid} key={data.uid} />
+                //                 {/* </Provider> */}
+                //                 {/* </React.StrictMode> */}
+                //                 {/* <CalendarPage tomareId={tomareId} key={tomare.uid} /> */}
+                //                 <br />
+                //                 {/* <button onClick={registYoyaku}>登録</button> */}
+                //             </div >
+                //         );
+                //     })
             }
 
 
