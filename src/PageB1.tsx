@@ -2,13 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { addUser, selectUser } from './features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { addUsers, selectUsers } from './features/usersSlice';
+import { addTomare, selectTomare } from './features/tomareSlice';
 import { useRouter } from "next/router";
 import { db } from "./firebase";
 import { getFirestore, getDocs, collection, collectionGroup, query, where, onSnapshot, doc, setDoc, Timestamp, addDoc } from 'firebase/firestore'
 import CalendarPage from "./Calendar";
 import { store } from '../src/app/store';
 import { Provider } from 'react-redux';
-import { UserState } from "../src/types/user";
+import { UsersState } from "../src/types/users";
+import { TomareState } from "../src/types/tomare";
+import styles from '../styles/Home.module.css'
 
 const PageB1 = () => {
     // const [user, setUser] = useState<any>([]);
@@ -28,9 +31,9 @@ const PageB1 = () => {
     const user = useSelector(selectUser);
     const router = useRouter()
 
-    const toHome = () => {
-        router.push('/')
-    }
+    // const toHome = () => {
+    //     router.push('/')
+    // }
     // useEffect(() => {
     //     let user: any = []
     //     const q = query(collection(db, 'users'), where('uid', '==', `${user.uid}`))
@@ -68,67 +71,57 @@ const PageB1 = () => {
     // //     console.log('tomare:', setRef)
     // //     alert('登録しました。ありがとうございます。')
     // // };
-    const [users, setUsers] = useState<any>();
+    const [users, setUsers] = useState<any>([]);
     const [tomare, setTomare] = useState<any>([]);
     const [tomareId, setTomareId] = useState<any>([]);
     // const uid = "Uda1c6a4e5b348c5ba3c95de639e32414"
-    const registUser = () => {
-        dispatch(addUser({
-            users,
-        }))
-    }
-
-    useEffect(() => {
-        // let users: any = []
-        const fetchUsers = async () => {
-            const q = query(collection(db, 'users'));
-            const snapshot = await getDocs(q)
-            const usersData = snapshot.docs.map(
-                (doc: any) => ({ ...doc.data() } as UserState))
-            dispatch(addUsers({ usersData }))
-            setUsers(usersData)
-            console.log('usersData:', usersData)
-        }
-        fetchUsers()
+    // const registUser = () => {
+    //     dispatch(addUser({
+    //         users,
+    //     }))
+    // }
+    const fetchUsers = async () => {
+        const q = query(collection(db, 'users'));
+        const snapshot = await getDocs(q)
+        const usersData = snapshot.docs.map(
+            (doc: any) => ({ ...doc.data() } as UsersState))
+        dispatch(addUsers({ usersData }))
+        setUsers(usersData)
+        console.log('usersData:', usersData)
         console.log('users:', users)
+    }
+    const fetchTomare = async () => {
+        const q = query(collectionGroup(db, 'tomare'));
+        const snapshot = await getDocs(q)
+        const tomareData = snapshot.docs.map(
+            (docT: any) => ({ ...docT.data() } as TomareState))
+        // setTomare(tomareData)
+        dispatch(addTomare(tomareData))
+        setTomare(tomareData)
+        console.log('tomareData:', tomareData)
+        console.log('tomare:', tomare)
+    }
+    useEffect(() => {
+        fetchUsers()
+        fetchTomare()
     }, []);
 
-    // useEffect(() => {
-    //     const fetchUsers = async () => {
-    //         // // const snapshot = await getDocs(collection(db, 'users', uid, 'tomare'))
-    //         const snapshot = await getDocs(collection(db, 'users'))
-    //         const usersData = snapshot.docs.map((doc) => {
-    //             return doc.id &&
-    //                 doc.data()
-    //         });
-    //         // (docT: any) => ({ ...docT.data() } as UserState))
-    //         setUsers(usersData)
-    //         // setUid(tomare.uid)
-    //         console.log({ usersData })
-    //         // console.log(users)
-    //         registUser()
-    //     }
-    //     fetchUsers()
-    //     console.log(users)
-    //     // registUser()
-    // }, []);
 
     return (
-        <div className="App">
+        <div className={styles.main}>
             <span >pageB1：登録</span>
-            <br />
-            {`${user.icon}`.length !== 0 &&
-                <img
-                    src={`${user.icon}`}
-                    alt=""
-                    style={{ borderRadius: '50%', width: '60px', height: '60px' }}
-                />
-            }
+            {/* {`${user.icon}`.length !== 0 && */}
+            <img
+                src={`${user.icon}`}
+                alt=""
+                style={{ borderRadius: '50%', width: '60px', height: '60px' }}
+            />
+            {/* } */}
             {`${user.icon}`.length !== 0 &&
                 <h1 className="mb-4 text-green-500 text-3xl">{user.name}さま </h1>
             }
             <h1>氏名</h1>
-            {/* {users.namae} */}
+            {users.namae}
             <input type="text" onChange={(e) => setNamae(e.target.value)} />
             <br />
             <h1>性別</h1>
@@ -137,41 +130,38 @@ const PageB1 = () => {
             <h1>住所</h1>
             <input type="text" onChange={(e) => setTokoro(e.target.value)} />
             <br />
+
             *********************************************************************
             <br />
-            {/* <div > */}
-            {/* {users.length !== 0 && */}
-            {
-                // users
-                //     .map((data: any) => {
-                //         return (
-                //             <div key={data.uid}>
-                //                 <div>
-                //                     <img
-                //                         src={`${data.icon}`}
-                //                         alt=""
-                //                         style={{ borderRadius: '50%', width: '60px', height: '60px' }}
-                //                     />
-                //                 </div>
-                //                 <h1>氏名（屋号）</h1>
-                //                 {data.name}
-                //                 <div>
-                //                 </div>
-                //                 {/* <React.StrictMode > */}
-                //                 {/* <Provider store={store}> */}
-                //                 <CalendarPage users={data.uid} key={data.uid} />
-                //                 {/* </Provider> */}
-                //                 {/* </React.StrictMode> */}
-                //                 {/* <CalendarPage tomareId={tomareId} key={tomare.uid} /> */}
-                //                 <br />
-                //                 {/* <button onClick={registYoyaku}>登録</button> */}
-                //             </div >
-                //         );
-                //     })
-            }
+            <div >
+                {/* {users.length !== 0 && */}
+                {
+                    users
+                        .map((data: any) => {
+                            return (
+                                <div key={data.uid}>
 
-
-        </div >
+                                    <img
+                                        src={`${data.icon}`}
+                                        alt=""
+                                        style={{ borderRadius: '50%', width: '60px', height: '60px' }}
+                                    />
+                                    <h1>氏名（屋号）</h1>
+                                    {data.name}
+                                    <React.StrictMode >
+                                        <Provider store={store}>
+                                            <CalendarPage users={data} key={tomare.uid} />
+                                        </Provider>
+                                    </React.StrictMode>
+                                    <br />
+                                    {/* <button onClick={registYoyaku}>登録</button> */}
+                                </div >
+                            );
+                        })
+                }
+                {/* } */}
+            </div >
+        </div>
     )
 }
 

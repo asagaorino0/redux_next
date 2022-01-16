@@ -5,7 +5,7 @@ import { MenuState } from "../../src/types/menu";
 
 const initialState: UsersState = {
     // menu:{menu:[]},
-    users: [],
+    // users: [],
     name: '',
     uid: '',
     icon: '',
@@ -28,14 +28,11 @@ export const usersSlice = createSlice({
             state.icon = action.payload.icon
             state.tokoro = action.payload.tokoro
             state.erea = action.payload.erea
-            state.users = action.payload.users
+            // state.users = action.payload.users
             state.namae = action.payload.namae
             state.qr = action.payload.qr
             state.sei = action.payload.sei
             state.sns = action.payload.sns
-
-
-
         }
     },
 });

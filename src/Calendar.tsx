@@ -12,49 +12,51 @@ import { UsersState } from "./types/users";
 import { TomareState } from "./types/tomare";
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
+const [name, setName] = useState<string>('');
+const [icon, setIcon] = useState<string | undefined>('');
+const [age, setAge] = useState<number>(0);
+const [namae, setNamae] = useState<string>("");
+const [sei, setSei] = useState<string>("");
+const [menu, setMenu] = useState<string>('');
+const [option1, setOption1] = useState<string>('');
+const [option2, setOption2] = useState<string>('');
+const [gappi, setGappi] = useState<string>('');
+const [tokoro, setTokoro] = useState<string>('');
+const [star, setStar] = useState<number>(0);
+const dispatch = useDispatch();
+const user = useSelector(selectUser);
+// const [tomare, setTomare] = useState<any>([]);
+const [formatDate, setFormatDate] = useState<any>([]);
 
-const CalendarPage = ({ users }: { users: UsersState }) => {
+const CalendarPage = ({ users }: { users: UsersState }, { tomare }: { tomare: TomareState }) => {
+    // const CalendarPage = ( uid: UsersState ) => {
     // const [users, setUsers] = useState<any>([]);
     // const [uid, setUid] = useState<string>(user.uid);
-    const [name, setName] = useState<string>('');
-    const [icon, setIcon] = useState<string | undefined>('');
-    const [age, setAge] = useState<number>(0);
-    const [namae, setNamae] = useState<string>("");
-    const [sei, setSei] = useState<string>("");
-    const [menu, setMenu] = useState<string>('');
-    const [option1, setOption1] = useState<string>('');
-    const [option2, setOption2] = useState<string>('');
-    const [gappi, setGappi] = useState<string>('');
-    const [tokoro, setTokoro] = useState<string>('');
-    const [star, setStar] = useState<number>(0);
-    const dispatch = useDispatch();
-    const user = useSelector(selectUser);
-    const [tomare, setTomare] = useState<any>([]);
-    const [formatDate, setFormatDate] = useState<any>([]);
 
-    useEffect(() => {
-        const fetchTomare = async () => {
-            const q = query(collectionGroup(db, 'tomare'));
-            const snapshot = await getDocs(q)
-            const tomareData = snapshot.docs.map(
-                (docT: any) => ({ ...docT.data() } as TomareState))
-            console.log(tomareData)
-            dispatch(addTomare(tomareData))
-            setTomare(tomareData)
-            console.log(tomare)
-        }
-        fetchTomare()
-        console.log('tomare:', tomare)
-    }, []);
 
-    const getTileContent = (props: any) => {
+    // useEffect(() => {
+    //     const fetchTomare = async () => {
+    //         const q = query(collectionGroup(db, 'tomare'));
+    //         const snapshot = await getDocs(q)
+    //         const tomareData = snapshot.docs.map(
+    //             (docT: any) => ({ ...docT.data() } as TomareState))
+    //         dispatch(addTomare(tomareData))
+    //         setTomare(tomareData)
+    //         console.log('tomareData:', tomareData)
+    //         console.log('tomare:', tomare)
+    //     }
+    //     fetchTomare()
+    //     console.log('tomare:', tomare)
+    // }, []);
+
+    const getTileContent = (props: any, uid: UsersState, tomare: TomareState) => {
         let year = props.date.getFullYear();
         let month = props.date.getMonth() + 1;
         let day = props.date.getDate();
         month = ('0' + month).slice(-2);
         day = ('0' + day).slice(-2);
         const formatDate = year + month + day;
-
+        console.log(uid)
         if (props.view !== "month") {
             return null;
         }
@@ -63,7 +65,7 @@ const CalendarPage = ({ users }: { users: UsersState }) => {
             <div >
                 {
                     tomare
-                        .map((data: any) => {
+                        .map((data: TomareState) => {
                             if (formatDate === data.gappi && data.uid === users.uid) {
                                 // if (formatDate === data.gappi) {
                                 return (
@@ -76,7 +78,6 @@ const CalendarPage = ({ users }: { users: UsersState }) => {
                             }
                         })
                 }
-                <div />
                 {/* {formatDate} */}
             </div>
         );
@@ -95,14 +96,13 @@ const CalendarPage = ({ users }: { users: UsersState }) => {
     return (
 
         <div >
-
             <Calendar
                 locale={"en-JP"}
                 value={new Date()}
                 tileContent={getTileContent}
                 calendarType={"US"}
                 prev2Label={null}
-                // next2Label={null}
+                next2Label={null}
                 onClickDay={clickDay}
             />
         </div>

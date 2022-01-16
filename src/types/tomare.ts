@@ -9,4 +9,5 @@ export type TomareState = {
     nail: boolean
     este: boolean
     sonota: string
+    targetTomare: []
 }

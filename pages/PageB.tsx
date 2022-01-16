@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import dynamic from 'next/dynamic'
 import PageB1 from '../src/PageB1'
 import PageB2 from '../src/PageB2'
+import PageB3 from '../src/PageB3'
 import CalendarPage from '../src/Calendar'
 // import PageB1 from '../src/PageB1'
 const PageB = () => {
@@ -36,7 +37,7 @@ const PageB = () => {
                 {/* {user.name}/{user.age} */}
                 <React.StrictMode >
                     <Provider store={store}>
-                        <PageB1 />
+                        <PageB3 />
                         {/* <PageB2 /> */}
                         {/* <CalendarPage /> */}
                     </Provider>

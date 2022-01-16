@@ -5,7 +5,6 @@ import { TomareState } from "../../src/types/tomare";
 const initialState: TomareState = {
     menu: '',
     gappi: '',
-    tomareId: '',
     uid: '',
     am_pm: '',
     make: false,
@@ -19,10 +18,10 @@ export const targetTomareSlice = createSlice({
     initialState,
     reducers: {
         addTargetTomare: (state, action) => {
+            state.targetTomare = action.payload
             state.menu = action.payload.menu
             state.gappi = action.payload.gappi
             state.uid = action.payload.uid
-            state.tomareId = action.payload.tpmareId
             state.make = action.payload.make
             state.nail = action.payload.nail
             state.este = action.payload.este
