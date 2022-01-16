@@ -31,7 +31,13 @@ export default function App() {
           setUid(profile.userId);
           setName(displayName);
           setIcon(displayicon);
-          dispatch(addUser({ name, uid, icon }));
+          dispatch(
+            addUser({
+              name: profile.displayName,
+              uid: profile.userId,
+              icon: profile.pictureUrl,
+            })
+          );
         } else {
           console.log('login status : [', false, ']');
         }
@@ -68,37 +74,6 @@ export default function App() {
     // toPageA()
     toPageC();
   };
-
-  // const onload = function () {
-  //   liff.init({ liffId: LINEID as string }).then(() => {
-  //     liff
-  //       .getProfile() // ユーザ情報を取得する
-  //       .then((profile) => {
-  //         const userId: string = profile.userId;
-  //         const displayName: string = profile.displayName;
-  //         const displayicon: string | undefined = profile.pictureUrl;
-  //         setName(profile.displayName);
-  //         setUid(userId);
-  //         setName(displayName);
-  //         setIcon(displayicon);
-  //         dispatch(addUser({ name, uid, icon }));
-  //         console.log('uid', { uid });
-  //         const setRef = setDoc(
-  //           doc(db, 'users', `${uid}`),
-  //           {
-  //             uid,
-  //             name,
-  //             icon,
-  //             timestamp: serverTimestamp(),
-  //           },
-  //           { merge: true } //←上書きされないおまじない
-  //         );
-  //         // fetchAPI()
-  //         console.log('user', setRef);
-  //       })
-  //       .catch(function (error) {});
-  //   });
-  // };
 
   return (
     <div className="App">
