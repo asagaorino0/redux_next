@@ -77,19 +77,19 @@ export default function App() {
 
   return (
     <div className="App">
-      {`${user.uid}` === 'k11111' && (
+      {`${user.uid}` === '' && (
         <div>
           <button onClick={lineClick}>
             <h4 className="mb-4 text-green-500 text-3xl">ログイン</h4>
           </button>
         </div>
       )}
-      {`${user.uid}` === '' && (
+      {`${user.uid}` !== '' && (
         <div>
           <h2 className="mb-4  text-3xl">ようこそ</h2>
         </div>
       )}
-      {`${user.uid}` === '' && (
+      {`${user.uid}` !== '' && (
         <div>
           <button onClick={registC}>
             <h3 className="mb-4 text-green-500 text-3xl">
@@ -98,21 +98,21 @@ export default function App() {
           </button>
         </div>
       )}
-      {`${user.uid}` === '' && (
+      {`${user.uid}` !== '' && (
         <div>
           <button onClick={registB}>
             <h3 className="mb-4 text-green-500 text-3xl">個人で申し込む</h3>
           </button>
         </div>
       )}
-      {`${user.uid}` === '' && (
+      {`${user.uid}` !== '' && (
         <div>
           <button onClick={registB}>
             <h3 className="mb-4 text-green-500 text-3xl">施設で申し込む</h3>
           </button>
         </div>
       )}
-      {`${user.uid}` === '' && (
+      {`${user.uid}` !== '' && (
         <div>
           <button onClick={registB}>
             <h3 className="mb-4 text-green-500 text-3xl">
