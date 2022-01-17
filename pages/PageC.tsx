@@ -6,7 +6,6 @@ import { store } from '../src/app/store';
 import { Provider } from 'react-redux';
 import dynamic from 'next/dynamic'
 import PageC1 from '../src/PageC1'
-import PageB2 from '../src/PageB2'
 
 const PageC = () => {
     const router = useRouter()
