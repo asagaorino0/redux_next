@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { addUser, selectUser } from '../src/features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { addFormatdate, selectFormatdate } from '../src/features/formatDateSlice';
 import { useRouter } from "next/router";
 import { store } from '../src/app/store';
 import { Provider } from 'react-redux';
@@ -10,8 +11,11 @@ import PageB0 from '../src/PageB0'
 // import PageB3 from '../src/PageB3'
 import CalendarPage from '../src/Calendar'
 // import PageB1 from '../src/PageB1'
-const PageB = () => {
+const PageD = () => {
     const router = useRouter()
+    // const user = useSelector(selectUser);
+    // const formatdate = useSelector(selectFormatdate);
+
     const toPageA = () => {
         router.push('./PageA')
     }
@@ -48,4 +52,4 @@ const PageB = () => {
     );
 }
 
-export default PageB
+export default PageD

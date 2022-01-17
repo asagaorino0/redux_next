@@ -15,8 +15,9 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import { setUncaughtExceptionCaptureCallback } from 'process';
 import ReactDOM from 'react-dom';
+import { useRouter } from 'next/router';
 
-const PageB2 = () => {
+const PageB0 = () => {
     const [users, setUsers] = useState<any>([]);
     // const [uid, setUid] = useState<string>(user.uid);
     const [name, setName] = useState<string>('');
@@ -32,6 +33,7 @@ const PageB2 = () => {
     const [add, setAdd] = useState<number>(0);
     const dispatch = useDispatch();
     const user = useSelector(selectUser);
+    const router = useRouter();
     // const users = useSelector(selectUsers).users;
 
 
@@ -101,8 +103,6 @@ const PageB2 = () => {
         console.log('tomare:', tomare)
     }, []);
 
-
-
     const getTileContent = (props: any) => {
         let year = props.date.getFullYear();
         let month = props.date.getMonth() + 1;
@@ -120,8 +120,8 @@ const PageB2 = () => {
                         // .filter(() => tomare.uid === user.uid)//無効
                         .map((data: any) => {
                             // if (formatDate === data.gappi && tomare.uid === "Uda1c6a4e5b348c5ba3c95de639e32414") {
-                            if (formatDate === data.gappi && data.uid === user.uid) {
-                                // if (formatDate === data.gappi) {
+                            // if (formatDate === data.gappi && data.uid === user.uid) {
+                            if (formatDate === data.gappi) {
                                 return (
                                     <div key={data.id}>
                                         <div>
@@ -130,12 +130,8 @@ const PageB2 = () => {
                                     </div>
                                 )
                             }
-                            // { tomare.uid }
-                        })
-
-                }
+                        })}
                 <div />
-
             </div>
         );
     };
@@ -146,7 +142,6 @@ const PageB2 = () => {
     // const [val4, setVal4] = React.useState<string>('');
     // const [text, setText] = React.useState('');
     const clickDay = async (calendar: any) => {
-        console.log('user:', user.uid)
         console.log('tomare:', tomare.uid)
         let year = calendar.getFullYear();
         let month = calendar.getMonth() + 1;
@@ -154,80 +149,23 @@ const PageB2 = () => {
         month = ('0' + month).slice(-2);
         day = ('0' + day).slice(-2);
         const formatDate = year + month + day;
-        dispatch(addFormatdate(formatDate))
-        setFormatDate(formatDate)
-        setGappi(formatDate)
-        const q = query(collection(db, "users", user.uid, 'tomare'), where("gappi", "==", formatDate));
+        console.log('formatDate:', formatDate)
+        const q = query(collectionGroup(db, 'tomare'), where("gappi", "==", formatDate));
         const snapshot = await getDocs(q)
-        const tomareData = snapshot.docs.length
+        // const tomareLength = snapshot.docs.length
+        const tomareData = snapshot.docs.map(
+            (docT: any) => ({ ...docT.data() } as TomareState))
         dispatch(addTargetTomare(tomareData))
+        // dispatch(addTargetTomare({ name, gappi, menu }))
         setTargetTomare(tomareData)
-        console.log(tomareData)
-        if (tomareData === 0) {
-            setAdd(1)
-        }
+        // console.log(`targetTomareLength`, tomareLength)
+        toPageD();
+    };
+    const toPageD = () => {
+        router.push('./PageD');
     };
 
-    // const clickAddmenu = (formatDate: string) => {
-    //     // setMenu("〇")
-    //     setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}oo`), {
-    //         gappi, uid: user.uid, menu: "〇", timestamp: serverTimestamp(),
-    //     }, { merge: true })
 
-    //     console.log('tomare:', tomare)
-    // };
-    // const clickMenuInput = (formatDate: string) => {
-    //     // let year = calendar.getFullYear();
-    //     // let month = calendar.getMonth() + 1;
-    //     // let day = calendar.getDate();
-    //     // month = ('0' + month).slice(-2);
-    //     // day = ('0' + day).slice(-2);
-    //     // const formatDate = year + month + day;
-    //     dispatch(addFormatdate(formatDate))
-    //     setFormatDate(formatDate)
-    //     setGappi(formatDate)
-    // };
-
-    const clickMenu0 = () => {
-        setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}oo`), {
-            gappi, uid: user.uid, menu: "〇", timestamp: serverTimestamp(),
-        }, { merge: true })
-        fetchTomare()
-        setAdd(0)
-    }
-    const clickMenu1 = () => {
-        setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}oo`), {
-            gappi, uid: user.uid, menu: "1", timestamp: serverTimestamp(),
-        }, { merge: true })
-        fetchTomare()
-        setTargetTomare(0)
-    }
-    const clickMenu2 = () => {
-        setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}oo`), {
-            gappi, uid: user.uid, menu: "2", timestamp: serverTimestamp(),
-        }, { merge: true })
-        fetchTomare()
-        setTargetTomare(0)
-    }
-    const clickMenu3 = () => {
-        setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}oo`), {
-            gappi, uid: user.uid, menu: "3", timestamp: serverTimestamp(),
-        }, { merge: true })
-        fetchTomare()
-        setTargetTomare(0)
-    }
-    const clickMenu4 = () => {
-        setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}oo`), {
-            gappi, uid: user.uid, menu: "4", timestamp: serverTimestamp(),
-        }, { merge: true })
-        fetchTomare()
-        setTargetTomare(0)
-    }
-    const clickMenu9 = () => {
-        deleteDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}oo`))
-        fetchTomare()
-        setTargetTomare(0)
-    }
     const fetchTomare = async () => {
         const q = query(collectionGroup(db, 'tomare'));
         const snapshot = await getDocs(q)
@@ -235,6 +173,17 @@ const PageB2 = () => {
             (docT: any) => ({ ...docT.data() } as TomareState))
         dispatch(addTomare(tomareData))
         setTomare(tomareData)
+    }
+    const fetchTargetTomare = async () => {
+        console.log('formatDate:', formatDate)
+        const q = query(collection(db, "users", user.uid, 'tomare'), where("gappi", "==", formatDate));
+        const snapshot = await getDocs(q)
+        const tomareLength = snapshot.docs.length
+        const tomareData = snapshot.docs.map(
+            (docT: any) => ({ ...docT.data() } as TomareState))
+        dispatch(addTargetTomare(tomareData))
+        setTargetTomare(tomareData)
+        console.log(`targetTomareLength`, tomareLength)
     }
     const [targetTomare, setTargetTomare] = useState<any>([])
     // const fetchTomare_menu = async () => {
@@ -263,7 +212,7 @@ const PageB2 = () => {
 
     return (
         <div className="App">
-            <span >pageB2：枠登録</span>
+            <span >page0：選択</span>
             <br />
             {`${user.icon}`.length !== 0 &&
                 <img
@@ -288,6 +237,9 @@ const PageB2 = () => {
             {users.sonota}
             *********************************************************************
             <br />
+            <h3 className="mb-4 text-green-500 text-3xl">
+                カレンダーから選択
+            </h3>
             <div >
                 <Calendar
                     locale={"en-JP"}
@@ -303,61 +255,14 @@ const PageB2 = () => {
             </div>
             <br />
             <div>
-                {add === 1 &&
-                    <p>
-                        {
-                            `${formatDate}に予約枠を設定します。`
-                        }
-
-                        <br />
-                        <button onClick={clickMenu0}>
-                            o.k.
-                        </button>
-                    </p>
-                }
             </div>
             <div>
-                {targetTomare === 1 &&
 
-                    // <span >App</span>
-                    <p >
-                        {/* {
-                            `${formatDate}の予約です`
-                        }
-                        <br />
-                        <button onClick={clickMenu1}>
-                            ケアメイク
-                        </button>
-                        <br />
-                        <button onClick={clickMenu2}>
-                            ケアネイル
-                        </button>
-                        <br />
-                        <button onClick={clickMenu3}>
-                            ケアエステ
-                        </button>
-                        <br />
-                        <button onClick={clickMenu4}>
-                            その他
-                        </button> */}
-                        <br />
-                        <p>
-                            <br />
-                            <button onClick={clickMenu9}>
-                                予約枠の取り消し
-                            </button>
-                        </p>
-                        {tomare.menu}
-                        {users.uid}
-                        {tomare.uid}
-
-                    </p>
-                }
             </div>
             {/* <button onClick={registYoyaku}>登録</button> */}
         </div >
     )
 }
 
-export default PageB2
+export default PageB0
 
