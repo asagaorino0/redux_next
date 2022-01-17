@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { addUser, selectUser } from '../src/features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
-import 'firebase/compat/firestore';
+import 'firebase/compat/firestore'
 import liff from '@line/liff';
 
 export default function App() {
@@ -37,7 +37,7 @@ export default function App() {
               uid: profile.userId,
               icon: profile.pictureUrl,
             })
-          );
+          );///先生
         } else {
           console.log('login status : [', false, ']');
         }
@@ -56,7 +56,7 @@ export default function App() {
         console.log('hello world');
       }
     });
-  };
+  };///先生
 
   const toPageC = () => {
     router.push('./PageC');

@@ -25,29 +25,29 @@ const [tokoro, setTokoro] = useState<string>('');
 const [star, setStar] = useState<number>(0);
 const dispatch = useDispatch();
 const user = useSelector(selectUser);
-// const [tomare, setTomare] = useState<any>([]);
+const [tomare, setTomare] = useState<any>([]);
 const [formatDate, setFormatDate] = useState<any>([]);
 
-const CalendarPage = ({ users }: { users: UsersState }, { tomare }: { tomare: TomareState }) => {
-    // const CalendarPage = ( uid: UsersState ) => {
+// const CalendarPage = ({ users }: { users: UsersState }) => {
+const CalendarPage = (uid: UsersState) => {
     // const [users, setUsers] = useState<any>([]);
     // const [uid, setUid] = useState<string>(user.uid);
 
 
-    // useEffect(() => {
-    //     const fetchTomare = async () => {
-    //         const q = query(collectionGroup(db, 'tomare'));
-    //         const snapshot = await getDocs(q)
-    //         const tomareData = snapshot.docs.map(
-    //             (docT: any) => ({ ...docT.data() } as TomareState))
-    //         dispatch(addTomare(tomareData))
-    //         setTomare(tomareData)
-    //         console.log('tomareData:', tomareData)
-    //         console.log('tomare:', tomare)
-    //     }
-    //     fetchTomare()
-    //     console.log('tomare:', tomare)
-    // }, []);
+    useEffect(() => {
+        const fetchTomare = async () => {
+            const q = query(collectionGroup(db, 'tomare'));
+            const snapshot = await getDocs(q)
+            const tomareData = snapshot.docs.map(
+                (docT: any) => ({ ...docT.data() } as TomareState))
+            dispatch(addTomare(tomareData))
+            setTomare(tomareData)
+            console.log('tomareData:', tomareData)
+            console.log('tomare:', tomare)
+        }
+        fetchTomare()
+        console.log('tomare:', tomare)
+    }, []);
 
     const getTileContent = (props: any, uid: UsersState, tomare: TomareState) => {
         let year = props.date.getFullYear();
@@ -66,8 +66,8 @@ const CalendarPage = ({ users }: { users: UsersState }, { tomare }: { tomare: To
                 {
                     tomare
                         .map((data: TomareState) => {
-                            if (formatDate === data.gappi && data.uid === users.uid) {
-                                // if (formatDate === data.gappi) {
+                            // if (formatDate === data.gappi && data.uid === users.uid) {
+                            if (formatDate === data.gappi) {
                                 return (
                                     <div key={data.uid}>
                                         <div>
