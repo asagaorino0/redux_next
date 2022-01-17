@@ -10,8 +10,11 @@ import CalendarPage from "./Calendar";
 import { store } from '../src/app/store';
 import { Provider } from 'react-redux';
 import { UsersState } from "../src/types/users";
-import { TomareState } from "../src/types/tomare";
+import { TomareState } from "./types/tomare";
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
 import styles from '../styles/Home.module.css'
+import { addFormatdate, } from './features/formatDateSlice';
 
 const PageB1 = () => {
     // const [user, setUser] = useState<any>([]);
@@ -74,39 +77,97 @@ const PageB1 = () => {
     const [users, setUsers] = useState<any>([]);
     const [tomare, setTomare] = useState<any>([]);
     const [tomareId, setTomareId] = useState<any>([]);
+    const [formatDate, setFormatDate] = useState<any>([]);
     // const uid = "Uda1c6a4e5b348c5ba3c95de639e32414"
     // const registUser = () => {
     //     dispatch(addUser({
     //         users,
     //     }))
     // }
-    const fetchUsers = async () => {
-        const q = query(collection(db, 'users'));
-        const snapshot = await getDocs(q)
-        const usersData = snapshot.docs.map(
-            (doc: any) => ({ ...doc.data() } as UsersState))
-        dispatch(addUsers({ usersData }))
-        setUsers(usersData)
-        console.log('usersData:', usersData)
-        console.log('users:', users)
-    }
-    const fetchTomare = async () => {
-        const q = query(collectionGroup(db, 'tomare'));
-        const snapshot = await getDocs(q)
-        const tomareData = snapshot.docs.map(
-            (docT: any) => ({ ...docT.data() } as TomareState))
-        // setTomare(tomareData)
-        dispatch(addTomare(tomareData))
-        setTomare(tomareData)
-        console.log('tomareData:', tomareData)
-        console.log('tomare:', tomare)
-    }
-    useEffect(() => {
-        fetchUsers()
-        fetchTomare()
-    }, []);
+    // const fetchUsers = async () => {
+    //     const q = query(collection(db, 'users'));
+    //     const snapshot = await getDocs(q)
+    //     const usersData = snapshot.docs.map(
+    //         (doc: any) => ({ ...doc.data() } as UsersState))
+    //     dispatch(addUsers({ usersData }))
+    //     setUsers(usersData)
+    //     console.log('usersData:', usersData)
+    //     console.log('users:', users)
+    // }
+    // const fetchTomare = async () => {
+    //     const q = query(collectionGroup(db, 'tomare'));
+    //     const snapshot = await getDocs(q)
+    //     const tomareData = snapshot.docs.map(
+    //         (docT: any) => ({ ...docT.data() } as TomareState))
+    //     // setTomare(tomareData)
+    //     dispatch(addTomare(tomareData))
+    //     setTomare(tomareData)
+    //     console.log('tomareData:', tomareData)
+    //     console.log('tomare:', tomare)
+    // }
+    // useEffect(() => {
+    //     fetchUsers()
+    //     fetchTomare()
+    // }, []);
+    const clickDay = async (calendar: any) => {
+        console.log('user:', user.uid)
+        console.log('tomare:', tomare.uid)
+        let year = calendar.getFullYear();
+        let month = calendar.getMonth() + 1;
+        let day = calendar.getDate();
+        month = ('0' + month).slice(-2);
+        day = ('0' + day).slice(-2);
+        const formatDate = year + month + day;
+        dispatch(addFormatdate(formatDate))
+        setFormatDate(formatDate)
+        setGappi(formatDate)
+        // const q = query(collection(db, "users", user.uid, 'tomare'), where("gappi", "==", formatDate));
+        // const snapshot = await getDocs(q)
+        // const tomareData = snapshot.docs.length
+        // dispatch(addTargetTomare(tomareData))
+        // setTargetTomare(tomareData)
+        // console.log(tomareData)
+        // if (tomareData === 0) {
+        //     setAdd(1)
+        // }
+    };
 
+    const getTileContent = (props: any) => {
+        let year = props.date.getFullYear();
+        let month = props.date.getMonth() + 1;
+        let day = props.date.getDate();
+        month = ('0' + month).slice(-2);
+        day = ('0' + day).slice(-2);
+        const formatDate = year + month + day;
+        if (props.view !== "month") {
+            return null;
+        }
+        return (
+            <div >
+                {
+                    tomare
+                        // .filter(() => tomare.uid === user.uid)//無効
+                        .map((data: any) => {
+                            // if (formatDate === data.gappi && tomare.uid === "Uda1c6a4e5b348c5ba3c95de639e32414") {
+                            if (formatDate === data.gappi && data.uid === user.uid) {
+                                // if (formatDate === data.gappi) {
+                                return (
+                                    <div key={data.id}>
+                                        <div>
+                                            {data.menu}
+                                        </div>
+                                    </div>
+                                )
+                            }
+                            // { tomare.uid }
+                        })
 
+                }
+                <div />
+
+            </div>
+        );
+    };
     return (
         <div className={styles.main}>
             <span >pageB1：登録</span>
@@ -134,32 +195,20 @@ const PageB1 = () => {
             *********************************************************************
             <br />
             <div >
-                {/* {users.length !== 0 && */}
-                {
-                    users
-                        .map((data: any) => {
-                            return (
-                                <div key={data.uid}>
-
-                                    <img
-                                        src={`${data.icon}`}
-                                        alt=""
-                                        style={{ borderRadius: '50%', width: '60px', height: '60px' }}
-                                    />
-                                    <h1>氏名（屋号）</h1>
-                                    {data.name}
-                                    <React.StrictMode >
-                                        <Provider store={store}>
-                                            <CalendarPage users={data} key={tomare.uid} />
-                                        </Provider>
-                                    </React.StrictMode>
-                                    <br />
-                                    {/* <button onClick={registYoyaku}>登録</button> */}
-                                </div >
-                            );
-                        })
-                }
-                {/* } */}
+                <Calendar
+                    locale={"en-JP"}
+                    value={new Date()}
+                    tileContent={
+                        getTileContent
+                    }
+                    calendarType={"US"}
+                    prev2Label={null}
+                    // next2Label={null}
+                    onClickDay={clickDay}
+                />
+            </div>
+            <br />
+            <div>
             </div >
         </div>
     )

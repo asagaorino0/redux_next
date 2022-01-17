@@ -64,19 +64,19 @@ const CalendarPage = (uid: UsersState) => {
         return (
             <div >
                 {
-                    tomare
-                        .map((data: TomareState) => {
-                            // if (formatDate === data.gappi && data.uid === users.uid) {
-                            if (formatDate === data.gappi) {
-                                return (
-                                    <div key={data.uid}>
-                                        <div>
-                                            {data.menu}
-                                        </div>
-                                    </div>
-                                )
-                            }
-                        })
+                    // tomare
+                    //     .map((data: TomareState) => {
+                    //         // if (formatDate === data.gappi && data.uid === users.uid) {
+                    //         if (formatDate === data.gappi) {
+                    //             return (
+                    //                 <div key={data.uid}>
+                    //                     <div>
+                    //                         {data.menu}
+                    //                     </div>
+                    //                 </div>
+                    //             )
+                    //         }
+                    //     })
                 }
                 {/* {formatDate} */}
             </div>
@@ -99,7 +99,7 @@ const CalendarPage = (uid: UsersState) => {
             <Calendar
                 locale={"en-JP"}
                 value={new Date()}
-                tileContent={getTileContent}
+                // tileContent={getTileContent}
                 calendarType={"US"}
                 prev2Label={null}
                 next2Label={null}
