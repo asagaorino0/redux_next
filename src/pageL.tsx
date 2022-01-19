@@ -83,7 +83,7 @@ const PageL = () => {
                             uid,
                             name,
                             icon,
-                            timestamp"",
+                            timestamp: "",
                         }, { merge: true }//←上書きされないおまじない
                         )
                         // fetchAPI()
