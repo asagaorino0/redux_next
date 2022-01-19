@@ -5,7 +5,7 @@ import tomareReducer from '../features/tomareSlice';
 import targetTomareReducer from '../features/targetTomareSlice';
 import formatdateReducer from '../features/formatDateSlice';
 import menuReducer from '../features/menuSlice';
-
+import targetReducer from '../features/targetSlice';
 
 export const store = configureStore({
   reducer: {
@@ -15,6 +15,7 @@ export const store = configureStore({
     targetTomare: targetTomareReducer,
     formatdate: formatdateReducer,
     menu: menuReducer,
+    target: targetReducer
   },
 });
 export type AppDispatch = typeof store.dispatch;

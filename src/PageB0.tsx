@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { addFormatdate, } from './features/formatDateSlice';
 import { addTomare } from './features/tomareSlice';
 import { addTargetTomare } from './features/targetTomareSlice';
+import { addTarget, selectTarget } from './features/targetSlice';
 import { addUsers, selectUsers, } from './features/usersSlice';
 import { addUser, selectUser } from './features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,11 +12,14 @@ import { store } from './app/store';
 import { Provider } from 'react-redux';
 import { UsersState } from "./types/users";
 import { TomareState } from "./types/tomare";
+import { TargetTomareState } from "./types/targetTomare";
+import { TargetState } from "./types/target";
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import { setUncaughtExceptionCaptureCallback } from 'process';
 import ReactDOM from 'react-dom';
 import { useRouter } from 'next/router';
+import styles from '../styles/Home.module.css'
 
 const PageB0 = () => {
     const [users, setUsers] = useState<any>([]);
@@ -33,7 +37,13 @@ const PageB0 = () => {
     const [add, setAdd] = useState<number>(0);
     const dispatch = useDispatch();
     const user = useSelector(selectUser);
+    // const target = useSelector(selectTarget);
     const router = useRouter();
+    // const [users, setUsers] = useState<any>();
+    const [tomare, setTomare] = useState<any>([]);
+    const [formatDate, setFormatDate] = useState<any>([]);
+    const [target, setTarget] = useState<string>("");
+    const [targetTomare, setTargetTomare] = useState<any>([])
     // const users = useSelector(selectUsers).users;
 
 
@@ -59,22 +69,20 @@ const PageB0 = () => {
         //     namae: namae,
         //     tokoro,
         //     ukeruId: `${gappi}oo`,
-        //     timestamp: serverTimestamp(),
+        //     timestamp"",
         // })
         const setRef = setDoc(doc(db, 'users', `${user.uid}`, 'tomare', `${gappi}oo`), {
             gappi,
             uid: `${user.uid}`,
             namae: namae,
-            timestamp: serverTimestamp(),
+            timestamp: "",
         }, { merge: true }//←上書きされないおまじない
         )
         // console.log('ukeru:', addRef)
         // console.log('tomare:', setRef)
         alert('登録しました。オファーを楽しみにお待ちください。')
     };
-    // const [users, setUsers] = useState<any>();
-    const [tomare, setTomare] = useState<any>([]);
-    const [formatDate, setFormatDate] = useState<any>([]);
+
     // const uid = "Uda1c6a4e5b348c5ba3c95de639e32414"
     // const registUsers = () => {
     //     dispatch(addUsers({
@@ -136,11 +144,6 @@ const PageB0 = () => {
         );
     };
 
-    // const [val1, setVal1] = React.useState<string>('');
-    // const [val2, setVal2] = React.useState<string>('');
-    // const [val3, setVal3] = React.useState<string>('');
-    // const [val4, setVal4] = React.useState<string>('');
-    // const [text, setText] = React.useState('');
     const clickDay = async (calendar: any) => {
         console.log('tomare:', tomare.uid)
         let year = calendar.getFullYear();
@@ -149,20 +152,20 @@ const PageB0 = () => {
         month = ('0' + month).slice(-2);
         day = ('0' + day).slice(-2);
         const formatDate = year + month + day;
-        console.log('formatDate:', formatDate)
+        dispatch(addFormatdate(year + month + day))
         const q = query(collectionGroup(db, 'tomare'), where("gappi", "==", formatDate));
         const snapshot = await getDocs(q)
-        // const tomareLength = snapshot.docs.length
         const tomareData = snapshot.docs.map(
-            (docT: any) => ({ ...docT.data() } as TomareState))
+            (docT: any) => ({ ...docT.data() } as TargetTomareState))
         dispatch(addTargetTomare(tomareData))
-        // dispatch(addTargetTomare({ name, gappi, menu }))
         setTargetTomare(tomareData)
-        // console.log(`targetTomareLength`, tomareLength)
         toPageD();
     };
     const toPageD = () => {
         router.push('./PageD');
+    };
+    const toPageM = () => {
+        router.push('./PageM');
     };
 
 
@@ -174,41 +177,55 @@ const PageB0 = () => {
         dispatch(addTomare(tomareData))
         setTomare(tomareData)
     }
-    const fetchTargetTomare = async () => {
-        console.log('formatDate:', formatDate)
-        const q = query(collection(db, "users", user.uid, 'tomare'), where("gappi", "==", formatDate));
+    const fetchTargetMake = async () => {
+        const q = query(collectionGroup(db, 'tomare'), where("make", "==", true));
         const snapshot = await getDocs(q)
-        const tomareLength = snapshot.docs.length
         const tomareData = snapshot.docs.map(
-            (docT: any) => ({ ...docT.data() } as TomareState))
+            (docT: any) => ({ ...docT.data() } as TargetTomareState))
         dispatch(addTargetTomare(tomareData))
         setTargetTomare(tomareData)
-        console.log(`targetTomareLength`, tomareLength)
+        toPageM()
     }
-    const [targetTomare, setTargetTomare] = useState<any>([])
-    // const fetchTomare_menu = async () => {
-    //     // const q = query(collection(db, "users", user.uid, 'tomare'), where("gappi", "==", formatDate));
-    //     // const snapshot = await getDocs(q)
-    //     // const tomareData = snapshot.docs.length
-    //     // dispatch(addTargetTomare(tomareData))
-    //     // setTargetTomare(tomareData)
-    //     // if (tomareData === 0) {
-    //     //     setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}oo`), {
-    //     //         gappi, uid: user.uid, menu: "〇", timestamp: serverTimestamp(),
-    //     //     }, { merge: true })
-
-    //     //     alert('登録しました。オファーを楽しみにお待ちください。')
-    //     //     fetchTomare()
-    //     // }
-    // }
-
-
-
-
-
-    const clickAdd = (calendar: any) => {
-        setAdd(0)
+    const fetchTargetNail = async () => {
+        const q = query(collectionGroup(db, 'tomare'), where("nail", "==", true));
+        const snapshot = await getDocs(q)
+        const tomareData = snapshot.docs.map(
+            (docT: any) => ({ ...docT.data() } as TargetTomareState))
+        dispatch(addTargetTomare(tomareData))
+        setTargetTomare(tomareData)
+        toPageM()
     }
+    const fetchTargetEste = async () => {
+        const q = query(collectionGroup(db, 'tomare'), where("este", "==", true));
+        const snapshot = await getDocs(q)
+        const tomareData = snapshot.docs.map(
+            (docT: any) => ({ ...docT.data() } as TargetTomareState))
+        dispatch(addTargetTomare(tomareData))
+        setTargetTomare(tomareData)
+        toPageM()
+    }
+    const fetchTarget = async () => {
+        const q = query(collectionGroup(db, 'tomare'), where("その他", "!=", ""));
+        const snapshot = await getDocs(q)
+        const tomareData = snapshot.docs.map(
+            (docT: any) => ({ ...docT.data() } as TargetState))
+        dispatch(addTargetTomare(tomareData))
+        setTargetTomare(tomareData)
+        // toPageM()
+    }
+
+    const clickMenu1 = () => { dispatch(addTarget("make")), setTarget('make'), fetchTargetMake(); }
+    const clickMenu2 = () => { dispatch(addTarget("nail")), setTarget('nail'); fetchTargetNail() }
+    const clickMenu3 = () => { dispatch(addTarget("este")), setTarget('este'); fetchTargetEste(); }
+    const clickMenu4 = () => {
+        dispatch(addTarget("その他")), setTarget('その他'); fetchTarget();
+    }
+
+    const img_make: any = { src: "https://firebasestorage.googleapis.com/v0/b/next-app-db888.appspot.com/o/P_make.png?alt=media&token=eeaf12cd-39be-4fda-8945-ec2bcb1b24dd", alt: "ケアメイク", style: { width: '60px', height: '45px' } }
+    const img_nail: any = { src: "https://firebasestorage.googleapis.com/v0/b/next-app-db888.appspot.com/o/P_nail.png?alt=media&token=42117e21-66df-4049-a948-46840912645a", alt: "ケアネイル", style: { width: '60px', height: '45px' } }
+    const img_este: any = { src: "https://firebasestorage.googleapis.com/v0/b/next-app-db888.appspot.com/o/P_este.png?alt=media&token=5fe75701-ec95-424a-8ba7-a547e313dd19", alt: "ケアエステ", style: { width: '60px', height: '45px' } }
+    const img_sonota: any = { src: "https://firebasestorage.googleapis.com/v0/b/next-app-db888.appspot.com/o/P_hoka.png?alt=media&token=0d98a224-f460-4527-8208-209f6a52a55c", alt: "その他", style: { width: '60px', height: '45px' } }
+
 
     return (
         <div className="App">
@@ -253,6 +270,39 @@ const PageB0 = () => {
                     onClickDay={clickDay}
                 />
             </div>
+            <br />
+            <h3 className="mb-4 text-green-500 text-3xl">
+                メニューから選択
+            </h3>
+            <p >menuをクリック
+                <div className={styles.grid}>
+                    <div >
+                        <button onClick={clickMenu1}>
+                            <img　{...img_make} />
+                            ケアメイク
+                        </button>
+                    </div>
+                    <div>
+                        <button onClick={clickMenu2}>
+                            <img {...img_nail} />
+                            ケアネイル
+                        </button>
+                    </div>
+                    <div>
+                        <button onClick={clickMenu3}>
+                            <img {...img_este} />
+                            ケアエステ
+                        </button>
+                    </div>
+                    <div>
+                        <button onClick={clickMenu4}>
+                            <img {...img_sonota} />
+                            その他
+                        </button>
+                    </div>
+                    <br />
+                </div>
+            </p>
             <br />
             <div>
             </div>

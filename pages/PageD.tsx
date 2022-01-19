@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 import dynamic from 'next/dynamic'
 import PageB1 from '../src/PageB1'
 import PageB0 from '../src/PageB0'
-// import PageB3 from '../src/PageB3'
+import PageB3 from '../src/PageB3'
 import CalendarPage from '../src/Calendar'
 // import PageB1 from '../src/PageB1'
 const PageD = () => {
@@ -42,9 +42,9 @@ const PageD = () => {
                 <React.StrictMode >
                     <Provider store={store}>
 
-                        <PageB0 />
-                        <PageB1 />
-                        {/* <CalendarPage /> */}
+                        {/* <PageB0 /> */}
+                        {/* <PageB1 /> */}
+                        <PageB3 />
                     </Provider>
                 </React.StrictMode>
             </h1>

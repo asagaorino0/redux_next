@@ -15,9 +15,11 @@ import { store } from '../src/app/store';
 import { Provider } from 'react-redux';
 import { UsersState } from "../src/types/users";
 import { TomareState } from "../src/types/tomare";
+import { TargetTomareState } from "../src/types/targetTomare";
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import styles from '../styles/Home.module.css'
+
 
 const PageB1 = () => {
     const [name, setName] = useState<string>('');
@@ -38,10 +40,12 @@ const PageB1 = () => {
     const [users, setUsers] = useState<any>([]);
     const [tomare, setTomare] = useState<any>([]);
     const [newT, setNewT] = useState<any>([])
+    const router = useRouter();
     // const [targetTomare, setTargetTomare] = useState<any>([])
 
     const fetchUsers = async () => {
         const q = query(collection(db, 'users'));
+        // const q = query(collectionGroup(db, 'tomare'), where("gappi", "==", formatDate));
         const snapshot = await getDocs(q)
         const usersData = snapshot.docs.map(
             (doc: any) => ({ ...doc.data() } as UsersState))
@@ -58,23 +62,16 @@ const PageB1 = () => {
         // setTomare(tomareData)
         dispatch(addTomare(tomareData))
         setTomare(tomareData)
+        const formatdate = useSelector(selectFormatdate);
         console.log('tomareData:', tomareData)
         console.log('tomare:', tomare)
+        console.log('formatDate:', formatdate)
     }
-    // const fetchTargetTomare = async () => {
-    //     const q = query(collectionGroup(db, 'tomare'), where("gappi", "==", `${formatdate}`));
-    //     const snapshot = await getDocs(q)
-    //     const tomareLength = snapshot.docs.length
-    //     const tomareData = snapshot.docs.map(
-    //         (docT: any) => ({ ...docT.data() } as TomareState))
-    //     dispatch(addTargetTomare(tomareData))
-    //     setTargetTomare(tomareData)
-    //     console.log(`targetTomareLength`, tomareLength)
-    // }
-    // const uuid:string = "Ue46857df2a6433a7852ef631b5689693"
+
     useEffect(() => {
         fetchUsers()
-        // fetchTargetTomare()
+        console.log(targetTomare)
+        // fetchTomare()
     }, []);
 
     // const getTileContent = (props: any) => {
@@ -110,17 +107,30 @@ const PageB1 = () => {
     //         </div>
     //     );
     // };
-    const clickDay = (calendar: any) => {
-        let year = calendar.getFullYear();
-        let month = calendar.getMonth() + 1;
-        let day = calendar.getDate();
-        month = ('0' + month).slice(-2);
-        day = ('0' + day).slice(-2);
-        const formatDate = year + month + day;
-        // setGappi(formatDate)
-        // alert(gappi)
+    // const clickDay = (calendar: any) => {
+    //     let year = calendar.getFullYear();
+    //     let month = calendar.getMonth() + 1;
+    //     let day = calendar.getDate();
+    //     month = ('0' + month).slice(-2);
+    //     day = ('0' + day).slice(-2);
+    //     const formatDate = year + month + day;
+    //     // setGappi(formatDate)
+    //     // alert(gappi)
+    // }
+    const registYoyaku = () => {
+        // const addRef = addDoc(collection(db, 'yoyaku', `${user.uid}`, 'ukeru', `${gappi}oo`), {
+        //     sei,
+        //     menu,
+        //     uid: `${user.uid}`,
+        //     namae: namae,
+        //     tokoro,
+        //     ukeruId: `${gappi}oo`,
+        //     timestamp"",
+        // })
     }
-
+    const toPageB = () => {
+        router.push('./PageB');
+    };
     return (
         <div className={styles.main}>
             <span >pageB1：{targetTomare.gappi}</span>
@@ -155,12 +165,16 @@ const PageB1 = () => {
             </h3>
             <div >
                 {
-                    // `${targetTomare.uid}` === users.uid &&
+                    // targetTomare.targetTomare
+                    //     .map((data: TargetTomareState) => {
+                    //         return (
+
                     users
-                        // .filter((users: UsersState) => tomare.uid === users.uid)
-                        // .filter((tomare: TomareState) => tomare.uid === users.uid)
+                        // .filter(() => users.uid === data.uid)
                         .map((users: UsersState) => {
-                            console.log(`targetTomare`, targetTomare)
+
+                            // console.log(`targetTomare`, data)
+                            // console.log(`targetTomareUid`, data.uid)
                             return (
                                 <div key={users.uid}>
                                     <img
@@ -170,17 +184,28 @@ const PageB1 = () => {
                                     />
                                     <h1>氏名（屋号）</h1>
                                     {users.name}
-                                    <br />
-                                    <div >
-                                    </div>
-                                    <br />
-                                    {/* <button onClick={registYoyaku}>登録</button> */}
+                                    {/* {data.gappi} */}
                                 </div >
-                            )
+                                // )
+                                // return (
+                                //     <div key={targetTomare.uid}>
 
+                                //         <h1>氏名（屋号）</h1>
+                                //         {targetTomare.gappi}
+                                //         <br />
+                                //         <div >
+                                //         </div>
+                                //         <br />
+                                //         <button onClick={toPageB}>戻る</button>
+                                //     </div >
+                            )
                         })
+                    //     )
+                    // })
                 }
             </div>
+            <button onClick={toPageB}>戻る</button>
+            {/* {formatdate} */}
         </div>
     )
 }

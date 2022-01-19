@@ -3,15 +3,16 @@ import { addFormatdate, } from './features/formatDateSlice';
 import { addTomare } from './features/tomareSlice';
 import { addTargetTomare } from './features/targetTomareSlice';
 import { addMenu } from './features/menuSlice';
-import { selectUser } from './features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { db } from "./firebase";
-import { getDocs, collection, collectionGroup, query, where, doc, setDoc, Timestamp, serverTimestamp, deleteDoc } from 'firebase/firestore'
+import { getDocs, collection, collectionGroup, query, where, doc, setDoc, serverTimestamp, deleteDoc } from 'firebase/firestore'
 import { TomareState } from "./types/tomare";
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import styles from '../styles/Home.module.css'
 
+import { addUser, selectUser } from '../src/features/userSlice';
+import liff from '@line/liff';
 import P_make from "./img/P_make.png"
 import { computeSegDraggable } from '@fullcalendar/common';
 import { truncate } from 'fs';
@@ -31,6 +32,65 @@ const PageC1 = () => {
     const user = useSelector(selectUser);
     const [tomare, setTomare] = useState<any>([]);
     const [formatDate, setFormatDate] = useState<any>([]);
+    const [uid, setUid] = useState<string>('');
+    const [name, setName] = useState<string>('');
+    const [icon, setIcon] = useState<string | undefined>('');
+
+
+
+
+    useEffect(() => {
+        liff
+            .init({ liffId: process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID as string })
+            .then(async () => {
+                if (liff.isLoggedIn()) {
+                    console.log('login status : [', true, ']');
+                    const profile = await liff.getProfile();
+                    console.log(
+                        '🚀 ~ file: Login.tsx ~ line 15 ~ liff.init ~ profile',
+                        profile
+                    );
+                    // const userId: string = profile.userId
+                    const displayName: string = profile.displayName;
+                    const displayicon: string | undefined = profile.pictureUrl;
+                    setName(profile.displayName);
+                    setUid(profile.userId);
+                    setName(displayName);
+                    setIcon(displayicon);
+                    dispatch(
+                        addUser({
+                            name: profile.displayName,
+                            uid: profile.userId,
+                            icon: profile.pictureUrl,
+                        })
+
+                    );///先生
+                } else {
+                    console.log('login status : [', false, ']');
+                }
+            });
+    }, [dispatch]);
+
+    // const loginUrl: string | undefined = process.env.NEXT_PUBLIC_LINE_LOGIN_URL;
+    const LINEID = process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID;
+    const lineClick = () => {
+        setUid('');
+        liff.init({ liffId: LINEID as string }).then(() => {
+            if (!liff.isLoggedIn()) {
+                setUid('k00000');
+                liff.login(); // ログインしていなければ最初にログインする
+            } else if (liff.isInClient()) {
+                console.log('hello world');
+            }
+        });
+    };///先生
+
+
+
+
+
+
+
     useEffect(() => {
         const fetchMenus = async () => {
             const q = query(collection(db, 'users'), where("uid", "==", user.uid));
@@ -117,7 +177,7 @@ const PageC1 = () => {
     }
     const clickMenu888 = () => {
         setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}${am_pm}`), {
-            make, nail, este, sonota, gappi, uid: user.uid, am_pm: am_pm, menu: am_pm, timestamp: serverTimestamp(),
+            make, nail, este, sonota, gappi, uid: user.uid, am_pm: am_pm, menu: am_pm, timestamp: "",
         }, { merge: true })
         fetchTomare()
         fetchTargetTomare()

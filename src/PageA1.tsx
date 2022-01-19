@@ -7,7 +7,7 @@ import 'firebase/compat/auth';
 import { UserState } from "./types/user";
 // import 'firebase/compat/firestore';
 import { db } from "./firebase"
-import { getFirestore, collection, query, where, onSnapshot, doc, setDoc, Timestamp, serverTimestamp, addDoc } from 'firebase/firestore'
+import { getFirestore, collection, query, where, onSnapshot, doc, setDoc, serverTimestamp, addDoc } from 'firebase/firestore'
 import useSWR from 'swr'
 import Link from 'next/link'
 const PageA1 = () => {
@@ -53,7 +53,7 @@ const PageA1 = () => {
             area,
             sns,
             qr,
-            timestamp: serverTimestamp(),
+            timestamp: "",
         }, { merge: true }//←上書きされないおまじない
         )
         console.log('user', setRef)

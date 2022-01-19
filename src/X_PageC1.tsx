@@ -133,7 +133,7 @@ const PageC1 = () => {
         setAm_pm("AM")
         setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}AM`), {
             gappi, uid: user.uid, am_pm: "AM",
-            //  timestamp: serverTimestamp(),
+            //  timestamp"",
         }, { merge: true })
         fetchTomare()
         fetchTargetTomare()
@@ -143,7 +143,7 @@ const PageC1 = () => {
         setAm_pm("PM")
         setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}PM`), {
             gappi, uid: user.uid, am_pm: "PM",
-            // timestamp: serverTimestamp(),
+            // timestamp"",
         }, { merge: true })
         fetchTomare()
         fetchTargetTomare()
@@ -153,7 +153,7 @@ const PageC1 = () => {
         setMake(true)
         // setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}${am_pm}`), {
         //     make:true
-        //     // timestamp: serverTimestamp(),
+        //     // timestamp"",
         // }, { merge: true })
         // fetchTomare()
         fetchTargetTomare()
@@ -162,7 +162,7 @@ const PageC1 = () => {
         setNail(true)
         // setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}${am_pm}`), {
         //     neil: true,
-        //     // timestamp: serverTimestamp(),
+        //     // timestamp"",
         // }, { merge: true })
         // fetchTomare()
         fetchTargetTomare()
@@ -170,7 +170,7 @@ const PageC1 = () => {
     const clickMenu3 = () => {
         setEste(true)
         // setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}${am_pm}`), {
-        //     este: true, timestamp: serverTimestamp(),
+        //     este: true, timestamp"",
         // }, { merge: true })
         // fetchTomare()
         fetchTargetTomare()
@@ -179,7 +179,7 @@ const PageC1 = () => {
         setSonota("その他")
         // setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}${am_pm}`), {
         //     sonota: "その他",
-        //     // timestamp: serverTimestamp(),
+        //     // timestamp"",
         // }, { merge: true })
         fetchTomare()
         fetchTargetTomare()
@@ -188,14 +188,14 @@ const PageC1 = () => {
         const am_pm = "AM"
         const gappi = 20220102
         setDoc(doc(db, 'users', user.uid, 'tomare', '20220102AM'), {
-            menu: am_pm, timestamp: serverTimestamp(),
+            menu: am_pm, timestamp"",
         }, { merge: true })
         fetchTomare()
         fetchTargetTomare()
     }
     const clickMenu888 = () => {
         setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}${am_pm}`), {
-            make, nail, este, sonota, gappi, uid: user.uid, am_pm: am_pm, menu: am_pm, timestamp: serverTimestamp(),
+            make, nail, este, sonota, gappi, uid: user.uid, am_pm: am_pm, menu: am_pm, timestamp"",
         }, { merge: true })
         fetchTomare()
         fetchTargetTomare()

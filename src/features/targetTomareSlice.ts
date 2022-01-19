@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../app/store';
-import { TomareState } from "../../src/types/tomare";
+import { TargetTomareState } from "../../src/types/targetTomare";
 
-const initialState: TomareState = {
+const initialState: TargetTomareState = {
     menu: '',
     gappi: '',
     uid: '',
@@ -11,7 +11,7 @@ const initialState: TomareState = {
     nail: false,
     este: false,
     sonota: '',
-} as TomareState;
+} as TargetTomareState;
 
 export const targetTomareSlice = createSlice({
     name: 'targetTomare',

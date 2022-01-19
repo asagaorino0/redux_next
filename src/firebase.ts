@@ -5,7 +5,7 @@ import 'firebase/compat/firestore';
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import { initializeApp, getApps } from "firebase/app"
 // import { getFirestore, collection, addDoc, doc, setDoc, Timestamp } from 'firebase/firestore'
-import { getFirestore, getDocs, collection, query, where, onSnapshot, doc, setDoc, Timestamp, serverTimestamp, addDoc } from 'firebase/firestore'
+import { getFirestore, getDocs, collection, query, where, onSnapshot, doc, setDoc, serverTimestamp, addDoc } from 'firebase/firestore'
 import { TomareState } from "./types/tomare";
 // import { app } from "../firebase"
 // import { getFirestore, collection, query, where, onSnapshot } from 'firebase/firestore'
@@ -39,7 +39,7 @@ const setRefMenu = async ({ gappi, uid, menu }: TomareState) => {
         gappi,
         uid,
         menu,
-        timestamp: serverTimestamp(),
+        timestamp: "",
     }, { merge: true }//←上書きされないおまじない
     )
 }
