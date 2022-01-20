@@ -342,8 +342,7 @@ const PageC1 = () => {
                                                 {`${targetTomare.sonota}`.length !== 0 &&
                                                     <img {...img_sonota} />
                                                 }
-                                                {targetTomare.yoyakuIcon !== "" && <p><img {...img_icon} /></p>}
-                                                {targetTomare.yoyakuIcon !== "" && <p>
+                                                {targetTomare.yoyakuIcon && <p>
                                                     <img
                                                         src={`${targetTomare.yoyakuIcon}`}
                                                         alt="icon"
