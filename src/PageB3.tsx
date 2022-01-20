@@ -133,19 +133,19 @@ const PageB3 = () => {
 
                                             const fetchTarget1 = async () => {
                                                 setDoc(doc(db, 'users', users.uid, 'tomare', `${tomare.gappi}${tomare.am_pm}`), {
-                                                    menu: "", yoyakuMenu: "ケアメイク", make: false, nail: false, este: false, yoyakuUid: user.uid, yoyakuIcon: user.icon, timestamp: "",
+                                                    menu: "", yoyakuMenu: "ケアメイク", make: true, nail: false, este: false, yoyakuUid: user.uid, yoyakuIcon: user.icon, timestamp: "",
                                                 }, { merge: true })
                                                 alert("登録しました！")
                                             };
                                             const fetchTarget2 = async () => {
                                                 setDoc(doc(db, 'users', users.uid, 'tomare', `${tomare.gappi}${tomare.am_pm}`), {
-                                                    menu: "", yoyakuMenu: "ケアネイル", make: false, nail: false, este: false, yoyakuUid: user.uid, yoyakuIcon: user.icon, timestamp: "",
+                                                    menu: "", yoyakuMenu: "ケアネイル", make: false, nail: true, este: false, yoyakuUid: user.uid, yoyakuIcon: user.icon, timestamp: "",
                                                 }, { merge: true })
                                                 alert("登録しました！")
                                             };
                                             const fetchTarget3 = async () => {
                                                 setDoc(doc(db, 'users', users.uid, 'tomare', `${tomare.gappi}${tomare.am_pm}`), {
-                                                    menu: "", yoyakuMenu: "ケアエステ", make: false, nail: false, este: false, yoyakuUid: user.uid, yoyakuIcon: user.icon, timestamp: "",
+                                                    menu: "", yoyakuMenu: "ケアエステ", make: false, nail: false, este: true, yoyakuUid: user.uid, yoyakuIcon: user.icon, timestamp: "",
                                                 }, { merge: true })
                                                 alert("登録しました！")
                                             };
