@@ -13,6 +13,7 @@ const Home: NextPage = () => {
   const toPageA = () => {
     router.push('./PageA');
   };
+  const PageC = dynamic(() => import('./PageC'), { ssr: false });
 
   return (
     <div className={styles.container}>
