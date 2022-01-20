@@ -176,11 +176,14 @@ const PageB3 = () => {
                                                             メニューを選択
                                                         </h3>
                                                         <div className={styles.grid}>
-                                                            <button onClick={fetchTarget1}>{tomare.make === true && <p><img {...img_make} /></p>}ケアメイク
+                                                            <button onClick={fetchTarget1}>
+                                                                {tomare.make === true && <img {...img_make} />}ケアメイク
                                                             </button>
-                                                            <button onClick={fetchTarget2}>{tomare.nail === true && <p><img {...img_nail} /></p>}ケアネイル
+                                                            <button onClick={fetchTarget2}>
+                                                                {tomare.nail === true && <img {...img_nail} />}ケアネイル
                                                             </button>
-                                                            <button onClick={fetchTarget3}>{tomare.este === true && <p><img {...img_este} /></p>}ケアエステ
+                                                            <button onClick={fetchTarget3}>
+                                                                {tomare.este === true && <img {...img_este} />}ケアエステ
                                                             </button>
                                                             {`${tomare.sonota}`.length !== 0 &&
                                                                 <img {...img_sonota} />
