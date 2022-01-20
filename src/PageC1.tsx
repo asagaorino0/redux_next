@@ -217,8 +217,6 @@ const PageC1 = () => {
     const img_sonota: any = { src: "https://firebasestorage.googleapis.com/v0/b/next-app-db888.appspot.com/o/P_hoka.png?alt=media&token=0d98a224-f460-4527-8208-209f6a52a55c", alt: "その他", style: { width: '60px', height: '45px' } }
     return (
         <div className={styles.main}>
-            {/* <span >pageB2：枠登録</span>
-            <br /> */}
             {user.uid === '' && (
                 <div>
                     <button onClick={lineClick}>
@@ -236,13 +234,11 @@ const PageC1 = () => {
             {`${user.icon}`.length !== 0 &&
                 <h1 className="mb-4 text-green-500 text-3xl">{user.name}さま </h1>
             }
-            <h1>氏名</h1>
+            {/* <h1>氏名</h1>
             {users.name}
             {users.uid}
-            {/* <input type="text" onChange={(e) => setNamae(e.target.value)} /> */}
             <br />
             <h1>エリア</h1>
-            {/* {users.area} */}
             <input type="text" onChange={(e) => setArea(e.target.value)} />
             <br />
             <h1>メニュー</h1>
@@ -256,7 +252,7 @@ const PageC1 = () => {
                                 {doc.este === true && <p>えすて</p>}
                                 {doc.sonota}
                             </div>)
-                    })}
+                    })} */}
             ******************************************************
             <br />
             <div >
