@@ -38,7 +38,6 @@ export default function App() {
               icon: profile.pictureUrl,
             })
           );
-          router.push('./PageC');
         } else {
           console.log('login status : [', false, ']');
         }
