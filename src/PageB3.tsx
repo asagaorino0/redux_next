@@ -3,6 +3,8 @@ import { addUser, selectUser } from './features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { addUsers, selectUsers } from './features/usersSlice';
 import { addTomare, selectTomare, tomareSlice } from './features/tomareSlice';
+import { addTargetUid } from './features/targetUidSlice';
+import { addTargetYoyaku } from './features/targetYoyakuSlice';
 import { useRouter } from "next/router";
 import { db } from "./firebase";
 import { getFirestore, getDocs, collection, collectionGroup, query, where, onSnapshot, doc, setDoc, Timestamp, addDoc } from 'firebase/firestore'
@@ -16,6 +18,7 @@ import 'react-calendar/dist/Calendar.css';
 import styles from '../styles/Home.module.css'
 import { addFormatdate, selectFormatdate } from './features/formatDateSlice';
 import { addTargetTomare, selectTargetTomare } from './features/targetTomareSlice';
+import { TargetTomareState } from "./types/targetTomare";
 
 
 const PageB3 = () => {
@@ -24,10 +27,6 @@ const PageB3 = () => {
     const [age, setAge] = useState<number>(0);
     const [namae, setNamae] = useState<string>("");
     const [sei, setSei] = useState<string>("");
-    const [menu, setMenu] = useState<string>('');
-    const [option1, setOption1] = useState<string>('');
-    const [option2, setOption2] = useState<string>('');
-    const [gappi, setGappi] = useState<string>('');
     const [tokoro, setTokoro] = useState<string>('');
     const [star, setStar] = useState<number>(0);
     const dispatch = useDispatch();
@@ -35,6 +34,11 @@ const PageB3 = () => {
     const [users, setUsers] = useState<any>([]);
     const [tomare, setTomare] = useState<any>([]);
     const [newT, setNewT] = useState<any>([])
+    const [setTargetTomare] = useState<any>([])
+    const [targetYoyaku, setTargetYoyaku] = useState<any>([])
+    const [uid, setTargetUid] = useState<string>("")
+    const [menu, setTargetMenu] = useState<string>("")
+    const [gappi, setTargetGappi] = useState<string>("")
     const formatdate = useSelector(selectFormatdate);
     const targetTomare = useSelector(selectTargetTomare);
     const router = useRouter();
@@ -68,39 +72,6 @@ const PageB3 = () => {
         fetchTomare()
     }, []);
 
-    // const getTileContent = (props: any) => {
-    //     let year = props.date.getFullYear();
-    //     let month = props.date.getMonth() + 1;
-    //     let day = props.date.getDate();
-    //     month = ('0' + month).slice(-2);
-    //     day = ('0' + day).slice(-2);
-    //     const formatDate = year + month + day;
-    //     if (props.view !== "month") {
-    //         return null;
-    //     }
-    //     console.log(`mapUsers`, users)
-    //     console.log(`mapTomare`, tomare)
-    //     return (
-    //         <div >
-    //             {
-    //                 tomare
-    //                     .map((data: TomareState) => {
-    //                         // if (formatDate === data.gappi && data.uid === users.uid) {
-    //                         if (formatDate === data.gappi) {
-    //                             return (
-    //                                 <div key={data.uid}>
-    //                                     <div>
-    //                                         {data.menu}
-    //                                     </div>
-    //                                 </div>
-    //                             )
-    //                         }
-
-    //                     })
-    //             }
-    //         </div>
-    //     );
-    // };
     const clickDay = (calendar: any) => {
         let year = calendar.getFullYear();
         let month = calendar.getMonth() + 1;
@@ -114,6 +85,16 @@ const PageB3 = () => {
     const toPageB = () => {
         router.push('./PageB');
     };
+    // const fetchTargetUid = async () => {
+    //     const q = query(collectionGroup(db, 'tomare'), where("este", "==", true));
+    //     const snapshot = await getDocs(q)
+    //     const tomareData = snapshot.docs.map(
+    //         (docT: any) => ({ ...docT.data() } as TargetTomareState))
+    //     dispatch(addTargetTomare(tomareData))
+    //     setTargetTomare(tomareData)
+    //     // toPageM()
+    // }
+    // const clickMenu1 = () => { dispatch(addTargetUid(users.uid)), setTargetUid(users.uid), fetchTargetUid(); }
 
     return (
         <div className={styles.main}>
@@ -145,38 +126,6 @@ const PageB3 = () => {
                 {/* {users.length !== 0 && */}
                 {
                     users.map((users: UsersState) => {
-                        // const getTileContent = (props: any) => {
-                        //     tomare
-                        //         // .filter((users: UsersState) => tomare.uid === users.uid)
-                        //         .filter((tomare: TomareState) => tomare.uid === users.uid)
-
-                        //         .map((tomare: TomareState) => {
-                        //             // return (
-                        //             // if (`${users.uid}` === `${tomare.uid}`) {
-                        //             console.log(users.name)
-                        //             console.log(tomare.uid)
-                        //             // const getTileContent = (props: any) => {
-                        //             let year = props.date.getFullYear();
-                        //             let month = props.date.getMonth() + 1;
-                        //             let day = props.date.getDate();
-                        //             month = ('0' + month).slice(-2);
-                        //             day = ('0' + day).slice(-2);
-                        //             const formatDate = year + month + day;
-                        //             if (props.view !== "month") {
-                        //                 return null;
-                        //             }
-                        //             if (formatDate === tomare.gappi) {
-                        //                 return (
-                        //                     <div key={tomare.uid}>
-                        //                         <div>
-                        //                             {tomare.menu}
-                        //                         </div>
-                        //                     </div>
-                        //                 )
-                        //             }
-                        //             // }
-                        //         })
-                        // }
                         const img_make: any = { src: "https://firebasestorage.googleapis.com/v0/b/next-app-db888.appspot.com/o/P_make.png?alt=media&token=eeaf12cd-39be-4fda-8945-ec2bcb1b24dd", alt: "ケアメイク", style: { width: '60px', height: '45px' } }
                         const img_nail: any = { src: "https://firebasestorage.googleapis.com/v0/b/next-app-db888.appspot.com/o/P_nail.png?alt=media&token=42117e21-66df-4049-a948-46840912645a", alt: "ケアネイル", style: { width: '60px', height: '45px' } }
                         const img_este: any = { src: "https://firebasestorage.googleapis.com/v0/b/next-app-db888.appspot.com/o/P_este.png?alt=media&token=5fe75701-ec95-424a-8ba7-a547e313dd19", alt: "ケアエステ", style: { width: '60px', height: '45px' } }
@@ -189,32 +138,30 @@ const PageB3 = () => {
                                         // .filter((users: UsersState) => tomare.uid === users.uid)
                                         .filter((tomare: TomareState) => tomare.uid === users.uid)
                                         .map((tomare: TomareState) => {
-                                            // return (
+
+                                            const fetchTargetUid = async () => {
+                                                console.log(`${tomare.gappi}${tomare.am_pm}`)
+                                                // const q = query(collection(db, users.uid, 'tomare', `${tomare.gappi}${tomare.menu}`));
+                                                // const q = query(collection(db, 'users', users.uid, 'tomare', `20220120PM`));
+                                                const q = query(collectionGroup(db, 'tomare'), where("tomareId", "==", `${tomare.gappi}${tomare.am_pm}`));
+                                                const snapshot = await getDocs(q)
+                                                const yoyakuData = snapshot.docs.map(
+                                                    (docT: any) => ({ ...docT.data() } as TargetTomareState))
+                                                dispatch(addTargetYoyaku(yoyakuData))
+                                                setTargetYoyaku(yoyakuData)
+                                                console.log(yoyakuData)
+                                                // toPageM()
+                                            }
+                                            const clickMenu1 = () => { dispatch(addTargetUid([tomare.gappi, tomare.am_pm])), fetchTargetUid(); }
+
+
+
+
+
+
                                             if (`${users.uid}` === `${tomare.uid}`) {
-                                                console.log(users.name)
-                                                console.log(tomare.uid)
-                                                // const getTileContent = (props: Element | null) => {
-                                                //     let year = props?.date.getFullYear();
-                                                //     let month = props?.date.getMonth() + 1;
-                                                //     let day = props?.date.getDate();
-                                                //     month = ('0' + month).slice(-2);
-                                                //     day = ('0' + day).slice(-2);
-                                                //     const formatDate = year + month + day;
-                                                //     if (props?.view !== "month") {
-                                                //         return null;
-                                                //     }
-                                                //     if (formatDate === tomare.gappi) {
-                                                //         return (
-                                                //             <div key={tomare.uid}>
-                                                //                 <div>
-                                                //                     {tomare.menu}
-                                                //                 </div>
-                                                //             </div>
-                                                //         )
-                                                //     }
-                                                // }
-                                                // }
-                                                // })
+                                                // console.log(users.name)
+                                                // console.log(tomare.uid)
 
                                                 return (
                                                     <div key={users.uid}>
@@ -228,9 +175,11 @@ const PageB3 = () => {
                                                         <h3 className="mb-4  text-3xl">
                                                             {users.name}
                                                         </h3>
-                                                        <h3 className="mb-4 text-green-500 text-3xl">
-                                                            {tomare.menu}
-                                                        </h3>
+                                                        <button onClick={clickMenu1}>
+                                                            <h3 className="mb-4 text-green-500 text-3xl">
+                                                                {tomare.menu}
+                                                            </h3>
+                                                        </button>
                                                         <div className={styles.grid}>
                                                             {tomare.make === true && <p><img {...img_make} /></p>}
                                                             {tomare.nail === true && <p><img {...img_nail} /></p>}
