@@ -5,7 +5,8 @@ import { useRouter } from "next/router";
 import { store } from '../src/app/store';
 import { Provider } from 'react-redux';
 import dynamic from 'next/dynamic'
-import PageB3 from '../src/PageB3'
+import PageC1 from '../src/PageC1'
+import PageM1 from '../src/PageM1'
 import PageB0 from '../src/PageB0'
 // import PageB3 from '../src/PageB3'
 import CalendarPage from '../src/Calendar'
@@ -39,7 +40,8 @@ const PageB = () => {
                     <Provider store={store}>
 
                         <PageB0 />
-                        {/* <PageB3 /> */}
+                        {/* <PageM1 /> */}
+                        {/* <PageC1 /> */}
                         {/* <CalendarPage /> */}
                     </Provider>
                 </React.StrictMode>

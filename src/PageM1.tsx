@@ -20,22 +20,14 @@ import { TargetTomareState } from "../src/types/targetTomare";
 
 
 const PageM1 = () => {
-    const [name, setName] = useState<string>('');
-    const [icon, setIcon] = useState<string | undefined>('');
-    const [age, setAge] = useState<number>(0);
     const [namae, setNamae] = useState<string>("");
     const [sei, setSei] = useState<string>("");
-    const [menu, setMenu] = useState<string>('');
-    const [option1, setOption1] = useState<string>('');
-    const [option2, setOption2] = useState<string>('');
     const [gappi, setGappi] = useState<string>('');
     const [tokoro, setTokoro] = useState<string>('');
-    const [star, setStar] = useState<number>(0);
     const dispatch = useDispatch();
     const user = useSelector(selectUser);
     const [users, setUsers] = useState<any>([]);
     const [tomare, setTomare] = useState<any>([]);
-    const [newT, setNewT] = useState<any>([])
     const formatdate = useSelector(selectFormatdate);
     const targetTomare = useSelector(selectTargetTomare);
     const router = useRouter();
@@ -52,9 +44,8 @@ const PageM1 = () => {
         }
         return (
             <div >
-                {
+                {`${targetTomare.targetTomare}` === null &&
                     targetTomare.targetTomare
-                        // .filter(() => tomare.uid === user.uid)//無効
                         .map((data: any) => {
                             if (formatDate === data.gappi) {
                                 return (
@@ -166,8 +157,8 @@ const PageM1 = () => {
             <br />
 
             <div >
-                {/* {users.length !== 0 && */}
-                {
+                {`${users}`.length !== 0 &&
+
                     users.map((users: UsersState) => {
                         const img_make: any = { src: "https://firebasestorage.googleapis.com/v0/b/next-app-db888.appspot.com/o/P_make.png?alt=media&token=eeaf12cd-39be-4fda-8945-ec2bcb1b24dd", alt: "ケアメイク", style: { width: '60px', height: '45px' } }
                         const img_nail: any = { src: "https://firebasestorage.googleapis.com/v0/b/next-app-db888.appspot.com/o/P_nail.png?alt=media&token=42117e21-66df-4049-a948-46840912645a", alt: "ケアネイル", style: { width: '60px', height: '45px' } }
@@ -176,7 +167,7 @@ const PageM1 = () => {
 
                         return (
                             <div key={users.uid}>
-                                {
+                                {`${targetTomare.targetTomare}` === null &&
                                     targetTomare.targetTomare
                                         // .filter((users: UsersState) => tomare.uid === users.uid)
                                         .filter((tomare: TomareState) => tomare.uid === users.uid)
@@ -242,7 +233,9 @@ const PageM1 = () => {
                         )
                     }
                     )
-                }            <button onClick={toPageB}>戻る</button>
+                }
+                <button onClick={toPageB}>戻る</button>
+
             </div>
         </div>
     )
