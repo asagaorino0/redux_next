@@ -17,7 +17,7 @@ import styles from '../styles/Home.module.css'
 import { addFormatdate, selectFormatdate } from './features/formatDateSlice';
 import { addTargetTomare, selectTargetTomare } from './features/targetTomareSlice';
 import { TargetTomareState } from "../src/types/targetTomare";
-
+import { selectTarget } from "./features/targetSlice";
 
 const PageM1 = () => {
     const [namae, setNamae] = useState<string>("");
@@ -30,6 +30,7 @@ const PageM1 = () => {
     const [tomare, setTomare] = useState<any>([]);
     const formatdate = useSelector(selectFormatdate);
     const targetTomare = useSelector(selectTargetTomare);
+    const target = useSelector(selectTarget);
     const router = useRouter();
 
     const getTileContent = (props: any) => {
@@ -44,7 +45,8 @@ const PageM1 = () => {
         }
         return (
             <div >
-                {`${targetTomare.targetTomare}` === null &&
+                {`${targetTomare.targetTomare}`.length === 0 &&
+                    // {`${targetTomare.targetTomare}`.length !== 0 &&//にしたい！！！
                     targetTomare.targetTomare
                         .map((data: any) => {
                             if (formatDate === data.gappi) {
@@ -167,37 +169,16 @@ const PageM1 = () => {
 
                         return (
                             <div key={users.uid}>
-                                {`${targetTomare.targetTomare}` === null &&
+                                {`${target}`.length === 0 &&
+                                    // {`${target}`.length !== 0 &&//にしたい！！！
                                     targetTomare.targetTomare
                                         // .filter((users: UsersState) => tomare.uid === users.uid)
                                         .filter((tomare: TomareState) => tomare.uid === users.uid)
                                         .map((tomare: TomareState) => {
                                             // return (
                                             if (`${users.uid}` === `${tomare.uid}`) {
-                                                console.log(users.name)
-                                                console.log(tomare.uid)
-                                                // const getTileContent = (props: Element | null) => {
-                                                //     let year = props?.date.getFullYear();
-                                                //     let month = props?.date.getMonth() + 1;
-                                                //     let day = props?.date.getDate();
-                                                //     month = ('0' + month).slice(-2);
-                                                //     day = ('0' + day).slice(-2);
-                                                //     const formatDate = year + month + day;
-                                                //     if (props?.view !== "month") {
-                                                //         return null;
-                                                //     }
-                                                //     if (formatDate === tomare.gappi) {
-                                                //         return (
-                                                //             <div key={tomare.uid}>
-                                                //                 <div>
-                                                //                     {tomare.menu}
-                                                //                 </div>
-                                                //             </div>
-                                                //         )
-                                                //     }
-                                                // }
-                                                // }
-                                                // })
+                                                // console.log(users.name)
+                                                // console.log(tomare.uid)
 
                                                 return (
                                                     <div key={users.uid}>

@@ -12,14 +12,6 @@ const PageC = () => {
     const toPageA = () => {
         router.push('./PageA')
     }
-    // const [name, setName] = useState<string>('');
-    // const [age, setAge] = useState<number>(0);
-    // const user = useSelector(selectUser);
-    // const router = useRouter()
-    // const toPageA = () => {
-    //     router.push('/')
-    // }
-
     return (
         <div className="App">
             <div>

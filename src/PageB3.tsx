@@ -6,7 +6,7 @@ import { addTomare, selectTomare, tomareSlice } from './features/tomareSlice';
 import { addTargetUid } from './features/targetUidSlice';
 import { addTargetYoyaku } from './features/targetYoyakuSlice';
 import { useRouter } from "next/router";
-import { db } from "./firebase";
+import { db, setRefMenu } from "./firebase";
 import { getFirestore, getDocs, collection, collectionGroup, query, where, onSnapshot, doc, setDoc, Timestamp, addDoc } from 'firebase/firestore'
 import CalendarPage from "./Calendar";
 import { store } from '../src/app/store';
@@ -37,7 +37,7 @@ const PageB3 = () => {
     const [setTargetTomare] = useState<any>([])
     const [targetYoyaku, setTargetYoyaku] = useState<any>([])
     const [uid, setTargetUid] = useState<string>("")
-    const [menu, setTargetMenu] = useState<string>("")
+    const [menu, setMenu] = useState<string>("")
     const [gappi, setTargetGappi] = useState<string>("")
     const formatdate = useSelector(selectFormatdate);
     const targetTomare = useSelector(selectTargetTomare);
@@ -85,16 +85,7 @@ const PageB3 = () => {
     const toPageB = () => {
         router.push('./PageB');
     };
-    // const fetchTargetUid = async () => {
-    //     const q = query(collectionGroup(db, 'tomare'), where("este", "==", true));
-    //     const snapshot = await getDocs(q)
-    //     const tomareData = snapshot.docs.map(
-    //         (docT: any) => ({ ...docT.data() } as TargetTomareState))
-    //     dispatch(addTargetTomare(tomareData))
-    //     setTargetTomare(tomareData)
-    //     // toPageM()
-    // }
-    // const clickMenu1 = () => { dispatch(addTargetUid(users.uid)), setTargetUid(users.uid), fetchTargetUid(); }
+
 
     return (
         <div className={styles.main}>
@@ -119,6 +110,7 @@ const PageB3 = () => {
             <h1>住所</h1>
             <input type="text" onChange={(e) => setTokoro(e.target.value)} />
             <br />
+            {targetYoyaku.menu}
 
             *********************************************************************
             <br />
@@ -140,20 +132,21 @@ const PageB3 = () => {
                                         .map((tomare: TomareState) => {
 
                                             const fetchTargetUid = async () => {
-                                                console.log(`${tomare.gappi}${tomare.am_pm}`)
-                                                // const q = query(collection(db, users.uid, 'tomare', `${tomare.gappi}${tomare.menu}`));
-                                                // const q = query(collection(db, 'users', users.uid, 'tomare', `20220120PM`));
-                                                const q = query(collectionGroup(db, 'tomare'), where("tomareId", "==", `${tomare.gappi}${tomare.am_pm}`));
+                                                console.log(menu)
+                                                setDoc(doc(db, 'users', users.uid, 'tomare', `${tomare.gappi}${tomare.am_pm}`), {
+                                                    menu: "", yoyakuUid: user.uid, yoyakuName: user.namae, yoyakuIcon: user.icon, timestamp: "",
+                                                }, { merge: true })
+                                                const q = query(collectionGroup(db, 'tomare'), where("tomareId", "==", `${tomare.gappi}${tomare.menu}`));
                                                 const snapshot = await getDocs(q)
                                                 const yoyakuData = snapshot.docs.map(
                                                     (docT: any) => ({ ...docT.data() } as TargetTomareState))
                                                 dispatch(addTargetYoyaku(yoyakuData))
                                                 setTargetYoyaku(yoyakuData)
-                                                console.log(yoyakuData)
+                                                console.log("menu:", targetYoyaku.menu)
                                                 // toPageM()
                                             }
                                             const clickMenu1 = () => { dispatch(addTargetUid([tomare.gappi, tomare.am_pm])), fetchTargetUid(); }
-
+                                            const clickMenu2 = () => { fetchTargetUid() }
 
 
 
@@ -162,8 +155,8 @@ const PageB3 = () => {
                                             if (`${users.uid}` === `${tomare.uid}`) {
                                                 // console.log(users.name)
                                                 // console.log(tomare.uid)
-
                                                 return (
+                                                    tomare.menu !== "" &&
                                                     <div key={users.uid}>
                                                         <br />
                                                         <img
@@ -176,14 +169,20 @@ const PageB3 = () => {
                                                             {users.name}
                                                         </h3>
                                                         <button onClick={clickMenu1}>
-                                                            <h3 className="mb-4 text-green-500 text-3xl">
-                                                                {tomare.menu}
+                                                            <h3 className="mb-4 text-3xl">
+                                                                {tomare.gappi}/{tomare.am_pm}
                                                             </h3>
                                                         </button>
+                                                        <h3 className="mb-4 text-green-500 text-3xl">
+                                                            メニューを選択
+                                                        </h3>
                                                         <div className={styles.grid}>
-                                                            {tomare.make === true && <p><img {...img_make} /></p>}
-                                                            {tomare.nail === true && <p><img {...img_nail} /></p>}
-                                                            {tomare.este === true && <p><img {...img_este} /></p>}
+                                                            <button onClick={clickMenu1}>{tomare.make === true && <p><img {...img_make} /></p>}
+                                                            </button>
+                                                            <button onClick={clickMenu2}>{tomare.nail === true && <p><img {...img_nail} /></p>}
+                                                            </button>
+                                                            <button onClick={clickMenu1}>{tomare.este === true && <p><img {...img_este} /></p>}
+                                                            </button>
                                                             {`${tomare.sonota}`.length !== 0 &&
                                                                 <img {...img_sonota} />
                                                             }

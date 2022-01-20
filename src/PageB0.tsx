@@ -20,6 +20,7 @@ import { setUncaughtExceptionCaptureCallback } from 'process';
 import ReactDOM from 'react-dom';
 import { useRouter } from 'next/router';
 import styles from '../styles/Home.module.css'
+import { devNull } from 'os';
 
 const PageB0 = () => {
     const [users, setUsers] = useState<any>([]);
@@ -204,21 +205,30 @@ const PageB0 = () => {
         setTargetTomare(tomareData)
         toPageM()
     }
-    const fetchTarget = async () => {
+    const fetchTargetSonota = async () => {
         const q = query(collectionGroup(db, 'tomare'), where("その他", "!=", ""));
+        const snapshot = await getDocs(q)
+        const tomareData = snapshot.docs.map(
+            (docT: any) => ({ ...docT.data() } as TargetTomareState))
+        dispatch(addTargetTomare(tomareData))
+        setTargetTomare(tomareData)
+        toPageM()
+    }
+    const fetchTarget = async () => {
+        const q = query(collectionGroup(db, 'tomare'), where("その他", "!=", null));
         const snapshot = await getDocs(q)
         const tomareData = snapshot.docs.map(
             (docT: any) => ({ ...docT.data() } as TargetState))
         dispatch(addTargetTomare(tomareData))
         setTargetTomare(tomareData)
-        // toPageM()
+        toPageM()
     }
 
     const clickMenu1 = () => { dispatch(addTarget("make")), setTarget('make'), fetchTargetMake(); }
     const clickMenu2 = () => { dispatch(addTarget("nail")), setTarget('nail'); fetchTargetNail() }
     const clickMenu3 = () => { dispatch(addTarget("este")), setTarget('este'); fetchTargetEste(); }
     const clickMenu4 = () => {
-        dispatch(addTarget("その他")), setTarget('その他'); fetchTarget();
+        dispatch(addTarget("その他")), setTarget('その他'); fetchTargetSonota();
     }
 
     const img_make: any = { src: "https://firebasestorage.googleapis.com/v0/b/next-app-db888.appspot.com/o/P_make.png?alt=media&token=eeaf12cd-39be-4fda-8945-ec2bcb1b24dd", alt: "ケアメイク", style: { width: '60px', height: '45px' } }
