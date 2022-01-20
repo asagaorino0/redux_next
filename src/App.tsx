@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { addUser, selectUser } from '../src/features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
-import 'firebase/compat/firestore'
+import 'firebase/compat/firestore';
 import liff from '@line/liff';
 
 export default function App() {
@@ -37,7 +37,7 @@ export default function App() {
               uid: profile.userId,
               icon: profile.pictureUrl,
             })
-          );///先生
+          );
         } else {
           console.log('login status : [', false, ']');
         }
@@ -56,7 +56,7 @@ export default function App() {
         console.log('hello world');
       }
     });
-  };///先生
+  }; ///先生
 
   const toPageC = () => {
     router.push('./PageC');
@@ -77,19 +77,19 @@ export default function App() {
 
   return (
     <div className="App">
-      {`${user.uid}` === '' && (
+      {user.uid === '' && (
         <div>
           <button onClick={lineClick}>
             <h4 className="mb-4 text-green-500 text-3xl">ログイン</h4>
           </button>
         </div>
       )}
-      {`${user.uid}` !== '' && (
+      {user.uid !== '' && (
         <div>
           <h2 className="mb-4  text-3xl">ようこそ</h2>
         </div>
       )}
-      {`${user.uid}` !== '' && (
+      {user.uid !== '' && (
         <div>
           <button onClick={registC}>
             <h3 className="mb-4 text-green-500 text-3xl">
@@ -98,21 +98,21 @@ export default function App() {
           </button>
         </div>
       )}
-      {`${user.uid}` !== '' && (
+      {user.uid !== '' && (
         <div>
           <button onClick={registB}>
             <h3 className="mb-4 text-green-500 text-3xl">個人で申し込む</h3>
           </button>
         </div>
       )}
-      {`${user.uid}` !== '' && (
+      {user.uid !== '' && (
         <div>
           <button onClick={registB}>
             <h3 className="mb-4 text-green-500 text-3xl">施設で申し込む</h3>
           </button>
         </div>
       )}
-      {`${user.uid}` !== '' && (
+      {user.uid !== '' && (
         <div>
           <button onClick={registB}>
             <h3 className="mb-4 text-green-500 text-3xl">
