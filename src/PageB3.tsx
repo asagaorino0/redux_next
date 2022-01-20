@@ -188,6 +188,15 @@ const PageB3 = () => {
                                                             {`${tomare.sonota}`.length !== 0 &&
                                                                 <img {...img_sonota} />
                                                             }
+                                                            <button onClick={fetchTarget1}>
+                                                                ケアメイク
+                                                            </button>
+                                                            <button onClick={fetchTarget2}>
+                                                                ケアネイル
+                                                            </button>
+                                                            <button onClick={fetchTarget3}>
+                                                                ケアエステ
+                                                            </button>
                                                         </div>
                                                         <br />
                                                     </div >
