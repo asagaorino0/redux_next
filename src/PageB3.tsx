@@ -131,10 +131,10 @@ const PageB3 = () => {
                                         .filter((tomare: TomareState) => tomare.uid === users.uid)
                                         .map((tomare: TomareState) => {
 
-                                            const fetchTargetUid = async () => {
+                                            const fetchTarget1 = async () => {
                                                 console.log(menu)
                                                 setDoc(doc(db, 'users', users.uid, 'tomare', `${tomare.gappi}${tomare.am_pm}`), {
-                                                    menu: "", yoyakuUid: user.uid, yoyakuName: user.namae, yoyakuIcon: user.icon, timestamp: "",
+                                                    menu: "", yoyakuMenu: "ケアメイク", yoyakuUid: user.uid, yoyakuName: user.namae, yoyakuIcon: user.icon, timestamp: "",
                                                 }, { merge: true })
                                                 const q = query(collectionGroup(db, 'tomare'), where("tomareId", "==", `${tomare.gappi}${tomare.menu}`));
                                                 const snapshot = await getDocs(q)
@@ -145,8 +145,8 @@ const PageB3 = () => {
                                                 console.log("menu:", targetYoyaku.menu)
                                                 // toPageM()
                                             }
-                                            const clickMenu1 = () => { dispatch(addTargetUid([tomare.gappi, tomare.am_pm])), fetchTargetUid(); }
-                                            const clickMenu2 = () => { fetchTargetUid() }
+                                            const clickMenu1 = () => { fetchTarget1(); }
+                                            const clickMenu2 = () => { fetchTarget1() }
 
 
 
