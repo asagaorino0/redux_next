@@ -348,6 +348,7 @@ const PageC1 = () => {
                                                         alt="icon"
                                                         style={{ borderRadius: '50%', width: '60px', height: '60px' }}
                                                     /></p>}
+                                                <br />
                                             </div>
                                         </div>
                                     )
