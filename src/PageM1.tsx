@@ -45,7 +45,7 @@ const PageM1 = () => {
         }
         return (
             <div >
-                {`${targetTomare.targetTomare}`.length === 0 &&
+                {`${targetTomare.targetTomare}`.length !== 0 &&
                     // {`${targetTomare.targetTomare}`.length !== 0 &&//にしたい！！！
                     targetTomare.targetTomare
                         .map((data: any) => {
@@ -169,7 +169,7 @@ const PageM1 = () => {
 
                         return (
                             <div key={users.uid}>
-                                {`${target}`.length === 0 &&
+                                {`${target}`.length !== 0 &&
                                     // {`${target}`.length !== 0 &&//にしたい！！！
                                     targetTomare.targetTomare
                                         // .filter((users: UsersState) => tomare.uid === users.uid)

@@ -132,23 +132,23 @@ const PageB3 = () => {
                                         .map((tomare: TomareState) => {
 
                                             const fetchTarget1 = async () => {
-                                                console.log(menu)
                                                 setDoc(doc(db, 'users', users.uid, 'tomare', `${tomare.gappi}${tomare.am_pm}`), {
-                                                    menu: "", yoyakuMenu: "ケアメイク", yoyakuUid: user.uid, yoyakuName: user.namae, yoyakuIcon: user.icon, timestamp: "",
+                                                    menu: "", yoyakuMenu: "ケアメイク", make: false, nail: false, este: false, yoyakuUid: user.uid, yoyakuName: user.namae, yoyakuIcon: user.icon, timestamp: "",
                                                 }, { merge: true })
-                                                const q = query(collectionGroup(db, 'tomare'), where("tomareId", "==", `${tomare.gappi}${tomare.menu}`));
-                                                const snapshot = await getDocs(q)
-                                                const yoyakuData = snapshot.docs.map(
-                                                    (docT: any) => ({ ...docT.data() } as TargetTomareState))
-                                                dispatch(addTargetYoyaku(yoyakuData))
-                                                setTargetYoyaku(yoyakuData)
-                                                console.log("menu:", targetYoyaku.menu)
                                                 alert("登録しました！")
-                                                // toPageM()
-                                            }
-                                            const clickMenu1 = () => { fetchTarget1(); }
-                                            const clickMenu2 = () => { fetchTarget1() }
-
+                                            };
+                                            const fetchTarget2 = async () => {
+                                                setDoc(doc(db, 'users', users.uid, 'tomare', `${tomare.gappi}${tomare.am_pm}`), {
+                                                    menu: "", yoyakuMenu: "ケアネイル", make: false, nail: false, este: false, yoyakuUid: user.uid, yoyakuName: user.namae, yoyakuIcon: user.icon, timestamp: "",
+                                                }, { merge: true })
+                                                alert("登録しました！")
+                                            };
+                                            const fetchTarget3 = async () => {
+                                                setDoc(doc(db, 'users', users.uid, 'tomare', `${tomare.gappi}${tomare.am_pm}`), {
+                                                    menu: "", yoyakuMenu: "ケアエステ", make: false, nail: false, este: false, yoyakuUid: user.uid, yoyakuName: user.namae, yoyakuIcon: user.icon, timestamp: "",
+                                                }, { merge: true })
+                                                alert("登録しました！")
+                                            };
 
 
 
@@ -169,20 +169,18 @@ const PageB3 = () => {
                                                         <h3 className="mb-4  text-3xl">
                                                             {users.name}
                                                         </h3>
-                                                        <button onClick={clickMenu1}>
-                                                            <h3 className="mb-4 text-3xl">
-                                                                {tomare.gappi}/{tomare.am_pm}
-                                                            </h3>
-                                                        </button>
+                                                        <h3 className="mb-4 text-3xl">
+                                                            {tomare.gappi}/{tomare.am_pm}
+                                                        </h3>
                                                         <h3 className="mb-4 text-green-500 text-3xl">
                                                             メニューを選択
                                                         </h3>
                                                         <div className={styles.grid}>
-                                                            <button onClick={clickMenu1}>{tomare.make === true && <p><img {...img_make} /></p>}
+                                                            <button onClick={fetchTarget1}>{tomare.make === true && <p><img {...img_make} /></p>}
                                                             </button>
-                                                            <button onClick={clickMenu2}>{tomare.nail === true && <p><img {...img_nail} /></p>}
+                                                            <button onClick={fetchTarget2}>{tomare.nail === true && <p><img {...img_nail} /></p>}
                                                             </button>
-                                                            <button onClick={clickMenu1}>{tomare.este === true && <p><img {...img_este} /></p>}
+                                                            <button onClick={fetchTarget3}>{tomare.este === true && <p><img {...img_este} /></p>}
                                                             </button>
                                                             {`${tomare.sonota}`.length !== 0 &&
                                                                 <img {...img_sonota} />
