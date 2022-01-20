@@ -143,6 +143,7 @@ const PageB3 = () => {
                                                 dispatch(addTargetYoyaku(yoyakuData))
                                                 setTargetYoyaku(yoyakuData)
                                                 console.log("menu:", targetYoyaku.menu)
+                                                alert("登録しました！")
                                                 // toPageM()
                                             }
                                             const clickMenu1 = () => { fetchTarget1(); }
