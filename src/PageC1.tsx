@@ -215,7 +215,7 @@ const PageC1 = () => {
     const img_nail: any = { src: "https://firebasestorage.googleapis.com/v0/b/next-app-db888.appspot.com/o/P_nail.png?alt=media&token=42117e21-66df-4049-a948-46840912645a", alt: "ケアネイル", style: { width: '60px', height: '45px' } }
     const img_este: any = { src: "https://firebasestorage.googleapis.com/v0/b/next-app-db888.appspot.com/o/P_este.png?alt=media&token=5fe75701-ec95-424a-8ba7-a547e313dd19", alt: "ケアエステ", style: { width: '60px', height: '45px' } }
     const img_sonota: any = { src: "https://firebasestorage.googleapis.com/v0/b/next-app-db888.appspot.com/o/P_hoka.png?alt=media&token=0d98a224-f460-4527-8208-209f6a52a55c", alt: "その他", style: { width: '60px', height: '45px' } }
-    const img_icon: any = { src: targetTomare.yoyakuIcon, alt: "その他", style: { width: '60px', height: '45px' } }
+    const img_icon: any = { src: targetTomare.yoyakuIcon, alt: "icon", style: { width: '60px', height: '45px' } }
     return (
         <div className={styles.main}>
             {user.uid === '' && (
@@ -343,6 +343,12 @@ const PageC1 = () => {
                                                     <img {...img_sonota} />
                                                 }
                                                 {targetTomare.yoyakuIcon !== "" && <p><img {...img_icon} /></p>}
+                                                {targetTomare.yoyakuIcon !== "" && <p>
+                                                    <img
+                                                        src={`${targetTomare.yoyakuIcon}`}
+                                                        alt="icon"
+                                                        style={{ borderRadius: '50%', width: '60px', height: '60px' }}
+                                                    /></p>}
                                             </div>
                                         </div>
                                     )
