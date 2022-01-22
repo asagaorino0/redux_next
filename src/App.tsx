@@ -3,6 +3,8 @@ import { addUser, selectUser } from '../src/features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import 'firebase/compat/firestore';
+import { doc, setDoc, serverTimestamp } from 'firebase/firestore'
+import { db } from './firebase';
 import liff from '@line/liff';
 
 export default function App() {
@@ -38,6 +40,15 @@ export default function App() {
               icon: profile.pictureUrl,
             })
           );
+          const setRef = setDoc(
+            doc(db, 'users', `${uid}`),
+            {
+              uid,
+              name,
+              icon,
+              timestamp: '',
+            },
+            { merge: true });
         } else {
           console.log('login status : [', false, ']');
         }
