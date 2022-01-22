@@ -62,7 +62,6 @@ const PageM1 = () => {
         console.log('tomareData:', tomareData)
         console.log('tomare:', tomare)
     }
-    // const uuid:string = "Ue46857df2a6433a7852ef631b5689693"
     useEffect(() => {
         fetchUsers()
         fetchTomare()
