@@ -186,7 +186,7 @@ const PageM1 = () => {
                             <div key={users.uid}>
                                 {target &&
                                     targetTomare.targetTomare
-                                        .filter((tomare: TomareState) => tomare.uid === users.uid)
+                                        .filter((tomare: TomareState) => tomare.uid === users.uid && tomare.menu !== "")
                                         .map((tomare: TomareState) => {
                                             if (`${users.uid}` === `${tomare.uid}`) {
                                                 return (
