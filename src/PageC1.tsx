@@ -10,7 +10,6 @@ import { TomareState } from "./types/tomare";
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import styles from '../styles/Home.module.css'
-
 import { addUser, selectUser } from '../src/features/userSlice';
 import liff from '@line/liff';
 import P_make from "./img/P_make.png"
@@ -18,16 +17,13 @@ import { computeSegDraggable } from '@fullcalendar/common';
 import { truncate } from 'fs';
 
 const PageC1 = () => {
-    const [users, setUsers] = useState<any>([]);
     const [menus, setMenus] = useState<any>([]);
     const [make, setMake] = useState<boolean>(false);
     const [nail, setNail] = useState<boolean>(false);
     const [este, setEste] = useState<boolean>(false);
     const [sonota, setSonota] = useState<string>("");
-    const [area, setArea] = useState<string>("未登録");
     const [gappi, setGappi] = useState<string>('');
     const [am_pm, setAm_pm] = useState<string>('');
-    const [add, setAdd] = useState<number>(0);
     const dispatch = useDispatch();
     const user = useSelector(selectUser);
     const [tomare, setTomare] = useState<any>([]);
@@ -60,15 +56,13 @@ const PageC1 = () => {
                             uid: profile.userId,
                             icon: profile.pictureUrl,
                         })
-
-                    );///先生
+                    );
                 } else {
                     console.log('login status : [', false, ']');
                 }
             });
     }, [dispatch]);
 
-    // const loginUrl: string | undefined = process.env.NEXT_PUBLIC_LINE_LOGIN_URL;
     const LINEID = process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID;
     const lineClick = () => {
         setUid('');
@@ -80,7 +74,7 @@ const PageC1 = () => {
                 console.log('hello world');
             }
         });
-    };///先生
+    };
 
 
 

@@ -8,9 +8,6 @@ import { addUser, selectUser } from './features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { db } from "./firebase";
 import { getFirestore, getDocs, collection, collectionGroup, query, where, onSnapshot, doc, setDoc, Timestamp, serverTimestamp, deleteDoc } from 'firebase/firestore'
-import { store } from './app/store';
-import { Provider } from 'react-redux';
-import { UsersState } from "./types/users";
 import { TomareState } from "./types/tomare";
 import { TargetTomareState } from "./types/targetTomare";
 import { TargetState } from "./types/target";
@@ -21,47 +18,67 @@ import ReactDOM from 'react-dom';
 import { useRouter } from 'next/router';
 import styles from '../styles/Home.module.css'
 import { devNull } from 'os';
+import liff from '@line/liff';
+
 
 const PageB0 = () => {
     const [users, setUsers] = useState<any>([]);
-    // const [uid, setUid] = useState<string>(user.uid);
+    const [uid, setUid] = useState<string>('');
     const [name, setName] = useState<string>('');
     const [icon, setIcon] = useState<string | undefined>('');
     const [area, setArea] = useState<string>("未登録");
     const [namae, setNamae] = useState<string>("");
-    const [sei, setSei] = useState<string>("");
-    const [menu, setMenu] = useState<string>('');
-    const [option1, setOption1] = useState<string>('');
-    const [option2, setOption2] = useState<string>('');
     const [gappi, setGappi] = useState<string>('');
-    const [tokoro, setTokoro] = useState<string>('');
-    const [add, setAdd] = useState<number>(0);
     const dispatch = useDispatch();
     const user = useSelector(selectUser);
-    // const target = useSelector(selectTarget);
     const router = useRouter();
-    // const [users, setUsers] = useState<any>();
     const [tomare, setTomare] = useState<any>([]);
-    const [formatDate, setFormatDate] = useState<any>([]);
     const [target, setTarget] = useState<string>("");
     const [targetTomare, setTargetTomare] = useState<any>([])
     // const users = useSelector(selectUsers).users;
 
+    useEffect(() => {
+        liff
+            .init({ liffId: process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID as string })
+            .then(async () => {
+                if (liff.isLoggedIn()) {
+                    console.log('login status : [', true, ']');
+                    const profile = await liff.getProfile();
+                    console.log(
+                        '🚀 ~ file: Login.tsx ~ line 15 ~ liff.init ~ profile',
+                        profile
+                    );
+                    const displayName: string = profile.displayName;
+                    const displayicon: string | undefined = profile.pictureUrl;
+                    setName(profile.displayName);
+                    setUid(profile.userId);
+                    setName(displayName);
+                    setIcon(displayicon);
+                    dispatch(
+                        addUser({
+                            name: profile.displayName,
+                            uid: profile.userId,
+                            icon: profile.pictureUrl,
+                        })
+                    );
+                } else {
+                    console.log('login status : [', false, ']');
+                }
+            });
+    }, [dispatch]);
 
-
-    // useEffect(() => {
-    //     let user: any = []
-    //     const q = query(collection(db, 'users'), where('uid', '==', `${user.uid}`))
-    //     onSnapshot(q, (snapshot) => {
-    //         snapshot.docChanges().forEach((change) => {
-    //             if (change.type === 'added') {
-    //                 console.log('added: ', change.doc.data())
-    //                 setUser(change.doc.data())
-    //             }
-    //         })
-    //         console.log('name:', user.namae)
-    //     })
-    // }, []);
+    const LINEID = process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID;
+    const lineClick = () => {
+        setUid('');
+        liff.init({ liffId: LINEID as string }).then(() => {
+            if (!liff.isLoggedIn()) {
+                setUid('k00000');
+                liff.login(); // ログインしていなければ最初にログインする
+            } else if (liff.isInClient()) {
+                console.log('hello world');
+            }
+        });
+    };
     const registYoyaku = () => {
         // const addRef = addDoc(collection(db, 'yoyaku', `${user.uid}`, 'ukeru', `${gappi}oo`), {
         //     sei,
@@ -79,17 +96,8 @@ const PageB0 = () => {
             timestamp: "",
         }, { merge: true }//←上書きされないおまじない
         )
-        // console.log('ukeru:', addRef)
-        // console.log('tomare:', setRef)
         alert('登録しました。オファーを楽しみにお待ちください。')
     };
-
-    // const uid = "Uda1c6a4e5b348c5ba3c95de639e32414"
-    // const registUsers = () => {
-    //     dispatch(addUsers({
-    //         users,
-    //     }))
-    // }
 
     useEffect(() => {
         // let users: any = []
@@ -126,10 +134,7 @@ const PageB0 = () => {
             <div >
                 {
                     tomare
-                        // .filter(() => tomare.uid === user.uid)//無効
                         .map((data: any) => {
-                            // if (formatDate === data.gappi && tomare.uid === "Uda1c6a4e5b348c5ba3c95de639e32414") {
-                            // if (formatDate === data.gappi && data.uid === user.uid) {
                             if (formatDate === data.gappi) {
                                 return (
                                     <div key={data.id}>
@@ -168,7 +173,6 @@ const PageB0 = () => {
     const toPageM = () => {
         router.push('./PageM');
     };
-
 
     const fetchTomare = async () => {
         const q = query(collectionGroup(db, 'tomare'));
@@ -238,9 +242,14 @@ const PageB0 = () => {
 
 
     return (
-        <div className="App">
-            <span >page0：選択</span>
-            <br />
+        <div className={styles.main}>
+            {user.uid === '' && (
+                <div>
+                    <button onClick={lineClick}>
+                        <h4 className="mb-4 text-green-500 text-3xl">ログイン</h4>
+                    </button>
+                </div>
+            )}
             {`${user.icon}`.length !== 0 &&
                 <img
                     src={`${user.icon}`}
