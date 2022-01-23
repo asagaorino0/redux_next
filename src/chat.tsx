@@ -37,8 +37,8 @@ const Chat = () => {
         const usersData = snapshot.docs.map(
             (doc: any) => ({ ...doc.data() } as UsersState)
         );
-        dispatch(addUsers({ usersData }));
-        setUsers(usersData);
+        // dispatch(addUsers({ usersData }));
+        // setUsers(usersData);
         console.log('usersData:', usersData);
         console.log('users:', users);
     };
@@ -56,7 +56,7 @@ const Chat = () => {
 
     const handleCreate = async () => {
         console.log(`${message}`)
-        setDoc(doc(db, 'users', users.uid, 'tomare', `${tomare.tomareId}`, 'chat', tomare.yoyakuId), {
+        setDoc(doc(db, 'users', user.uid, 'tomare', `${tomare.tomareId}`, 'chat', tomare.yoyakuId), {
             message: `${message}`, timestamp: now,
         })
     };
@@ -64,6 +64,9 @@ const Chat = () => {
     return (
         <div className={styles.main}>
             {/* <MsgList /> */}
+            {user.uid}'tomare'
+            {tomare.tomareId}'chat'
+            {tomare.yoyakuId}
             {
                 tomare.map((data: any) => {
                     return (
