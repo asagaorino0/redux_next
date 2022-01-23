@@ -14,8 +14,6 @@ export const targetSlice = createSlice({
     reducers: {
         addTarget: (state, action) => {
             state.target = action.payload
-            state.yoyakuId = action.payload.yoyakuId
-            state.tomareId = action.payload.tomareId
         }
     },
 });

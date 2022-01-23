@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { addFormatdate, } from './features/formatDateSlice';
 import { addTomare } from './features/tomareSlice';
 import { addTargetTomare } from './features/targetTomareSlice';
-import { addTarget, selectTarget } from './features/targetSlice';
+import { addTargetChat, selectTargetChat } from './features/targetChatSlice';
 import { addMenu } from './features/menuSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { db } from "./firebase";
@@ -322,11 +322,12 @@ const PageC1 = () => {
                             .map(
                                 (targetTomare: TargetTomareState) => {
                                     const toChat = () => {
-                                        dispatch(addTarget({
+                                        dispatch(addTargetChat({
                                             yoyakuId: `${targetTomare.yoyakuId}`,
                                             tomareId: `${targetTomare.tomareId}`
                                         })),
-                                            router.push('./Chat');
+                                            // router.push('./Chat');
+                                            console.log(tomareId)
                                     };
                                     return (
                                         <div className={styles.grid}>
@@ -351,9 +352,6 @@ const PageC1 = () => {
                                                             alt="icon"
                                                             style={{ borderRadius: '50%', width: '60px', height: '60px' }}
                                                         />
-                                                        {user.uid}'tomare'
-                                                        {targetTomare.tomareId}'chat'
-                                                        {targetTomare.yoyakuId}
                                                     </button>
                                                 </p>}
 

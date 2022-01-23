@@ -3,7 +3,7 @@ import { db } from "./firebase";
 import { getFirestore, getDocs, collection, collectionGroup, query, where, onSnapshot, doc, setDoc, Timestamp, addDoc } from 'firebase/firestore'
 import { useDispatch, useSelector } from 'react-redux';
 import { addTomare } from './features/tomareSlice';
-import { addTargetTomare, selectTargetTomare } from './features/targetTomareSlice';
+import { addTargetChat, selectTargetChat } from './features/targetChatSlice';
 import { useRouter } from 'next/router';
 import { UsersState } from '../src/types/users';
 import { addUsers, selectUsers } from './features/usersSlice';
@@ -15,7 +15,7 @@ import styles from '../styles/Home.module.css'
 const Chat = () => {
     const dispatch = useDispatch();
     const user = useSelector(selectUser);
-    const targetTomare = useSelector(selectTargetTomare);
+    const targetChat = useSelector(selectTargetChat);
     const [message, setMessage] = React.useState('');
     const [chat, setChat] = useState<any>([]);
     const [tomare, setTomare] = useState<any>([]);
@@ -34,7 +34,7 @@ const Chat = () => {
     }, []);
 
     const fetchChat = async () => {
-        const q = query(collectionGroup(db, 'chat'), where("yoyakuId", "==", `${targetTomare.yoyakuId}`));
+        const q = query(collectionGroup(db, 'chat'), where("yoyakuId", "==", `${targetChat.yoyakuId}`));
         const snapshot = await getDocs(q);
         const chatData = snapshot.docs.map(
             (doc: any) => ({ ...doc.data() } as TomareState)
@@ -58,8 +58,8 @@ const Chat = () => {
 
     const handleCreate = async () => {
         console.log(`${message}`)
-        setDoc(doc(db, 'users', user.uid, 'tomare', `${targetTomare.tomareId}`, 'chat'), {
-            message: `${message}`, timestamp: now, yoyakuId: `${targetTomare.yoyakuId}`,
+        setDoc(doc(db, 'users', user.uid, 'tomare', `${targetChat.tomareId}`, 'chat'), {
+            message: `${message}`, timestamp: now, yoyakuId: `${targetChat.yoyakuId}`,
         })
     };
 
@@ -67,8 +67,8 @@ const Chat = () => {
         <div className={styles.main}>
             {/* <MsgList /> */}
             {user.uid}'tomare'
-            {targetTomare.tomareId}'chat'
-            {targetTomare.yoyakuId}
+            {targetChat.tomareId}'chat'
+            {targetChat.yoyakuId}
             {/* {
                 targetTomare
                     .map((data: TomareState) => { */}

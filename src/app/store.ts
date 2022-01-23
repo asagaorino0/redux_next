@@ -8,6 +8,7 @@ import menuReducer from '../features/menuSlice';
 import targetReducer from '../features/targetSlice';
 import targetUidReducer from '../features/targetUidSlice';
 import targetYoyakuReducer from '../features/targetYoyakuSlice';
+import targetChatReducer from '../features/targetChatSlice';
 
 export const store = configureStore({
   reducer: {
@@ -19,7 +20,9 @@ export const store = configureStore({
     menu: menuReducer,
     target: targetReducer,
     targetUid: targetUidReducer,
-    targetYoyaku: targetYoyakuReducer
+    targetYoyaku: targetYoyakuReducer,
+    targetChat: targetChatReducer
+
   },
 });
 export type AppDispatch = typeof store.dispatch;
