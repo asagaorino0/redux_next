@@ -15,6 +15,7 @@ import liff from '@line/liff';
 import P_make from "./img/P_make.png"
 import { computeSegDraggable } from '@fullcalendar/common';
 import { truncate } from 'fs';
+import { useRouter } from "next/router";
 
 const PageC1 = () => {
     const [menus, setMenus] = useState<any>([]);
@@ -31,7 +32,10 @@ const PageC1 = () => {
     const [uid, setUid] = useState<string>('');
     const [name, setName] = useState<string>('');
     const [icon, setIcon] = useState<string | undefined>('');
-
+    const router = useRouter()
+    const toChat = () => {
+        router.push('../pages/Chat');
+    };
     useEffect(() => {
         liff
             .init({ liffId: process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID as string })
@@ -75,12 +79,6 @@ const PageC1 = () => {
             }
         });
     };
-
-
-
-
-
-
 
     useEffect(() => {
         const fetchMenus = async () => {
@@ -336,12 +334,14 @@ const PageC1 = () => {
                                                 {`${targetTomare.sonota}`.length !== 0 &&
                                                     <img {...img_sonota} />
                                                 }
-                                                {targetTomare.yoyakuIcon && <p>
-                                                    <img
-                                                        src={`${targetTomare.yoyakuIcon}`}
-                                                        alt="icon"
-                                                        style={{ borderRadius: '50%', width: '60px', height: '60px' }}
-                                                    /></p>}
+                                                <button onClick={toChat}>
+                                                    {targetTomare.yoyakuIcon && <p>
+                                                        <img
+                                                            src={`${targetTomare.yoyakuIcon}`}
+                                                            alt="icon"
+                                                            style={{ borderRadius: '50%', width: '60px', height: '60px' }}
+                                                        /></p>}
+                                                </button>
                                                 <br />
                                             </div>
                                         </div>
