@@ -3,7 +3,7 @@ import { db } from "./firebase";
 import { getFirestore, getDocs, collection, collectionGroup, query, where, onSnapshot, doc, setDoc, Timestamp, addDoc } from 'firebase/firestore'
 import { useDispatch, useSelector } from 'react-redux';
 import { addTomare } from './features/tomareSlice';
-import { addTarget, selectTarget } from './features/targetSlice';
+import { addTargetTomare, selectTargetTomare } from './features/targetTomareSlice';
 import { useRouter } from 'next/router';
 import { UsersState } from '../src/types/users';
 import { addUsers, selectUsers } from './features/usersSlice';
@@ -15,7 +15,7 @@ import styles from '../styles/Home.module.css'
 const Chat = () => {
     const dispatch = useDispatch();
     const user = useSelector(selectUser);
-    const target = useSelector(selectTarget);
+    const targetTomare = useSelector(selectTargetTomare);
     const [message, setMessage] = React.useState('');
     const [users, setUsers] = useState<any>([]);
     const [tomare, setTomare] = useState<any>([]);
@@ -29,36 +29,36 @@ const Chat = () => {
     const now = Y + '年' + M + '月' + D + '日 ' + h + ':' + m
 
     useEffect(() => {
-        fetchUsers();
-        fetchTomare();
+        fetchChat();
+        // fetchTomare();
     }, []);
 
-    const fetchUsers = async () => {
-        const q = query(collectionGroup(db, 'tomare'), where("tomareid", "==", `${user.uid}`));
+    const fetchChat = async () => {
+        const q = query(collectionGroup(db, 'chat'), where("yoyakuId", "==", `${targetTomare.yoyakuId}`));
         const snapshot = await getDocs(q);
-        const usersData = snapshot.docs.map(
-            (doc: any) => ({ ...doc.data() } as UsersState)
+        const chatData = snapshot.docs.map(
+            (doc: any) => ({ ...doc.data() } as TomareState)
         );
         // dispatch(addUsers({ usersData }));
         // setUsers(usersData);
-        console.log('usersData:', usersData);
-        console.log('users:', users);
+        console.log('usersData:', chatData);
+        // console.log('users:', users);
     };
-    const fetchTomare = async () => {
-        const q = query(collectionGroup(db, 'chat'), where("yoyakuId", "==", `${tomare.yoyakuId}`));
-        const snapshot = await getDocs(q);
-        const tomareData = snapshot.docs.map(
-            (docT: any) => ({ ...docT.data() } as TomareState)
-        );
-        dispatch(addTomare(tomareData));
-        setTomare(tomareData);
-        console.log('tomareData:', tomareData);
-        console.log('tomare:', tomare);
-    };
+    // const fetchTomare = async () => {
+    //     const q = query(collectionGroup(db, 'chat'), where("yoyakuId", "==", `${tomare.yoyakuId}`));
+    //     const snapshot = await getDocs(q);
+    //     const tomareData = snapshot.docs.map(
+    //         (docT: any) => ({ ...docT.data() } as TomareState)
+    //     );
+    //     dispatch(addTomare(tomareData));
+    //     setTomare(tomareData);
+    //     console.log('tomareData:', tomareData);
+    //     console.log('tomare:', tomare);
+    // };
 
     const handleCreate = async () => {
         console.log(`${message}`)
-        setDoc(doc(db, 'users', user.uid, 'tomare', `${target.tomareId}`, 'chat'), {
+        setDoc(doc(db, 'users', user.uid, 'tomare', `${targetTomare.tomareId}`, 'chat'), {
             message: `${message}`, timestamp: now,
         })
     };
@@ -67,10 +67,10 @@ const Chat = () => {
         <div className={styles.main}>
             {/* <MsgList /> */}
             {user.uid}'tomare'
-            {tomare.tomareId}'chat'
-            {tomare.yoyakuId}
+            {targetTomare.tomareId}'chat'
+            {targetTomare.yoyakuId}
             {
-                tomare.map((data: any) => {
+                tomare.map((data: TomareState) => {
                     return (
                         data.message
                     )

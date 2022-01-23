@@ -10,4 +10,5 @@ export type TomareState = {
     este: boolean
     sonota: string
     yoyakuId: string
+    message: string
 }
