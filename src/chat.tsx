@@ -11,7 +11,7 @@ import "firebase/firestore";
 import "firebase/auth";
 import { selectUser } from './features/userSlice';
 import styles from '../styles/Home.module.css'
-const chat = () => {
+const Chat = () => {
     const dispatch = useDispatch();
     const user = useSelector(selectUser);
     const [message, setMessage] = React.useState('');
@@ -82,4 +82,4 @@ const chat = () => {
         </div>
     )
 }
-export default chat
+export default Chat
