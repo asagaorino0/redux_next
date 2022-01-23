@@ -334,14 +334,17 @@ const PageC1 = () => {
                                                 {`${targetTomare.sonota}`.length !== 0 &&
                                                     <img {...img_sonota} />
                                                 }
-                                                <button onClick={toChat}>
-                                                    {targetTomare.yoyakuIcon && <p>
+
+                                                {targetTomare.yoyakuIcon && <p>
+                                                    <button onClick={toChat}>
                                                         <img
                                                             src={`${targetTomare.yoyakuIcon}`}
                                                             alt="icon"
                                                             style={{ borderRadius: '50%', width: '60px', height: '60px' }}
-                                                        /></p>}
-                                                </button>
+                                                        />
+                                                    </button>
+                                                </p>}
+
                                                 <br />
                                             </div>
                                         </div>
