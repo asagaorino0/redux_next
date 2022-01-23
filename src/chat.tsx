@@ -42,6 +42,7 @@ const Chat = () => {
         // dispatch(addUsers({ usersData }));
         setChat(chatData);
         console.log('chatData:', chatData);
+        console.log('chat:', chat);
         // console.log('users:', users);
     };
     // const fetchTomare = async () => {
