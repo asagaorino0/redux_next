@@ -3,6 +3,7 @@ import { db } from "./firebase";
 import { getFirestore, getDocs, collection, collectionGroup, query, where, onSnapshot, doc, setDoc, Timestamp, addDoc } from 'firebase/firestore'
 import { useDispatch, useSelector } from 'react-redux';
 import { addTomare } from './features/tomareSlice';
+import { addTarget, selectTarget } from './features/targetSlice';
 import { useRouter } from 'next/router';
 import { UsersState } from '../src/types/users';
 import { addUsers, selectUsers } from './features/usersSlice';
@@ -14,6 +15,7 @@ import styles from '../styles/Home.module.css'
 const Chat = () => {
     const dispatch = useDispatch();
     const user = useSelector(selectUser);
+    const target = useSelector(selectTarget);
     const [message, setMessage] = React.useState('');
     const [users, setUsers] = useState<any>([]);
     const [tomare, setTomare] = useState<any>([]);
@@ -56,7 +58,7 @@ const Chat = () => {
 
     const handleCreate = async () => {
         console.log(`${message}`)
-        setDoc(doc(db, 'users', user.uid, 'tomare', `${tomare.tomareId}`, 'chat', tomare.yoyakuId), {
+        setDoc(doc(db, 'users', user.uid, 'tomare', `${target.tomareId}`, 'chat'), {
             message: `${message}`, timestamp: now,
         })
     };
