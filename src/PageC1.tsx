@@ -34,7 +34,7 @@ const PageC1 = () => {
     const [icon, setIcon] = useState<string | undefined>('');
     const router = useRouter()
     const toChat = () => {
-        router.push('../pages/Chat');
+        router.push('./Chat');
     };
     useEffect(() => {
         liff
