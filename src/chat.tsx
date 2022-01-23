@@ -34,7 +34,7 @@ const Chat = () => {
     }, []);
 
     const fetchChat = async () => {
-        const q = query(collectionGroup(db, 'chat'), where("yoyakuId", "==", `${targetChat.yoyakuId}`));
+        const q = query(collectionGroup(db, 'tomare'), where("yoyakuId", "==", `${targetChat.yoyakuId}`));
         const snapshot = await getDocs(q);
         const chatData = snapshot.docs.map(
             (doc: any) => ({ ...doc.data() } as TomareState)
