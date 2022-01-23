@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { addFormatdate, } from './features/formatDateSlice';
 import { addTomare } from './features/tomareSlice';
 import { addTargetTomare } from './features/targetTomareSlice';
+import { addTarget, selectTarget } from './features/targetSlice';
 import { addMenu } from './features/menuSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { db } from "./firebase";
 import { getDocs, collection, collectionGroup, query, where, doc, setDoc, serverTimestamp, deleteDoc } from 'firebase/firestore'
 import { TomareState } from "./types/tomare";
+import { TargetTomareState } from "./types/targetTomare";
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import styles from '../styles/Home.module.css'
@@ -25,6 +27,8 @@ const PageC1 = () => {
     const [sonota, setSonota] = useState<string>("");
     const [gappi, setGappi] = useState<string>('');
     const [am_pm, setAm_pm] = useState<string>('');
+    const [yoyakuId, setYoyakuId] = useState<string>('');
+    const [tomareId, setTomareId] = useState<string>('');
     const dispatch = useDispatch();
     const user = useSelector(selectUser);
     const [tomare, setTomare] = useState<any>([]);
@@ -33,9 +37,7 @@ const PageC1 = () => {
     const [name, setName] = useState<string>('');
     const [icon, setIcon] = useState<string | undefined>('');
     const router = useRouter()
-    const toChat = () => {
-        router.push('./Chat');
-    };
+
     useEffect(() => {
         liff
             .init({ liffId: process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID as string })
@@ -318,7 +320,14 @@ const PageC1 = () => {
 
                         {targetTomare
                             .map(
-                                (targetTomare: any) => {
+                                (targetTomare: TargetTomareState) => {
+                                    const toChat = () => {
+                                        dispatch(addTarget({
+                                            yoyakuId: `${targetTomare.yoyakuId}`,
+                                            tomareId: `${targetTomare.tomareId}`
+                                        })),
+                                            router.push('./Chat');
+                                    };
                                     return (
                                         <div className={styles.grid}>
                                             <br />
@@ -342,6 +351,8 @@ const PageC1 = () => {
                                                             alt="icon"
                                                             style={{ borderRadius: '50%', width: '60px', height: '60px' }}
                                                         />
+                                                        {targetTomare.yoyakuId}
+                                                        {targetTomare.tomareId}
                                                     </button>
                                                 </p>}
 

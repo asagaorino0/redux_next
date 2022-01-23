@@ -4,6 +4,8 @@ import { TargetState } from "../../src/types/target";
 
 const initialState: TargetState = {
     target: '',
+    yoyakuId: '',
+    tomareId: ''
 } as TargetState;
 
 export const targetSlice = createSlice({
@@ -12,6 +14,8 @@ export const targetSlice = createSlice({
     reducers: {
         addTarget: (state, action) => {
             state.target = action.payload
+            state.yoyakuId = action.payload.yoyakuId
+            state.tomareId = action.payload.tomareId
         }
     },
 });
