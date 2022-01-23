@@ -326,8 +326,8 @@ const PageC1 = () => {
                                             yoyakuId: `${targetTomare.yoyakuId}`,
                                             tomareId: `${targetTomare.tomareId}`
                                         })),
-                                            // router.push('./Chat');
-                                            console.log(tomareId)
+                                            router.push('./Chat');
+                                        console.log('tomareId:', tomareId)
                                     };
                                     return (
                                         <div className={styles.grid}>
