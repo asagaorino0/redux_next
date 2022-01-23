@@ -68,17 +68,16 @@ const Chat = () => {
         <div className={styles.main}>
             {/* <MsgList /> */}
             {user.uid}'tomare'
-            {targetChat.tomareId}'chat'
-            {targetChat.yoyakuId}
-            {/* {
-                targetTomare
-                    .map((data: TomareState) => { */}
-
-            {/* return ( */}
-            {chat.message}
-            {/* )
+            {targetChat.tomareId}
+            {
+                chat
+                    .map((chat: TomareState) => {
+                        return (
+                            chat.yoyakuId,
+                            chat.message
+                        )
                     }
-                    )} */}
+                    )}
             <div >
                 <input type="text" onChange={(e) => setMessage(e.target.value)} />
                 <br />
