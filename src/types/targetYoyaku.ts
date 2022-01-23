@@ -9,4 +9,5 @@ export type TargetYoyakuState = {
     nail: boolean
     este: boolean
     sonota: string
+    yoyakuId: string
 }

@@ -132,7 +132,7 @@ const PageB3 = () => {
 
                                             const fetchTarget1 = async () => {
                                                 setDoc(doc(db, 'users', users.uid, 'tomare', `${tomare.gappi}${tomare.am_pm}`), {
-                                                    menu: "", yoyakuMenu: "ケアメイク", make: true, nail: false, este: false, yoyakuUid: user.uid, yoyakuIcon: user.icon, timestamp: "",
+                                                    menu: "", yoyakuMenu: "ケアメイク", make: true, nail: false, este: false, yoyakuUid: user.uid, yoyakuIcon: user.icon, yoyakuId: users.uid + user.uid + tomare.tomareId, timestamp: "",
                                                 }, { merge: true })
                                                 alert("登録しました！")
                                             };
@@ -148,9 +148,6 @@ const PageB3 = () => {
                                                 }, { merge: true })
                                                 alert("登録しました！")
                                             };
-
-
-
 
                                             if (`${users.uid}` === `${tomare.uid}`) {
                                                 // console.log(users.name)
@@ -193,7 +190,8 @@ const PageB3 = () => {
                         )
                     }
                     )
-                }            <button onClick={toPageB}>戻る</button>
+                }
+                <button onClick={toPageB}>戻る</button>
             </div>
         </div>
     )

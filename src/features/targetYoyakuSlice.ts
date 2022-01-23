@@ -11,6 +11,7 @@ const initialState: TargetYoyakuState = {
     nail: false,
     este: false,
     sonota: '',
+    yoyakuId: '',
 } as TargetYoyakuState;
 
 export const targetYoyakuSlice = createSlice({
@@ -27,6 +28,7 @@ export const targetYoyakuSlice = createSlice({
             state.este = action.payload.este
             state.sonota = action.payload.sonota
             state.am_pm = action.payload.am_pm
+            state.yoyakuId = action.payload.yoyakuId
         }
     },
 });
