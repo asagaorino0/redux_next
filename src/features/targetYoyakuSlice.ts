@@ -12,6 +12,7 @@ const initialState: TargetYoyakuState = {
     este: false,
     sonota: '',
     yoyakuId: '',
+    message: '',
 } as TargetYoyakuState;
 
 export const targetYoyakuSlice = createSlice({
@@ -29,6 +30,7 @@ export const targetYoyakuSlice = createSlice({
             state.sonota = action.payload.sonota
             state.am_pm = action.payload.am_pm
             state.yoyakuId = action.payload.yoyakuId
+            state.message = action.payload.message
         }
     },
 });

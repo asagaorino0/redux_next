@@ -13,6 +13,7 @@ const initialState: TomareState = {
   nail: false,
   este: false,
   sonota: '',
+  yoyakuId: '',
 } as TomareState;
 
 export const tomareSlice = createSlice({
@@ -30,6 +31,7 @@ export const tomareSlice = createSlice({
       state.nail = action.payload.nail
       state.este = action.payload.este
       state.sonota = action.payload.sonota
+      state.yoyakuId = action.payload.yoyakuId
     }
   },
 });

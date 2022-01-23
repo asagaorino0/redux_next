@@ -10,4 +10,5 @@ export type TargetYoyakuState = {
     este: boolean
     sonota: string
     yoyakuId: string
+    message: string
 }
