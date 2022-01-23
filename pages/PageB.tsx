@@ -9,7 +9,6 @@ import dynamic from 'next/dynamic'
 // import PageM1 from '../src/PageM1'
 // import PageB0 from '../src/PageB0'
 // import PageB3 from '../src/PageB3'
-import Chat from '../src/chat'
 // import PageB1 from '../src/PageB1'
 const PageB = () => {
     const router = useRouter()
@@ -41,7 +40,6 @@ const PageB = () => {
                     <Provider store={store}>
                         <PageB0 />
                         {/* <PageM1 /> */}
-                        <Chat />
                     </Provider>
                 </React.StrictMode>
             </h1>

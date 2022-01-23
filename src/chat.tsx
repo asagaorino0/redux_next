@@ -72,7 +72,6 @@ const Chat = () => {
                 }
                 )}
             <div >
-
                 <input type="text" onChange={(e) => setMessage(e.target.value)} />
                 <br />
                 <button onClick={handleCreate}>
