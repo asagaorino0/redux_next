@@ -17,7 +17,7 @@ const Chat = () => {
     const user = useSelector(selectUser);
     const targetTomare = useSelector(selectTargetTomare);
     const [message, setMessage] = React.useState('');
-    const [users, setUsers] = useState<any>([]);
+    const [chat, setChat] = useState<any>([]);
     const [tomare, setTomare] = useState<any>([]);
     const date = new Date()
     const Y = date.getFullYear()
@@ -40,8 +40,8 @@ const Chat = () => {
             (doc: any) => ({ ...doc.data() } as TomareState)
         );
         // dispatch(addUsers({ usersData }));
-        // setUsers(usersData);
-        console.log('usersData:', chatData);
+        setChat(chatData);
+        console.log('chatData:', chatData);
         // console.log('users:', users);
     };
     // const fetchTomare = async () => {
@@ -59,7 +59,7 @@ const Chat = () => {
     const handleCreate = async () => {
         console.log(`${message}`)
         setDoc(doc(db, 'users', user.uid, 'tomare', `${targetTomare.tomareId}`, 'chat'), {
-            message: `${message}`, timestamp: now,
+            message: `${message}`, timestamp: now, yoyakuId: `${targetTomare.yoyakuId}`,
         })
     };
 
@@ -69,13 +69,15 @@ const Chat = () => {
             {user.uid}'tomare'
             {targetTomare.tomareId}'chat'
             {targetTomare.yoyakuId}
-            {
-                tomare.map((data: TomareState) => {
-                    return (
-                        data.message
-                    )
-                }
-                )}
+            {/* {
+                targetTomare
+                    .map((data: TomareState) => { */}
+
+            {/* return ( */}
+            {chat.message}
+            {/* )
+                    }
+                    )} */}
             <div >
                 <input type="text" onChange={(e) => setMessage(e.target.value)} />
                 <br />
