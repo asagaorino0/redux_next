@@ -3,7 +3,7 @@ import { RootState } from '../app/store';
 import { TargetState } from "../../src/types/target";
 
 const initialState: TargetState = {
-    target: '',
+    // target: '',
     yoyakuId: '',
     tomareId: ''
 } as TargetState;
@@ -13,7 +13,7 @@ export const targetChatSlice = createSlice({
     initialState,
     reducers: {
         addTargetChat: (state, action) => {
-            state.target = action.payload
+            // state.target = action.payload
             state.yoyakuId = action.payload.yoyakuId
             state.tomareId = action.payload.tomareId
         }
