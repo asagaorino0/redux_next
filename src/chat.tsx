@@ -71,7 +71,7 @@ const Chat = () => {
     const handleCreate = async () => {
         console.log(`${message}`)
         // setDoc(doc(db, 'users', user.uid, 'tomare', targetChat.tomareId, 'chat'), {
-        setDoc(doc(db, 'users', user.uid, 'tomare', '20220122AM', 'chat'), {
+        setDoc(doc(db, 'users', user.uid, 'tomare', '20220122AM', 'chat', '1'), {
             message: `messe`, timestamp: now, yoyakuId: targetChat.yoyakuId,
         })
     };
