@@ -36,8 +36,9 @@ const PageC1 = () => {
     const [uid, setUid] = useState<string>('');
     const [name, setName] = useState<string>('');
     const [icon, setIcon] = useState<string | undefined>('');
-    const router = useRouter()
-
+    const router = useRouter();
+    const [chat, setChat] = useState<any>([]);
+    const targetChat = useSelector(selectTargetChat);
     useEffect(() => {
         liff
             .init({ liffId: process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID as string })
@@ -155,7 +156,20 @@ const PageC1 = () => {
         setTargetTomare(tomareData)
         console.log(`targetTomareLength`, tomareLength)
     };
-
+    const fetchChat = async () => {
+        console.log('targetChat:', targetChat);
+        // const q = query(collectionGroup(db, 'chat'), where("yoyakuId", "==", `${targetChat.yoyakuId}`));
+        const q = query(collection(db, 'users', 'Uda1c6a4e5b348c5ba3c95de639e32414', 'tomare', '20220122AM', 'chat'))
+        const snapshot = await getDocs(q);
+        const chatData = snapshot.docs.map(
+            (doc: any) => ({ ...doc.data() } as TomareState)
+        );
+        // dispatch(addUsers({ usersData }));
+        setChat(chatData);
+        console.log('chatData:', chatData);
+        console.log('chat:', chat);
+        // console.log('users:', users);
+    };
     const clickMenuAm = () => { setAm_pm("AM"); fetchTomare() }
     const clickMenuPm = () => { setAm_pm("PM"); fetchTomare() }
     const clickMenu1 = () => { setMake(true); fetchTargetTomare() }
@@ -326,8 +340,8 @@ const PageC1 = () => {
                                             yoyakuId: `${targetTomare.yoyakuId}`,
                                             tomareId: `${targetTomare.tomareId}`
                                         })),
-                                            router.push('./Chat');
-                                        console.log('tomareId:', tomareId)
+                                            fetchChat()
+                                        console.log('targetChat:', targetChat);
                                     };
                                     return (
                                         <div className={styles.grid}>
