@@ -86,8 +86,8 @@ const Chat = () => {
                 chat
                     .map((chat: TomareState) => {
                         return (
-                            chat.yoyakuId,
-                            chat.message
+                            // chat.yoyakuId,
+                            `${chat.message}`
                         )
                     }
                     )}
