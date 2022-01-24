@@ -159,8 +159,8 @@ const PageC1 = () => {
     };
     const fetchChat = async () => {
         console.log('targetChat:', targetChat);
-        // const q = query(collectionGroup(db, 'chat'), where("yoyakuId", "==", `${targetChat.yoyakuId}`));
-        const q = query(collection(db, 'users', 'Uda1c6a4e5b348c5ba3c95de639e32414', 'tomare', '20220122AM', 'chat'))
+        const q = query(collectionGroup(db, 'chat'), where("yoyakuId", "==", `${targetChat.yoyakuId}`));
+        // const q = query(collection(db, 'users', 'Uda1c6a4e5b348c5ba3c95de639e32414', 'tomare', '20220122AM', 'chat'))
         const snapshot = await getDocs(q);
         const chatData = snapshot.docs.map(
             (doc: any) => ({ ...doc.data() } as TomareState)
@@ -229,7 +229,7 @@ const PageC1 = () => {
     const now = Y + '年' + M + '月' + D + '日 ' + h + ':' + m
     const handleCreate = async () => {
         console.log(`${message}`)
-        setDoc(doc(db, 'users', user.uid, 'tomare', targetChat.tomareId, 'chat'), {
+        setDoc(doc(db, 'users', user.uid, 'tomare', targetChat.tomareId, 'chat', now), {
             // const docref = doc(collection(db, 'users', user.uid, 'tomare', '20220122AM', 'chat', '1'))
             // setDoc(docref, {
             message: `${message}`, timestamp: now, yoyakuId: targetChat.yoyakuId,
@@ -430,8 +430,6 @@ const PageC1 = () => {
                                         return (
                                             <div>
                                                 <br />
-                                                `${chat.message}`
-                                                {message}
                                                 {chat.message}
                                             </div>
                                         )
