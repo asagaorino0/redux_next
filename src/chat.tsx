@@ -34,6 +34,7 @@ const Chat = () => {
     }, []);
 
     const fetchChat = async () => {
+        console.log('targetChat:', targetChat);
         // const q = query(collectionGroup(db, 'chat'), where("yoyakuId", "==", `${targetChat.yoyakuId}`));
         const q = query(collection(db, 'users', user.uid, 'tomare', '20220122AM', 'chat'))
         const snapshot = await getDocs(q);
