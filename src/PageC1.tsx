@@ -39,6 +39,7 @@ const PageC1 = () => {
     const router = useRouter();
     const [chat, setChat] = useState<any>([]);
     const targetChat = useSelector(selectTargetChat);
+    const [message, setMessage] = React.useState('');
     useEffect(() => {
         liff
             .init({ liffId: process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID as string })
@@ -217,6 +218,22 @@ const PageC1 = () => {
         dispatch(addTargetTomare(tomareData))
         setTargetTomare(tomareData)
         console.log(`targetTomareLength`, tomareLength)
+    }
+    const date = new Date()
+    const Y = date.getFullYear()
+    const M = ("00" + (date.getMonth() + 1)).slice(-2)
+    const D = ("00" + date.getDate()).slice(-2)
+    const h = ("00" + date.getHours()).slice(-2)
+    const m = ("00" + date.getMinutes()).slice(-2)
+    const s = ("00" + date.getSeconds()).slice(-2)
+    const now = Y + '年' + M + '月' + D + '日 ' + h + ':' + m
+    const handleCreate = async () => {
+        console.log(`${message}`)
+        setDoc(doc(db, 'users', user.uid, 'tomare', targetChat.tomareId, 'chat'), {
+            // const docref = doc(collection(db, 'users', user.uid, 'tomare', '20220122AM', 'chat', '1'))
+            // setDoc(docref, {
+            message: `${message}`, timestamp: now, yoyakuId: targetChat.yoyakuId,
+        })
     }
     const [targetTomare, setTargetTomare] = useState<any>([])
     const img_make: any = { src: "https://firebasestorage.googleapis.com/v0/b/next-app-db888.appspot.com/o/P_make.png?alt=media&token=eeaf12cd-39be-4fda-8945-ec2bcb1b24dd", alt: "ケアメイク", style: { width: '60px', height: '45px' } }
@@ -405,6 +422,32 @@ const PageC1 = () => {
                             /
                             <button onClick={clickMenu9pm}>　PM：午後</button>
                         </div>
+                        <div>
+                            {
+                                chat
+                                    .map((chat: TomareState) => {
+
+                                        return (
+                                            <div>
+                                                <br />
+                                                `${chat.message}`
+                                                {message}
+                                                {chat.message}
+                                            </div>
+                                        )
+                                    }
+                                    )}
+                            <div >
+                                <input type="text" onChange={(e) => setMessage(e.target.value)} />
+                                <br />
+                                <button onClick={handleCreate}>
+                                    send！
+                                </button>
+                            </div>
+
+                        </div>
+
+
 
                     </p>
 
