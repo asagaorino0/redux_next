@@ -72,7 +72,7 @@ const Chat = () => {
         console.log(`${message}`)
         // setDoc(doc(db, 'users', user.uid, 'tomare', targetChat.tomareId, 'chat'), {
         setDoc(doc(db, 'users', user.uid, 'tomare', '20220122AM', 'chat', '1'), {
-            message: `messe`, timestamp: now, yoyakuId: targetChat.yoyakuId,
+            message: `${message}`, timestamp: now, yoyakuId: targetChat.yoyakuId,
         })
     };
 
@@ -86,8 +86,10 @@ const Chat = () => {
                 chat
                     .map((chat: TomareState) => {
                         return (
-                            // chat.yoyakuId,
-                            `${chat.message}`
+                            <div>
+                                <br />
+                                `${chat.message}`
+                            </div>
                         )
                     }
                     )}
