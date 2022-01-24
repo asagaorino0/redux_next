@@ -155,7 +155,7 @@ const PageC1 = () => {
             (docT: any) => ({ ...docT.data() } as TomareState))
         dispatch(addTargetTomare(tomareData))
         setTargetTomare(tomareData)
-        console.log(`targetTomareLength`, tomareLength)
+        // console.log(`targetTomareLength`, tomareLength)
     };
     const fetchChat = async () => {
         console.log('targetChat:', targetTomare);
@@ -173,7 +173,7 @@ const PageC1 = () => {
     };
     const handleCreate = async () => {
         console.log(`${tomareId}`)
-        setDoc(doc(db, 'users', user.uid, 'tomare', tomareId, 'chat', now), {
+        setDoc(doc(db, 'users', user.uid, 'tomare', `${tomareId}`, 'chat', now), {
             // const docref = doc(collection(db, 'users', user.uid, 'tomare', '20220122AM', 'chat', '1'))
             // setDoc(docref, {
             message: `${message}`, timestamp: now, yoyakuId: yoyakuId,
