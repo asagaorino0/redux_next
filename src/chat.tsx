@@ -34,7 +34,8 @@ const Chat = () => {
     }, []);
 
     const fetchChat = async () => {
-        const q = query(collectionGroup(db, 'chat'), where("yoyakuId", "==", `${targetChat.yoyakuId}`));
+        // const q = query(collectionGroup(db, 'chat'), where("yoyakuId", "==", `${targetChat.yoyakuId}`));
+        const q = query(collection(db, 'users', user.uid, 'tomare', '20220122AM', 'chat'))
         const snapshot = await getDocs(q);
         const chatData = snapshot.docs.map(
             (doc: any) => ({ ...doc.data() } as TomareState)
@@ -56,7 +57,16 @@ const Chat = () => {
     //     console.log('tomareData:', tomareData);
     //     console.log('tomare:', tomare);
     // };
+    //     const docref = doc(collection(db, 'udstyr'));
+    // const colref = collection(docref, 'subcollection'));
+    // await addDoc(colref, nyUdstyr);
 
+
+    //     const colref = doc(db, 'users', user.uid, 'tomare', `${tomare.gappi}${tomare.am_pm}`), {
+    //             menu: "", yoyakuMenu: "ケアメイク", make: true, nail: false, este: false, yoyakuUid: user.uid, yoyakuIcon: user.icon, yoyakuId: users.uid + user.uid + tomare.tomareId, timestamp: "",
+    //         }, { merge: true })
+    //         alert("登録しました！")
+    //     };
     const handleCreate = async () => {
         console.log(`${message}`)
         // setDoc(doc(db, 'users', user.uid, 'tomare', targetChat.tomareId, 'chat'), {
