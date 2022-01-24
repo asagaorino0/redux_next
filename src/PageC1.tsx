@@ -38,7 +38,7 @@ const PageC1 = () => {
     const [icon, setIcon] = useState<string | undefined>('');
     const router = useRouter();
     const [chat, setChat] = useState<any>([]);
-    const targetChat = useSelector(selectTargetChat);
+    // const targetChat = useSelector(selectTargetChat);
     const [message, setMessage] = React.useState('');
     useEffect(() => {
         liff
@@ -158,8 +158,8 @@ const PageC1 = () => {
         console.log(`targetTomareLength`, tomareLength)
     };
     const fetchChat = async () => {
-        console.log('targetChat:', targetChat);
-        const q = query(collectionGroup(db, 'chat'), where("yoyakuId", "==", `${targetChat.yoyakuId}`));
+        console.log('targetChat:', targetTomare);
+        const q = query(collectionGroup(db, 'chat'), where("yoyakuId", "==", `${yoyakuId}`));
         // const q = query(collection(db, 'users', 'Uda1c6a4e5b348c5ba3c95de639e32414', 'tomare', '20220122AM', 'chat'))
         const snapshot = await getDocs(q);
         const chatData = snapshot.docs.map(
@@ -173,7 +173,7 @@ const PageC1 = () => {
     };
     const handleCreate = async () => {
         console.log(`${tomareId}`)
-        setDoc(doc(db, 'users', user.uid, 'tomare', targetChat.tomareId, 'chat', now), {
+        setDoc(doc(db, 'users', user.uid, 'tomare', tomareId, 'chat', now), {
             // const docref = doc(collection(db, 'users', user.uid, 'tomare', '20220122AM', 'chat', '1'))
             // setDoc(docref, {
             message: `${message}`, timestamp: now, yoyakuId: yoyakuId,
@@ -359,7 +359,8 @@ const PageC1 = () => {
                                             tomareId: `${targetTomare.tomareId}`
                                         })),
                                             fetchChat()
-                                        console.log('targetChat:', targetChat);
+                                        setTomareId(`${targetTomare.tomareId}`)
+                                        setYoyakuId(`${targetTomare.yoyakuId}`)
                                     };
 
                                     return (
