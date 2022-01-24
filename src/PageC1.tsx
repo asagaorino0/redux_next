@@ -171,6 +171,14 @@ const PageC1 = () => {
         console.log('chat:', chat);
         // console.log('users:', users);
     };
+    const handleCreate = async () => {
+        console.log(`${tomareId}`)
+        setDoc(doc(db, 'users', user.uid, 'tomare', targetChat.tomareId, 'chat', now), {
+            // const docref = doc(collection(db, 'users', user.uid, 'tomare', '20220122AM', 'chat', '1'))
+            // setDoc(docref, {
+            message: `${message}`, timestamp: now, yoyakuId: yoyakuId,
+        })
+    }
     const clickMenuAm = () => { setAm_pm("AM"); fetchTomare() }
     const clickMenuPm = () => { setAm_pm("PM"); fetchTomare() }
     const clickMenu1 = () => { setMake(true); fetchTargetTomare() }
@@ -227,14 +235,7 @@ const PageC1 = () => {
     const m = ("00" + date.getMinutes()).slice(-2)
     const s = ("00" + date.getSeconds()).slice(-2)
     const now = Y + '年' + M + '月' + D + '日 ' + h + ':' + m
-    const handleCreate = async () => {
-        console.log(`${tomareId}`)
-        setDoc(doc(db, 'users', user.uid, 'tomare', tomareId, 'chat', now), {
-            // const docref = doc(collection(db, 'users', user.uid, 'tomare', '20220122AM', 'chat', '1'))
-            // setDoc(docref, {
-            message: `${message}`, timestamp: now, yoyakuId: yoyakuId,
-        })
-    }
+
     const [targetTomare, setTargetTomare] = useState<any>([])
     const img_make: any = { src: "https://firebasestorage.googleapis.com/v0/b/next-app-db888.appspot.com/o/P_make.png?alt=media&token=eeaf12cd-39be-4fda-8945-ec2bcb1b24dd", alt: "ケアメイク", style: { width: '60px', height: '45px' } }
     const img_nail: any = { src: "https://firebasestorage.googleapis.com/v0/b/next-app-db888.appspot.com/o/P_nail.png?alt=media&token=42117e21-66df-4049-a948-46840912645a", alt: "ケアネイル", style: { width: '60px', height: '45px' } }
@@ -360,6 +361,7 @@ const PageC1 = () => {
                                             fetchChat()
                                         console.log('targetChat:', targetChat);
                                     };
+
                                     return (
                                         <div className={styles.grid}>
                                             <br />
@@ -442,11 +444,7 @@ const PageC1 = () => {
                                     send！
                                 </button>
                             </div>
-
                         </div>
-
-
-
                     </p>
 
                 </div>
