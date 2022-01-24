@@ -81,7 +81,10 @@ const Chat = () => {
         <div className={styles.main}>
             {/* <MsgList /> */}
             {user.uid}'tomare'
+            {targetChat.targetChat}
+            {targetChat.target}
             {targetChat.tomareId}
+            {targetChat.yoyakuId}
             <br />
             {
                 chat
@@ -90,6 +93,8 @@ const Chat = () => {
                             <div>
                                 <br />
                                 `${chat.message}`
+                                {message}
+                                {chat.message}
                             </div>
                         )
                     }
