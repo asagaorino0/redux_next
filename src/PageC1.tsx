@@ -228,11 +228,11 @@ const PageC1 = () => {
     const s = ("00" + date.getSeconds()).slice(-2)
     const now = Y + '年' + M + '月' + D + '日 ' + h + ':' + m
     const handleCreate = async () => {
-        console.log(`${message}`)
-        setDoc(doc(db, 'users', user.uid, 'tomare', targetChat.tomareId, 'chat', now), {
+        console.log(`${tomareId}`)
+        setDoc(doc(db, 'users', user.uid, 'tomare', tomareId, 'chat', now), {
             // const docref = doc(collection(db, 'users', user.uid, 'tomare', '20220122AM', 'chat', '1'))
             // setDoc(docref, {
-            message: `${message}`, timestamp: now, yoyakuId: targetChat.yoyakuId,
+            message: `${message}`, timestamp: now, yoyakuId: yoyakuId,
         })
     }
     const [targetTomare, setTargetTomare] = useState<any>([])
