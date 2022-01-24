@@ -232,7 +232,7 @@ const PageC1 = () => {
     const h = ("00" + date.getHours()).slice(-2)
     const m = ("00" + date.getMinutes()).slice(-2)
     const s = ("00" + date.getSeconds()).slice(-2)
-    const now = Y + '/' + M + '/' + D + ' ' + h + ':' + m + ':' + s
+    const now = Y + '-' + M + '-' + D + ' ' + h + ':' + m + ':' + s
 
     const [targetTomare, setTargetTomare] = useState<any>([])
     const img_make: any = { src: "https://firebasestorage.googleapis.com/v0/b/next-app-db888.appspot.com/o/P_make.png?alt=media&token=eeaf12cd-39be-4fda-8945-ec2bcb1b24dd", alt: "ケアメイク", style: { width: '60px', height: '45px' } }
@@ -427,7 +427,6 @@ const PageC1 = () => {
                             {
                                 chat
                                     .map((data: TomareState) => {
-
                                         return (
                                             <div key={chat.id}>
                                                 <br />
