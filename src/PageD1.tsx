@@ -175,8 +175,8 @@ const PageB3 = () => {
                                             if (`${users.uid}` === `${tomare.uid}`) {
                                                 return (
                                                     <div key={users.uid}>
-                                                        {tomare.menu !== "" && <p>
-
+                                                        {/* {tomare.menu !== "" &&  */}
+                                                        <p>
                                                             <br />
                                                             <img
                                                                 src={`${users.icon}`}
@@ -203,14 +203,11 @@ const PageB3 = () => {
                                                             </div>
                                                             <br />
                                                         </p>
-                                                        }
+                                                        {/* } */}
                                                     </div>
                                                 )
                                             }
                                             // })})
-
-
-
                                             // {
                                             //     targetTomare.targetTomare
                                             //     .map((targetTomare: TargetTomareState) => {
