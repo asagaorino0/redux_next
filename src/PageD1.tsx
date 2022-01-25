@@ -201,7 +201,7 @@ const PageB3 = () => {
                                                             {tomare.gappi}/{tomare.am_pm}
                                                         </h3>
                                                         <h3 className="mb-4 text-green-500 text-3xl">
-                                                            メニューを選択
+                                                            新規予約：メニューを選択してください
                                                         </h3>
                                                         <div className={styles.grid}>
                                                             <button onClick={fetchTarget1}>{tomare.make === true && <img {...img_make} />}</button>
@@ -210,15 +210,59 @@ const PageB3 = () => {
                                                             {`${tomare.sonota}`.length !== 0 &&
                                                                 <img {...img_sonota} />
                                                             }
-                                                            <button onClick={toChat}>
-                                                                <img
-                                                                    src={`${targetTomare.yoyakuIcon}`}
-                                                                    alt="icon"
-                                                                    style={{ borderRadius: '50%', width: '60px', height: '60px' }}
-                                                                />
-                                                            </button>
                                                         </div>
                                                         <br />
+                                                        {targetTomare.yoyakuIcon === user.uid &&
+                                                            <div>
+                                                                ***現在の登録内容***
+
+                                                                {targetTomare.targetTomare
+                                                                    .map(
+                                                                        (targetTomare: TargetTomareState) => {
+                                                                            const toChat = () => {
+                                                                                dispatch(addTargetChat({
+                                                                                    yoyakuId: `${targetTomare.yoyakuId}`,
+                                                                                    tomareId: `${targetTomare.tomareId}`
+                                                                                })),
+                                                                                    fetchChat()
+                                                                                setTomareId(`${targetTomare.tomareId}`)
+                                                                                setYoyakuId(`${targetTomare.yoyakuId}`)
+                                                                            };
+
+                                                                            return (
+                                                                                <div className={styles.grid}>
+                                                                                    <br />
+                                                                                    <h3 className="mb-4  text-3xl">
+                                                                                        {/* {targetTomare.gappi} */}
+                                                                                        {targetTomare.am_pm}
+                                                                                    </h3>
+
+                                                                                    <div className={styles.grid}>
+                                                                                        {targetTomare.make === true && <p><img {...img_make} /></p>}
+                                                                                        {targetTomare.nail === true && <p><img {...img_nail} /></p>}
+                                                                                        {targetTomare.este === true && <p><img {...img_este} /></p>}
+                                                                                        {`${targetTomare.sonota}`.length !== 0 &&
+                                                                                            <img {...img_sonota} />
+                                                                                        }
+
+                                                                                        {/* {targetTomare.yoyakuIcon === user.uid && */}
+                                                                                        <p>
+                                                                                            <button onClick={toChat}>
+                                                                                                <img
+                                                                                                    src={`${targetTomare.yoyakuIcon}`}
+                                                                                                    alt="icon"
+                                                                                                    style={{ borderRadius: '50%', width: '60px', height: '60px' }}
+                                                                                                />
+                                                                                            </button>
+                                                                                        </p>
+                                                                                        <br />
+                                                                                    </div>
+                                                                                </div>
+                                                                            )
+                                                                        })
+                                                                }
+
+                                                            </div>}
                                                     </div >
                                                 )
                                             }
