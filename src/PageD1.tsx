@@ -104,7 +104,14 @@ const PageB3 = () => {
     const toPageB = () => {
         router.push('./PageB');
     };
-
+    const date = new Date()
+    const Y = date.getFullYear()
+    const M = ("00" + (date.getMonth() + 1)).slice(-2)
+    const D = ("00" + date.getDate()).slice(-2)
+    const h = ("00" + date.getHours()).slice(-2)
+    const m = ("00" + date.getMinutes()).slice(-2)
+    const s = ("00" + date.getSeconds()).slice(-2)
+    const now = Y + '-' + M + '-' + D + ' ' + h + ':' + m + ':' + s
 
     return (
         <div className={styles.main}>
@@ -180,6 +187,15 @@ const PageB3 = () => {
                                                 setTomareId(`${tomare.tomareId}`)
                                                 setYoyakuId(`${tomare.yoyakuId}`)
                                             };
+                                            const handleCreate = async () => {
+                                                console.log(`${tomareId}`)
+                                                setDoc(doc(db, 'users', user.uid, 'tomare', `${tomareId}`, 'chat', now), {
+                                                    message: `${message}`, timestamp: now, yoyakuId: yoyakuId,
+                                                })
+                                                // setMessage("");
+                                                fetchChat(),
+                                                    setMessage("");
+                                            }
                                             if (`${users.uid}` === `${tomare.uid}`) {
                                                 return (
                                                     <div key={users.uid}>
@@ -238,7 +254,7 @@ const PageB3 = () => {
                                                                         </h3>
                                                                         <br />
                                                                         <h3 className="mb-4  text-3xl">
-                                                                            {/* {targetTomare.gappi} */}
+                                                                            {tomare.gappi}
                                                                             {tomare.am_pm}
                                                                         </h3>
                                                                         <div className={styles.grid}>
@@ -258,6 +274,33 @@ const PageB3 = () => {
                                                                                 </button>
                                                                             </p>
                                                                             <br />
+                                                                        </div>
+                                                                        <div>
+                                                                            {
+                                                                                chat
+                                                                                    .map((data: TomareState) => {
+                                                                                        return (
+                                                                                            <div key={chat.id}>
+                                                                                                <br />
+                                                                                                <img
+                                                                                                    src={`${user.icon}`}
+                                                                                                    alt=""
+                                                                                                    style={{ borderRadius: '50%', width: '40px', height: '40px' }}
+                                                                                                />
+                                                                                                {data.message}
+                                                                                                <br />
+                                                                                                {data.timestamp}
+                                                                                            </div>
+                                                                                        )
+                                                                                    }
+                                                                                    )}
+                                                                            <div >
+                                                                                <input type="text" onChange={(e) => setMessage(e.target.value)} />
+                                                                                <br />
+                                                                                <button onClick={handleCreate}>
+                                                                                    send！
+                                                                                </button>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
