@@ -13,4 +13,5 @@ export type TomareState = {
     message: string
     timestamp: string
     yoyakuUid: string
+    yoyakuIcon: string
 }
