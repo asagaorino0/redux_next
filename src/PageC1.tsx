@@ -226,15 +226,6 @@ const PageC1 = () => {
         setTargetTomare(tomareData)
         console.log(`targetTomareLength`, tomareLength)
     }
-    const toChat = () => {
-        dispatch(addTargetChat({
-            yoyakuId: `${targetTomare.yoyakuId}`,
-            tomareId: `${targetTomare.tomareId}`
-        })),
-            fetchChat()
-        setTomareId(`${targetTomare.tomareId}`)
-        setYoyakuId(`${targetTomare.yoyakuId}`)
-    };
     const date = new Date()
     const Y = date.getFullYear()
     const M = ("00" + (date.getMonth() + 1)).slice(-2)
@@ -352,15 +343,15 @@ const PageC1 = () => {
                         {targetTomare
                             .map(
                                 (targetTomare: TargetTomareState) => {
-                                    // const toChat = () => {
-                                    //     dispatch(addTargetChat({
-                                    //         yoyakuId: `${targetTomare.yoyakuId}`,
-                                    //         tomareId: `${targetTomare.tomareId}`
-                                    //     })),
-                                    //         fetchChat()
-                                    //     setTomareId(`${targetTomare.tomareId}`)
-                                    //     setYoyakuId(`${targetTomare.yoyakuId}`)
-                                    // };
+                                    const toChat = () => {
+                                        dispatch(addTargetChat({
+                                            yoyakuId: `${targetTomare.yoyakuId}`,
+                                            tomareId: `${targetTomare.tomareId}`
+                                        })),
+                                            fetchChat()
+                                        setTomareId(`${targetTomare.tomareId}`)
+                                        setYoyakuId(`${targetTomare.yoyakuId}`)
+                                    };
 
                                     return (
                                         <div className={styles.grid}>
