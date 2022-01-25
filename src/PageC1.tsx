@@ -28,6 +28,7 @@ const PageC1 = () => {
     const [gappi, setGappi] = useState<string>('');
     const [am_pm, setAm_pm] = useState<string>('');
     const [yoyakuId, setYoyakuId] = useState<string>('');
+    const [yoyakuIcon, setYoyakuIcon] = useState<string>('');
     const [tomareId, setTomareId] = useState<string>('');
     const dispatch = useDispatch();
     const user = useSelector(selectUser);
@@ -172,7 +173,7 @@ const PageC1 = () => {
     const handleCreate = async () => {
         console.log(`${tomareId}`)
         setDoc(doc(db, 'users', user.uid, 'tomare', `${tomareId}`, 'chat', now), {
-            message: `${message}`, timestamp: now, yoyakuId: yoyakuId,
+            message: `${message}`, timestamp: now, yoyakuId: yoyakuId, yoyakuIcon: `${user.icon}`
         })
         // setMessage("");
         fetchChat(),
@@ -351,6 +352,7 @@ const PageC1 = () => {
                                             fetchChat()
                                         setTomareId(`${targetTomare.tomareId}`)
                                         setYoyakuId(`${targetTomare.yoyakuId}`)
+                                        // setYoyakuIcon(`${tomare.yoyakuIcon}`)
                                     };
 
                                     return (
@@ -420,7 +422,7 @@ const PageC1 = () => {
                                             <div key={chat.id}>
                                                 <br />
                                                 <img
-                                                    src={`${user.icon}`}
+                                                    src={`${data.yoyakuIcon}`}
                                                     alt=""
                                                     style={{ borderRadius: '50%', width: '40px', height: '40px' }}
                                                 />
