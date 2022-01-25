@@ -183,7 +183,7 @@ const PageB3 = () => {
                                             if (`${users.uid}` === `${tomare.uid}`) {
                                                 return (
                                                     <div key={users.uid}>
-                                                        {tomare.yoyakuMenu !== "" &&
+                                                        {tomare.yoyakuMenu === "" &&
                                                             <p>
                                                                 <br />
                                                                 <img
@@ -233,7 +233,9 @@ const PageB3 = () => {
                                                                 <div className={styles.grid}>
                                                                     {/* {tomare.yoyakuUid === user.uid && <p> */}
                                                                     <div>
-                                                                        ***現在の登録内容***
+                                                                        <h3 className="mb-4 text-green-500 text-3xl">
+                                                                            ***現在の登録内容***
+                                                                        </h3>
                                                                         <br />
                                                                         <h3 className="mb-4  text-3xl">
                                                                             {/* {targetTomare.gappi} */}
