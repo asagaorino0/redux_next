@@ -212,7 +212,7 @@ const PageB3 = () => {
                                                             }
                                                         </div>
                                                         <br />
-                                                        {tomare.yoyakuUid === user.uid &&
+                                                        {targetTomare.yoyakuUid === user.uid &&
                                                             <div>
                                                                 ***現在の登録内容***
 

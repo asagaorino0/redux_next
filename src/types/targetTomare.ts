@@ -11,4 +11,5 @@ export type TargetTomareState = {
     sonota: string
     yoyakuIcon: string
     yoyakuId: String
+    yoyakuUid: string
 }
