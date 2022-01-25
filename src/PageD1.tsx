@@ -43,6 +43,7 @@ const PageB3 = () => {
     const formatdate = useSelector(selectFormatdate);
     const targetTomare = useSelector(selectTargetTomare);
     const [yoyakuId, setYoyakuId] = useState<string>('');
+    const [yoyakuIcon, setYoyakuIcon] = useState<string>('');
     const [tomareId, setTomareId] = useState<string>('');
     const router = useRouter();
     const [chat, setChat] = useState<any>([]);
@@ -186,11 +187,12 @@ const PageB3 = () => {
                                                     fetchChat()
                                                 setTomareId(`${tomare.tomareId}`)
                                                 setYoyakuId(`${tomare.yoyakuId}`)
+                                                setYoyakuIcon(`${tomare.yoyakuIcon}`)
                                             };
                                             const handleCreate = async () => {
                                                 console.log(`${tomareId}`)
                                                 setDoc(doc(db, 'users', user.uid, 'tomare', `${tomareId}`, 'chat', now), {
-                                                    message: `${message}`, timestamp: now, yoyakuId: yoyakuId,
+                                                    message: `${message}`, timestamp: now, yoyakuId: yoyakuId, yoyakuIcon: yoyakuIcon,
                                                 })
                                                 // setMessage("");
                                                 fetchChat(),
@@ -283,7 +285,7 @@ const PageB3 = () => {
                                                                                             <div key={chat.id}>
                                                                                                 <br />
                                                                                                 <img
-                                                                                                    src={`${user.icon}`}
+                                                                                                    src={`${data.yoyakuIcon}`}
                                                                                                     alt=""
                                                                                                     style={{ borderRadius: '50%', width: '40px', height: '40px' }}
                                                                                                 />
