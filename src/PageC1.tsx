@@ -101,7 +101,8 @@ const PageC1 = () => {
 
     useEffect(() => {
         fetchTomare()
-        console.log('tomare:', tomare)
+        // console.log('tomare:', tomare)
+        fetchChat()
     }, []);
 
     const getTileContent = (props: any) => {
@@ -118,7 +119,6 @@ const PageC1 = () => {
             <div >
                 {
                     tomare
-                        // .filter(() => tomare.uid === user.uid)//無効
                         .map((data: any) => {
                             if (formatDate === data.gappi && data.uid === user.uid) {
                                 return (
@@ -150,12 +150,10 @@ const PageC1 = () => {
         setGappi(formatDate)
         const q = query(collection(db, "users", user.uid, 'tomare'), where("gappi", "==", formatDate));
         const snapshot = await getDocs(q)
-        const tomareLength = snapshot.docs.length
         const tomareData = snapshot.docs.map(
             (docT: any) => ({ ...docT.data() } as TomareState))
         dispatch(addTargetTomare(tomareData))
         setTargetTomare(tomareData)
-        // console.log(`targetTomareLength`, tomareLength)
     };
     const fetchChat = async () => {
         console.log('targetChat:', targetTomare);
@@ -176,6 +174,7 @@ const PageC1 = () => {
         setDoc(doc(db, 'users', user.uid, 'tomare', `${tomareId}`, 'chat', now), {
             message: `${message}`, timestamp: now, yoyakuId: yoyakuId,
         })
+        setMessage("");
     }
     const clickMenuAm = () => { setAm_pm("AM"); fetchTomare() }
     const clickMenuPm = () => { setAm_pm("PM"); fetchTomare() }
@@ -317,22 +316,13 @@ const PageC1 = () => {
                     <p >menuをクリック
                         <div className={styles.grid}>
                             <div >
-                                <button onClick={clickMenu1}>
-                                    <img　{...img_make} />
-                                    ケアメイク
-                                </button>
+                                <button onClick={clickMenu1}><img　{...img_make} />ケアメイク</button>
                             </div>
                             <div>
-                                <button onClick={clickMenu2}>
-                                    <img {...img_nail} />
-                                    ケアネイル
-                                </button>
+                                <button onClick={clickMenu2}><img {...img_nail} />ケアネイル</button>
                             </div>
                             <div>
-                                <button onClick={clickMenu3}>
-                                    <img {...img_este} />
-                                    ケアエステ
-                                </button>
+                                <button onClick={clickMenu3}><img {...img_este} />ケアエステ</button>
                             </div>
                             <div>
                                 <button onClick={clickMenu4}>
@@ -386,7 +376,6 @@ const PageC1 = () => {
                                                         />
                                                     </button>
                                                 </p>}
-
                                                 <br />
                                             </div>
                                         </div>
@@ -409,9 +398,7 @@ const PageC1 = () => {
                                 </div>
                                 <br />
                                 <h3 className="mb-4 text-green-500 text-3xl">
-                                    <button onClick={clickMenu888}>
-                                        この内容で登録する
-                                    </button>
+                                    <button onClick={clickMenu888}>この内容で登録する</button>
                                 </h3>
                             </div>
                         }
@@ -431,6 +418,7 @@ const PageC1 = () => {
                                             <div key={chat.id}>
                                                 <br />
                                                 {data.message}
+                                                <br />
                                                 {data.timestamp}
                                             </div>
                                         )
@@ -445,10 +433,8 @@ const PageC1 = () => {
                             </div>
                         </div>
                     </p>
-
                 </div>
             }
-
         </div>
     )
 }
