@@ -212,25 +212,27 @@ const PageB3 = () => {
                                                             }
                                                         </div>
                                                         <br />
-                                                        {targetTomare.yoyakuUid === user.uid &&
-                                                            <div>
-                                                                ***現在の登録内容***
+                                                        {/* {targetTomare.yoyakuUid === user.uid && */}
+                                                        <div>
+                                                            ***現在の登録内容***
 
-                                                                {targetTomare.targetTomare
-                                                                    .map(
-                                                                        (targetTomare: TargetTomareState) => {
-                                                                            const toChat = () => {
-                                                                                dispatch(addTargetChat({
-                                                                                    yoyakuId: `${targetTomare.yoyakuId}`,
-                                                                                    tomareId: `${targetTomare.tomareId}`
-                                                                                })),
-                                                                                    fetchChat()
-                                                                                setTomareId(`${targetTomare.tomareId}`)
-                                                                                setYoyakuId(`${targetTomare.yoyakuId}`)
-                                                                            };
+                                                            {targetTomare.targetTomare
+                                                                .map(
+                                                                    (targetTomare: TargetTomareState) => {
+                                                                        const toChat = () => {
+                                                                            dispatch(addTargetChat({
+                                                                                yoyakuId: `${targetTomare.yoyakuId}`,
+                                                                                tomareId: `${targetTomare.tomareId}`
+                                                                            })),
+                                                                                fetchChat()
+                                                                            setTomareId(`${targetTomare.tomareId}`)
+                                                                            setYoyakuId(`${targetTomare.yoyakuId}`)
+                                                                        };
 
-                                                                            return (
-                                                                                <div className={styles.grid}>
+                                                                        return (
+                                                                            // {targetTomare.yoyakuUid === user.uid &&
+                                                                            <div className={styles.grid}>
+                                                                                {targetTomare.yoyakuUid === user.uid && <p>
                                                                                     <br />
                                                                                     <h3 className="mb-4  text-3xl">
                                                                                         {/* {targetTomare.gappi} */}
@@ -257,12 +259,15 @@ const PageB3 = () => {
                                                                                         </p>
                                                                                         <br />
                                                                                     </div>
-                                                                                </div>
-                                                                            )
-                                                                        })
-                                                                }
+                                                                                </p>}
+                                                                            </div>
+                                                                            // }
+                                                                        )
+                                                                    })
+                                                            }
 
-                                                            </div>}
+                                                        </div>
+                                                        {/* } */}
                                                     </div >
                                                 )
                                             }
