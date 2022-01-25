@@ -174,8 +174,9 @@ const PageC1 = () => {
         setDoc(doc(db, 'users', user.uid, 'tomare', `${tomareId}`, 'chat', now), {
             message: `${message}`, timestamp: now, yoyakuId: yoyakuId,
         })
-        setMessage("");
-        fetchChat()
+        // setMessage("");
+        fetchChat(),
+            setMessage("");
     }
     const clickMenuAm = () => { setAm_pm("AM"); fetchTomare() }
     const clickMenuPm = () => { setAm_pm("PM"); fetchTomare() }
