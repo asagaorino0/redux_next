@@ -175,6 +175,7 @@ const PageC1 = () => {
             message: `${message}`, timestamp: now, yoyakuId: yoyakuId,
         })
         setMessage("");
+        fetchChat()
     }
     const clickMenuAm = () => { setAm_pm("AM"); fetchTomare() }
     const clickMenuPm = () => { setAm_pm("PM"); fetchTomare() }
