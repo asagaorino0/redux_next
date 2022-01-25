@@ -175,35 +175,35 @@ const PageB3 = () => {
                                             if (`${users.uid}` === `${tomare.uid}`) {
                                                 return (
                                                     <div key={users.uid}>
-                                                        {/* {tomare.menu !== "" &&  */}
-                                                        <p>
-                                                            <br />
-                                                            <img
-                                                                src={`${users.icon}`}
-                                                                alt=""
-                                                                style={{ borderRadius: '50%', width: '60px', height: '60px' }}
-                                                            />
-                                                            {/* <h1>氏名（屋号）</h1> */}
-                                                            <h3 className="mb-4  text-3xl">
-                                                                {users.name}
-                                                            </h3>
-                                                            <h3 className="mb-4 text-3xl">
-                                                                {tomare.gappi}/{tomare.am_pm}
-                                                            </h3>
-                                                            <h3 className="mb-4 text-green-500 text-3xl">
-                                                                新規予約：メニューを選択してください
-                                                            </h3>
-                                                            <div className={styles.grid}>
-                                                                <button onClick={fetchTarget1}>{tomare.make === true && <img {...img_make} />}</button>
-                                                                <button onClick={fetchTarget2}>{tomare.nail === true && <img {...img_nail} />}</button>
-                                                                <button onClick={fetchTarget3}>{tomare.este === true && <img {...img_este} />}</button>
-                                                                {`${tomare.sonota}`.length !== 0 &&
-                                                                    <img {...img_sonota} />
-                                                                }
-                                                            </div>
-                                                            <br />
-                                                        </p>
-                                                        {/* } */}
+                                                        {tomare.menu !== "" &&
+                                                            <p>
+                                                                <br />
+                                                                <img
+                                                                    src={`${users.icon}`}
+                                                                    alt=""
+                                                                    style={{ borderRadius: '50%', width: '60px', height: '60px' }}
+                                                                />
+                                                                {/* <h1>氏名（屋号）</h1> */}
+                                                                <h3 className="mb-4  text-3xl">
+                                                                    {users.name}
+                                                                </h3>
+                                                                <h3 className="mb-4 text-3xl">
+                                                                    {tomare.gappi}/{tomare.am_pm}
+                                                                </h3>
+                                                                <h3 className="mb-4 text-green-500 text-3xl">
+                                                                    新規予約：メニューを選択してください
+                                                                </h3>
+                                                                <div className={styles.grid}>
+                                                                    <button onClick={fetchTarget1}>{tomare.make === true && <img {...img_make} />}</button>
+                                                                    <button onClick={fetchTarget2}>{tomare.nail === true && <img {...img_nail} />}</button>
+                                                                    <button onClick={fetchTarget3}>{tomare.este === true && <img {...img_este} />}</button>
+                                                                    {`${tomare.sonota}`.length !== 0 &&
+                                                                        <img {...img_sonota} />
+                                                                    }
+                                                                </div>
+                                                                <br />
+                                                            </p>
+                                                        }
                                                     </div>
                                                 )
                                             }
@@ -221,39 +221,39 @@ const PageB3 = () => {
                                                 setYoyakuId(`${tomare.yoyakuId}`)
                                             };
 
-                                            return (
-                                                <div className={styles.grid}>
-                                                    {tomare.yoyakuUid === user.uid && <p>
-                                                        <div>
-                                                            ***現在の登録内容***
+                                            // return (
+                                            <div className={styles.grid}>
+                                                {tomare.yoyakuUid === user.uid && <p>
+                                                    <div>
+                                                        ***現在の登録内容***
+                                                        <br />
+                                                        <h3 className="mb-4  text-3xl">
+                                                            {/* {targetTomare.gappi} */}
+                                                            {tomare.am_pm}
+                                                        </h3>
+                                                        <div className={styles.grid}>
+                                                            {tomare.make === true && <p><img {...img_make} /></p>}
+                                                            {tomare.nail === true && <p><img {...img_nail} /></p>}
+                                                            {tomare.este === true && <p><img {...img_este} /></p>}
+                                                            {`${tomare.sonota}`.length !== 0 &&
+                                                                <img {...img_sonota} />
+                                                            }
+                                                            {/* {targetTomare.yoyakuIcon === user.uid && */}
+                                                            <p>
+                                                                <button onClick={toChat}>
+                                                                    <img
+                                                                        src={`${tomare.yoyakuIcon}`}
+                                                                        alt="icon"
+                                                                        style={{ borderRadius: '50%', width: '60px', height: '60px' }}
+                                                                    />
+                                                                </button>
+                                                            </p>
                                                             <br />
-                                                            <h3 className="mb-4  text-3xl">
-                                                                {/* {targetTomare.gappi} */}
-                                                                {tomare.am_pm}
-                                                            </h3>
-                                                            <div className={styles.grid}>
-                                                                {tomare.make === true && <p><img {...img_make} /></p>}
-                                                                {tomare.nail === true && <p><img {...img_nail} /></p>}
-                                                                {tomare.este === true && <p><img {...img_este} /></p>}
-                                                                {`${tomare.sonota}`.length !== 0 &&
-                                                                    <img {...img_sonota} />
-                                                                }
-                                                                {/* {targetTomare.yoyakuIcon === user.uid && */}
-                                                                <p>
-                                                                    <button onClick={toChat}>
-                                                                        <img
-                                                                            src={`${tomare.yoyakuIcon}`}
-                                                                            alt="icon"
-                                                                            style={{ borderRadius: '50%', width: '60px', height: '60px' }}
-                                                                        />
-                                                                    </button>
-                                                                </p>
-                                                                <br />
-                                                            </div>
                                                         </div>
-                                                    </p>}
-                                                </div>
-                                            )
+                                                    </div>
+                                                </p>}
+                                            </div>
+                                            // )
                                         })
                                 }
                             </div >
