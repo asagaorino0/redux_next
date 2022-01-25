@@ -431,6 +431,7 @@ const PageC1 = () => {
                                             <div key={chat.id}>
                                                 <br />
                                                 {data.message}
+                                                {data.timestamp}
                                             </div>
                                         )
                                     }

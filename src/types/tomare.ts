@@ -11,4 +11,5 @@ export type TomareState = {
     sonota: string
     yoyakuId: string
     message: string
+    timestamp: string
 }
