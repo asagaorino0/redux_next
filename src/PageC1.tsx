@@ -419,6 +419,11 @@ const PageC1 = () => {
                                         return (
                                             <div key={chat.id}>
                                                 <br />
+                                                <img
+                                                    src={`${user.icon}`}
+                                                    alt=""
+                                                    style={{ borderRadius: '50%', width: '40px', height: '40px' }}
+                                                />
                                                 {data.message}
                                                 <br />
                                                 {data.timestamp}
