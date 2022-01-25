@@ -218,53 +218,53 @@ const PageB3 = () => {
                                                         <div>
                                                             ***現在の登録内容***
 
-                                                            {targetTomare.targetTomare
+                                                            {/* {targetTomare.targetTomare
                                                                 .map(
-                                                                    (targetTomare: TargetTomareState) => {
-                                                                        const toChat = () => {
-                                                                            dispatch(addTargetChat({
-                                                                                yoyakuId: `${targetTomare.yoyakuId}`,
-                                                                                tomareId: `${targetTomare.tomareId}`
-                                                                            })),
-                                                                                fetchChat()
+                                                                    (targetTomare: TargetTomareState) => { */}
+                                                            {/* const toChat = () => {
+                                                                dispatch(addTargetChat({
+                                                                    yoyakuId: `${targetTomare.yoyakuId}`,
+                                                                    tomareId: `${targetTomare.tomareId}`
+                                                                })),
+                                                                fetchChat()
                                                                             setTomareId(`${targetTomare.tomareId}`)
-                                                                            setYoyakuId(`${targetTomare.yoyakuId}`)
-                                                                        };
+                                                            setYoyakuId(`${targetTomare.yoyakuId}`)
+                                                                        }; */}
 
-                                                                        return (
-                                                                            <div className={styles.grid}>
-                                                                                {targetTomare.yoyakuUid === user.uid && <p>
-                                                                                    <br />
-                                                                                    <h3 className="mb-4  text-3xl">
-                                                                                        {/* {targetTomare.gappi} */}
-                                                                                        {targetTomare.am_pm}
-                                                                                    </h3>
+                                                            {/* return ( */}
+                                                            <div className={styles.grid}>
+                                                                {targetTomare.yoyakuUid === user.uid && <p>
+                                                                    <br />
+                                                                    <h3 className="mb-4  text-3xl">
+                                                                        {/* {targetTomare.gappi} */}
+                                                                        {targetTomare.am_pm}
+                                                                    </h3>
 
-                                                                                    <div className={styles.grid}>
-                                                                                        {targetTomare.make === true && <p><img {...img_make} /></p>}
-                                                                                        {targetTomare.nail === true && <p><img {...img_nail} /></p>}
-                                                                                        {targetTomare.este === true && <p><img {...img_este} /></p>}
-                                                                                        {`${targetTomare.sonota}`.length !== 0 &&
-                                                                                            <img {...img_sonota} />
-                                                                                        }
+                                                                    <div className={styles.grid}>
+                                                                        {targetTomare.make === true && <p><img {...img_make} /></p>}
+                                                                        {targetTomare.nail === true && <p><img {...img_nail} /></p>}
+                                                                        {targetTomare.este === true && <p><img {...img_este} /></p>}
+                                                                        {`${targetTomare.sonota}`.length !== 0 &&
+                                                                            <img {...img_sonota} />
+                                                                        }
 
-                                                                                        {/* {targetTomare.yoyakuIcon === user.uid && */}
-                                                                                        <p>
-                                                                                            <button onClick={toChat}>
-                                                                                                <img
-                                                                                                    src={`${targetTomare.yoyakuIcon}`}
-                                                                                                    alt="icon"
-                                                                                                    style={{ borderRadius: '50%', width: '60px', height: '60px' }}
-                                                                                                />
-                                                                                            </button>
-                                                                                        </p>
-                                                                                        <br />
-                                                                                    </div>
-                                                                                </p>}
-                                                                            </div>
-                                                                        )
-                                                                    })
-                                                            }
+                                                                        {/* {targetTomare.yoyakuIcon === user.uid && */}
+                                                                        <p>
+                                                                            <button onClick={toChat}>
+                                                                                <img
+                                                                                    src={`${targetTomare.yoyakuIcon}`}
+                                                                                    alt="icon"
+                                                                                    style={{ borderRadius: '50%', width: '60px', height: '60px' }}
+                                                                                />
+                                                                            </button>
+                                                                        </p>
+                                                                        <br />
+                                                                    </div>
+                                                                </p>}
+                                                            </div>
+                                                            {/* ) */}
+                                                            {/* })
+                                                            } */}
 
                                                         </div>
                                                     </div >
