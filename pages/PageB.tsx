@@ -15,6 +15,9 @@ const PageB = () => {
     const toPageA = () => {
         router.push('./PageA')
     }
+    const toHome = () => {
+        router.push('./')
+    }
     const PageB0 = dynamic(() => import('../src/PageB0'), { ssr: false });
     // const [name, setName] = useState<string>('');
     // const [age, setAge] = useState<number>(0);
@@ -27,7 +30,7 @@ const PageB = () => {
     return (
         <div className="App">
             <div>
-                <button onClick={toPageA}>
+                <button onClick={toHome}>
                     {/* // <button onClick={onload}> */}
                     <h3 className="mb-4 text-green-500 text-3xl">施術の申込み（個人）</h3>
                 </button>
