@@ -185,34 +185,36 @@ const PageB3 = () => {
                                                 // console.log(users.name)
                                                 // console.log(tomare.uid)
                                                 return (
-                                                    tomare.menu !== "" &&
                                                     <div key={users.uid}>
-                                                        <br />
-                                                        <img
-                                                            src={`${users.icon}`}
-                                                            alt=""
-                                                            style={{ borderRadius: '50%', width: '60px', height: '60px' }}
-                                                        />
-                                                        {/* <h1>氏名（屋号）</h1> */}
-                                                        <h3 className="mb-4  text-3xl">
-                                                            {users.name}
-                                                        </h3>
-                                                        <h3 className="mb-4 text-3xl">
-                                                            {tomare.gappi}/{tomare.am_pm}
-                                                        </h3>
-                                                        <h3 className="mb-4 text-green-500 text-3xl">
-                                                            新規予約：メニューを選択してください
-                                                        </h3>
-                                                        <div className={styles.grid}>
-                                                            <button onClick={fetchTarget1}>{tomare.make === true && <img {...img_make} />}</button>
-                                                            <button onClick={fetchTarget2}>{tomare.nail === true && <img {...img_nail} />}</button>
-                                                            <button onClick={fetchTarget3}>{tomare.este === true && <img {...img_este} />}</button>
-                                                            {`${tomare.sonota}`.length !== 0 &&
-                                                                <img {...img_sonota} />
-                                                            }
-                                                        </div>
-                                                        <br />
-                                                        {/* {targetTomare.yoyakuUid === user.uid && */}
+                                                        {tomare.menu !== "" && <p>
+
+                                                            <br />
+                                                            <img
+                                                                src={`${users.icon}`}
+                                                                alt=""
+                                                                style={{ borderRadius: '50%', width: '60px', height: '60px' }}
+                                                            />
+                                                            {/* <h1>氏名（屋号）</h1> */}
+                                                            <h3 className="mb-4  text-3xl">
+                                                                {users.name}
+                                                            </h3>
+                                                            <h3 className="mb-4 text-3xl">
+                                                                {tomare.gappi}/{tomare.am_pm}
+                                                            </h3>
+                                                            <h3 className="mb-4 text-green-500 text-3xl">
+                                                                新規予約：メニューを選択してください
+                                                            </h3>
+                                                            <div className={styles.grid}>
+                                                                <button onClick={fetchTarget1}>{tomare.make === true && <img {...img_make} />}</button>
+                                                                <button onClick={fetchTarget2}>{tomare.nail === true && <img {...img_nail} />}</button>
+                                                                <button onClick={fetchTarget3}>{tomare.este === true && <img {...img_este} />}</button>
+                                                                {`${tomare.sonota}`.length !== 0 &&
+                                                                    <img {...img_sonota} />
+                                                                }
+                                                            </div>
+                                                            <br />
+                                                        </p>
+                                                        }
                                                         <div>
                                                             ***現在の登録内容***
 
@@ -230,7 +232,6 @@ const PageB3 = () => {
                                                                         };
 
                                                                         return (
-                                                                            // {targetTomare.yoyakuUid === user.uid &&
                                                                             <div className={styles.grid}>
                                                                                 {targetTomare.yoyakuUid === user.uid && <p>
                                                                                     <br />
@@ -261,13 +262,11 @@ const PageB3 = () => {
                                                                                     </div>
                                                                                 </p>}
                                                                             </div>
-                                                                            // }
                                                                         )
                                                                     })
                                                             }
 
                                                         </div>
-                                                        {/* } */}
                                                     </div >
                                                 )
                                             }
