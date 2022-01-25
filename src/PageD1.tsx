@@ -171,7 +171,15 @@ const PageB3 = () => {
                                                 alert("登録しました！")
                                                 fetchTomare()
                                             };
-
+                                            const toChat = () => {
+                                                dispatch(addTargetChat({
+                                                    yoyakuId: `${tomare.yoyakuId}`,
+                                                    tomareId: `${tomare.tomareId}`
+                                                })),
+                                                    fetchChat()
+                                                setTomareId(`${tomare.tomareId}`)
+                                                setYoyakuId(`${tomare.yoyakuId}`)
+                                            };
                                             if (`${users.uid}` === `${tomare.uid}`) {
                                                 return (
                                                     <div key={users.uid}>
@@ -211,15 +219,15 @@ const PageB3 = () => {
                                             // {
                                             //     targetTomare.targetTomare
                                             //     .map((targetTomare: TargetTomareState) => {
-                                            const toChat = () => {
-                                                dispatch(addTargetChat({
-                                                    yoyakuId: `${tomare.yoyakuId}`,
-                                                    tomareId: `${tomare.tomareId}`
-                                                })),
-                                                    fetchChat()
-                                                setTomareId(`${tomare.tomareId}`)
-                                                setYoyakuId(`${tomare.yoyakuId}`)
-                                            };
+                                            // const toChat = () => {
+                                            //     dispatch(addTargetChat({
+                                            //         yoyakuId: `${tomare.yoyakuId}`,
+                                            //         tomareId: `${tomare.tomareId}`
+                                            //     })),
+                                            //         fetchChat()
+                                            //     setTomareId(`${tomare.tomareId}`)
+                                            //     setYoyakuId(`${tomare.yoyakuId}`)
+                                            // };
 
                                             // return (
                                             <div className={styles.grid}>
