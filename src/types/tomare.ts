@@ -14,4 +14,5 @@ export type TomareState = {
     timestamp: string
     yoyakuUid: string
     yoyakuIcon: string
+    yoyakuMenu: string
 }

@@ -175,7 +175,7 @@ const PageB3 = () => {
                                             if (`${users.uid}` === `${tomare.uid}`) {
                                                 return (
                                                     <div key={users.uid}>
-                                                        {tomare.menu !== "" &&
+                                                        {tomare.yoyakuMenu !== "" &&
                                                             <p>
                                                                 <br />
                                                                 <img
@@ -223,35 +223,35 @@ const PageB3 = () => {
 
                                             // return (
                                             <div className={styles.grid}>
-                                                {tomare.yoyakuUid === user.uid && <p>
-                                                    <div>
-                                                        ***現在の登録内容***
+                                                {/* {tomare.yoyakuUid === user.uid && <p> */}
+                                                <div>
+                                                    ***現在の登録内容***
+                                                    <br />
+                                                    <h3 className="mb-4  text-3xl">
+                                                        {/* {targetTomare.gappi} */}
+                                                        {tomare.am_pm}
+                                                    </h3>
+                                                    <div className={styles.grid}>
+                                                        {tomare.make === true && <p><img {...img_make} /></p>}
+                                                        {tomare.nail === true && <p><img {...img_nail} /></p>}
+                                                        {tomare.este === true && <p><img {...img_este} /></p>}
+                                                        {`${tomare.sonota}`.length !== 0 &&
+                                                            <img {...img_sonota} />
+                                                        }
+                                                        {/* {targetTomare.yoyakuIcon === user.uid && */}
+                                                        <p>
+                                                            <button onClick={toChat}>
+                                                                <img
+                                                                    src={`${tomare.yoyakuIcon}`}
+                                                                    alt="icon"
+                                                                    style={{ borderRadius: '50%', width: '60px', height: '60px' }}
+                                                                />
+                                                            </button>
+                                                        </p>
                                                         <br />
-                                                        <h3 className="mb-4  text-3xl">
-                                                            {/* {targetTomare.gappi} */}
-                                                            {tomare.am_pm}
-                                                        </h3>
-                                                        <div className={styles.grid}>
-                                                            {tomare.make === true && <p><img {...img_make} /></p>}
-                                                            {tomare.nail === true && <p><img {...img_nail} /></p>}
-                                                            {tomare.este === true && <p><img {...img_este} /></p>}
-                                                            {`${tomare.sonota}`.length !== 0 &&
-                                                                <img {...img_sonota} />
-                                                            }
-                                                            {/* {targetTomare.yoyakuIcon === user.uid && */}
-                                                            <p>
-                                                                <button onClick={toChat}>
-                                                                    <img
-                                                                        src={`${tomare.yoyakuIcon}`}
-                                                                        alt="icon"
-                                                                        style={{ borderRadius: '50%', width: '60px', height: '60px' }}
-                                                                    />
-                                                                </button>
-                                                            </p>
-                                                            <br />
-                                                        </div>
                                                     </div>
-                                                </p>}
+                                                </div>
+                                                {/* </p>} */}
                                             </div>
                                             // )
                                         })
