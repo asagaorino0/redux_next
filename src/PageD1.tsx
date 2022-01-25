@@ -108,7 +108,7 @@ const PageB3 = () => {
 
     return (
         <div className={styles.main}>
-            <span >pageB3：登録</span>
+            <span >pageD1：登録</span>
             {/* {`${user.icon}`.length !== 0 && */}
             <img
                 src={`${user.icon}`}
@@ -120,12 +120,12 @@ const PageB3 = () => {
                 <h1 className="mb-4 text-green-500 text-3xl">{user.name}さま </h1>
             }
             <h1>氏名</h1>
-            {users.namae}
+            {user.namae}
             <input type="text" onChange={(e) => setNamae(e.target.value)} />
             <br />
-            <h1>性別</h1>
+            {/* <h1>性別</h1>
             <input type="text" onChange={(e) => setSei(e.target.value)} />
-            <br />
+            <br /> */}
             <h1>住所</h1>
             <input type="text" onChange={(e) => setTokoro(e.target.value)} />
             <br />
@@ -212,7 +212,7 @@ const PageB3 = () => {
                                                             }
                                                         </div>
                                                         <br />
-                                                        {targetTomare.yoyakuIcon === user.uid &&
+                                                        {tomare.yoyakuUid === user.uid &&
                                                             <div>
                                                                 ***現在の登録内容***
 

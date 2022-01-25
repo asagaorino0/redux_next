@@ -12,4 +12,5 @@ export type TomareState = {
     yoyakuId: string
     message: string
     timestamp: string
+    yoyakuUid: string
 }
