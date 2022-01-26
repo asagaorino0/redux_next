@@ -198,119 +198,104 @@ const PageB3 = () => {
                                                 fetchChat(yoyakuId),
                                                     setMessage("");
                                             }
-                                            if (`${users.uid}` === `${tomare.uid}`) {
-                                                return (
-                                                    <div key={users.uid}>
-                                                        {tomare.yoyakuMenu === "" &&
-                                                            <p>
-                                                                <br />
-                                                                <img
-                                                                    src={`${users.icon}`}
-                                                                    alt=""
-                                                                    style={{ borderRadius: '50%', width: '60px', height: '60px' }}
-                                                                />
-                                                                {/* <h1>氏名（屋号）</h1> */}
-                                                                <h3 className="mb-4  text-3xl">
-                                                                    {users.name}
-                                                                </h3>
-                                                                <h3 className="mb-4 text-3xl">
-                                                                    {tomare.gappi}/{tomare.am_pm}
-                                                                </h3>
+                                            // if (`${users.uid}` === `${tomare.uid}`) {
+                                            return (
+                                                <div key={users.uid}>
+                                                    {tomare.yoyakuMenu === "" &&
+                                                        <p>
+                                                            <br />
+                                                            <img
+                                                                src={`${users.icon}`}
+                                                                alt=""
+                                                                style={{ borderRadius: '50%', width: '60px', height: '60px' }}
+                                                            />
+                                                            {/* <h1>氏名（屋号）</h1> */}
+                                                            <h3 className="mb-4  text-3xl">
+                                                                {users.name}
+                                                            </h3>
+                                                            <h3 className="mb-4 text-3xl">
+                                                                {tomare.gappi}/{tomare.am_pm}
+                                                            </h3>
+                                                            <h3 className="mb-4 text-green-500 text-3xl">
+                                                                新規予約：メニューを選択してください
+                                                            </h3>
+                                                            <div className={styles.grid}>
+                                                                <button onClick={fetchTarget1}>{tomare.make === true && <img {...img_make} />}</button>
+                                                                <button onClick={fetchTarget2}>{tomare.nail === true && <img {...img_nail} />}</button>
+                                                                <button onClick={fetchTarget3}>{tomare.este === true && <img {...img_este} />}</button>
+                                                                {`${tomare.sonota}`.length !== 0 &&
+                                                                    <img {...img_sonota} />
+                                                                }
+                                                            </div>
+                                                            <br />
+                                                        </p>
+                                                    }
+
+
+                                                    {tomare.yoyakuUid === user.uid && <p>
+                                                        <div className={styles.grid}>
+                                                            {/* {tomare.yoyakuUid === user.uid && <p> */}
+                                                            <div>
                                                                 <h3 className="mb-4 text-green-500 text-3xl">
-                                                                    新規予約：メニューを選択してください
+                                                                    ***現在の登録内容***
+                                                                </h3>
+                                                                <br />
+                                                                <h3 className="mb-4  text-3xl">
+                                                                    {tomare.gappi}
+                                                                    {tomare.am_pm}
                                                                 </h3>
                                                                 <div className={styles.grid}>
-                                                                    <button onClick={fetchTarget1}>{tomare.make === true && <img {...img_make} />}</button>
-                                                                    <button onClick={fetchTarget2}>{tomare.nail === true && <img {...img_nail} />}</button>
-                                                                    <button onClick={fetchTarget3}>{tomare.este === true && <img {...img_este} />}</button>
+                                                                    {tomare.make === true && <p><img {...img_make} /></p>}
+                                                                    {tomare.nail === true && <p><img {...img_nail} /></p>}
+                                                                    {tomare.este === true && <p><img {...img_este} /></p>}
                                                                     {`${tomare.sonota}`.length !== 0 &&
                                                                         <img {...img_sonota} />
                                                                     }
+                                                                    <p>
+                                                                        <button onClick={toChat}>
+                                                                            <img
+                                                                                src={`${tomare.yoyakuIcon}`}
+                                                                                alt="icon"
+                                                                                style={{ borderRadius: '50%', width: '60px', height: '60px' }}
+                                                                            />
+                                                                        </button>
+                                                                    </p>
+                                                                    <br />
                                                                 </div>
-                                                                <br />
-                                                            </p>
-                                                        }
-
-
-                                                        {
-                                                            //     targetTomare.targetTomare
-                                                            //     .map((targetTomare: TargetTomareState) => {
-                                                            // const toChat = () => {
-                                                            //     dispatch(addTargetChat({
-                                                            //         yoyakuId: `${tomare.yoyakuId}`,
-                                                            //         tomareId: `${tomare.tomareId}`
-                                                            //     })),
-                                                            //         fetchChat()
-                                                            //     setTomareId(`${tomare.tomareId}`)
-                                                            //     setYoyakuId(`${tomare.yoyakuId}`)
-                                                            // };
-
-                                                            tomare.yoyakuUid === user.uid && <p>
-
-
-                                                                <div className={styles.grid}>
-                                                                    {/* {tomare.yoyakuUid === user.uid && <p> */}
-                                                                    <div>
-                                                                        <h3 className="mb-4 text-green-500 text-3xl">
-                                                                            ***現在の登録内容***
-                                                                        </h3>
-                                                                        <br />
-                                                                        <h3 className="mb-4  text-3xl">
-                                                                            {tomare.gappi}
-                                                                            {tomare.am_pm}
-                                                                        </h3>
-                                                                        <div className={styles.grid}>
-                                                                            {tomare.make === true && <p><img {...img_make} /></p>}
-                                                                            {tomare.nail === true && <p><img {...img_nail} /></p>}
-                                                                            {tomare.este === true && <p><img {...img_este} /></p>}
-                                                                            {`${tomare.sonota}`.length !== 0 &&
-                                                                                <img {...img_sonota} />
+                                                                <div>
+                                                                    {
+                                                                        chat
+                                                                            .map((data: TomareState) => {
+                                                                                return (
+                                                                                    <div key={chat.id}>
+                                                                                        <br />
+                                                                                        <img
+                                                                                            src={`${data.yoyakuIcon}`}
+                                                                                            alt=""
+                                                                                            style={{ borderRadius: '50%', width: '40px', height: '40px' }}
+                                                                                        />
+                                                                                        {data.message}
+                                                                                        <br />
+                                                                                        {data.timestamp}
+                                                                                    </div>
+                                                                                )
                                                                             }
-                                                                            <p>
-                                                                                <button onClick={toChat}>
-                                                                                    <img
-                                                                                        src={`${tomare.yoyakuIcon}`}
-                                                                                        alt="icon"
-                                                                                        style={{ borderRadius: '50%', width: '60px', height: '60px' }}
-                                                                                    />
-                                                                                </button>
-                                                                            </p>
-                                                                            <br />
-                                                                        </div>
-                                                                        <div>
-                                                                            {
-                                                                                chat
-                                                                                    .map((data: TomareState) => {
-                                                                                        return (
-                                                                                            <div key={chat.id}>
-                                                                                                <br />
-                                                                                                <img
-                                                                                                    src={`${data.yoyakuIcon}`}
-                                                                                                    alt=""
-                                                                                                    style={{ borderRadius: '50%', width: '40px', height: '40px' }}
-                                                                                                />
-                                                                                                {data.message}
-                                                                                                <br />
-                                                                                                {data.timestamp}
-                                                                                            </div>
-                                                                                        )
-                                                                                    }
-                                                                                    )}
-                                                                            <div >
-                                                                                <input type="text" onChange={(e) => setMessage(e.target.value)} />
-                                                                                <br />
-                                                                                <button onClick={handleCreate}>
-                                                                                    send！
-                                                                                </button>
-                                                                            </div>
-                                                                        </div>
+                                                                            )}
+                                                                    <div >
+                                                                        <input type="text" onChange={(e) => setMessage(e.target.value)} />
+                                                                        <br />
+                                                                        <button onClick={handleCreate}>
+                                                                            send！
+                                                                        </button>
                                                                     </div>
                                                                 </div>
-                                                            </p>
-                                                        }
-                                                    </div >
-                                                )
-                                            }
+                                                            </div>
+                                                        </div>
+                                                    </p>
+                                                    }
+                                                </div >
+                                            )
+                                            // }
                                         })
                                 }
                             </div >
