@@ -159,7 +159,7 @@ const PageC1 = () => {
     };
     const fetchChat = async () => {
         console.log('targetChat:', targetTomare);
-        const q = query(collectionGroup(db, 'chat'), where("yoyakuId", "==", `${yoyakuId}`));
+        const q = query(collectionGroup(db, 'chat'), where("yoyakuId", "==", `${targetTomare.yoyakuId}`));
         const snapshot = await getDocs(q);
         const chatData = snapshot.docs.map(
             (doc: any) => ({ ...doc.data() } as TomareState)
