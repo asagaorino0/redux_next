@@ -155,6 +155,7 @@ const PageC1 = () => {
             (docT: any) => ({ ...docT.data() } as TomareState))
         dispatch(addTargetTomare(tomareData))
         setTargetTomare(tomareData)
+        setChat([])
     };
     const fetchChat = async () => {
         console.log('targetChat:', targetTomare);
