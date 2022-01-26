@@ -341,13 +341,13 @@ const PageC1 = () => {
                             .map(
                                 (targetTomare: TargetTomareState) => {
                                     const toChat = () => {
-                                        dispatch(addTargetChat({
-                                            yoyakuId: `${targetTomare.yoyakuId}`,
-                                            tomareId: `${targetTomare.tomareId}`
-                                        })),
-                                            fetchChat()
+                                        // dispatch(addTargetChat({
+                                        //     yoyakuId: `${targetTomare.yoyakuId}`,
+                                        //     tomareId: `${targetTomare.tomareId}`
+                                        // })),
                                         setTomareId(`${targetTomare.tomareId}`)
                                         setYoyakuId(`${targetTomare.yoyakuId}`)
+                                        fetchChat()
                                         // setYoyakuIcon(`${tomare.yoyakuIcon}`)
                                         async () => {
                                             const q = query(collection(db, "users", user.uid, 'tomare'), where("tomareId", "==", `${targetTomare.tomareId}`));
