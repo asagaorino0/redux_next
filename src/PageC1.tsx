@@ -103,7 +103,7 @@ const PageC1 = () => {
     useEffect(() => {
         fetchTomare()
         // console.log('tomare:', tomare)
-        fetchChat()
+        fetchChat(yoyakuId)
     }, []);
 
     const getTileContent = (props: any) => {
@@ -157,9 +157,9 @@ const PageC1 = () => {
         setTargetTomare(tomareData)
         setChat([])
     };
-    const fetchChat = async () => {
+    const fetchChat = async (yoyakuId: string) => {
         console.log('targetChat:', targetTomare);
-        const q = query(collectionGroup(db, 'chat'), where("yoyakuId", "==", `${targetTomare.yoyakuId}`));
+        const q = query(collectionGroup(db, 'chat'), where("yoyakuId", "==", `${yoyakuId}`));
         const snapshot = await getDocs(q);
         const chatData = snapshot.docs.map(
             (doc: any) => ({ ...doc.data() } as TomareState)
@@ -173,7 +173,7 @@ const PageC1 = () => {
         setDoc(doc(db, 'users', user.uid, 'tomare', `${tomareId}`, 'chat', now), {
             message: `${message}`, timestamp: now, yoyakuId: yoyakuId, yoyakuIcon: `${user.icon}`
         })
-        fetchChat(),
+        fetchChat(yoyakuId),
             setMessage("");
     }
     const clickMenuAm = () => { setAm_pm("AM"); fetchTomare() }
@@ -348,7 +348,7 @@ const PageC1 = () => {
                                         // })),
                                         setTomareId(`${targetTomare.tomareId}`)
                                         setYoyakuId(`${targetTomare.yoyakuId}`)
-                                        fetchChat()
+                                        fetchChat(`${targetTomare.yoyakuId}`)
                                         // setYoyakuIcon(`${tomare.yoyakuIcon}`)
                                         const fetchTargetTomare = async () => {
                                             const q = query(collection(db, "users", user.uid, 'tomare'), where("tomareId", "==", `${targetTomare.tomareId}`));
