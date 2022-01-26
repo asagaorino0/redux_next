@@ -28,7 +28,7 @@ const PageC = () => {
                 <React.StrictMode >
                     <Provider store={store}>
                         <PageC1 />
-                        <Chat />
+                        {/* <Chat /> */}
                     </Provider>
                 </React.StrictMode>
             </h1>

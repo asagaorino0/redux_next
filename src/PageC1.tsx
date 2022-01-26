@@ -159,23 +159,19 @@ const PageC1 = () => {
     const fetchChat = async () => {
         console.log('targetChat:', targetTomare);
         const q = query(collectionGroup(db, 'chat'), where("yoyakuId", "==", `${yoyakuId}`));
-        // const q = query(collection(db, 'users', 'Uda1c6a4e5b348c5ba3c95de639e32414', 'tomare', '20220122AM', 'chat'))
         const snapshot = await getDocs(q);
         const chatData = snapshot.docs.map(
             (doc: any) => ({ ...doc.data() } as TomareState)
         );
-        // dispatch(addUsers({ usersData }));
         setChat(chatData);
         console.log('chatData:', chatData);
         console.log('chat:', chat);
-        // console.log('users:', users);
     };
     const handleCreate = async () => {
         console.log(`${tomareId}`)
         setDoc(doc(db, 'users', user.uid, 'tomare', `${tomareId}`, 'chat', now), {
             message: `${message}`, timestamp: now, yoyakuId: yoyakuId, yoyakuIcon: `${user.icon}`
         })
-        // setMessage("");
         fetchChat(),
             setMessage("");
     }
@@ -414,14 +410,7 @@ const PageC1 = () => {
                                 </h3>
                             </div>
                         }
-                        <div>
-                            <br />
-                            ***予約枠の取り消し***
-                            <br />
-                            <button onClick={clickMenu9am}>AM:午前　</button>
-                            /
-                            <button onClick={clickMenu9pm}>　PM：午後</button>
-                        </div>
+
                         <div>
                             {
                                 chat
@@ -450,6 +439,14 @@ const PageC1 = () => {
                             </div>
                         </div>
                     </p>
+                    <div>
+                        <br />
+                        ***予約枠の取り消し***
+                        <br />
+                        <button onClick={clickMenu9am}>AM:午前　</button>
+                        /
+                        <button onClick={clickMenu9pm}>　PM：午後</button>
+                    </div>
                 </div>
             }
         </div>
