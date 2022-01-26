@@ -133,7 +133,7 @@ const PageB3 = () => {
             <h1>住所</h1>
             <input type="text" onChange={(e) => setTokoro(e.target.value)} />
             <br />
-            *****************************************************************
+            *************************************************************
             <br />
             <div >
                 {/* {users.length !== 0 && */}
@@ -192,8 +192,8 @@ const PageB3 = () => {
                                             };
                                             const handleCreate = async () => {
                                                 console.log(`${tomareId}`)
-                                                setDoc(doc(db, 'users', tomare.uid, 'tomare', `${tomareId}`, 'chat', now), {
-                                                    message: `${message}`, timestamp: now, yoyakuId: yoyakuId, yoyakuIcon: `${tomare.yoyakuIcon}`,
+                                                setDoc(doc(db, 'users', `${tomare.uid}`, 'tomare', `${tomare.tomareId}`, 'chat', now), {
+                                                    message: `${message}`, timestamp: now, yoyakuId: `${tomare.yoyakuId}`, yoyakuIcon: `${tomare.yoyakuIcon}`,
                                                 })
                                                 fetchChat(yoyakuId),
                                                     setMessage("");
