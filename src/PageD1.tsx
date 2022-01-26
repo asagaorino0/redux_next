@@ -230,13 +230,11 @@ const PageB3 = () => {
                                                             <br />
                                                         </p>
                                                     }
-
-                                                    <h3 className="mb-4 text-green-500 text-3xl">
-                                                        ***現在の登録内容***
-                                                    </h3>
                                                     {tomare.yoyakuUid === user.uid && <p>
+                                                        <h3 className="mb-4 text-green-500 text-3xl">
+                                                            ***現在の登録内容***
+                                                        </h3>
                                                         <div className={styles.grid}>
-                                                            {/* {tomare.yoyakuUid === user.uid && <p> */}
                                                             <div>
                                                                 <br />
                                                                 <h3 className="mb-4  text-3xl">
