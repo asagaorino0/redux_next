@@ -353,6 +353,14 @@ const PageC1 = () => {
                                         setTomareId(`${targetTomare.tomareId}`)
                                         setYoyakuId(`${targetTomare.yoyakuId}`)
                                         // setYoyakuIcon(`${tomare.yoyakuIcon}`)
+                                        async () => {
+                                            const q = query(collection(db, "users", user.uid, 'tomare'), where("tomareId", "==", `${targetTomare.tomareId}`));
+                                            const snapshot = await getDocs(q)
+                                            const tomareData = snapshot.docs.map(
+                                                (docT: any) => ({ ...docT.data() } as TomareState))
+                                            dispatch(addTargetTomare(tomareData))
+                                            setTargetTomare(tomareData)
+                                        }
                                     };
 
                                     return (
