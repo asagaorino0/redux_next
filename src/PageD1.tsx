@@ -231,14 +231,13 @@ const PageB3 = () => {
                                                         </p>
                                                     }
 
-
+                                                    <h3 className="mb-4 text-green-500 text-3xl">
+                                                        ***現在の登録内容***
+                                                    </h3>
                                                     {tomare.yoyakuUid === user.uid && <p>
                                                         <div className={styles.grid}>
                                                             {/* {tomare.yoyakuUid === user.uid && <p> */}
                                                             <div>
-                                                                <h3 className="mb-4 text-green-500 text-3xl">
-                                                                    ***現在の登録内容***
-                                                                </h3>
                                                                 <br />
                                                                 <h3 className="mb-4  text-3xl">
                                                                     {tomare.gappi}
@@ -268,15 +267,17 @@ const PageB3 = () => {
                                                                             .map((data: TomareState) => {
                                                                                 return (
                                                                                     <div key={chat.id}>
-                                                                                        <br />
-                                                                                        <img
-                                                                                            src={`${data.yoyakuIcon}`}
-                                                                                            alt=""
-                                                                                            style={{ borderRadius: '50%', width: '40px', height: '40px' }}
-                                                                                        />
-                                                                                        {data.message}
-                                                                                        <br />
-                                                                                        {data.timestamp}
+                                                                                        {`${data.yoyakuId}` === `${tomare.yoyakuId}` && <p>
+                                                                                            <br />
+                                                                                            <img
+                                                                                                src={`${data.yoyakuIcon}`}
+                                                                                                alt=""
+                                                                                                style={{ borderRadius: '50%', width: '40px', height: '40px' }}
+                                                                                            />
+                                                                                            {data.message}
+                                                                                            <br />
+                                                                                            {data.timestamp}
+                                                                                        </p>}
                                                                                     </div>
                                                                                 )
                                                                             }
