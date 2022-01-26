@@ -177,7 +177,7 @@ const PageB3 = () => {
                                                 setTomareId(`${tomare.tomareId}`)
                                                 setYoyakuId(`${tomare.yoyakuId}`)
                                                 fetchChat(`${tomare.yoyakuId}`)
-                                                // setYoyakuIcon(`${tomare.yoyakuIcon}`)
+                                                setYoyakuIcon(`${tomare.yoyakuIcon}`)
                                                 const fetchTargetTomare = async () => {
                                                     const q = query(collection(db, "users", user.uid, 'tomare'), where("tomareId", "==", `${tomare.tomareId}`));
                                                     const snapshot = await getDocs(q)
@@ -193,7 +193,7 @@ const PageB3 = () => {
                                             const handleCreate = async () => {
                                                 console.log(`${tomareId}`)
                                                 setDoc(doc(db, 'users', user.uid, 'tomare', `${tomareId}`, 'chat', now), {
-                                                    message: `${message}`, timestamp: now, yoyakuId: yoyakuId, yoyakuIcon: user.icon,
+                                                    message: `${message}`, timestamp: now, yoyakuId: yoyakuId, yoyakuIcon: `${tomare.yoyakuIcon}`,
                                                 })
                                                 fetchChat(yoyakuId),
                                                     setMessage("");
