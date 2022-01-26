@@ -349,7 +349,7 @@ const PageC1 = () => {
                                         setYoyakuId(`${targetTomare.yoyakuId}`)
                                         fetchChat()
                                         // setYoyakuIcon(`${tomare.yoyakuIcon}`)
-                                        async () => {
+                                        const fetchTargetTomare = async () => {
                                             const q = query(collection(db, "users", user.uid, 'tomare'), where("tomareId", "==", `${targetTomare.tomareId}`));
                                             const snapshot = await getDocs(q)
                                             const tomareData = snapshot.docs.map(
@@ -357,6 +357,9 @@ const PageC1 = () => {
                                             dispatch(addTargetTomare(tomareData))
                                             setTargetTomare(tomareData)
                                         }
+                                        useEffect(() => {
+                                            fetchTargetTomare()
+                                        }, []);
                                     };
 
                                     return (
