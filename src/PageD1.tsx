@@ -75,12 +75,11 @@ const PageB3 = () => {
     useEffect(() => {
         fetchUsers()
         fetchTomare()
-        fetchChat()
+        fetchChat(yoyakuId)
     }, []);
-    const fetchChat = async () => {
+    const fetchChat = async (yoyakuId: string) => {
         console.log('targetChat:', targetTomare);
         const q = query(collectionGroup(db, 'chat'), where("yoyakuId", "==", `${yoyakuId}`));
-        // const q = query(collection(db, 'users', 'Uda1c6a4e5b348c5ba3c95de639e32414', 'tomare', '20220122AM', 'chat'))
         const snapshot = await getDocs(q);
         const chatData = snapshot.docs.map(
             (doc: any) => ({ ...doc.data() } as TomareState)
@@ -117,28 +116,23 @@ const PageB3 = () => {
     return (
         <div className={styles.main}>
             <span >pageD1：登録</span>
-            {/* {`${user.icon}`.length !== 0 && */}
             <img
-                src={`${user.icon}`}
+                src={user.icon}
                 alt=""
                 style={{ borderRadius: '50%', width: '60px', height: '60px' }}
             />
+            {/* {`${user.icon}`.length !== 0 && */}
+            <h1 className="mb-4 text-green-500 text-3xl">{user.name}さま </h1>
             {/* } */}
-            {`${user.icon}`.length !== 0 &&
-                <h1 className="mb-4 text-green-500 text-3xl">{user.name}さま </h1>
-            }
-            <h1>氏名</h1>
+            {/* <h1>氏名</h1> */}
             {user.namae}
-            <input type="text" onChange={(e) => setNamae(e.target.value)} />
             <br />
-            {/* <h1>性別</h1>
-            <input type="text" onChange={(e) => setSei(e.target.value)} />
+            {/* <h1>氏名</h1>
+            <input type="text" onChange={(e) => setNamae(e.target.value)} />
             <br /> */}
             <h1>住所</h1>
             <input type="text" onChange={(e) => setTokoro(e.target.value)} />
             <br />
-            {targetYoyaku.menu}
-
             *********************************************************************
             <br />
             <div >
@@ -160,42 +154,48 @@ const PageB3 = () => {
 
                                             const fetchTarget1 = async () => {
                                                 setDoc(doc(db, 'users', users.uid, 'tomare', `${tomare.gappi}${tomare.am_pm}`), {
-                                                    menu: "make", yoyakuMenu: "ケアメイク", make: true, nail: false, este: false, yoyakuUid: user.uid, yoyakuIcon: user.icon, yoyakuId: users.uid + user.uid + tomare.tomareId, timestamp: "",
+                                                    menu: "make", yoyakuMenu: "ケアメイク", make: true, nail: false, este: false, yoyakuUid: user.uid, yoyakuIcon: user.icon, yoyakuId: users.uid + user.uid + tomare.tomareId, timestamp: now,
                                                 }, { merge: true })
                                                 alert("登録しました！")
                                                 fetchTomare()
                                             };
                                             const fetchTarget2 = async () => {
                                                 setDoc(doc(db, 'users', users.uid, 'tomare', `${tomare.gappi}${tomare.am_pm}`), {
-                                                    menu: "nail", yoyakuMenu: "ケアネイル", make: false, nail: true, este: false, yoyakuUid: user.uid, yoyakuIcon: user.icon, timestamp: "",
+                                                    menu: "nail", yoyakuMenu: "ケアネイル", make: false, nail: true, este: false, yoyakuUid: user.uid, yoyakuIcon: user.icon, yoyakuId: users.uid + user.uid + tomare.tomareId, timestamp: now,
                                                 }, { merge: true })
                                                 alert("登録しました！")
                                                 fetchTomare()
                                             };
                                             const fetchTarget3 = async () => {
                                                 setDoc(doc(db, 'users', users.uid, 'tomare', `${tomare.gappi}${tomare.am_pm}`), {
-                                                    menu: "este", yoyakuMenu: "ケアエステ", make: false, nail: false, este: true, yoyakuUid: user.uid, yoyakuIcon: user.icon, timestamp: "",
+                                                    menu: "este", yoyakuMenu: "ケアエステ", make: false, nail: false, este: true, yoyakuUid: user.uid, yoyakuIcon: user.icon, yoyakuId: users.uid + user.uid + tomare.tomareId, timestamp: now,
                                                 }, { merge: true })
                                                 alert("登録しました！")
                                                 fetchTomare()
                                             };
                                             const toChat = () => {
-                                                dispatch(addTargetChat({
-                                                    yoyakuId: `${tomare.yoyakuId}`,
-                                                    tomareId: `${tomare.tomareId}`
-                                                })),
-                                                    fetchChat()
-                                                setTomareId(`${tomare.tomareId}`)
-                                                setYoyakuId(`${tomare.yoyakuId}`)
-                                                setYoyakuIcon(`${tomare.yoyakuIcon}`)
+                                                setTomareId(`${targetTomare.tomareId}`)
+                                                setYoyakuId(`${targetTomare.yoyakuId}`)
+                                                fetchChat(`${targetTomare.yoyakuId}`)
+                                                // setYoyakuIcon(`${tomare.yoyakuIcon}`)
+                                                const fetchTargetTomare = async () => {
+                                                    const q = query(collection(db, "users", user.uid, 'tomare'), where("tomareId", "==", `${targetTomare.tomareId}`));
+                                                    const snapshot = await getDocs(q)
+                                                    const tomareData = snapshot.docs.map(
+                                                        (docT: any) => ({ ...docT.data() } as TomareState))
+                                                    dispatch(addTargetTomare(tomareData))
+                                                    setTargetTomare(tomareData)
+                                                }
+                                                useEffect(() => {
+                                                    fetchTargetTomare()
+                                                }, []);
                                             };
                                             const handleCreate = async () => {
                                                 console.log(`${tomareId}`)
                                                 setDoc(doc(db, 'users', user.uid, 'tomare', `${tomareId}`, 'chat', now), {
                                                     message: `${message}`, timestamp: now, yoyakuId: yoyakuId, yoyakuIcon: yoyakuIcon,
                                                 })
-                                                // setMessage("");
-                                                fetchChat(),
+                                                fetchChat(yoyakuId),
                                                     setMessage("");
                                             }
                                             if (`${users.uid}` === `${tomare.uid}`) {
