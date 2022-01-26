@@ -133,7 +133,7 @@ const PageB3 = () => {
             <h1>住所</h1>
             <input type="text" onChange={(e) => setTokoro(e.target.value)} />
             <br />
-            *********************************************************************
+            *****************************************************************
             <br />
             <div >
                 {/* {users.length !== 0 && */}
@@ -179,7 +179,7 @@ const PageB3 = () => {
                                                 fetchChat(`${tomare.yoyakuId}`)
                                                 setYoyakuIcon(`${tomare.yoyakuIcon}`)
                                                 const fetchTargetTomare = async () => {
-                                                    const q = query(collection(db, "users", user.uid, 'tomare'), where("tomareId", "==", `${tomare.tomareId}`));
+                                                    const q = query(collection(db, "users", tomare.uid, 'tomare'), where("tomareId", "==", `${tomare.tomareId}`));
                                                     const snapshot = await getDocs(q)
                                                     const tomareData = snapshot.docs.map(
                                                         (docT: any) => ({ ...docT.data() } as TomareState))
