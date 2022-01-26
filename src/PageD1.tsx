@@ -241,6 +241,7 @@ const PageB3 = () => {
                                                                 <h3 className="mb-4  text-3xl">
                                                                     {tomare.gappi}
                                                                     {tomare.am_pm}
+                                                                    {tomare.uid}
                                                                 </h3>
                                                                 <div className={styles.grid}>
                                                                     {tomare.make === true && <p><img {...img_make} /></p>}
