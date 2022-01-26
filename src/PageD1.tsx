@@ -174,9 +174,9 @@ const PageB3 = () => {
                                                 fetchTomare()
                                             };
                                             const toChat = () => {
-                                                setTomareId(`${targetTomare.tomareId}`)
-                                                setYoyakuId(`${targetTomare.yoyakuId}`)
-                                                fetchChat(`${targetTomare.yoyakuId}`)
+                                                setTomareId(`${tomare.tomareId}`)
+                                                setYoyakuId(`${tomare.yoyakuId}`)
+                                                fetchChat(`${tomare.yoyakuId}`)
                                                 // setYoyakuIcon(`${tomare.yoyakuIcon}`)
                                                 const fetchTargetTomare = async () => {
                                                     const q = query(collection(db, "users", user.uid, 'tomare'), where("tomareId", "==", `${targetTomare.tomareId}`));
