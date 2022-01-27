@@ -16,7 +16,7 @@ import styles from '../styles/Home.module.css'
 const [chat, setChat] = useState<any>([]);
 
 // const Chat = ({ chat }: { chat: ChatState }) => {
-const Chat = ({ chat }: { chat: ChatState }) => {
+const Chat = () => {
     const dispatch = useDispatch();
     const user = useSelector(selectUser);
     const targetChat = useSelector(selectTargetChat);

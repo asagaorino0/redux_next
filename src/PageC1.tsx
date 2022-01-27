@@ -440,9 +440,10 @@ const PageC1 = () => {
                             {
                                 chat
                                     .map((chat: TomareState) => {
-                                        return (
-                                            <Chat chat={chat} key={`${chat.timestamp} `} />
-                                        )
+                                        // return (
+                                        //     <Chat chat={chat} key={`${chat.timestamp} `} />
+                                        // )   
+                                        <Chat />
                                     }
                                     )}
                             <div >
@@ -451,6 +452,7 @@ const PageC1 = () => {
                                 <button onClick={handleCreate}>
                                     send！
                                 </button>
+
                             </div>
                         </div>
                     </p>
