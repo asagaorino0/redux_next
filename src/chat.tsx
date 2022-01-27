@@ -20,6 +20,7 @@ const Chat = () => {
     const [chat, setChat] = useState<any>([]);
     const [tomare, setTomare] = useState<any>([]);
     const [yoyakuId, setYoyakuId] = useState<string>('');
+    const [tomareId, setTomareId] = useState<string>('');
     const date = new Date()
     const Y = date.getFullYear()
     const M = ("00" + (date.getMonth() + 1)).slice(-2)
@@ -65,14 +66,22 @@ const Chat = () => {
     //         }, { merge: true })
     //         alert("登録しました！")
     //     };
+    // const handleCreate = async () => {
+    //     console.log(`${message}`)
+    //     // setDoc(doc(db, 'users', user.uid, 'tomare', targetChat.tomareId, 'chat'), {
+    //     const docref = doc(collection(db, 'users', user.uid, 'tomare', '20220122AM', 'chat', '1'))
+    //     setDoc(docref, {
+    //         message: `${message}`, timestamp: now, yoyakuId: targetChat.yoyakuId,
+    //     })
+    // };
     const handleCreate = async () => {
-        console.log(`${message}`)
-        // setDoc(doc(db, 'users', user.uid, 'tomare', targetChat.tomareId, 'chat'), {
-        const docref = doc(collection(db, 'users', user.uid, 'tomare', '20220122AM', 'chat', '1'))
-        setDoc(docref, {
-            message: `${message}`, timestamp: now, yoyakuId: targetChat.yoyakuId,
+        console.log(`${tomareId}`)
+        setDoc(doc(db, 'users', user.uid, 'tomare', `${tomareId}`, 'chat', now), {
+            message: `${message}`, timestamp: now, yoyakuId: yoyakuId, yoyakuIcon: `${user.icon}`
         })
-    };
+        fetchChat(yoyakuId),
+            setMessage("");
+    }
 
     return (
         <div className={styles.main}>
@@ -83,6 +92,7 @@ const Chat = () => {
             {targetChat.tomareId}
             {targetChat.yoyakuId}
             <br />
+            ちゃっと
             {
                 chat
                     .map((chat: TomareState) => {

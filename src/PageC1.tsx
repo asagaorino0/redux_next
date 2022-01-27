@@ -342,11 +342,11 @@ const PageC1 = () => {
                             .map(
                                 (targetTomare: TargetTomareState) => {
                                     const toChat = () => {
-                                        // dispatch(addTargetChat({
-                                        //     yoyakuId: `${targetTomare.yoyakuId}`,
-                                        //     tomareId: `${targetTomare.tomareId}`
-                                        // })),
-                                        setTomareId(`${targetTomare.tomareId}`)
+                                        dispatch(addTargetChat({
+                                            yoyakuId: `${targetTomare.yoyakuId}`,
+                                            tomareId: `${targetTomare.tomareId}`
+                                        })),
+                                            setTomareId(`${targetTomare.tomareId}`)
                                         setYoyakuId(`${targetTomare.yoyakuId}`)
                                         fetchChat(`${targetTomare.yoyakuId}`)
                                         // setYoyakuIcon(`${tomare.yoyakuIcon}`)
