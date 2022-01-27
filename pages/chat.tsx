@@ -12,9 +12,10 @@ import "firebase/firestore";
 import "firebase/auth";
 import { selectUser } from '../src/features/userSlice';
 import styles from '../styles/Home.module.css'
-const [chat, setChat] = useState<any>([]);
+
 
 const Chat = ({ chat }: { chat: ChatState }) => {
+    // const [chat, setChat] = useState<any>([]);    
     // const Chat = () => {
     const dispatch = useDispatch();
     const user = useSelector(selectUser);
@@ -32,21 +33,21 @@ const Chat = ({ chat }: { chat: ChatState }) => {
     const s = ("00" + date.getSeconds()).slice(-2)
     const now = Y + '年' + M + '月' + D + '日 ' + h + ':' + m
 
-    useEffect(() => {
-        fetchChat(yoyakuId);
-        console.log('targetChat:', targetChat)
-    }, []);
+    // useEffect(() => {
+    //     fetchChat(yoyakuId);
+    //     console.log('targetChat:', targetChat)
+    // }, []);
 
-    const fetchChat = async (yoyakuId: string) => {
-        const q = query(collectionGroup(db, 'chat'), where("yoyakuId", "==", `${yoyakuId}`));
-        const snapshot = onSnapshot(q, (querySnapshot) => {
-            setChat(
-                querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-            );
-            console.log('chat:', chat);
-        });
-        return snapshot;
-    };
+    // const fetchChat = async (yoyakuId: string) => {
+    //     const q = query(collectionGroup(db, 'chat'), where("yoyakuId", "==", `${yoyakuId}`));
+    //     const snapshot = onSnapshot(q, (querySnapshot) => {
+    //         setChat(
+    //             querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+    //         );
+    //         console.log('chat:', chat);
+    //     });
+    //     return snapshot;
+    // };
     // // const fetchTomare = async () => {
     // //     const q = query(collectionGroup(db, 'chat'), where("yoyakuId", "==", `${tomare.yoyakuId}`));
     // //     const snapshot = await getDocs(q);
@@ -81,8 +82,8 @@ const Chat = ({ chat }: { chat: ChatState }) => {
         setDoc(doc(db, 'users', user.uid, 'tomare', `${tomareId}`, 'chat', now), {
             message: `${message}`, timestamp: now, yoyakuId: yoyakuId, yoyakuIcon: `${user.icon}`
         })
-        fetchChat(yoyakuId),
-            setMessage("");
+        // fetchChat(yoyakuId),
+        setMessage("");
     }
 
     return (
