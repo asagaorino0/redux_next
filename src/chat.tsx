@@ -88,8 +88,8 @@ const Chat = ({ chat }: { chat: ChatState }) => {
     return (
         <div className={styles.main}>
             {/* <MsgList /> */}
-            {targetChat.tomareId}:::
-            {targetChat.yoyakuId}
+            {/* {targetChat.tomareId}:::
+            {targetChat.yoyakuId} */}
             <br />
             ちゃっと
             <div key={chat.timestamp}>
