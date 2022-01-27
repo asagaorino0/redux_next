@@ -15,6 +15,7 @@ import { selectUser } from './features/userSlice';
 import styles from '../styles/Home.module.css'
 const [chat, setChat] = useState<any>([]);
 
+// const Chat = ({ chat }: { chat: ChatState }) => {
 const Chat = ({ chat }: { chat: ChatState }) => {
     const dispatch = useDispatch();
     const user = useSelector(selectUser);
@@ -92,7 +93,7 @@ const Chat = ({ chat }: { chat: ChatState }) => {
             {targetChat.yoyakuId} */}
             <br />
             ちゃっと
-            <div key={chat.timestamp}>
+            {/* <div key={chat.timestamp}>
                 <br />
                 <img
                     src={`${chat.yoyakuIcon}`}
@@ -102,7 +103,7 @@ const Chat = ({ chat }: { chat: ChatState }) => {
                 {chat.message}
                 <br />
                 {chat.timestamp}
-            </div>
+            </div> */}
 
             <div >
                 <input type="text" onChange={(e) => setMessage(e.target.value)} />
