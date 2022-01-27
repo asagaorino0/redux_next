@@ -74,21 +74,19 @@ const PageB3 = () => {
     useEffect(() => {
         fetchUsers()
         fetchTomare()
-        fetchChat()
+        fetchChat(yoyakuId)
     }, []);
-    const fetchChat = async () => {
+    const fetchChat = async (yoyakuId: string) => {
         console.log('targetChat:', targetTomare);
+
         const q = query(collectionGroup(db, 'chat'), where("yoyakuId", "==", `${yoyakuId}`));
-        // const q = query(collection(db, 'users', 'Uda1c6a4e5b348c5ba3c95de639e32414', 'tomare', '20220122AM', 'chat'))
-        const snapshot = await getDocs(q);
-        const chatData = snapshot.docs.map(
-            (doc: any) => ({ ...doc.data() } as TomareState)
-        );
-        // dispatch(addUsers({ usersData }));
-        setChat(chatData);
-        console.log('chatData:', chatData);
-        console.log('chat:', chat);
-        // console.log('users:', users);
+        const snapshot = onSnapshot(q, (querySnapshot) => {
+            setChat(
+                querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+            );
+            console.log('chat:', chat);
+        });
+        return snapshot;
     };
 
     const clickDay = (calendar: any) => {
@@ -176,7 +174,7 @@ const PageB3 = () => {
                                                 // yoyakuId: `${targetTomare.yoyakuId}`,
                                                 // tomareId: `${targetTomare.tomareId}`
                                                 // })),
-                                                fetchChat()
+                                                fetchChat(yoyakuId)
                                                 setTomareId(`${tomare.tomareId}`)
                                                 setYoyakuId(`${tomare.yoyakuId}`)
                                             };

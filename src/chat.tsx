@@ -19,6 +19,7 @@ const Chat = () => {
     const [message, setMessage] = React.useState('');
     const [chat, setChat] = useState<any>([]);
     const [tomare, setTomare] = useState<any>([]);
+    const [yoyakuId, setYoyakuId] = useState<string>('');
     const date = new Date()
     const Y = date.getFullYear()
     const M = ("00" + (date.getMonth() + 1)).slice(-2)
@@ -29,23 +30,19 @@ const Chat = () => {
     const now = Y + '年' + M + '月' + D + '日 ' + h + ':' + m
 
     useEffect(() => {
-        fetchChat();
+        fetchChat(yoyakuId);
         // fetchTomare();
     }, []);
 
-    const fetchChat = async () => {
-        console.log('targetChat:', targetChat);
-        // const q = query(collectionGroup(db, 'chat'), where("yoyakuId", "==", `${targetChat.yoyakuId}`));
-        const q = query(collection(db, 'users', 'Uda1c6a4e5b348c5ba3c95de639e32414', 'tomare', '20220122AM', 'chat', '1'))
-        const snapshot = await getDocs(q);
-        const chatData = snapshot.docs.map(
-            (doc: any) => ({ ...doc.data() } as TomareState)
-        );
-        // dispatch(addUsers({ usersData }));
-        setChat(chatData);
-        console.log('chatData:', chatData);
-        console.log('chat:', chat);
-        // console.log('users:', users);
+    const fetchChat = async (yoyakuId: string) => {
+        const q = query(collectionGroup(db, 'chat'), where("yoyakuId", "==", `${yoyakuId}`));
+        const snapshot = onSnapshot(q, (querySnapshot) => {
+            setChat(
+                querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+            );
+            console.log('chat:', chat);
+        });
+        return snapshot;
     };
     // const fetchTomare = async () => {
     //     const q = query(collectionGroup(db, 'chat'), where("yoyakuId", "==", `${tomare.yoyakuId}`));

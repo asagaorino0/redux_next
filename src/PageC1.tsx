@@ -6,7 +6,7 @@ import { addTargetChat, selectTargetChat } from './features/targetChatSlice';
 import { addMenu } from './features/menuSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { db } from "./firebase";
-import { getDocs, collection, collectionGroup, query, where, doc, setDoc, serverTimestamp, deleteDoc } from 'firebase/firestore'
+import { getDocs, collection, collectionGroup, query, where, doc, setDoc, serverTimestamp, deleteDoc, onSnapshot } from 'firebase/firestore'
 import { TomareState } from "./types/tomare";
 import { TargetTomareState } from "./types/targetTomare";
 import Calendar from 'react-calendar';
@@ -160,13 +160,13 @@ const PageC1 = () => {
     const fetchChat = async (yoyakuId: string) => {
         console.log('targetChat:', targetTomare);
         const q = query(collectionGroup(db, 'chat'), where("yoyakuId", "==", `${yoyakuId}`));
-        const snapshot = await getDocs(q);
-        const chatData = snapshot.docs.map(
-            (doc: any) => ({ ...doc.data() } as TomareState)
-        );
-        setChat(chatData);
-        console.log('chatData:', chatData);
-        console.log('chat:', chat);
+        const snapshot = onSnapshot(q, (querySnapshot) => {
+            setChat(
+                querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+            );
+            console.log('chat:', chat);
+        });
+        return snapshot;
     };
     const handleCreate = async () => {
         console.log(`${tomareId}`)
