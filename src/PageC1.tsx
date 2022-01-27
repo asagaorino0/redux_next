@@ -22,7 +22,7 @@ import dynamic from 'next/dynamic'
 // import Chat from './chat'
 
 const PageC1 = () => {
-    const Chat = dynamic(() => import('../pages/Chat'), { ssr: false });
+    const Chat = dynamic(() => import('../pages/srcChat'), { ssr: false });
     const [menus, setMenus] = useState<any>([]);
     const [make, setMake] = useState<boolean>(false);
     const [nail, setNail] = useState<boolean>(false);
