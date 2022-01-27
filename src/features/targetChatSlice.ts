@@ -13,7 +13,7 @@ export const targetChatSlice = createSlice({
     initialState,
     reducers: {
         addTargetChat: (state, action) => {
-            // state.targetChat = action.payload
+            state.targetChat = action.payload
             state.yoyakuId = action.payload.yoyakuId
             state.tomareId = action.payload.tomareId
         }
