@@ -100,9 +100,9 @@ const Chat = ({ chat }: { chat: ChatState }) => {
                     alt=""
                     style={{ borderRadius: '50%', width: '40px', height: '40px' }}
                 /> */}
-                {chat.message}
+                {/* {chat.message} */}
                 <br />
-                {chat.timestamp}
+                {/* {chat.timestamp} */}
                 <input type="text" onChange={(e) => setMessage(e.target.value)} />
                 <br />
                 <button onClick={handleCreate}>
