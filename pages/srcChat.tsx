@@ -36,7 +36,7 @@ const Chat = () => {
 
     useEffect(() => {
         fetchChat(yoyakuId);
-        console.log('targetChat:', targetChat)
+        console.log('targetChat:', { targetChat })
     }, []);
 
     const fetchChat = async (yoyakuId: string) => {
