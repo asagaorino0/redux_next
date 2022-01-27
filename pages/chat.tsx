@@ -93,23 +93,23 @@ const Chat = ({ chat }: { chat: ChatState }) => {
             {targetChat.yoyakuId}
             <br />
             ちゃっと
-            <div key={chat.timestamp}>
-                <br />
-                {/* <img
+            {/* <div key={chat.timestamp}> */}
+            <br />
+            {/* <img
                     src={`${chat.yoyakuIcon}`}
                     alt=""
                     style={{ borderRadius: '50%', width: '40px', height: '40px' }}
                 /> */}
-                {/* {chat.message} */}
-                <br />
-                {/* {chat.timestamp} */}
-                <input type="text" onChange={(e) => setMessage(e.target.value)} />
-                <br />
-                <button onClick={handleCreate}>
-                    send！
-                </button>
-            </div>
+            {/* {chat.message} */}
+            <br />
+            {/* {chat.timestamp} */}
+            <input type="text" onChange={(e) => setMessage(e.target.value)} />
+            <br />
+            <button onClick={handleCreate}>
+                send！
+            </button>
         </div>
+        // </div>
     )
 }
 export default Chat
