@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import dynamic from 'next/dynamic'
 import liff from '@line/liff';
 import { useEffect } from 'react';
-import Chat from '../src/chat'
+// import Chat from '../src/chat'
 
 const PageC = () => {
     const router = useRouter()
@@ -15,7 +15,7 @@ const PageC = () => {
         router.push('./')
     }
     const PageC1 = dynamic(() => import('../src/PageC1'), { ssr: false });
-
+    // const Chat = dynamic(() => import('../src/chat'), { ssr: false });
     return (
         <div className="App">
             <div>
@@ -28,7 +28,7 @@ const PageC = () => {
                 <React.StrictMode >
                     <Provider store={store}>
                         <PageC1 />
-                        <Chat />
+                        {/* <Chat /> */}
                     </Provider>
                 </React.StrictMode>
             </h1>

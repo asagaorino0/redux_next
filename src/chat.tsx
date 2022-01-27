@@ -8,16 +8,18 @@ import { useRouter } from 'next/router';
 import { UsersState } from '../src/types/users';
 import { addUsers, selectUsers } from './features/usersSlice';
 import { TomareState } from '../src/types/tomare';
+import { ChatState } from '../src/types/chat';
 import "firebase/firestore";
 import "firebase/auth";
 import { selectUser } from './features/userSlice';
 import styles from '../styles/Home.module.css'
-const Chat = () => {
+const [chat, setChat] = useState<any>([]);
+
+const Chat = ({ chat }: { chat: ChatState }) => {
     const dispatch = useDispatch();
     const user = useSelector(selectUser);
     const targetChat = useSelector(selectTargetChat);
     const [message, setMessage] = React.useState('');
-    const [chat, setChat] = useState<any>([]);
     const [tomare, setTomare] = useState<any>([]);
     const [yoyakuId, setYoyakuId] = useState<string>('');
     const [tomareId, setTomareId] = useState<string>('');
@@ -45,35 +47,35 @@ const Chat = () => {
         });
         return snapshot;
     };
-    // const fetchTomare = async () => {
-    //     const q = query(collectionGroup(db, 'chat'), where("yoyakuId", "==", `${tomare.yoyakuId}`));
-    //     const snapshot = await getDocs(q);
-    //     const tomareData = snapshot.docs.map(
-    //         (docT: any) => ({ ...docT.data() } as TomareState)
-    //     );
-    //     dispatch(addTomare(tomareData));
-    //     setTomare(tomareData);
-    //     console.log('tomareData:', tomareData);
-    //     console.log('tomare:', tomare);
-    // };
-    //     const docref = doc(collection(db, 'udstyr'));
-    // const colref = collection(docref, 'subcollection'));
-    // await addDoc(colref, nyUdstyr);
+    // // const fetchTomare = async () => {
+    // //     const q = query(collectionGroup(db, 'chat'), where("yoyakuId", "==", `${tomare.yoyakuId}`));
+    // //     const snapshot = await getDocs(q);
+    // //     const tomareData = snapshot.docs.map(
+    // //         (docT: any) => ({ ...docT.data() } as TomareState)
+    // //     );
+    // //     dispatch(addTomare(tomareData));
+    // //     setTomare(tomareData);
+    // //     console.log('tomareData:', tomareData);
+    // //     console.log('tomare:', tomare);
+    // // };
+    // //     const docref = doc(collection(db, 'udstyr'));
+    // // const colref = collection(docref, 'subcollection'));
+    // // await addDoc(colref, nyUdstyr);
 
 
-    //     const colref = doc(db, 'users', user.uid, 'tomare', `${tomare.gappi}${tomare.am_pm}`), {
-    //             menu: "", yoyakuMenu: "ケアメイク", make: true, nail: false, este: false, yoyakuUid: user.uid, yoyakuIcon: user.icon, yoyakuId: users.uid + user.uid + tomare.tomareId, timestamp: "",
-    //         }, { merge: true })
-    //         alert("登録しました！")
-    //     };
-    // const handleCreate = async () => {
-    //     console.log(`${message}`)
-    //     // setDoc(doc(db, 'users', user.uid, 'tomare', targetChat.tomareId, 'chat'), {
-    //     const docref = doc(collection(db, 'users', user.uid, 'tomare', '20220122AM', 'chat', '1'))
-    //     setDoc(docref, {
-    //         message: `${message}`, timestamp: now, yoyakuId: targetChat.yoyakuId,
-    //     })
-    // };
+    // //     const colref = doc(db, 'users', user.uid, 'tomare', `${tomare.gappi}${tomare.am_pm}`), {
+    // //             menu: "", yoyakuMenu: "ケアメイク", make: true, nail: false, este: false, yoyakuUid: user.uid, yoyakuIcon: user.icon, yoyakuId: users.uid + user.uid + tomare.tomareId, timestamp: "",
+    // //         }, { merge: true })
+    // //         alert("登録しました！")
+    // //     };
+    // // const handleCreate = async () => {
+    // //     console.log(`${message}`)
+    // //     // setDoc(doc(db, 'users', user.uid, 'tomare', targetChat.tomareId, 'chat'), {
+    // //     const docref = doc(collection(db, 'users', user.uid, 'tomare', '20220122AM', 'chat', '1'))
+    // //     setDoc(docref, {
+    // //         message: `${message}`, timestamp: now, yoyakuId: targetChat.yoyakuId,
+    // //     })
+    // // };
     const handleCreate = async () => {
         console.log(`${tomareId}`)
         setDoc(doc(db, 'users', user.uid, 'tomare', `${tomareId}`, 'chat', now), {
@@ -93,19 +95,18 @@ const Chat = () => {
             {targetChat.yoyakuId}
             <br />
             ちゃっと
-            {
-                chat
-                    .map((chat: TomareState) => {
-                        return (
-                            <div>
-                                <br />
-                                `${chat.message}`
-                                {message}
-                                {chat.message}
-                            </div>
-                        )
-                    }
-                    )}
+            <div key={chat.timestamp}>
+                <br />
+                <img
+                    src={`${chat.yoyakuIcon}`}
+                    alt=""
+                    style={{ borderRadius: '50%', width: '40px', height: '40px' }}
+                />
+                {chat.message}
+                <br />
+                {chat.timestamp}
+            </div>
+
             <div >
                 <input type="text" onChange={(e) => setMessage(e.target.value)} />
                 <br />

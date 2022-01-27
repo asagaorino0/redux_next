@@ -18,8 +18,11 @@ import P_make from "./img/P_make.png"
 import { computeSegDraggable } from '@fullcalendar/common';
 import { truncate } from 'fs';
 import { useRouter } from "next/router";
+import dynamic from 'next/dynamic'
+// import Chat from './chat'
 
 const PageC1 = () => {
+    const Chat = dynamic(() => import('../src/chat'), { ssr: false });
     const [menus, setMenus] = useState<any>([]);
     const [make, setMake] = useState<boolean>(false);
     const [nail, setNail] = useState<boolean>(false);
@@ -420,7 +423,7 @@ const PageC1 = () => {
                                 chat
                                     .map((data: TomareState) => {
                                         return (
-                                            <div key={chat.id}>
+                                            <div key={chat.timestamp}>
                                                 <br />
                                                 <img
                                                     src={`${data.yoyakuIcon}`}
@@ -431,6 +434,14 @@ const PageC1 = () => {
                                                 <br />
                                                 {data.timestamp}
                                             </div>
+                                        )
+                                    }
+                                    )}
+                            {
+                                chat
+                                    .map((chat: TomareState) => {
+                                        return (
+                                            <Chat chat={chat} key={`${chat.timestamp} `} />
                                         )
                                     }
                                     )}
