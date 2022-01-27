@@ -95,11 +95,11 @@ const Chat = ({ chat }: { chat: ChatState }) => {
             ちゃっと
             <div key={chat.timestamp}>
                 <br />
-                <img
+                {/* <img
                     src={`${chat.yoyakuIcon}`}
                     alt=""
                     style={{ borderRadius: '50%', width: '40px', height: '40px' }}
-                />
+                /> */}
                 {chat.message}
                 <br />
                 {chat.timestamp}
