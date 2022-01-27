@@ -22,7 +22,7 @@ import dynamic from 'next/dynamic'
 // import Chat from './chat'
 
 const PageC1 = () => {
-    const Chat = dynamic(() => import('../pages/chat'), { ssr: false });
+    const Chat = dynamic(() => import('../pages/Chat'), { ssr: false });
     const [menus, setMenus] = useState<any>([]);
     const [make, setMake] = useState<boolean>(false);
     const [nail, setNail] = useState<boolean>(false);
@@ -437,22 +437,22 @@ const PageC1 = () => {
                                         )
                                     }
                                     )}
-                            {
+                            {/* {
                                 chat
                                     .map((chat: TomareState) => {
                                         return (
                                             <Chat chat={chat} key={`${chat.timestamp} `} />
                                         )
-                                        // <Chat />
+                                     
                                     }
-                                    )}
+                                    )} */}
                             <div >
                                 <input type="text" onChange={(e) => setMessage(e.target.value)} />
                                 <br />
                                 <button onClick={handleCreate}>
                                     send！
                                 </button>
-
+                                <Chat />
                             </div>
                         </div>
                     </p>
