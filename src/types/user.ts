@@ -35,4 +35,6 @@ export type UserState = {
     nail: boolean,
     este: boolean,
     sonota: string
+    url: string,
+    o_url: number
 }
