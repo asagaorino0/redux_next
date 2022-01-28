@@ -23,6 +23,8 @@ import dynamic from 'next/dynamic'
 
 const PageC = () => {
     const Chat = dynamic(() => import('./srcChat'), { ssr: false });
+    const PageLogin = dynamic(() => import('../src/PageLogin'), { ssr: false });
+
     const [menus, setMenus] = useState<any>([]);
     const [make, setMake] = useState<boolean>(false);
     const [nail, setNail] = useState<boolean>(false);
@@ -244,14 +246,15 @@ const PageC = () => {
     const img_icon: any = { src: targetTomare.yoyakuIcon, alt: "icon", style: { width: '60px', height: '45px' } }
     return (
         <div className={styles.main}>
-            {user.uid === '' && (
+            {/* {user.uid === '' && (
                 <div>
                     <button onClick={lineClick}>
                         <h4 className="mb-4 text-green-500 text-3xl">ログイン</h4>
                     </button>
                 </div>
-            )}
+            )} */}
             {/* {`${user.icon}`.length !== 0 && */}
+            <PageLogin />
             <img
                 src={`${user.icon}`}
                 alt=""
