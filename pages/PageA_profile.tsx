@@ -161,11 +161,11 @@ const PageA_profile = () => {
                                     <div>
                                         <h1>表示名（屋号）</h1>
                                         <h1 className="mb-4 text-green-500 text-3xl">{user.namae} </h1>
-                                        {/* </div> */}
                                     </div>
+                                </div>
 
-                                    {user.o_copy !== 0 && <h1 className="mb-4  text-3xl">{user.copy} </h1>}
-                                    {/* <div className={styles.grid}> */}
+                                {user.o_copy !== 0 && <h1 className="mb-4  text-3xl">{user.copy} </h1>}
+                                <div className={styles.grid}>
                                     {user.o_img !== 0 && <p><img {...img_img} /></p>}
                                 </div>
                                 <br />
