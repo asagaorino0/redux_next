@@ -151,7 +151,7 @@ const PageA_profile = () => {
             {userProfile
                 .map(
                     (user: any) => {
-                        const img_rogo: any = { src: `${user.rogo}`, alt: "rogo", style: { width: '60px', height: '45px' } }
+                        const img_rogo: any = { src: `${user.rogo}`, alt: "rogo", style: { height: '60px' } }
 
                         return (
                             <div key={user.uid}>
@@ -162,10 +162,13 @@ const PageA_profile = () => {
                                 />
                                 <h1 className="mb-4  text-3xl">{user.name}さま </h1>
                                 <br />
-                                <h1>表示名（屋号）</h1>
-                                <h1 className="mb-4 text-green-500 text-3xl">{user.namae} </h1>
+                                <div className={styles.grid}>
+                                    {user.o_rogo !== 0 && <p><img {...img_rogo} /></p>}
+                                    <h1>表示名（屋号）</h1>
+                                    <h1 className="mb-4 text-green-500 text-3xl">{user.namae} </h1>
+                                </div>
                                 <br />
-                                {user.o_rogo !== 0 && <p><img {...img_rogo} /></p>}
+
                                 <h1>エリア</h1>
                                 {user.area}
                                 <br />
