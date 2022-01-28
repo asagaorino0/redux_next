@@ -450,22 +450,22 @@ const PageC = () => {
                                         )
                                     }
                                     )}
-                            {/* {
+                            {
                                 chat
                                     .map((chat: TomareState) => {
                                         return (
                                             <Chat chat={chat} key={`${chat.timestamp} `} />
                                         )
-                                     
+
                                     }
-                                    )} */}
+                                    )}
                             <div >
                                 <input type="text" onChange={(e) => setMessage(e.target.value)} />
                                 <br />
                                 <button onClick={handleCreate}>
                                     send！
                                 </button>
-                                <Chat />
+                                {/* <Chat /> */}
                             </div>
                         </div>
                     </p>

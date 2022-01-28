@@ -14,12 +14,12 @@ import { selectUser } from '../src/features/userSlice';
 import styles from '../styles/Home.module.css'
 import dynamic from 'next/dynamic'
 
-// const Chat = ({ chat }: { chat: ChatState }) => {
+const Chat = ({ chat }: { chat: ChatState }) => {
 
-const Chat = () => {
+    // const Chat = () => {
     const PageLogin = dynamic(() => import('../src/PageLogin'), { ssr: false });
 
-    const [chat, setChat] = useState<any>([]);
+    // const [chat, setChat] = useState<any>([]);
     const dispatch = useDispatch();
     const user = useSelector(selectUser);
     const targetChat = useSelector(selectTargetChat);
@@ -36,22 +36,22 @@ const Chat = () => {
     const s = ("00" + date.getSeconds()).slice(-2)
     const now = Y + '年' + M + '月' + D + '日 ' + h + ':' + m
 
-    useEffect(() => {
-        fetchChat(yoyakuId);
-        console.log('targetChat:', { targetChat })
-        console.log('targetChat.targatChat:', targetChat.targetChat)
-    }, []);
+    // useEffect(() => {
+    //     fetchChat(yoyakuId);
+    //     console.log('targetChat:', { targetChat })
+    //     console.log('targetChat.targatChat:', targetChat.targetChat)
+    // }, []);
 
-    const fetchChat = async (yoyakuId: string) => {
-        const q = query(collectionGroup(db, 'chat'), where("yoyakuId", "==", `${yoyakuId}`));
-        const snapshot = onSnapshot(q, (querySnapshot) => {
-            setChat(
-                querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-            );
-            console.log('chat:', chat);
-        });
-        return snapshot;
-    };
+    // const fetchChat = async (yoyakuId: string) => {
+    //     const q = query(collectionGroup(db, 'chat'), where("yoyakuId", "==", `${yoyakuId}`));
+    //     const snapshot = onSnapshot(q, (querySnapshot) => {
+    //         setChat(
+    //             querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+    //         );
+    //         console.log('chat:', chat);
+    //     });
+    //     return snapshot;
+    // };
     const handleCreate = async () => {
         console.log(`${tomareId}`)
         setDoc(doc(db, 'users', user.uid, 'tomare', `${tomareId}`, 'chat', now), {
