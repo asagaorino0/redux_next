@@ -107,7 +107,7 @@ export default function App() {
       )}
       {user.uid !== '' && (
         <div>
-          <button onClick={registC}>
+          <button onClick={registA}>
             <h3 className="mb-4 text-green-500 text-3xl">
               マイページ：ケアビューティスト
             </h3>
