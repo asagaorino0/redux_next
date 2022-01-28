@@ -133,7 +133,7 @@ const PageA_profile = () => {
     return (
         <div className={styles.main}>
             <button onClick={toHome}>
-                <h3 className="mb-4 text-green-500 text-3xl">予約枠の設定</h3>
+                <h3 className="mb-4 text-green-500 text-3xl">プロフィール登録内容</h3>
             </button>
             {user.uid === '' && (
                 <div>
