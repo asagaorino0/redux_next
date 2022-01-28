@@ -73,8 +73,8 @@ const PageLogin = () => {
                     console.log('login status : [', false, ']');
                 }
             });
-    }, []);
-    // }, [dispatch]);
+        // }, []);
+    }, [dispatch]);
 
     const LINEID = process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID;
     const lineClick = () => {
