@@ -83,7 +83,7 @@ const Chat = ({ chat }: { chat: ChatState }) => {
                     send！
                 </button>
             </div>
-        // </div>
+        </div>
     )
 }
 export default Chat
