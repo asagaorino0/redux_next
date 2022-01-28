@@ -164,8 +164,10 @@ const PageA_profile = () => {
                                 <br />
                                 <div className={styles.grid}>
                                     {user.o_rogo !== 0 && <p><img {...img_rogo} /></p>}
-                                    <h1>表示名（屋号）</h1>
-                                    <h1 className="mb-4 text-green-500 text-3xl">{user.namae} </h1>
+                                    <div>
+                                        <h1>表示名（屋号）</h1>
+                                        <h1 className="mb-4 text-green-500 text-3xl">{user.namae} </h1>
+                                    </div>
                                 </div>
                                 <br />
 
@@ -177,9 +179,6 @@ const PageA_profile = () => {
                                     {user.make === true && <p><img {...img_make} /></p>}
                                     {user.nail === true && <p><img {...img_nail} /></p>}
                                     {user.este === true && <p><img {...img_este} /></p>}
-                                </div>
-                                <br />
-                                <div className={styles.grid}>
                                     {`${user.sonota}`.length !== 0 && <img {...img_sonota} />}
                                     {`${user.sonota}`.length !== 0 && <p>{user.sonota}</p>}
                                 </div>
