@@ -166,9 +166,9 @@ const PageA_profile = () => {
             <h1>メニュー</h1>
             {menus
                 .map(
-                    (doc: any) => {
+                    (user: any) => {
                         return (
-                            <div>
+                            <div key={user.uid}>
                                 {user.make === true && <p><img {...img_make} /></p>}
                                 {user.nail === true && <p><img {...img_nail} /></p>}
                                 {user.este === true && <p><img {...img_este} /></p>}
