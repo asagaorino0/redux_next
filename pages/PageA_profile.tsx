@@ -157,7 +157,6 @@ const PageA_profile = () => {
             {/* } */}
             <h1>氏名</h1>
             {user.name}
-            {user.uid}
             <br />
             <h1>エリア</h1>
             {userProfile.area}
