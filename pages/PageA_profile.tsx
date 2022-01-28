@@ -142,12 +142,6 @@ const PageA_profile = () => {
                     </button>
                 </div>
             )}
-            {/* <React.StrictMode >
-                <Provider store={store}>
-                    <PageLogin />
-                </Provider>
-            </React.StrictMode> */}
-
             {userProfile
                 .map(
                     (user: any) => {
@@ -171,12 +165,12 @@ const PageA_profile = () => {
                                 </div>
 
                                 {user.o_copy !== 0 && <h1 className="mb-4  text-3xl">{user.copy} </h1>}
-                                {user.o_img !== 0 && <p><img {...img_img} /></p>}
-
+                                <div className={styles.grid}>
+                                    {user.o_img !== 0 && <p><img {...img_img} /></p>}
+                                </div>
                                 <br />
 
-                                <h1>エリア</h1>
-                                {user.area}
+                                <h1 className="mb-4  text-3xl">主な活動地域：{user.area}</h1>
                                 <br />
                                 <h1>メニュー</h1>
                                 <div className={styles.grid}>

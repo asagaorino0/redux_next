@@ -107,9 +107,12 @@ export default function App() {
       )}
       {user.uid !== '' && (
         <div>
+          <h3 className="mb-4  text-3xl">
+            ケアビューティスト
+          </h3>
           <button onClick={registA}>
             <h3 className="mb-4 text-green-500 text-3xl">
-              マイページ：ケアビューティスト
+              マイページ
             </h3>
           </button>
         </div>
@@ -118,14 +121,18 @@ export default function App() {
         <div>
           <button onClick={registC}>
             <h3 className="mb-4 text-green-500 text-3xl">
-              予約枠設定：ケアビューティスト
+              予約枠設定
             </h3>
           </button>
         </div>
       )}
 
       {user.uid !== '' && (
+
         <div>
+          <h3 className="mb-4  text-3xl">
+            施術申込み
+          </h3>
           <button onClick={registB}>
             <h3 className="mb-4 text-green-500 text-3xl">個人で申し込む</h3>
           </button>
@@ -142,7 +149,7 @@ export default function App() {
         <div>
           <button onClick={registB}>
             <h3 className="mb-4 text-green-500 text-3xl">
-              プレゼントとして申し込む
+              プレゼントする
             </h3>
           </button>
         </div>
