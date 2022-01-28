@@ -137,40 +137,45 @@ const PageA_profile = () => {
             </button>
             {user.uid === '' && (
                 <div>
-                    {/* <button onClick={lineClick}> */}
-                    <h4 className="mb-4 text-green-500 text-3xl">PageC:ログイン</h4>
-                    {/* </button> */}
+                    <button onClick={toHome}>
+                        <h4 className="mb-4 text-green-500 text-3xl">ログイン</h4>
+                    </button>
                 </div>
             )}
-            <React.StrictMode >
+            {/* <React.StrictMode >
                 <Provider store={store}>
-
-                    {/* <PageLogin /> */}
+                    <PageLogin />
                 </Provider>
-            </React.StrictMode>
-            <img
-                src={`${user.icon}`}
-                alt=""
-                style={{ borderRadius: '50%', width: '60px', height: '60px' }}
-            />
-            <h1 className="mb-4 text-green-500 text-3xl">{user.name}さま </h1>
-            {/* } */}
-            <h1>氏名</h1>
-            {user.name}
-            <br />
-            <h1>エリア</h1>
-            {userProfile.area}
-            {/* <input type="text" onChange={(e) => setArea(e.target.value)} /> */}
-            <br />
-            <h1>メニュー</h1>
+            </React.StrictMode> */}
+
             {userProfile
                 .map(
                     (user: any) => {
                         return (
                             <div key={user.uid}>
-                                {user.make === true && <p><img {...img_make} /></p>}
-                                {user.nail === true && <p><img {...img_nail} /></p>}
-                                {user.este === true && <p><img {...img_este} /></p>}
+                                <img
+                                    src={`${user.icon}`}
+                                    alt=""
+                                    style={{ borderRadius: '50%', width: '60px', height: '60px' }}
+                                />
+                                <h1 className="mb-4  text-3xl">{user.name}さま </h1>
+                                {user.name}
+                                <br />
+                                <h1 className="mb-4 text-green-500 text-3xl">{user.name}さま </h1>
+                                {/* } */}
+                                <h1>表示名（屋号）</h1>
+                                {user.namae}
+                                <br />
+                                <h1>エリア</h1>
+                                {user.area}
+                                <br />
+                                <h1>メニュー</h1>
+                                <div className={styles.grid}>
+                                    {user.make === true && <p><img {...img_make} /></p>}
+                                    {user.nail === true && <p><img {...img_nail} /></p>}
+                                    {user.este === true && <p><img {...img_este} /></p>}
+                                </div>
+                                <br />
                                 {`${user.sonota}`.length !== 0 &&
                                     <img {...img_sonota} />
                                 }
