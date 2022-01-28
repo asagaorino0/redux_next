@@ -450,7 +450,7 @@ const PageC = () => {
                                         )
                                     }
                                     )}
-                            {
+                            {/* {
                                 chat
                                     .map((chat: TomareState) => {
                                         return (
@@ -458,14 +458,14 @@ const PageC = () => {
                                         )
 
                                     }
-                                    )}
+                                    )} */}
                             <div >
                                 <input type="text" onChange={(e) => setMessage(e.target.value)} />
                                 <br />
                                 <button onClick={handleCreate}>
                                     send！
                                 </button>
-                                {/* <Chat /> */}
+                                <Chat />
                             </div>
                         </div>
                     </p>
