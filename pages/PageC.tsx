@@ -361,9 +361,9 @@ const PageC = () => {
                                             dispatch(addTargetTomare(tomareData))
                                             setTargetTomare(tomareData)
                                         }
-                                        useEffect(() => {
-                                            fetchTargetTomare()
-                                        }, []);
+                                        // useEffect(() => {
+                                        //     fetchTargetTomare()
+                                        // }, []);
                                     };
 
                                     return (
