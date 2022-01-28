@@ -151,6 +151,8 @@ const PageA_profile = () => {
             {userProfile
                 .map(
                     (user: any) => {
+                        const img_rogo: any = { src: `${user.rogo}`, alt: "rogo", style: { width: '60px', height: '45px' } }
+
                         return (
                             <div key={user.uid}>
                                 <img
@@ -159,13 +161,11 @@ const PageA_profile = () => {
                                     style={{ borderRadius: '50%', width: '60px', height: '60px' }}
                                 />
                                 <h1 className="mb-4  text-3xl">{user.name}さま </h1>
-                                {user.name}
                                 <br />
-                                <h1 className="mb-4 text-green-500 text-3xl">{user.name}さま </h1>
-                                {/* } */}
                                 <h1>表示名（屋号）</h1>
-                                {user.namae}
+                                <h1 className="mb-4 text-green-500 text-3xl">{user.namae} </h1>
                                 <br />
+                                {user.o_rogo !== 0 && <p><img {...img_rogo} /></p>}
                                 <h1>エリア</h1>
                                 {user.area}
                                 <br />
@@ -176,10 +176,12 @@ const PageA_profile = () => {
                                     {user.este === true && <p><img {...img_este} /></p>}
                                 </div>
                                 <br />
-                                {`${user.sonota}`.length !== 0 &&
-                                    <img {...img_sonota} />
-                                }
-                            </div>)
+                                <div className={styles.grid}>
+                                    {`${user.sonota}`.length !== 0 && <img {...img_sonota} />}
+                                    {`${user.sonota}`.length !== 0 && <p>{user.sonota}</p>}
+                                </div>
+                            </div>
+                        )
                     })}
             *************************************************
             <br />
