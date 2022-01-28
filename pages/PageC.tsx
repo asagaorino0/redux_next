@@ -266,7 +266,7 @@ const PageC = () => {
             <React.StrictMode >
                 <Provider store={store}>
 
-                    <PageLogin />
+                    {/* <PageLogin /> */}
                 </Provider>
             </React.StrictMode>
             <img
