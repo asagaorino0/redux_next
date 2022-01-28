@@ -69,20 +69,25 @@ export default function App() {
     });
   }; ///先生
 
-  const toPageC = () => {
-    router.push('./PageC');
+  const toPageA = () => {
+    router.push('./PageA');
   };
   const toPageB = () => {
     router.push('./PageB');
   };
+  const toPageC = () => {
+    router.push('./PageC');
+  };
+  const registA = () => {
+    dispatch(addUser({ name, uid, icon }));
+    toPageA()
+  };
   const registB = () => {
     dispatch(addUser({ name, uid, icon }));
-    // toPageA()
     toPageB();
   };
   const registC = () => {
     dispatch(addUser({ name, uid, icon }));
-    // toPageA()
     toPageC();
   };
 
@@ -104,11 +109,21 @@ export default function App() {
         <div>
           <button onClick={registC}>
             <h3 className="mb-4 text-green-500 text-3xl">
-              ケアビューティスト専用
+              マイページ：ケアビューティスト
             </h3>
           </button>
         </div>
       )}
+      {user.uid !== '' && (
+        <div>
+          <button onClick={registC}>
+            <h3 className="mb-4 text-green-500 text-3xl">
+              予約枠設定：ケアビューティスト
+            </h3>
+          </button>
+        </div>
+      )}
+
       {user.uid !== '' && (
         <div>
           <button onClick={registB}>
