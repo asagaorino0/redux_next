@@ -50,7 +50,7 @@ const PageA_profile = () => {
     const [message, setMessage] = React.useState('');
 
     useEffect(() => {
-        const fetchMenus = async () => {
+        const fetchUser = async () => {
             const q = query(collection(db, 'users'), where("uid", "==", user.uid));
             const snapshot = await getDocs(q)
             const userData = snapshot.docs.map(
@@ -58,10 +58,10 @@ const PageA_profile = () => {
             console.log('userData:', userData)
             dispatch(addUser(userData))
             setUserProfile(userData)
-            console.log('menus:', user)
+            // console.log('menus:', user)
         }
-        // fetchMenus()
-        // console.log('menus:', menus)
+        fetchUser()
+        console.log('User:', user)
     }, []);
 
     const clickMenuAm = () => { setAm_pm("AM"); fetchTomare() }
