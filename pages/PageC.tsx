@@ -367,7 +367,7 @@ const PageC = () => {
                                     };
 
                                     return (
-                                        <div className={styles.grid}>
+                                        <div className={styles.grid} key={targetTomare.tomareId}>
                                             <br />
                                             <h3 className="mb-4  text-3xl">
                                                 {/* {targetTomare.gappi} */}
