@@ -12,11 +12,13 @@ import "firebase/firestore";
 import "firebase/auth";
 import { selectUser } from '../src/features/userSlice';
 import styles from '../styles/Home.module.css'
-
+import dynamic from 'next/dynamic'
 
 // const Chat = ({ chat }: { chat: ChatState }) => {
 
 const Chat = () => {
+    const PageLogin = dynamic(() => import('../src/PageLogin'), { ssr: false });
+
     const [chat, setChat] = useState<any>([]);
     const dispatch = useDispatch();
     const user = useSelector(selectUser);

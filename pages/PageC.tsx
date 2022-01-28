@@ -20,8 +20,6 @@ import { truncate } from 'fs';
 import { useRouter } from "next/router";
 import { Provider } from 'react-redux';
 import { store } from '../src/app/store';
-
-
 import dynamic from 'next/dynamic'
 // import Chat from './chat'
 
