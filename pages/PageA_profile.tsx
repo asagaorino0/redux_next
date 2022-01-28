@@ -38,10 +38,10 @@ const PageA_profile = () => {
     const [yoyakuIcon, setYoyakuIcon] = useState<string>('');
     const [tomareId, setTomareId] = useState<string>('');
     const dispatch = useDispatch();
-    const uid = useSelector(selectUser);
+    const user = useSelector(selectUser);
     const [tomare, setTomare] = useState<any>([]);
     const [formatDate, setFormatDate] = useState<any>([]);
-    const [user, setUser] = useState<any>([]);
+    const [userProfile, setUserProfile] = useState<any>([]);
     const [name, setName] = useState<string>('');
     const [icon, setIcon] = useState<string | undefined>('');
     const router = useRouter();
@@ -57,11 +57,11 @@ const PageA_profile = () => {
                 (doc) => ({ ...doc.data() } as UserState))
             console.log('userData:', userData)
             dispatch(addUser(userData))
-            setUser(userData)
+            setUserProfile(userData)
             console.log('menus:', user)
         }
-        fetchMenus()
-        console.log('menus:', menus)
+        // fetchMenus()
+        // console.log('menus:', menus)
     }, []);
 
     const clickMenuAm = () => { setAm_pm("AM"); fetchTomare() }
@@ -160,11 +160,11 @@ const PageA_profile = () => {
             {user.uid}
             <br />
             <h1>エリア</h1>
-            {user.area}
+            {userProfile.area}
             {/* <input type="text" onChange={(e) => setArea(e.target.value)} /> */}
             <br />
             <h1>メニュー</h1>
-            {menus
+            {userProfile
                 .map(
                     (user: any) => {
                         return (
