@@ -146,7 +146,7 @@ const PageA_profile = () => {
                 .map(
                     (user: any) => {
                         const img_rogo: any = { src: `${user.rogo}`, alt: "rogo", style: { height: '60px' } }
-                        const img_img: any = { src: `${user.img}`, alt: "img", style: { width: '70%' } }
+                        const img_img: any = { src: `${user.img}`, alt: "img", style: { width: '100%' } }
                         return (
                             <div key={user.uid}>
                                 <img
