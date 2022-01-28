@@ -18,6 +18,10 @@ import P_make from "./img/P_make.png"
 import { computeSegDraggable } from '@fullcalendar/common';
 import { truncate } from 'fs';
 import { useRouter } from "next/router";
+import { Provider } from 'react-redux';
+import { store } from '../src/app/store';
+
+
 import dynamic from 'next/dynamic'
 // import Chat from './chat'
 
@@ -244,16 +248,27 @@ const PageC = () => {
     const img_este: any = { src: "https://firebasestorage.googleapis.com/v0/b/next-app-db888.appspot.com/o/P_este.png?alt=media&token=5fe75701-ec95-424a-8ba7-a547e313dd19", alt: "ケアエステ", style: { width: '60px', height: '45px' } }
     const img_sonota: any = { src: "https://firebasestorage.googleapis.com/v0/b/next-app-db888.appspot.com/o/P_hoka.png?alt=media&token=0d98a224-f460-4527-8208-209f6a52a55c", alt: "その他", style: { width: '60px', height: '45px' } }
     const img_icon: any = { src: targetTomare.yoyakuIcon, alt: "icon", style: { width: '60px', height: '45px' } }
+    const toHome = () => {
+        router.push('./')
+    }
     return (
         <div className={styles.main}>
+            <button onClick={toHome}>
+                <h3 className="mb-4 text-green-500 text-3xl">予約枠の設定</h3>
+            </button>
             {user.uid === '' && (
                 <div>
-                    {/* <button onClick={lineClick}>
-                        <h4 className="mb-4 text-green-500 text-3xl">ログイン</h4>
-                    </button> */}
+                    {/* <button onClick={lineClick}> */}
+                    <h4 className="mb-4 text-green-500 text-3xl">PageC:ログイン</h4>
+                    {/* </button> */}
                 </div>
             )}
-            {/* <PageLogin /> */}
+            <React.StrictMode >
+                <Provider store={store}>
+
+                    <PageLogin />
+                </Provider>
+            </React.StrictMode>
             <img
                 src={`${user.icon}`}
                 alt=""
