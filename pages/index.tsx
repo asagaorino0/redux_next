@@ -10,11 +10,11 @@ import dynamic from 'next/dynamic';
 const App = dynamic(() => import('../src/App'), { ssr: false });
 const Home: NextPage = () => {
   const router = useRouter();
-  const toPageA = () => {
-    router.push('./PageA');
-  };
+  // const toPageA = () => {
+  //   router.push('./PageA');
+  // };
   const PageC = dynamic(() => import('./PageC'), { ssr: false });
-
+  const PageA = dynamic(() => import('./PageA'), { ssr: false });
   return (
     <div className={styles.container}>
       <Head>

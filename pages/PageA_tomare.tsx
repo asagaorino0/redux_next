@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { db } from "../src/firebase";
 import { getDocs, collection, collectionGroup, query, where, doc, setDoc, serverTimestamp, deleteDoc, onSnapshot } from 'firebase/firestore'
 import { TomareState } from "../src/types/tomare";
+import { UserState } from "../src/types/user";
 import { TargetTomareState } from "../src/types/targetTomare";
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
@@ -21,12 +22,11 @@ import { useRouter } from "next/router";
 import { Provider } from 'react-redux';
 import { store } from '../src/app/store';
 import dynamic from 'next/dynamic'
-// import Chat from './chat'
 
-const PageC = () => {
+
+const PageA_profile = () => {
     const Chat = dynamic(() => import('./srcChat'), { ssr: false });
     const PageLogin = dynamic(() => import('../src/PageLogin'), { ssr: false });
-
     const [menus, setMenus] = useState<any>([]);
     const [make, setMake] = useState<boolean>(false);
     const [nail, setNail] = useState<boolean>(false);
@@ -48,49 +48,6 @@ const PageC = () => {
     const [chat, setChat] = useState<any>([]);
     // const targetChat = useSelector(selectTargetChat);
     const [message, setMessage] = React.useState('');
-    // useEffect(() => {
-    //     liff
-    //         .init({ liffId: process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID as string })
-    //         .then(async () => {
-    //             if (liff.isLoggedIn()) {
-    //                 console.log('login status : [', true, ']');
-    //                 const profile = await liff.getProfile();
-    //                 console.log(
-    //                     '🚀 ~ file: Login.tsx ~ line 15 ~ liff.init ~ profile',
-    //                     profile
-    //                 );
-    //                 // const userId: string = profile.userId
-    //                 const displayName: string = profile.displayName;
-    //                 const displayicon: string | undefined = profile.pictureUrl;
-    //                 setName(profile.displayName);
-    //                 setUid(profile.userId);
-    //                 setName(displayName);
-    //                 setIcon(displayicon);
-    //                 dispatch(
-    //                     addUser({
-    //                         name: profile.displayName,
-    //                         uid: profile.userId,
-    //                         icon: profile.pictureUrl,
-    //                     })
-    //                 );
-    //             } else {
-    //                 console.log('login status : [', false, ']');
-    //             }
-    //         });
-    // }, [dispatch]);
-
-    // const LINEID = process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID;
-    // const lineClick = () => {
-    //     setUid('');
-    //     liff.init({ liffId: LINEID as string }).then(() => {
-    //         if (!liff.isLoggedIn()) {
-    //             setUid('k00000');
-    //             liff.login(); // ログインしていなければ最初にログインする
-    //         } else if (liff.isInClient()) {
-    //             console.log('hello world');
-    //         }
-    //     });
-    // };
 
     useEffect(() => {
         const fetchMenus = async () => {
@@ -410,77 +367,13 @@ const PageC = () => {
                                     )
                                 })
                         }
-                        <br />
-                        {`${am_pm}`.length !== 0 &&
-                            <div>
-                                ***設定した内容*****
 
-                                <h3 className="mb-4  text-3xl">
-                                    {formatDate}{am_pm}
-                                </h3>
-                                <div className={styles.grid}>
-                                    {make === true && <p><img {...img_make} /></p>}
-                                    {nail === true && <p><img {...img_nail} /></p>}
-                                    {este === true && <p><img {...img_este} /></p>}
-                                    {sonota !== "" && <p><img {...img_sonota} /></p>}
-                                </div>
-                                <br />
-                                <h3 className="mb-4 text-green-500 text-3xl">
-                                    <button onClick={clickMenu888}>この内容で登録する</button>
-                                </h3>
-                            </div>
-                        }
-
-                        <div>
-                            {
-                                chat
-                                    .map((data: TomareState) => {
-                                        return (
-                                            <div key={chat.timestamp}>
-                                                <br />
-                                                <img
-                                                    src={`${data.yoyakuIcon}`}
-                                                    alt=""
-                                                    style={{ borderRadius: '50%', width: '40px', height: '40px' }}
-                                                />
-                                                {data.message}
-                                                <br />
-                                                {data.timestamp}
-                                            </div>
-                                        )
-                                    }
-                                    )}
-                            {/* {
-                                chat
-                                    .map((chat: TomareState) => {
-                                        return (
-                                            <Chat chat={chat} key={`${chat.timestamp} `} />
-                                        )
-
-                                    }
-                                    )} */}
-                            <div >
-                                <input type="text" onChange={(e) => setMessage(e.target.value)} />
-                                <br />
-                                <button onClick={handleCreate}>
-                                    send！
-                                </button>
-                                <Chat />
-                            </div>
-                        </div>
                     </p>
-                    <div>
-                        <br />
-                        ***予約枠の取り消し***
-                        <br />
-                        <button onClick={clickMenu9am}>AM:午前　</button>
-                        /
-                        <button onClick={clickMenu9pm}>　PM：午後</button>
-                    </div>
+
                 </div>
             }
         </div>
     )
 }
 
-export default PageC
+export default PageA_profile

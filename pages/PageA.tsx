@@ -5,13 +5,13 @@ import { useRouter } from "next/router";
 import { store } from '../src/app/store';
 import { Provider } from 'react-redux';
 import dynamic from 'next/dynamic'
-import PageA1 from '../src/PageA1'
+import PageA_profile from './PageA_profile'
 
 const PageA = () => {
-    const PageAA = dynamic(
-        () => import('../src/PageAA'),
-        { ssr: false }
-    )
+    // const PageAA = dynamic(
+    //     () => import('../src/PageAA'),
+    //     { ssr: false }
+    // )
 
     // const [name, setName] = useState<string>('');
     // const [age, setAge] = useState<number>(0);
@@ -23,14 +23,14 @@ const PageA = () => {
 
     return (
         <div className="App">
-            <span >pageA</span>
+            <span >pageA:プロフィール登録</span>
             <br />
             <h1>
                 {/* {user.name}/{user.age} */}
                 <React.StrictMode >
                     <Provider store={store}>
-                        {/* <PageAA /> */}
-                        <PageA1 />
+                        <PageA_profile />
+                        {/* <PageA1 /> */}
                     </Provider>
                 </React.StrictMode>
             </h1>
