@@ -152,7 +152,7 @@ const PageA_profile = () => {
                 .map(
                     (user: any) => {
                         const img_rogo: any = { src: `${user.rogo}`, alt: "rogo", style: { height: '60px' } }
-
+                        const img_img: any = { src: `${user.img}`, alt: "img", style: { width: '70%' } }
                         return (
                             <div key={user.uid}>
                                 <img
@@ -169,6 +169,10 @@ const PageA_profile = () => {
                                         <h1 className="mb-4 text-green-500 text-3xl">{user.namae} </h1>
                                     </div>
                                 </div>
+
+                                {user.o_copy !== 0 && <h1 className="mb-4  text-3xl">{user.copy} </h1>}
+                                {user.o_img !== 0 && <p><img {...img_img} /></p>}
+
                                 <br />
 
                                 <h1>エリア</h1>
