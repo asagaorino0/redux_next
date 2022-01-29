@@ -166,7 +166,7 @@ const PageA1 = () => {
                     />
                 }
                 <div>
-                    <Link href="/user/[uid]" as={`/user/${user.uid}`}>
+                    {/* <Link href="/user/[uid]" as={`/user/${user.uid}`}>
                         <a>{user.name}</a>
                     </Link>
                     <button onClick={fetchAPI}>
@@ -174,7 +174,7 @@ const PageA1 = () => {
                     </button>
                     <Link href="/test/[uid]" as={`/test/416`}>
                         <a>test</a>
-                    </Link>
+                    </Link> */}
 
                     {/* {data.map((p: any, id: any) => (
         <User key={id} user={p} />
