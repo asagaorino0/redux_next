@@ -39,6 +39,10 @@ const initialState: UserState = {
   nail: false,
   este: false,
   sonota: '',
+  url: '',
+  o_url: 300,
+  sikaku: '',
+  o_sikaku: 300
 } as UserState;
 
 export const userSlice = createSlice({

@@ -130,6 +130,14 @@ const PageA_profile = () => {
     const toHome = () => {
         router.push('./')
     }
+    const [text, setText] = useState<string>('');
+    const sendLine = async () => {
+        //   const response = await fetch(`https://redux-next.vercel.app/api/${text}`);
+        const response = await fetch(`http://localhost:3000/api/${text}`);
+        const data = await response.json();
+        console.log('🚀 ~ file: index.tsx ~ line 11 ~ sendLine ~ data', data);
+
+    }
     return (
         <div className={styles.main}>
             <button onClick={toHome}>
@@ -142,6 +150,12 @@ const PageA_profile = () => {
                     </button>
                 </div>
             )}
+            <div className={styles.container}>
+                <h1>LINE message送信</h1>
+                <br />
+                <input type="text" onChange={(e) => setText(e.target.value)} />
+                <button onClick={sendLine}>送信</button>
+            </div>
             {userProfile
                 .map(
                     (user: any) => {
@@ -173,7 +187,7 @@ const PageA_profile = () => {
 
                                 {user.o_copy !== 0 && <h1 className="mb-4  text-3xl">{user.copy} </h1>}
                                 <div className={styles.grid}>
-                                    {user.o_img !== 0 && <p><img {...img_img} /></p>}
+                                    {user.o_img !== 0 && <p><a href={user.url}><img {...img_img} /></a></p>}
                                 </div>
                                 <br />
                                 {user.o_url !== 0 && <a href={user.url}>{user.url}</a>}
@@ -231,31 +245,10 @@ const PageA_profile = () => {
                                 </div>
                             </div>
                         )
-
-
-
-
-
-
-
                     })
             }
-
-
-
-
-
-
-
-
-
-
-
             <br />
-
-
         </div>
     )
 }
-
 export default PageA_profile

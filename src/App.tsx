@@ -90,7 +90,6 @@ export default function App() {
     dispatch(addUser({ name, uid, icon }));
     toPageC();
   };
-
   return (
     <div className="App">
       {user.uid === '' && (

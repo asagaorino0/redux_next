@@ -27,7 +27,7 @@ const PageLogin = () => {
     const [make, setMake] = useState<boolean>(false);
     const [nail, setNail] = useState<boolean>(false);
     const [este, setEste] = useState<boolean>(false);
-    const [sonota, setSonota] = useState<string>("");
+    const [sonota, setSonota] = useState<string>('');
     const [gappi, setGappi] = useState<string>('');
     const [am_pm, setAm_pm] = useState<string>('');
     const [yoyakuId, setYoyakuId] = useState<string>('');
