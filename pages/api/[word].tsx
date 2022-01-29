@@ -7,7 +7,6 @@ const config = {
     channelAccessToken: process.env.NEXT_PUBLIC_LINE_ACCESS_TOKEN!,
     channelSecret: process.env.NEXT_PUBLIC_LINE_CHANNEL_SECRET!
 };
-
 const client = new line.Client(config);
 
 export default ({ query: { word } }: { query: { word: string } }, res: NextApiResponse) => {
