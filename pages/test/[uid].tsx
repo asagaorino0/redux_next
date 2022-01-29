@@ -25,13 +25,11 @@ export default function Test() {
 
     // console.log(data)
     const line = require('@line/bot-sdk');
-    const config: any = {
-        channelSecret: process.env.NEXT_PUBLIC_CHANNEL_SECRET,//チャンネルシークレット
-        idToken: process.env.NEXT_PUBLIC_ACCESS_TOKEN, //アクセストークン
+    const config = {
+        channelAccessToken: process.env.NEXT_PUBLIC_LINE_ACCESS_TOKEN!,
+        channelSecret: process.env.NEXT_PUBLIC_LINE_CHANNEL_SECRET!
     };
-    const client = new line.Client({
-        channelAccessToken: process.env.NEXT_PUBLIC_ACCESS_TOKEN
-    });
+    const client = new line.Client(config);
     console.log('appline', config)
     const message = {
         type: 'text',
