@@ -133,8 +133,8 @@ const PageA_profile = () => {
     }
     const [text, setText] = useState<string>('');
     const sendLine = async () => {
-        //   const response = await fetch(`https://redux-next.vercel.app/api/${text}`);
-        const response = await fetch(`http://localhost:3000/api/${text}`);
+        const response = await fetch(`https://redux-next.vercel.app/api/${text}`);
+        // const response = await fetch(`http://localhost:3000/api/${text}`);
         const data = await response.json();
         console.log('🚀 ~ file: index.tsx ~ line 11 ~ sendLine ~ data', data);
 
