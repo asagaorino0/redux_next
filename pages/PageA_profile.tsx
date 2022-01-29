@@ -41,6 +41,7 @@ const PageA_profile = () => {
     const user = useSelector(selectUser);
     const [tomare, setTomare] = useState<any>([]);
     const [formatDate, setFormatDate] = useState<any>([]);
+    const [uid, setUid] = useState<string>('');
     const [userProfile, setUserProfile] = useState<any>([]);
     const [name, setName] = useState<string>('');
     const [icon, setIcon] = useState<string | undefined>('');
