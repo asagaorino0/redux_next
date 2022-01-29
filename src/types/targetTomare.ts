@@ -12,4 +12,6 @@ export type TargetTomareState = {
     yoyakuIcon: string
     yoyakuId: String
     yoyakuUid: string
+    img_befor: string
+    img_after: string
 }

@@ -145,6 +145,13 @@ const PageA_profile = () => {
             {userProfile
                 .map(
                     (user: any) => {
+                        const toPageA_zisseki = () => {
+                            router.push('./PageA_zisseki');
+                        };
+                        const registA_zisseki = () => {
+                            dispatch(addUser(user));
+                            toPageA_zisseki()
+                        };
                         const img_rogo: any = { src: `${user.rogo}`, alt: "rogo", style: { height: '60px' } }
                         const img_img: any = { src: `${user.img}`, alt: "img", style: { width: '100%' } }
                         return (
@@ -169,6 +176,8 @@ const PageA_profile = () => {
                                     {user.o_img !== 0 && <p><img {...img_img} /></p>}
                                 </div>
                                 <br />
+                                {user.o_url !== 0 && <a href={user.url}>{user.url}</a>}
+                                <br />
 
                                 <h1 className="mb-4  text-3xl">主な活動地域：{user.area}</h1>
                                 <br />
@@ -180,11 +189,68 @@ const PageA_profile = () => {
                                     {`${user.sonota}`.length !== 0 && <img {...img_sonota} />}
                                     {`${user.sonota}`.length !== 0 && <p>{user.sonota}</p>}
                                 </div>
+                                {user.o_sikaku !== 0 && <h1 >{user.sikaku} </h1>}
+                                <br />
+                                <button onClick={registA_zisseki}>
+                                    <h3 className="mb-4 text-green-500 text-3xl">施術実績はこちら</h3>
+                                </button>
                             </div>
                         )
                     })}
             *************************************************
             <br />
+            {
+                tomare
+                    .map((tomare: TomareState) => {
+                        return (
+                            <div key={tomare.tomareId}>
+                                <div className={styles.grid}>
+                                    <p>
+                                        {tomare.gappi}
+                                        <br />
+                                        <img
+                                            src={`${tomare.img_befor}`}
+                                            alt=""
+                                            style={{ width: '40%', height: '40%' }}
+                                        />
+                                        {user.o_befor_come !== 0 &&
+                                            `${tomare.befor_come}`
+                                        }
+                                    </p>
+                                    <p>
+                                        <br />
+                                        <img
+                                            src={`${tomare.img_after}`}
+                                            alt=""
+                                            style={{ width: '40%', height: '40%' }}
+                                        />
+                                        {user.o_after_come !== 0 &&
+                                            `${tomare.after_come}`
+                                        }
+                                    </p>
+                                </div>
+                            </div>
+                        )
+
+
+
+
+
+
+
+                    })
+            }
+
+
+
+
+
+
+
+
+
+
+
             <br />
 
 

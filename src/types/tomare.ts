@@ -15,4 +15,8 @@ export type TomareState = {
     yoyakuUid: string
     yoyakuIcon: string
     yoyakuMenu: string
+    img_befor: string
+    img_after: string
+    befor_come: string,
+    after_come: string
 }

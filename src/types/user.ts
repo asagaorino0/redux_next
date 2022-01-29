@@ -36,5 +36,7 @@ export type UserState = {
     este: boolean,
     sonota: string
     url: string,
-    o_url: number
+    o_url: number,
+    sikaku: string,
+    o_sikaku: number
 }

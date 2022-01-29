@@ -14,6 +14,10 @@ const initialState: TomareState = {
   este: false,
   sonota: '',
   yoyakuId: '',
+  img_befor: '',
+  img_after: '',
+  befor_come: '',
+  after_come: ''
 } as TomareState;
 
 export const tomareSlice = createSlice({
@@ -32,6 +36,10 @@ export const tomareSlice = createSlice({
       state.este = action.payload.este
       state.sonota = action.payload.sonota
       state.yoyakuId = action.payload.yoyakuId
+      state.img_befor = action.payload.img_befor
+      state.img_after = action.payload.img_after
+      state.befor_come = action.payload.befor_come
+      state.after_come = action.payload.after_come
     }
   },
 });
