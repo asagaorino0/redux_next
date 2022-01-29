@@ -256,17 +256,11 @@ const PageC = () => {
             </button>
             {user.uid === '' && (
                 <div>
-                    {/* <button onClick={lineClick}> */}
-                    <h4 className="mb-4 text-green-500 text-3xl">PageC:ログイン</h4>
-                    {/* </button> */}
+                    <button onClick={toHome}>
+                        <h4 className="mb-4 text-green-500 text-3xl">PageC:ログイン</h4>
+                    </button>
                 </div>
             )}
-            <React.StrictMode >
-                <Provider store={store}>
-
-                    {/* <PageLogin /> */}
-                </Provider>
-            </React.StrictMode>
             <img
                 src={`${user.icon}`}
                 alt=""
