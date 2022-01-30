@@ -1,55 +1,54 @@
 import React, { useState, useEffect } from 'react';
-import { addFormatdate, } from '../src/features/formatDateSlice';
 import { addTomare } from '../src/features/tomareSlice';
 import { addTargetTomare } from '../src/features/targetTomareSlice';
-import { addTargetChat, selectTargetChat } from '../src/features/targetChatSlice';
-import { addMenu } from '../src/features/menuSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { db } from "../src/firebase";
 import { getDocs, collection, collectionGroup, query, where, doc, setDoc, serverTimestamp, deleteDoc, onSnapshot } from 'firebase/firestore'
 import { TomareState } from "../src/types/tomare";
 import { UserState } from "../src/types/user";
-import { TargetTomareState } from "../src/types/targetTomare";
-import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import styles from '../styles/Home.module.css'
 import { addUser, selectUser } from '../src/features/userSlice';
+import { useRouter } from "next/router";
+import dynamic from 'next/dynamic'
 import liff from '@line/liff';
 import P_make from "./img/P_make.png"
 import { computeSegDraggable } from '@fullcalendar/common';
 import { truncate } from 'fs';
-import { useRouter } from "next/router";
 import { Provider } from 'react-redux';
 import { store } from '../src/app/store';
-import dynamic from 'next/dynamic'
-
+import { TargetTomareState } from "../src/types/targetTomare";
+import Calendar from 'react-calendar';
+import { addTargetChat, selectTargetChat } from '../src/features/targetChatSlice';
+import { addMenu } from '../src/features/menuSlice';
+import { addFormatdate, } from '../src/features/formatDateSlice';
 
 const PageA_profile = () => {
     const Chat = dynamic(() => import('./srcChat'), { ssr: false });
     const PageLogin = dynamic(() => import('../src/PageLogin'), { ssr: false });
-    const [menus, setMenus] = useState<any>([]);
     const [make, setMake] = useState<boolean>(false);
     const [nail, setNail] = useState<boolean>(false);
     const [este, setEste] = useState<boolean>(false);
     const [sonota, setSonota] = useState<string>("");
-    const [gappi, setGappi] = useState<string>('');
     const [am_pm, setAm_pm] = useState<string>('');
+    const [gappi, setGappi] = useState<string>('');
+    const [userProfile, setUserProfile] = useState<any>([]);
+    const [tomare, setTomare] = useState<any>([]);
+    const [formatDate, setFormatDate] = useState<any>([]);
+    const router = useRouter();
+    const dispatch = useDispatch();
+    const user = useSelector(selectUser);
+    const [rogo, setRogo] = useState<string>('');
+    const [name, setName] = useState<string>('');
+    const [icon, setIcon] = useState<string | undefined>('');
+    const [menus, setMenus] = useState<any>([]);
     const [yoyakuId, setYoyakuId] = useState<string>('');
     const [yoyakuIcon, setYoyakuIcon] = useState<string>('');
     const [tomareId, setTomareId] = useState<string>('');
-    const dispatch = useDispatch();
-    const user = useSelector(selectUser);
-    const [tomare, setTomare] = useState<any>([]);
-    const [formatDate, setFormatDate] = useState<any>([]);
     const [uid, setUid] = useState<string>('');
-    const [userProfile, setUserProfile] = useState<any>([]);
-    const [name, setName] = useState<string>('');
-    const [icon, setIcon] = useState<string | undefined>('');
-    const router = useRouter();
     const [chat, setChat] = useState<any>([]);
-    // const targetChat = useSelector(selectTargetChat);
     const [message, setMessage] = React.useState('');
-
+    // const targetChat = useSelector(selectTargetChat);
     useEffect(() => {
         const fetchUser = async () => {
             const q = query(collection(db, 'users'), where("uid", "==", user.uid));
@@ -131,14 +130,14 @@ const PageA_profile = () => {
     const toHome = () => {
         router.push('./')
     }
-    const [text, setText] = useState<string>('');
-    const sendLine = async () => {
-        const response = await fetch(`https://redux-next.vercel.app/api/${text}`);
-        // const response = await fetch(`http://localhost:3000/api/${text}`);
-        const data = await response.json();
-        console.log('🚀 ~ file: index.tsx ~ line 11 ~ sendLine ~ data', data);
+    // const [text, setText] = useState<string>('');
+    // const sendLine = async () => {
+    //     const response = await fetch(`https://redux-next.vercel.app/api/${text}`);
+    //     // const response = await fetch(`http://localhost:3000/api/${text}`);
+    //     const data = await response.json();
+    //     console.log('🚀 ~ file: index.tsx ~ line 11 ~ sendLine ~ data', data);
 
-    }
+    // }
     return (
         <div className={styles.main}>
             <button onClick={toHome}>
@@ -152,10 +151,17 @@ const PageA_profile = () => {
                 </div>
             )}
             <div className={styles.container}>
-                <h1>LINE message送信</h1>
+                {/* <h1>LINE message送信</h1>
                 <br />
                 <input type="text" onChange={(e) => setText(e.target.value)} />
-                <button onClick={sendLine}>送信</button>
+                <button onClick={sendLine}>送信</button> */}
+                <input type="file" name="example" onChange={(e) => setRogo(e.target.value)} />
+                {rogo &&
+                    <img
+                        src={`${rogo}`}
+                        alt=""
+                        style={{ width: '80px', height: '80px' }}
+                    />}
             </div>
             {userProfile
                 .map(
