@@ -156,7 +156,7 @@ const PageA_profile = () => {
                 <input type="text" onChange={(e) => setText(e.target.value)} />
                 <button onClick={sendLine}>送信</button> */}
                 <input type="file" name="example" onChange={(e) => setRogo(e.target.value)} />
-                {rogo &&
+                {`${rogo}` &&
                     <img
                         src={`${rogo}`}
                         alt=""
