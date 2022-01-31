@@ -37,8 +37,10 @@ const PageA = () => {
         const [result] = await client.textDetection(fileName);
         const detections = result.textAnnotations;
         console.log('Text:');
-        detections.forEach(text => console.log(text));
-        // [END vision_text_detection]
+        detections.forEach((text: any) => { console.log(text) }
+
+            // [END vision_text_detection]
+        )
     }
 
     const [rogo, setRogo] = useState<string>('');
