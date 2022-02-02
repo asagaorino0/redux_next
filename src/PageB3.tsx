@@ -46,6 +46,14 @@ const PageB3 = () => {
     const [tomareId, setTomareId] = useState<string>('');
     const router = useRouter();
     const [chat, setChat] = useState<any>([]);
+    const date = new Date()
+    const Y = date.getFullYear()
+    const M = ("00" + (date.getMonth() + 1)).slice(-2)
+    const D = ("00" + date.getDate()).slice(-2)
+    const h = ("00" + date.getHours()).slice(-2)
+    const m = ("00" + date.getMinutes()).slice(-2)
+    const s = ("00" + date.getSeconds()).slice(-2)
+    const now = Y + '年' + M + '月' + D + '日 ' + h + ':' + m
     // const targetChat = useSelector(selectTargetChat);
     const [message, setMessage] = React.useState('');
     const fetchUsers = async () => {
@@ -150,21 +158,21 @@ const PageB3 = () => {
 
                                             const fetchTarget1 = async () => {
                                                 setDoc(doc(db, 'users', users.uid, 'tomare', `${tomare.gappi}${tomare.am_pm}`), {
-                                                    menu: "make", yoyakuMenu: "ケアメイク", make: true, nail: false, este: false, yoyakuUid: user.uid, yoyakuIcon: user.icon, yoyakuId: users.uid + user.uid + tomare.tomareId, timestamp: "",
+                                                    menu: "make", yoyakuMenu: "ケアメイク", make: true, nail: false, este: false, yoyakuUid: user.uid, yoyakuIcon: user.icon, yoyakuId: users.uid + user.uid + tomare.tomareId, timestamp: now, img_befor: "", img_after: "", come_befor: "", come_after: "",
                                                 }, { merge: true })
                                                 alert("登録しました！")
                                                 fetchTomare()
                                             };
                                             const fetchTarget2 = async () => {
                                                 setDoc(doc(db, 'users', users.uid, 'tomare', `${tomare.gappi}${tomare.am_pm}`), {
-                                                    menu: "nail", yoyakuMenu: "ケアネイル", make: false, nail: true, este: false, yoyakuUid: user.uid, yoyakuIcon: user.icon, timestamp: "",
+                                                    menu: "nail", yoyakuMenu: "ケアネイル", make: false, nail: true, este: false, yoyakuUid: user.uid, yoyakuIcon: user.icon, yoyakuId: users.uid + user.uid + tomare.tomareId, timestamp: now, img_befor: "", img_after: "", come_befor: "", come_after: "",
                                                 }, { merge: true })
                                                 alert("登録しました！")
                                                 fetchTomare()
                                             };
                                             const fetchTarget3 = async () => {
                                                 setDoc(doc(db, 'users', users.uid, 'tomare', `${tomare.gappi}${tomare.am_pm}`), {
-                                                    menu: "este", yoyakuMenu: "ケアエステ", make: false, nail: false, este: true, yoyakuUid: user.uid, yoyakuIcon: user.icon, timestamp: "",
+                                                    menu: "este", yoyakuMenu: "ケアエステ", make: false, nail: false, este: true, yoyakuUid: user.uid, yoyakuIcon: user.icon, yoyakuId: users.uid + user.uid + tomare.tomareId, timestamp: now, img_befor: "", img_after: "", come_befor: "", come_after: "",
                                                 }, { merge: true })
                                                 alert("登録しました！")
                                                 fetchTomare()

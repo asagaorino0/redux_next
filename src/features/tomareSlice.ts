@@ -16,8 +16,8 @@ const initialState: TomareState = {
   yoyakuId: '',
   img_befor: '',
   img_after: '',
-  befor_come: '',
-  after_come: ''
+  come_befor: '',
+  come_after: ''
 } as TomareState;
 
 export const tomareSlice = createSlice({
@@ -38,8 +38,8 @@ export const tomareSlice = createSlice({
       state.yoyakuId = action.payload.yoyakuId
       state.img_befor = action.payload.img_befor
       state.img_after = action.payload.img_after
-      state.befor_come = action.payload.befor_come
-      state.after_come = action.payload.after_come
+      state.come_befor = action.payload.come_befor
+      state.come_after = action.payload.come_after
     }
   },
 });

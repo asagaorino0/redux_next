@@ -17,6 +17,6 @@ export type TomareState = {
     yoyakuMenu: string
     img_befor: string
     img_after: string
-    befor_come: string,
-    after_come: string
+    come_befor: string,
+    come_after: string
 }

@@ -242,7 +242,7 @@ const PageA_profile = () => {
                                                                     style={{ width: '40%', height: '40%' }}
                                                                 />}
                                                             {user.o_befor_come !== 0 &&
-                                                                `${tomare.befor_come}`.length !== 0 && `${tomare.befor_come}`
+                                                                `${tomare.come_befor}`.length !== 0 && `${tomare.come_befor}`
                                                             }
                                                         </div>
                                                         <div>
@@ -254,7 +254,7 @@ const PageA_profile = () => {
                                                                     style={{ width: '40%', height: '40%' }}
                                                                 />}
                                                             {user.o_after_come !== 0 &&
-                                                                `${tomare.after_come}`.length !== 0 && `${tomare.after_come}`
+                                                                `${tomare.come_after}`.length !== 0 && `${tomare.come_after}`
                                                             }
                                                         </div>
                                                     </div>
