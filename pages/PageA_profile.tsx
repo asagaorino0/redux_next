@@ -222,17 +222,18 @@ const PageA_profile = () => {
                                 *************************************************
                                 <br />
 
-                                {`${tomare.yoyakuId}` && tomare
+                                {`${tomare.yoyakuId}`.length !== 0 && tomare
                                     .map((tomare: TomareState) => {
                                         return (
                                             <div key={tomare.tomareId}>
                                                 <div className={styles.grid}>
-
-                                                    <p>
-
+                                                    {/* <p> */}
+                                                    <div className={styles.grid}>
                                                         <h1 className="mb-4  text-3xl">{tomare.gappi}</h1>
                                                         <h1 className="mb-4  text-3xl">：{tomare.yoyakuMenu}</h1>
-                                                        <br />
+                                                    </div>
+                                                    <br />
+                                                    <div className={styles.grid}>
                                                         {`${tomare.img_befor}` &&
                                                             <img
                                                                 src={`${tomare.img_befor}`}
@@ -242,8 +243,8 @@ const PageA_profile = () => {
                                                         {user.o_befor_come !== 0 &&
                                                             `${tomare.befor_come}` && `${tomare.befor_come}`
                                                         }
-                                                    </p>
-                                                    <p>
+                                                        {/* </p> */}
+                                                        {/* <p> */}
                                                         <br />
                                                         {`${tomare.img_after}` &&
                                                             <img
@@ -254,7 +255,9 @@ const PageA_profile = () => {
                                                         {user.o_after_come !== 0 &&
                                                             `${tomare.after_come}` && `${tomare.after_come}`
                                                         }
-                                                    </p>
+
+                                                        {/* </p> */}
+                                                    </div>
                                                 </div>
                                             </div>
                                         )
