@@ -234,8 +234,8 @@ const PageA_profile = () => {
                                                     </div>
                                                     <br />
                                                     <div className={styles.grid}>
-                                                        <p>
-                                                            {`${tomare.img_befor}` &&
+                                                        <div>
+                                                            {`${tomare.img_befor}`.length !== 0 &&
                                                                 <img
                                                                     src={`${tomare.img_befor}`}
                                                                     alt=""
@@ -244,10 +244,10 @@ const PageA_profile = () => {
                                                             {user.o_befor_come !== 0 &&
                                                                 `${tomare.befor_come}`.length !== 0 && `${tomare.befor_come}`
                                                             }
-                                                        </p>
-                                                        <p>
+                                                        </div>
+                                                        <div>
                                                             <br />
-                                                            {`${tomare.img_after}` &&
+                                                            {`${tomare.img_after}`.length !== 0 &&
                                                                 <img
                                                                     src={`${tomare.img_after}`}
                                                                     alt=""
@@ -256,7 +256,7 @@ const PageA_profile = () => {
                                                             {user.o_after_come !== 0 &&
                                                                 `${tomare.after_come}`.length !== 0 && `${tomare.after_come}`
                                                             }
-                                                        </p>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
