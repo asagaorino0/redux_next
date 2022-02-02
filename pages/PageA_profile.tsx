@@ -221,46 +221,47 @@ const PageA_profile = () => {
 
                                 *************************************************
                                 <br />
-
-                                {`${tomare.yoyakuMenu}` !== "" && tomare
-                                    .map((tomare: TomareState) => {
-                                        return (
-                                            <div key={tomare.tomareId}>
-                                                <div className={styles.grid}>
-
-                                                    <div className={styles.grid}>
-                                                        <h1 className="mb-4  text-3xl">{tomare.gappi}</h1>
-                                                        <h1 className="mb-4  text-3xl">：{tomare.yoyakuMenu}</h1>
-                                                    </div>
-                                                    <br />
-                                                    <div className={styles.grid}>
-                                                        <div>
-                                                            {`${tomare.img_befor}`.length !== 0 &&
-                                                                <img
-                                                                    src={`${tomare.img_befor}`}
-                                                                    alt=""
-                                                                    style={{ width: '40%', height: '40%' }}
-                                                                />}
-                                                            {user.o_befor_come !== 0 &&
-                                                                `${tomare.come_befor}`.length !== 0 && `${tomare.come_befor}`
-                                                            }
+                                {
+                                    tomare
+                                        .map((tomare: TomareState) => {
+                                            return (
+                                                <div key={tomare.tomareId}>
+                                                    {`${tomare.yoyakuMenu}` !== "" &&
+                                                        <div className={styles.grid}>
+                                                            <div className={styles.grid}>
+                                                                <h1 className="mb-4  text-3xl">{tomare.gappi}</h1>
+                                                                <h1 className="mb-4  text-3xl">：{tomare.yoyakuMenu}</h1>
+                                                            </div>
+                                                            <br />
+                                                            <div className={styles.grid}>
+                                                                <div>
+                                                                    {`${tomare.img_befor}`.length !== 0 &&
+                                                                        <img
+                                                                            src={`${tomare.img_befor}`}
+                                                                            alt=""
+                                                                            style={{ width: '40%', height: '40%' }}
+                                                                        />}
+                                                                    {user.o_befor_come !== 0 &&
+                                                                        `${tomare.come_befor}`.length !== 0 && `${tomare.come_befor}`
+                                                                    }
+                                                                </div>
+                                                                <div>
+                                                                    {`${tomare.img_after}`.length !== 0 &&
+                                                                        <img
+                                                                            src={`${tomare.img_after}`}
+                                                                            alt=""
+                                                                            style={{ width: '40%', height: '40%' }}
+                                                                        />}
+                                                                    {user.o_after_come !== 0 &&
+                                                                        `${tomare.come_after}`.length !== 0 && `${tomare.come_after}`
+                                                                    }
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                        <div>
-                                                            {`${tomare.img_after}`.length !== 0 &&
-                                                                <img
-                                                                    src={`${tomare.img_after}`}
-                                                                    alt=""
-                                                                    style={{ width: '40%', height: '40%' }}
-                                                                />}
-                                                            {user.o_after_come !== 0 &&
-                                                                `${tomare.come_after}`.length !== 0 && `${tomare.come_after}`
-                                                            }
-                                                        </div>
-                                                    </div>
+                                                    }
                                                 </div>
-                                            </div>
-                                        )
-                                    })
+                                            )
+                                        })
                                 }
                             </div>
                         )
@@ -268,6 +269,7 @@ const PageA_profile = () => {
             }
             <br />
         </div>
+
     )
 }
 export default PageA_profile
