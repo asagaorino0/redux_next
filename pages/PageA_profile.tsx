@@ -222,7 +222,7 @@ const PageA_profile = () => {
                                 *************************************************
                                 <br />
 
-                                {`${tomare.yoyakuId}` && tomare
+                                {`${tomare.yoyakuMenu}` !== "" && tomare
                                     .map((tomare: TomareState) => {
                                         return (
                                             <div key={tomare.tomareId}>
