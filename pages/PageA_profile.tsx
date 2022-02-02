@@ -222,7 +222,7 @@ const PageA_profile = () => {
                                 *************************************************
                                 <br />
 
-                                {`${tomare.yoyakuId}`.length !== 0 && tomare
+                                {`${tomare.yoyakuId}` && tomare
                                     .map((tomare: TomareState) => {
                                         return (
                                             <div key={tomare.tomareId}>
@@ -246,7 +246,6 @@ const PageA_profile = () => {
                                                             }
                                                         </div>
                                                         <div>
-                                                            <br />
                                                             {`${tomare.img_after}`.length !== 0 &&
                                                                 <img
                                                                     src={`${tomare.img_after}`}
