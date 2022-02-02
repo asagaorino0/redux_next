@@ -195,7 +195,7 @@ const PageC = () => {
     }
     const clickMenu888 = () => {
         setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}${am_pm}`), {
-            make, nail, este, sonota, gappi, uid: user.uid, am_pm: am_pm, menu: am_pm, timestamp: "", tomareId: `${formatDate}${am_pm}`, yoyakuMenu: ""
+            make, nail, este, sonota, gappi, uid: user.uid, am_pm: am_pm, menu: am_pm, timestamp: "", tomareId: `${formatDate}${am_pm}`, yoyakuMenu: "",
         }, { merge: true })
         fetchTomare()
         fetchTargetTomare()

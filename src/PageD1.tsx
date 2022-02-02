@@ -22,7 +22,7 @@ import { addTargetTomare, selectTargetTomare } from './features/targetTomareSlic
 import { TargetTomareState } from "./types/targetTomare";
 
 
-const PageB3 = () => {
+const PageD1 = () => {
     const [name, setName] = useState<string>('');
     const [icon, setIcon] = useState<string | undefined>('');
     const [age, setAge] = useState<number>(0);
@@ -306,4 +306,4 @@ const PageB3 = () => {
         </div>
     )
 }
-export default PageB3
+export default PageD1
