@@ -97,7 +97,7 @@ const PageA_profile = () => {
         // setTargetTomare(0)
     }
     const fetchTomare = async () => {
-        const q = query(collection(db, "users", user.uid, 'tomare'), where("uid", "==", user.uid), orderBy("gappi", "desc"));
+        const q = query(collection(db, "users", user.uid, 'tomare'), where("uid", "==", user.uid), orderBy("gappi"));
         const snapshot = await getDocs(q)
         const tomareData = snapshot.docs.map(
             (docT: any) => ({ ...docT.data() } as TomareState))
