@@ -51,7 +51,7 @@ const PageA_profile = () => {
     // const targetChat = useSelector(selectTargetChat);
     useEffect(() => {
         const fetchUser = async () => {
-            const q = query(collection(db, 'users'), where("uid", "==", user.uid), orderBy("tomareId", "desc"));
+            const q = query(collection(db, 'users'), where("uid", "==", user.uid));
             const snapshot = await getDocs(q)
             const userData = snapshot.docs.map(
                 (doc) => ({ ...doc.data() } as UserState))
@@ -97,7 +97,7 @@ const PageA_profile = () => {
         // setTargetTomare(0)
     }
     const fetchTomare = async () => {
-        const q = query(collection(db, "users", user.uid, 'tomare'), orderBy("tomareId", "desc"), where("uid", "==", user.uid));
+        const q = query(collection(db, "users", user.uid, 'tomare'), orderBy("tomareId", "desc"), where("uid", "==", user.uid), orderBy("tomareId", "desc"));
         const snapshot = await getDocs(q)
         const tomareData = snapshot.docs.map(
             (docT: any) => ({ ...docT.data() } as TomareState))
