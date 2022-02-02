@@ -215,41 +215,43 @@ const PageA_profile = () => {
                                 <button onClick={registA_zisseki}>
                                     <h3 className="mb-4 text-green-500 text-3xl">施術実績はこちら</h3>
                                 </button>
-                            </div>
-                        )
-                    })}
-            *************************************************
-            <br />
-            {
-                tomare
-                    .map((tomare: TomareState) => {
-                        return (
-                            <div key={tomare.tomareId}>
-                                <div className={styles.grid}>
-                                    <p>
-                                        {tomare.gappi}
-                                        <br />
-                                        <img
-                                            src={`${tomare.img_befor}`}
-                                            alt=""
-                                            style={{ width: '40%', height: '40%' }}
-                                        />
-                                        {user.o_befor_come !== 0 &&
-                                            `${tomare.befor_come}`
-                                        }
-                                    </p>
-                                    <p>
-                                        <br />
-                                        <img
-                                            src={`${tomare.img_after}`}
-                                            alt=""
-                                            style={{ width: '40%', height: '40%' }}
-                                        />
-                                        {user.o_after_come !== 0 &&
-                                            `${tomare.after_come}`
-                                        }
-                                    </p>
-                                </div>
+
+                                *************************************************
+                                <br />
+                                {
+                                    tomare
+                                        .map((tomare: TomareState) => {
+                                            return (
+                                                <div key={tomare.tomareId}>
+                                                    <div className={styles.grid}>
+                                                        <p>
+                                                            {tomare.gappi}
+                                                            <br />
+                                                            <img
+                                                                src={`${tomare.img_befor}`}
+                                                                alt=""
+                                                                style={{ width: '40%', height: '40%' }}
+                                                            />
+                                                            {user.o_befor_come !== 0 &&
+                                                                `${tomare.befor_come}`
+                                                            }
+                                                        </p>
+                                                        <p>
+                                                            <br />
+                                                            <img
+                                                                src={`${tomare.img_after}`}
+                                                                alt=""
+                                                                style={{ width: '40%', height: '40%' }}
+                                                            />
+                                                            {user.o_after_come !== 0 &&
+                                                                `${tomare.after_come}`
+                                                            }
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            )
+                                        })
+                                }
                             </div>
                         )
                     })

@@ -22,24 +22,12 @@ const PageA = () => {
     // }
     const filename = "https://firebasestorage.googleapis.com/v0/b/next-app-db888.appspot.com/o/konoyubi.jpg?alt=media&token=99cf4f45-ea84-45cd-af83-0052a86f04adhttps://firebasestorage.googleapis.com/v0/b/next-app-db888.appspot.com/o/konoyubi.jpg?alt=media&token=99cf4f45-ea84-45cd-af83-0052a86f04ad"
     const detectText = async (fileName: any) => {
-        // [START vision_text_detection]
         const vision = require('@google-cloud/vision');
-
-        // Creates a client
         const client = new vision.ImageAnnotatorClient();
-
-        /**
-         * TODO(developer): Uncomment the following line before running the sample.
-         */
-        // const fileName = 'Local image file, e.g. /path/to/image.png';
-
-        // Performs text detection on the local file
         const [result] = await client.textDetection(fileName);
         const detections = result.textAnnotations;
         console.log('Text:');
         detections.forEach((text: any) => { console.log(text) }
-
-            // [END vision_text_detection]
         )
     }
 
