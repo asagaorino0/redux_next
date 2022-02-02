@@ -220,39 +220,44 @@ const PageA_profile = () => {
 
                                 *************************************************
                                 <br />
-                                {
-                                    tomare
-                                        .map((tomare: TomareState) => {
-                                            return (
-                                                <div key={tomare.tomareId}>
-                                                    <div className={styles.grid}>
-                                                        <p>
-                                                            {tomare.gappi}
-                                                            <br />
+
+                                {`${tomare.yoyakuId}` && tomare
+                                    .map((tomare: TomareState) => {
+                                        return (
+                                            <div key={tomare.tomareId}>
+                                                <div className={styles.grid}>
+
+                                                    <p>
+
+                                                        <h1 className="mb-4  text-3xl">{tomare.gappi}</h1>
+                                                        <h1 className="mb-4  text-3xl">：{tomare.yoyakuMenu}</h1>
+                                                        <br />
+                                                        {`${tomare.img_befor}` &&
                                                             <img
                                                                 src={`${tomare.img_befor}`}
                                                                 alt=""
                                                                 style={{ width: '40%', height: '40%' }}
-                                                            />
-                                                            {user.o_befor_come !== 0 &&
-                                                                `${tomare.befor_come}`
-                                                            }
-                                                        </p>
-                                                        <p>
-                                                            <br />
+                                                            />}
+                                                        {user.o_befor_come !== 0 &&
+                                                            `${tomare.befor_come}` && `${tomare.befor_come}`
+                                                        }
+                                                    </p>
+                                                    <p>
+                                                        <br />
+                                                        {`${tomare.img_after}` &&
                                                             <img
                                                                 src={`${tomare.img_after}`}
                                                                 alt=""
                                                                 style={{ width: '40%', height: '40%' }}
-                                                            />
-                                                            {user.o_after_come !== 0 &&
-                                                                `${tomare.after_come}`
-                                                            }
-                                                        </p>
-                                                    </div>
+                                                            />}
+                                                        {user.o_after_come !== 0 &&
+                                                            `${tomare.after_come}` && `${tomare.after_come}`
+                                                        }
+                                                    </p>
                                                 </div>
-                                            )
-                                        })
+                                            </div>
+                                        )
+                                    })
                                 }
                             </div>
                         )
