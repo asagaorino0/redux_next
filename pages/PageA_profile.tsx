@@ -3,7 +3,7 @@ import { addTomare } from '../src/features/tomareSlice';
 import { addTargetTomare } from '../src/features/targetTomareSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { db } from "../src/firebase";
-import { getDocs, collection, collectionGroup, query, where, doc, setDoc, serverTimestamp, deleteDoc, onSnapshot } from 'firebase/firestore'
+import { getDocs, collection, collectionGroup, query, orderBy, where, doc, setDoc, serverTimestamp, deleteDoc, onSnapshot } from 'firebase/firestore'
 import { TomareState } from "../src/types/tomare";
 import { UserState } from "../src/types/user";
 import 'react-calendar/dist/Calendar.css';
@@ -51,7 +51,7 @@ const PageA_profile = () => {
     // const targetChat = useSelector(selectTargetChat);
     useEffect(() => {
         const fetchUser = async () => {
-            const q = query(collection(db, 'users'), where("uid", "==", user.uid));
+            const q = query(collection(db, 'users'), where("uid", "==", user.uid), orderBy("tomareId", "desc"));
             const snapshot = await getDocs(q)
             const userData = snapshot.docs.map(
                 (doc) => ({ ...doc.data() } as UserState))
@@ -97,7 +97,7 @@ const PageA_profile = () => {
         // setTargetTomare(0)
     }
     const fetchTomare = async () => {
-        const q = query(collection(db, "users", user.uid, 'tomare'), where("uid", "==", user.uid));
+        const q = query(collection(db, "users", user.uid, 'tomare'), orderBy("tomareId", "desc"), where("uid", "==", user.uid));
         const snapshot = await getDocs(q)
         const tomareData = snapshot.docs.map(
             (docT: any) => ({ ...docT.data() } as TomareState))
