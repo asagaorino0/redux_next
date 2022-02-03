@@ -82,7 +82,7 @@ const PageA = () => {
         <React.StrictMode>
           <Provider store={store}>
             <PageA_profile />
-            <PageAA />
+            <SimpleAccordion />
             <input type="file" name="example" onChange={(e) => setRogo(e.target.value)} />
             {/* {`${rogo}` && */}
             <img

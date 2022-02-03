@@ -7,6 +7,8 @@ import MuiAccordionSummary, {
 } from '@mui/material/AccordionSummary';
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
+import { user } from 'firebase-functions/v1/auth';
+import { TextField } from '@mui/material';
 
 const Accordion = styled((props: AccordionProps) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -59,14 +61,15 @@ export default function SimpleAccordion() {
         onChange={handleChange('panel1')}
       >
         <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-          <Typography>Collapsible Group Item #1</Typography>
+          <Typography>{user.name}</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum
-            dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
-            lacus ex, sit amet blandit leo lobortis eget.
+            <TextField
+              id="outlined-uncontrolled"
+              label=""
+              defaultValue={user.name}
+            />
           </Typography>
         </AccordionDetails>
       </Accordion>
