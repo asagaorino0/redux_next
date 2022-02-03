@@ -1,0 +1,74 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* CSS for CodePen */
+.accordion{
+  margin-top: 10px;
+}
+
+.accordion__container {
+  width: 300px;
+  margin: 0 auto;
+}
+
+.accordion__title {
+  background-color: #000;
+  border: 1px solid transparent;
+  color: #fff;
+  font-size: 1.25em;
+  padding: .625em .625em .625em 2em;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+}
+
+.accordion__title::before, .accordion__title::after {
+  content: '';
+  display: block;
+  background-color: #fff;
+  position: absolute;
+  top: 50%;
+  width: 15px;
+  height: 2px;
+  right: 25px;
+}
+
+.accordion__title::after {
+  transform: rotate(90deg);
+  transition-duration: .3s;
+}
+
+.accordion__title:hover,
+.accordion__title:active,
+.accordion__title.is-active { 
+  background-color: #00aaa7;
+}
+
+.accordion__title.is-active::before {
+  opacity: 0;
+}
+
+.accordion__title.is-active::after {
+  transform: rotate(0);
+}
+
+.accordion__content {
+  border-left: 1px solid transparent;
+  border-right: 1px solid transparent;
+  padding: 0 1.5em;
+  line-height: 0;
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition-duration: .3s;
+}
+
+.accordion__content.is-open {
+  border: 1px solid #00aaa7;
+  padding: .625em 1.5em;
+  line-height: normal; /* numberに書き換える*/
+  height: auto;
+  opacity: 1;
+}

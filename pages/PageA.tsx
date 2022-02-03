@@ -6,12 +6,13 @@ import { store } from '../src/app/store';
 import { Provider } from 'react-redux';
 import dynamic from 'next/dynamic';
 import PageA_profile from './PageA_profile';
+import styles from '../styles/Home.module.css'
 
 const PageA = () => {
-    // const PageAA = dynamic(
-    //     () => import('../src/PageAA'),
-    //     { ssr: false }
-    // )
+    const PageAA = dynamic(
+        () => import('../src/PageAA'),
+        { ssr: false }
+    )
 
     // const [name, setName] = useState<string>('');
     // const [age, setAge] = useState<number>(0);
@@ -30,8 +31,47 @@ const PageA = () => {
         detections.forEach((text: any) => { console.log(text) }
         )
     }
-
     const [rogo, setRogo] = useState<string>('');
+
+
+
+    // document.addEventListener("DOMContentLoaded", () => {
+    //     const title = document.querySelectorAll('.js-accordion-title');
+    //     for (let i = 0; i < title.length; i++) {
+    //         let titleEach = title[i];
+    //         let content = titleEach.nextElementSibling;
+    //         titleEach.addEventListener('click', () => {
+    //             titleEach.classList.toggle('is-active');
+    //             content?.classList.toggle('is-open');
+    //         });
+    //     }
+    //     for (let i = 0; i < title.length; i++) {
+    //         title[i].addEventListener('click', toggle)
+    //     }
+    // });
+
+    // const title = document.querySelectorAll('.js-accordion-title');
+    // function toggle() {
+    //     const content = this.nextElementSibling;
+    //     this.classList.toggle('is-active');
+    //     content.classList.toggle('is-open');
+    // }
+    // for (let i = 0; i < title.length; i++) {
+    //     title[i].addEventListener('click', toggle)
+    // }
+    // const accSingleTriggers = document.querySelectorAll('.js-acc-single-trigger');
+    // accSingleTriggers.forEach(trigger => trigger.addEventListener('click', toggleAccordion));
+    // function toggleAccordion() {
+    //     const items = document.querySelectorAll('.js-acc-item');
+    //     const thisItem = this.parentNode;
+    //     items.forEach(item => {
+    //         if (thisItem == item) {
+    //             thisItem.classList.toggle('is-open');
+    //             return;
+    //         }
+    //         item.classList.remove('is-open');
+    //     });
+    // }
 
     return (
         <div className="App">
@@ -42,7 +82,7 @@ const PageA = () => {
                 <React.StrictMode>
                     <Provider store={store}>
                         <PageA_profile />
-                        {/* <PageA1 /> */}
+                        <PageAA />
                         <input type="file" name="example" onChange={(e) => setRogo(e.target.value)} />
                         {/* {`${rogo}` && */}
                         <img
@@ -55,6 +95,8 @@ const PageA = () => {
                     </Provider>
                 </React.StrictMode>
             </h1>
+
+
         </div>
     );
 };

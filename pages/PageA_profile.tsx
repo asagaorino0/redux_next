@@ -58,43 +58,16 @@ const PageA_profile = () => {
             console.log('userData:', userData)
             dispatch(addUser(userData))
             setUserProfile(userData)
-            // console.log('menus:', user)
         }
         fetchUser()
         fetchTomare()
         console.log('User:', user)
         console.log('tomare:', tomare)
     }, []);
-
-    // const clickMenuAm = () => { setAm_pm("AM"); fetchTomare() }
-    // const clickMenuPm = () => { setAm_pm("PM"); fetchTomare() }
-    // const clickMenu1 = () => { setMake(true); fetchTargetTomare() }
-    // const clickMenu2 = () => { setNail(true); fetchTargetTomare() }
-    // const clickMenu3 = () => { setEste(true); fetchTargetTomare() }
     const clickMenu4 = () => {
         setSonota("その他")
         fetchTomare()
         // fetchTargetTomare()
-    }
-    const clickMenu888 = () => {
-        setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}${am_pm}`), {
-            make, nail, este, sonota, gappi, uid: user.uid, am_pm: am_pm, menu: am_pm, timestamp: "", tomareId: `${formatDate}${am_pm}`, yoyakuMenu: ""
-        }, { merge: true })
-        fetchTomare()
-        // fetchTargetTomare()
-        setMake(false), setNail(false), setEste(false), setSonota(""), setAm_pm("")
-    }
-    const clickMenu9am = () => {
-        deleteDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}AM`))
-        fetchTomare()
-        // fetchTargetTomare()
-        // setTargetTomare(0)
-    }
-    const clickMenu9pm = () => {
-        deleteDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}PM`))
-        fetchTomare()
-        // fetchTargetTomare()
-        // setTargetTomare(0)
     }
     const fetchTomare = async () => {
         const q = query(collection(db, "users", user.uid, 'tomare'), where("uid", "==", user.uid));
@@ -105,16 +78,7 @@ const PageA_profile = () => {
         dispatch(addTomare(tomareData))
         setTomare(tomareData)
     }
-    // const fetchTargetTomare = async () => {
-    //     const q = query(collection(db, "users", user.uid, 'tomare'), where("uid", "==", user.uid));
-    //     const snapshot = await getDocs(q)
-    //     const tomareLength = snapshot.docs.length
-    //     const tomareData = snapshot.docs.map(
-    //         (docT: any) => ({ ...docT.data() } as TomareState))
-    //     dispatch(addTargetTomare(tomareData))
-    //     setTargetTomare(tomareData)
-    //     console.log(`targetTomareLength`, tomareLength)
-    // }
+
     const date = new Date()
     const Y = date.getFullYear()
     const M = ("00" + (date.getMonth() + 1)).slice(-2)
