@@ -11,7 +11,7 @@ import styles from '../styles/Home.module.css'
 import { addUser, selectUser } from '../src/features/userSlice';
 import { useRouter } from "next/router";
 import dynamic from 'next/dynamic'
-import SimpleAccordion from '../components/SimpleAccordion';
+import TomareAccordion from '../components/TomareAccordion';
 
 import liff from '@line/liff';
 import P_make from "./img/P_make.png"
@@ -153,7 +153,6 @@ const PageA_profile = () => {
                                 />
                                 <h1 className="mb-4  text-3xl">{user.name}さま </h1>
                                 <br />
-                                <SimpleAccordion user={userProfile} key={user.uid} />
                                 <div className={styles.grid}>
                                     {user.o_rogo !== 0 && <p><img {...img_rogo} /></p>}
                                     <div>
@@ -199,6 +198,8 @@ const PageA_profile = () => {
                                                                 <h1 className="mb-4  text-3xl">{tomare.gappi}</h1>
                                                                 <h1 className="mb-4  text-3xl">：{tomare.yoyakuMenu}</h1>
                                                             </div>
+                                                            <TomareAccordion tomare={tomare} key={tomare.tomareId} />
+
                                                             <br />
                                                             <div className={styles.grid}>
                                                                 <div>
