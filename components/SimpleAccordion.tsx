@@ -9,6 +9,7 @@ import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import { user } from 'firebase-functions/v1/auth';
 import { TextField } from '@mui/material';
+import { UserState } from "../src/types/user";
 
 const Accordion = styled((props: AccordionProps) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -46,7 +47,7 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
   borderTop: '1px solid rgba(0, 0, 0, .125)',
 }));
 
-export default function SimpleAccordion() {
+export default function SimpleAccordion({ user }: { user: UserState }) {
   const [expanded, setExpanded] = React.useState<string | false>('panel1');
 
   const handleChange =

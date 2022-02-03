@@ -11,6 +11,8 @@ import styles from '../styles/Home.module.css'
 import { addUser, selectUser } from '../src/features/userSlice';
 import { useRouter } from "next/router";
 import dynamic from 'next/dynamic'
+import SimpleAccordion from '../components/SimpleAccordion';
+
 import liff from '@line/liff';
 import P_make from "./img/P_make.png"
 import { computeSegDraggable } from '@fullcalendar/common';
@@ -151,6 +153,7 @@ const PageA_profile = () => {
                                 />
                                 <h1 className="mb-4  text-3xl">{user.name}さま </h1>
                                 <br />
+                                <SimpleAccordion user={userProfile} key={user.uid} />
                                 <div className={styles.grid}>
                                     {user.o_rogo !== 0 && <p><img {...img_rogo} /></p>}
                                     <div>
