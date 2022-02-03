@@ -38,19 +38,19 @@ export default function PageAA() {
     // // console.log(data);
     // // }
 
-    const accSingleTriggers = document.querySelectorAll('.js-acc-single-trigger');
-    accSingleTriggers.forEach(trigger => trigger.addEventListener('click', toggleAccordion));
-    function toggleAccordion() {
-        const items = document.querySelectorAll('.js-acc-item');
-        const thisItem = this.parentNode;
-        items.forEach(item => {
-            if (thisItem == item) {
-                thisItem.classList.toggle('is-open');
-                return;
-            }
-            item.classList.remove('is-open');
-        });
-    }
+    // const accSingleTriggers = document.querySelectorAll('.js-acc-single-trigger');
+    // accSingleTriggers.forEach(trigger => trigger.addEventListener('click', toggleAccordion));
+    // function toggleAccordion() {
+    //     const items = document.querySelectorAll('.js-acc-item');
+    //     const thisItem = this.parentNode;
+    //     items.forEach(item => {
+    //         if (thisItem == item) {
+    //             thisItem.classList.toggle('is-open');
+    //             return;
+    //         }
+    //         item.classList.remove('is-open');
+    //     });
+    // }
 
     return (
         <div className="App">
@@ -70,7 +70,7 @@ export default function PageAA() {
             </Link>
             {/* {users} */}
 
-            <div className="accordion-single js-acc-single">
+            {/* <div className="accordion-single js-acc-single">
                 <div className="accordion-single-item js-acc-item">
                     <h2 className="accordion-single-title js-acc-single-trigger">Question 1</h2>
                     <div className="accordion-single-content">
@@ -89,7 +89,7 @@ export default function PageAA() {
                         <p>This is an Answer 3</p>
                     </div>
                 </div>
-            </div>
+            </div> */}
 
         </div >
     );
