@@ -1,5 +1,5 @@
 module.exports = {
-  purge: ['./components/**/*.tsx', './pages/**/*.tsx'],
+  purge: ['./components/**/*.tsx', './pages/**/*.tsx', './node_modules/tw-elements/dist/js/**/*.js'],
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {},
@@ -7,5 +7,7 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    require('tw-elements/dist/plugin')
+  ],
 }
