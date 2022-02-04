@@ -73,7 +73,7 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
                                     <img
                                         src={`${tomare.img_befor}`}
                                         alt=""
-                                        style={{ width: '40%', height: '40%' }}
+                                        style={{ width: '45%' }}
                                     />}
                                 {user.o_befor_come !== 0 &&
                                     `${tomare.come_befor}`.length !== 0 && `${tomare.come_befor}`
@@ -84,7 +84,7 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
                                     <img
                                         src={`${tomare.img_after}`}
                                         alt=""
-                                        style={{ width: '40%', height: '40%' }}
+                                        style={{ width: '45%' }}
                                     />}
                                 {user.o_after_come !== 0 &&
                                     `${tomare.come_after}`.length !== 0 && `${tomare.come_after}`
