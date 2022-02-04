@@ -38,5 +38,7 @@ export type UserState = {
     url: string,
     o_url: number,
     sikaku: string,
-    o_sikaku: number
+    o_sikaku: number,
+    manabi: string,
+    manabi_url: string,
 }

@@ -17,7 +17,8 @@ const initialState: TomareState = {
   img_befor: '',
   img_after: '',
   come_befor: '',
-  come_after: ''
+  come_after: '',
+  star: 0
 } as TomareState;
 
 export const tomareSlice = createSlice({

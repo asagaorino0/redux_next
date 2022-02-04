@@ -42,7 +42,9 @@ const initialState: UserState = {
   url: '',
   o_url: 300,
   sikaku: '',
-  o_sikaku: 300
+  o_sikaku: 300,
+  manabi: '',
+  manabi_url: '',
 } as UserState;
 
 export const userSlice = createSlice({

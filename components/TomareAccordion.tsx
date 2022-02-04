@@ -10,6 +10,7 @@ import Typography from '@mui/material/Typography';
 import { TomareState } from "../src/types/tomare";
 import { addUser, selectUser } from '../src/features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { Stars } from "./Star";
 import styles from '../styles/Home.module.css'
 const Accordion = styled((props: AccordionProps) => (
     <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -62,7 +63,7 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
                 onChange={handleChange('panel1')}
             >
                 <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-                    <Typography>{tomare.tomareId}:{tomare.yoyakuMenu}</Typography>
+                    <Typography>{tomare.tomareId}:{tomare.yoyakuMenu}  <Stars star={tomare.star} starSize={16} textSize={12} /></Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                     <Typography>
