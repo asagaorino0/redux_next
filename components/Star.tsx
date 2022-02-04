@@ -1,6 +1,6 @@
 import React from "react";
 // import { View, StyleSheet, Text } from "react-native";
-import { AiFillStar } from 'react-icons/Ai';
+import { AiFillStar } from "react-icons/ai";
 
 type Props = {
     star: number;
