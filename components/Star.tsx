@@ -1,6 +1,7 @@
 import React from "react";
 // import { View, StyleSheet, Text } from "react-native";
-import { AiFillStar } from "react-icons/ai";
+import { BsStarFill, BsStarHalf, BsStar } from "react-icons/bs";
+import styles from '../styles/Home.module.css'
 
 type Props = {
     star: number;
@@ -15,38 +16,36 @@ export const Stars: React.FC<Props> = ({
 }: Props) => {
     const starStyle = [styles.star, { fontSize: starSize }];
     return (
-        <div style={styles.container}>
-            <AiFillStar
-                name={star >= 1 ? "AiFillStar" : star >= 0.5 ? "star-half-o" : "AiOutlineStar"}
-            />
-            <AiFillStar
-                name={star >= 2 ? "AiFillStar" : star >= 1.5 ? "star-half-o" : "AiOutlineStar"}
-            />
-            <AiFillStar
-                name={star >= 3 ? "AiFillStar" : star >= 2.5 ? "star-half-o" : "AiOutlineStar"}
-            />
-            <AiFillStar
-                name={star >= 4 ? "AiFillStar" : star >= 3.5 ? "star-half-o" : "AiOutlineStar"}
-            />
-            <AiFillStar
-                name={star >= 5 ? "AiFillStar" : star >= 4.5 ? "star-half-o" : "AiOutlineStar"}
-            />
+        <div className={styles.grid}>
+
+            {star >= 1 && <BsStarFill />}
+            {star == 0 && <BsStar />}
+            {star >= 2 && <BsStarFill />}
+            {star <= 1 && <BsStar />}
+            {star >= 3 && <BsStarFill />}
+            {star <= 2 && <BsStar />}
+            {star >= 4 && <BsStarFill />}
+            {star <= 3 && <BsStar />}
+            {star >= 5 && <BsStarFill />}
+            {star <= 4 && <BsStar />}
+
+
             <text>{star}</text>
         </div>
     );
 };
 
-const styles = {
-    container: {
-        // flexDirection: "row",
-        // alignItems: "center",
-    },
-    star: {
-        // marginRight: 4,
-        // color: "tomato",
-    },
-    starText: {
-        // color: "#000",
-        // fontWeight: "bold",
-    },
-};
+// const styles = {
+//     container: {
+//         // flexDirection: "row",
+//         // alignItems: "center",
+//     },
+//     star: {
+//         // marginRight: 4,
+//         // color: "tomato",
+//     },
+//     starText: {
+//         // color: "#000",
+//         // fontWeight: "bold",
+//     },
+// };
