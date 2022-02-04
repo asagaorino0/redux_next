@@ -18,7 +18,8 @@ const initialState: TomareState = {
   img_after: '',
   come_befor: '',
   come_after: '',
-  star: 0
+  star: 0,
+  chip: 0,
 } as TomareState;
 
 export const tomareSlice = createSlice({
@@ -41,6 +42,8 @@ export const tomareSlice = createSlice({
       state.img_after = action.payload.img_after
       state.come_befor = action.payload.come_befor
       state.come_after = action.payload.come_after
+      state.star = action.payload.star
+      state.chip = action.payload.chip
     }
   },
 });

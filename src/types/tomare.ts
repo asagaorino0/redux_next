@@ -20,4 +20,5 @@ export type TomareState = {
     come_befor: string
     come_after: string
     star: number
+    chip: number
 }
