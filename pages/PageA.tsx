@@ -9,10 +9,8 @@ import PageA_profile from './PageA_profile';
 import styles from '../styles/Home.module.css'
 import SimpleAccordion from '../components/SimpleAccordion';
 const PageA = () => {
-  const PageAA = dynamic(
-    () => import('../src/PageAA'),
-    { ssr: false }
-  )
+  const PageAA = dynamic(() => import('../src/PageAA'), { ssr: false })
+  const PageLogin = dynamic(() => import('../src/PageLogin'), { ssr: false });
 
   // const [name, setName] = useState<string>('');
   // const [age, setAge] = useState<number>(0);
