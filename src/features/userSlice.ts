@@ -5,7 +5,7 @@ import { UserState } from "../../src/types/user";
 const initialState: UserState = {
   // user: [],
   name: '',
-  uid: 'k11111',
+  uid: '',
   icon: '',
   namae: '',
   sei: '',
