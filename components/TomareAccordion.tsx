@@ -63,11 +63,11 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
                 onChange={handleChange('panel1')}
             >
                 <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-                    <Typography className={styles.grid}>{tomare.tomareId}:{tomare.yoyakuMenu}  <Stars star={tomare.star} starSize={16} textSize={12} />　chip:{tomare.chip}</Typography>
+                    <Typography className={styles.grid}>{tomare.tomareId}:{tomare.yoyakuMenu} 　 <Stars star={tomare.star} starSize={16} textSize={12} />　chip:{tomare.chip}</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                     <Typography>
-                        <div className={styles.grid}>
+                        <div className="flex justify-between ...">
                             <div>
                                 {`${tomare.img_befor}`.length !== 0 &&
                                     <img
