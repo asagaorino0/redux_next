@@ -17,19 +17,19 @@ export const Stars: React.FC<Props> = ({
     return (
         <div style={styles.container}>
             <AiFillStar
-                name={star >= 1 ? "star" : star >= 0.5 ? "star-half-o" : "star-o"}
+                name={star >= 1 ? "AiFillStar" : star >= 0.5 ? "star-half-o" : "AiOutlineStar"}
             />
             <AiFillStar
-                name={star >= 2 ? "star" : star >= 1.5 ? "star-half-o" : "star-o"}
+                name={star >= 2 ? "AiFillStar" : star >= 1.5 ? "star-half-o" : "AiOutlineStar"}
             />
             <AiFillStar
-                name={star >= 3 ? "star" : star >= 2.5 ? "star-half-o" : "star-o"}
+                name={star >= 3 ? "AiFillStar" : star >= 2.5 ? "star-half-o" : "AiOutlineStar"}
             />
             <AiFillStar
-                name={star >= 4 ? "star" : star >= 3.5 ? "star-half-o" : "star-o"}
+                name={star >= 4 ? "AiFillStar" : star >= 3.5 ? "star-half-o" : "AiOutlineStar"}
             />
             <AiFillStar
-                name={star >= 5 ? "star" : star >= 4.5 ? "star-half-o" : "star-o"}
+                name={star >= 5 ? "AiFillStar" : star >= 4.5 ? "star-half-o" : "AiOutlineStar"}
             />
             <text>{star}</text>
         </div>
