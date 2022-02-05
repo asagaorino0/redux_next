@@ -132,12 +132,13 @@ const PageA_profile = () => {
                 <button onClick={sendLine}>送信</button> */}
                 {/* <input type="file" name="example" onChange={(e) => setLogo(e.target.value)} /> */}
                 <input type="file" name="logo" onChange={handleFile} />
-                {`${user.rogo}` &&
-                    <img
-                        src={logo}
-                        alt=""
-                        style={{ width: '80px', height: '80px' }}
-                    />}
+                {/* {`${user.rogo}` && */}
+                <img
+                    src={logo}
+                    alt=""
+                    style={{ width: '80px', height: '80px' }}
+                />
+                {/* } */}
             </div>
             {userProfile
                 .map(
