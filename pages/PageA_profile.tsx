@@ -135,7 +135,8 @@ const PageA_profile = () => {
                             dispatch(addUser(user));
                             toPageA_zisseki()
                         };
-                        const [logo, setLogo] = useState<string>(user.rogo);
+                        const [logo, setLogo] = useState<string>('');
+                        // const [logo, setLogo] = useState<string>(user.rogo);
                         const handleFile = (e: any) => {
                             setLogo(e.target.value);
                             // setChecked([event.target.checked, checked[1]]);
