@@ -104,7 +104,7 @@ const PageA_profile = () => {
     //     const data = await response.json();
     //     console.log('🚀 ~ file: index.tsx ~ line 11 ~ sendLine ~ data', data);
     // }
-
+    const [logo, setLogo] = useState<string>('');
     return (
         <div className={styles.main}>
             <button onClick={toHome}>
@@ -135,7 +135,7 @@ const PageA_profile = () => {
                             dispatch(addUser(user));
                             toPageA_zisseki()
                         };
-                        const [logo, setLogo] = useState<string>('');
+
                         // const [logo, setLogo] = useState<string>(user.rogo);
                         const handleFile = (e: any) => {
                             setLogo(e.target.value);
