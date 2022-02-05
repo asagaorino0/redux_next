@@ -105,10 +105,10 @@ const PageA_profile = () => {
     //     const data = await response.json();
     //     console.log('🚀 ~ file: index.tsx ~ line 11 ~ sendLine ~ data', data);
     // }
-    const handleCheck = (e: any) => {
+    const handleFile = (e: any) => {
         setLogo(e.target.value);
         // setChecked([event.target.checked, checked[1]]);
-        console.log(logo)
+        console.log(e.target.value)
         setDoc(doc(db, 'users', `${user.uid}`), {
             logo: e.target.value,
         }, { merge: true })
@@ -131,7 +131,7 @@ const PageA_profile = () => {
                 <input type="text" onChange={(e) => setText(e.target.value)} />
                 <button onClick={sendLine}>送信</button> */}
                 {/* <input type="file" name="example" onChange={(e) => setLogo(e.target.value)} /> */}
-                <input type="file" name="example" onChange={handleCheck} />
+                <input type="file" name="logo" onChange={handleFile} />
                 {`${user.rogo}` &&
                     <img
                         src={logo}
