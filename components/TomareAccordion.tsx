@@ -7,11 +7,15 @@ import MuiAccordionSummary, {
 } from '@mui/material/AccordionSummary';
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
+import Checkbox from '@mui/material/Checkbox';
 import { TomareState } from "../src/types/tomare";
 import { addUser, selectUser } from '../src/features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { Stars } from "./Star";
-import styles from '../styles/Home.module.css'
+import styles from '../styles/Home.module.css';
+import { doc, setDoc } from 'firebase/firestore';
+import { db } from "../src/firebase";
+
 const Accordion = styled((props: AccordionProps) => (
     <MuiAccordion disableGutters elevation={0} square {...props} />
 ))(({ theme }) => ({
@@ -50,6 +54,14 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 
 export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
     const [expanded, setExpanded] = React.useState<string | false>('panel1');
+    const [checked, setChecked] = React.useState(true);
+    const handleCheck = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setChecked(event.target.checked);
+        setDoc(doc(db, 'users', user.uid, 'tomare', `${tomare.tomareId}`), {
+            checked,
+        }, { merge: true })
+    };
+    const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
     const user = useSelector(selectUser);
     const handleChange =
         (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
@@ -62,6 +74,11 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
                 expanded={expanded === 'panel1'}
                 onChange={handleChange('panel1')}
             >
+                <Checkbox
+                    // checked={checked}
+                    onChange={handleCheck}
+                    inputProps={{ 'aria-label': 'controlled' }}
+                />
                 <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
                     <Typography className={styles.grid}>{tomare.tomareId}:{tomare.yoyakuMenu} 　 <Stars star={tomare.star} starSize={16} textSize={12} />　chip:{tomare.chip}</Typography>
                 </AccordionSummary>
@@ -129,3 +146,4 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
         </div>
     );
 }
+

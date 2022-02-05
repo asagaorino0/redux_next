@@ -96,9 +96,7 @@ const PageA_profile = () => {
     const img_este: any = { src: "https://firebasestorage.googleapis.com/v0/b/next-app-db888.appspot.com/o/P_este.png?alt=media&token=5fe75701-ec95-424a-8ba7-a547e313dd19", alt: "ケアエステ", style: { width: '60px', height: '45px' } }
     const img_sonota: any = { src: "https://firebasestorage.googleapis.com/v0/b/next-app-db888.appspot.com/o/P_hoka.png?alt=media&token=0d98a224-f460-4527-8208-209f6a52a55c", alt: "その他", style: { width: '60px', height: '45px' } }
     const img_icon: any = { src: targetTomare.yoyakuIcon, alt: "icon", style: { width: '60px', height: '45px' } }
-    const toHome = () => {
-        router.push('./')
-    }
+    const toHome = () => { router.push('./') }
     // const [text, setText] = useState<string>('');
     // const sendLine = async () => {
     //     const response = await fetch(`https://redux-next.vercel.app/api/${text}`);
