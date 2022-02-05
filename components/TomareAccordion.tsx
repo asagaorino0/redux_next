@@ -8,6 +8,7 @@ import MuiAccordionSummary, {
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import Checkbox from '@mui/material/Checkbox';
+import FormControlLabel from '@mui/material/FormControlLabel';
 import { TomareState } from "../src/types/tomare";
 import { addUser, selectUser } from '../src/features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
@@ -54,20 +55,24 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 
 export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
     const [expanded, setExpanded] = React.useState<string | false>('panel1');
-    const [checked, setChecked] = React.useState(true);
-    const handleCheck = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setChecked(event.target.checked);
-        console.log(checked)
-        setDoc(doc(db, 'users', user.uid, 'tomare', `${tomare.tomareId}`), {
-            checked: { checked },
-        }, { merge: true })
-    };
+    // const [checked, setChecked] = React.useState(true);
+    // const handleCheck = (event: React.ChangeEvent<HTMLInputElement>) => {
+    //     setChecked(event.target.checked);
+    //     console.log(checked)
+    //     setDoc(doc(db, 'users', user.uid, 'tomare', `${tomare.tomareId}`), {
+    //         checked: { checked },
+    //     }, { merge: true })
+    // };
     const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
     const user = useSelector(selectUser);
     const handleChange =
         (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
             setExpanded(newExpanded ? panel : false);
         };
+    const [checked, setChecked] = React.useState([true, false]);
+    const handleChange2 = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setChecked([event.target.checked, checked[1]]);
+    };
 
     return (
         <div>
@@ -75,10 +80,14 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
                 expanded={expanded === 'panel1'}
                 onChange={handleChange('panel1')}
             >
-                <Checkbox
+                {/* <Checkbox
                     checked={tomare.checked}
                     onChange={handleCheck}
                     inputProps={{ 'aria-label': 'controlled' }}
+                /> */}
+                <FormControlLabel
+                    label="Child 1"
+                    control={<Checkbox checked={checked[0]} onChange={handleChange2} />}
                 />
                 <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
                     <Typography className={styles.grid}>{tomare.tomareId}:{tomare.yoyakuMenu} 　 <Stars star={tomare.star} starSize={16} textSize={12} />　chip:{tomare.chip}</Typography>
