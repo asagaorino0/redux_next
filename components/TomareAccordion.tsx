@@ -61,7 +61,7 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
         // setChecked([event.target.checked, checked[1]]);
         console.log(checked, `${tomare.tomareId}`)
         setDoc(doc(db, 'users', `${tomare.uid}`, 'tomare', `${tomare.tomareId}`), {
-            checked,
+            checked: event.target.checked,
         }, { merge: true })
     };
     const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
