@@ -68,7 +68,7 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
                 <AccordionDetails>
                     <Typography>
                         {/* <div className="flex justify-between ...">    */}
-                        <div class="flex justify-evenly ...">                         <div>
+                        <div className="flex justify-evenly ...">                         <div>
                             {`${tomare.img_befor}`.length !== 0 &&
                                 <img
                                     src={`${tomare.img_befor}`}
