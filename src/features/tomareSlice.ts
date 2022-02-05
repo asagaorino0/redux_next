@@ -20,6 +20,7 @@ const initialState: TomareState = {
   come_after: '',
   star: 0,
   chip: 0,
+  checked: false,
 } as TomareState;
 
 export const tomareSlice = createSlice({
@@ -44,6 +45,7 @@ export const tomareSlice = createSlice({
       state.come_after = action.payload.come_after
       state.star = action.payload.star
       state.chip = action.payload.chip
+      state.checked = action.payload.checked
     }
   },
 });

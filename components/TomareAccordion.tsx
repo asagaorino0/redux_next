@@ -76,7 +76,7 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
                 onChange={handleChange('panel1')}
             >
                 <Checkbox
-                    // checked={checked}
+                    checked={tomare.checked}
                     onChange={handleCheck}
                     inputProps={{ 'aria-label': 'controlled' }}
                 />

@@ -21,4 +21,5 @@ export type TomareState = {
     come_after: string
     star: number
     chip: number
+    checked: boolean
 }
