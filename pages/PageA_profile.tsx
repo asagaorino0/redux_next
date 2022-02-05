@@ -41,7 +41,6 @@ const PageA_profile = () => {
     const dispatch = useDispatch();
     const user = useSelector(selectUser);
     // const [rogo, setRogo] = useState<string>('');
-    const [logo, setLogo] = React.useState<string>(`${user.rogo}`);
     const [name, setName] = useState<string>('');
     const [icon, setIcon] = useState<string | undefined>('');
     const [menus, setMenus] = useState<any>([]);
@@ -105,14 +104,7 @@ const PageA_profile = () => {
     //     const data = await response.json();
     //     console.log('🚀 ~ file: index.tsx ~ line 11 ~ sendLine ~ data', data);
     // }
-    const handleFile = (e: any) => {
-        setLogo(e.target.value);
-        // setChecked([event.target.checked, checked[1]]);
-        console.log(e.target.value)
-        setDoc(doc(db, 'users', `${user.uid}`), {
-            logo: e.target.value,
-        }, { merge: true })
-    };
+
     return (
         <div className={styles.main}>
             <button onClick={toHome}>
@@ -131,14 +123,7 @@ const PageA_profile = () => {
                 <input type="text" onChange={(e) => setText(e.target.value)} />
                 <button onClick={sendLine}>送信</button> */}
                 {/* <input type="file" name="example" onChange={(e) => setLogo(e.target.value)} /> */}
-                <input type="file" name="logo" onChange={handleFile} />
-                {/* {`${user.rogo}` && */}
-                <img
-                    src={logo}
-                    alt=""
-                    style={{ width: '80px', height: '80px' }}
-                />
-                {/* } */}
+
             </div>
             {userProfile
                 .map(
@@ -150,16 +135,36 @@ const PageA_profile = () => {
                             dispatch(addUser(user));
                             toPageA_zisseki()
                         };
+                        const [logo, setLogo] = React.useState<string>(`${user.rogo}`);
+                        const handleFile = (e: any) => {
+                            setLogo(e.target.value);
+                            // setChecked([event.target.checked, checked[1]]);
+                            console.log(e.target.value)
+                            setDoc(doc(db, 'users', `${user.uid}`), {
+                                logo: e.target.value,
+                            }, { merge: true })
+                        };
                         const img_rogo: any = { src: `${user.rogo}`, alt: "rogo", style: { height: '60px' } }
                         const img_img: any = { src: `${user.img}`, alt: "img", style: { width: '100%' } }
                         return (
                             <div key={user.uid}>
-                                <img
-                                    src={`${user.icon}`}
-                                    alt=""
-                                    style={{ borderRadius: '50%', width: '60px', height: '60px' }}
-                                />
-                                <h1 className="mb-4  text-3xl">{user.name}さま </h1>
+                                <input type="file" name="logo" onChange={handleFile} />
+                                {`${user.rogo}` &&
+                                    <img
+                                        src={logo}
+                                        alt=""
+                                        style={{ width: '80px', height: '80px' }}
+                                    />
+                                }
+
+                                <div className={styles.grid}>
+                                    <img
+                                        src={`${user.icon}`}
+                                        alt=""
+                                        style={{ borderRadius: '50%', width: '60px', height: '60px' }}
+                                    />
+                                    <h1 className="mb-4  text-3xl">{user.name}さま </h1>
+                                </div>
                                 <br />
                                 <div className={styles.grid}>
                                     {user.o_rogo !== 0 && <p><img {...img_rogo} /></p>}
