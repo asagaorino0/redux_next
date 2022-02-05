@@ -89,10 +89,8 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
                     onChange={handleCheck}
                     inputProps={{ 'aria-label': 'controlled' }}
                 /> */}
-                <FormControlLabel
-                    label="Child 1"
-                    control={<Checkbox checked={checked[0]} onChange={handleChange2} />}
-                />
+                <Checkbox checked={tomare.checked} onChange={handleChange2} />
+
                 <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
                     <Typography className={styles.grid}>{tomare.tomareId}:{tomare.yoyakuMenu} 　 <Stars star={tomare.star} starSize={16} textSize={12} />　chip:{tomare.chip}</Typography>
                 </AccordionSummary>
