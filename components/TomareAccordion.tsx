@@ -72,6 +72,10 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
     const [checked, setChecked] = React.useState([true, false]);
     const handleChange2 = (event: React.ChangeEvent<HTMLInputElement>) => {
         setChecked([event.target.checked, checked[1]]);
+        console.log(checked)
+        setDoc(doc(db, 'users', user.uid, 'tomare', `${tomare.tomareId}`), {
+            checked: { checked },
+        }, { merge: true })
     };
 
     return (
