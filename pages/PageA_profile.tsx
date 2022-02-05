@@ -104,8 +104,15 @@ const PageA_profile = () => {
     //     // const response = await fetch(`http://localhost:3000/api/${text}`);
     //     const data = await response.json();
     //     console.log('🚀 ~ file: index.tsx ~ line 11 ~ sendLine ~ data', data);
-
     // }
+    const handleCheck = (e: any) => {
+        setLogo(e.target.value);
+        // setChecked([event.target.checked, checked[1]]);
+        console.log(logo)
+        setDoc(doc(db, 'users', `${user.uid}`), {
+            logo: e.target.value,
+        }, { merge: true })
+    };
     return (
         <div className={styles.main}>
             <button onClick={toHome}>
@@ -123,7 +130,8 @@ const PageA_profile = () => {
                 <br />
                 <input type="text" onChange={(e) => setText(e.target.value)} />
                 <button onClick={sendLine}>送信</button> */}
-                <input type="file" name="example" onChange={(e) => setLogo(e.target.value)} />
+                {/* <input type="file" name="example" onChange={(e) => setLogo(e.target.value)} /> */}
+                <input type="file" name="example" onChange={handleCheck} />
                 {`${user.rogo}` &&
                     <img
                         src={logo}
