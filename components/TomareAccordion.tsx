@@ -70,7 +70,7 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
         (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
             setExpanded(newExpanded ? panel : false);
         };
-    const [checked, setChecked] = React.useState([0, 1]);
+    const [checked, setChecked] = React.useState([true, false]);
 
 
     const handleChange2 = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -92,7 +92,7 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
 
                 <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
                     <Checkbox
-                        checked={checked[tomare.checked]}
+                        checked={tomare.checked}
                         onChange={handleCheck}
                         inputProps={{ 'aria-label': 'controlled' }}
                     />
