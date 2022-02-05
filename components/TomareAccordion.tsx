@@ -93,7 +93,7 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
 
                 <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
                     <Checkbox
-                        checked={checked}
+                        checked={tomare.checked}
                         onChange={handleCheck}
                         inputProps={{ 'aria-label': 'controlled' }}
                     />
