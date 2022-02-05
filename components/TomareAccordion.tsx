@@ -57,7 +57,7 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
     const [expanded, setExpanded] = React.useState<string | false>('panel1');
     // const [checked, setChecked] = React.useState(true);
     const handleCheck = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setChecked([event.target.checked]);
+        setChecked(event.target.checked);
         // setChecked([event.target.checked, checked[1]]);
         console.log(checked, `${tomare.tomareId}`)
         setDoc(doc(db, 'users', `${tomare.uid}`, 'tomare', `${tomare.tomareId}`), {
@@ -70,12 +70,13 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
         (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
             setExpanded(newExpanded ? panel : false);
         };
-    const [checked, setChecked] = React.useState([true, false]);
+    // const [checked, setChecked] = React.useState([true, false]);
+    const [checked, setChecked] = React.useState(tomare.checked);
 
 
     const handleChange2 = (event: React.ChangeEvent<HTMLInputElement>) => {
         // setChecked([event.target.checked, checked[1]]);
-        setChecked([checked[1]]);
+        // setChecked([checked[1]]);
         console.log(checked)
         setDoc(doc(db, 'users', user.uid, 'tomare', `${tomare.tomareId}`), {
             checked: { checked },
