@@ -70,7 +70,7 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
         (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
             setExpanded(newExpanded ? panel : false);
         };
-    const [checked, setChecked] = React.useState([true, false]);
+    const [checked, setChecked] = React.useState([0, 1]);
 
 
     const handleChange2 = (event: React.ChangeEvent<HTMLInputElement>) => {
