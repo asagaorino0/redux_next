@@ -56,13 +56,14 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
     const [expanded, setExpanded] = React.useState<string | false>('panel1');
     // const [checked, setChecked] = React.useState(true);
-    // const handleCheck = (event: React.ChangeEvent<HTMLInputElement>) => {
-    //     setChecked(event.target.checked);
-    //     console.log(checked)
-    //     setDoc(doc(db, 'users', user.uid, 'tomare', `${tomare.tomareId}`), {
-    //         checked: { checked },
-    //     }, { merge: true })
-    // };
+    const handleCheck = (event: React.ChangeEvent<HTMLInputElement>) => {
+        // setChecked(event.target.checked);
+        setChecked([event.target.checked, checked[1]]);
+        console.log(checked)
+        setDoc(doc(db, 'users', user.uid, 'tomare', `${tomare.tomareId}`), {
+            checked: { checked },
+        }, { merge: true })
+    };
     const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
     const user = useSelector(selectUser);
     const handleChange =
@@ -86,12 +87,12 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
                 expanded={expanded === 'panel1'}
                 onChange={handleChange('panel1')}
             >
-                {/* <Checkbox
-                    checked={tomare.checked}
+                <Checkbox
+                    checked={checked[tomare.checked]}
                     onChange={handleCheck}
                     inputProps={{ 'aria-label': 'controlled' }}
-                /> */}
-                <Checkbox checked={checked[tomare.checked]} onChange={handleChange2} />
+                />
+                {/* <Checkbox checked={checked[tomare.checked]} onChange={handleChange2} /> */}
 
                 <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
                     <Typography className={styles.grid}>{tomare.tomareId}:{tomare.yoyakuMenu} 　 <Stars star={tomare.star} starSize={16} textSize={12} />　chip:{tomare.chip}</Typography>
