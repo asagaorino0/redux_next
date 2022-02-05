@@ -41,7 +41,7 @@ const PageA_profile = () => {
     const dispatch = useDispatch();
     const user = useSelector(selectUser);
     // const [rogo, setRogo] = useState<string>('');
-    const [rogo, setRogo] = React.useState<string>(user.rogo);
+    const [logo, setLogo] = React.useState<string>(user.rogo);
     const [name, setName] = useState<string>('');
     const [icon, setIcon] = useState<string | undefined>('');
     const [menus, setMenus] = useState<any>([]);
@@ -123,10 +123,10 @@ const PageA_profile = () => {
                 <br />
                 <input type="text" onChange={(e) => setText(e.target.value)} />
                 <button onClick={sendLine}>送信</button> */}
-                <input type="file" name="example" onChange={(e) => setRogo(e.target.value)} />
-                {`${rogo}` &&
+                <input type="file" name="example" onChange={(e) => setLogo(e.target.value)} />
+                {`${user.rogo}` &&
                     <img
-                        src={`${rogo}`}
+                        src={logo}
                         alt=""
                         style={{ width: '80px', height: '80px' }}
                     />}
