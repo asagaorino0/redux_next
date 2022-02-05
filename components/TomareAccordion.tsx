@@ -67,7 +67,7 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
                 </AccordionSummary>
                 <AccordionDetails>
                     <Typography>
-                        <div className="flex justify-between ...">
+                        <div className="grid grid-cols-2 gap-2 place-content-between h-48 ...">
                             <div>
                                 {`${tomare.img_befor}`.length !== 0 &&
                                     <img
