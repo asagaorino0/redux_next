@@ -41,7 +41,7 @@ const PageA_profile = () => {
     const dispatch = useDispatch();
     const user = useSelector(selectUser);
     // const [rogo, setRogo] = useState<string>('');
-    const [logo, setLogo] = React.useState<string>(user.rogo);
+    const [logo, setLogo] = React.useState<string>(`${user.rogo}`);
     const [name, setName] = useState<string>('');
     const [icon, setIcon] = useState<string | undefined>('');
     const [menus, setMenus] = useState<any>([]);
