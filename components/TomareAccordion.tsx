@@ -54,12 +54,12 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 
 export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
     const [expanded, setExpanded] = React.useState<string | false>('panel1');
-    const [checked, setChecked] = React.useState(true);
+    const [checked, setChecked] = React.useState([true, false]);
     const handleCheck = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setChecked(event.target.checked);
+        setChecked([event.target.checked, event.target.checked]);
         console.log(checked)
         setDoc(doc(db, 'users', user.uid, 'tomare', `${tomare.tomareId}`), {
-            checked,
+            checked: { checked },
         }, { merge: true })
     };
     const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
