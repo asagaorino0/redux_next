@@ -40,7 +40,8 @@ const PageA_profile = () => {
     const router = useRouter();
     const dispatch = useDispatch();
     const user = useSelector(selectUser);
-    const [rogo, setRogo] = useState<string>('');
+    // const [rogo, setRogo] = useState<string>('');
+    const [rogo, setRogo] = React.useState<string>(user.rogo);
     const [name, setName] = useState<string>('');
     const [icon, setIcon] = useState<string | undefined>('');
     const [menus, setMenus] = useState<any>([]);
