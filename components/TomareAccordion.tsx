@@ -67,24 +67,23 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
                 </AccordionSummary>
                 <AccordionDetails>
                     <Typography>
-                        <div className="grid grid-cols-2 gap-2">
-                            <div>
-                                {`${tomare.img_befor}`.length !== 0 &&
-                                    <img
-                                        src={`${tomare.img_befor}`}
-                                        alt=""
-                                        style={{ width: '45%' }}
-                                    />}
-                                {user.o_befor_come !== 0 &&
-                                    `${tomare.come_befor}`.length !== 0 && `${tomare.come_befor}`
-                                }
-                            </div>
+                        <div className="flex justify-between ...">                            <div>
+                            {`${tomare.img_befor}`.length !== 0 &&
+                                <img
+                                    src={`${tomare.img_befor}`}
+                                    alt=""
+                                    style={{ width: '45%', margin: '0' }}
+                                />}
+                            {user.o_befor_come !== 0 &&
+                                `${tomare.come_befor}`.length !== 0 && `${tomare.come_befor}`
+                            }
+                        </div>
                             <div>
                                 {`${tomare.img_after}`.length !== 0 &&
                                     <img
                                         src={`${tomare.img_after}`}
                                         alt=""
-                                        style={{ width: '45%' }}
+                                        style={{ width: '45%', margin: '0' }}
                                     />}
                                 {user.o_after_come !== 0 &&
                                     `${tomare.come_after}`.length !== 0 && `${tomare.come_after}`
