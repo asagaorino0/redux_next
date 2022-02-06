@@ -47,11 +47,11 @@ const PageA = () => {
         setKyFile(e.target.result);
       };
       reader.readAsDataURL(file);
-      handleUpload(file)
+      handleUpload(kyFile)
     }
   };
 
-  const handleUpload = async (file: any) => {
+  const handleUpload = async (kyFile: any) => {
     // // アップロード処理
     // // const storage = getStorage();
     // // const uploadTask = ref(storage, kyFile);
@@ -66,11 +66,11 @@ const PageA = () => {
     // //     .put(kyFile[0]);
     // // uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED);
     // // console.log('src:', src);
-    const storageRef = ref(storage, file);
+    const storageRef = ref(storage, kyFile);
 
     // 'file' comes from the Blob or File API
-    uploadBytes(storageRef, file).then((snapshot) => {
-      console.log('Uploaded a blob or file!', file);
+    uploadBytes(storageRef, kyFile).then((snapshot) => {
+      console.log('Uploaded a blob or file!', kyFile);
     });
 
   };
