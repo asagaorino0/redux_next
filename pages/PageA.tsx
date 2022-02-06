@@ -43,10 +43,10 @@ const PageA = () => {
       const file = e.target.files[0];
       const reader = new FileReader();
       reader.onload = (e: any) => {
-        console.log(e.target.files);
+        console.log(e.target.result);
         setKyFile(e.target.result);
         console.log('kyFile:', kyFile);
-        handleUpload(e.target.files)
+        handleUpload(kyFile)
       };
       reader.readAsDataURL(file);
     }
@@ -61,7 +61,7 @@ const PageA = () => {
     // mountainsRef.fullPath === mountainImagesRef.fullPath;
 
 
-    const storageRef = ref(storage, kyFile);
+    const storageRef = ref(storage, `${kyFile}`);
     // 'file' comes from the Blob or File API
     uploadBytes(storageRef, kyFile).then((snapshot) => {
       console.log('Uploaded a blob or file!');
