@@ -52,20 +52,19 @@ const PageA = () => {
   };
 
   const handleUpload = async (kyFile: any) => {
-    //   // // アップロード処理
-    //   // // const storage = getStorage();
-    //   // // const uploadTask = ref(storage, kyFile);
-    //   // // Create a reference to 'mountains.jpg'
-    //   // const mountainsRef = ref(storage, kyFile);
-    //   // // Create a reference to 'images/mountains.jpg'
-    //   // const mountainImagesRef = ref(storage, `images/${kyFile}`);
-    //   // // While the file names are the same, the references point to different files
-    //   // mountainsRef.name === mountainImagesRef.name;           // true
-    //   // mountainsRef.fullPath === mountainImagesRef.fullPath;
-    //   // //     .ref(`/images/${kyFile[0].name}`)
-    //   // //     .put(kyFile[0]);
-    //   // // uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED);
-    //   // // console.log('src:', src);
+
+    // const uploadTask = ref(storage, kyFile);
+    // Create a reference to 'mountains.jpg'
+    const mountainsRef = ref(storage, kyFile);
+    // Create a reference to 'images/mountains.jpg'
+    const mountainImagesRef = ref(storage, kyFile);
+    // While the file names are the same, the references point to different files
+    mountainsRef.name === mountainImagesRef.name;           // true
+    mountainsRef.fullPath === mountainImagesRef.fullPath;
+    //     .ref(`/images/${kyFile[0].name}`)
+    //     .put(kyFile[0]);
+    // uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED);
+    // console.log('src:', src);
     //   const storageRef = ref(storage, kyFile);
 
     //   // 'file' comes from the Blob or File API
@@ -82,6 +81,7 @@ const PageA = () => {
     uploadBytes(storageRef, kyFile).then((snapshot) => {
       console.log('Uploaded a blob or file!');
     });
+
     // const starsRef = ref(storage, kyFile);
     // // Get the download URL
     // getDownloadURL(starsRef)
