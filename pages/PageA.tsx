@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { store } from '../src/app/store';
 import { Provider } from 'react-redux';
 import { storage } from "../src/firebase";
-import { ref, uploadBytes } from "firebase/storage";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import dynamic from 'next/dynamic';
 import PageA_profile from './PageA_profile';
 import styles from '../styles/Home.module.css';
@@ -52,28 +52,56 @@ const PageA = () => {
   };
 
   const handleUpload = async (kyFile: any) => {
-    // // アップロード処理
-    // // const storage = getStorage();
-    // // const uploadTask = ref(storage, kyFile);
-    // // Create a reference to 'mountains.jpg'
-    // const mountainsRef = ref(storage, kyFile);
-    // // Create a reference to 'images/mountains.jpg'
-    // const mountainImagesRef = ref(storage, `images/${kyFile}`);
-    // // While the file names are the same, the references point to different files
-    // mountainsRef.name === mountainImagesRef.name;           // true
-    // mountainsRef.fullPath === mountainImagesRef.fullPath;
-    // //     .ref(`/images/${kyFile[0].name}`)
-    // //     .put(kyFile[0]);
-    // // uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED);
-    // // console.log('src:', src);
-    const storageRef = ref(storage, kyFile);
+    //   // // アップロード処理
+    //   // // const storage = getStorage();
+    //   // // const uploadTask = ref(storage, kyFile);
+    //   // // Create a reference to 'mountains.jpg'
+    //   // const mountainsRef = ref(storage, kyFile);
+    //   // // Create a reference to 'images/mountains.jpg'
+    //   // const mountainImagesRef = ref(storage, `images/${kyFile}`);
+    //   // // While the file names are the same, the references point to different files
+    //   // mountainsRef.name === mountainImagesRef.name;           // true
+    //   // mountainsRef.fullPath === mountainImagesRef.fullPath;
+    //   // //     .ref(`/images/${kyFile[0].name}`)
+    //   // //     .put(kyFile[0]);
+    //   // // uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED);
+    //   // // console.log('src:', src);
+    //   const storageRef = ref(storage, kyFile);
 
-    // 'file' comes from the Blob or File API
-    uploadBytes(storageRef, kyFile).then((snapshot) => {
-      console.log('Uploaded a blob or file!', kyFile);
-    });
+    //   // 'file' comes from the Blob or File API
+    //   uploadBytes(storageRef, kyFile).then((snapshot) => {
+    //     console.log('Uploaded a blob or file!', kyFile);
+    //   });
 
-  };
+    // };
+
+    const starsRef = ref(storage, kyFile);
+
+    // Get the download URL
+    getDownloadURL(starsRef)
+      .then((url) => {
+        // Insert url into an <img> tag to "download"
+      })
+      .catch((error) => {
+        // A full list of error codes is available at
+        // https://firebase.google.com/docs/storage/web/handle-errors
+        switch (error.code) {
+          case 'storage/object-not-found':
+            // File doesn't exist
+            break;
+          case 'storage/unauthorized':
+            // User doesn't have permission to access the object
+            break;
+          case 'storage/canceled':
+            // User canceled the upload
+            break;
+          // ...
+          case 'storage/unknown':
+            // Unknown error occurred, inspect the server response
+            break;
+        }
+      });
+  }
 
   // document.addEventListener("DOMContentLoaded", () => {
   //     const title = document.querySelectorAll('.js-accordion-title');
