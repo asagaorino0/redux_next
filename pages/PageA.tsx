@@ -6,11 +6,11 @@ import { store } from '../src/app/store';
 import { Provider } from 'react-redux';
 import dynamic from 'next/dynamic';
 import PageA_profile from './PageA_profile';
-import styles from '../styles/Home.module.css'
+import styles from '../styles/Home.module.css';
 import SimpleAccordion from '../components/SimpleAccordion';
 const PageA = () => {
-  const PageAA = dynamic(() => import('../src/PageAA'), { ssr: false })
-  const PageLogin = dynamic(() => import('../src/PageLogin'), { ssr: false });
+  // const PageAA = dynamic(() => import('../src/PageAA'), { ssr: false });
+  // const PageLogin = dynamic(() => import('../src/PageLogin'), { ssr: false });
 
   // const [name, setName] = useState<string>('');
   // const [age, setAge] = useState<number>(0);
@@ -19,19 +19,34 @@ const PageA = () => {
   // const toPageA = () => {
   //     router.push('/')
   // }
-  const filename = "https://firebasestorage.googleapis.com/v0/b/next-app-db888.appspot.com/o/konoyubi.jpg?alt=media&token=99cf4f45-ea84-45cd-af83-0052a86f04adhttps://firebasestorage.googleapis.com/v0/b/next-app-db888.appspot.com/o/konoyubi.jpg?alt=media&token=99cf4f45-ea84-45cd-af83-0052a86f04ad"
+  const filename =
+    'https://firebasestorage.googleapis.com/v0/b/next-app-db888.appspot.com/o/konoyubi.jpg?alt=media&token=99cf4f45-ea84-45cd-af83-0052a86f04adhttps://firebasestorage.googleapis.com/v0/b/next-app-db888.appspot.com/o/konoyubi.jpg?alt=media&token=99cf4f45-ea84-45cd-af83-0052a86f04ad';
   const detectText = async (fileName: any) => {
     const vision = require('@google-cloud/vision');
     const client = new vision.ImageAnnotatorClient();
     const [result] = await client.textDetection(fileName);
     const detections = result.textAnnotations;
     console.log('Text:');
-    detections.forEach((text: any) => { console.log(text) }
-    )
-  }
+    detections.forEach((text: any) => {
+      console.log(text);
+    });
+  };
+
+  console.log('test==============');
   const [rogo, setRogo] = useState<string>('');
+  const [kyFile, setKyFile] = useState();
 
-
+  const onFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        console.log(e.target.result);
+        setKyFile(e.target.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   // document.addEventListener("DOMContentLoaded", () => {
   //     const title = document.querySelectorAll('.js-accordion-title');
@@ -79,23 +94,27 @@ const PageA = () => {
         {/* {user.name}/{user.age} */}
         <React.StrictMode>
           <Provider store={store}>
-            <PageA_profile />
+            {/* <PageA_profile /> */}
             {/* <SimpleAccordion /> */}
-            <input type="file" name="example" onChange={(e) => setRogo(e.target.value)} />
+            <input
+              type="file"
+              name="example"
+              onChange={(e) => setRogo(e.target.value)}
+            />
             {/* {`${rogo}` && */}
             <img
               src={`${rogo}`}
               alt=""
               style={{ width: '80px', height: '80px' }}
             />
+            <input type="file" onChange={onFileInputChange} />
+            <img src={kyFile} />
             <button onClick={detectText}>quickstart</button>
             {/* } */}
           </Provider>
         </React.StrictMode>
       </h1>
-
-
     </div>
   );
-}
+};
 export default PageA;
