@@ -45,9 +45,9 @@ const PageA = () => {
       reader.onload = (e: any) => {
         console.log(e.target.result);
         setKyFile(e.target.result);
+        handleUpload(e.target.result)
       };
       reader.readAsDataURL(file);
-      handleUpload(kyFile)
     }
   };
 
