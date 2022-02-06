@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from "react";
 import { addUser, selectUser } from '../src/features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
@@ -70,6 +70,69 @@ const PageA = () => {
   //         item.classList.remove('is-open');
   //     });
   // }
+  const [myFiles, setMyFiles] = useState([]);
+  const [clickable, setClickable] = useState(false);
+  const [src, setSrc] = useState<string | ArrayBuffer | null>("");
+  const onDrop = useCallback(async (acceptedFiles: never) => {
+    console.log('acceptedFiles', acceptedFiles)
+    if (!acceptedFiles[0]) return;
+    try {
+      setMyFiles([...acceptedFiles]);
+      setClickable(true);
+      handlePreview(acceptedFiles);
+    } catch (error) {
+      alert(error);
+    }
+  }, []);
+  //   const handleUpload = async (accepterdImg) => {
+  //     try {
+  //         // アップロード処理
+  //         const uploadTask = storage
+  //             .ref(`/images/${myFiles[0].name}`)
+  //             .put(myFiles[0]);
+  //         // uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED);
+  //         // console.log('src:', src);
+  //     }
+  //     catch (error) {
+  //         //     console.log("エラーキャッチ", error);
+  //     }
+  // };
+  const handlePreview = (files: any) => {
+    if (files === null) {
+      return;
+    }
+    const file = files[0];
+    if (file === null) {
+      return;
+    }
+    var reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      setSrc(reader.result);
+      console.log(src)
+    };
+  };
+  // // const selectedFile = document.getElementById('input').files[0];
+  // const inputElement = document.getElementById("input");
+  // inputElement.addEventListener("change", handleFiles, false);
+  // function handleFiles() {
+  //   const fileList = files; /* ファイルリストを処理するコードがここに入る */
+  // }
+  // function handleFiles(files) {
+  //   for (let i = 0; i < files.length; i++) {
+  //     const file = files[i];
+
+  //     if (!file.type.startsWith('image/')){ continue }
+
+  //     const img = document.createElement("img");
+  //     img.classList.add("obj");
+  //     img.file = file;
+  //     preview.appendChild(img); // 「プレビュー」とは、コンテンツが表示される div 出力のことを想定しています。
+  //     const reader = new FileReader();
+  //     reader.onload = (function(aImg) { return function(e) { aImg.src = e.target.result; }; })(img);
+  //     reader.readAsDataURL(file);
+  //   }
+  // }
 
   return (
     <div className="App">
@@ -81,13 +144,45 @@ const PageA = () => {
           <Provider store={store}>
             <PageA_profile />
             {/* <SimpleAccordion /> */}
-            <input type="file" name="example" onChange={(e) => setRogo(e.target.value)} />
+            <input type="file" name="logo" onChange={onDrop} />
             {/* {`${rogo}` && */}
             <img
-              src={`${rogo}`}
+              src={`${src}`}
               alt=""
               style={{ width: '80px', height: '80px' }}
             />
+            <div >Upload</div>
+            {/* <input type="file" name="logo" onChange={handleUpload} /> */}
+            {/* <p>File should be Jpeg, Png,...</p> */}
+            {/* <div {...getRootProps()}> */}
+            {/* <input {...getInputProps()} /> */}
+            {/* {myFiles.length === 0 ? (
+                        <p>Drag&Drop your images here</p>
+                    ) : ( */}
+            <div>
+              {myFiles.map((file) => (
+                // <React.Fragment key={file.name}>
+                <React.Fragment >
+                  <img
+                    src={`${src}`}
+                    alt=""
+                    style={{ width: '80px', height: '80px' }}
+                  />
+                  {/* {src && <img src={src} />} */}
+                </React.Fragment>
+              ))}
+            </div>
+            {/* )} */}
+            {/* </div> */}
+
+
+
+
+
+
+
+
+
             <button onClick={detectText}>quickstart</button>
             {/* } */}
           </Provider>
