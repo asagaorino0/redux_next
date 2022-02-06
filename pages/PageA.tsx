@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { store } from '../src/app/store';
 import { Provider } from 'react-redux';
 import { storage } from "../src/firebase";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import dynamic from 'next/dynamic';
 import PageA_profile from './PageA_profile';
 import styles from '../styles/Home.module.css';
@@ -45,10 +45,19 @@ const PageA = () => {
       reader.onload = (e: any) => {
         console.log(e.target.result);
         setKyFile(e.target.result);
-        console.log('kyFile:', kyFile);
-        handleUpload(kyFile)
+        console.log('kyFile:', file);
+        // handleUpload(e.target.result)
       };
       reader.readAsDataURL(file);
+      // const storage = getStorage();
+      const storageRef = ref(storage, file.name);
+      // 'file' comes from the Blob or File API
+      uploadBytes(storageRef, file).then((snapshot) => {
+        console.log('Uploaded a blob or file!');
+      });
+
+
+
     }
   };
 
@@ -60,7 +69,7 @@ const PageA = () => {
     // mountainsRef.name === mountainImagesRef.name;           // true
     // mountainsRef.fullPath === mountainImagesRef.fullPath;
 
-
+    // const storage = getStorage();
     const storageRef = ref(storage, `${kyFile}`);
     // 'file' comes from the Blob or File API
     uploadBytes(storageRef, kyFile).then((snapshot) => {
@@ -205,6 +214,8 @@ const PageA = () => {
             <input type="file" onChange={onFileInputChange} />
             <img src={kyFile} />
             <button onClick={handleUpload}>Upload</button>
+            <br />
+            {kyFile}
             <button onClick={detectText}>quickstart</button>            {/* } */}
           </Provider>
         </React.StrictMode>
