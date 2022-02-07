@@ -5,8 +5,9 @@ import { useRouter } from 'next/router';
 import { store } from '../src/app/store';
 import { Provider } from 'react-redux';
 import { storage } from "../src/firebase";
-import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { getStorage, ref, uploadBytes, getDownloadURL, uploadString } from "firebase/storage";
 import dynamic from 'next/dynamic';
+import Resizer from 'react-image-file-resizer';
 import PageA_profile from './PageA_profile';
 import styles from '../styles/Home.module.css';
 import SimpleAccordion from '../components/SimpleAccordion';
@@ -36,7 +37,7 @@ const PageA = () => {
 
   console.log('test==============');
   const [rogo, setRogo] = useState<string>('');
-  const [kyFile, setKyFile] = useState();
+  const [kyFile, setKyFile] = useState<string>('');
 
   const onFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -45,12 +46,12 @@ const PageA = () => {
       reader.onload = (e: any) => {
         console.log(e.target.result);
         setKyFile(e.target.result);
-        console.log('kyFile:', file);
+        console.log('kyFile:', kyFile);
         // handleUpload(e.target.result)
       };
       reader.readAsDataURL(file);
       // const storage = getStorage();
-      const storageRef = ref(storage, file.name);
+      const storageRef = ref(storage, kyFile);
       // 'file' comes from the Blob or File API
       uploadBytes(storageRef, file).then((snapshot) => {
         console.log('Uploaded a blob or file!');
@@ -61,27 +62,34 @@ const PageA = () => {
     }
   };
 
-  const handleUpload = async (kyFile: any) => {
+  const handleUpload = async () => {
 
-
-    // const mountainsRef = ref(storage, kyFile);
-    // const mountainImagesRef = ref(storage, kyFile);
-    // mountainsRef.name === mountainImagesRef.name;           // true
-    // mountainsRef.fullPath === mountainImagesRef.fullPath;
-
-    // const storage = getStorage();
-    const storageRef = ref(storage, `${kyFile}`);
-    // 'file' comes from the Blob or File API
-    uploadBytes(storageRef, kyFile).then((snapshot) => {
-      console.log('Uploaded a blob or file!');
+    console.log(kyFile)
+    const storageRef = ref(storage, `/images/${name}`);
+    uploadString(storageRef, kyFile, 'data_url').then((snapshot) => {
+      console.log('Uploaded a data_url string!');
     });
 
-    // const starsRef = ref(storage, kyFile);
-    // // Get the download URL
-    // getDownloadURL(starsRef)
-    //   .then((url) => {
-    //     // Insert url into an <img> tag to "download"
-    //   })
+    // // const storage = getStorage();
+    // // const storageRef = ref(storage, kyFile);
+    // // // 'file' comes from the Blob or File API
+    // // uploadBytes(storageRef, e.target.files).then((snapshot) => {
+    // //   console.log('Uploaded a blob or file!');
+    // const storageRef = ref(storage, file.name);
+    // const message4: string = kyFile;
+    // uploadString(storageRef, message4, file).then((snapshot) => {
+    //   console.log('Uploaded a data_url string!');
+    // });
+
+
+    // });
+
+    const starsRef = ref(storage, kyFile);
+    // Get the download URL
+    getDownloadURL(starsRef)
+      .then((url) => {
+        // Insert url into an <img> tag to "download"
+      })
     //   .catch((error) => {
     //     // A full list of error codes is available at
     //     // https://firebase.google.com/docs/storage/web/handle-errors
@@ -191,7 +199,36 @@ const PageA = () => {
   // //     reader.readAsDataURL(file);
   // //   }
   // // }
+  const [name, setName] = useState('')
+  const [thumbnail, setThumbnail] = useState<string | null>(null)
 
+  const resizeFile = (file: Blob): Promise<string> => {
+    return new Promise((resolve) => {
+      Resizer.imageFileResizer(
+        file,
+        300,
+        300,
+        'JPEG',
+        100,
+        0,
+        (uri) => {
+          resolve(uri as string)
+        },
+        'base64'
+      )
+    })
+  }
+
+  const onChange = async (event: any) => {
+    try {
+      const file = event.target.files[0]
+      const image = await resizeFile(file)
+      setKyFile(image)
+      setName(file.name)
+    } catch (err) {
+      console.error(err)
+    }
+  }
   return (
     <div className="App">
       <span>pageA:プロフィール登録</span>
@@ -209,8 +246,9 @@ const PageA = () => {
               onChange={(e) => setRogo(e.target.value)}
             /> */}
             {/* {`${rogo}` && */}
-            <img src={`${kyFile}`} alt="" style={{ width: '80%', height: '80%' }} />
-
+            {/* <img src={`${kyFile}`} alt="" style={{ width: '80%', height: '80%' }} /> */}
+            <input type="file" onChange={onChange} />
+            {kyFile && <img src={kyFile} alt={name} />}
             <input type="file" onChange={onFileInputChange} />
             <img src={kyFile} />
             <button onClick={handleUpload}>Upload</button>
