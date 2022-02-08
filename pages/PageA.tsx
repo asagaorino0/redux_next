@@ -41,42 +41,17 @@ const PageA = () => {
   };
 
   const handleUpload = async () => {
+    console.log(kyFile);
     const storageRef = ref(storage, `/images/${name}`);
     uploadString(storageRef, kyFile, 'data_url').then((snapshot) => {
       console.log('Uploaded a data_url string!');
     })
-      .catch((error) => {
-        // Handle any errors
+      .catch((err) => {
+        console.error(err)
+        alert("画像のみアップロードできます")
       });
   }
   const [name, setName] = useState('')
-  const resizeFile = (file: Blob): Promise<string> => {
-    return new Promise((resolve) => {
-      Resizer.imageFileResizer(
-        file,
-        300,
-        300,
-        'JPEG',
-        100,
-        0,
-        (uri) => {
-          resolve(uri as string)
-        },
-        'base64'
-      )
-    })
-  }
-
-  const onChange = async (event: any) => {
-    try {
-      const file = event.target.files[0]
-      const image = await resizeFile(file)
-      setKyFile(image)
-      setName(file.name)
-    } catch (err) {
-      console.error(err)
-    }
-  }
   return (
     <div className="App">
       <span>pageA:プロフィール登録</span>
@@ -87,21 +62,15 @@ const PageA = () => {
           <Provider store={store}>
             {/* <PageA_profile /> */}
             {/* <SimpleAccordion /> */}
-
-            {/* <input
-              type="file"
-              name="example"
-              onChange={(e) => setRogo(e.target.value)}
-            /> */}
-            {/* {`${rogo}` && */}
-            {/* <img src={`${kyFile}`} alt="" style={{ width: '80%', height: '80%' }} /> */}
-            <input type="file" onChange={onChange} />
-            {kyFile && <img src={kyFile} alt={name} />}
             <input type="file" onChange={onFileInputChange} />
-            <img src={kyFile} />
-            <button onClick={handleUpload}>Upload</button>
+            {`${kyFile}`.length !== 0 &&
+              <div>
+                <img src={kyFile} alt={name} />
+                <br />
+                <button onClick={handleUpload}>Upload</button>
+              </div>
+            }
             <br />
-            {name}
             <button onClick={detectText}>quickstart</button>            {/* } */}
           </Provider>
         </React.StrictMode>
