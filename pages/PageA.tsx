@@ -10,6 +10,9 @@ import dynamic from 'next/dynamic';
 import styles from '../styles/Home.module.css';
 import FileUpload from '../components/FileUpload';
 const PageA = () => {
+  const PageLogin = dynamic(() => import('../src/PageLogin'), { ssr: false });
+  const PageA_profile = dynamic(() => import('./PageA_profile'), { ssr: false });
+
   const filename =
     'https://firebasestorage.googleapis.com/v0/b/next-app-db888.appspot.com/o/konoyubi.jpg?alt=media&token=99cf4f45-ea84-45cd-af83-0052a86f04adhttps://firebasestorage.googleapis.com/v0/b/next-app-db888.appspot.com/o/konoyubi.jpg?alt=media&token=99cf4f45-ea84-45cd-af83-0052a86f04ad';
   const detectText = async (fileName: any) => {
@@ -30,7 +33,7 @@ const PageA = () => {
       <h1>
         <React.StrictMode>
           <Provider store={store}>
-            {/* <PageA_profile /> */}
+            <PageA_profile />
             <FileUpload />
             {/* <input type="file" onChange={onFileInputChange} />
             {`${kyFile}`.length !== 0 &&
