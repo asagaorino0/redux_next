@@ -10,9 +10,9 @@ import { TomareState } from "../src/types/tomare";
 import { getStorage, ref, uploadBytes, getDownloadURL, uploadString } from "firebase/storage";
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 
-const TomareFileUpload = ({ tomare, tomareId, uid }: { tomare: string, tomareId: string, uid: string }) => {
+const TomareFileUpload = ({ tomare, tomareId, uid, label }: { tomare: string, tomareId: string, uid: string, label: string }) => {
     const user = useSelector(selectUser);
-    console.log('test==============', `${tomare}`);//あいさつかなぁ
+    console.log('test==============', [label]);//あいさつかなぁ
     const [kyFile, setKyFile] = useState<string>('');
     const onFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files[0]) {
@@ -45,7 +45,7 @@ const TomareFileUpload = ({ tomare, tomareId, uid }: { tomare: string, tomareId:
             setKyFile('')
         }).catch((err) => { console.error(err) });
     }
-    const upload_file = (url: string) => { setDoc(doc(db, 'users', `${uid}`, 'tomare', `${tomareId}`), { tomare: url, }, { merge: true }) }
+    const upload_file = (url: string) => { setDoc(doc(db, 'users', `${uid}`, 'tomare', `${tomareId}`), { [label]: { url } }, { merge: true }) }
     const [name, setName] = useState('')
     return (
         <div className="App">
