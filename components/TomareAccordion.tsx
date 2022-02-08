@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { styled } from '@mui/material/styles';
 import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
 import MuiAccordion, { AccordionProps } from '@mui/material/Accordion';
@@ -14,7 +14,7 @@ import { addUser, selectUser } from '../src/features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { Stars } from "./Star";
 import styles from '../styles/Home.module.css';
-import { doc, setDoc } from 'firebase/firestore';
+import { getFirestore, getDocs, collection, collectionGroup, query, where, onSnapshot, doc, setDoc, Timestamp, addDoc } from 'firebase/firestore'
 import { db } from "../src/firebase";
 import TomareFileUpload from '../components/TomareFileUpload';
 
@@ -83,6 +83,7 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
             checked: { checked },
         }, { merge: true })
     };
+
 
     return (
         <div>

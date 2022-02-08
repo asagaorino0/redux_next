@@ -70,14 +70,28 @@ const PageA_profile = () => {
         fetchTomare()
         // fetchTargetTomare()
     }
+    // const fetchTomare = async () => {
+    //     const q = query(collection(db, "users", user.uid, 'tomare'), where("uid", "==", user.uid));
+    //     // const q = query(collection(db, "users", user.uid, 'tomare'), where("uid", "==", user.uid), orderBy("gappi"));
+    //     const snapshot = await getDocs(q)
+    //     const tomareData = snapshot.docs.map(
+    //         (docT: any) => ({ ...docT.data() } as TomareState))
+    //     dispatch(addTomare(tomareData))
+    //     setTomare(tomareData)
+    // }
     const fetchTomare = async () => {
         const q = query(collection(db, "users", user.uid, 'tomare'), where("uid", "==", user.uid));
-        // const q = query(collection(db, "users", user.uid, 'tomare'), where("uid", "==", user.uid), orderBy("gappi"));
-        const snapshot = await getDocs(q)
-        const tomareData = snapshot.docs.map(
-            (docT: any) => ({ ...docT.data() } as TomareState))
-        dispatch(addTomare(tomareData))
-        setTomare(tomareData)
+        const snapshot = onSnapshot(q, (querySnapshot) => {
+            // const snapshot = await getDocs(q)
+            // const tomareData = snapshot.docs.map(
+            //     (docT: any) => ({ ...docT.data() } as TomareState))
+            // setTomare(
+            const tomareData = querySnapshot.docs.map(
+                (doc) => ({ ...doc.data() } as TomareState))
+            // );
+            dispatch(addTomare(tomareData))
+            setTomare(tomareData)
+        });
     }
 
     const date = new Date()
