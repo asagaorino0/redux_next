@@ -10,9 +10,10 @@ import { TomareState } from "../src/types/tomare";
 import { getStorage, ref, uploadBytes, getDownloadURL, uploadString } from "firebase/storage";
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 
-const TomareFileUpload = ({ tomare }: { tomare: string }) => {
-    console.log('test==============');//あいさつかなぁ
+const TomareFileUpload = ({ tomare, tomareId }: { tomare: string, tomareId: string }) => {
     const user = useSelector(selectUser);
+    console.log('test==============', `${user.uid}`);//あいさつかなぁ
+
     const [kyFile, setKyFile] = useState<string>('');
     const onFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files[0]) {
@@ -26,16 +27,16 @@ const TomareFileUpload = ({ tomare }: { tomare: string }) => {
         }
     };
 
-    const handleBefor = async () => {
-        const storageRef = ref(storage, `/images/${user.uid}/${name}`);
-        const starsRef = ref(storage, `/images/${user.uid}/${name}`);
-        uploadString(storageRef, kyFile, 'data_url').then((snapshot) => {
-            getDownloadURL(starsRef)
-                .then((url) => { upload_befor(url) })
-            setKyFile('')
-        }).catch((err) => { console.error(err) });
-    }
-    const upload_befor = (url: string) => { setDoc(doc(db, 'users', `${user.uid}`, 'img'), { img_befor: url, }, { merge: true }) }
+    // const handleBefor = async () => {
+    //     const storageRef = ref(storage, `/images/${user.uid}/${name}`);
+    //     const starsRef = ref(storage, `/images/${user.uid}/${name}`);
+    //     uploadString(storageRef, kyFile, 'data_url').then((snapshot) => {
+    //         getDownloadURL(starsRef)
+    //             .then((url) => { upload_befor(url) })
+    //         setKyFile('')
+    //     }).catch((err) => { console.error(err) });
+    // }
+    // const upload_befor = (url: string) => { setDoc(doc(db, 'users', `${user.uid}`, 'tomare',`${tomareId}`), { img_befor: url, }, { merge: true }) }
     const handleUpload = async () => {
         const storageRef = ref(storage, `/images/${user.uid}/${name}`);
         const starsRef = ref(storage, `/images/${user.uid}/${name}`);
@@ -45,11 +46,11 @@ const TomareFileUpload = ({ tomare }: { tomare: string }) => {
             setKyFile('')
         }).catch((err) => { console.error(err) });
     }
-    const upload_file = (url: string) => { setDoc(doc(db, 'users', `${user.uid}`, 'img'), { tomare: url, }, { merge: true }) }
+    const upload_file = (url: string) => { setDoc(doc(db, 'users', `${user.uid}`, 'tomare', `${tomareId}`), { tomare: url, }, { merge: true }) }
     const [name, setName] = useState('')
     return (
         <div className="App">
-            <span>uploadコーナー</span>
+            {/* <span>uploadコーナー</span> */}
             <br />
             <h1>
                 <React.StrictMode>
