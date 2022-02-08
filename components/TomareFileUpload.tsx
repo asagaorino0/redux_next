@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { store } from '../src/app/store';
 import { Provider } from 'react-redux';
 import { storage, db } from "../src/firebase";
-import { doc, setDoc } from 'firebase/firestore';
+import { getFirestore, getDocs, collection, collectionGroup, query, where, onSnapshot, doc, setDoc, Timestamp, addDoc } from 'firebase/firestore'
 import { TomareState } from "../src/types/tomare";
 import { getStorage, ref, uploadBytes, getDownloadURL, uploadString } from "firebase/storage";
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
@@ -43,10 +43,22 @@ const TomareFileUpload = ({ tomare, tomareId, uid, label }: { tomare: string, to
             getDownloadURL(starsRef)
                 .then((url) => { upload_file(url) })
             setKyFile('')
+            fetchTomare(tomareId)
         }).catch((err) => { console.error(err) });
     }
     const upload_file = (url: string) => { setDoc(doc(db, 'users', `${uid}`, 'tomare', `${tomareId}`), { [label]: url }, { merge: true }) }
     const [name, setName] = useState('')
+    const [newTomare, setNewTomare] = useState<any>('')
+    const fetchTomare = async (tomareId: string) => {
+        const q = query(collectionGroup(db, 'tomare'), where("tomareId", "==", `${tomareId}`));
+        const snapshot = onSnapshot(q, (querySnapshot) => {
+            setNewTomare(
+                querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+            );
+            console.log('chat:', newTomare);
+        });
+        return snapshot;
+    };
     return (
         <div className="App">
             {/* <span>uploadコーナー</span> */}
