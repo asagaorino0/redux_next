@@ -45,7 +45,7 @@ const TomareFileUpload = ({ tomare, tomareId, uid, label }: { tomare: string, to
             setKyFile('')
         }).catch((err) => { console.error(err) });
     }
-    const upload_file = (url: string) => { setDoc(doc(db, 'users', `${uid}`, 'tomare', `${tomareId}`), { [label]: { url } }, { merge: true }) }
+    const upload_file = (url: string) => { setDoc(doc(db, 'users', `${uid}`, 'tomare', `${tomareId}`), { [label]: url }, { merge: true }) }
     const [name, setName] = useState('')
     return (
         <div className="App">
