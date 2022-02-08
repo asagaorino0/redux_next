@@ -13,7 +13,7 @@ import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 const TomareFileUpload = ({ tomare, tomareId }: { tomare: string, tomareId: string }) => {
     const user = useSelector(selectUser);
     console.log('test==============', `${user.uid}`);//あいさつかなぁ
-
+    console.log('test==============', user);//あいさつかなぁ
     const [kyFile, setKyFile] = useState<string>('');
     const onFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files[0]) {
