@@ -16,6 +16,7 @@ import { Stars } from "./Star";
 import styles from '../styles/Home.module.css';
 import { doc, setDoc } from 'firebase/firestore';
 import { db } from "../src/firebase";
+import TomareFileUpload from '../components/TomareFileUpload';
 
 const Accordion = styled((props: AccordionProps) => (
     <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -109,9 +110,13 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
                                     alt=""
                                     style={{ width: '98%', margin: '0' }}
                                 />}
+                            {`${tomare.img_befor}`.length === 0 &&
+                                <TomareFileUpload tomare={tomare.img_befor} key={tomare.tomareId} />
+                            }
                             {user.o_befor_come !== 0 &&
                                 `${tomare.come_befor}`.length !== 0 && `${tomare.come_befor}`
                             }
+
                         </div>
                             <div>
                                 {`${tomare.img_after}`.length !== 0 &&
@@ -120,6 +125,9 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
                                         alt=""
                                         style={{ width: '98%', margin: '0' }}
                                     />}
+                                {`${tomare.img_after}`.length === 0 &&
+                                    <TomareFileUpload tomare={tomare.img_after} key={tomare.tomareId} />
+                                }
                                 {user.o_after_come !== 0 &&
                                     `${tomare.come_after}`.length !== 0 && `${tomare.come_after}`
                                 }

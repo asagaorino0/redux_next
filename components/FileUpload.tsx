@@ -26,28 +26,14 @@ const FileUpload = () => {
     };
 
     const handleUpload = async () => {
-        // console.log(kyFile);
         const storageRef = ref(storage, `/images/${name}`);
         const starsRef = ref(storage, `/images/${name}`);
         uploadString(storageRef, kyFile, 'data_url').then((snapshot) => {
-            console.log('Uploaded a data_url string!', storageRef.root,);
-            console.log('Uploaded a data_url string!');
-            // console.log('Uploaded a data_url string!', storageRef.bucket);
-
-            getDownloadURL(starsRef)
-                .then((url) => {
-                    console.log('Downloaded url:', url);
-                    setDoc(doc(db, 'users', user.uid, 'img'), {
-                        img_befor: { url },
-                    }, { merge: true })
-                })
+            getDownloadURL(starsRef).then((url) => { upStore_File(url) })
             setKyFile('')
-        }).catch((err) => {
-            console.error(err)
-            // alert("画像のみアップロードできます")
-        });
-
+        }).catch((err) => { console.error(err) });
     }
+    const upStore_File = (url: string) => { setDoc(doc(db, 'users', 'img'), { img: url, }, { merge: true }) }
     const [name, setName] = useState('')
     return (
         <div className="App">
