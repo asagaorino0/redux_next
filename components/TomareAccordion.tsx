@@ -103,21 +103,22 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
                 <AccordionDetails>
                     <Typography>
                         {/* <div className="flex justify-between ...">    */}
-                        <div className="flex justify-evenly ...">                         <div>
-                            {`${tomare.img_befor}`.length !== 0 &&
-                                <img
-                                    src={`${tomare.img_befor}`}
-                                    alt=""
-                                    style={{ width: '98%', margin: '0' }}
-                                />}
-                            {`${tomare.img_befor}`.length === 0 &&
-                                <TomareFileUpload tomare={tomare.img_befor} tomareId={tomare.tomareId} uid={tomare.uid} key={tomare.tomareId} />
-                            }
-                            {user.o_befor_come !== 0 &&
-                                `${tomare.come_befor}`.length !== 0 && `${tomare.come_befor}`
-                            }
+                        <div className="flex justify-evenly ...">
+                            <div>
+                                {`${tomare.img_befor}`.length !== 0 &&
+                                    <img
+                                        src={`${tomare.img_befor}`}
+                                        alt=""
+                                        style={{ width: '98%', margin: '0' }}
+                                    />}
+                                {`${tomare.img_befor}`.length === 0 &&
+                                    <TomareFileUpload tomare={tomare.img_befor} tomareId={tomare.tomareId} uid={tomare.uid} key={tomare.tomareId} />
+                                }
+                                {user.o_befor_come !== 0 &&
+                                    `${tomare.come_befor}`.length !== 0 && `${tomare.come_befor}`
+                                }
 
-                        </div>
+                            </div>
                             <div>
                                 {`${tomare.img_after}`.length !== 0 &&
                                     <img

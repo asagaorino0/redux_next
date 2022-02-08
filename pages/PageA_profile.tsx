@@ -148,14 +148,14 @@ const PageA_profile = () => {
                         const img_img: any = { src: `${user.img}`, alt: "img", style: { width: '100%' } }
                         return (
                             <div key={user.uid}>
-                                <input type="file" name="logo" onChange={handleFile} />
-                                {`${user.rogo}` &&
+                                {/* <input type="file" name="logo" onChange={handleFile} /> */}
+                                {/* {`${user.rogo}` &&
                                     <img
                                         src={logo}
                                         alt=""
                                         style={{ width: '80px', height: '80px' }}
                                     />
-                                }
+                                } */}
 
                                 <div className={styles.grid}>
                                     <img
