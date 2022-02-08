@@ -54,7 +54,7 @@ const TomareFileUpload = ({ tomare }: { tomare: string }) => {
             <h1>
                 <React.StrictMode>
                     <Provider store={store}>
-                        {`${tomare}`.length === 0 &&
+                        {/* {`${tomare}`.length === 0 &&
                             <p>
                                 <input type="file" onChange={onFileInputChange} />
                                 {`${kyFile}`.length !== 0 &&
@@ -65,7 +65,7 @@ const TomareFileUpload = ({ tomare }: { tomare: string }) => {
                                     </div>
                                 }
                             </p>
-                        }
+                        } */}
                         {`${tomare}`.length === 0 &&
                             <p>
                                 <input type="file" onChange={onFileInputChange} />
