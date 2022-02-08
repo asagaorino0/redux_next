@@ -10,9 +10,9 @@ import { TomareState } from "../src/types/tomare";
 import { getStorage, ref, uploadBytes, getDownloadURL, uploadString } from "firebase/storage";
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 
-const TomareFileUpload = ({ tomare, tomareId }: { tomare: string, tomareId: string }) => {
+const TomareFileUpload = ({ tomare, tomareId, uid }: { tomare: string, tomareId: string, uid: string }) => {
     const user = useSelector(selectUser);
-    console.log('test==============', `${user.uid}`);//あいさつかなぁ
+    console.log('test==============', `${uid}`);//あいさつかなぁ
     console.log('test==============', user);//あいさつかなぁ
     const [kyFile, setKyFile] = useState<string>('');
     const onFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,15 +38,15 @@ const TomareFileUpload = ({ tomare, tomareId }: { tomare: string, tomareId: stri
     // }
     // const upload_befor = (url: string) => { setDoc(doc(db, 'users', `${user.uid}`, 'tomare',`${tomareId}`), { img_befor: url, }, { merge: true }) }
     const handleUpload = async () => {
-        const storageRef = ref(storage, `/images/${user.uid}/${name}`);
-        const starsRef = ref(storage, `/images/${user.uid}/${name}`);
+        const storageRef = ref(storage, `/images/${uid}/${name}`);
+        const starsRef = ref(storage, `/images/${uid}/${name}`);
         uploadString(storageRef, kyFile, 'data_url').then((snapshot) => {
             getDownloadURL(starsRef)
                 .then((url) => { upload_file(url) })
             setKyFile('')
         }).catch((err) => { console.error(err) });
     }
-    const upload_file = (url: string) => { setDoc(doc(db, 'users', `${user.uid}`, 'tomare', `${tomareId}`), { tomare: url, }, { merge: true }) }
+    const upload_file = (url: string) => { setDoc(doc(db, 'users', `${uid}`, 'tomare', `${tomareId}`), { tomare: url, }, { merge: true }) }
     const [name, setName] = useState('')
     return (
         <div className="App">
