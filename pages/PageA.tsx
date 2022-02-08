@@ -45,10 +45,11 @@ const PageA = () => {
     const storageRef = ref(storage, `/images/${name}`);
     uploadString(storageRef, kyFile, 'data_url').then((snapshot) => {
       console.log('Uploaded a data_url string!');
+      setKyFile('')
     })
       .catch((err) => {
         console.error(err)
-        alert("画像のみアップロードできます")
+        // alert("画像のみアップロードできます")
       });
   }
   const [name, setName] = useState('')
