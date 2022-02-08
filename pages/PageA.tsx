@@ -17,41 +17,12 @@ const PageA = () => {
     const client = new vision.ImageAnnotatorClient();
     const [result] = await client.textDetection(fileName);
     const detections = result.textAnnotations;
-    const user = useSelector(selectUser);
     console.log('Text:');
     detections.forEach((text: any) => {
       console.log(text);
     });
   };
 
-  // console.log('test==============');
-  // const [rogo, setRogo] = useState<string>('');
-  // const [kyFile, setKyFile] = useState<string>('');
-  // const onFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   if (e.target.files && e.target.files[0]) {
-  //     const file = e.target.files[0];
-  //     const reader = new FileReader();
-  //     reader.onload = (e: any) => {
-  //       setKyFile(e.target.result);
-  //       setName(file.name)
-  //     };
-  //     reader.readAsDataURL(file);
-  //   }
-  // };
-
-  // const handleUpload = async () => {
-  //   // console.log(kyFile);
-  //   const storageRef = ref(storage, `/images/${name}`);
-  //   uploadString(storageRef, kyFile, 'data_url').then((snapshot) => {
-  //     console.log('Uploaded a data_url string!');
-  //     setKyFile('')
-  //   })
-  //     .catch((err) => {
-  //       console.error(err)
-  //       // alert("画像のみアップロードできます")
-  //     });
-  // }
-  const [name, setName] = useState('')
   return (
     <div className="App">
       <span>pageA:プロフィール登録</span>
