@@ -125,8 +125,8 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
                             </div>
                             <div>
                                 {`${tomare.img_after}`.length !== 0 &&
-                                    // <img src={`${tomare.img_after}`} alt="" style={{ width: '98%', margin: '0' }}     />
-                                    <TomareFileChenge tomare={tomare.img_after} tomareId={tomare.tomareId} uid={tomare.uid} label='img_after' key={tomare.tomareId} />
+                                    <img src={`${tomare.img_after}`} alt="" style={{ width: '98%', margin: '0' }} />
+                                    // <TomareFileChenge tomare={tomare.img_after} tomareId={tomare.tomareId} uid={tomare.uid} label='img_after' key={tomare.tomareId} />
                                 }
                                 {`${tomare.img_after}`.length === 0 &&
                                     <TomareFileUpload tomare={tomare.img_after} tomareId={tomare.tomareId} uid={tomare.uid} label='img_after' key={tomare.tomareId} />
