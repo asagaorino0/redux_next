@@ -61,6 +61,16 @@ const TomareFileUpload = ({ tomare, tomareId, uid, label }: { tomare: string, to
                             }
                         </Stack>
                     }
+                    {`${tomare}`.length !== 0 &&
+                        <Stack direction="row" alignItems="center" spacing={2}>
+                            {`${kyFile}`.length !== 0 &&
+                                <label htmlFor="icon-button-file">
+                                    <Input accept="image/*" id="icon-button-file" type="file" onChange={onFileInputChange} />
+                                    <img src={tomare} alt="" />
+                                </label>
+                            }
+                        </Stack>
+                    }
                     {`${kyFile}`.length !== 0 &&
                         <div>
                             <label htmlFor="icon-button-file">
@@ -77,14 +87,7 @@ const TomareFileUpload = ({ tomare, tomareId, uid, label }: { tomare: string, to
                     }
                     {/* </Stack> */}
                     {/* } */}
-                    {`${tomare}`.length !== 0 &&
-                        <div>
-                            <label htmlFor="icon-button-file">
-                                <Input accept="image/*" id="icon-button-file" type="file" onChange={onFileChange} />
-                                <img src={tomare} alt="" />
-                            </label>
-                        </div>
-                    }
+
                 </Provider>
             </React.StrictMode>
         </div>
