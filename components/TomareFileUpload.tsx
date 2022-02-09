@@ -19,6 +19,10 @@ const TomareFileUpload = ({ tomare, tomareId, uid, label }: { tomare: string, to
     const user = useSelector(selectUser);
     console.log('test==============', [label]);//あいさつかなぁ
     const [kyFile, setKyFile] = useState<string>('');
+    const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setKyFile(`${tomare}`)
+        onFileInputChange
+    };
     const onFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files[0]) {
             const file = e.target.files[0];
@@ -77,8 +81,8 @@ const TomareFileUpload = ({ tomare, tomareId, uid, label }: { tomare: string, to
                             {/* {`${kyFile}`.length !== 0 && */}
                             <div>
                                 <label htmlFor="icon-button-file">
-                                    <Input accept="image/*" id="icon-button-file" type="file" onChange={onFileInputChange} />
-                                    <img src={tomare} alt="" />
+                                    <Input accept="image/*" id="icon-button-file" type="file" onChange={onFileChange} />
+                                    <img src={kyFile} alt={name} />
                                 </label>
                                 <br />
                                 <label htmlFor="contained-button-file">
