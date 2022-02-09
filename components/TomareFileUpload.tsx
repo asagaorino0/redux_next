@@ -18,7 +18,7 @@ const Input = styled('input')({
 const TomareFileUpload = ({ tomare, tomareId, uid, label }: { tomare: string, tomareId: string, uid: string, label: string }) => {
     const user = useSelector(selectUser);
     console.log('test==============', [label]);//あいさつかなぁ
-    const [kyFile, setKyFile] = useState<string>('');
+    const [kyFile, setKyFile] = useState<string>(tomare);
     const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setKyFile(`${tomare}`)
         onFileInputChange
