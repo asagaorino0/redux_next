@@ -24,16 +24,15 @@ const TomareFileUpload = ({ tomare, tomareId, uid, label }: { tomare: string, to
         onFileInputChange
     };
     const onFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        console.log(tomare, tomareId, label)
-        // if (e.target.files && e.target.files[0]) {
-        //     const file = e.target.files[0];
-        //     const reader = new FileReader();
-        //     reader.onload = (e: any) => {
-        //         setKyFile(e.target.result);
-        //         setName(file.name)
-        //     };
-        //     reader.readAsDataURL(file);
-        // }
+        if (e.target.files && e.target.files[0]) {
+            const file = e.target.files[0];
+            const reader = new FileReader();
+            reader.onload = (e: any) => {
+                setKyFile(e.target.result);
+                setName(file.name)
+            };
+            reader.readAsDataURL(file);
+        }
     };
     const handleUpload = async () => {
         const storageRef = ref(storage, `/images/${uid}/${name}`);
@@ -49,50 +48,52 @@ const TomareFileUpload = ({ tomare, tomareId, uid, label }: { tomare: string, to
 
     return (
         <div className="App">
-            {/* <br /> */}
+            <br />
             <React.StrictMode>
                 <Provider store={store}>
                     {`${tomare}`.length === 0 &&
-                        // <Stack direction="row" alignItems="center" spacing={2}>
-                        <div>
+                        <Stack direction="row" alignItems="center" spacing={2}>
                             {`${kyFile}`.length === 0 &&
                                 <label htmlFor="icon-button-file">
                                     <Input accept="image/*" id="icon-button-file" type="file" onChange={onFileInputChange} />
                                     <IconButton color="primary" aria-label="upload picture" component="span"><PhotoCamera /></IconButton>
                                 </label>
                             }
-                            {/* </Stack> */}
-                        </div>
-                    }
-                    {`${tomare}`.length !== 0 &&
-                        // <Stack direction="row" alignItems="center" spacing={2}>
-                        <div>
-                            {`${kyFile}`.length === 0 &&
-                                <label htmlFor="icon-button-file">
-                                    <Input accept="image/*" id="icon-button-file" type="file" onChange={onFileInputChange} />
-                                    <img src={tomare} alt="" />
-                                </label>
+                            {`${kyFile}`.length !== 0 &&
+                                <div>
+                                    <label htmlFor="icon-button-file">
+                                        <Input accept="image/*" id="icon-button-file" type="file" onChange={onFileInputChange} />
+                                        <img src={kyFile} alt={name} />
+                                    </label>
+                                    <br />
+                                    <label htmlFor="contained-button-file">
+                                        <IconButton color="primary" component="span" onClick={() => setKyFile('')} />
+                                        <CancelIcon /><button onClick={() => setKyFile('')}>キャンセル　</button>
+                                        <Button variant="contained" component="span" onClick={handleUpload}>Upload</Button>
+                                    </label>
+                                </div>
                             }
-                        </div>
-                        // </Stack>
+                        </Stack>
                     }
-                    {`${kyFile}`.length !== 0 &&
-                        <div>
-                            <label htmlFor="icon-button-file">
-                                <Input accept="image/*" id="icon-button-file" type="file" onChange={onFileInputChange} />
-                                <img src={kyFile} alt={name} />
-                            </label>
-                            <br />
-                            <label htmlFor="contained-button-file">
-                                <IconButton color="primary" component="span" onClick={() => setKyFile('')} />
-                                <CancelIcon /><button onClick={() => setKyFile('')}>キャンセル　</button>
-                                <Button variant="contained" component="span" onClick={handleUpload}>Upload</Button>
-                            </label>
-                        </div>
+                    <br />
+                    {`${tomare}`.length !== 0 &&
+                        <Stack direction="row" alignItems="center" spacing={2}>
+                            {/* {`${kyFile}`.length !== 0 && */}
+                            <div>
+                                <label htmlFor="icon-button-file">
+                                    <Input accept="image/*" id="icon-button-file" type="file" onChange={onFileChange} />
+                                    <img src={tomare} alt={name} />
+                                </label>
+                                <br />
+                                <label htmlFor="contained-button-file">
+                                    <IconButton color="primary" component="span" onClick={() => setKyFile('')} />
+                                    <CancelIcon /><button onClick={() => setKyFile('')}>キャンセル　</button>
+                                    <Button variant="contained" component="span" onClick={handleUpload}>Upload</Button>
+                                </label>
+                            </div>
+                            {/* } */}
+                        </Stack>
                     }
-                    {/* </Stack> */}
-                    {/* } */}
-
                 </Provider>
             </React.StrictMode>
         </div>
