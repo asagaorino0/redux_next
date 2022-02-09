@@ -8,6 +8,16 @@ import { store } from '../src/app/store';
 import { Provider } from 'react-redux';
 import { getStorage, ref, uploadBytes, getDownloadURL, uploadString } from "firebase/storage";
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
+import { styled } from '@mui/material/styles';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import PhotoCamera from '@mui/icons-material/PhotoCamera';
+import CancelIcon from '@mui/icons-material/Cancel';
+import Stack from '@mui/material/Stack';
+
+const Input = styled('input')({
+    display: 'none',
+});
 
 const FileUpload = () => {
     console.log('test==============');
@@ -44,12 +54,31 @@ const FileUpload = () => {
                     <Provider store={store}>
                         {/* <PageA_profile /> */}
                         {/* <SimpleAccordion /> */}
-                        <input type="file" onChange={onFileInputChange} />
+                        {/* <input type="file" onChange={onFileInputChange} /> */}
+                        <Stack direction="row" alignItems="center" spacing={2}>
+                            {`${kyFile}`.length === 0 &&
+                                <label htmlFor="icon-button-file">
+                                    <Input accept="image/*" id="icon-button-file" type="file" onChange={onFileInputChange} />
+                                    <IconButton color="primary" aria-label="upload picture" component="span">
+                                        <PhotoCamera />
+                                    </IconButton>
+                                </label>}
+                        </Stack>
                         {`${kyFile}`.length !== 0 &&
                             <div>
-                                <img src={kyFile} alt={name} />
+                                <label htmlFor="icon-button-file">
+                                    <Input accept="image/*" id="icon-button-file" type="file" onChange={onFileInputChange} />
+                                    <img src={kyFile} alt={name} />
+                                </label>
                                 <br />
-                                <button onClick={handleUpload}>Upload</button>
+                                <label htmlFor="contained-button-file">
+                                    <IconButton color="primary" component="span" onClick={() => setKyFile('')} />
+                                    <CancelIcon />
+                                    <button onClick={() => setKyFile('')}>キャンセル　</button>
+                                    <Button variant="contained" component="span" onClick={handleUpload}>
+                                        Upload
+                                    </Button>
+                                </label>
                             </div>
                         }
                         <br />
