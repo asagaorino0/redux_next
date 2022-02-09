@@ -25,15 +25,15 @@ const TomareFileUpload = ({ tomare, tomareId, uid, label }: { tomare: string, to
     };
     const onFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         console.log(tomare, tomareId, label)
-        if (e.target.files && e.target.files[0]) {
-            const file = e.target.files[0];
-            const reader = new FileReader();
-            reader.onload = (e: any) => {
-                setKyFile(e.target.result);
-                setName(file.name)
-            };
-            reader.readAsDataURL(file);
-        }
+        // if (e.target.files && e.target.files[0]) {
+        //     const file = e.target.files[0];
+        //     const reader = new FileReader();
+        //     reader.onload = (e: any) => {
+        //         setKyFile(e.target.result);
+        //         setName(file.name)
+        //     };
+        //     reader.readAsDataURL(file);
+        // }
     };
     const handleUpload = async () => {
         const storageRef = ref(storage, `/images/${uid}/${name}`);
