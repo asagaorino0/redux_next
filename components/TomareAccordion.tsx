@@ -17,6 +17,7 @@ import styles from '../styles/Home.module.css';
 import { getFirestore, getDocs, collection, collectionGroup, query, where, onSnapshot, doc, setDoc, Timestamp, addDoc } from 'firebase/firestore'
 import { db } from "../src/firebase";
 import TomareFileUpload from '../components/TomareFileUpload';
+import TomareFileChenge from '../components/TomareFileChenge';
 
 const Accordion = styled((props: AccordionProps) => (
     <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -123,15 +124,13 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
 
                             </div>
                             <div>
-                                <TomareFileUpload tomare={tomare.img_after} tomareId={tomare.tomareId} uid={tomare.uid} label='img_after' key={tomare.tomareId} />
-
-                                {/* {`${tomare.img_after}`.length !== 0 &&
-                                    <img src={`${tomare.img_after}`} alt="" style={{ width: '98%', margin: '0' }}     />
-                                    // <TomareFileUpload tomare={tomare.img_after} tomareId={tomare.tomareId} uid={tomare.uid} label='img_after' key={tomare.tomareId} />
+                                {`${tomare.img_after}`.length !== 0 &&
+                                    // <img src={`${tomare.img_after}`} alt="" style={{ width: '98%', margin: '0' }}     />
+                                    <TomareFileChenge tomare={tomare.img_after} tomareId={tomare.tomareId} uid={tomare.uid} label='img_after' key={tomare.tomareId} />
                                 }
                                 {`${tomare.img_after}`.length === 0 &&
                                     <TomareFileUpload tomare={tomare.img_after} tomareId={tomare.tomareId} uid={tomare.uid} label='img_after' key={tomare.tomareId} />
-                                } */}
+                                }
                                 {user.o_after_come !== 0 &&
                                     `${tomare.come_after}`.length !== 0 && `${tomare.come_after}`
                                 }

@@ -48,7 +48,7 @@ const TomareFileUpload = ({ tomare, tomareId, uid, label }: { tomare: string, to
             <br />
             <React.StrictMode>
                 <Provider store={store}>
-                    {`${tomare}`.length === 0 &&
+                    {/* {`${tomare}`.length === 0 &&
                         <Stack direction="row" alignItems="center" spacing={2}>
                             {`${kyFile}`.length === 0 &&
                                 <label htmlFor="icon-button-file">
@@ -72,14 +72,14 @@ const TomareFileUpload = ({ tomare, tomareId, uid, label }: { tomare: string, to
                             }
                         </Stack>
                     }
-                    {/* <br />
-                    {`${tomare}`.length !== 0 &&
-                        <Stack direction="row" alignItems="center" spacing={2}>
-                            {`${kyFile}`.length !== 0 &&
+                    <br />
+                    {`${tomare}`.length !== 0 && */}
+                    <Stack direction="row" alignItems="center" spacing={2}>
+                        {`${kyFile}`.length !== 0 &&
                             <div>
                                 <label htmlFor="icon-button-file">
                                     <Input accept="image/*" id="icon-button-file" type="file" onChange={onFileInputChange} />
-                                    <img src={kyFile} alt={name} />
+                                    <img src={tomare} alt={label} />
                                 </label>
                                 <br />
                                 <label htmlFor="contained-button-file">
@@ -88,9 +88,9 @@ const TomareFileUpload = ({ tomare, tomareId, uid, label }: { tomare: string, to
                                     <Button variant="contained" component="span" onClick={handleUpload}>Upload</Button>
                                 </label>
                             </div>
-                            }
-                        </Stack>
-                    } */}
+                        }
+                    </Stack>
+                    {/* } */}
                 </Provider>
             </React.StrictMode>
         </div>
