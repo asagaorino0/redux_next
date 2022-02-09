@@ -79,7 +79,7 @@ const TomareFileUpload = ({ tomare, tomareId, uid, label }: { tomare: string, to
                             <div>
                                 <label htmlFor="icon-button-file">
                                     <Input accept="image/*" id="icon-button-file" type="file" onChange={onFileInputChange} />
-                                    <img src={tomare} alt={label} />
+                                    <img src={tomare} alt="" />
                                 </label>
                                 <br />
                                 <label htmlFor="contained-button-file">
