@@ -24,6 +24,7 @@ const TomareFileUpload = ({ tomare, tomareId, uid, label }: { tomare: string, to
         onFileInputChange
     };
     const onFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        console.log(tomare, tomareId, label)
         if (e.target.files && e.target.files[0]) {
             const file = e.target.files[0];
             const reader = new FileReader();
