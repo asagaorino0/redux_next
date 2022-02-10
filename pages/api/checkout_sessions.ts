@@ -5,10 +5,13 @@ export default async function handler(req: any, res: any) {
         try {
             // Create Checkout Sessions from body params.
             const session = await stripe.checkout.sessions.create({
+
                 line_items: [
                     {
                         // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
                         price: process.env.NEXT_PUBLIC_STRIPE_PRODUCT_KEY,
+                        // price: 'price_1Je0QhIeKRfM8LCeebPediZy',
+
                         quantity: 1,
                     },
                 ],
@@ -16,9 +19,11 @@ export default async function handler(req: any, res: any) {
                 success_url: `${req.headers.origin}/?success=true`,
                 cancel_url: `${req.headers.origin}/?canceled=true`,
             });
-            res.redirect(303, session.url);
+            // res.redirect(303, session.url);
+            console.log(process.env.NEXT_PUBLIC_STRIPE_PRODUCT_KEY)
         } catch (err: any) {
             res.status(500).json(err.message);
+            console.log('nande???', process.env.NEXT_PUBLIC_STRIPE_PRODUCT_KEY)
         }
     } else {
         res.setHeader('Allow', 'POST');
