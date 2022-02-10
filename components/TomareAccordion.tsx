@@ -108,12 +108,12 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
                         <div className="flex justify-evenly ...">
                             <div>
                                 {`${tomare.img_befor}`.length !== 0 &&
-                                    <img
-                                        src={`${tomare.img_befor}`}
-                                        alt=""
-                                        style={{ width: '98%', margin: '0' }}
-                                    />
-                                    // <TomareFileUpload tomare={tomare.img_befor} tomareId={tomare.tomareId} uid={tomare.uid} label='img_befor' key={tomare.tomareId} />
+                                    // <img
+                                    //     src={`${tomare.img_befor}`}
+                                    //     alt=""
+                                    //     style={{ width: '98%', margin: '0' }}
+                                    // />
+                                    <TomareFileUpload tomare={tomare.img_befor} tomareId={tomare.tomareId} uid={tomare.uid} label='img_befor' key={tomare.tomareId} />
                                 }
                                 {`${tomare.img_befor}`.length === 0 &&
                                     <TomareFileUpload tomare={tomare.img_befor} tomareId={tomare.tomareId} uid={tomare.uid} label='img_befor' key={tomare.tomareId} />
