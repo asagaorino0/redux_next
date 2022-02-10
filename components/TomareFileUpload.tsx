@@ -15,7 +15,7 @@ import Stack from '@mui/material/Stack';
 const Input = styled('input')({
     display: 'none',
 });
-const TomareFileUpload = ({ tomare, tomareId, uid, label }: { tomare: string, tomareId: string, uid: string, label: string }) => {
+const TomareFileUpload = ({ tomare, tomareId, uid, label, yoyakuId }: { tomare: string, tomareId: string, uid: string, label: string, yoyakuId: string }) => {
     const user = useSelector(selectUser);
     console.log('test==============', [label]);//あいさつかなぁ
     const [kyFile, setKyFile] = useState<string>('');
@@ -51,17 +51,17 @@ const TomareFileUpload = ({ tomare, tomareId, uid, label }: { tomare: string, to
                     {`${tomare}`.length === 0 &&
                         <Stack direction="row" alignItems="center" spacing={2}>
                             {`${kyFile}`.length === 0 &&
-                                <label htmlFor="icon-button-file">
-                                    {/* <Input accept="image/*" id="icon-button-file" type="file" onChange={onFileInputChange} /> */}
-                                    <input type="file" onChange={onFileInputChange} />
+                                <label htmlFor={yoyakuId}>
+                                    <Input accept="image/*" id={yoyakuId} type="file" onChange={onFileInputChange} />
+                                    {/* <input type="file" onChange={onFileInputChange} /> */}
                                     <IconButton color="primary" aria-label="upload picture" component="span"><PhotoCamera /></IconButton>
                                 </label>
                             }
                             {`${kyFile}`.length !== 0 &&
                                 <div>
-                                    <label htmlFor="icon-button-file">
-                                        {/* <Input accept="image/*" id="icon-button-file" type="file" onChange={onFileInputChange} /> */}
-                                        <input type="file" onChange={onFileInputChange} />
+                                    <label htmlFor={yoyakuId}>
+                                        <Input accept="image/*" id={yoyakuId} type="file" onChange={onFileInputChange} />
+                                        {/* <input type="file" onChange={onFileInputChange} /> */}
                                         <img src={kyFile} alt={name} />
                                     </label>
                                     <br />
@@ -75,12 +75,12 @@ const TomareFileUpload = ({ tomare, tomareId, uid, label }: { tomare: string, to
                         </Stack>
                     }
                     {/* <br /> */}
-                    {`${tomare}`.length !== 0 &&
+                    {/* {`${tomare}`.length !== 0 &&
                         <Stack direction="row" alignItems="center" spacing={2}>
                             {`${kyFile}`.length !== 0 &&
                                 <div>
-                                    <label htmlFor="icon-button-file">
-                                        {/* <Input accept="image/*" id="icon-button-file" type="file" onChange={onFileInputChange} /> */}
+                                    <label htmlFor={yoyakuId}>
+                                        <Input accept="image/*" id={yoyakuId} type="file" onChange={onFileInputChange} />
                                         <input type="file" onChange={onFileInputChange} />
                                         <img src={kyFile} alt={name} />
                                     </label>
@@ -93,7 +93,7 @@ const TomareFileUpload = ({ tomare, tomareId, uid, label }: { tomare: string, to
                                 </div>
                             }
                         </Stack>
-                    }
+                    } */}
                 </Provider>
             </React.StrictMode>
         </div>
