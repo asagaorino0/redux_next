@@ -77,20 +77,16 @@ const TomareFileUpload = ({ tomare, tomareId, uid, label }: { tomare: string, to
                     <Stack direction="row" alignItems="center" spacing={2}>
                         {`${kyFile}`.length === 0 &&
                             <label htmlFor="icon-button-file">
-                                <Input
-                                    // accept="image/*"
-                                    // id="icon-button-file"
-                                    type="file"
-                                    onChange={onFileInputChange} />
-                                {/* <input type="file" name="example" onChange={onFileInputChange} /> */}
+                                {/* <Input accept="image/*" id="icon-button-file" type="file" onChange={onFileInputChange} /> */}
+                                <input type="file" name="example" onChange={onFileInputChange} />
                                 <img src={tomare} alt="" />
                             </label>
                         }
                         {`${kyFile}`.length !== 0 &&
                             <div>
                                 <label htmlFor="icon-button-file">
-                                    <Input accept="image/*" id="icon-button-file" type="file" onChange={onFileInputChange} />
-                                    {/* <input type="file" name="example" onChange={onFileInputChange} /> */}
+                                    {/* <Input accept="image/*" id="icon-button-file" type="file" onChange={onFileInputChange} /> */}
+                                    <input type="file" name="example" onChange={onFileInputChange} />
                                     <img src={kyFile} alt={name} />
                                 </label>
                                 <label htmlFor="contained-button-file">
