@@ -76,20 +76,20 @@ const TomareFileUpload = ({ tomare, tomareId, uid, label }: { tomare: string, to
                     {`${tomare}`.length !== 0 && */}
                     <Stack direction="row" alignItems="center" spacing={2}>
                         {`${kyFile}`.length === 0 &&
-                            <label htmlFor="icon-button-file">
-                                {/* <Input accept="image/*" id="icon-button-file" type="file" onChange={onFileInputChange} /> */}
-                                <input type="file" name="example" onChange={onFileInputChange} />
+                            <label htmlFor={tomareId}>
+                                <Input accept="image/*" id={tomareId} type="file" onChange={onFileInputChange} />
+                                {/* <input type="file" name="example" onChange={onFileInputChange} /> */}
                                 <img src={tomare} alt="" />
                             </label>
                         }
                         {`${kyFile}`.length !== 0 &&
                             <div>
-                                <label htmlFor="icon-button-file">
-                                    {/* <Input accept="image/*" id="icon-button-file" type="file" onChange={onFileInputChange} /> */}
-                                    <input type="file" name="example" onChange={onFileInputChange} />
+                                <label htmlFor={tomareId}>
+                                    <Input accept="image/*" id={tomareId} type="file" onChange={onFileInputChange} />
+                                    {/* <input type="file" name="example" onChange={onFileInputChange} /> */}
                                     <img src={kyFile} alt={name} />
                                 </label>
-                                <label htmlFor="contained-button-file">
+                                <label htmlFor={tomareId}>
                                     <IconButton color="primary" component="span" onClick={() => setKyFile('')} />
                                     <CancelIcon /><button onClick={() => setKyFile('')}>キャンセル　</button>
                                     <Button variant="contained" component="span" onClick={handleUpload}>Upload</Button>
