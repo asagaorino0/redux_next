@@ -33,8 +33,8 @@ const PageA = () => {
       <h1>
         <React.StrictMode>
           <Provider store={store}>
-            <PageA_profile />
-            <FileUpload />
+            {/* <PageA_profile /> */}
+            {/* <FileUpload /> */}
             {/* <input type="file" onChange={onFileInputChange} />
             {`${kyFile}`.length !== 0 &&
               <div>
@@ -44,6 +44,15 @@ const PageA = () => {
               </div>
             } */}
             <br />
+            <form action="/api/checkout_sessions" method="POST">
+              <section>
+                <button type="submit" role="link">
+                  Checkout
+                </button>
+              </section>
+            </form>
+            <br />
+
             <button onClick={detectText}>quickstart</button>            {/* } */}
           </Provider>
         </React.StrictMode>

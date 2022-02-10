@@ -23,6 +23,7 @@
     "@nuxtjs/axios": "^5.13.6",
     "@react-icons/all-files": "^4.1.0",
     "@reduxjs/toolkit": "^1.7.1",
+    "@stripe/stripe-js": "^1.22.0",
     "autoprefixer": "^10.4.0",
     "dotenv": "^10.0.0",
     "dotenv-webpack": "^7.0.3",
@@ -43,6 +44,7 @@
     "react-router-dom": "^6.2.1",
     "redux": "^4.1.2",
     "save": "^2.4.0",
+    "stripe": "^8.202.0",
     "swr": "^1.1.2",
     "tailwindcss": "^3.0.7",
     "tw-elements": "^1.0.0-alpha10"
