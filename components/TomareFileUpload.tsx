@@ -65,7 +65,7 @@ const TomareFileUpload = ({ tomare, tomareId, uid, label, yoyakuId }: { tomare: 
                                         <img src={kyFile} alt={name} />
                                     </label>
                                     <br />
-                                    <label htmlFor={yoyakuId}>
+                                    <label htmlFor={`${yoyakuId}upload`}>
                                         <IconButton color="primary" component="span" onClick={() => setKyFile('')} />
                                         <CancelIcon /><button onClick={() => setKyFile('')}>キャンセル　</button>
                                         <Button variant="contained" component="span" onClick={handleUpload}>Upload</Button>
