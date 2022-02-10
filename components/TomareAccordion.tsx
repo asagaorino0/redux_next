@@ -113,10 +113,10 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
                                     //     alt=""
                                     //     style={{ width: '98%', margin: '0' }}
                                     // />
-                                    <TomareFileChenge tomare={tomare.img_befor} tomareId={tomare.tomareId} uid={tomare.uid} label='img_befor' yoyakuId={tomare.yoyakuId} key={tomare.yoyakuId} />
+                                    <TomareFileChenge tomare={tomare.img_befor} tomareId={tomare.tomareId} uid={tomare.uid} label='img_befor' yoyakuId={`${tomare.yoyakuId}img_befor`} key={tomare.yoyakuId} />
                                 }
                                 {`${tomare.img_befor}`.length === 0 &&
-                                    <TomareFileUpload tomare={tomare.img_befor} tomareId={tomare.tomareId} uid={tomare.uid} label='img_befor' yoyakuId={tomare.yoyakuId} key={tomare.yoyakuId} />
+                                    <TomareFileUpload tomare={tomare.img_befor} tomareId={tomare.tomareId} uid={tomare.uid} label='img_befor' yoyakuId={`${tomare.yoyakuId}img_befor`} key={tomare.yoyakuId} />
                                 }
                                 {user.o_befor_come !== 0 &&
                                     `${tomare.come_befor}`.length !== 0 && `${tomare.come_befor}`
@@ -126,10 +126,10 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
                             <div>
                                 {`${tomare.img_after}`.length !== 0 &&
                                     // <img src={`${tomare.img_after}`} alt="" style={{ width: '98%', margin: '0' }} />
-                                    <TomareFileChenge tomare={tomare.img_after} tomareId={tomare.tomareId} uid={tomare.uid} label='img_after' yoyakuId={tomare.yoyakuId} key={tomare.yoyakuId} />
+                                    <TomareFileChenge tomare={tomare.img_after} tomareId={tomare.tomareId} uid={tomare.uid} label='img_after' yoyakuId={`${tomare.yoyakuId}img_after`} key={tomare.yoyakuId} />
                                 }
                                 {`${tomare.img_after}`.length === 0 &&
-                                    <TomareFileUpload tomare={tomare.img_after} tomareId={tomare.tomareId} uid={tomare.uid} label='img_after' yoyakuId={tomare.yoyakuId} key={tomare.yoyakuId} />
+                                    <TomareFileUpload tomare={tomare.img_after} tomareId={tomare.tomareId} uid={tomare.uid} label='img_after' yoyakuId={`${tomare.yoyakuId}img_after`} key={tomare.yoyakuId} />
                                 }
                                 {user.o_after_come !== 0 &&
                                     `${tomare.come_after}`.length !== 0 && `${tomare.come_after}`
