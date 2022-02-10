@@ -53,7 +53,7 @@ const TomareFileUpload = ({ tomare, tomareId, uid, label }: { tomare: string, to
                             {`${kyFile}`.length === 0 &&
                                 <label htmlFor="icon-button-file">
                                     {/* <Input accept="image/*" id="icon-button-file" type="file" onChange={onFileInputChange} /> */}
-                                    <Input type="file" onChange={onFileInputChange} />
+                                    <input type="file" onChange={onFileInputChange} />
                                     <IconButton color="primary" aria-label="upload picture" component="span"><PhotoCamera /></IconButton>
                                 </label>
                             }
@@ -61,7 +61,7 @@ const TomareFileUpload = ({ tomare, tomareId, uid, label }: { tomare: string, to
                                 <div>
                                     <label htmlFor="icon-button-file">
                                         {/* <Input accept="image/*" id="icon-button-file" type="file" onChange={onFileInputChange} /> */}
-                                        <Input type="file" onChange={onFileInputChange} />
+                                        <input type="file" onChange={onFileInputChange} />
                                         <img src={kyFile} alt={name} />
                                     </label>
                                     <br />
@@ -81,7 +81,7 @@ const TomareFileUpload = ({ tomare, tomareId, uid, label }: { tomare: string, to
                                 <div>
                                     <label htmlFor="icon-button-file">
                                         {/* <Input accept="image/*" id="icon-button-file" type="file" onChange={onFileInputChange} /> */}
-                                        <Input type="file" onChange={onFileInputChange} />
+                                        <input type="file" onChange={onFileInputChange} />
                                         <img src={kyFile} alt={name} />
                                     </label>
                                     <br />
