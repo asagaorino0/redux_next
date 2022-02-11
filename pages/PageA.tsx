@@ -33,7 +33,7 @@ const PageA = () => {
       <h1>
         <React.StrictMode>
           <Provider store={store}>
-            <PageA_profile />
+            {/* <PageA_profile /> */}
             {/* <FileUpload /> */}
             {/* <input type="file" onChange={onFileInputChange} />
             {`${kyFile}`.length !== 0 &&
