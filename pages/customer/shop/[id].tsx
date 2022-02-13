@@ -1,39 +1,38 @@
-import * as React from 'react'
+import React from "react";
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
-import { CustomerContext } from '../../../context/CustomerContext'
-import Layout from '../../../component/Layout'
+// import { CustomerState } from '../../../src/types/customer'
 import styles from '../../../styles/Home.module.css'
-import CheckoutForm from '../../../component/CheckoutForm'
-
-const RegisterPage = (props) => {
-    const { customerState } = React.useContext(CustomerContext)
-
+import CheckoutForm from '../../component/CheckoutForm'
+// const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const RegisterPage = (props: any) => {
+    // const { CustomerState } = React.useContext(CustomerContext)
 
     const stripePromise = loadStripe(
-        process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,
+        'pk_test_51JdlUwIeKRfM8LCelTFny3MzSaui9gqP0ZnZwB16Kv9AxVnLwr8UkugHmiaHV8wQyhbXiZnw7ozQE47SZH058Uss00l7jX4hKz',
+        // process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,
         { stripeAccount: props.shopId }
     )
 
     return (
-        <Layout>
+        <div>
             <main className={styles.main}>
                 <h2>商品一覧</h2>
                 <Elements stripe={stripePromise}>
                     <div className={styles.grid}>
-                        {props.itemList.map((item, index) =>
+                        {props.itemList.map((item: any, index: any) =>
                             <div className={styles.card} key={index}>
-                                <CheckoutForm item={item} customerId={customerState.id} shopId={props.shopId} />
+                                {/* <CheckoutForm item={item} customerId={user.customerId} shopId={props.shopId} /> */}
                             </div>
                         )}
                     </div>
                 </Elements>
             </main>
-        </Layout>
+        </div>
     )
 }
 
-export const getServerSideProps = async (ctx) => {
+export const getServerSideProps = async (ctx: any) => {
     const itemList = [
         {
             name: 'キノコのかさ',
