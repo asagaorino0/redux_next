@@ -11,7 +11,7 @@ const handler = async (req: any, res: any) => {
             const yoyakuId = req.query.yoyakuId
             console.log('props:', '===========')
             console.log('props:', yoyakuId)
-            // setDoc(doc(db, 'yoyakuPey'), { yoyakuId: { yoyakuId } }, { merge: true })
+            setDoc(doc(db, 'yoyakuPey'), { yoyakuId: { yoyakuId } }, { merge: true })
             const customer = await stripe.customers.create();
             console.log('customer', customer.id)
             const session = await stripe.checkout.sessions.create({
@@ -44,7 +44,7 @@ const handler = async (req: any, res: any) => {
             console.log('id::::', paymentIntent.amount)
             console.log('id::::', paymentIntent.id)
             // setDoc(doc(db, 'yoyaku'), { pey: paymentIntent.amount, yoyakuId, }, { merge: true })
-            // setDoc(doc(db, 'yoyakuPey'), { yoyakuId: { yoyakuId } }, { merge: true })
+            setDoc(doc(db, 'yoyakuPey'), { yoyakuId: { yoyakuId } }, { merge: true })
 
             // setDoc(doc(db, 'users', yoyakuId), { pey: "300" }, { merge: true })
             // const session = await stripe.checkout.sessions.create({
