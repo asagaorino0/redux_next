@@ -1,5 +1,5 @@
 export type UserState = {
-    // user: [],
+    user: [],
     name: string,
     uid: string,
     icon: string | undefined
