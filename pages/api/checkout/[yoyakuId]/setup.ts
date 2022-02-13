@@ -46,7 +46,7 @@ const handler = async (req: any, res: any) => {
             // setDoc(doc(db, 'yoyaku'), { pey: paymentIntent.amount, yoyakuId, }, { merge: true })
             // setDoc(doc(db, 'yoyakuPey'), { yoyakuId: { yoyakuId } }, { merge: true })
 
-            setDoc(doc(db, 'yoyakuPay', `${yoyakuId}`), { pey: `${paymentIntent.amount}`, priId: `${paymentIntent.id}` }, { merge: true })
+            setDoc(doc(db, 'yoyakuPay', `${yoyakuId}`), { pey: `${paymentIntent.amount}`, priId: `${paymentIntent.id}`, yoyakuId: `${yoyakuId}` }, { merge: true })
             // const session = await stripe.checkout.sessions.create({
             //     line_items: [
             //         {
