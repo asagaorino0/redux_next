@@ -12,13 +12,14 @@ import dynamic from 'next/dynamic'
 // import PageB1 from '../src/PageB1'
 const PageB = () => {
     const router = useRouter()
-    const toPageA = () => {
-        router.push('./PageA')
+    const toPagePey = () => {
+        router.push('./PagePey')
     }
     const toHome = () => {
         router.push('./')
     }
     const PageB0 = dynamic(() => import('../src/PageB0'), { ssr: false });
+    const PagePey = dynamic(() => import('./PagePey'), { ssr: false });
     // const [name, setName] = useState<string>('');
     // const [age, setAge] = useState<number>(0);
     // const user = useSelector(selectUser);
@@ -38,11 +39,11 @@ const PageB = () => {
             {/* <span >pageA</span> */}
             <br />
             <h1>
-                {/* {user.name}/{user.age} */}
+
                 <React.StrictMode >
                     <Provider store={store}>
                         <PageB0 />
-                        {/* <PageM1 /> */}
+                        <button onClick={toPagePey}>PagePey </button>
                     </Provider>
                 </React.StrictMode>
             </h1>
