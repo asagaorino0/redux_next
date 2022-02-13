@@ -78,7 +78,7 @@ const PageA = () => {
             <section>
               {/* <h2>お客さまメニュー</h2> */}
               <button type="submit" role="link" className={styles.card} >
-                <a href="https://buy.stripe.com/test_dR628mfhs1ZLaGIaEE" target="_blank" >
+                <a href="https://buy.stripe.com/test_dR628mfhs1ZLaGIaEE" >
                   サブスク
                 </a>
               </button>
