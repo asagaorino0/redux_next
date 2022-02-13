@@ -13,10 +13,10 @@ export default function Home() {
                     Success!!
                 </h1>
                 <div className={styles.grid}>
-                    <a href="/" className={styles.card}>
+                    {/* <a href="/" className={styles.card}>
                         <h3>stripeの登録が完了しました。</h3>
                         <p>Topへ戻る</p>
-                    </a>
+                    </a> */}
                 </div>
             </main>
         </div>
