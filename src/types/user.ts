@@ -1,5 +1,5 @@
 export type UserState = {
-    user: [],
+    // user: [],
     name: string,
     uid: string,
     icon: string | undefined
@@ -41,4 +41,6 @@ export type UserState = {
     o_sikaku: number,
     manabi: string,
     manabi_url: string,
+    customerId: string,
+    paymentMethodId: string
 }

@@ -1,13 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../app/store';
 import { UsersState } from "../../src/types/users";
-import { MenuState } from "../../src/types/menu";
 
 const initialState: UsersState = {
     // menu:{menu:[]},
     // users: [],
     name: '',
-    uid: '',
+    uid: 'k11111',
     icon: '',
     tokoro: '',
     erea: '',

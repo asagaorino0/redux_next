@@ -33,7 +33,7 @@ const PagePay = () => {
     const [sonota, setSonota] = useState<string>("");
     const [am_pm, setAm_pm] = useState<string>('');
     const [gappi, setGappi] = useState<string>('');
-    const [userProfile, setUserProfile] = useState<any>([]);
+    const [userProfile, setUserProfile] = useState();
     const [tomare, setTomare] = useState<any>([]);
     const [formatDate, setFormatDate] = useState<any>([]);
     const router = useRouter();
@@ -57,8 +57,8 @@ const PagePay = () => {
             const userData = snapshot.docs.map(
                 (doc) => ({ ...doc.data() } as UserState))
             console.log('userData:', userData)
-            // dispatch(addUser(userData))
-            setUserProfile(userData)
+            dispatch(addUser(userData))
+            // setUserProfile(userData)
         }
         fetchUser()
         fetchTomare()
@@ -70,7 +70,7 @@ const PagePay = () => {
         const snapshot = onSnapshot(q, (querySnapshot) => {
             const tomareData = querySnapshot.docs.map(
                 (doc) => ({ ...doc.data() } as TomareState))
-            dispatch(addTomare(tomareData))
+            // dispatch(addTomare(tomareData))
             setTomare(tomareData)
         });
     }

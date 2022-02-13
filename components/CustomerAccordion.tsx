@@ -10,6 +10,7 @@ import Typography from '@mui/material/Typography';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { TomareState } from "../src/types/tomare";
+import { UserState } from "../src/types/user";
 import { addUser, selectUser } from '../src/features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { Stars } from "./Star";
@@ -101,41 +102,36 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
                         inputProps={{ 'aria-label': 'controlled' }}
                     /> */}
 
-
-                    <form action={`/api/checkout/${user.uid}/setup`} method="POST">
-                        <section>
-                            <button type="submit" role="link" className={styles.card} >
-                                300
-                            </button>
-                        </section>
-                    </form>
-                    <Typography className={styles.grid}>{tomare.tomareId}:{tomare.yoyakuMenu} 　 <Stars star={tomare.star} starSize={16} textSize={12} />　chip:{tomare.chip}</Typography>
+                    {tomare.pey === 0 &&
+                        <form action={`/api/checkout/${tomare.yoyakuId}/setup`} method="POST">
+                            <section>
+                                <button type="submit" role="link" className={styles.card} >
+                                    300
+                                </button>
+                            </section>
+                        </form>
+                    }
+                    <Typography className={styles.grid}>{tomare.tomareId}:{tomare.yoyakuMenu}
+                        <Stars star={tomare.star} starSize={16} textSize={12} />　chip:{tomare.chip}</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                     <Typography>
                         {/* <div className="flex justify-between ...">    */}
                         <div className="flex justify-evenly ...">
                             <div>
-                                {`${tomare.img_befor}`.length !== 0 &&
-                                    <TomareFileChenge tomare={tomare.img_befor} tomareId={tomare.tomareId} uid={tomare.uid} label='img_befor' yoyakuId={`${tomare.yoyakuId}img_befor`} key={tomare.yoyakuId} />
+                                {tomare.checked === true &&
+                                    <img src={tomare.img_befor} alt="" />
                                 }
-                                {`${tomare.img_befor}`.length === 0 &&
-                                    <TomareFileUpload tomare={tomare.img_befor} tomareId={tomare.tomareId} uid={tomare.uid} label='img_befor' yoyakuId={`${tomare.yoyakuId}img_befor`} key={tomare.yoyakuId} />
+                                {tomare.checked === true && user.o_befor_come !== 0 &&
+                                    `${tomare.come_befor}`
                                 }
-                                {user.o_befor_come !== 0 &&
-                                    `${tomare.come_befor}`.length !== 0 && `${tomare.come_befor}`
-                                }
-
                             </div>
                             <div>
-                                {`${tomare.img_after}`.length !== 0 &&
-                                    <TomareFileChenge tomare={tomare.img_after} tomareId={tomare.tomareId} uid={tomare.uid} label='img_after' yoyakuId={`${tomare.tomareId}img_after`} key={tomare.tomareId} />
+                                {tomare.checked === true &&
+                                    <img src={tomare.img_after} alt="" />
                                 }
-                                {`${tomare.img_after}`.length === 0 &&
-                                    <TomareFileUpload tomare={tomare.img_after} tomareId={tomare.tomareId} uid={tomare.uid} label='img_after' yoyakuId={`${tomare.tomareId}img_after`} key={tomare.tomareId} />
-                                }
-                                {user.o_after_come !== 0 &&
-                                    `${tomare.come_after}`.length !== 0 && `${tomare.come_after}`
+                                {tomare.checked === true && user.o_after_come !== 0 &&
+                                    `${tomare.come_after}`
                                 }
                             </div>
                         </div>

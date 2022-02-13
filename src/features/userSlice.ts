@@ -5,7 +5,7 @@ import { UserState } from "../../src/types/user";
 const initialState: UserState = {
   // user: [],
   name: '',
-  uid: '',
+  uid: 'Ud4659ddaee321b794de35beeb141cec6',
   icon: '',
   namae: '',
   sei: '',
@@ -45,6 +45,7 @@ const initialState: UserState = {
   o_sikaku: 300,
   manabi: '',
   manabi_url: '',
+  customerId: '',
 } as UserState;
 
 export const userSlice = createSlice({
@@ -71,6 +72,7 @@ export const userSlice = createSlice({
       state.nail = action.payload.nail
       state.este = action.payload.este
       state.sonota = action.payload.sonota
+      state.customerId = action.payload.costomerId
     }
   },
 });
