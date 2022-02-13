@@ -23,6 +23,7 @@
     "@nuxtjs/axios": "^5.13.6",
     "@react-icons/all-files": "^4.1.0",
     "@reduxjs/toolkit": "^1.7.1",
+    "@stripe/react-stripe-js": "^1.7.0",
     "@stripe/stripe-js": "^1.22.0",
     "autoprefixer": "^10.4.0",
     "dotenv": "^10.0.0",

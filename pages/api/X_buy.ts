@@ -11,15 +11,15 @@ export default async (req: any, res: any) => {
 
         // 顧客のカードの登録情報を取得（複数のカードが登録されている場合は、複数件のカード情報をする）
         const paymentMethodData = await stripe.paymentMethods.list({
-            customer: customerId,
-            // customer: 'cus_L8DD9jgN3R3W4x',
+            // customer: customerId,
+            customer: 'cus_L8DD9jgN3R3W4x',
             type: 'card',
         });
 
         // 店舗毎(stripeConnectedAccountId)にクレジットカード情報(payment_method)を複製
         const clonedPaymentMethod = await stripe.paymentMethods.create({
-            customer: customerId,
-            // customer: 'cus_L8DD9jgN3R3W4x',
+            // customer: customerId,
+            customer: 'cus_L8DD9jgN3R3W4x',
             payment_method: paymentMethodData.data[0].id,
         }, {
             stripeAccount: stripeConnectedAccountId,

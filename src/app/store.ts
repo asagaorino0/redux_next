@@ -9,6 +9,7 @@ import targetReducer from '../features/targetSlice';
 import targetUidReducer from '../features/targetUidSlice';
 import targetYoyakuReducer from '../features/targetYoyakuSlice';
 import targetChatReducer from '../features/targetChatSlice';
+import customerReducer from '../features/customerSlice';
 
 export const store = configureStore({
   reducer: {
@@ -21,7 +22,8 @@ export const store = configureStore({
     target: targetReducer,
     targetUid: targetUidReducer,
     targetYoyaku: targetYoyakuReducer,
-    targetChat: targetChatReducer
+    targetChat: targetChatReducer,
+    customer: customerReducer,
 
   },
 });

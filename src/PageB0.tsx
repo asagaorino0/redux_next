@@ -79,26 +79,6 @@ const PageB0 = () => {
             }
         });
     };
-    const registYoyaku = () => {
-        // const addRef = addDoc(collection(db, 'yoyaku', `${user.uid}`, 'ukeru', `${gappi}oo`), {
-        //     sei,
-        //     menu,
-        //     uid: `${user.uid}`,
-        //     namae: namae,
-        //     tokoro,
-        //     ukeruId: `${gappi}oo`,
-        //     timestamp"",
-        // })
-        const setRef = setDoc(doc(db, 'users', `${user.uid}`, 'tomare', `${gappi}oo`), {
-            gappi,
-            uid: `${user.uid}`,
-            namae: namae,
-            timestamp: "",
-        }, { merge: true }//←上書きされないおまじない
-        )
-        alert('登録しました。オファーを楽しみにお待ちください。')
-    };
-
     useEffect(() => {
         // let users: any = []
         const fetchUsers = async () => {
