@@ -20,7 +20,7 @@ const handler = async (req: any, res: any) => {
                 customer: customer.id,
                 // success_url: 'https://example.com/success?session_id={CHECKOUT_SESSION_ID}',
 
-                success_url: `${req.headers.origin}/PagePey?session_id={CHECKOUT_SESSION_ID}`,
+                // success_url: `${req.headers.origin}/PagePey?session_id={CHECKOUT_SESSION_ID}`,
                 cancel_url: 'https://example.com/cancel',
             });
             const paymentMethod = await stripe.paymentMethods.create({
