@@ -77,13 +77,13 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
     const [checked, setChecked] = React.useState<boolean>(tomare.checked);
 
 
-    const handleChange2 = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const toStripe = () => {
         // setChecked([event.target.checked, checked[1]]);
         // setChecked([checked[1]]);
-        console.log(checked)
-        setDoc(doc(db, 'users', user.uid, 'tomare', `${tomare.tomareId}`), {
-            checked: { checked },
-        }, { merge: true })
+        console.log(`:::tomare.yoyakuId:::`, tomare.yoyakuId)
+        // setDoc(doc(db, 'users', user.uid, 'tomare', `${tomare.tomareId}`), {
+
+        // }, { merge: true })
     };
 
 
@@ -106,7 +106,7 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
                         <form action={`/api/checkout/${tomare.yoyakuId}/setup`} method="POST">
                             {/* // <form action={`/api/checkout/${tomare.uid}/setup`} method="POST"> */}
                             <section>
-                                <button type="submit" role="link" className={styles.card} >
+                                <button type="submit" role="link" className={styles.card} onClick={toStripe} >
                                     300
                                 </button>
                             </section>
