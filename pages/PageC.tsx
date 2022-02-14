@@ -13,15 +13,8 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import styles from '../styles/Home.module.css'
 import { addUser, selectUser } from '../src/features/userSlice';
-import liff from '@line/liff';
-import P_make from "./img/P_make.png"
-import { computeSegDraggable } from '@fullcalendar/common';
-import { truncate } from 'fs';
 import { useRouter } from "next/router";
-import { Provider } from 'react-redux';
-import { store } from '../src/app/store';
 import dynamic from 'next/dynamic'
-// import Chat from './chat'
 
 const PageC = () => {
     const Chat = dynamic(() => import('./srcChat'), { ssr: false });
@@ -46,51 +39,7 @@ const PageC = () => {
     const [icon, setIcon] = useState<string | undefined>('');
     const router = useRouter();
     const [chat, setChat] = useState<any>([]);
-    // const targetChat = useSelector(selectTargetChat);
     const [message, setMessage] = React.useState('');
-    // useEffect(() => {
-    //     liff
-    //         .init({ liffId: process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID as string })
-    //         .then(async () => {
-    //             if (liff.isLoggedIn()) {
-    //                 console.log('login status : [', true, ']');
-    //                 const profile = await liff.getProfile();
-    //                 console.log(
-    //                     '🚀 ~ file: Login.tsx ~ line 15 ~ liff.init ~ profile',
-    //                     profile
-    //                 );
-    //                 // const userId: string = profile.userId
-    //                 const displayName: string = profile.displayName;
-    //                 const displayicon: string | undefined = profile.pictureUrl;
-    //                 setName(profile.displayName);
-    //                 setUid(profile.userId);
-    //                 setName(displayName);
-    //                 setIcon(displayicon);
-    //                 dispatch(
-    //                     addUser({
-    //                         name: profile.displayName,
-    //                         uid: profile.userId,
-    //                         icon: profile.pictureUrl,
-    //                     })
-    //                 );
-    //             } else {
-    //                 console.log('login status : [', false, ']');
-    //             }
-    //         });
-    // }, [dispatch]);
-
-    // const LINEID = process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID;
-    // const lineClick = () => {
-    //     setUid('');
-    //     liff.init({ liffId: LINEID as string }).then(() => {
-    //         if (!liff.isLoggedIn()) {
-    //             setUid('k00000');
-    //             liff.login(); // ログインしていなければ最初にログインする
-    //         } else if (liff.isInClient()) {
-    //             console.log('hello world');
-    //         }
-    //     });
-    // };
 
     useEffect(() => {
         const fetchMenus = async () => {
@@ -109,7 +58,7 @@ const PageC = () => {
 
     useEffect(() => {
         fetchTomare()
-        // console.log('tomare:', tomare)
+        console.log('tomare:', tomare)
         fetchChat(yoyakuId)
     }, []);
 
