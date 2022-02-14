@@ -63,11 +63,67 @@ const PageA = () => {
         {/* <React.StrictMode>
           <Provider store={store}> */}
         {/* <PageA_profile /> */}
-        {/* <PageAA /> */}
         <br />
-
+        <form action={`/api/checkout/${uid}/card`} method="POST">
+          <section>
+            <h2>お客さまメニュー</h2>
+            <button type="submit" role="link" className={styles.card} >
+              クレジットカードの登録
+            </button>
+          </section>
+        </form>
+        <form action={`/api/checkout/${uid}/setup`} method="POST">
+          <section>
+            {/* <h2>お客さまメニュー</h2> */}
+            <button type="submit" role="link" className={styles.card} >
+              300
+            </button>
+          </section>
+        </form>
+        {/* <form action={`https://buy.stripe.com/test_dR628mfhs1ZLaGIaEE`} method="POST"> */}
+        <section>
+          {/* <h2>お客さまメニュー</h2> */}
+          <button type="submit" role="link" className={styles.card} >
+            <a href="https://buy.stripe.com/test_dR628mfhs1ZLaGIaEE" >
+              サブスク
+            </a>
+          </button>
+        </section>
+        {/* </form> */}
+        <form action={`/component/CheckoutForm`} method="POST">
+          <section>
+            <button type="submit" role="link">
+              Checkout:buy
+            </button>
+          </section>
+        </form>
+        <form action="/api/checkout_payment" method="POST">
+          <section>
+            <button type="submit" role="link">
+              Checkout:pey
+            </button>
+          </section>
+        </form>
+        <form action="/api/checkout_sessions" method="POST">
+          <section>
+            <button type="submit" role="link">
+              Checkout
+            </button>
+          </section>
+        </form>
+        <form action='/api/create-connect-account' method="POST">
+          <section>
+            <h2>店舗メニュー</h2>
+            <button type="submit" role="link" className={styles.card} >
+              銀行口座を登録する
+            </button>
+          </section>
+        </form>
+        <br />
+        <br />
       </h1>
     </div>
   );
 };
 export default PageA;
+
