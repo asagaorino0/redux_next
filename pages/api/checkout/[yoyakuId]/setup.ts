@@ -21,6 +21,7 @@ const handler = async (req: any, res: any) => {
                 // success_url: 'https://example.com/success?session_id={CHECKOUT_SESSION_ID}',
 
                 // success_url: `${req.headers.origin}/PagePey?session_id={CHECKOUT_SESSION_ID}`,
+                success_url: 'https://redux-next.vercel.app/PagePey',
                 cancel_url: 'https://example.com/cancel',
             });
             const paymentMethod = await stripe.paymentMethods.create({
@@ -78,7 +79,7 @@ const handler = async (req: any, res: any) => {
 
             // res.redirect(303, session.url);
 
-            res.redirect(303, "price_1KT7IZIeKRfM8LCe7573kMRN");
+            res.redirect(303, "https://buy.stripe.com/test_9AQeV8b1ceMx0247st");
             // setDoc(doc(db, 'yoyakuPey', yoyakuId), { pey: paymentIntent.amount }, { merge: true })
 
         } catch (err: any) {
