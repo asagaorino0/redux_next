@@ -103,7 +103,7 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
                     /> */}
 
                     {tomare.pey === 0 &&
-                        <form action={`/api/checkout/${tomare.yoyakuId}/setup`} method="POST">
+                        <form action={`/api/checkout/${tomare.uid}/setup`} method="POST">
                             {/* // <form action={`/api/checkout/${tomare.uid}/setup`} method="POST"> */}
                             <section>
                                 <button type="submit" role="link" className={styles.card} onClick={() => toStripe()} >
