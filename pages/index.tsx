@@ -15,6 +15,7 @@ const Home: NextPage = () => {
   // };
   const PageC = dynamic(() => import('./PageC'), { ssr: false });
   const PageA = dynamic(() => import('./PageA'), { ssr: false });
+  const PagePey = dynamic(() => import('./PagePey'), { ssr: false });
   return (
     <div className={styles.container}>
       <Head>
