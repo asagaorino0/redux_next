@@ -81,6 +81,9 @@ export default function App() {
   const toPageC = () => {
     router.push('./PageC');
   };
+  const toPagePey = () => {
+    router.push('./PagePey');
+  };
   const registA = () => {
     dispatch(addUser({ name, uid, icon }));
     toPageA()
@@ -92,6 +95,10 @@ export default function App() {
   const registC = () => {
     dispatch(addUser({ name, uid, icon }));
     toPageC();
+  };
+  const registPey = () => {
+    dispatch(addUser({ name, uid, icon }));
+    toPagePey()
   };
   return (
     <div className="App">
@@ -114,7 +121,16 @@ export default function App() {
           </h3>
           <button onClick={registA}>
             <h3 className="mb-4 text-green-500 text-3xl">
-              マイページ
+              ケアビューティストのページ
+            </h3>
+          </button>
+        </div>
+      )}
+      {user.uid !== '' && (
+        <div>
+          <button onClick={registPey}>
+            <h3 className="mb-4 text-green-500 text-3xl">
+              履歴
             </h3>
           </button>
         </div>
