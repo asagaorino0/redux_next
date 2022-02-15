@@ -13,7 +13,7 @@ import dynamic from 'next/dynamic';
 import styles from '../styles/Home.module.css';
 import FileUpload from '../components/FileUpload';
 const PageA = () => {
-  const PageLogin = dynamic(() => import('../src/PageLogin'), { ssr: false });
+  const PagePey = dynamic(() => import('./PagePey'), { ssr: false });
   const PageAA = dynamic(() => import('../src/PageAA'), { ssr: false });
   const PageA_profile = dynamic(() => import('./PageA_profile'), { ssr: false });
   const user = useSelector(selectUser);
