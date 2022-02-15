@@ -27,7 +27,7 @@ import { addFormatdate, } from '../src/features/formatDateSlice';
 const PagePay = () => {
     const Chat = dynamic(() => import('./srcChat'), { ssr: false });
     const PageLogin = dynamic(() => import('../src/PageLogin'), { ssr: false });
-    const [make, setMake] = useState<boolean>(false);
+    const CustomerAccordion = dynamic(() => import('../components/CustomerAccordion'), { ssr: false }); const [make, setMake] = useState<boolean>(false);
     const [nail, setNail] = useState<boolean>(false);
     const [este, setEste] = useState<boolean>(false);
     const [sonota, setSonota] = useState<string>("");
