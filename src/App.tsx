@@ -16,7 +16,7 @@ export default function App() {
   const user = useSelector(selectUser);
   const router = useRouter();
   const PageA = dynamic(() => import('../pages/PageA'), { ssr: false });
-
+  const PagePey = dynamic(() => import('../pages/PagePey'), { ssr: false });
 
   useEffect(() => {
     liff
