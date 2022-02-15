@@ -148,6 +148,7 @@ const PagePay = () => {
         <div className="App">
             <span>pagePay:お支払い</span>
             <br />
+            {user.uid}
             <h1>
                 <React.StrictMode>
                     <Provider store={store}>
@@ -155,22 +156,22 @@ const PagePay = () => {
                         {/* <PageAA /> */}
                         <br />
 
-                        <form action={`/api/checkout/${uid}/card`} method="POST">
+                        {/* <form action={`/api/checkout/${uid}/card`} method="POST">
                             <section>
                                 <h2>お客さまメニュー {user.uid}</h2>
                                 <button type="submit" role="link" className={styles.card} >
                                     クレジットカードの登録
                                 </button>
                             </section>
-                        </form>
+                        </form> */}
 
-                        <form action={`/component/CheckoutForm`} method="POST">
+                        {/* <form action={`/component/CheckoutForm`} method="POST">
                             <section>
                                 <button type="submit" role="link">
                                     Checkout:buy
                                 </button>
                             </section>
-                        </form>
+                        </form> */}
                         <br />
                         *************************************************
                         <br />

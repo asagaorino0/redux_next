@@ -119,14 +119,14 @@ const PageA_profile = () => {
                     </button>
                 </div>
             )}
-            <div className={styles.container}>
-                {/* <h1>LINE message送信</h1>
+            {/* <div className={styles.container}> */}
+            {/* <h1>LINE message送信</h1>
                 <br />
                 <input type="text" onChange={(e) => setText(e.target.value)} />
                 <button onClick={sendLine}>送信</button> */}
-                {/* <input type="file" name="example" onChange={(e) => setLogo(e.target.value)} /> */}
+            {/* <input type="file" name="example" onChange={(e) => setLogo(e.target.value)} /> */}
 
-            </div>
+            {/* </div> */}
             {userProfile
                 .map(
                     (user: any) => {

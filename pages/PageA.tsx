@@ -21,6 +21,7 @@ const PageA = () => {
   const [menus, setMenus] = useState<any>([]);
   const [tomare, setTomare] = useState<any>([]);
   const dispatch = useDispatch();
+  const toHome = () => { router.push('./') }
   const toPagePey = () => {
     router.push('./PagePey')
   }
@@ -54,15 +55,26 @@ const PageA = () => {
   }
   const uid = `${user.uid}`
   return (
-    <div className="App">
-      <span>pageA:プロフィール登録</span>
+    // <div className="App">
+    <div className={styles.main}>
+      <button onClick={toHome}>
+        <h3 className="mb-4 text-green-500 text-3xl">プロフィール登録内容</h3>
+      </button>
+      {user.uid === '' && (
+        <div>
+          <button onClick={toHome}>
+            <h4 className="mb-4 text-green-500 text-3xl">ログイン</h4>
+          </button>
+        </div>
+      )}
       <br />
-      {user.uid}
-      <button onClick={toPagePey}>PagePey </button>
+      {/* {user.uid}
+      <button onClick={toPagePey}>PagePey </button> */}
       <h1>
         {/* <React.StrictMode>
           <Provider store={store}> */}
         {/* <PageA_profile /> */}
+        <PagePey />
         <br />
         <form action={`/api/checkout/${uid}/card`} method="POST">
           <section>
