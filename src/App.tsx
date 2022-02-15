@@ -6,6 +6,7 @@ import 'firebase/compat/firestore';
 import { doc, setDoc, serverTimestamp } from 'firebase/firestore'
 import { db } from './firebase';
 import liff from '@line/liff';
+import dynamic from 'next/dynamic';
 
 export default function App() {
   const [uid, setUid] = useState<string>('');
@@ -14,6 +15,8 @@ export default function App() {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const router = useRouter();
+  const PageA = dynamic(() => import('../pages/PageA'), { ssr: false });
+
 
   useEffect(() => {
     liff
