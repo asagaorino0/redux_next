@@ -13,7 +13,7 @@ import dynamic from 'next/dynamic';
 import styles from '../styles/Home.module.css';
 import FileUpload from '../components/FileUpload';
 const PageA = () => {
-  const PagePey = dynamic(() => import('./PagePey'), { ssr: false });
+  const PagePay = dynamic(() => import('./PagePay'), { ssr: false });
   const PageAA = dynamic(() => import('../src/PageAA'), { ssr: false });
   const PageA_profile = dynamic(() => import('./PageA_profile'), { ssr: false });
   const user = useSelector(selectUser);
@@ -22,8 +22,8 @@ const PageA = () => {
   const [tomare, setTomare] = useState<any>([]);
   const dispatch = useDispatch();
   const toHome = () => { router.push('./') }
-  const toPagePey = () => {
-    router.push('./PagePey')
+  const toPagePay = () => {
+    router.push('./PagePay')
   }
   useEffect(() => {
     const fetchMenus = async () => {
@@ -69,12 +69,12 @@ const PageA = () => {
       )}
       <br />
       {/* {user.uid}
-      <button onClick={toPagePey}>PagePey </button> */}
+      <button onClick={toPagePay}>PagePay </button> */}
       <h1>
         {/* <React.StrictMode>
           <Provider store={store}> */}
         {/* <PageA_profile /> */}
-        {/* <PagePey /> */}
+        {/* <PagePay /> */}
         <br />
         <form action={`/api/checkin/${uid}/card`} method="POST">
           <section>
@@ -112,7 +112,7 @@ const PageA = () => {
         <form action="/api/checkout_payment" method="POST">
           <section>
             <button type="submit" role="link">
-              Checkout:pey
+              Checkout:pay
             </button>
           </section>
         </form>

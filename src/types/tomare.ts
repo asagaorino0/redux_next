@@ -22,7 +22,7 @@ export type TomareState = {
     star: number
     chip: number
     checked: boolean
-    pey: number
-    peyDay: string
-    peyReceipt: string
+    pay: number
+    payDay: string
+    payReceipt: string
 }

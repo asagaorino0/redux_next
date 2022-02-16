@@ -107,7 +107,7 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
                         inputProps={{ 'aria-label': 'controlled' }}
                     /> */}
 
-                    {tomare.pey === 0 &&
+                    {tomare.pay === 0 &&
                         // <form action={`/api/checkin/${tomare.uid}/setup`} method="POST">
                         <form action={`/api/checkout/10/setup`} method="POST">
                             {/* // <form action={`/api/checkin/${tomare.uid}/setup`} method="POST"> */}

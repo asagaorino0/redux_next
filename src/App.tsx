@@ -61,23 +61,23 @@ export default function App() {
           console.log('login status : [', false, ']');
         }
       });
-    // fetchTomare()
+    fetchTomare()
   }, [dispatch]);
 
-  useEffect(() => {
-    const fetchTomare = async () => {
-      const q = query(collectionGroup(db, 'tomare'), where("yoyakuUid", "==", `${user.uid}`));
-      const snapshot = onSnapshot(q, (querySnapshot) => {
-        const tomareData = querySnapshot.docs.map(
-          (doc) => ({ ...doc.data() } as TomareState))
-        // dispatch(addTomare(tomareData))
-        setTomare(tomareData)
-      });
-    }
-    fetchTomare()
-    console.log('User:', user)
-    console.log('tomare:', tomare)
-  }, []);
+  // useEffect(() => {
+  const fetchTomare = async () => {
+    const q = query(collectionGroup(db, 'tomare'), where("yoyakuUid", "==", `${user.uid}`));
+    const snapshot = onSnapshot(q, (querySnapshot) => {
+      const tomareData = querySnapshot.docs.map(
+        (doc) => ({ ...doc.data() } as TomareState))
+      // dispatch(addTomare(tomareData))
+      setTomare(tomareData)
+    });
+  }
+  //   fetchTomare()
+  //   console.log('User:', user)
+  //   console.log('tomare:', tomare)
+  // }, []);
 
 
   // const loginUrl: string | undefined = process.env.NEXT_PUBLIC_LINE_LOGIN_URL;
@@ -103,8 +103,8 @@ export default function App() {
   const toPageC = () => {
     router.push('./PageC');
   };
-  const toPagePey = () => {
-    router.push('./PagePey');
+  const toPagePay = () => {
+    router.push('./PagePay');
   };
   const registA = () => {
     dispatch(addUser({ name, uid, icon }));
@@ -118,9 +118,9 @@ export default function App() {
     dispatch(addUser({ name, uid, icon }));
     toPageC();
   };
-  const registPey = () => {
+  const registPay = () => {
     dispatch(addUser({ name, uid, icon }));
-    toPagePey()
+    toPagePay()
   };
   return (
     <div className="App">
@@ -150,7 +150,7 @@ export default function App() {
       )}
       {user.uid !== '' && (
         <div>
-          <button onClick={registPey}>
+          <button onClick={registPay}>
             <h3 className="mb-4 text-green-500 text-3xl">
               履歴
             </h3>

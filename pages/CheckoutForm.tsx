@@ -39,7 +39,7 @@ const CheckoutForm = (props: any) => {
             <form action={`/api/shop/${props.shopId}/buy`} method="POST">
                 {/* <section>
                 <button type="submit" role="link">
-                  Checkout:pey
+                  Checkout:pay
                 </button>
               </section> */}
             </form>
