@@ -91,6 +91,7 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
         setDoc(doc(db, 'yoyakuPay', `${tomare.yoyakuId}`), {
             tomareId: tomare.tomareId,
             pay: +tomare.tanka * tomare.quantity,
+            yoyakuUid: tomare.yoyakuUid,
             yoyakuId: tomare.yoyakuId
         }, { merge: true })
     };

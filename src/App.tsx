@@ -18,6 +18,7 @@ export default function App() {
   const [name, setName] = useState<string>('');
   const [icon, setIcon] = useState<string | undefined>('');
   const [tomare, setTomare] = useState<any>([]);
+  const [pay, setPay] = useState<any>([]);
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const router = useRouter();
@@ -67,13 +68,13 @@ export default function App() {
     fetchPay()
   }, [dispatch]);
   const fetchPay = async () => {
-    const q = query(collection(db, 'yoyakuPay',));
+    const q = query(collection(db, 'yoyakuPay',), where("yoyakuUid", "==", `${uid}`));
     const snapshot = await getDocs(q)
     const payData = snapshot.docs.map(
       (doc) => ({ ...doc.data() } as TomareState))
     console.log('payData:', payData)
     dispatch(addUser(payData))
-    // setUserProfile(userData)
+    setPay(payData)
   }
   const fetchUser = async () => {
     const q = query(collection(db, 'users',), where("uid", "==", `${user.uid}`));
@@ -143,6 +144,33 @@ export default function App() {
   };
   return (
     <div className="App">
+      <div className="App">
+        <span>pagePay:お支払い</span>
+        <br />
+        {uid}
+        <h1>
+          <br />
+          *************************************************
+          <br />
+          {
+            pay
+              .map((tomare: TomareState) => {
+                return (
+                  <div key={tomare.tomareId}>
+                    {`${tomare.yoyakuMenu}` !== "" &&
+                      <div className={styles.grid}>
+                        <CustomerAccordion tomare={tomare} key={tomare.tomareId} />
+                      </div>
+                    }
+                  </div>
+                )
+              })
+          }
+        </h1>
+      </div>
+
+
+
       {uid === '' && (
         <div>
           <button onClick={lineClick}>
@@ -204,7 +232,7 @@ export default function App() {
           </button>
         </div>
       )}
-      {uid !== '' && (
+      {/* {uid !== '' && (
         <div>
           <button onClick={registB}>
             <h3 className="mb-4 text-green-500 text-3xl">
@@ -212,33 +240,7 @@ export default function App() {
             </h3>
           </button>
         </div>
-      )}
-      <div className="App">
-        <span>pagePay:お支払い</span>
-        <br />
-        {user.uid}
-        <h1>
-          <br />
-          *************************************************
-          <br />
-          {
-            tomare
-              .map((tomare: TomareState) => {
-                return (
-                  <div key={tomare.tomareId}>
-                    {`${tomare.yoyakuMenu}` !== "" &&
-                      <div className={styles.grid}>
-                        <CustomerAccordion tomare={tomare} key={tomare.tomareId} />
-                      </div>
-                    }
-                  </div>
-                )
-              })
-          }
-
-        </h1>
-      </div>
-
+      )} */}
     </div>
   );
 }
