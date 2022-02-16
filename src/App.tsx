@@ -58,6 +58,8 @@ export default function App() {
               timestamp: '',
             },
             { merge: true });
+          console.log('uid', uid)
+          console.log('profile.userId', profile.userId)
         } else {
           console.log('login status : [', false, ']');
         }
@@ -141,19 +143,19 @@ export default function App() {
   };
   return (
     <div className="App">
-      {user.uid === '' && (
+      {uid === '' && (
         <div>
           <button onClick={lineClick}>
             <h4 className="mb-4 text-green-500 text-3xl">ログイン</h4>
           </button>
         </div>
       )}
-      {user.uid !== '' && (
+      {uid !== '' && (
         <div>
           <h2 className="mb-4  text-3xl">ようこそ</h2>
         </div>
       )}
-      {user.uid !== '' && (
+      {uid !== '' && (
         <div>
           {/* <h3 className="mb-4  text-3xl">
             ケアビューティスト
@@ -165,7 +167,7 @@ export default function App() {
           </button>
         </div>
       )}
-      {user.uid !== '' && (
+      {uid !== '' && (
         <div>
           <button onClick={registPay}>
             <h3 className="mb-4 text-green-500 text-3xl">
@@ -174,7 +176,7 @@ export default function App() {
           </button>
         </div>
       )}
-      {user.uid !== '' && (
+      {uid !== '' && (
         <div>
           <button onClick={registC}>
             <h3 className="mb-4 text-green-500 text-3xl">
@@ -184,7 +186,7 @@ export default function App() {
         </div>
       )}
 
-      {user.uid !== '' && (
+      {uid !== '' && (
 
         <div>
           <h3 className="mb-4  text-3xl">
@@ -195,14 +197,14 @@ export default function App() {
           </button>
         </div>
       )}
-      {user.uid !== '' && (
+      {uid !== '' && (
         <div>
           <button onClick={registB}>
             <h3 className="mb-4 text-green-500 text-3xl">施設で申し込む</h3>
           </button>
         </div>
       )}
-      {user.uid !== '' && (
+      {uid !== '' && (
         <div>
           <button onClick={registB}>
             <h3 className="mb-4 text-green-500 text-3xl">
