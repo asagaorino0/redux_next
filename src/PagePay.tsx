@@ -92,7 +92,7 @@ const PagePay = () => {
                     fetchTomare()
                     // fetchUser()
                     fetchPay()
-                    console.log('User:', user)
+                    // console.log('User:', user)
                     console.log('tomare:', tomare)
                 }
             });
@@ -124,7 +124,7 @@ const PagePay = () => {
         // setUser(userData)
     }
     const fetchTomare = async () => {
-        const q = query(collectionGroup(db, 'tomare'), where("yoyakuUid", "==", `${uid}`));
+        const q = query(collectionGroup(db, 'tomare'), where("yoyakuUid", "==", uid));
         const snapshot = onSnapshot(q, (querySnapshot) => {
             const tomareData = querySnapshot.docs.map(
                 (doc) => ({ ...doc.data() } as TomareState))
