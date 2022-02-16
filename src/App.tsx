@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { addUser, selectUser } from '../src/features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
+import { UserState } from "../src/types/user";
 import 'firebase/compat/firestore';
 // import { doc, setDoc, serverTimestamp } from 'firebase/firestore'
 import { db } from './firebase';
@@ -61,10 +62,19 @@ export default function App() {
           console.log('login status : [', false, ']');
         }
       });
+    fetchUser()
     fetchTomare()
   }, [dispatch]);
 
-  // useEffect(() => {
+  const fetchUser = async () => {
+    const q = query(collection(db, 'users',), where("uid", "==", `${user.uid}`));
+    const snapshot = await getDocs(q)
+    const userData = snapshot.docs.map(
+      (doc) => ({ ...doc.data() } as UserState))
+    console.log('userData:', userData)
+    dispatch(addUser(userData))
+    // setUserProfile(userData)
+  }
   const fetchTomare = async () => {
     const q = query(collectionGroup(db, 'tomare'), where("yoyakuUid", "==", `${user.uid}`));
     const snapshot = onSnapshot(q, (querySnapshot) => {
