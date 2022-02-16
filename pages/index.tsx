@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 const App = dynamic(() => import('../src/App'), { ssr: false });
-const PagePay = dynamic(() => import('./PagePay'), { ssr: false });
+const PagePay = dynamic(() => import('../src/PagePay'), { ssr: false });
 
 const Home: NextPage = () => {
   const router = useRouter();
@@ -33,6 +33,9 @@ const Home: NextPage = () => {
 
         <section className="h-screen w-4/5 max-w-5xl mx-auto flex items-center justifycenter flex-col">
           <Provider store={store}>
+            <PagePay />
+            <br />
+            *************************************************
             <App />
           </Provider>
         </section>

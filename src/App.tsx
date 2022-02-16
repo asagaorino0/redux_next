@@ -144,8 +144,8 @@ export default function App() {
   };
   return (
     <div className="App">
-      <div className="App">
-        <span>pagePay:お支払い</span>
+      {/* <div className="App"> */}
+      {/* <span>pagePay:お支払い</span>
         <br />
         {uid}
         <h1>
@@ -159,9 +159,9 @@ export default function App() {
           {pay.star}
           <br />
           {pay.chip}
-          <br />
-          {/* <PagePay /> */}
-          {/* {
+          <br /> */}
+      {/* <PagePay /> */}
+      {/* {
             pay
               .map((tomare: TomareState) => {
                 return (
@@ -175,24 +175,24 @@ export default function App() {
                 )
               })
           } */}
-        </h1>
-      </div>
+      {/* </h1>
+      </div> */}
 
 
 
-      {uid === '' && (
+      {user.uid === '' && (
         <div>
           <button onClick={lineClick}>
             <h4 className="mb-4 text-green-500 text-3xl">ログイン</h4>
           </button>
         </div>
       )}
-      {uid !== '' && (
+      {/* {user.uid !== '' && (
         <div>
           <h2 className="mb-4  text-3xl">ようこそ</h2>
         </div>
-      )}
-      {uid !== '' && (
+      )} */}
+      {user.uid !== '' && (
         <div>
           {/* <h3 className="mb-4  text-3xl">
             ケアビューティスト
@@ -204,7 +204,7 @@ export default function App() {
           </button>
         </div>
       )}
-      {uid !== '' && (
+      {user.uid !== '' && (
         <div>
           <button onClick={registPay}>
             <h3 className="mb-4 text-green-500 text-3xl">
@@ -213,7 +213,7 @@ export default function App() {
           </button>
         </div>
       )}
-      {uid !== '' && (
+      {user.uid !== '' && (
         <div>
           <button onClick={registC}>
             <h3 className="mb-4 text-green-500 text-3xl">
@@ -223,7 +223,7 @@ export default function App() {
         </div>
       )}
 
-      {uid !== '' && (
+      {user.uid !== '' && (
 
         <div>
           <h3 className="mb-4  text-3xl">
@@ -234,7 +234,7 @@ export default function App() {
           </button>
         </div>
       )}
-      {uid !== '' && (
+      {user.uid !== '' && (
         <div>
           <button onClick={registB}>
             <h3 className="mb-4 text-green-500 text-3xl">施設で申し込む</h3>

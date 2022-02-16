@@ -73,8 +73,8 @@ const PageA = () => {
       <h1>
         {/* <React.StrictMode>
           <Provider store={store}> */}
-        {/* <PageA_profile /> */}
-        <PagePay />
+        <PageA_profile />
+        {/* <PagePay /> */}
         <br />
         <form action={`/api/checkin/${uid}/card`} method="POST">
           <section>

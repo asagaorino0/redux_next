@@ -33,11 +33,13 @@ const PagePay = () => {
     const [am_pm, setAm_pm] = useState<string>('');
     const [gappi, setGappi] = useState<string>('');
     const [userProfile, setUserProfile] = useState();
+    // const [user, setUser] = useState();
+    const user = useSelector(selectUser);
     const [tomare, setTomare] = useState<any>([]);
     const [formatDate, setFormatDate] = useState<any>([]);
     const router = useRouter();
     const dispatch = useDispatch();
-    const user = useSelector(selectUser);
+    // const user = useSelector(selectUser);
     // const [rogo, setRogo] = useState<string>('');
     const [name, setName] = useState<string>('');
     const [icon, setIcon] = useState<string | undefined>('');
@@ -99,7 +101,7 @@ const PagePay = () => {
             (doc) => ({ ...doc.data() } as UserState))
         console.log('userData:', userData)
         dispatch(addUser(userData))
-        // setUserProfile(userData)
+        // setUser(userData)
     }
     // fetchUser()
     // fetchTomare()
@@ -107,7 +109,7 @@ const PagePay = () => {
     // console.log('tomare:', tomare)
     // }, []);
     const fetchTomare = async () => {
-        const q = query(collectionGroup(db, 'tomare'), where("yoyakuUid", "==", `${uid}`));
+        const q = query(collectionGroup(db, 'tomare'), where("yoyakuUid", "==", `${user.uid}`));
         const snapshot = onSnapshot(q, (querySnapshot) => {
             const tomareData = querySnapshot.docs.map(
                 (doc) => ({ ...doc.data() } as TomareState))
@@ -153,7 +155,7 @@ const PagePay = () => {
                 <React.StrictMode>
                     <Provider store={store}>
                         <br />
-                        {uid === '' && (
+                        {user.uid === '' && (
                             <div>
                                 <button onClick={lineClick}>
                                     <h4 className="mb-4 text-green-500 text-3xl">ログイン</h4>
