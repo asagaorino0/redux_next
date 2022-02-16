@@ -43,6 +43,7 @@ const PagePay = () => {
     // const [rogo, setRogo] = useState<string>('');
     const [name, setName] = useState<string>('');
     const [icon, setIcon] = useState<string | undefined>('');
+    const [pay, setPay] = useState<any>([]);
     const [menus, setMenus] = useState<any>([]);
     const [yoyakuId, setYoyakuId] = useState<string>('');
     const [yoyakuIcon, setYoyakuIcon] = useState<string>('');
@@ -89,11 +90,28 @@ const PagePay = () => {
                     console.log('login status : [', false, ']');
                     fetchTomare()
                     // fetchUser()
+                    fetchPay()
                     console.log('User:', user)
                     console.log('tomare:', tomare)
                 }
             });
     }, [dispatch]);
+
+    // fetchUser()
+    // fetchTomare()
+    // console.log('User:', user)
+    // console.log('tomare:', tomare)
+    // }, []);
+
+    const fetchPay = async () => {
+        const q = query(collection(db, 'yoyakuPay',), where("yoyakuUid", "==", `${uid}`));
+        const snapshot = await getDocs(q)
+        const payData = snapshot.docs.map(
+            (doc) => ({ ...doc.data() } as TomareState))
+        console.log('payData:', payData)
+        dispatch(addUser(payData))
+        setPay(payData)
+    }
     const fetchUser = async () => {
         const q = query(collection(db, 'users',), where("uid", "==", `${uid}`));
         const snapshot = await getDocs(q)
@@ -103,11 +121,6 @@ const PagePay = () => {
         dispatch(addUser(userData))
         // setUser(userData)
     }
-    // fetchUser()
-    // fetchTomare()
-    // console.log('User:', user)
-    // console.log('tomare:', tomare)
-    // }, []);
     const fetchTomare = async () => {
         const q = query(collectionGroup(db, 'tomare'), where("yoyakuUid", "==", `${user.uid}`));
         const snapshot = onSnapshot(q, (querySnapshot) => {
@@ -162,22 +175,15 @@ const PagePay = () => {
                                 </button>
                             </div>
                         )}
-                        {/* <form action={`/api/checkin/${uid}/card`} method="POST">
-                            <section>
-                                <h2>お客さまメニュー {user.uid}</h2>
-                                <button type="submit" role="link" className={styles.card} >
-                                    クレジットカードの登録
-                                </button>
-                            </section>
-                        </form> */}
-
-                        {/* <form action={`/component/CheckoutForm`} method="POST">
-                            <section>
-                                <button type="submit" role="link">
-                                    Checkout:buy
-                                </button>
-                            </section>
-                        </form> */}
+                        <br />
+                        {pay.pay}
+                        <br />
+                        {pay.yoyakuId}
+                        <br />
+                        {pay.star}
+                        <br />
+                        {pay.chip}
+                        <br />
                         <br />
                         *************************************************
                         <br />
