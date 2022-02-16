@@ -57,9 +57,9 @@ const PageA = () => {
   return (
     // <div className="App">
     <div className={styles.main}>
-      <button onClick={toHome}>
+      {/* <button onClick={toHome}>
         <h3 className="mb-4 text-green-500 text-3xl">施術履歴</h3>
-      </button>
+      </button> */}
       {user.uid === '' && (
         <div>
           <button onClick={toHome}>
