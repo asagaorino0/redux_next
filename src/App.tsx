@@ -68,7 +68,7 @@ export default function App() {
     fetchPay()
   }, [dispatch]);
   const fetchPay = async () => {
-    const q = query(collection(db, 'yoyakuPay',), where("yoyakuUid", "==", `${uid}`));
+    const q = query(collection(db, 'yoyakuPay',), where("yoyakuUid", "==", `${user.uid}`));
     const snapshot = await getDocs(q)
     const payData = snapshot.docs.map(
       (doc) => ({ ...doc.data() } as TomareState))
@@ -161,24 +161,25 @@ export default function App() {
           {pay.chip}
           <br /> */}
       {/* <PagePay /> */}
-      {/* {
-            pay
-              .map((tomare: TomareState) => {
-                return (
-                  <div key={tomare.tomareId}>
-                    {`${tomare.yoyakuMenu}` !== "" &&
-                      <div className={styles.grid}>
-                        <CustomerAccordion tomare={tomare} key={tomare.tomareId} />
-                      </div>
-                    }
+      {
+        pay
+          .map((tomare: TomareState) => {
+            return (
+              <div key={tomare.tomareId}>
+                {`${tomare.yoyakuMenu}` !== "" &&
+                  <div className={styles.grid}>
+                    <CustomerAccordion tomare={tomare} key={tomare.tomareId} />
                   </div>
-                )
-              })
-          } */}
+                }
+              </div>
+            )
+          })
+      }
       {/* </h1>
       </div> */}
 
-
+      <br />
+      *************************************************
 
       {user.uid === '' && (
         <div>

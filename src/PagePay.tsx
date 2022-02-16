@@ -12,6 +12,7 @@ import { addUser, selectUser } from '../src/features/userSlice';
 import { useRouter } from "next/router";
 import dynamic from 'next/dynamic'
 import CustomerAccordion from '../components/CustomerAccordion';
+import PayAccordion from '../components/PayAccordion';
 import liff from '@line/liff';
 import P_make from "./img/P_make.png"
 import { computeSegDraggable } from '@fullcalendar/common';
@@ -104,16 +105,17 @@ const PagePay = () => {
     // }, []);
 
     const fetchPay = async () => {
-        const q = query(collection(db, 'yoyakuPay',), where("yoyakuUid", "==", `${uid}`));
-        const snapshot = await getDocs(q)
-        const payData = snapshot.docs.map(
-            (doc) => ({ ...doc.data() } as TomareState))
-        console.log('payData:', payData)
-        dispatch(addUser(payData))
-        setPay(payData)
+        const q = query(collection(db, 'yoyakuPay'), where("yoyakuUid", "==", `${user.uid}`));
+        const snapshot = onSnapshot(q, (querySnapshot) => {
+            const payData = querySnapshot.docs.map(
+                (doc) => ({ ...doc.data() } as TomareState))
+            console.log('payData:', payData)
+            dispatch(addUser(payData))
+            setPay(payData)
+        });
     }
     const fetchUser = async () => {
-        const q = query(collection(db, 'users',), where("uid", "==", `${uid}`));
+        const q = query(collection(db, 'users',), where("uid", "==", `${user.uid}`));
         const snapshot = await getDocs(q)
         const userData = snapshot.docs.map(
             (doc) => ({ ...doc.data() } as UserState))
@@ -176,13 +178,18 @@ const PagePay = () => {
                             </div>
                         )}
                         <br />
-                        {pay.pay}
-                        <br />
-                        {pay.yoyakuId}
-                        <br />
-                        {pay.star}
-                        <br />
-                        {pay.chip}
+                        {pay
+                            .map((pay: TomareState) => {
+                                return (
+                                    <div key={pay.tomareId}>
+                                        {/* {`${tomare.yoyakuMenu}` !== "" && */}
+                                        <div className={styles.grid}>
+                                            <PayAccordion pay={pay} key={pay.tomareId} />
+                                        </div>
+                                        {/* } */}
+                                    </div>
+                                )
+                            })}
                         <br />
                         <br />
                         *************************************************

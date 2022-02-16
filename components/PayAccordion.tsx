@@ -58,19 +58,10 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
     borderTop: '1px solid rgba(0, 0, 0, .125)',
 }));
 
-export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
+export default function SimpleAccordion({ pay }: { pay: TomareState }) {
     const [expanded, setExpanded] = React.useState<string | false>('panel1');
-    // const [checked, setChecked] = React.useState(true);
-    const handleCheck = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setChecked(event.target.checked);
-        // setChecked([event.target.checked, checked[1]]);
-        console.log(checked, `${tomare.tomareId}`)
-        setDoc(doc(db, 'users', `${tomare.uid}`, 'tomare', `${tomare.tomareId}`), {
-            checked: event.target.checked,
-        }, { merge: true })
-    };
     const handleStar = (e: number) => {
-        setDoc(doc(db, 'users', `${tomare.uid}`, 'tomare', `${tomare.tomareId}`), { star: e }, { merge: true })
+        setDoc(doc(db, 'yoyakuPay', `${pay.yoyakuId}`), { star: e }, { merge: true })
     };
     const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
     const user = useSelector(selectUser);
@@ -79,29 +70,22 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
             setExpanded(newExpanded ? panel : false);
         };
     // const [checked, setChecked] = React.useState([true, false]);
-    const [checked, setChecked] = React.useState<boolean>(tomare.checked);
+    // const [checked, setChecked] = React.useState<boolean>(pay.checked);
 
 
     const toStripe = () => {
-        // setChecked([event.target.checked, checked[1]]);
-        // setChecked([checked[1]]);
-        // console.log(`:::tomare.yoyakuId:::`, tomare.yoyakuId)
-        // setDoc(doc(db, 'users', user.uid, 'tomare', `${tomare.tomareId}`), {
-        // }, { merge: true })
-        setDoc(doc(db, 'yoyakuPay', `${tomare.yoyakuId}`), {
-            tomareId: tomare.tomareId,
-            pay: +tomare.tanka * tomare.quantity,
-            yoyakuUid: tomare.yoyakuUid,
-            yoyakuId: tomare.yoyakuId,
-            uid: tomare.uid,
-            star: tomare.star,
-            chip: tomare.chip,
-            img_befor: tomare.img_befor,
-            img_after: tomare.img_after,
-            yoyakuMenu: tomare.yoyakuMenu
+        setDoc(doc(db, 'users', `${pay.uid}`, 'tomare', `${pay.tomareId}`), {
+            pay: pay.pay,
+            star: pay.star,
+            chip: pay.chip,
+            // tomareId: pay.tomareId,
+            // yoyakuUid: pay.yoyakuUid,
+            // yoyakuId: pay.yoyakuId,
+            // img_befor: pay.img_befor,
+            // img_after: pay.img_after,
         }, { merge: true })
     };
-    // const quantity = `${tomare.quantity}`
+
 
     return (
         <div>
@@ -109,7 +93,7 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
                 expanded={expanded === 'panel1'}
                 onChange={handleChange('panel1')}
             >
-                {/* <Checkbox checked={checked[tomare.checked]} onChange={handleChange2} /> */}
+                {/* <Checkbox checked={checked[pay.checked]} onChange={handleChange2} /> */}
 
                 <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
                     {/* <Checkbox
@@ -118,30 +102,27 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
                         inputProps={{ 'aria-label': 'controlled' }}
                     /> */}
 
-                    {tomare.pay === 0 &&
-                        <form action={`/api/checkout/${tomare.quantity}/setup`} method="POST">
-                            <section>
-                                <button type="submit" role="link" className={styles.card} onClick={() => toStripe()} >
-                                    {`${tomare.tanka * tomare.quantity}円${tomare.tanka}円
-                                    ×${+ tomare.quantity * 10} 分`}
-                                </button>
-                            </section>
-                        </form>
-                    }
-                    {tomare.pay !== 0 &&
-                        <section>
-                            {/* <div className={styles.card}  > */}
-                            {`済 ${tomare.tanka}円×${+ tomare.quantity * 10} 分`}
-                            {/* </div> */}
-                        </section>
-                    }
-                    <Typography className={styles.grid}>{tomare.tomareId}:{tomare.yoyakuMenu}
+                    {/* {pay.pay === 0 && */}
+
+                    {/* <form action={`/api/checkout/${pay.chip}/setup`} method="POST"> */}
+                    {/* <section>
+                            <button type="submit" role="link" className={styles.card} onClick={() => toStripe()} >
+                                {`${pay.tanka * pay.quantity}円${pay.tanka}円
+                                    ×${+ pay.quantity * 10} 分`}
+                            </button>
+                        </section> */}
+                    {/* </form> */}
+                    {/* } */}
+                    <button type="submit" role="link" className={styles.card} onClick={() => toStripe()} >
+                        o.k.
+                    </button>
+                    <Typography className={styles.grid}>{pay.tomareId}:{pay.yoyakuMenu}
                         <br />
-                        {tomare.star !== 0 &&
+                        {pay.star !== 0 &&
 
-                            <Stars star={tomare.star} starSize={16} textSize={12} />}
+                            <Stars star={pay.star} starSize={16} textSize={12} />}
 
-                        {tomare.star === 0 &&
+                        {pay.star === 0 &&
                             <div>
                                 {/* <br /> */}
                                 <button onClick={(e) => handleStar(1)}><BsStar /></button>
@@ -153,8 +134,9 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
                                 <br />
                             </div>
                         }
-                        {tomare.chip !== 0 &&
-                            `chip:${tomare.chip}`
+
+                        {pay.chip !== 0 &&
+                            `chip:${pay.chip}`
                         }
                     </Typography>
                 </AccordionSummary>
@@ -163,20 +145,14 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
                         {/* <div className="flex justify-between ...">    */}
                         <div className="flex justify-evenly ...">
                             <div>
-                                {tomare.checked === true &&
-                                    <img src={tomare.img_befor} alt="" />
-                                }
-                                {tomare.checked === true && user.o_befor_come !== 0 &&
-                                    `${tomare.come_befor}`
-                                }
+                                <img src={pay.img_befor} alt="" />
+                                {/* {pay.checked === true && user.o_befor_come !== 0 &&
+                                    `${pay.come_befor}`} */}
                             </div>
                             <div>
-                                {tomare.checked === true &&
-                                    <img src={tomare.img_after} alt="" />
-                                }
-                                {tomare.checked === true && user.o_after_come !== 0 &&
-                                    `${tomare.come_after}`
-                                }
+                                <img src={pay.img_after} alt="" />
+                                {/* {pay.checked === true && user.o_after_come !== 0 &&
+                                    `${pay.come_after}`} */}
                             </div>
                         </div>
                     </Typography>
