@@ -115,18 +115,18 @@ const PagePay = () => {
             setTomare(tomareData)
         });
     }
-    const LINEID = process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID;
-    const lineClick = () => {
-        setUid('');
-        liff.init({ liffId: LINEID as string }).then(() => {
-            if (!liff.isLoggedIn()) {
-                setUid('k00000');
-                liff.login(); // ログインしていなければ最初にログインする
-            } else if (liff.isInClient()) {
-                console.log('hello world');
-            }
-        });
-    }; ///先生
+    // const LINEID = process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID;
+    // const lineClick = () => {
+    //     setUid('');
+    //     liff.init({ liffId: LINEID as string }).then(() => {
+    //         if (!liff.isLoggedIn()) {
+    //             setUid('k00000');
+    //             liff.login(); // ログインしていなければ最初にログインする
+    //         } else if (liff.isInClient()) {
+    //             console.log('hello world');
+    //         }
+    //     });
+    // }; ///先生
 
     const date = new Date()
     const Y = date.getFullYear()

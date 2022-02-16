@@ -17,7 +17,6 @@ export const Stars: React.FC<Props> = ({
     const starStyle = [styles.star, { fontSize: starSize }];
     return (
         <div className={styles.grid}>
-
             {star >= 1 && <BsStarFill />}
             {star == 0 && <BsStar />}
             {star >= 2 && <BsStarFill />}
@@ -28,8 +27,6 @@ export const Stars: React.FC<Props> = ({
             {star <= 3 && <BsStar />}
             {star >= 5 && <BsStarFill />}
             {star <= 4 && <BsStar />}
-
-
             <text>{star}</text>
         </div>
     );

@@ -7,16 +7,18 @@ import MuiAccordionSummary, {
 } from '@mui/material/AccordionSummary';
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
-import Checkbox from '@mui/material/Checkbox';
-import FormControlLabel from '@mui/material/FormControlLabel';
 import { TomareState } from "../src/types/tomare";
-import { UserState } from "../src/types/user";
 import { addUser, selectUser } from '../src/features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { Stars } from "./Star";
+import { BsStar } from "react-icons/bs";
 import styles from '../styles/Home.module.css';
-import { getFirestore, getDocs, collection, collectionGroup, query, where, onSnapshot, doc, setDoc, Timestamp, addDoc } from 'firebase/firestore'
+import { doc, setDoc } from 'firebase/firestore'
 import { db } from "../src/firebase";
+import Checkbox from '@mui/material/Checkbox';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import { UserState } from "../src/types/user";
+
 import TomareFileUpload from '../components/TomareFileUpload';
 import TomareFileChenge from '../components/TomareFileChenge';
 
@@ -67,6 +69,9 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
             checked: event.target.checked,
         }, { merge: true })
     };
+    const handleStar = (e: number) => {
+        setDoc(doc(db, 'users', `${tomare.uid}`, 'tomare', `${tomare.tomareId}`), { star: e }, { merge: true })
+    };
     const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
     const user = useSelector(selectUser);
     const handleChange =
@@ -115,6 +120,11 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
                     }
                     <Typography className={styles.grid}>{tomare.tomareId}:{tomare.yoyakuMenu}
                         <Stars star={tomare.star} starSize={16} textSize={12} />　chip:{tomare.chip}</Typography>
+                    {tomare.star === 0 &&
+                        <button onClick={(e) => handleStar(1)}><BsStar /></button>
+                    }
+                    <button onClick={(e) => handleStar(1)}><BsStar /></button>
+
                 </AccordionSummary>
                 <AccordionDetails>
                     <Typography>
