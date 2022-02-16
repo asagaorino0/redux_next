@@ -90,7 +90,7 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
 
         // }, { merge: true })
     };
-    const quantity = 10
+    const quantity = `${tomare.quantity}`
 
     return (
         <div>
@@ -109,7 +109,7 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
 
                     {tomare.pay === 0 &&
                         // <form action={`/api/checkin/${tomare.uid}/setup`} method="POST">
-                        <form action={`/api/checkout/10/setup`} method="POST">
+                        <form action={`/api/checkout/${tomare.quantity}/setup`} method="POST">
                             {/* // <form action={`/api/checkin/${tomare.uid}/setup`} method="POST"> */}
                             <section>
                                 <button type="submit" role="link" className={styles.card} onClick={() => toStripe()} >
