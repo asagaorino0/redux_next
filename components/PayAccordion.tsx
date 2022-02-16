@@ -72,12 +72,21 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
     // const [checked, setChecked] = React.useState([true, false]);
     // const [checked, setChecked] = React.useState<boolean>(pay.checked);
 
+    const date = new Date()
+    const Y = date.getFullYear()
+    const M = ("00" + (date.getMonth() + 1)).slice(-2)
+    const D = ("00" + date.getDate()).slice(-2)
+    const h = ("00" + date.getHours()).slice(-2)
+    const m = ("00" + date.getMinutes()).slice(-2)
+    const s = ("00" + date.getSeconds()).slice(-2)
+    const now = Y + '-' + M + '-' + D + ' ' + h + ':' + m + ':' + s
 
     const toStripe = () => {
         setDoc(doc(db, 'users', `${pay.uid}`, 'tomare', `${pay.tomareId}`), {
             pay: pay.pay,
             star: pay.star,
             chip: pay.chip,
+            timestamp: now
             // tomareId: pay.tomareId,
             // yoyakuUid: pay.yoyakuUid,
             // yoyakuId: pay.yoyakuId,

@@ -80,14 +80,16 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
         };
     // const [checked, setChecked] = React.useState([true, false]);
     const [checked, setChecked] = React.useState<boolean>(tomare.checked);
-
+    const date = new Date()
+    const Y = date.getFullYear()
+    const M = ("00" + (date.getMonth() + 1)).slice(-2)
+    const D = ("00" + date.getDate()).slice(-2)
+    const h = ("00" + date.getHours()).slice(-2)
+    const m = ("00" + date.getMinutes()).slice(-2)
+    const s = ("00" + date.getSeconds()).slice(-2)
+    const now = Y + '-' + M + '-' + D + ' ' + h + ':' + m + ':' + s
 
     const toStripe = () => {
-        // setChecked([event.target.checked, checked[1]]);
-        // setChecked([checked[1]]);
-        // console.log(`:::tomare.yoyakuId:::`, tomare.yoyakuId)
-        // setDoc(doc(db, 'users', user.uid, 'tomare', `${tomare.tomareId}`), {
-        // }, { merge: true })
         setDoc(doc(db, 'yoyakuPay', `${tomare.yoyakuId}`), {
             tomareId: tomare.tomareId,
             pay: +tomare.tanka * tomare.quantity,
@@ -98,7 +100,8 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
             chip: tomare.chip,
             img_befor: tomare.img_befor,
             img_after: tomare.img_after,
-            yoyakuMenu: tomare.yoyakuMenu
+            yoyakuMenu: tomare.yoyakuMenu,
+            timestamp: now
         }, { merge: true })
     };
     // const quantity = `${tomare.quantity}`
