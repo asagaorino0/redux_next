@@ -58,7 +58,7 @@ const PageA = () => {
     // <div className="App">
     <div className={styles.main}>
       <button onClick={toHome}>
-        <h3 className="mb-4 text-green-500 text-3xl">プロフィール登録内容</h3>
+        <h3 className="mb-4 text-green-500 text-3xl">施術履歴</h3>
       </button>
       {user.uid === '' && (
         <div>
@@ -74,7 +74,7 @@ const PageA = () => {
         {/* <React.StrictMode>
           <Provider store={store}> */}
         {/* <PageA_profile /> */}
-        <PagePey />
+        {/* <PagePey /> */}
         <br />
         <form action={`/api/checkout/${uid}/card`} method="POST">
           <section>
