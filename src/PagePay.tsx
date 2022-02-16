@@ -105,7 +105,7 @@ const PagePay = () => {
     // }, []);
 
     const fetchPay = async () => {
-        const q = query(collection(db, 'yoyakuPay'), where("yoyakuUid", "==", `${user.uid}`));
+        const q = query(collection(db, 'yoyakuPay'), where("yoyakuUid", "==", `${uid}`));
         const snapshot = onSnapshot(q, (querySnapshot) => {
             const payData = querySnapshot.docs.map(
                 (doc) => ({ ...doc.data() } as TomareState))
@@ -115,7 +115,7 @@ const PagePay = () => {
         });
     }
     const fetchUser = async () => {
-        const q = query(collection(db, 'users',), where("uid", "==", `${user.uid}`));
+        const q = query(collection(db, 'users',), where("uid", "==", `${uid}`));
         const snapshot = await getDocs(q)
         const userData = snapshot.docs.map(
             (doc) => ({ ...doc.data() } as UserState))
@@ -124,7 +124,7 @@ const PagePay = () => {
         // setUser(userData)
     }
     const fetchTomare = async () => {
-        const q = query(collectionGroup(db, 'tomare'), where("yoyakuUid", "==", `${user.uid}`));
+        const q = query(collectionGroup(db, 'tomare'), where("yoyakuUid", "==", `${uid}`));
         const snapshot = onSnapshot(q, (querySnapshot) => {
             const tomareData = querySnapshot.docs.map(
                 (doc) => ({ ...doc.data() } as TomareState))
@@ -165,12 +165,12 @@ const PagePay = () => {
         <div className="App">
             <span>pagePay:お支払い</span>
             <br />
-            {user.uid}
+            {uid}
             <h1>
                 <React.StrictMode>
                     <Provider store={store}>
                         <br />
-                        {user.uid === '' && (
+                        {uid === '' && (
                             <div>
                                 <button onClick={lineClick}>
                                     <h4 className="mb-4 text-green-500 text-3xl">ログイン</h4>
