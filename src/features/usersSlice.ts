@@ -6,7 +6,7 @@ const initialState: UsersState = {
     // menu:{menu:[]},
     // users: [],
     name: '',
-    uid: 'k11111',
+    uid: '',
     icon: '',
     tokoro: '',
     erea: '',
