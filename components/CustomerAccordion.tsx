@@ -85,12 +85,16 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
     const toStripe = () => {
         // setChecked([event.target.checked, checked[1]]);
         // setChecked([checked[1]]);
-        console.log(`:::tomare.yoyakuId:::`, tomare.yoyakuId)
+        // console.log(`:::tomare.yoyakuId:::`, tomare.yoyakuId)
         // setDoc(doc(db, 'users', user.uid, 'tomare', `${tomare.tomareId}`), {
-
         // }, { merge: true })
+        setDoc(doc(db, 'yoyakuPay', `${tomare.yoyakuId}`), {
+            tomareId: tomare.tomareId,
+            pay: +tomare.tanka * tomare.quantity,
+            yoyakuId: tomare.yoyakuId
+        }, { merge: true })
     };
-    const quantity = `${tomare.quantity}`
+    // const quantity = `${tomare.quantity}`
 
     return (
         <div>

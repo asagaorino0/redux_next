@@ -62,10 +62,17 @@ export default function App() {
           console.log('login status : [', false, ']');
         }
       });
-    fetchUser()
-    fetchTomare()
+    fetchPay()
   }, [dispatch]);
-
+  const fetchPay = async () => {
+    const q = query(collection(db, 'yoyakuPay',));
+    const snapshot = await getDocs(q)
+    const payData = snapshot.docs.map(
+      (doc) => ({ ...doc.data() } as TomareState))
+    console.log('payData:', payData)
+    dispatch(addUser(payData))
+    // setUserProfile(userData)
+  }
   const fetchUser = async () => {
     const q = query(collection(db, 'users',), where("uid", "==", `${user.uid}`));
     const snapshot = await getDocs(q)
