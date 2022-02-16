@@ -22,6 +22,8 @@ export type TomareState = {
     star: number
     chip: number
     checked: boolean
+    tanka: number
+    quantity: number
     pay: number
     payDay: string
     payReceipt: string

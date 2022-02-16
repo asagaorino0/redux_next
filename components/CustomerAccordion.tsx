@@ -113,7 +113,8 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
                             {/* // <form action={`/api/checkin/${tomare.uid}/setup`} method="POST"> */}
                             <section>
                                 <button type="submit" role="link" className={styles.card} onClick={() => toStripe()} >
-                                    300{quantity}
+                                    {`${tomare.tanka * tomare.quantity}円${tomare.tanka}円
+                                    ×${+ tomare.quantity * 10} 分`}
                                 </button>
                             </section>
                         </form>
