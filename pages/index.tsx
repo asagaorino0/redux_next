@@ -8,6 +8,8 @@ import { Provider } from 'react-redux';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 const App = dynamic(() => import('../src/App'), { ssr: false });
+const PagePey = dynamic(() => import('./PagePey'), { ssr: false });
+
 const Home: NextPage = () => {
   const router = useRouter();
   // const toPageA = () => {
@@ -15,7 +17,7 @@ const Home: NextPage = () => {
   // };
   const PageC = dynamic(() => import('./PageC'), { ssr: false });
   const PageA = dynamic(() => import('./PageA'), { ssr: false });
-  const PagePey = dynamic(() => import('./PagePey'), { ssr: false });
+  const PagePey = dynamic(() => import('./PageA'), { ssr: false });
   return (
     <div className={styles.container}>
       <Head>

@@ -173,7 +173,7 @@ export default function App() {
         </div>
       )}
 
-      <PagePey />
+      {/* <PagePey /> */}
 
     </div>
   );
