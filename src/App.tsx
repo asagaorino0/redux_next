@@ -160,7 +160,7 @@ export default function App() {
           <br />
           {pay.chip}
           <br />
-          <PagePay />
+          {/* <PagePay /> */}
           {/* {
             pay
               .map((tomare: TomareState) => {

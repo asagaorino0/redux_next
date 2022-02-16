@@ -13,7 +13,7 @@ import dynamic from 'next/dynamic';
 import styles from '../styles/Home.module.css';
 import FileUpload from '../components/FileUpload';
 const PageA = () => {
-  const PagePay = dynamic(() => import('./PagePay'), { ssr: false });
+  const PagePay = dynamic(() => import('../src/PagePay'), { ssr: false });
   const PageAA = dynamic(() => import('../src/PageAA'), { ssr: false });
   const PageA_profile = dynamic(() => import('./PageA_profile'), { ssr: false });
   const user = useSelector(selectUser);
@@ -74,7 +74,7 @@ const PageA = () => {
         {/* <React.StrictMode>
           <Provider store={store}> */}
         {/* <PageA_profile /> */}
-        {/* <PagePay /> */}
+        <PagePay />
         <br />
         <form action={`/api/checkin/${uid}/card`} method="POST">
           <section>
