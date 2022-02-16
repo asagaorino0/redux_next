@@ -51,60 +51,60 @@ const PagePay = () => {
     const [message, setMessage] = React.useState('');
 
     useEffect(() => {
-        liff
-            .init({ liffId: process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID as string })
-            .then(async () => {
-                if (liff.isLoggedIn()) {
-                    console.log('login status : [', true, ']');
-                    const profile = await liff.getProfile();
-                    console.log(
-                        '🚀 ~ file: Login.tsx ~ line 15 ~ liff.init ~ profile',
-                        profile
-                    );
-                    // const userId: string = profile.userId
-                    const displayName: string = profile.displayName;
-                    const displayicon: string | undefined = profile.pictureUrl;
-                    setName(profile.displayName);
-                    setUid(profile.userId);
-                    setName(displayName);
-                    setIcon(displayicon);
-                    dispatch(
-                        addUser({
-                            name: profile.displayName,
-                            uid: profile.userId,
-                            icon: profile.pictureUrl,
-                        })
-                    );
-                    const setRef = setDoc(
-                        doc(db, 'users', `${uid}`),
-                        {
-                            uid,
-                            name,
-                            icon,
-                            timestamp: '',
-                        },
-                        { merge: true });
-                } else {
-                    console.log('login status : [', false, ']');
-                    fetchTomare()
-                    console.log('User:', user)
-                    console.log('tomare:', tomare)
-                }
-            });
+        // liff
+        //     .init({ liffId: process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID as string })
+        //     .then(async () => {
+        //         if (liff.isLoggedIn()) {
+        //             console.log('login status : [', true, ']');
+        //             const profile = await liff.getProfile();
+        //             console.log(
+        //                 '🚀 ~ file: Login.tsx ~ line 15 ~ liff.init ~ profile',
+        //                 profile
+        //             );
+        //             // const userId: string = profile.userId
+        //             const displayName: string = profile.displayName;
+        //             const displayicon: string | undefined = profile.pictureUrl;
+        //             setName(profile.displayName);
+        //             setUid(profile.userId);
+        //             setName(displayName);
+        //             setIcon(displayicon);
+        //             dispatch(
+        //                 addUser({
+        //                     name: profile.displayName,
+        //                     uid: profile.userId,
+        //                     icon: profile.pictureUrl,
+        //                 })
+        //             );
+        //             const setRef = setDoc(
+        //                 doc(db, 'users', `${uid}`),
+        //                 {
+        //                     uid,
+        //                     name,
+        //                     icon,
+        //                     timestamp: '',
+        //                 },
+        //                 { merge: true });
+        //         } else {
+        //             console.log('login status : [', false, ']');
+        //             fetchTomare()
+        //             console.log('User:', user)
+        //             console.log('tomare:', tomare)
+        //         }
+        //     });
         // }, [dispatch]);
-        //     const fetchUser = async () => {
-        //         const q = query(collection(db, 'users',), where("uid", "==", `${user.uid}`));
-        //         const snapshot = await getDocs(q)
-        //         const userData = snapshot.docs.map(
-        //             (doc) => ({ ...doc.data() } as UserState))
-        //         console.log('userData:', userData)
-        //         dispatch(addUser(userData))
-        //         // setUserProfile(userData)
-        //     }
-        //     fetchUser()
-        //     fetchTomare()
-        //     console.log('User:', user)
-        //     console.log('tomare:', tomare)
+        const fetchUser = async () => {
+            const q = query(collection(db, 'users',), where("uid", "==", `${user.uid}`));
+            const snapshot = await getDocs(q)
+            const userData = snapshot.docs.map(
+                (doc) => ({ ...doc.data() } as UserState))
+            console.log('userData:', userData)
+            dispatch(addUser(userData))
+            // setUserProfile(userData)
+        }
+        fetchUser()
+        fetchTomare()
+        console.log('User:', user)
+        console.log('tomare:', tomare)
     }, []);
     const fetchTomare = async () => {
         const q = query(collectionGroup(db, 'tomare'), where("yoyakuUid", "==", `${user.uid}`));
@@ -115,18 +115,18 @@ const PagePay = () => {
             setTomare(tomareData)
         });
     }
-    const LINEID = process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID;
-    const lineClick = () => {
-        setUid('');
-        liff.init({ liffId: LINEID as string }).then(() => {
-            if (!liff.isLoggedIn()) {
-                setUid('k00000');
-                liff.login(); // ログインしていなければ最初にログインする
-            } else if (liff.isInClient()) {
-                console.log('hello world');
-            }
-        });
-    }; ///先生
+    // const LINEID = process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID;
+    // const lineClick = () => {
+    //     setUid('');
+    //     liff.init({ liffId: LINEID as string }).then(() => {
+    //         if (!liff.isLoggedIn()) {
+    //             setUid('k00000');
+    //             liff.login(); // ログインしていなければ最初にログインする
+    //         } else if (liff.isInClient()) {
+    //             console.log('hello world');
+    //         }
+    //     });
+    // }; ///先生
 
     const date = new Date()
     const Y = date.getFullYear()
