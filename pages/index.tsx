@@ -38,7 +38,7 @@ const Home: NextPage = () => {
         </section>
 
         <div className={styles.grid}>
-          <p>Instantly deploy your Next.js site to a public URL with Vercel.</p>
+          {/* <p>Instantly deploy your Next.js site to a public URL with Vercel.</p> */}
         </div>
       </main>
       <footer className={styles.footer}>
