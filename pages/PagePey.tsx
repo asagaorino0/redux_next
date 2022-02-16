@@ -27,7 +27,7 @@ import { addFormatdate, } from '../src/features/formatDateSlice';
 const PagePay = () => {
     const Chat = dynamic(() => import('./srcChat'), { ssr: false });
     const PageLogin = dynamic(() => import('../src/PageLogin'), { ssr: false });
-    const CustomerAccordion = dynamic(() => import('../components/CustomerAccordion'), { ssr: false }); const [make, setMake] = useState<boolean>(false);
+    // const CustomerAccordion = dynamic(() => import('../components/CustomerAccordion'), { ssr: false }); const [make, setMake] = useState<boolean>(false);
     const [nail, setNail] = useState<boolean>(false);
     const [este, setEste] = useState<boolean>(false);
     const [sonota, setSonota] = useState<string>("");
@@ -51,61 +51,61 @@ const PagePay = () => {
     const [message, setMessage] = React.useState('');
 
     useEffect(() => {
-        liff
-            .init({ liffId: process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID as string })
-            .then(async () => {
-                if (liff.isLoggedIn()) {
-                    console.log('login status : [', true, ']');
-                    const profile = await liff.getProfile();
-                    console.log(
-                        '🚀 ~ file: Login.tsx ~ line 15 ~ liff.init ~ profile',
-                        profile
-                    );
-                    // const userId: string = profile.userId
-                    const displayName: string = profile.displayName;
-                    const displayicon: string | undefined = profile.pictureUrl;
-                    setName(profile.displayName);
-                    setUid(profile.userId);
-                    setName(displayName);
-                    setIcon(displayicon);
-                    dispatch(
-                        addUser({
-                            name: profile.displayName,
-                            uid: profile.userId,
-                            icon: profile.pictureUrl,
-                        })
-                    );
-                    const setRef = setDoc(
-                        doc(db, 'users', `${uid}`),
-                        {
-                            uid,
-                            name,
-                            icon,
-                            timestamp: '',
-                        },
-                        { merge: true });
-                } else {
-                    console.log('login status : [', false, ']');
-                    fetchTomare()
-                    console.log('User:', user)
-                    console.log('tomare:', tomare)
-                }
-            });
-    }, [dispatch]);
-    //     const fetchUser = async () => {
-    //         const q = query(collection(db, 'users',), where("uid", "==", `${user.uid}`));
-    //         const snapshot = await getDocs(q)
-    //         const userData = snapshot.docs.map(
-    //             (doc) => ({ ...doc.data() } as UserState))
-    //         console.log('userData:', userData)
-    //         dispatch(addUser(userData))
-    //         // setUserProfile(userData)
-    //     }
-    //     fetchUser()
-    //     fetchTomare()
-    //     console.log('User:', user)
-    //     console.log('tomare:', tomare)
-    // }, []);
+        //     liff
+        //         .init({ liffId: process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID as string })
+        //         .then(async () => {
+        //             if (liff.isLoggedIn()) {
+        //                 console.log('login status : [', true, ']');
+        //                 const profile = await liff.getProfile();
+        //                 console.log(
+        //                     '🚀 ~ file: Login.tsx ~ line 15 ~ liff.init ~ profile',
+        //                     profile
+        //                 );
+        //                 // const userId: string = profile.userId
+        //                 const displayName: string = profile.displayName;
+        //                 const displayicon: string | undefined = profile.pictureUrl;
+        //                 setName(profile.displayName);
+        //                 setUid(profile.userId);
+        //                 setName(displayName);
+        //                 setIcon(displayicon);
+        //                 dispatch(
+        //                     addUser({
+        //                         name: profile.displayName,
+        //                         uid: profile.userId,
+        //                         icon: profile.pictureUrl,
+        //                     })
+        //                 );
+        //                 const setRef = setDoc(
+        //                     doc(db, 'users', `${uid}`),
+        //                     {
+        //                         uid,
+        //                         name,
+        //                         icon,
+        //                         timestamp: '',
+        //                     },
+        //                     { merge: true });
+        //             } else {
+        //                 console.log('login status : [', false, ']');
+        //                 fetchTomare()
+        //                 console.log('User:', user)
+        //                 console.log('tomare:', tomare)
+        //             }
+        //         });
+        // }, [dispatch]);
+        const fetchUser = async () => {
+            const q = query(collection(db, 'users',), where("uid", "==", `${user.uid}`));
+            const snapshot = await getDocs(q)
+            const userData = snapshot.docs.map(
+                (doc) => ({ ...doc.data() } as UserState))
+            console.log('userData:', userData)
+            dispatch(addUser(userData))
+            // setUserProfile(userData)
+        }
+        fetchUser()
+        fetchTomare()
+        console.log('User:', user)
+        console.log('tomare:', tomare)
+    }, []);
     const fetchTomare = async () => {
         const q = query(collectionGroup(db, 'tomare'), where("yoyakuUid", "==", `${user.uid}`));
         const snapshot = onSnapshot(q, (querySnapshot) => {

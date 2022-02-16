@@ -116,12 +116,12 @@ export default function App() {
       )}
       {user.uid !== '' && (
         <div>
-          <h3 className="mb-4  text-3xl">
+          {/* <h3 className="mb-4  text-3xl">
             ケアビューティスト
-          </h3>
+          </h3> */}
           <button onClick={registA}>
             <h3 className="mb-4 text-green-500 text-3xl">
-              ケアビューティストのページ
+              マイページ
             </h3>
           </button>
         </div>
