@@ -61,18 +61,23 @@ export default function App() {
           console.log('login status : [', false, ']');
         }
       });
-    fetchTomare()
+    // fetchTomare()
   }, [dispatch]);
-  const fetchTomare = async () => {
-    const q = query(collectionGroup(db, 'tomare'), where("yoyakuUid", "==", `${user.uid}`));
-    const snapshot = onSnapshot(q, (querySnapshot) => {
-      const tomareData = querySnapshot.docs.map(
-        (doc) => ({ ...doc.data() } as TomareState))
-      // dispatch(addTomare(tomareData))
-      setTomare(tomareData)
-    });
-  }
 
+  useEffect(() => {
+    const fetchTomare = async () => {
+      const q = query(collectionGroup(db, 'tomare'), where("yoyakuUid", "==", `${user.uid}`));
+      const snapshot = onSnapshot(q, (querySnapshot) => {
+        const tomareData = querySnapshot.docs.map(
+          (doc) => ({ ...doc.data() } as TomareState))
+        // dispatch(addTomare(tomareData))
+        setTomare(tomareData)
+      });
+    }
+    fetchTomare()
+    console.log('User:', user)
+    console.log('tomare:', tomare)
+  }, []);
 
 
   // const loginUrl: string | undefined = process.env.NEXT_PUBLIC_LINE_LOGIN_URL;
@@ -194,8 +199,6 @@ export default function App() {
         <br />
         {user.uid}
         <h1>
-
-
           <br />
           *************************************************
           <br />

@@ -132,7 +132,6 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
                                 <button onClick={(e) => handleStar(5)}><BsStar /></button>
                             </div>
                         }
-                        <br />
                         chip:{tomare.chip}
                     </Typography>
                 </AccordionSummary>
