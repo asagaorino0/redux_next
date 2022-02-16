@@ -32,21 +32,21 @@ const PagePay = () => {
     const user = useSelector(selectUser);
 
 
-    useEffect(() => {
-        const fetchUser = async () => {
-            const q = query(collection(db, 'users',), where("uid", "==", `${user.uid}`));
-            const snapshot = await getDocs(q)
-            const userData = snapshot.docs.map(
-                (doc) => ({ ...doc.data() } as UserState))
-            console.log('userData:', userData)
-            dispatch(addUser(userData))
-            // setUserProfile(userData)
-        }
-        fetchUser()
-        fetchTomare()
-        console.log('User:', user)
-        console.log('tomare:', tomare)
-    }, []);
+    // useEffect(() => {
+    //     const fetchUser = async () => {
+    //         const q = query(collection(db, 'users',), where("uid", "==", `${user.uid}`));
+    //         const snapshot = await getDocs(q)
+    //         const userData = snapshot.docs.map(
+    //             (doc) => ({ ...doc.data() } as UserState))
+    //         console.log('userData:', userData)
+    //         dispatch(addUser(userData))
+    //         // setUserProfile(userData)
+    //     }
+    //     fetchUser()
+    //     fetchTomare()
+    //     console.log('User:', user)
+    //     console.log('tomare:', tomare)
+    // }, []);
     const fetchTomare = async () => {
         const q = query(collectionGroup(db, 'tomare'), where("yoyakuUid", "==", `${user.uid}`));
         const snapshot = onSnapshot(q, (querySnapshot) => {

@@ -3,15 +3,20 @@ import { addUser, selectUser } from '../src/features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import 'firebase/compat/firestore';
-import { doc, setDoc, serverTimestamp } from 'firebase/firestore'
+// import { doc, setDoc, serverTimestamp } from 'firebase/firestore'
 import { db } from './firebase';
 import liff from '@line/liff';
 import dynamic from 'next/dynamic';
+import { getDocs, collection, collectionGroup, query, orderBy, where, doc, setDoc, serverTimestamp, deleteDoc, onSnapshot } from 'firebase/firestore'
+import { TomareState } from "../src/types/tomare";
+import CustomerAccordion from '../components/CustomerAccordion';
+import styles from '../styles/Home.module.css'
 
 export default function App() {
   const [uid, setUid] = useState<string>('');
   const [name, setName] = useState<string>('');
   const [icon, setIcon] = useState<string | undefined>('');
+  const [tomare, setTomare] = useState<any>([]);
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const router = useRouter();
@@ -56,7 +61,19 @@ export default function App() {
           console.log('login status : [', false, ']');
         }
       });
+    fetchTomare()
   }, [dispatch]);
+  const fetchTomare = async () => {
+    const q = query(collectionGroup(db, 'tomare'), where("yoyakuUid", "==", `${user.uid}`));
+    const snapshot = onSnapshot(q, (querySnapshot) => {
+      const tomareData = querySnapshot.docs.map(
+        (doc) => ({ ...doc.data() } as TomareState))
+      // dispatch(addTomare(tomareData))
+      setTomare(tomareData)
+    });
+  }
+
+
 
   // const loginUrl: string | undefined = process.env.NEXT_PUBLIC_LINE_LOGIN_URL;
   const LINEID = process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID;
@@ -172,8 +189,33 @@ export default function App() {
           </button>
         </div>
       )}
+      <div className="App">
+        <span>pagePay:お支払い</span>
+        <br />
+        {user.uid}
+        <h1>
 
-      <PagePay />
+
+          <br />
+          *************************************************
+          <br />
+          {
+            tomare
+              .map((tomare: TomareState) => {
+                return (
+                  <div key={tomare.tomareId}>
+                    {`${tomare.yoyakuMenu}` !== "" &&
+                      <div className={styles.grid}>
+                        <CustomerAccordion tomare={tomare} key={tomare.tomareId} />
+                      </div>
+                    }
+                  </div>
+                )
+              })
+          }
+
+        </h1>
+      </div>
 
     </div>
   );
