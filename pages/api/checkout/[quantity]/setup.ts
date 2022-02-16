@@ -25,7 +25,7 @@ const handler = async (req: any, res: any) => {
                     },
                 ],
                 mode: 'payment',
-                success_url: `${req.headers.origin}/PagePay?session_id={CHECKOUT_SESSION_ID}`,
+                success_url: `${req.headers.origin}/?session_id={CHECKOUT_SESSION_ID}`,
                 cancel_url: `${req.headers.origin}/?canceled=true`,
             }); console.log('session', session)
             console.log('session.payment_intent', session.payment_intent)
