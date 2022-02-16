@@ -121,18 +121,24 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
                     <Typography className={styles.grid}>{tomare.tomareId}:{tomare.yoyakuMenu}
                         <br />
                         {tomare.star !== 0 &&
+
                             <Stars star={tomare.star} starSize={16} textSize={12} />}
-                        <br />
+
                         {tomare.star === 0 &&
                             <div>
+                                {/* <br /> */}
                                 <button onClick={(e) => handleStar(1)}><BsStar /></button>
                                 <button onClick={(e) => handleStar(2)}><BsStar /></button>
                                 <button onClick={(e) => handleStar(3)}><BsStar /></button>
                                 <button onClick={(e) => handleStar(4)}><BsStar /></button>
                                 <button onClick={(e) => handleStar(5)}><BsStar /></button>
+                                まだ評価されていません
+                                <br />
                             </div>
                         }
-                        chip:{tomare.chip}
+                        {tomare.chip !== 0 &&
+                            `chip:${tomare.chip}`
+                        }
                     </Typography>
                 </AccordionSummary>
                 <AccordionDetails>
