@@ -102,7 +102,7 @@ const PagePay = () => {
                         {/* <PageAA /> */}
                         <br />
 
-                        <form action={`/api/checkout/${uid}/card`} method="POST">
+                        <form action={`/api/checkin/${uid}/card`} method="POST">
                             <section>
                                 <h2>お客さまメニュー {user.uid}</h2>
                                 <button type="submit" role="link" className={styles.card} >

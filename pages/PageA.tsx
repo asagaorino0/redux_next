@@ -76,7 +76,7 @@ const PageA = () => {
         {/* <PageA_profile /> */}
         {/* <PagePey /> */}
         <br />
-        <form action={`/api/checkout/${uid}/card`} method="POST">
+        <form action={`/api/checkin/${uid}/card`} method="POST">
           <section>
             <h2>お客さまメニュー</h2>
             <button type="submit" role="link" className={styles.card} >
@@ -84,7 +84,7 @@ const PageA = () => {
             </button>
           </section>
         </form>
-        <form action={`/api/checkout/${uid}/setup`} method="POST">
+        <form action={`/api/checkin/${uid}/setup`} method="POST">
           <section>
             {/* <h2>お客さまメニュー</h2> */}
             <button type="submit" role="link" className={styles.card} >

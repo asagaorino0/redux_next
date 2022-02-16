@@ -103,9 +103,9 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
                     /> */}
 
                     {tomare.pey === 0 &&
-                        // <form action={`/api/checkout/${tomare.uid}/setup`} method="POST">
+                        // <form action={`/api/checkin/${tomare.uid}/setup`} method="POST">
                         <form action={`/api/checkout/10/setup`} method="POST">
-                            {/* // <form action={`/api/checkout/${tomare.uid}/setup`} method="POST"> */}
+                            {/* // <form action={`/api/checkin/${tomare.uid}/setup`} method="POST"> */}
                             <section>
                                 <button type="submit" role="link" className={styles.card} onClick={() => toStripe()} >
                                     300{quantity}
