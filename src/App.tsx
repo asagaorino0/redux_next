@@ -152,7 +152,14 @@ export default function App() {
           <br />
           *************************************************
           <br />
-          {
+          {pay.pay}
+          <br />
+          {pay.yoyakuId}
+          <br />
+          {pay.star}
+          <br />
+          {pay.chip}
+          {/* {
             pay
               .map((tomare: TomareState) => {
                 return (
@@ -165,7 +172,7 @@ export default function App() {
                   </div>
                 )
               })
-          }
+          } */}
         </h1>
       </div>
 

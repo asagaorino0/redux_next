@@ -92,7 +92,9 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
             tomareId: tomare.tomareId,
             pay: +tomare.tanka * tomare.quantity,
             yoyakuUid: tomare.yoyakuUid,
-            yoyakuId: tomare.yoyakuId
+            yoyakuId: tomare.yoyakuId,
+            star: tomare.star,
+            chip: tomare.chip,
         }, { merge: true })
     };
     // const quantity = `${tomare.quantity}`
