@@ -87,13 +87,12 @@ const PagePay = () => {
                             timestamp: '',
                         },
                         { merge: true });
+                    fetchTomare()
+                    fetchPay()
+                    console.log('tomare:', tomare)
                 } else {
                     console.log('login status : [', false, ']');
-                    fetchTomare()
-                    // fetchUser()
-                    fetchPay()
-                    // console.log('User:', user)
-                    console.log('tomare:', tomare)
+
                 }
             });
     }, [dispatch]);
