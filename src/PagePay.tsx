@@ -166,7 +166,10 @@ const PagePay = () => {
     const toHome = () => { router.push('./') }
     return (
         <div className="App">
-            <span>pagePay:お支払い</span>
+            <button onClick={toHome}>
+                {/* <h3 className="mb-4 text-green-500 text-3xl">予約枠の設定</h3> */}
+
+                <span>pagePay:お支払い</span></button>
             <br />
             {user.uid}
             <img
