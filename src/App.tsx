@@ -145,40 +145,6 @@ export default function App() {
   };
   return (
     <div className="App">
-      {/* <div className="App"> */}
-      {/* <span>pagePay:お支払い</span>
-        <br />
-        {uid}
-        <h1>
-          <br />
-          *************************************************
-          <br />
-          {pay.pay}
-          <br />
-          {pay.yoyakuId}
-          <br />
-          {pay.star}
-          <br />
-          {pay.chip}
-          <br /> */}
-      {/* <PagePay /> */}
-      {
-        pay
-          .map((tomare: TomareState) => {
-            return (
-              <div key={tomare.tomareId}>
-                {`${tomare.yoyakuMenu}` !== "" &&
-                  <div className={styles.grid}>
-                    <CustomerAccordion tomare={tomare} key={tomare.tomareId} />
-                  </div>
-                }
-              </div>
-            )
-          })
-      }
-      {/* </h1>
-      </div> */}
-
       <br />
       *************************************************
 
