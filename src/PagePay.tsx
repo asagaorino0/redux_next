@@ -87,8 +87,17 @@ const PagePay = () => {
                             timestamp: '',
                         },
                         { merge: true });
-
-                    fetchTomare(profile.userId)
+                    const fetchPay = async (uid: string) => {
+                        const q = query(collection(db, 'yoyakuPay'), where("yoyakuUid", "==", `${profile.userId}`));
+                        const snapshot = onSnapshot(q, (querySnapshot) => {
+                            const payData = querySnapshot.docs.map(
+                                (doc) => ({ ...doc.data() } as TomareState))
+                            console.log('payData:', payData)
+                            dispatch(addUser(payData))
+                            setPay(payData)
+                        });
+                    }
+                    // fetchTomare(profile.userId)
                     fetchPay(uid)
                     console.log('tomare:', tomare)
                 } else {
@@ -102,18 +111,20 @@ const PagePay = () => {
     // console.log('User:', user)
     // console.log('tomare:', tomare)
     // }, []);
-
-    const fetchPay = async (uid: string) => {
-        const q = query(collection(db, 'yoyakuPay'), where("yoyakuUid", "==", uid));
-        const snapshot = onSnapshot(q, (querySnapshot) => {
-            const payData = querySnapshot.docs.map(
-                (doc) => ({ ...doc.data() } as TomareState))
-            console.log('payData:', payData)
-            dispatch(addUser(payData))
-            setPay(payData)
-        });
-    }
-
+    useEffect(() => {
+        const fetchPay = async (uid: string) => {
+            const q = query(collection(db, 'yoyakuPay'), where("yoyakuUid", "==", `${uid}`));
+            const snapshot = onSnapshot(q, (querySnapshot) => {
+                const payData = querySnapshot.docs.map(
+                    (doc) => ({ ...doc.data() } as TomareState))
+                console.log('payData:', payData)
+                dispatch(addUser(payData))
+                setPay(payData)
+            });
+        }
+        fetchPay(uid)
+        console.log('User:', user)
+    }, []);
     const fetchTomare = async (uid: string) => {
         const q = query(collectionGroup(db, 'tomare'), where("yoyakuUid", "==", uid));
         const snapshot = onSnapshot(q, (querySnapshot) => {
