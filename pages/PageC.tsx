@@ -211,7 +211,7 @@ const PageC = () => {
                 </div>
             )}
             <img
-                src={`${icon}`}
+                src={`${user.icon}`}
                 alt=""
                 style={{ borderRadius: '50%', width: '60px', height: '60px' }}
             />
