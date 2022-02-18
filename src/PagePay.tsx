@@ -89,7 +89,7 @@ const PagePay = () => {
                         { merge: true });
 
                     fetchTomare(uid)
-                    fetchPay()
+                    fetchPay(uid)
                     console.log('tomare:', tomare)
                 } else {
                     console.log('login status : [', false, ']');
