@@ -54,11 +54,11 @@ const PageA_profile = () => {
         console.log('User:', user)
         console.log('tomare:', tomare)
     }, []);
-    const clickMenu4 = () => {
-        setSonota("その他")
-        fetchTomare()
-        // fetchTargetTomare()
-    }
+    // const clickMenu4 = () => {
+    //     setSonota("その他")
+    //     fetchTomare()
+    //     // fetchTargetTomare()
+    // }
     // const fetchTomare = async () => {
     //     const q = query(collection(db, "users", user.uid, 'tomare'), where("uid", "==", user.uid));
     //     // const q = query(collection(db, "users", user.uid, 'tomare'), where("uid", "==", user.uid), orderBy("gappi"));
@@ -70,12 +70,11 @@ const PageA_profile = () => {
     // }
     const fetchTomare = async () => {
         console.log(`pafeA_profile:user.uid`, user.uid)
-        console.log(`pafeA_profile:userProfile.uid`, userProfile.uid)
+        // console.log(`pafeA_profile:userProfile.uid`, userProfile.uid)
         const q = query(collection(db, "users", user.uid, 'tomare'), where("uid", "==", user.uid));
         const snapshot = onSnapshot(q, (querySnapshot) => {
             const tomareData = querySnapshot.docs.map(
                 (doc) => ({ ...doc.data() } as TomareState))
-            // );
             dispatch(addTomare(tomareData))
             setTomare(tomareData)
             console.log(tomare)
@@ -108,6 +107,7 @@ const PageA_profile = () => {
     const [logo, setLogo] = useState<string>('');
     return (
         <div className={styles.main}>
+            {user.uid}
             <button onClick={toHome}>
                 <h3 className="mb-4 text-green-500 text-3xl">プロフィール登録内容</h3>
             </button>
