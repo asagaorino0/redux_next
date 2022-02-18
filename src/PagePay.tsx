@@ -88,7 +88,7 @@ const PagePay = () => {
                         },
                         { merge: true });
 
-                    fetchTomare(uid)
+                    fetchTomare(profile.userId)
                     fetchPay(uid)
                     console.log('tomare:', tomare)
                 } else {
