@@ -1,5 +1,6 @@
 import * as functions from 'firebase-functions';
 import * as line from '@line/bot-sdk';
+import { writeBatch, doc } from "firebase/firestore";
 
 require('dotenv').config();
 
@@ -53,4 +54,66 @@ export const updateYoyaku = functions.firestore
         )
             .then(namae => console.log(namae))
             .catch(e => console.log(e))
+    });
+
+
+export const onWriteReview = functions.firestore
+    .document('users/{uid}/tomare/{star}')
+    .onCreate((snap, context) => {
+        const newValue = snap.data();
+        const star = newValue.star;
+        const uid = newValue.uid;
+        const db = admin.firestore();
+        const batch = writeBatch(db);
+        try {
+            // 平均starの計算
+            let { star1 = 0, star2 = 0, star3 = 0, star4 = 0, star5 = 0 } = star;
+            if (newValue.star === 1) {
+                star1 += 1;
+            } else if (newValue.star === 2) {
+                star2 += 1;
+            } else if (newValue.star === 3) {
+                star3 += 1;
+            } else if (newValue.star === 4) {
+                star4 += 1;
+            } else if (newValue.star === 5) {
+                star5 += 1;
+            }
+            let aveStar =
+                (star1 + star2 * 2 + star3 * 3 + star4 * 4 + star5 * 5) /
+                (star1 + star2 + star3 + star4 + star5);
+            aveStar = Math.round(aveStar * 100) / 100
+            // userの更新
+            let params = {};
+            if (newValue.star === 1) {
+                params = {
+                    star1: admin.firestore.FieldValue.increment(1),
+                    star: aveStar
+                }
+            } else if (newValue.star === 2) {
+                params = {
+                    star2: admin.firestore.FieldValue.increment(1),
+                    score: aveStar
+                }
+            } else if (newValue.star === 3) {
+                params = {
+                    star2: admin.firestore.FieldValue.increment(1),
+                    score: aveStar
+                };
+            } else if (newValue.star === 4) {
+                params = {
+                    star2: admin.firestore.FieldValue.increment(1),
+                    score: aveStar
+                }
+            } else if (newValue.star === 5) {
+                params = {
+                    star2: admin.firestore.FieldValue.increment(1),
+                    score: aveStar
+                }
+            }
+            const userRef = doc(db, "users", uid);
+            batch.update(userRef, params);
+        } catch (err) {
+            console.log(err);
+        }
     });

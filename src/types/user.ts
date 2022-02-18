@@ -42,5 +42,11 @@ export type UserState = {
     manabi: string,
     manabi_url: string,
     customerId: string,
-    paymentMethodId: string
+    paymentMethodId: string,
+    star: number;
+    star1?: number;
+    star2?: number;
+    star3?: number;
+    star4?: number;
+    star5?: number;
 }
