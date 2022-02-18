@@ -28,7 +28,7 @@ const PageA = () => {
   }
   useEffect(() => {
     const fetchMenus = async () => {
-      const q = query(collection(db, 'users'), where("uid", "==", user.uid));
+      const q = query(collection(db, 'users'), where("uid", "==", uid));
       const snapshot = await getDocs(q)
       const menuData = snapshot.docs.map(
         (doc: any) => ({ ...doc.data().menu }))
@@ -61,7 +61,7 @@ const PageA = () => {
       {/* <button onClick={toHome}>
         <h3 className="mb-4 text-green-500 text-3xl">施術履歴</h3>
       </button> */}
-      {user.uid === '' && (
+      {uid === '' && (
         <div>
           <button onClick={toHome}>
             <h4 className="mb-4 text-green-500 text-3xl">ログイン</h4>
