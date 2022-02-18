@@ -87,6 +87,7 @@ const PagePay = () => {
                             timestamp: '',
                         },
                         { merge: true });
+
                     fetchTomare()
                     fetchPay()
                     console.log('tomare:', tomare)
@@ -165,7 +166,7 @@ const PagePay = () => {
             <br />
             {uid}
             <img
-                src={`${user.icon}`}
+                src={icon}
                 alt=""
                 style={{ borderRadius: '50%', width: '60px', height: '60px' }}
             />
