@@ -69,12 +69,16 @@ const PageA_profile = () => {
     //     setTomare(tomareData)
     // }
     const fetchTomare = async () => {
+        console.log(`pafeA_profile:user.uid`, user.uid)
+        console.log(`pafeA_profile:userProfile.uid`, userProfile.uid)
         const q = query(collection(db, "users", user.uid, 'tomare'), where("uid", "==", user.uid));
         const snapshot = onSnapshot(q, (querySnapshot) => {
             const tomareData = querySnapshot.docs.map(
                 (doc) => ({ ...doc.data() } as TomareState))
+            // );
             dispatch(addTomare(tomareData))
             setTomare(tomareData)
+            console.log(tomare)
         });
     }
 
@@ -114,14 +118,14 @@ const PageA_profile = () => {
                     </button>
                 </div>
             )}
-            {/* <div className={styles.container}> */}
-            {/* <h1>LINE message送信</h1>
+            <div className={styles.container}>
+                {/* <h1>LINE message送信</h1>
                 <br />
                 <input type="text" onChange={(e) => setText(e.target.value)} />
                 <button onClick={sendLine}>送信</button> */}
-            {/* <input type="file" name="example" onChange={(e) => setLogo(e.target.value)} /> */}
+                {/* <input type="file" name="example" onChange={(e) => setLogo(e.target.value)} /> */}
 
-            {/* </div> */}
+            </div>
             {userProfile
                 .map(
                     (user: any) => {

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import { TomareState } from "../src/types/tomare";
 import { addTomare } from '../src/features/tomareSlice';
+import { addMenu } from '../src/features/menuSlice';
 import { store } from '../src/app/store';
 import { Provider } from 'react-redux';
 import { storage } from "../src/firebase";
@@ -32,7 +33,7 @@ const PageA = () => {
       const menuData = snapshot.docs.map(
         (doc: any) => ({ ...doc.data().menu }))
       console.log('usersData:', menuData)
-      // dispatch(addMenu(menuData))
+      dispatch(addMenu(menuData))
       setMenus(menuData)
       console.log('menus:', menus)
     }
@@ -78,17 +79,9 @@ const PageA = () => {
         <br />
         <form action={`/api/checkin/${uid}/card`} method="POST">
           <section>
-            <h2>お客さまメニュー</h2>
-            <button type="submit" role="link" className={styles.card} >
-              クレジットカードの登録
-            </button>
-          </section>
-        </form>
-        <form action={`/api/checkin/${uid}/setup`} method="POST">
-          <section>
             {/* <h2>お客さまメニュー</h2> */}
             <button type="submit" role="link" className={styles.card} >
-              300
+              クレジットカードの登録
             </button>
           </section>
         </form>
@@ -102,30 +95,30 @@ const PageA = () => {
           </button>
         </section>
         {/* </form> */}
-        <form action={`/component/CheckoutForm`} method="POST">
+        {/* <form action={`/component/CheckoutForm`} method="POST">
           <section>
             <button type="submit" role="link">
               Checkout:buy
             </button>
           </section>
-        </form>
-        <form action="/api/checkout_payment" method="POST">
+        </form> */}
+        {/* <form action="/api/checkout_payment" method="POST">
           <section>
             <button type="submit" role="link">
               Checkout:pay
             </button>
           </section>
-        </form>
-        <form action="/api/checkout_sessions" method="POST">
+        </form> */}
+        {/* <form action="/api/checkout_sessions" method="POST">
           <section>
             <button type="submit" role="link">
               Checkout
             </button>
           </section>
-        </form>
+        </form> */}
         <form action='/api/create-connect-account' method="POST">
           <section>
-            <h2>店舗メニュー</h2>
+            {/* <h2>店舗メニュー</h2> */}
             <button type="submit" role="link" className={styles.card} >
               銀行口座を登録する
             </button>
