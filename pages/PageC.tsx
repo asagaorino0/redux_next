@@ -211,10 +211,11 @@ const PageC = () => {
                 </div>
             )}
             <img
-                src={`${user.icon}`}
+                src={`${icon}`}
                 alt=""
                 style={{ borderRadius: '50%', width: '60px', height: '60px' }}
             />
+
             <h1 className="mb-4 text-green-500 text-3xl">{user.name}さま </h1>
             {/* } */}
             {/* <h1>氏名</h1>
