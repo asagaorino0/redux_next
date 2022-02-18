@@ -137,7 +137,7 @@ const PagePay = () => {
         setUid('');
         liff.init({ liffId: LINEID as string }).then(() => {
             if (!liff.isLoggedIn()) {
-                setUid('k00000');
+                // setUid('k00000');
                 liff.login(); // ログインしていなければ最初にログインする
             } else if (liff.isInClient()) {
                 console.log('hello world');
@@ -166,6 +166,11 @@ const PagePay = () => {
             <span>pagePay:お支払い</span>
             <br />
             {uid}
+            <img
+                src={`${user.icon}`}
+                alt=""
+                style={{ borderRadius: '50%', width: '60px', height: '60px' }}
+            />
             <h1>
                 <React.StrictMode>
                     <Provider store={store}>
