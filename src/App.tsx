@@ -65,6 +65,7 @@ export default function App() {
           console.log('login status : [', false, ']');
         }
       });
+    fetchUser()
     fetchPay()
   }, [dispatch]);
   const fetchPay = async () => {
