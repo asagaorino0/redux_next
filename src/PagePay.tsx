@@ -112,8 +112,8 @@ const PagePay = () => {
     // console.log('tomare:', tomare)
     // }, []);
     useEffect(() => {
-        const fetchPay = async (uid: string) => {
-            const q = query(collection(db, 'yoyakuPay'), where("yoyakuUid", "==", `${uid}`));
+        const fetchPay = async () => {
+            const q = query(collection(db, 'yoyakuPay'), where("yoyakuUid", "==", `${user.uid}`));
             const snapshot = onSnapshot(q, (querySnapshot) => {
                 const payData = querySnapshot.docs.map(
                     (doc) => ({ ...doc.data() } as TomareState))
@@ -122,12 +122,12 @@ const PagePay = () => {
                 setPay(payData)
             });
         }
-        fetchPay(uid)
-        fetchTomare(uid)
+        fetchPay()
+        fetchTomare()
         console.log('User:', user)
     }, []);
-    const fetchTomare = async (uid: string) => {
-        const q = query(collectionGroup(db, 'tomare'), where("yoyakuUid", "==", uid));
+    const fetchTomare = async () => {
+        const q = query(collectionGroup(db, 'tomare'), where("yoyakuUid", "==", user.uid));
         const snapshot = onSnapshot(q, (querySnapshot) => {
             const tomareData = querySnapshot.docs.map(
                 (doc) => ({ ...doc.data() } as TomareState))
@@ -168,9 +168,9 @@ const PagePay = () => {
         <div className="App">
             <span>pagePay:お支払い</span>
             <br />
-            {uid}
+            {user.uid}
             <img
-                src={icon}
+                src={user.icon}
                 alt=""
                 style={{ borderRadius: '50%', width: '60px', height: '60px' }}
             />
@@ -183,7 +183,7 @@ const PagePay = () => {
                 <React.StrictMode>
                     <Provider store={store}>
                         <br />
-                        {uid === '' && (
+                        {user.uid === '' && (
                             <div>
                                 <button onClick={lineClick}>
                                     <h4 className="mb-4 text-green-500 text-3xl">ログイン</h4>
