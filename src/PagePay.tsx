@@ -100,7 +100,7 @@ const PagePay = () => {
     // }, []);
     useEffect(() => {
         const fetchPay = async () => {
-            const q = query(collection(db, 'yoyakuPay'), where("yoyakuUid", "==", uid));
+            const q = query(collection(db, 'yoyakuPay'), where("yoyakuUid", "==", `Uda1c6a4e5b348c5ba3c95de639e32414`));
             const snapshot = onSnapshot(q, (querySnapshot) => {
                 const payData = querySnapshot.docs.map(
                     (doc) => ({ ...doc.data() } as TomareState))
@@ -124,7 +124,7 @@ const PagePay = () => {
         // setUser(userData)
     }
     const fetchTomare = async () => {
-        const q = query(collectionGroup(db, 'tomare'), where("yoyakuUid", "==", uid));
+        const q = query(collectionGroup(db, 'tomare'), where("yoyakuUid", "==", `Uda1c6a4e5b348c5ba3c95de639e32414`));
         const snapshot = onSnapshot(q, (querySnapshot) => {
             const tomareData = querySnapshot.docs.map(
                 (doc) => ({ ...doc.data() } as TomareState))
