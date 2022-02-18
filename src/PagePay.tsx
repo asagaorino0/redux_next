@@ -87,34 +87,35 @@ const PagePay = () => {
                             timestamp: '',
                         },
                         { merge: true });
-
-                    fetchTomare()
-                    fetchPay()
-                    console.log('tomare:', tomare)
                 } else {
                     console.log('login status : [', false, ']');
                 }
             });
-    }, []);
+    }, [dispatch]);
 
     // fetchUser()
     // fetchTomare()
     // console.log('User:', user)
     // console.log('tomare:', tomare)
     // }, []);
-
-    const fetchPay = async () => {
-        const q = query(collection(db, 'yoyakuPay'), where("yoyakuUid", "==", uid));
-        const snapshot = onSnapshot(q, (querySnapshot) => {
-            const payData = querySnapshot.docs.map(
-                (doc) => ({ ...doc.data() } as TomareState))
-            console.log('payData:', payData)
-            dispatch(addUser(payData))
-            setPay(payData)
-        });
-    }
+    useEffect(() => {
+        const fetchPay = async () => {
+            const q = query(collection(db, 'yoyakuPay'), where("yoyakuUid", "==", uid));
+            const snapshot = onSnapshot(q, (querySnapshot) => {
+                const payData = querySnapshot.docs.map(
+                    (doc) => ({ ...doc.data() } as TomareState))
+                console.log('payData:', payData)
+                dispatch(addUser(payData))
+                setPay(payData)
+            });
+        }
+        fetchPay()
+        fetchTomare()
+        console.log('User:', user)
+        console.log('tomare:', tomare)
+    }, []);
     const fetchUser = async () => {
-        const q = query(collection(db, 'users',), where("uid", "==", uid));
+        const q = query(collection(db, 'users'), where("uid", "==", uid));
         const snapshot = await getDocs(q)
         const userData = snapshot.docs.map(
             (doc) => ({ ...doc.data() } as UserState))
