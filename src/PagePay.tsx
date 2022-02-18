@@ -171,6 +171,11 @@ const PagePay = () => {
                 alt=""
                 style={{ borderRadius: '50%', width: '60px', height: '60px' }}
             />
+            <img
+                src={`${icon}`}
+                alt=""
+                style={{ borderRadius: '50%', width: '60px', height: '60px' }}
+            />
             <h1>
                 <React.StrictMode>
                     <Provider store={store}>
