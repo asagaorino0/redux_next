@@ -95,7 +95,7 @@ const PagePay = () => {
                     console.log('login status : [', false, ']');
                 }
             });
-    }, [dispatch]);
+    }, []);
 
     // fetchUser()
     // fetchTomare()
@@ -127,7 +127,7 @@ const PagePay = () => {
         const snapshot = onSnapshot(q, (querySnapshot) => {
             const tomareData = querySnapshot.docs.map(
                 (doc) => ({ ...doc.data() } as TomareState))
-            // dispatch(addTomare(tomareData))
+            dispatch(addTomare(tomareData))
             setTomare(tomareData)
         });
     }
