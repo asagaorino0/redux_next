@@ -173,8 +173,9 @@ export default function App() {
         />
       </ button>
       <br />
-      <h1 className="mb-4 text-green-500 text-3xl">{user.name}さま </h1>
+      <h1 className="mb-4 text-green-500 text-3xl">{name}さま </h1>
       <h1>
+        次の支払いを完了させてください
         <React.StrictMode>
           <Provider store={store}>
             <br />
