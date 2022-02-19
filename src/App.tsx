@@ -66,7 +66,7 @@ export default function App() {
         }
       });
     // fetchUser()
-    // fetchPay()
+    fetchPay()
   }, [dispatch]);
 
   useEffect(() => {
@@ -79,9 +79,18 @@ export default function App() {
       dispatch(addUser(payData))
       setPay(payData)
     }
-    fetchUser()
+    // fetchUser()
     fetchPay()
   }, [dispatch]);
+  const fetchPay = async () => {
+    const q = query(collection(db, 'yoyakuPay',), where("yoyakuUid", "==", `${user.uid}`));
+    const snapshot = await getDocs(q)
+    const payData = snapshot.docs.map(
+      (doc) => ({ ...doc.data() } as TomareState))
+    console.log('payData:', payData)
+    dispatch(addUser(payData))
+    setPay(payData)
+  }
   const fetchUser = async () => {
     const q = query(collection(db, 'users',), where("uid", "==", `${user.uid}`));
     const snapshot = await getDocs(q)
