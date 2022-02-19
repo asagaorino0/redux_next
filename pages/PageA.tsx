@@ -72,10 +72,13 @@ const PageA = () => {
       {/* {user.uid}
       <button onClick={toPagePay}>PagePay </button> */}
       <h1>
-        {/* <React.StrictMode>
-          <Provider store={store}> */}
-        <PageA_profile />
-        {/* <PagePay /> */}
+        <React.StrictMode>
+          <Provider store={store}>
+            <PageA_profile />
+            {/* <PagePay /> */}
+          </Provider>
+        </React.StrictMode>
+
         <br />
         <form action={`/api/checkin/${uid}/card`} method="POST">
           <section>
@@ -87,38 +90,14 @@ const PageA = () => {
         </form>
         {/* <form action={`https://buy.stripe.com/test_dR628mfhs1ZLaGIaEE`} method="POST"> */}
         <section>
-          {/* <h2>お客さまメニュー</h2> */}
           <button type="submit" role="link" className={styles.card} >
             <a href="https://buy.stripe.com/test_dR628mfhs1ZLaGIaEE" >
               サブスク
             </a>
           </button>
         </section>
-        {/* </form> */}
-        {/* <form action={`/component/CheckoutForm`} method="POST">
-          <section>
-            <button type="submit" role="link">
-              Checkout:buy
-            </button>
-          </section>
-        </form> */}
-        {/* <form action="/api/checkout_payment" method="POST">
-          <section>
-            <button type="submit" role="link">
-              Checkout:pay
-            </button>
-          </section>
-        </form> */}
-        {/* <form action="/api/checkout_sessions" method="POST">
-          <section>
-            <button type="submit" role="link">
-              Checkout
-            </button>
-          </section>
-        </form> */}
         <form action='/api/create-connect-account' method="POST">
           <section>
-            {/* <h2>店舗メニュー</h2> */}
             <button type="submit" role="link" className={styles.card} >
               銀行口座を登録する
             </button>
