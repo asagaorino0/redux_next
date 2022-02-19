@@ -39,6 +39,17 @@ const PageA_profile = () => {
     const router = useRouter();
     const dispatch = useDispatch();
     const user = useSelector(selectUser);
+    // const [rogo, setRogo] = useState<string>('');
+    const [name, setName] = useState<string>('');
+    const [icon, setIcon] = useState<string | undefined>('');
+    const [menus, setMenus] = useState<any>([]);
+    const [yoyakuId, setYoyakuId] = useState<string>('');
+    const [yoyakuIcon, setYoyakuIcon] = useState<string>('');
+    const [tomareId, setTomareId] = useState<string>('');
+    const [uid, setUid] = useState<string>('');
+    const [chat, setChat] = useState<any>([]);
+    const [message, setMessage] = React.useState('');
+    // const targetChat = useSelector(selectTargetChat);
     useEffect(() => {
         const fetchUser = async () => {
             const q = query(collection(db, 'users'), where("uid", "==", user.uid));
