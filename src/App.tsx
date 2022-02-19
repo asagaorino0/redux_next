@@ -158,13 +158,6 @@ export default function App() {
   };
   return (
     <main className={styles.main}>
-      {/* <br /> */}
-      {/* app:{uid} */}
-      {/* <img
-        src={user.icon}
-        alt=""
-        style={{ borderRadius: '50%', width: '60px', height: '60px' }}
-      /> */}
       <button onClick={fetchPay}>
         <img
           src={`${icon}`}
@@ -174,8 +167,10 @@ export default function App() {
       </ button>
       <br />
       <h1 className="mb-4 text-green-500 text-3xl">{name}さま </h1>
-      <h1>
-        次の支払いを完了させてください
+      <div>
+        {`${pay}`.length !== 0 &&
+          <h1>次の支払いを完了させてください</h1>
+        }
         <React.StrictMode>
           <Provider store={store}>
             <br />
@@ -193,7 +188,7 @@ export default function App() {
               })}
           </Provider>
         </React.StrictMode>
-      </h1>
+      </div>
       <br />
       <br />
       *************************************************
@@ -209,9 +204,6 @@ export default function App() {
         )}
         {user.uid !== '' && (
           <div>
-            {/* <h3 className="mb-4  text-3xl">
-            ケアビューティスト
-          </h3> */}
             <button onClick={registA}>
               <h3 className="mb-4 text-green-500 text-3xl">
                 マイページ
@@ -266,11 +258,11 @@ export default function App() {
         </div>
       )} */}
         <footer className={styles.footer}>
-          {/* <a href="https://konoyubi.site" target="_blank" rel="noopener noreferrer"        > */}
-          Powered by{' '}
-          <span className={styles.logo} onClick={lineClick}>
-            konoyubi</span>
-          {/* </a> */}
+          <a href="https://konoyubi.site" target="_blank" rel="noopener noreferrer"        >
+            Powered by{' '}
+            <span className={styles.logo} onClick={lineClick}>
+              konoyubi</span>
+          </a>
         </footer>
       </div>
     </main>
