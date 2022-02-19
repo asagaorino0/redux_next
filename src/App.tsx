@@ -79,9 +79,9 @@ export default function App() {
   }, [dispatch]);
 
   useEffect(() => {
-    console.log(`${user.uid}`)
+    console.log('useEffect:::', uid)
     const fetchPay = async (uid: string) => {
-      const q = query(collection(db, 'yoyakuPay'), where("yoyakuUid", "==", `${user.uid}`));
+      const q = query(collection(db, 'yoyakuPay'), where("yoyakuUid", "==", uid));
       const snapshot = onSnapshot(q, (querySnapshot) => {
         const payData = querySnapshot.docs.map(
           (doc) => ({ ...doc.data() } as TomareState))
@@ -103,15 +103,15 @@ export default function App() {
   //   dispatch(addUser(payData))
   //   setPay(payData)
   // }
-  const fetchUser = async () => {
-    const q = query(collection(db, 'users',), where("uid", "==", `${user.uid}`));
-    const snapshot = await getDocs(q)
-    const userData = snapshot.docs.map(
-      (doc) => ({ ...doc.data() } as UserState))
-    console.log('userData:', userData)
-    dispatch(addUser(userData))
-    // setUserProfile(userData)
-  }
+  // const fetchUser = async () => {
+  //   const q = query(collection(db, 'users',), where("uid", "==", `${user.uid}`));
+  //   const snapshot = await getDocs(q)
+  //   const userData = snapshot.docs.map(
+  //     (doc) => ({ ...doc.data() } as UserState))
+  //   console.log('userData:', userData)
+  //   dispatch(addUser(userData))
+  //   // setUserProfile(userData)
+  // }
 
   // const loginUrl: string | undefined = process.env.NEXT_PUBLIC_LINE_LOGIN_URL;
   const LINEID = process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID;
@@ -168,7 +168,10 @@ export default function App() {
         src={`${icon}`}
         alt=""
         style={{ borderRadius: '50%', width: '60px', height: '60px' }}
-      />           <h1 className="mb-4 text-green-500 text-3xl">{user.name}さま </h1>
+      />
+      <br />
+      <br />
+      <h1 className="mb-4 text-green-500 text-3xl">{user.name}さま </h1>
       <h1>
         <React.StrictMode>
           <Provider store={store}>
