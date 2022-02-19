@@ -53,58 +53,58 @@ const PagePay = () => {
     const [chat, setChat] = useState<any>([]);
     const [message, setMessage] = React.useState('');
 
-    // useEffect(() => {
-    //     liff
-    //         .init({ liffId: process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID as string })
-    //         .then(async () => {
-    //             if (liff.isLoggedIn()) {
-    //                 console.log('login status : [', true, ']');
-    //                 const profile = await liff.getProfile();
-    //                 console.log(
-    //                     '🚀 ~ file: Login.tsx ~ line 15 ~ liff.init ~ profile',
-    //                     profile
-    //                 );
-    //                 // const userId: string = profile.userId
-    //                 const displayName: string = profile.displayName;
-    //                 const displayicon: string | undefined = profile.pictureUrl;
-    //                 setName(profile.displayName);
-    //                 setUid(profile.userId);
-    //                 setName(displayName);
-    //                 setIcon(displayicon);
-    //                 dispatch(
-    //                     addUser({
-    //                         name: profile.displayName,
-    //                         uid: profile.userId,
-    //                         icon: profile.pictureUrl,
-    //                     })
-    //                 );
-    //                 const setRef = setDoc(
-    //                     doc(db, 'users', `${uid}`),
-    //                     {
-    //                         uid,
-    //                         name,
-    //                         icon,
-    //                         timestamp: '',
-    //                     },
-    //                     { merge: true });
-    //                 const fetchPay = async (uid: string) => {
-    //                     const q = query(collection(db, 'yoyakuPay'), where("yoyakuUid", "==", `${profile.userId}`));
-    //                     const snapshot = onSnapshot(q, (querySnapshot) => {
-    //                         const payData = querySnapshot.docs.map(
-    //                             (doc) => ({ ...doc.data() } as TomareState))
-    //                         console.log('payData:', payData)
-    //                         dispatch(addUser(payData))
-    //                         setPay(payData)
-    //                     });
-    //                 }
-    //                 // fetchTomare(profile.userId)
-    //                 fetchPay(uid)
-    //                 console.log('tomare:', tomare)
-    //             } else {
-    //                 console.log('login status : [', false, ']');
-    //             }
-    //         });
-    // }, [dispatch]);
+    useEffect(() => {
+        liff
+            .init({ liffId: process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID as string })
+            .then(async () => {
+                if (liff.isLoggedIn()) {
+                    console.log('login status : [', true, ']');
+                    const profile = await liff.getProfile();
+                    console.log(
+                        '🚀 ~ file: Login.tsx ~ line 15 ~ liff.init ~ profile',
+                        profile
+                    );
+                    // const userId: string = profile.userId
+                    const displayName: string = profile.displayName;
+                    const displayicon: string | undefined = profile.pictureUrl;
+                    setName(profile.displayName);
+                    setUid(profile.userId);
+                    setName(displayName);
+                    setIcon(displayicon);
+                    dispatch(
+                        addUser({
+                            name: profile.displayName,
+                            uid: profile.userId,
+                            icon: profile.pictureUrl,
+                        })
+                    );
+                    const setRef = setDoc(
+                        doc(db, 'users', `${uid}`),
+                        {
+                            uid,
+                            name,
+                            icon,
+                            timestamp: '',
+                        },
+                        { merge: true });
+                    const fetchPay = async (uid: string) => {
+                        const q = query(collection(db, 'yoyakuPay'), where("yoyakuUid", "==", `${profile.userId}`));
+                        const snapshot = onSnapshot(q, (querySnapshot) => {
+                            const payData = querySnapshot.docs.map(
+                                (doc) => ({ ...doc.data() } as TomareState))
+                            console.log('payData:', payData)
+                            dispatch(addUser(payData))
+                            setPay(payData)
+                        });
+                    }
+                    // fetchTomare(profile.userId)
+                    fetchPay(uid)
+                    console.log('tomare:', tomare)
+                } else {
+                    console.log('login status : [', false, ']');
+                }
+            });
+    }, [dispatch]);
 
     useEffect(() => {
         const fetchPay = async () => {
@@ -118,7 +118,7 @@ const PagePay = () => {
             });
         }
         fetchPay()
-        fetchTomare()
+        // fetchTomare()
         console.log('User:', user)
     }, []);
     const fetchTomare = async () => {
