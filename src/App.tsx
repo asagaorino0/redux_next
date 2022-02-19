@@ -162,7 +162,9 @@ export default function App() {
       <br />
       <br />
       <br />
-
+      <br />
+      <br />
+      <br />
       <h1 className="mb-4 text-green-500 text-3xl">{name}さま </h1>
       <button onClick={fetchPay} >
         <img
