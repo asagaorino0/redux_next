@@ -49,7 +49,7 @@ export default function App() {
 
           console.log('uid', uid)
           console.log('profile.userId', profile.userId)
-          const q = query(collection(db, 'yoyakuPay',), where("yoyakuUid", "==", `${profile.userId}`));
+          const q = query(collection(db, 'yoyakuPay',), where("yoyakuUid", "==", profile.userId));
           const snapshot = await getDocs(q)
           const payData = snapshot.docs.map(
             (doc) => ({ ...doc.data() } as TomareState))
