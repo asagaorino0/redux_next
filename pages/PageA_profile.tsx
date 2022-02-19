@@ -57,7 +57,7 @@ const PageA_profile = () => {
             const userData = snapshot.docs.map(
                 (doc) => ({ ...doc.data() } as UserState))
             console.log('userData:', userData)
-            dispatch(addUser(userData))
+            // dispatch(addUser(userData))
             setUserProfile(userData)
         }
         fetchUser()
@@ -145,7 +145,7 @@ const PageA_profile = () => {
                             router.push('./PageA_zisseki');
                         };
                         const registA_zisseki = () => {
-                            dispatch(addUser(user));
+                            // dispatch(addUser(user));
                             toPageA_zisseki()
                         };
 
