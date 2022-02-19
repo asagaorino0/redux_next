@@ -66,7 +66,7 @@ export default function App() {
         }
       });
     // fetchUser()
-    fetchPay()
+    // fetchPay()
   }, [dispatch]);
 
   useEffect(() => {
@@ -81,7 +81,7 @@ export default function App() {
     }
     // fetchUser()
     fetchPay()
-  }, [dispatch]);
+  }, []);
   const fetchPay = async () => {
     const q = query(collection(db, 'yoyakuPay',), where("yoyakuUid", "==", `${user.uid}`));
     const snapshot = await getDocs(q)
@@ -172,7 +172,6 @@ export default function App() {
             </button>
           </div>
         )}
-        {user.uid}
         {user.uid !== '' && (
           <div>
             {/* <h3 className="mb-4  text-3xl">
