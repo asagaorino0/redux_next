@@ -25,49 +25,49 @@ export default function App() {
   const PageA = dynamic(() => import('../pages/PageA'), { ssr: false });
   const PagePay = dynamic(() => import('./PagePay'), { ssr: false });
 
-  useEffect(() => {
-    liff
-      .init({ liffId: process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID as string })
-      .then(async () => {
-        if (liff.isLoggedIn()) {
-          console.log('login status : [', true, ']');
-          const profile = await liff.getProfile();
-          console.log(
-            '🚀 ~ file: Login.tsx ~ line 15 ~ liff.init ~ profile',
-            profile
-          );
-          // const userId: string = profile.userId
-          const displayName: string = profile.displayName;
-          const displayicon: string | undefined = profile.pictureUrl;
-          setName(profile.displayName);
-          setUid(profile.userId);
-          setName(displayName);
-          setIcon(displayicon);
-          dispatch(
-            addUser({
-              name: profile.displayName,
-              uid: profile.userId,
-              icon: profile.pictureUrl,
-            })
-          );
-          const setRef = setDoc(
-            doc(db, 'users', `${uid}`),
-            {
-              uid,
-              name,
-              icon,
-              timestamp: '',
-            },
-            { merge: true });
-          console.log('uid', uid)
-          console.log('profile.userId', profile.userId)
-        } else {
-          console.log('login status : [', false, ']');
-        }
-      });
-    // fetchUser()
-    // fetchPay()
-  }, [dispatch]);
+  // useEffect(() => {
+  //   liff
+  //     .init({ liffId: process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID as string })
+  //     .then(async () => {
+  //       if (liff.isLoggedIn()) {
+  //         console.log('login status : [', true, ']');
+  //         const profile = await liff.getProfile();
+  //         console.log(
+  //           '🚀 ~ file: Login.tsx ~ line 15 ~ liff.init ~ profile',
+  //           profile
+  //         );
+  //         // const userId: string = profile.userId
+  //         const displayName: string = profile.displayName;
+  //         const displayicon: string | undefined = profile.pictureUrl;
+  //         setName(profile.displayName);
+  //         setUid(profile.userId);
+  //         setName(displayName);
+  //         setIcon(displayicon);
+  //         dispatch(
+  //           addUser({
+  //             name: profile.displayName,
+  //             uid: profile.userId,
+  //             icon: profile.pictureUrl,
+  //           })
+  //         );
+  //         const setRef = setDoc(
+  //           doc(db, 'users', `${uid}`),
+  //           {
+  //             uid,
+  //             name,
+  //             icon,
+  //             timestamp: '',
+  //           },
+  //           { merge: true });
+  //         console.log('uid', uid)
+  //         console.log('profile.userId', profile.userId)
+  //       } else {
+  //         console.log('login status : [', false, ']');
+  //       }
+  //     });
+  //   // fetchUser()
+  //   // fetchPay()
+  // }, [dispatch]);
 
   useEffect(() => {
     const fetchPay = async () => {
