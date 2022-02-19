@@ -46,14 +46,12 @@ export default function App() {
           setUid(profile.userId);
           setName(displayName);
           setIcon(displayicon);
-
-          console.log('uid', uid)
           console.log('profile.userId', profile.userId)
           const q = query(collection(db, 'yoyakuPay',), where("yoyakuUid", "==", profile.userId));
           const snapshot = await getDocs(q)
           const payData = snapshot.docs.map(
             (doc) => ({ ...doc.data() } as TomareState))
-          console.log('payData:', payData)
+          console.log('payData_profile.userId:', payData)
           dispatch(addUser(payData))
           setPay(payData)
           dispatch(
@@ -78,7 +76,6 @@ export default function App() {
         }
       });
     // fetchUser()
-    // fetchPay()
   }, [dispatch]);
 
   useEffect(() => {
@@ -115,20 +112,6 @@ export default function App() {
     dispatch(addUser(userData))
     // setUserProfile(userData)
   }
-  const fetchTomare = async () => {
-    const q = query(collectionGroup(db, 'tomare'), where("yoyakuUid", "==", `${user.uid}`));
-    const snapshot = onSnapshot(q, (querySnapshot) => {
-      const tomareData = querySnapshot.docs.map(
-        (doc) => ({ ...doc.data() } as TomareState))
-      // dispatch(addTomare(tomareData))
-      setTomare(tomareData)
-    });
-  }
-  //   fetchTomare()
-  //   console.log('User:', user)
-  //   console.log('tomare:', tomare)
-  // }, []);
-
 
   // const loginUrl: string | undefined = process.env.NEXT_PUBLIC_LINE_LOGIN_URL;
   const LINEID = process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID;
@@ -176,16 +159,16 @@ export default function App() {
     <main className={styles.main}>
       <br />
       app:{uid}
-      <img
+      {/* <img
         src={user.icon}
         alt=""
         style={{ borderRadius: '50%', width: '60px', height: '60px' }}
-      />
+      /> */}
       <img
         src={`${icon}`}
         alt=""
         style={{ borderRadius: '50%', width: '60px', height: '60px' }}
-      />
+      />           <h1 className="mb-4 text-green-500 text-3xl">{user.name}さま </h1>
       <h1>
         <React.StrictMode>
           <Provider store={store}>
