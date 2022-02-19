@@ -162,7 +162,7 @@ export default function App() {
         <img
           src={`${icon}`}
           alt=""
-          style={{ borderRadius: '50%', width: '60px', height: '60px' }}
+          style={{ borderRadius: '50%', width: '60px', height: '60px', alignItems: 'flex-end' }}
         />
       </ button>
       <br />

@@ -27,9 +27,9 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
+        {/* <h1 className={styles.title}>
           konoyubi
-        </h1>
+        </h1> */}
 
         <section className="h-screen w-4/5 max-w-5xl mx-auto flex items-center justifycenter flex-col">
           <Provider store={store}>
