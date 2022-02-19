@@ -79,21 +79,22 @@ export default function App() {
   }, [dispatch]);
 
   useEffect(() => {
-    console.log('useEffect:::', `${uid}`)
-    const fetchPay = async () => {
-      const q = query(collection(db, 'yoyakuPay'), where("yoyakuUid", "==", `${uid}`));
-      const snapshot = onSnapshot(q, (querySnapshot) => {
-        const payData = querySnapshot.docs.map(
-          (doc) => ({ ...doc.data() } as TomareState))
-        console.log('payData:', payData)
-        dispatch(addUser(payData))
-        setPay(payData)
-      });
-    }
     fetchPay()
     // fetchTomare()
     console.log('pey:', pay)
   }, []);
+
+  const fetchPay = async () => {
+    console.log('useEffect:::', `${uid}`)
+    const q = query(collection(db, 'yoyakuPay'), where("yoyakuUid", "==", `${uid}`));
+    const snapshot = onSnapshot(q, (querySnapshot) => {
+      const payData = querySnapshot.docs.map(
+        (doc) => ({ ...doc.data() } as TomareState))
+      console.log('payData:', payData)
+      dispatch(addUser(payData))
+      setPay(payData)
+    });
+  }
   // const fetchPay = async () => {
   //   const q = query(collection(db, 'yoyakuPay',), where("yoyakuUid", "==", `${user.uid}`));
   //   const snapshot = await getDocs(q)
@@ -157,19 +158,20 @@ export default function App() {
   };
   return (
     <main className={styles.main}>
-      <br />
+      {/* <br /> */}
       {/* app:{uid} */}
       {/* <img
         src={user.icon}
         alt=""
         style={{ borderRadius: '50%', width: '60px', height: '60px' }}
       /> */}
-      <img
-        src={`${icon}`}
-        alt=""
-        style={{ borderRadius: '50%', width: '60px', height: '60px' }}
-      />
-      <br />
+      <button onClick={fetchPay}>
+        <img
+          src={`${icon}`}
+          alt=""
+          style={{ borderRadius: '50%', width: '60px', height: '60px' }}
+        />
+      </ button>
       <br />
       <h1 className="mb-4 text-green-500 text-3xl">{user.name}さま </h1>
       <h1>
