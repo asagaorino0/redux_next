@@ -98,9 +98,11 @@ const PagePay = () => {
             <br />
             {user.uid}
             <div>
-                <h3 className="mb-4 text-green-500 text-3xl">
-                    履歴
-                </h3>
+                <button onClick={toHome}>
+                    <h3 className="mb-4 text-green-500 text-3xl">
+                        履歴
+                    </h3>
+                </button>
             </div>
             <h1>
                 <React.StrictMode>
