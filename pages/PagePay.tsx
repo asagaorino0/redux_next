@@ -76,19 +76,6 @@ const PagePay = () => {
             setTomare(tomareData)
         });
     }
-    // const LINEID = process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID;
-    // const lineClick = () => {
-    //     setUid('');
-    //     liff.init({ liffId: LINEID as string }).then(() => {
-    //         if (!liff.isLoggedIn()) {
-    //             setUid('k00000');
-    //             liff.login(); // ログインしていなければ最初にログインする
-    //         } else if (liff.isInClient()) {
-    //             console.log('hello world');
-    //         }
-    //     });
-    // }; ///先生
-
     const date = new Date()
     const Y = date.getFullYear()
     const M = ("00" + (date.getMonth() + 1)).slice(-2)
@@ -107,17 +94,18 @@ const PagePay = () => {
     const toHome = () => { router.push('./') }
     return (
         <div className="App">
-            <span>pagePay:お支払い</span>
+            <span>pagePay</span>
             <br />
             {user.uid}
+            <div>
+                <h3 className="mb-4 text-green-500 text-3xl">
+                    履歴
+                </h3>
+            </div>
             <h1>
                 <React.StrictMode>
                     <Provider store={store}>
-                        <PageA_profile />
-                        {/* <PageAA /> */}
-                        <br />
-                        <br />
-                        *************************************************
+
                         <br />
                         {
                             tomare
