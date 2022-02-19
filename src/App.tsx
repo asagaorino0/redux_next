@@ -158,7 +158,9 @@ export default function App() {
   };
   return (
     <main className={styles.main} >
-      <button onClick={fetchPay} style={{ alignItems: 'flex-end' }}>
+      <br />
+      <br />
+      <button onClick={fetchPay} >
         <img
           src={`${icon}`}
           alt=""
