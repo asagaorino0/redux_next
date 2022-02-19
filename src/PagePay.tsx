@@ -135,7 +135,7 @@ const PagePay = () => {
         setUid('');
         liff.init({ liffId: LINEID as string }).then(() => {
             if (!liff.isLoggedIn()) {
-                // setUid('k00000');
+                setUid('k00000');
                 liff.login(); // ログインしていなければ最初にログインする
             } else if (liff.isInClient()) {
                 console.log('hello world');
