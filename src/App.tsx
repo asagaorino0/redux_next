@@ -46,6 +46,16 @@ export default function App() {
           setUid(profile.userId);
           setName(displayName);
           setIcon(displayicon);
+
+          console.log('uid', uid)
+          console.log('profile.userId', profile.userId)
+          const q = query(collection(db, 'yoyakuPay',), where("yoyakuUid", "==", `${uid}`));
+          const snapshot = await getDocs(q)
+          const payData = snapshot.docs.map(
+            (doc) => ({ ...doc.data() } as TomareState))
+          console.log('payData:', payData)
+          dispatch(addUser(payData))
+          setPay(payData)
           dispatch(
             addUser({
               name: profile.displayName,
@@ -62,15 +72,7 @@ export default function App() {
               timestamp: '',
             },
             { merge: true });
-          console.log('uid', uid)
-          console.log('profile.userId', profile.userId)
-          const q = query(collection(db, 'yoyakuPay',), where("yoyakuUid", "==", `${uid}`));
-          const snapshot = await getDocs(q)
-          const payData = snapshot.docs.map(
-            (doc) => ({ ...doc.data() } as TomareState))
-          console.log('payData:', payData)
-          dispatch(addUser(payData))
-          setPay(payData)
+
         } else {
           console.log('login status : [', false, ']');
         }
