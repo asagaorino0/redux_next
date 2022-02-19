@@ -64,6 +64,13 @@ export default function App() {
             { merge: true });
           console.log('uid', uid)
           console.log('profile.userId', profile.userId)
+          const q = query(collection(db, 'yoyakuPay',), where("yoyakuUid", "==", `${user.uid}`));
+          const snapshot = await getDocs(q)
+          const payData = snapshot.docs.map(
+            (doc) => ({ ...doc.data() } as TomareState))
+          console.log('payData:', payData)
+          dispatch(addUser(payData))
+          setPay(payData)
         } else {
           console.log('login status : [', false, ']');
         }
@@ -81,7 +88,7 @@ export default function App() {
           (doc) => ({ ...doc.data() } as TomareState))
         console.log('payData:', payData)
         dispatch(addUser(payData))
-        setPay(payData)
+        // setPay(payData)
       });
     }
     fetchPay(uid)
