@@ -75,7 +75,7 @@ export default function App() {
   useEffect(() => {
     console.log(`${user.uid}`)
     const fetchPay = async (uid: string) => {
-      const q = query(collection(db, 'yoyakuPay'), where("yoyakuUid", "==", `${uid}`));
+      const q = query(collection(db, 'yoyakuPay'), where("yoyakuUid", "==", `${user.uid}`));
       const snapshot = onSnapshot(q, (querySnapshot) => {
         const payData = querySnapshot.docs.map(
           (doc) => ({ ...doc.data() } as TomareState))
