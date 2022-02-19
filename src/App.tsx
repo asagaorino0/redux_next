@@ -163,11 +163,7 @@ export default function App() {
             </button>
           </div>
         )}
-        {/* {user.uid !== '' && (
-        <div>
-          <h2 className="mb-4  text-3xl">ようこそ</h2>
-        </div>
-      )} */}
+        {user.uid}
         {user.uid !== '' && (
           <div>
             {/* <h3 className="mb-4  text-3xl">
