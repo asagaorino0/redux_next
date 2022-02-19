@@ -14,11 +14,12 @@ import dynamic from 'next/dynamic'
 import CustomerAccordion from '../components/CustomerAccordion';
 import PayAccordion from '../components/PayAccordion';
 import liff from '@line/liff';
+import { Provider } from 'react-redux';
+import { store } from '../src/app/store';
 import P_make from "./img/P_make.png"
 import { computeSegDraggable } from '@fullcalendar/common';
 import { truncate } from 'fs';
-import { Provider } from 'react-redux';
-import { store } from '../src/app/store';
+
 import { TargetTomareState } from "../src/types/targetTomare";
 import Calendar from 'react-calendar';
 import { addTargetChat, selectTargetChat } from '../src/features/targetChatSlice';
@@ -92,7 +93,7 @@ const PagePay = () => {
                         const snapshot = onSnapshot(q, (querySnapshot) => {
                             const payData = querySnapshot.docs.map(
                                 (doc) => ({ ...doc.data() } as TomareState))
-                            console.log('payData:', payData)
+                            console.log('payData:pagePay:', payData)
                             dispatch(addUser(payData))
                             setPay(payData)
                         });
@@ -108,7 +109,6 @@ const PagePay = () => {
 
     useEffect(() => {
         console.log(`${user.uid}`)
-        const uid = `${user.uid}`
         const fetchPay = async (uid: string) => {
             const q = query(collection(db, 'yoyakuPay'), where("yoyakuUid", "==", `${uid}`));
             const snapshot = onSnapshot(q, (querySnapshot) => {
