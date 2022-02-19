@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Head from 'next/head';
 import { addUser, selectUser } from '../src/features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
@@ -158,108 +157,95 @@ export default function App() {
     toPagePay()
   };
   return (
-    <div className={styles.container}>
-      <Head>
-        <div>
-          <button onClick={fetchPay} style={{ alignItems: 'flex-end' }}>
-            <img
-              src={`${icon}`}
-              alt=""
-              style={{ borderRadius: '50%', width: '60px', height: '60px' }}
-            />
-          </ button>
-        </div>
-
-      </Head>
-
-
-
-      <main className={styles.main} >
-
-        <br />
-        {/* <h1 className="mb-4 text-green-500 text-3xl">{name}さま </h1> */}
-        <div>
-          {`${pay}`.length !== 0 &&
-            <h1>次の支払いを完了させてください</h1>
-          }
-          <React.StrictMode>
-            <Provider store={store}>
-              <br />
-              {pay
-                .map((pay: TomareState) => {
-                  return (
-                    <div key={pay.tomareId}>
-                      {/* {`${tomare.yoyakuMenu}` !== "" && */}
-                      <div className={styles.grid}>
-                        <PayAccordion pay={pay} key={pay.tomareId} />
-                      </div>
-                      {/* } */}
+    <main className={styles.main} >
+      <button onClick={fetchPay} style={{ alignItems: 'flex-end' }}>
+        <img
+          src={`${icon}`}
+          alt=""
+          style={{ borderRadius: '50%', width: '60px', height: '60px' }}
+        />
+      </ button>
+      <br />
+      <h1 className="mb-4 text-green-500 text-3xl">{name}さま </h1>
+      <div>
+        {`${pay}`.length !== 0 &&
+          <h1>次の支払いを完了させてください</h1>
+        }
+        <React.StrictMode>
+          <Provider store={store}>
+            <br />
+            {pay
+              .map((pay: TomareState) => {
+                return (
+                  <div key={pay.tomareId}>
+                    {/* {`${tomare.yoyakuMenu}` !== "" && */}
+                    <div className={styles.grid}>
+                      <PayAccordion pay={pay} key={pay.tomareId} />
                     </div>
-                  )
-                })}
-            </Provider>
-          </React.StrictMode>
-        </div>
-        <br />
-        <br />
-        {/* ************************************************* */}
-
-
-        <div className="App">
-          {uid === '' && (
-            <div>
-              <button onClick={lineClick}>
-                <h4 className="mb-4 text-green-500 text-3xl">ログイン</h4>
-              </button>
-            </div>
-          )}
-          {uid !== '' && (
-            <div>
-              <button onClick={registA}>
-                <h3 className="mb-4 text-green-500 text-3xl">
-                  マイページ
-                </h3>
-              </button>
-            </div>
-          )}
-          {uid !== '' && (
-            <div>
-              <button onClick={registPay}>
-                <h3 className="mb-4 text-green-500 text-3xl">
-                  履歴
-                </h3>
-              </button>
-            </div>
-          )}
-          {uid !== '' && (
-            <div>
-              <button onClick={registC}>
-                <h3 className="mb-4 text-green-500 text-3xl">
-                  予約枠設定
-                </h3>
-              </button>
-            </div>
-          )}
-
-          {uid !== '' && (
-
-            <div>
-              <h3 className="mb-4  text-3xl">
-                施術申込み
+                    {/* } */}
+                  </div>
+                )
+              })}
+          </Provider>
+        </React.StrictMode>
+      </div>
+      <br />
+      <br />
+      <div className="App">
+        {uid === '' && (
+          <div>
+            <button onClick={lineClick}>
+              <h4 className="mb-4 text-green-500 text-3xl">ログイン</h4>
+            </button>
+          </div>
+        )}
+        {uid !== '' && (
+          <div>
+            <button onClick={registA}>
+              <h3 className="mb-4 text-green-500 text-3xl">
+                マイページ
               </h3>
-              <button onClick={registB}>
-                <h3 className="mb-4 text-green-500 text-3xl">個人で申し込む</h3>
-              </button>
-            </div>
-          )}
-          {uid !== '' && (
-            <div>
-              <button onClick={registB}>
-                <h3 className="mb-4 text-green-500 text-3xl">施設で申し込む</h3>
-              </button>
-            </div>
-          )}
-          {/* {uid !== '' && (
+            </button>
+          </div>
+        )}
+        {uid !== '' && (
+          <div>
+            <button onClick={registPay}>
+              <h3 className="mb-4 text-green-500 text-3xl">
+                履歴
+              </h3>
+            </button>
+          </div>
+        )}
+        {uid !== '' && (
+          <div>
+            <button onClick={registC}>
+              <h3 className="mb-4 text-green-500 text-3xl">
+                予約枠設定
+              </h3>
+            </button>
+          </div>
+        )}
+
+        {uid !== '' && (
+
+          <div>
+            <h3 className="mb-4  text-3xl">
+              施術申込み
+            </h3>
+            <button onClick={registB}>
+              <h3 className="mb-4 text-green-500 text-3xl">個人で申し込む</h3>
+            </button>
+          </div>
+        )}
+        {uid !== '' && (
+          <div>
+            <button onClick={registB}>
+              <h3 className="mb-4 text-green-500 text-3xl">施設で申し込む</h3>
+            </button>
+          </div>
+        )}
+        {/* {uid !== '' && (
         <div>
           <button onClick={registB}>
             <h3 className="mb-4 text-green-500 text-3xl">
@@ -268,15 +254,14 @@ export default function App() {
           </button>
         </div>
       )} */}
-        </div>
-      </main>
-      <footer className={styles.footer}>
-        <a href="https://konoyubi.site" target="_blank" rel="noopener noreferrer"        >
-          Powered by{' '}
-          <span className={styles.logo} onClick={lineClick}>
-            konoyubi</span>
-        </a>
-      </footer>
-    </div>
+        <footer className={styles.footer}>
+          <a href="https://konoyubi.site" target="_blank" rel="noopener noreferrer"        >
+            Powered by{' '}
+            <span className={styles.logo} onClick={lineClick}>
+              konoyubi</span>
+          </a>
+        </footer>
+      </div>
+    </main>
   );
 }
