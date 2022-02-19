@@ -79,9 +79,9 @@ export default function App() {
   }, [dispatch]);
 
   useEffect(() => {
-    console.log('useEffect:::', uid)
-    const fetchPay = async (uid: string) => {
-      const q = query(collection(db, 'yoyakuPay'), where("yoyakuUid", "==", uid));
+    console.log('useEffect:::', `${uid}`)
+    const fetchPay = async () => {
+      const q = query(collection(db, 'yoyakuPay'), where("yoyakuUid", "==", `${uid}`));
       const snapshot = onSnapshot(q, (querySnapshot) => {
         const payData = querySnapshot.docs.map(
           (doc) => ({ ...doc.data() } as TomareState))
@@ -90,7 +90,7 @@ export default function App() {
         setPay(payData)
       });
     }
-    fetchPay(uid)
+    fetchPay()
     // fetchTomare()
     console.log('pey:', pay)
   }, []);
@@ -158,7 +158,7 @@ export default function App() {
   return (
     <main className={styles.main}>
       <br />
-      app:{uid}
+      {/* app:{uid} */}
       {/* <img
         src={user.icon}
         alt=""
