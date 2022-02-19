@@ -162,6 +162,8 @@ export default function App() {
       <br />
       <br />
       <br />
+
+      <h1 className="mb-4 text-green-500 text-3xl">{name}さま </h1>
       <button onClick={fetchPay} >
         <img
           src={`${icon}`}
@@ -170,7 +172,6 @@ export default function App() {
         />
       </ button>
       <br />
-      <h1 className="mb-4 text-green-500 text-3xl">{name}さま </h1>
       <div>
         {`${pay}`.length !== 0 &&
           <h1>次の支払いを完了させてください</h1>
