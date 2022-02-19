@@ -195,14 +195,14 @@ export default function App() {
 
 
       <div className="App">
-        {user.uid === '' && (
+        {uid === '' && (
           <div>
             <button onClick={lineClick}>
               <h4 className="mb-4 text-green-500 text-3xl">ログイン</h4>
             </button>
           </div>
         )}
-        {user.uid !== '' && (
+        {uid !== '' && (
           <div>
             <button onClick={registA}>
               <h3 className="mb-4 text-green-500 text-3xl">
@@ -211,7 +211,7 @@ export default function App() {
             </button>
           </div>
         )}
-        {user.uid !== '' && (
+        {uid !== '' && (
           <div>
             <button onClick={registPay}>
               <h3 className="mb-4 text-green-500 text-3xl">
@@ -220,7 +220,7 @@ export default function App() {
             </button>
           </div>
         )}
-        {user.uid !== '' && (
+        {uid !== '' && (
           <div>
             <button onClick={registC}>
               <h3 className="mb-4 text-green-500 text-3xl">
@@ -230,7 +230,7 @@ export default function App() {
           </div>
         )}
 
-        {user.uid !== '' && (
+        {uid !== '' && (
 
           <div>
             <h3 className="mb-4  text-3xl">
@@ -241,7 +241,7 @@ export default function App() {
             </button>
           </div>
         )}
-        {user.uid !== '' && (
+        {uid !== '' && (
           <div>
             <button onClick={registB}>
               <h3 className="mb-4 text-green-500 text-3xl">施設で申し込む</h3>
