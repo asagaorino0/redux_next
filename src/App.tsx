@@ -157,12 +157,12 @@ export default function App() {
     toPagePay()
   };
   return (
-    <main className={styles.main}>
-      <button onClick={fetchPay}>
+    <main className={styles.main} >
+      <button onClick={fetchPay} style={{ alignItems: 'flex-end' }}>
         <img
           src={`${icon}`}
           alt=""
-          style={{ borderRadius: '50%', width: '60px', height: '60px', alignItems: 'flex-end' }}
+          style={{ borderRadius: '50%', width: '60px', height: '60px' }}
         />
       </ button>
       <br />
