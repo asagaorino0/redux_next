@@ -12,6 +12,7 @@ import { getDocs, collection, collectionGroup, query, orderBy, where, doc, setDo
 import { TomareState } from "../src/types/tomare";
 import CustomerAccordion from '../components/CustomerAccordion';
 import styles from '../styles/Home.module.css'
+import PayAccordion from '../components/PayAccordion';
 
 export default function App() {
   const [uid, setUid] = useState<string>('');
@@ -25,72 +26,75 @@ export default function App() {
   const PageA = dynamic(() => import('../pages/PageA'), { ssr: false });
   const PagePay = dynamic(() => import('./PagePay'), { ssr: false });
 
-  // useEffect(() => {
-  //   liff
-  //     .init({ liffId: process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID as string })
-  //     .then(async () => {
-  //       if (liff.isLoggedIn()) {
-  //         console.log('login status : [', true, ']');
-  //         const profile = await liff.getProfile();
-  //         console.log(
-  //           '🚀 ~ file: Login.tsx ~ line 15 ~ liff.init ~ profile',
-  //           profile
-  //         );
-  //         // const userId: string = profile.userId
-  //         const displayName: string = profile.displayName;
-  //         const displayicon: string | undefined = profile.pictureUrl;
-  //         setName(profile.displayName);
-  //         setUid(profile.userId);
-  //         setName(displayName);
-  //         setIcon(displayicon);
-  //         dispatch(
-  //           addUser({
-  //             name: profile.displayName,
-  //             uid: profile.userId,
-  //             icon: profile.pictureUrl,
-  //           })
-  //         );
-  //         const setRef = setDoc(
-  //           doc(db, 'users', `${uid}`),
-  //           {
-  //             uid,
-  //             name,
-  //             icon,
-  //             timestamp: '',
-  //           },
-  //           { merge: true });
-  //         console.log('uid', uid)
-  //         console.log('profile.userId', profile.userId)
-  //       } else {
-  //         console.log('login status : [', false, ']');
-  //       }
-  //     });
-  //   // fetchUser()
-  //   // fetchPay()
-  // }, [dispatch]);
+  useEffect(() => {
+    liff
+      .init({ liffId: process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID as string })
+      .then(async () => {
+        if (liff.isLoggedIn()) {
+          console.log('login status : [', true, ']');
+          const profile = await liff.getProfile();
+          console.log(
+            '🚀 ~ file: Login.tsx ~ line 15 ~ liff.init ~ profile',
+            profile
+          );
+          // const userId: string = profile.userId
+          const displayName: string = profile.displayName;
+          const displayicon: string | undefined = profile.pictureUrl;
+          setName(profile.displayName);
+          setUid(profile.userId);
+          setName(displayName);
+          setIcon(displayicon);
+          dispatch(
+            addUser({
+              name: profile.displayName,
+              uid: profile.userId,
+              icon: profile.pictureUrl,
+            })
+          );
+          const setRef = setDoc(
+            doc(db, 'users', `${uid}`),
+            {
+              uid,
+              name,
+              icon,
+              timestamp: '',
+            },
+            { merge: true });
+          console.log('uid', uid)
+          console.log('profile.userId', profile.userId)
+        } else {
+          console.log('login status : [', false, ']');
+        }
+      });
+    // fetchUser()
+    // fetchPay()
+  }, [dispatch]);
 
   useEffect(() => {
-    const fetchPay = async () => {
-      const q = query(collection(db, 'yoyakuPay',), where("yoyakuUid", "==", `${user.uid}`));
-      const snapshot = await getDocs(q)
-      const payData = snapshot.docs.map(
-        (doc) => ({ ...doc.data() } as TomareState))
-      console.log('payData:', payData)
-      dispatch(addUser(payData))
-      setPay(payData)
+    console.log(`${user.uid}`)
+    const fetchPay = async (uid: string) => {
+      const q = query(collection(db, 'yoyakuPay'), where("yoyakuUid", "==", `${uid}`));
+      const snapshot = onSnapshot(q, (querySnapshot) => {
+        const payData = querySnapshot.docs.map(
+          (doc) => ({ ...doc.data() } as TomareState))
+        console.log('payData:', payData)
+        dispatch(addUser(payData))
+        setPay(payData)
+      });
     }
-    // fetchUser()
-    fetchPay()
+    fetchPay(uid)
+    // fetchTomare()
+    console.log('pey:', pay)
   }, []);
-  const fetchPay = async () => {
-    const q = query(collection(db, 'yoyakuPay',), where("yoyakuUid", "==", `${user.uid}`));
-    const snapshot = await getDocs(q)
-    const payData = snapshot.docs.map(
-      (doc) => ({ ...doc.data() } as TomareState))
-    console.log('payData:', payData)
-    dispatch(addUser(payData))
-    setPay(payData)
-  }
+  // const fetchPay = async () => {
+  //   const q = query(collection(db, 'yoyakuPay',), where("yoyakuUid", "==", `${user.uid}`));
+  //   const snapshot = await getDocs(q)
+  //   const payData = snapshot.docs.map(
+  //     (doc) => ({ ...doc.data() } as TomareState))
+  //   console.log('payData:', payData)
+  //   dispatch(addUser(payData))
+  //   setPay(payData)
+  // }
   const fetchUser = async () => {
     const q = query(collection(db, 'users',), where("uid", "==", `${user.uid}`));
     const snapshot = await getDocs(q)
@@ -159,12 +163,43 @@ export default function App() {
   };
   return (
     <main className={styles.main}>
+      <br />
+      {user.uid}
+      <img
+        src={user.icon}
+        alt=""
+        style={{ borderRadius: '50%', width: '60px', height: '60px' }}
+      />
+      <img
+        src={`${icon}`}
+        alt=""
+        style={{ borderRadius: '50%', width: '60px', height: '60px' }}
+      />
+      <h1>
+        {/* <React.StrictMode> */}
+        {/* <Provider store={store}> */}
+        <br />
+        {pay
+          .map((pay: TomareState) => {
+            return (
+              <div key={pay.tomareId}>
+                {/* {`${tomare.yoyakuMenu}` !== "" && */}
+                <div className={styles.grid}>
+                  <PayAccordion pay={pay} key={pay.tomareId} />
+                </div>
+                {/* } */}
+              </div>
+            )
+          })}
+        {/* </Provider> */}
+        {/* </React.StrictMode> */}
+      </h1>
+      <br />
+      <br />
+      *************************************************
 
 
       <div className="App">
-        <br />
-        *************************************************
-
         {user.uid === '' && (
           <div>
             <button onClick={lineClick}>
