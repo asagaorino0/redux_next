@@ -13,6 +13,8 @@ import { TomareState } from "../src/types/tomare";
 import CustomerAccordion from '../components/CustomerAccordion';
 import styles from '../styles/Home.module.css'
 import PayAccordion from '../components/PayAccordion';
+import { Provider } from 'react-redux';
+import { store } from '../src/app/store';
 
 export default function App() {
   const [uid, setUid] = useState<string>('');
@@ -24,7 +26,7 @@ export default function App() {
   const user = useSelector(selectUser);
   const router = useRouter();
   const PageA = dynamic(() => import('../pages/PageA'), { ssr: false });
-  const PagePay = dynamic(() => import('./PagePay'), { ssr: false });
+  // const PagePay = dynamic(() => import('./PagePay'), { ssr: false });
 
   useEffect(() => {
     liff
@@ -164,7 +166,7 @@ export default function App() {
   return (
     <main className={styles.main}>
       <br />
-      {user.uid}
+      app:{user.uid}
       <img
         src={user.icon}
         alt=""
@@ -176,23 +178,23 @@ export default function App() {
         style={{ borderRadius: '50%', width: '60px', height: '60px' }}
       />
       <h1>
-        {/* <React.StrictMode> */}
-        {/* <Provider store={store}> */}
-        <br />
-        {pay
-          .map((pay: TomareState) => {
-            return (
-              <div key={pay.tomareId}>
-                {/* {`${tomare.yoyakuMenu}` !== "" && */}
-                <div className={styles.grid}>
-                  <PayAccordion pay={pay} key={pay.tomareId} />
-                </div>
-                {/* } */}
-              </div>
-            )
-          })}
-        {/* </Provider> */}
-        {/* </React.StrictMode> */}
+        <React.StrictMode>
+          <Provider store={store}>
+            <br />
+            {pay
+              .map((pay: TomareState) => {
+                return (
+                  <div key={pay.tomareId}>
+                    {/* {`${tomare.yoyakuMenu}` !== "" && */}
+                    <div className={styles.grid}>
+                      <PayAccordion pay={pay} key={pay.tomareId} />
+                    </div>
+                    {/* } */}
+                  </div>
+                )
+              })}
+          </Provider>
+        </React.StrictMode>
       </h1>
       <br />
       <br />
