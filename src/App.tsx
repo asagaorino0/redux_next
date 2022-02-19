@@ -166,7 +166,7 @@ export default function App() {
   return (
     <main className={styles.main}>
       <br />
-      app:{user.uid}
+      app:{uid}
       <img
         src={user.icon}
         alt=""
