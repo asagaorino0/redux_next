@@ -65,18 +65,23 @@ export default function App() {
           console.log('login status : [', false, ']');
         }
       });
+    // fetchUser()
+    // fetchPay()
+  }, [dispatch]);
+
+  useEffect(() => {
+    const fetchPay = async () => {
+      const q = query(collection(db, 'yoyakuPay',), where("yoyakuUid", "==", `${user.uid}`));
+      const snapshot = await getDocs(q)
+      const payData = snapshot.docs.map(
+        (doc) => ({ ...doc.data() } as TomareState))
+      console.log('payData:', payData)
+      dispatch(addUser(payData))
+      setPay(payData)
+    }
     fetchUser()
     fetchPay()
   }, [dispatch]);
-  const fetchPay = async () => {
-    const q = query(collection(db, 'yoyakuPay',), where("yoyakuUid", "==", `${user.uid}`));
-    const snapshot = await getDocs(q)
-    const payData = snapshot.docs.map(
-      (doc) => ({ ...doc.data() } as TomareState))
-    console.log('payData:', payData)
-    dispatch(addUser(payData))
-    setPay(payData)
-  }
   const fetchUser = async () => {
     const q = query(collection(db, 'users',), where("uid", "==", `${user.uid}`));
     const snapshot = await getDocs(q)
@@ -144,72 +149,75 @@ export default function App() {
     toPagePay()
   };
   return (
-    <div className="App">
-      <br />
-      *************************************************
+    <main className={styles.main}>
 
-      {user.uid === '' && (
-        <div>
-          <button onClick={lineClick}>
-            <h4 className="mb-4 text-green-500 text-3xl">ログイン</h4>
-          </button>
-        </div>
-      )}
-      {/* {user.uid !== '' && (
+
+      <div className="App">
+        <br />
+        *************************************************
+
+        {user.uid === '' && (
+          <div>
+            <button onClick={lineClick}>
+              <h4 className="mb-4 text-green-500 text-3xl">ログイン</h4>
+            </button>
+          </div>
+        )}
+        {/* {user.uid !== '' && (
         <div>
           <h2 className="mb-4  text-3xl">ようこそ</h2>
         </div>
       )} */}
-      {user.uid !== '' && (
-        <div>
-          {/* <h3 className="mb-4  text-3xl">
+        {user.uid !== '' && (
+          <div>
+            {/* <h3 className="mb-4  text-3xl">
             ケアビューティスト
           </h3> */}
-          <button onClick={registA}>
-            <h3 className="mb-4 text-green-500 text-3xl">
-              マイページ
-            </h3>
-          </button>
-        </div>
-      )}
-      {user.uid !== '' && (
-        <div>
-          <button onClick={registPay}>
-            <h3 className="mb-4 text-green-500 text-3xl">
-              履歴
-            </h3>
-          </button>
-        </div>
-      )}
-      {user.uid !== '' && (
-        <div>
-          <button onClick={registC}>
-            <h3 className="mb-4 text-green-500 text-3xl">
-              予約枠設定
-            </h3>
-          </button>
-        </div>
-      )}
+            <button onClick={registA}>
+              <h3 className="mb-4 text-green-500 text-3xl">
+                マイページ
+              </h3>
+            </button>
+          </div>
+        )}
+        {user.uid !== '' && (
+          <div>
+            <button onClick={registPay}>
+              <h3 className="mb-4 text-green-500 text-3xl">
+                履歴
+              </h3>
+            </button>
+          </div>
+        )}
+        {user.uid !== '' && (
+          <div>
+            <button onClick={registC}>
+              <h3 className="mb-4 text-green-500 text-3xl">
+                予約枠設定
+              </h3>
+            </button>
+          </div>
+        )}
 
-      {user.uid !== '' && (
+        {user.uid !== '' && (
 
-        <div>
-          <h3 className="mb-4  text-3xl">
-            施術申込み
-          </h3>
-          <button onClick={registB}>
-            <h3 className="mb-4 text-green-500 text-3xl">個人で申し込む</h3>
-          </button>
-        </div>
-      )}
-      {user.uid !== '' && (
-        <div>
-          <button onClick={registB}>
-            <h3 className="mb-4 text-green-500 text-3xl">施設で申し込む</h3>
-          </button>
-        </div>
-      )}
-      {/* {uid !== '' && (
+          <div>
+            <h3 className="mb-4  text-3xl">
+              施術申込み
+            </h3>
+            <button onClick={registB}>
+              <h3 className="mb-4 text-green-500 text-3xl">個人で申し込む</h3>
+            </button>
+          </div>
+        )}
+        {user.uid !== '' && (
+          <div>
+            <button onClick={registB}>
+              <h3 className="mb-4 text-green-500 text-3xl">施設で申し込む</h3>
+            </button>
+          </div>
+        )}
+        {/* {uid !== '' && (
         <div>
           <button onClick={registB}>
             <h3 className="mb-4 text-green-500 text-3xl">
@@ -218,6 +226,14 @@ export default function App() {
           </button>
         </div>
       )} */}
-    </div>
+        <footer className={styles.footer}>
+          {/* <a href="https://konoyubi.site" target="_blank" rel="noopener noreferrer"        > */}
+          Powered by{' '}
+          <span className={styles.logo} onClick={lineClick}>
+            konoyubi</span>
+          {/* </a> */}
+        </footer>
+      </div>
+    </main>
   );
 }

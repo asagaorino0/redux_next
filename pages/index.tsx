@@ -28,7 +28,7 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          konoyubi <a href="https://konoyubi.site">Next.js!</a>
+          konoyubi
         </h1>
 
         <section className="h-screen w-4/5 max-w-5xl mx-auto flex items-center justifycenter flex-col">

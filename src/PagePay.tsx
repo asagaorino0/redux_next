@@ -106,11 +106,6 @@ const PagePay = () => {
     //         });
     // }, [dispatch]);
 
-    // fetchUser()
-    // fetchTomare()
-    // console.log('User:', user)
-    // console.log('tomare:', tomare)
-    // }, []);
     useEffect(() => {
         const fetchPay = async () => {
             const q = query(collection(db, 'yoyakuPay'), where("yoyakuUid", "==", `${user.uid}`));
