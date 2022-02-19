@@ -107,8 +107,10 @@ const PagePay = () => {
     }, [dispatch]);
 
     useEffect(() => {
-        const fetchPay = async () => {
-            const q = query(collection(db, 'yoyakuPay'), where("yoyakuUid", "==", `${user.uid}`));
+        console.log(`${user.uid}`)
+        const uid = `${user.uid}`
+        const fetchPay = async (uid: string) => {
+            const q = query(collection(db, 'yoyakuPay'), where("yoyakuUid", "==", `${uid}`));
             const snapshot = onSnapshot(q, (querySnapshot) => {
                 const payData = querySnapshot.docs.map(
                     (doc) => ({ ...doc.data() } as TomareState))
@@ -117,7 +119,7 @@ const PagePay = () => {
                 setPay(payData)
             });
         }
-        fetchPay()
+        fetchPay(uid)
         // fetchTomare()
         console.log('User:', user)
     }, []);
