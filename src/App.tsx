@@ -13,6 +13,7 @@ import { TomareState } from "../src/types/tomare";
 import CustomerAccordion from '../components/CustomerAccordion';
 import styles from '../styles/Home.module.css'
 import PayAccordion from '../components/PayAccordion';
+import MiPayAccordion from '../components/MiPayAccordion';
 import { Provider } from 'react-redux';
 import { store } from '../src/app/store';
 
@@ -199,6 +200,28 @@ export default function App() {
         </React.StrictMode>
       </div>
       <br />
+      <div>
+        {`${pay}`.length !== 0 &&
+          <h1>手続きをしていない支払い</h1>
+        }
+        <React.StrictMode>
+          <Provider store={store}>
+            <br />
+            {pay
+              .map((pay: TomareState) => {
+                return (
+                  <div key={pay.tomareId}>
+                    {/* {`${tomare.yoyakuMenu}` !== "" && */}
+                    <div className={styles.grid}>
+                      <MiPayAccordion pay={pay} key={pay.tomareId} />
+                    </div>
+                    {/* } */}
+                  </div>
+                )
+              })}
+          </Provider>
+        </React.StrictMode>
+      </div>
       <br />
       <div className="App">
         {uid === '' && (
