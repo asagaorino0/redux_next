@@ -6,6 +6,7 @@ import { TomareState } from "../../../../src/types/tomare";
 // import { selectTomare } from '../../../../src/features/tomareSlice';
 // import { useDispatch, useSelector } from 'react-redux';
 
+
 const handler = async (req: any, res: any) => {
 
     const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
@@ -20,6 +21,15 @@ const handler = async (req: any, res: any) => {
                 fetchTomare()
                 // fetchChat(yoyakuId)
             }, []);
+            const fetchTomare = async () => {
+                const [tomare, setTomare] = useState<any>([]);
+                const q = query(collectionGroup(db, 'tomare'), where("tomareId", "==", tomareId));
+                const snapshot = await getDocs(q)
+                const tomareData = snapshot.docs.map(
+                    (docT: any) => ({ ...docT.data() } as TomareState))
+                setTomare(tomareData)
+                console.log('tomare:', tomare)
+            }
 
 
 
@@ -103,15 +113,7 @@ const handler = async (req: any, res: any) => {
 
             // setDoc(doc(db, 'yoyakuPey'), { pey: paymentIntent.amount }, { merge: true })
             res.redirect(303, session.url);
-            const fetchTomare = async () => {
-                const [tomare, setTomare] = useState<any>([]);
-                const q = query(collectionGroup(db, 'tomare'), where("tomareId", "==", tomareId));
-                const snapshot = await getDocs(q)
-                const tomareData = snapshot.docs.map(
-                    (docT: any) => ({ ...docT.data() } as TomareState))
-                setTomare(tomareData)
-                console.log('tomare:', tomare)
-            }
+
             // fetchTomare()
             // res.redirect(303, "https://pay.stripe.com/receipts/acct_1JdlUwIeKRfM8LCe/ch_3KUn1iIeKRfM8LCe2WRisFGa/rcpt_LB9LEwgb88WXEl4YPJdBw2nfquGoW31");
             // setDoc(doc(db, 'yoyakuPey', yoyakuId), { pey: paymentIntent.amount }, { merge: true })
