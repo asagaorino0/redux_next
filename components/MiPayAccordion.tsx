@@ -106,7 +106,8 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
 
                 <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
                     {pay.pay === 0 &&
-                        <form action={`/api/checkout/${pay.chip}/setup`} method="POST">
+                        // <form action={`/api/checkout/${pay.quantity}/setup`} method="POST">
+                        <form action={`/api/users/${pay.uid}/setup`} method="POST">
                             <section>
                                 <button type="submit" role="link" className={styles.card} onClick={() => toStripe()} >
                                     {`${pay.tanka * pay.quantity}円${pay.tanka}円

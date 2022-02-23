@@ -3,6 +3,7 @@ import { addUser, selectUser } from '../src/features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import { UserState } from "../src/types/user";
+import { addTomare } from '../src/features/tomareSlice';
 import 'firebase/compat/firestore';
 // import { doc, setDoc, serverTimestamp } from 'firebase/firestore'
 import { db } from './firebase';
@@ -81,7 +82,7 @@ export default function App() {
 
   useEffect(() => {
     fetchPay()
-    // fetchTomare()
+    fetchTomare()
     console.log('pey:', pay)
   }, []);
 
@@ -95,6 +96,14 @@ export default function App() {
       dispatch(addUser(payData))
       setPay(payData)
     });
+  }
+  const fetchTomare = async () => {
+    const q = query(collectionGroup(db, 'tomare'));
+    const snapshot = await getDocs(q)
+    const tomareData = snapshot.docs.map(
+      (docT: any) => ({ ...docT.data() } as TomareState))
+    dispatch(addTomare(tomareData))
+    setTomare(tomareData)
   }
   // const fetchPay = async () => {
   //   const q = query(collection(db, 'yoyakuPay',), where("yoyakuUid", "==", `${user.uid}`));
@@ -207,13 +216,13 @@ export default function App() {
         <React.StrictMode>
           <Provider store={store}>
             <br />
-            {pay
+            {tomare
               .map((pay: TomareState) => {
                 return (
-                  <div key={pay.tomareId}>
+                  <div key={tomare.tomareId}>
                     {/* {`${tomare.yoyakuMenu}` !== "" && */}
                     <div className={styles.grid}>
-                      <MiPayAccordion pay={pay} key={pay.tomareId} />
+                      <MiPayAccordion pay={tomare} key={tomare.tomareId} />
                     </div>
                     {/* } */}
                   </div>
