@@ -16,10 +16,10 @@ const handler = async (req: any, res: any) => {
             const tomareId = req.query.tomareId
             console.log('props:', '===========')
             console.log('props:', tomareId)
-            // useEffect(() => {
-            //     fetchTomare()
-            //     // fetchChat(yoyakuId)
-            // }, []);
+            useEffect(() => {
+                fetchTomare()
+                // fetchChat(yoyakuId)
+            }, []);
 
 
 
@@ -112,7 +112,7 @@ const handler = async (req: any, res: any) => {
                 setTomare(tomareData)
                 console.log('tomare:', tomare)
             }
-            fetchTomare()
+            // fetchTomare()
             // res.redirect(303, "https://pay.stripe.com/receipts/acct_1JdlUwIeKRfM8LCe/ch_3KUn1iIeKRfM8LCe2WRisFGa/rcpt_LB9LEwgb88WXEl4YPJdBw2nfquGoW31");
             // setDoc(doc(db, 'yoyakuPey', yoyakuId), { pey: paymentIntent.amount }, { merge: true })
 
