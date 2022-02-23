@@ -5,10 +5,11 @@ import { TomareState } from "../../../../src/types/tomare";
 // import { UserState } from "../../../../src/types/user";
 // import { selectTomare } from '../../../../src/features/tomareSlice';
 // import { useDispatch, useSelector } from 'react-redux';
+const [tomare, setTomare] = useState<any>([]);
 const handler = async (req: any, res: any) => {
     const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
     // const tomare = useSelector(selectTomare);
-    const [tomare, setTomare] = useState<any>([]);
+
     if (req.method === 'POST') {
         try {
             const tomareId = req.query.tomareId
