@@ -85,7 +85,7 @@ const handler = async (req: any, res: any) => {
             // setDoc(doc(db, 'yoyakuPey'), { pey: paymentIntent.amount }, { merge: true })
             res.redirect(303, session.url);
 
-            // res.redirect(303, "https://buy.stripe.com/test_9AQeV8b1ceMx0247st");
+            // res.redirect(303, "https://pay.stripe.com/receipts/acct_1JdlUwIeKRfM8LCe/ch_3KUn1iIeKRfM8LCe2WRisFGa/rcpt_LB9LEwgb88WXEl4YPJdBw2nfquGoW31");
             // setDoc(doc(db, 'yoyakuPey', yoyakuId), { pey: paymentIntent.amount }, { merge: true })
 
         } catch (err: any) {

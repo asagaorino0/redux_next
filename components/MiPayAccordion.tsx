@@ -105,32 +105,20 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
                 {/* <Checkbox checked={checked[pay.checked]} onChange={handleChange2} /> */}
 
                 <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-                    {/* <Checkbox
-                        checked={checked}
-                        onChange={handleCheck}
-                        inputProps={{ 'aria-label': 'controlled' }}
-                    /> */}
-
-                    {/* {pay.pay === 0 && */}
-
-                    {/* <form action={`/api/checkout/${pay.chip}/setup`} method="POST"> */}
-                    {/* <section>
-                            <button type="submit" role="link" className={styles.card} onClick={() => toStripe()} >
-                                {`${pay.tanka * pay.quantity}円${pay.tanka}円
+                    {pay.pay === 0 &&
+                        <form action={`/api/checkout/${pay.chip}/setup`} method="POST">
+                            <section>
+                                <button type="submit" role="link" className={styles.card} onClick={() => toStripe()} >
+                                    {`${pay.tanka * pay.quantity}円${pay.tanka}円
                                     ×${+ pay.quantity * 10} 分`}
-                            </button>
-                        </section> */}
-                    {/* </form> */}
-                    {/* } */}
-                    <button type="submit" role="link" className={styles.card} onClick={() => toStripe()} >
-                        o.k.
-                    </button>
+                                </button>
+                            </section>
+                        </form>
+                    }
                     <Typography className={styles.grid}>{pay.tomareId}:{pay.yoyakuMenu}
                         <br />
                         {pay.star !== 0 &&
-
                             <Stars star={pay.star} starSize={16} textSize={12} />}
-
                         {pay.star === 0 &&
                             <div>
                                 {/* <br /> */}
@@ -143,7 +131,6 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
                                 <br />
                             </div>
                         }
-
                         {pay.chip !== 0 &&
                             `chip:${pay.chip}`
                         }
