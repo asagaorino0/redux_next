@@ -10,7 +10,7 @@ const handler = async (req: any, res: any) => {
 
     const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
     // const tomare = useSelector(selectTomare);
-    const [tomare, setTomare] = useState<any>([]);
+    // const [tomare, setTomare] = useState<any>([]);
     if (req.method === 'POST') {
         try {
             const tomareId = req.query.tomareId
@@ -39,8 +39,8 @@ const handler = async (req: any, res: any) => {
                     {
                         // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
                         price: 'price_1KT7IZIeKRfM8LCe7573kMRN',
-                        // quantity: 10,
-                        quantity: `${tomare.quantity}`,
+                        quantity: 10,
+                        // quantity: `${quantity}`,
                     },
                 ],
                 mode: 'payment',
@@ -104,6 +104,7 @@ const handler = async (req: any, res: any) => {
             // setDoc(doc(db, 'yoyakuPey'), { pey: paymentIntent.amount }, { merge: true })
             res.redirect(303, session.url);
             const fetchTomare = async () => {
+                const [tomare, setTomare] = useState<any>([]);
                 const q = query(collectionGroup(db, 'tomare'), where("tomareId", "==", tomareId));
                 const snapshot = await getDocs(q)
                 const tomareData = snapshot.docs.map(
