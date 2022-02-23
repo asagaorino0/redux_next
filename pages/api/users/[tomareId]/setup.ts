@@ -20,16 +20,7 @@ const handler = async (req: any, res: any) => {
             //     // fetchChat(yoyakuId)
             // }, []);
 
-            const fetchTomare = async () => {
-                const q = query(collectionGroup(db, 'tomare'), where("tomareId", "==", tomareId));
-                const snapshot = await getDocs(q)
-                const tomareData = snapshot.docs.map(
-                    (docT: any) => ({ ...docT.data() } as TomareState))
-                setTomare(tomareData)
-                console.log('tomare:', tomare)
-            }
 
-            fetchTomare()
 
 
 
@@ -49,7 +40,6 @@ const handler = async (req: any, res: any) => {
                         price: 'price_1KT7IZIeKRfM8LCe7573kMRN',
                         // quantity: 10,
                         quantity: `${tomare.quantity}`,
-
                     },
                 ],
                 mode: 'payment',
@@ -112,7 +102,15 @@ const handler = async (req: any, res: any) => {
 
             // setDoc(doc(db, 'yoyakuPey'), { pey: paymentIntent.amount }, { merge: true })
             res.redirect(303, session.url);
-
+            const fetchTomare = async () => {
+                const q = query(collectionGroup(db, 'tomare'), where("tomareId", "==", tomareId));
+                const snapshot = await getDocs(q)
+                const tomareData = snapshot.docs.map(
+                    (docT: any) => ({ ...docT.data() } as TomareState))
+                setTomare(tomareData)
+                console.log('tomare:', tomare)
+            }
+            fetchTomare()
             // res.redirect(303, "https://pay.stripe.com/receipts/acct_1JdlUwIeKRfM8LCe/ch_3KUn1iIeKRfM8LCe2WRisFGa/rcpt_LB9LEwgb88WXEl4YPJdBw2nfquGoW31");
             // setDoc(doc(db, 'yoyakuPey', yoyakuId), { pey: paymentIntent.amount }, { merge: true })
 
