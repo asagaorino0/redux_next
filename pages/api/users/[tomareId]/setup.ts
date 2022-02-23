@@ -1,17 +1,43 @@
 import React, { useState, useEffect } from 'react';
 import { getDocs, collection, collectionGroup, query, orderBy, where, doc, setDoc, serverTimestamp, deleteDoc, onSnapshot, addDoc } from 'firebase/firestore'
 import { db } from "../../../../src/firebase";
-import { UserState } from "../../../../src/types/user";
-import { selectTomare } from '../../../../src/features/tomareSlice';
-import { useDispatch, useSelector } from 'react-redux';
+import { TomareState } from "../../../../src/types/tomare";
+// import { UserState } from "../../../../src/types/user";
+// import { selectTomare } from '../../../../src/features/tomareSlice';
+// import { useDispatch, useSelector } from 'react-redux';
 const handler = async (req: any, res: any) => {
     const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-    const tomare = useSelector(selectTomare);
+    // const tomare = useSelector(selectTomare);
+    const [tomare, setTomare] = useState<any>([]);
     if (req.method === 'POST') {
         try {
-            const uid = req.query.uid
+            const tomareId = req.query.tomareId
             console.log('props:', '===========')
-            console.log('props:', uid)
+            console.log('props:', tomareId)
+            // useEffect(() => {
+            //     fetchTomare()
+            //     // fetchChat(yoyakuId)
+            // }, []);
+
+            const fetchTomare = async () => {
+                const q = query(collectionGroup(db, 'tomare'), where("tomareId", "==", tomareId));
+                const snapshot = await getDocs(q)
+                const tomareData = snapshot.docs.map(
+                    (docT: any) => ({ ...docT.data() } as TomareState))
+                setTomare(tomareData)
+                console.log('tomare:', tomare)
+            }
+
+            fetchTomare()
+
+
+
+
+
+
+
+
+
             // setDoc(doc(db, 'yoyakuPey'), { yoyakuId: { yoyakuId } }, { merge: true })
             // const customer = await stripe.customers.create();
 
