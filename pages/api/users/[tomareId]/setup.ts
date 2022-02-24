@@ -30,16 +30,6 @@ const handler = async (req: any, res: any) => {
                 // setTomare(tomareData)
                 console.log('tomareData:', tomareData)
                 // }
-
-
-
-
-
-
-
-
-
-
                 // setDoc(doc(db, 'yoyakuPey'), { yoyakuId: { yoyakuId } }, { merge: true })
                 // const customer = await stripe.customers.create();
 

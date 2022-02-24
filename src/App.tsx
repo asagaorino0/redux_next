@@ -167,7 +167,9 @@ export default function App() {
     toPagePay()
   };
   return (
-    <main className={styles.main} >
+    <main >
+      {/* <main className={styles.main} > */}
+
       <div>
         <br />
         <br />
