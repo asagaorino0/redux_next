@@ -34,7 +34,7 @@ const handler = async (req: any, res: any) => {
             const q = query(collectionGroup(db, 'tomare'), where("yoyakuId", "==", yoyakuId));
             const snapshot = await getDocs(q)
             const tomareData = snapshot.docs.map(
-                (doc) => ({ ...doc.data(), }))
+                (doc) => ({ ...doc.data(), }) as TomareState)
             console.log('props:', '===========')
             // console.log('tomareData:', tomareData)
             const quantity =
@@ -64,7 +64,7 @@ const handler = async (req: any, res: any) => {
                         // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
                         price: 'price_1KT7IZIeKRfM8LCe7573kMRN',
                         // quantity: 10,
-                        quantity: quantity * 1,
+                        quantity: quantity as any * 1,
 
                     },
                 ],
