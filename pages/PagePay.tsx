@@ -72,7 +72,7 @@ const PagePay = () => {
         const snapshot = onSnapshot(q, (querySnapshot) => {
             const tomareData = querySnapshot.docs.map(
                 (doc) => ({ ...doc.data() } as TomareState))
-            // dispatch(addTomare(tomareData))
+            dispatch(addTomare(tomareData))
             setTomare(tomareData)
         });
     }
