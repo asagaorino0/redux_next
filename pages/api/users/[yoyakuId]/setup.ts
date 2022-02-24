@@ -26,11 +26,11 @@ const handler = async (req: any, res: any) => {
                     (doc) => ({ ...doc.data() } as TomareState))
                 // setTomare(tomareData)
                 console.log('tomareData:', tomareData)
-                const uid = doc.toString.prototype.uid
-                console.log('tomareData:', uid)
-                // }
-                // setDoc(doc(db, 'yoyakuPey'), { yoyakuId: { yoyakuId } }, { merge: true })
-                // const customer = await stripe.customers.create();
+                // const uid = doc.toString.prototype.uid
+                // console.log('tomareData:', uid)
+                // // }
+                // // setDoc(doc(db, 'yoyakuPey'), { yoyakuId: { yoyakuId } }, { merge: true })
+                // // const customer = await stripe.customers.create();
 
                 const session = await stripe.checkout.sessions.create({
                     line_items: [
@@ -55,7 +55,7 @@ const handler = async (req: any, res: any) => {
                     customer: customer.id,
                 })
                 console.log('props:', '===========')
-                setDoc(doc(db, 'users', uid), { costomerId: `${customer.id}`, client_secret: `${setupIntent.client_secret}` }, { merge: true })
+                // setDoc(doc(db, 'users', uid), { costomerId: `${customer.id}`, client_secret: `${setupIntent.client_secret}` }, { merge: true })
                 console.log('setupIntent:', setupIntent.payment_method)
                 // const paymentMethod = await stripe.paymentMethods.create({
                 //     type: 'card',
