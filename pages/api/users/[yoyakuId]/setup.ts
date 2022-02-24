@@ -35,10 +35,9 @@ const handler = async (req: any, res: any) => {
                 const session = await stripe.checkout.sessions.create({
                     line_items: [
                         {
-                            // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
                             price: 'price_1KT7IZIeKRfM8LCe7573kMRN',
-                            // quantity: 10,
-                            quantity: `${doc.toString.prototype.quantity}`,
+                            quantity: 10,
+                            // quantity: `${doc.toString.prototype.quantity}`,
                         },
                     ],
                     mode: 'payment',
@@ -50,13 +49,14 @@ const handler = async (req: any, res: any) => {
                 console.log('session.payment_intent', session.payment_intent)
                 console.log('session.id', session.id)
                 //////////////////////////////////////////////////////////
-                const setupIntent = await stripe.setupIntents.create({
-                    payment_method_types: ['card'],
-                    customer: customer.id,
-                })
-                console.log('props:', '===========')
-                // setDoc(doc(db, 'users', uid), { costomerId: `${customer.id}`, client_secret: `${setupIntent.client_secret}` }, { merge: true })
-                console.log('setupIntent:', setupIntent.payment_method)
+                // const setupIntent = await stripe.setupIntents.create({
+                //     payment_method_types: ['card'],
+                //     customer: customer.id,
+                // })
+                // console.log('props:', '===========')
+                // // setDoc(doc(db, 'users', uid), { costomerId: `${customer.id}`, client_secret: `${setupIntent.client_secret}` }, { merge: true })
+                // console.log('setupIntent:', setupIntent.payment_method)
+                ////////////////////////////////////////////////////
                 // const paymentMethod = await stripe.paymentMethods.create({
                 //     type: 'card',
                 //     card: {
