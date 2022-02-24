@@ -111,7 +111,7 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
                             <section>
                                 <button type="submit" role="link" className={styles.card} onClick={() => toStripe()} >
                                     {`${pay.tanka * pay.quantity}円${pay.tanka}円
-                                    ×${+ pay.quantity * 10} 分`}
+                                    ×${+ pay.quantity * 10} 分`}{pay.yoyakuId}
                                 </button>
                             </section>
                         </form>

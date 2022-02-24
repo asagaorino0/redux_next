@@ -17,11 +17,7 @@ const handler = async (req: any, res: any) => {
             const yoyakuId = req.query.yoyakuId
             const customer = await stripe.customers.create();
             console.log('props:', '===========')
-            console.log('props:', yoyakuId)
-            // useEffect(() => {
-            //     fetchTomare()
-            //     // fetchChat(yoyakuId)
-            // }, []);
+            console.log('props_yoyakuId:', yoyakuId)
             const fetchTomare = async () => {
                 // const [tomare, setTomare] = useState<any>([]);
                 const q = query(collectionGroup(db, 'tomare'), where("yoyakuId", "==", yoyakuId));
