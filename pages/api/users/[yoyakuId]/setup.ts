@@ -1,27 +1,70 @@
-import React, { useState, useEffect } from 'react';
+// import React, { useState, useEffect } from 'react';
 import { getDocs, collection, collectionGroup, query, orderBy, where, doc, setDoc, serverTimestamp, deleteDoc, onSnapshot, addDoc } from 'firebase/firestore'
 import { db } from "../../../../src/firebase";
-import { UserState } from "../../../../src/types/user";
+import { TomareState } from "../../../../src/types/tomare";
 
+import React, { useState, useEffect } from 'react';
+// export function Post({ yoyakuId }: { yoyakuId: any }) {
+//     const [user, setUser] = useState<any>();
+//     useEffect(() => {
+//         const fetchUser = async () => {
+//             const q = query(collectionGroup(db, 'tomare'), where("yoyakuId", "==", yoyakuId));
+//             const snapshot = await getDocs(q)
+//             const tomareData = snapshot.docs.map(
+//                 (doc) => ({ ...doc.data() } as TomareState))
+//             console.log('================:', tomareData)
+//             setUser(tomareData);
+//         }
+//         fetchUser()
+//     }, []);
+// }
 const handler = async (req: any, res: any) => {
+    const yoyakuId = req.query.yoyakuId
+    // Post(yoyakuId)
     const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+    // const tomare = useSelector(selectTomare);
 
     if (req.method === 'POST') {
         try {
-            // const quantity = req.query.quantity
             const yoyakuId = req.query.yoyakuId
-            console.log('props:', '===========')
-            console.log('props:', yoyakuId)
-            // setDoc(doc(db, 'yoyakuPey'), { yoyakuId: { yoyakuId } }, { merge: true })
             // const customer = await stripe.customers.create();
+            console.log('props:', '===========')
+            console.log('props_yoyakuId:', yoyakuId)
+            // const fetchTomare = async () => {
+            const q = query(collectionGroup(db, 'tomare'), where("yoyakuId", "==", yoyakuId));
+            const snapshot = await getDocs(q)
+            const tomareData = snapshot.docs.map(
+                (doc) => ({ ...doc.data(), }))
+            console.log('props:', '===========')
+            // console.log('tomareData:', tomareData)
+            const quantity =
+                tomareData.map((data: any) => data.quantity)
+
+
+            console.log('tomare::::', quantity)
+            // const quantity = tomare.quantity
+            // const [tomare, setTomare] = useState<any>([]);
+            // setTomare(tomareData)
+            // }
+            // // const handler = async (req: any, res: any) => {
+            // //     const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+
+            // //     if (req.method === 'POST') {
+            // //         try {
+            //             // const quantity = req.query.quantity
+            //             const yoyakuId = req.query.yoyakuId
+            //             console.log('props:', '===========')
+            //             console.log('props:', yoyakuId)
+            //             // setDoc(doc(db, 'yoyakuPey'), { yoyakuId: { yoyakuId } }, { merge: true })
+            //             // const customer = await stripe.customers.create();
 
             const session = await stripe.checkout.sessions.create({
                 line_items: [
                     {
                         // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
                         price: 'price_1KT7IZIeKRfM8LCe7573kMRN',
-                        quantity: 10,
-                        // quantity: `${quantity}`,
+                        // quantity: 10,
+                        quantity: quantity * 1,
 
                     },
                 ],
@@ -31,6 +74,7 @@ const handler = async (req: any, res: any) => {
             }); console.log('session', session)
             console.log('session.payment_intent', session.payment_intent)
             console.log('session.id', session.id)
+
             // const paymentMethod = await stripe.paymentMethods.create({
             //     type: 'card',
             //     card: {
