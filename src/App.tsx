@@ -168,25 +168,22 @@ export default function App() {
   };
   return (
     <main className={styles.main} >
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <h1 className="mb-4 text-green-500 text-3xl">{name}さま </h1>
-      <br />
-      <br />
-      <button onClick={fetchPay} >
-        <img
-          src={`${icon}`}
-          alt=""
-          style={{ borderRadius: '50%', width: '60px', height: '60px' }}
-        />
-      </ button>
-      <br />
       <div>
+        <br />
+        <br />
+        <br />
+        <h1 className="mb-4 text-green-500 text-3xl">{name}さま </h1>
+        <br />
+        <br />
+        <button onClick={fetchPay} >
+          <img
+            src={`${icon}`}
+            alt=""
+            style={{ borderRadius: '50%', width: '60px', height: '60px' }}
+          />
+        </ button>
+        <br />
+
         {`${pay}`.length !== 0 &&
           <h1>次の支払いを完了させてください</h1>
         }
@@ -295,14 +292,15 @@ export default function App() {
           </button>
         </div>
       )} */}
-        <footer className={styles.footer}>
-          <a href="https://konoyubi.site" target="_blank" rel="noopener noreferrer"        >
-            Powered by{' '}
-            <span className={styles.logo} onClick={lineClick}>
-              konoyubi</span>
-          </a>
-        </footer>
       </div>
+      <footer className={styles.footer}>
+        <a href="https://konoyubi.site" target="_blank" rel="noopener noreferrer"        >
+          Powered by{' '}
+          <span className={styles.logo} onClick={lineClick}>
+            konoyubi</span>
+        </a>
+      </footer>
+
     </main>
   );
 }
