@@ -27,8 +27,8 @@ const handler = async (req: any, res: any) => {
                 const snapshot = await getDocs(q)
                 const tomareData = snapshot.docs.map(
                     (docT: any) => ({ ...docT.data() } as TomareState))
-                setTomare(tomareData)
-                console.log('tomare:', tomare)
+                // setTomare(tomareData)
+                // console.log('tomare:', tomare)
             }
 
 
