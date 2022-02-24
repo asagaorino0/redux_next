@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getDocs, collection, collectionGroup, query, orderBy, where, doc, setDoc, serverTimestamp, deleteDoc, onSnapshot, addDoc } from 'firebase/firestore'
-import { db } from "../../../../src/firebase";
-import { TomareState } from "../../../../src/types/tomare";
+import { db } from "../../../src/firebase";
+import { TomareState } from "../../../src/types/tomare";
 // import { UserState } from "../../../../src/types/user";
 // import { selectTomare } from '../../../../src/features/tomareSlice';
 // import { useDispatch, useSelector } from 'react-redux';
