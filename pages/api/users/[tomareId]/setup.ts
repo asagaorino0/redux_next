@@ -17,12 +17,12 @@ const handler = async (req: any, res: any) => {
             const tomareId = req.query.tomareId
             console.log('props:', '===========')
             console.log('props:', tomareId)
-            useEffect(() => {
-                fetchTomare()
-                // fetchChat(yoyakuId)
-            }, []);
+            // useEffect(() => {
+            //     fetchTomare()
+            //     // fetchChat(yoyakuId)
+            // }, []);
             const fetchTomare = async () => {
-                const [tomare, setTomare] = useState<any>([]);
+                // const [tomare, setTomare] = useState<any>([]);
                 const q = query(collectionGroup(db, 'tomare'), where("tomareId", "==", tomareId));
                 const snapshot = await getDocs(q)
                 const tomareData = snapshot.docs.map(
