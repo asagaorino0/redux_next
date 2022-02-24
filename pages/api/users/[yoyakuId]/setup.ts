@@ -63,8 +63,8 @@ const handler = async (req: any, res: any) => {
                     {
                         // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
                         price: 'price_1KT7IZIeKRfM8LCe7573kMRN',
-                        // quantity: 10,
-                        quantity: quantity as any * 1,
+                        quantity: 10,
+                        // quantity: quantity as any * 1,
 
                     },
                 ],
