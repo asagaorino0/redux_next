@@ -98,7 +98,7 @@ export default function App() {
     });
   }
   const fetchTomare = async () => {
-    const q = query(collection(db, 'users', uid, 'tomare'), where("yoyakuUid", "==", uid));
+    const q = query(collection(db, 'users', `${uid}`, 'tomare'), where("yoyakuUid", "==", `${uid}`));
     const snapshot = await getDocs(q)
     const tomareData = snapshot.docs.map(
       (doc: any) => ({ ...doc.data() } as TomareState))
