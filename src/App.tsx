@@ -52,7 +52,7 @@ export default function App() {
           const q = query(collection(db, 'yoyakuPay',), where("yoyakuUid", "==", profile.userId));
           const snapshot = await getDocs(q)
           const payData = snapshot.docs.map(
-            (doc) => ({ ...doc.data() } as TomareState))
+            (docP) => ({ ...docP.data() } as TomareState))
           console.log('payData_profile.userId:', payData)
           dispatch(addUser(payData))
           setPay(payData)
