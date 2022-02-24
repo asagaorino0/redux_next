@@ -98,11 +98,11 @@ export default function App() {
     });
   }
   const fetchTomare = async () => {
-    const q = query(collectionGroup(db, 'tomare'), where("yoyakuUid", "==", `${uid}`));
+    const q = query(collection(db, 'users', uid, 'tomare'), where("yoyakuUid", "==", uid));
     const snapshot = await getDocs(q)
     const tomareData = snapshot.docs.map(
-      (docT: any) => ({ ...docT.data() } as TomareState))
-    dispatch(addTomare(tomareData))
+      (doc: any) => ({ ...doc.data() } as TomareState))
+    console.log('tomareData:', tomareData)
     setTomare(tomareData)
   }
   // const fetchPay = async () => {
