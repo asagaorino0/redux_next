@@ -56,7 +56,7 @@ export default function App() {
           console.log('payData_profile.userId:', payData)
           dispatch(addUser(payData))
           setPay(payData)
-          const t = query(collectionGroup(db, 'tomare'), where("yoyakuUid", "==", `${uid}`));
+          const t = query(collectionGroup(db, 'tomare'), where("yoyakuUid", "==", profile.userId));
           const snapshotT = await getDocs(t)
           const tomareData = snapshotT.docs.map(
             (doc) => ({ ...doc.data() } as TomareState))
