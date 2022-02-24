@@ -15,6 +15,7 @@ const handler = async (req: any, res: any) => {
     if (req.method === 'POST') {
         try {
             const yoyakuId = req.query.yoyakuId
+            const customer = await stripe.customers.create();
             console.log('props:', '===========')
             console.log('props:', yoyakuId)
             // useEffect(() => {
@@ -29,6 +30,8 @@ const handler = async (req: any, res: any) => {
                     (doc) => ({ ...doc.data() } as TomareState))
                 // setTomare(tomareData)
                 console.log('tomareData:', tomareData)
+                const uid = doc.toString.prototype.uid
+                console.log('tomareData:', uid)
                 // }
                 // setDoc(doc(db, 'yoyakuPey'), { yoyakuId: { yoyakuId } }, { merge: true })
                 // const customer = await stripe.customers.create();
@@ -43,11 +46,21 @@ const handler = async (req: any, res: any) => {
                         },
                     ],
                     mode: 'payment',
+
                     success_url: `${req.headers.origin}/?session_id={CHECKOUT_SESSION_ID}`,
                     cancel_url: `${req.headers.origin}/?canceled=true`,
-                }); console.log('session', session)
+                });
+                console.log('session', session)
                 console.log('session.payment_intent', session.payment_intent)
                 console.log('session.id', session.id)
+                //////////////////////////////////////////////////////////
+                const setupIntent = await stripe.setupIntents.create({
+                    payment_method_types: ['card'],
+                    customer: customer.id,
+                })
+                console.log('props:', '===========')
+                setDoc(doc(db, 'users', uid), { costomerId: `${customer.id}`, client_secret: `${setupIntent.client_secret}` }, { merge: true })
+                console.log('setupIntent:', setupIntent.payment_method)
                 // const paymentMethod = await stripe.paymentMethods.create({
                 //     type: 'card',
                 //     card: {

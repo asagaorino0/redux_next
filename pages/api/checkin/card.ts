@@ -28,7 +28,6 @@ const handler = async (req: any, res: any) => {
                 customer: customer.id,
                 success_url: `${req.headers.origin}/?session_id={CHECKOUT_SESSION_ID}`,
                 cancel_url: 'https://example.com/cancel',
-
             });
 
             const setupIntent = await stripe.setupIntents.create({
