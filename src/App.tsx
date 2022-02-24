@@ -98,7 +98,7 @@ export default function App() {
     });
   }
   const fetchTomare = async () => {
-    const q = query(collectionGroup(db, 'tomare'));
+    const q = query(collectionGroup(db, 'tomare'), where("yoyakuUid", "==", `${uid}`));
     const snapshot = await getDocs(q)
     const tomareData = snapshot.docs.map(
       (docT: any) => ({ ...docT.data() } as TomareState))
@@ -218,7 +218,7 @@ export default function App() {
             {tomare
               .map((pay: TomareState) => {
                 return (
-                  <div key={tomare.tomareId}>
+                  <div key={pay.tomareId}>
                     {/* {`${tomare.yoyakuMenu}` !== "" && */}
                     <div className={styles.grid}>
                       <MiPayAccordion pay={tomare} key={tomare.tomareId} />
