@@ -115,7 +115,7 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
                                     ×${+ pay.quantity * 10} 分`}{pay.yoyakuId}
                                 </button>
                             </section>
-                        // </form>
+                        </form>
                     }
                     <Typography className={styles.grid}>{pay.tomareId}:{pay.yoyakuMenu}
                         <br />
