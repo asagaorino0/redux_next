@@ -48,7 +48,7 @@ export default function App() {
           setUid(profile.userId);
           setName(displayName);
           setIcon(displayicon);
-          // console.log('profile.userId', profile.userId)
+
           const q = query(collection(db, 'yoyakuPay',), where("yoyakuUid", "==", profile.userId));
           const snapshot = await getDocs(q)
           const payData = snapshot.docs.map(
