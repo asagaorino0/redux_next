@@ -83,7 +83,7 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
 
     const toStripe = () => {
         setDoc(doc(db, 'users', `${pay.uid}`, 'tomare', `${pay.tomareId}`), {
-            pay: pay.pay,
+            pay: 1,
             // star: pay.star,
             // chip: pay.chip,
             timestamp: now
@@ -105,17 +105,17 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
                 {/* <Checkbox checked={checked[pay.checked]} onChange={handleChange2} /> */}
 
                 <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-                    {pay.pay === 0 &&
+                    {`${pay.pay}` &&
                         // <form action={`/api/checkout/${pay.quantity}/setup`} method="POST">
-                        // <form action={`/api/users/${pay.yoyakuId}/setup`} method="POST">
-                        <form>
+                        <form action={`/api/users/${pay.yoyakuId}/setup`} method="POST">
+                            {/* <form> */}
                             <section>
                                 <button type="submit" role="link" className={styles.card} onClick={() => toStripe()} >
                                     {`${pay.tanka * pay.quantity}円${pay.tanka}円
-                                    ×${+ pay.quantity * 10} 分`}
+                                    ×${+ pay.quantity * 10} 分`}{pay.yoyakuId}
                                 </button>
                             </section>
-                        </form>
+                        // </form>
                     }
                     <Typography className={styles.grid}>{pay.tomareId}:{pay.yoyakuMenu}
                         <br />
