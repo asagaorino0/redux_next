@@ -94,7 +94,7 @@ export default function App() {
   }, []);
 
   const fetchPay = async () => {
-    const q = query(collection(db, 'yoyakuPay'), where("yoyakuUid", "==", `${uid}`));
+    const q = query(collection(db, 'yoyakuPay'), where("yoyakuUid", "==", uid));
     const snapshot = onSnapshot(q, (querySnapshot) => {
       const payData = querySnapshot.docs.map(
         (doc) => ({ ...doc.data() } as TomareState))
@@ -105,7 +105,7 @@ export default function App() {
   }
   const fetchTomare = async () => {
     console.log('useEffect:::', `${uid}`)
-    const q = query(collectionGroup(db, 'tomare'), where("yoyakuUid", "==", `${uid}`));
+    const q = query(collectionGroup(db, 'tomare'), where("yoyakuUid", "==", uid));
     const snapshot = onSnapshot(q, (querySnapshot) => {
       const tomareData = querySnapshot.docs.map(
         (doc) => ({ ...doc.data() } as TomareState))
