@@ -61,7 +61,7 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 export default function SimpleAccordion({ pay }: { pay: TomareState }) {
     const [expanded, setExpanded] = React.useState<string | false>('panel1');
     const handleStar = (e: number) => {
-        setDoc(doc(db, 'yoyakuPay', `${pay.yoyakuId}`), { star: e }, { merge: true })
+        setDoc(doc(db, 'users', `${pay.uid}`, 'tomare', `${pay.tomareId}`), { star: e }, { merge: true })
     };
     const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
     const user = useSelector(selectUser);
@@ -84,8 +84,8 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
     const toStripe = () => {
         setDoc(doc(db, 'users', `${pay.uid}`, 'tomare', `${pay.tomareId}`), {
             pay: pay.pay,
-            star: pay.star,
-            chip: pay.chip,
+            // star: pay.star,
+            // chip: pay.chip,
             timestamp: now
             // tomareId: pay.tomareId,
             // yoyakuUid: pay.yoyakuUid,
@@ -107,7 +107,8 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
                 <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
                     {pay.pay === 0 &&
                         // <form action={`/api/checkout/${pay.quantity}/setup`} method="POST">
-                        <form action={`/api/users/${pay.yoyakuId}/setup`} method="POST">
+                        // <form action={`/api/users/${pay.yoyakuId}/setup`} method="POST">
+                        <form>
                             <section>
                                 <button type="submit" role="link" className={styles.card} onClick={() => toStripe()} >
                                     {`${pay.tanka * pay.quantity}円${pay.tanka}円
