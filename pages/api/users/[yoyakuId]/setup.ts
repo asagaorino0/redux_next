@@ -39,9 +39,13 @@ const handler = async (req: any, res: any) => {
             // console.log('tomareData:', tomareData)
             const quantity =
                 tomareData.map((data: any) => data.quantity)
+            const uid =
+                tomareData.map((data: any) => data.uid)
+            const tomareId =
+                tomareData.map((data: any) => data.tomareId)
 
+            console.log('tomare::::', quantity, uid)
 
-            console.log('tomare::::', quantity)
             // const quantity = tomare.quantity
             // const [tomare, setTomare] = useState<any>([]);
             // setTomare(tomareData)
@@ -63,15 +67,16 @@ const handler = async (req: any, res: any) => {
                     {
                         // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
                         price: 'price_1KT7IZIeKRfM8LCe7573kMRN',
-                        quantity: 10,
-                        // quantity: quantity as any * 1,
+                        // quantity: 10,
+                        quantity: quantity as any * 1,
 
                     },
                 ],
                 mode: 'payment',
                 success_url: `${req.headers.origin}/?session_id={CHECKOUT_SESSION_ID}`,
                 cancel_url: `${req.headers.origin}/?canceled=true`,
-            }); console.log('session', session)
+            });
+            console.log('session', session)
             console.log('session.payment_intent', session.payment_intent)
             console.log('session.id', session.id)
 
@@ -97,8 +102,9 @@ const handler = async (req: any, res: any) => {
             // console.log('id::::', paymentIntent.id)
             // setDoc(doc(db, 'yoyaku'), { pey: paymentIntent.amount, yoyakuId, }, { merge: true })
             // setDoc(doc(db, 'yoyakuPey'), { yoyakuId: { yoyakuId } }, { merge: true })
+            setDoc(doc(db, 'users', `${uid}`, 'tomare', `${tomareId}`), { cus_pay: session.amount_total, cus_id: session.id, cus_payId: session.payment_intent }, { merge: true })
 
-            // setDoc(doc(db, 'yoyakuPay', `${yoyakuId}`), { pey: `${paymentIntent.amount}`, priId: `${paymentIntent.id}`, yoyakuId: `${yoyakuId}` }, { merge: true })
+            setDoc(doc(db, 'yoyakuPay', `${yoyakuId}`), { uid: `${uid}`, yoyakuId: yoyakuId, cus_pay: session.amount_total, cus_id: session.id, cus_payId: session.payment_intent }, { merge: true })
             // const session = await stripe.checkout.sessions.create({
             //     line_items: [
             //         {
@@ -127,11 +133,12 @@ const handler = async (req: any, res: any) => {
             //     // console.log('tomare:', tomare)
             // }, []);
 
-            // setDoc(doc(db, 'yoyakuPey'), { pey: paymentIntent.amount }, { merge: true })
-            res.redirect(303, session.url);
-
+            // setDoc(doc(db, 'yoyakuPey'), { yoyakuId, cus_pay: session.amount_total, cus_id: session.id, cus_payId: session.payment_intent }, { merge: true })
+            res.redirect(303, session.url)
+            // const setRef = doc(db, "users", uid, "tomare", tomareId)
+            // setDoc(setRef, { cus_pay: session.amount_total, cus_id: session.id, cus_payId: session.payment_intent }, { merge: true })
             // res.redirect(303, "https://pay.stripe.com/receipts/acct_1JdlUwIeKRfM8LCe/ch_3KUn1iIeKRfM8LCe2WRisFGa/rcpt_LB9LEwgb88WXEl4YPJdBw2nfquGoW31");
-            // setDoc(doc(db, 'yoyakuPey', yoyakuId), { pey: paymentIntent.amount }, { merge: true })
+
 
         } catch (err: any) {
             res.status(500).json(err.message);
