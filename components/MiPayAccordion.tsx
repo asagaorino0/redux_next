@@ -83,7 +83,7 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
 
     const toStripe = () => {
         setDoc(doc(db, 'users', `${pay.uid}`, 'tomare', `${pay.tomareId}`), {
-            pay: 1,
+            // pay: 1,
             // star: pay.star,
             // chip: pay.chip,
             timestamp: now
