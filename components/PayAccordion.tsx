@@ -83,9 +83,10 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
 
     const toStripe = () => {
         setDoc(doc(db, 'users', `${pay.uid}`, 'tomare', `${pay.tomareId}`), {
-            pay: pay.pay,
+            pay: pay.amount,
             star: pay.star,
-            chip: pay.chip,
+            receipt_url: pay.receipt_url,
+            // chip: pay.chip,
             timestamp: now
             // tomareId: pay.tomareId,
             // yoyakuUid: pay.yoyakuUid,
@@ -97,78 +98,79 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
 
 
     return (
-        <div>
-            <Accordion
+        <div className={styles.card}>
+            {/* <Accordion
                 expanded={expanded === 'panel1'}
                 onChange={handleChange('panel1')}
-            >
-                {/* <Checkbox checked={checked[pay.checked]} onChange={handleChange2} /> */}
+            > */}
+            {/* <Checkbox checked={checked[pay.checked]} onChange={handleChange2} /> */}
 
-                <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-                    {/* <Checkbox
+            {/* <AccordionSummary aria-controls="panel1d-content" id="panel1d-header"> */}
+            {/* <Checkbox
                         checked={checked}
                         onChange={handleCheck}
                         inputProps={{ 'aria-label': 'controlled' }}
                     /> */}
 
-                    {/* {pay.pay === 0 && */}
+            {/* {pay.pay === 0 && */}
 
-                    {/* <form action={`/api/checkout/${pay.chip}/setup`} method="POST"> */}
-                    {/* <section>
+            {/* <form action={`/api/checkout/${pay.chip}/setup`} method="POST"> */}
+            {/* <section>
                             <button type="submit" role="link" className={styles.card} onClick={() => toStripe()} >
                                 {`${pay.tanka * pay.quantity}円${pay.tanka}円
                                     ×${+ pay.quantity * 10} 分`}
                             </button>
                         </section> */}
-                    {/* </form> */}
-                    {/* } */}
-                    <button type="submit" role="link" className={styles.card} onClick={() => toStripe()} >
-                        o.k.
-                    </button>
-                    <Typography className={styles.grid}>{pay.tomareId}:{pay.yoyakuMenu}
-                        <br />
-                        {pay.star !== 0 &&
+            {/* </form> */}
+            {/* } */}
+            この内容で支払いが完了されます
+            <Typography className={styles.grid}>{pay.tomareId}:{pay.yoyakuMenu}
+                <br />
+                <button type="submit" role="link" className={styles.card} onClick={() => toStripe()} >
 
-                            <Stars star={pay.star} starSize={16} textSize={12} />}
 
-                        {pay.star === 0 &&
-                            <div>
-                                {/* <br /> */}
-                                <button onClick={(e) => handleStar(1)}><BsStar /></button>
-                                <button onClick={(e) => handleStar(2)}><BsStar /></button>
-                                <button onClick={(e) => handleStar(3)}><BsStar /></button>
-                                <button onClick={(e) => handleStar(4)}><BsStar /></button>
-                                <button onClick={(e) => handleStar(5)}><BsStar /></button>
-                                まだ評価されていません
-                                <br />
-                            </div>
-                        }
-
-                        {pay.chip !== 0 &&
-                            `chip:${pay.chip}`
-                        }
-                        <a href={pay.receipt_url}  >領収書</a>
-
-                    </Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                    <Typography>
-                        {/* <div className="flex justify-between ...">    */}
-                        <div className="flex justify-evenly ...">
-                            <div>
-                                <img src={pay.img_befor} alt="" />
-                                {/* {pay.checked === true && user.o_befor_come !== 0 &&
-                                    `${pay.come_befor}`} */}
-                            </div>
-                            <div>
-                                <img src={pay.img_after} alt="" />
-                                {/* {pay.checked === true && user.o_after_come !== 0 &&
-                                    `${pay.come_after}`} */}
-                            </div>
+                    {pay.star !== 0 &&
+                        <Stars star={pay.star} starSize={16} textSize={12} />}
+                    {pay.star === 0 &&
+                        <div>
+                            {/* <br /> */}
+                            <button onClick={(e) => handleStar(1)}><BsStar /></button>
+                            <button onClick={(e) => handleStar(2)}><BsStar /></button>
+                            <button onClick={(e) => handleStar(3)}><BsStar /></button>
+                            <button onClick={(e) => handleStar(4)}><BsStar /></button>
+                            <button onClick={(e) => handleStar(5)}><BsStar /></button>
+                            まだ評価されていません
+                            <br />
                         </div>
-                    </Typography>
-                </AccordionDetails>
-            </Accordion>
+                    }
+
+                    {pay.chip !== 0 &&
+                        `${pay.chip}ﾁｯﾌﾟ + `
+                    }
+                    {pay.amount}円　 o.k.
+                </button>
+                {/* <a href={pay.receipt_url}  >領収書</a> */}
+
+            </Typography>
+            {/* </AccordionSummary> */}
+            <AccordionDetails>
+                <Typography>
+                    {/* <div className="flex justify-between ...">    */}
+                    <div className="flex justify-evenly ...">
+                        <div>
+                            <img src={pay.img_befor} alt="" />
+                            {/* {pay.checked === true && user.o_befor_come !== 0 &&
+                                    `${pay.come_befor}`} */}
+                        </div>
+                        <div>
+                            <img src={pay.img_after} alt="" />
+                            {/* {pay.checked === true && user.o_after_come !== 0 &&
+                                    `${pay.come_after}`} */}
+                        </div>
+                    </div>
+                </Typography>
+            </AccordionDetails>
+            {/* </Accordion> */}
 
         </div>
     );

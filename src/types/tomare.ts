@@ -28,6 +28,9 @@ export type TomareState = {
     payDay: string
     payReceipt: string
     receipt_url: string
+    cusPay: number
+    amount: number
+    chipUrl: string
     paymentIntent: [
         {
             amount: number

@@ -19,6 +19,7 @@ import React, { useState, useEffect } from 'react';
 //     }, []);
 // }
 const handler = async (req: any, res: any) => {
+    require('dotenv').config();
     const yoyakuId = req.query.yoyakuId
     // Post(yoyakuId)
     const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
@@ -43,8 +44,11 @@ const handler = async (req: any, res: any) => {
                 tomareData.map((data: any) => data.uid)
             const tomareId =
                 tomareData.map((data: any) => data.tomareId)
-
-            console.log('tomare::::', quantity, uid)
+            const chip =
+                tomareData.map((data: any) => data.chip)
+            const chipUrl =
+                `process.env.STRIPE_SECRET_${tomareData.map((data: any) => data.chip)}`
+            console.log('tomare::::', process.env.STRIPE_SECRET_500, `process.env.STRIPE_SECRET_${chip}`)
 
             // const quantity = tomare.quantity
             // const [tomare, setTomare] = useState<any>([]);
@@ -65,16 +69,18 @@ const handler = async (req: any, res: any) => {
             const session = await stripe.checkout.sessions.create({
                 line_items: [
                     {
-                        // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
                         price: 'price_1KT7IZIeKRfM8LCe7573kMRN',
-                        // quantity: 10,
                         quantity: quantity as any * 1,
-
-                    },
-                ],
+                    },],
+                payment_method_types: ['card'],
                 mode: 'payment',
                 success_url: `${req.headers.origin}/?session_id={CHECKOUT_SESSION_ID}`,
                 cancel_url: `${req.headers.origin}/?canceled=true`,
+                // shipping_rates: ['shr_1KXTkfIeKRfM8LCeTmYH0csl']
+                // shipping_amount: 500 ×
+                // shipping_rates: [chipUrl]
+                shipping_rates: [process.env.STRIPE_SECRET_500]
+                // shipping_rates: [`process.env.STRIPE_SECRET_${chip}`]
             });
             console.log('session', session)
             console.log('session.payment_intent', session.payment_intent)
@@ -107,7 +113,7 @@ const handler = async (req: any, res: any) => {
             // setDoc(doc(db, 'yoyakuPey'), { yoyakuId: { yoyakuId } }, { merge: true })
             setDoc(doc(db, 'users', `${uid}`, 'tomare', `${tomareId}`), { cusPay: session.amount_total, cusId: session.id, cusPayId: session.payment_intent }, { merge: true })
 
-            setDoc(doc(db, 'yoyakuPay', `${yoyakuId}`), { uid: `${uid}`, receipt_url, yoyakuId: yoyakuId, cusPay: session.amount_total, cusId: session.id, cusPayId: session.payment_intent }, { merge: true })
+            setDoc(doc(db, 'yoyakuPay', `${yoyakuId}`), { uid: `${uid}`, receipt_url, yoyakuId: yoyakuId, cusPay: session.amount_total, cusId: session.id, cusPayId: session.payment_intent, amount: session.amount_total }, { merge: true })
             // const session = await stripe.checkout.sessions.create({
             //     line_items: [
             //         {
