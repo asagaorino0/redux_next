@@ -147,7 +147,7 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
                         {pay.chip !== 0 &&
                             `chip:${pay.chip}`
                         }
-                        <a href={pay.receipt_url} target="_blank" >領収書</a>
+                        <a href={pay.receipt_url}  >領収書</a>
 
                     </Typography>
                 </AccordionSummary>
