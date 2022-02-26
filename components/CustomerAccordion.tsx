@@ -133,7 +133,7 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
                     }
                     {tomare.receipt_url !== "" &&
                         <section>
-                            <a href={tomare.receipt_url} target="_blank" >領収書</a>
+                            <a href={tomare.receipt_url}  >領収書</a>
                             {/* {`済 ${tomare.tanka}円×${+ tomare.quantity * 10} 分`} */}
 
                         </section>
