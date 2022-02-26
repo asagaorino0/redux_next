@@ -131,11 +131,11 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
                             </section>
                         </form>
                     }
-                    {tomare.pay !== 0 &&
+                    {tomare.receipt_url !== "" &&
                         <section>
-                            {/* <div className={styles.card}  > */}
-                            {`済 ${tomare.tanka}円×${+ tomare.quantity * 10} 分`}
-                            {/* </div> */}
+                            <a href={tomare.receipt_url} target="_blank" >領収書</a>
+                            {/* {`済 ${tomare.tanka}円×${+ tomare.quantity * 10} 分`} */}
+
                         </section>
                     }
                     <Typography className={styles.grid}>{tomare.tomareId}:{tomare.yoyakuMenu}
