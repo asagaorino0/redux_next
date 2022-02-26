@@ -105,7 +105,7 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
                 {/* <Checkbox checked={checked[pay.checked]} onChange={handleChange2} /> */}
 
                 <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-                    {`${pay.pay}` &&
+                    {pay.pay === 0 &&
                         // <form action={`/api/checkout/${pay.quantity}/setup`} method="POST">
                         <form action={`/api/users/${pay.yoyakuId}/setup`} method="POST">
                             {/* <form> */}
