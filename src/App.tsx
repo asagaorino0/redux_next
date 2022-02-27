@@ -14,6 +14,7 @@ import { TomareState } from "../src/types/tomare";
 import CustomerAccordion from '../components/CustomerAccordion';
 import styles from '../styles/Home.module.css'
 import PayAccordion from '../components/PayAccordion';
+import PayReceipt from '../components/PayReceipt';
 import MiPayAccordion from '../components/MiPayAccordion';
 import { Provider } from 'react-redux';
 import { store } from '../src/app/store';
@@ -156,52 +157,47 @@ export default function App() {
     dispatch(addUser({ name, uid, icon }));
     toPagePay()
   };
-  return (
-    <main >
-      {/* <main className={styles.main} > */}
 
+  return (
+    <main>
       <div>
-        <button onClick={fetchPay} >
+        <button onClick={fetchPay}>
           <img
             src={`${icon}`}
             alt=""
             style={{ borderRadius: '50%', width: '60px', height: '60px' }}
           />
-        </ button>
+        </button>
         <h1 className="mb-4 text-green-500 text-3xl">{name}さま </h1>
         <br />
 
-        {`${pay}`.length !== 0 &&
-          <h1>次の支払いを完了させてください</h1>
-        }
+        {`${pay}`.length !== 0 && <h1>次の支払いを完了させてください</h1>}
         <React.StrictMode>
           <Provider store={store}>
             <br />
-            {pay
-              .map((pay: TomareState) => {
-                return (
-                  <div key={pay.tomareId}>
-                    {/* {`${tomare.yoyakuMenu}` !== "" && */}
-                    <div className={styles.grid}>
-                      <PayAccordion pay={pay} key={pay.tomareId} />
-                    </div>
-                    {/* } */}
+            {pay.map((pay: TomareState) => {
+              console.log(pay.paymentIntent);
+              return (
+                <div key={pay.yoyakuId}>
+                  <div className={styles.grid}>
+                    <PayAccordion pay={pay} key={pay.yoyakuId} />
+                    <br />
+                    <PayReceipt pay={pay} key={pay.yoyakuId} />
                   </div>
-                )
-              })}
+                </div>
+              );
+            })}
           </Provider>
         </React.StrictMode>
       </div>
       <br />
-      <div>
-        {`${tomare}`.length !== 0 &&
-          <h1>未払い</h1>
-        }
-        <React.StrictMode>
-          <Provider store={store}>
-            <br />
-            {tomare
-              .map((tomare: TomareState) => {
+      {`${pay}`.length === 0 && (
+        <div>
+          {`${tomare}`.length !== 0 && <h1>未払い</h1>}
+          <React.StrictMode>
+            <Provider store={store}>
+              <br />
+              {tomare.map((tomare: TomareState) => {
                 return (
                   <div key={tomare.tomareId}>
                     {/* {`${tomare.yoyakuMenu}` !== "" && */}
@@ -210,84 +206,56 @@ export default function App() {
                     </div>
                     {/* } */}
                   </div>
-                )
+                );
               })}
-          </Provider>
-        </React.StrictMode>
-      </div>
+            </Provider>
+          </React.StrictMode>
+        </div>
+      )}
       <br />
       <div className="App">
         {uid === '' && (
           <div>
-            <button onClick={lineClick}>
+            <button>
               <h4 className="mb-4 text-green-500 text-3xl">ログイン</h4>
             </button>
           </div>
         )}
-        {uid !== '' && (
+        {`${pay}`.length === 0 && (
           <div>
             <button onClick={registA}>
-              <h3 className="mb-4 text-green-500 text-3xl">
-                マイページ
-              </h3>
+              <h3 className="mb-4 text-green-500 text-3xl">マイページ</h3>
             </button>
-          </div>
-        )}
-        {uid !== '' && (
-          <div>
+            <br />
             <button onClick={registPay}>
-              <h3 className="mb-4 text-green-500 text-3xl">
-                履歴
-              </h3>
+              <h3 className="mb-4 text-green-500 text-3xl">履歴</h3>
             </button>
-          </div>
-        )}
-        {uid !== '' && (
-          <div>
+            <br />
             <button onClick={registC}>
-              <h3 className="mb-4 text-green-500 text-3xl">
-                予約枠設定
-              </h3>
+              <h3 className="mb-4 text-green-500 text-3xl">予約枠設定</h3>
             </button>
-          </div>
-        )}
-
-        {uid !== '' && (
-
-          <div>
-            <h3 className="mb-4  text-3xl">
-              施術申込み
-            </h3>
+            <br />
+            <h3 className="mb-4  text-3xl">施術申込み</h3>
             <button onClick={registB}>
               <h3 className="mb-4 text-green-500 text-3xl">個人で申し込む</h3>
             </button>
-          </div>
-        )}
-        {uid !== '' && (
-          <div>
+
             <button onClick={registB}>
               <h3 className="mb-4 text-green-500 text-3xl">施設で申し込む</h3>
             </button>
           </div>
         )}
-        {/* {uid !== '' && (
-        <div>
-          <button onClick={registB}>
-            <h3 className="mb-4 text-green-500 text-3xl">
-              プレゼントする
-            </h3>
-          </button>
-        </div>
-      )} */}
       </div>
+
       <footer className={styles.footer}>
-        <a href="https://konoyubi.site" target="_blank" rel="noopener noreferrer"        >
-          Powered by{' '}
-          <span className={styles.logo} onClick={lineClick}>
-            konoyubi</span>
+        <a
+          href="https://konoyubi.site"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Powered by <span className={styles.logo}>konoyubi</span>
         </a>
       </footer>
-
     </main>
   );
 }

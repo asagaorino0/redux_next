@@ -69,8 +69,6 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
         (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
             setExpanded(newExpanded ? panel : false);
         };
-    // const [checked, setChecked] = React.useState([true, false]);
-    // const [checked, setChecked] = React.useState<boolean>(pay.checked);
 
     const date = new Date()
     const Y = date.getFullYear()
@@ -80,12 +78,13 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
     const m = ("00" + date.getMinutes()).slice(-2)
     const s = ("00" + date.getSeconds()).slice(-2)
     const now = Y + '-' + M + '-' + D + ' ' + h + ':' + m + ':' + s
-
+    const receipt_url = location.search.substr(1, 200)
     const toStripe = () => {
+        const receipt_url = location.search.substr(1, 200)
         setDoc(doc(db, 'users', `${pay.uid}`, 'tomare', `${pay.tomareId}`), {
             pay: pay.amount,
             star: pay.star,
-            receipt_url: pay.receipt_url,
+            receipt_url,
             // chip: pay.chip,
             timestamp: now
             // tomareId: pay.tomareId,
@@ -99,36 +98,11 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
 
     return (
         <div className={styles.card}>
-            {/* <Accordion
-                expanded={expanded === 'panel1'}
-                onChange={handleChange('panel1')}
-            > */}
-            {/* <Checkbox checked={checked[pay.checked]} onChange={handleChange2} /> */}
 
-            {/* <AccordionSummary aria-controls="panel1d-content" id="panel1d-header"> */}
-            {/* <Checkbox
-                        checked={checked}
-                        onChange={handleCheck}
-                        inputProps={{ 'aria-label': 'controlled' }}
-                    /> */}
-
-            {/* {pay.pay === 0 && */}
-
-            {/* <form action={`/api/checkout/${pay.chip}/setup`} method="POST"> */}
-            {/* <section>
-                            <button type="submit" role="link" className={styles.card} onClick={() => toStripe()} >
-                                {`${pay.tanka * pay.quantity}円${pay.tanka}円
-                                    ×${+ pay.quantity * 10} 分`}
-                            </button>
-                        </section> */}
-            {/* </form> */}
-            {/* } */}
             この内容で支払いが完了されます
             <Typography className={styles.grid}>{pay.tomareId}:{pay.yoyakuMenu}
                 <br />
                 <button type="submit" role="link" className={styles.card} onClick={() => toStripe()} >
-
-
                     {pay.star !== 0 &&
                         <Stars star={pay.star} starSize={16} textSize={12} />}
                     {pay.star === 0 &&
@@ -143,13 +117,24 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
                             <br />
                         </div>
                     }
-                    {pay.amount}円
-                    {pay.chip !== 0 &&
-                        `（${pay.chip}ﾁｯﾌﾟ含む） `
-                    }
-                    o.k.
+                    <div className={styles.grid}>
+                        <h3 className="mb-4 text-green-500 text-3xl">
+                            {pay.amount}円
+                        </h3>
+                        {pay.chip !== 0 &&
+                            `（${pay.chip}ﾁｯﾌﾟ含む） `
+                        }
+                        <h3 className="mb-4 text-green-500 text-3xl">
+                            o.k.
+                        </h3>
+                    </div>
                 </button>
-                {/* <a href={pay.receipt_url}  >領収書</a> */}
+                {/* <div className="flex justify-between ...">
+                    <br />
+                    <h3 className="mb-4 text-green-500 text-3xl">
+                        <a href={receipt_url}  >領収書</a>
+                    </h3>
+                </div > */}
 
             </Typography>
             {/* </AccordionSummary> */}

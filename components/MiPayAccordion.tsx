@@ -7,17 +7,17 @@ import MuiAccordionSummary, {
 } from '@mui/material/AccordionSummary';
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
-import { TomareState } from '../src/types/tomare';
+import { TomareState } from "../src/types/tomare";
 import { addUser, selectUser } from '../src/features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { Stars } from './Star';
-import { BsStar } from 'react-icons/bs';
+import { Stars } from "./Star";
+import { BsStar } from "react-icons/bs";
 import styles from '../styles/Home.module.css';
-import { doc, setDoc } from 'firebase/firestore';
-import { db } from '../src/firebase';
+import { doc, setDoc } from 'firebase/firestore'
+import { db } from "../src/firebase";
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import { UserState } from '../src/types/user';
+import { UserState } from "../src/types/user";
 
 import TomareFileUpload from '../components/TomareFileUpload';
 import TomareFileChenge from '../components/TomareFileChenge';
@@ -61,19 +61,26 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 export default function SimpleAccordion({ pay }: { pay: TomareState }) {
     const [expanded, setExpanded] = React.useState<string | false>('panel1');
     const handleStar = (e: number) => {
-        setDoc(
-            doc(db, 'users', `${pay.uid}`, 'tomare', `${pay.tomareId}`),
-            { star: e },
-            { merge: true }
-        );
+        setDoc(doc(db, 'users', `${pay.uid}`, 'tomare', `${pay.tomareId}`), { star: e }, { merge: true })
     };
+    const amountSub = pay.tanka * pay.quantity
+    const amount = pay.tanka * pay.quantity + pay.chip
+    const apiYoyakuId = `${pay.yoyakuId}${amount}`
+    const stQua = 100 + pay.quantity * 1
+    const yoyakuId = `${stQua}${pay.uid}${pay.yoyakuUid}${pay.tomareId}`
     const handleChip = (e: number) => {
-        setDoc(
-            doc(db, 'users', `${pay.uid}`, 'tomare', `${pay.tomareId}`),
-            { chip: e, chipUrl: `process.env.STRIPE_SECRET_${e}` },
-            { merge: true }
-        );
+        setDoc(doc(db, 'users', `${pay.uid}`, 'tomare', `${pay.tomareId}`), { chip: e, chipUrl: `${process.env.STRIPE_SECRET_e}` }, { merge: true })
     };
+    const handleChip500 = (e: number) => {
+        setDoc(doc(db, 'users', `${pay.uid}`, 'tomare', `${pay.tomareId}`), { chip: e, cusPay: amount * 1 + e, chipUrl: "shr_1KXTkfIeKRfM8LCeTmYH0csl", yoyakuId: `${yoyakuId}shr_1KXTkfIeKRfM8LCeTmYH0csl` }, { merge: true })
+    };
+    const handleChip1000 = (e: number) => {
+        setDoc(doc(db, 'users', `${pay.uid}`, 'tomare', `${pay.tomareId}`), { chip: e, cusPay: amount + e, chipUrl: "shr_1KXaVyIeKRfM8LCeQ9dJPPvV", yoyakuId: `${yoyakuId}shr_1KXaVyIeKRfM8LCeQ9dJPPvV` }, { merge: true })
+    };
+
+
+
+
     const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
     const user = useSelector(selectUser);
     const handleChange =
@@ -83,46 +90,37 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
     // const [checked, setChecked] = React.useState([true, false]);
     // const [checked, setChecked] = React.useState<boolean>(pay.checked);
 
-    const date = new Date();
-    const Y = date.getFullYear();
-    const M = ('00' + (date.getMonth() + 1)).slice(-2);
-    const D = ('00' + date.getDate()).slice(-2);
-    const h = ('00' + date.getHours()).slice(-2);
-    const m = ('00' + date.getMinutes()).slice(-2);
-    const s = ('00' + date.getSeconds()).slice(-2);
-    const now = Y + '-' + M + '-' + D + ' ' + h + ':' + m + ':' + s;
+    const date = new Date()
+    const Y = date.getFullYear()
+    const M = ("00" + (date.getMonth() + 1)).slice(-2)
+    const D = ("00" + date.getDate()).slice(-2)
+    const h = ("00" + date.getHours()).slice(-2)
+    const m = ("00" + date.getMinutes()).slice(-2)
+    const s = ("00" + date.getSeconds()).slice(-2)
+    const now = Y + '-' + M + '-' + D + ' ' + h + ':' + m + ':' + s
 
     const toStripe = () => {
-        setDoc(
-            doc(db, 'yoyakuPay', `${pay.yoyakuId}`),
-            {
-                // pay: 1,
-                star: pay.star,
-                chip: pay.chip,
-                timestamp: now,
-                tomareId: pay.tomareId,
-                yoyakuMenu: pay.yoyakuMenu,
-                // yoyakuId: pay.yoyakuId,
-                img_befor: pay.img_befor,
-                img_after: pay.img_after,
-            },
-            { merge: true }
-        );
+        setDoc(doc(db, 'yoyakuPay', `${pay.yoyakuId}`), {
+            // pay: 1,
+            yoyakuId: pay.yoyakuId,
+            amount,
+            uid: pay.uid,
+            star: pay.star,
+            chip: pay.chip,
+            timestamp: now,
+            tomareId: pay.tomareId,
+            yoyakuMenu: pay.yoyakuMenu,
+            yoyakuUid: pay.yoyakuUid,
+            img_befor: pay.img_befor,
+            img_after: pay.img_after,
+        }, { merge: true })
     };
 
-    console.log('pay', pay, '===================');
-    console.log(
-        '🚀 ~ file: MiPayAccordion.tsx ~ line 191 ~ SimpleAccordion ~ pay',
-        pay.yoyakuId
-    );
-    console.log(
-        '🚀 ~ file: MiPayAccordion.tsx ~ line 191 ~ SimpleAccordion ~ pay',
-        pay.yoyakuId
-    );
 
     return (
         <div>
-            {pay.pay === 0 && (
+            {pay.pay === 0 &&
+
                 <Accordion
                     expanded={expanded === 'panel1'}
                     onChange={handleChange('panel1')}
@@ -130,95 +128,59 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
                     {/* <Checkbox checked={checked[pay.checked]} onChange={handleChange2} /> */}
 
                     <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-                        {/* ここがdebug対象s */}
-                        {`${pay.chip}`.toString() !== 'undefined' && (
-                            <form action={`/api/users/${pay.yoyakuId}/setup`} method="POST">
-                                {/* <form> */}
+
+                        {`${pay.chip}`.toString() !== 'undefined' &&
+                            <form action={`/api/users/${apiYoyakuId}/setup`} method="POST">
                                 <section>
-                                    <button
-                                        type="submit"
-                                        role="link"
-                                        className={styles.card}
-                                        onClick={() => toStripe()}
-                                    >
-                                        {`${pay.tanka * pay.quantity}円${pay.tanka}円
-                                    ×${+pay.quantity * 10} 分`}
+                                    <button type="submit" role="link" className={styles.card} onClick={() => toStripe()} >
+                                        {`${amountSub}円`}
+                                        <br />
+                                        {`${pay.tanka}円×${+ pay.quantity * 10} 分`}
                                     </button>
                                 </section>
                             </form>
-                        )}
+                        }
 
-                        <Typography className={styles.grid}>
-                            {pay.tomareId}:{pay.yoyakuMenu}
+                        <Typography className={styles.grid}>{pay.tomareId}:{pay.yoyakuMenu}
                             <br />
-                            {`${pay.chip}`.toString() === 'undefined' && (
-                                <div className={styles.card}>
-                                    {`${pay.tanka}円×${+pay.quantity * 10} 分`}
+                            {`${pay.chip}`.toString() === 'undefined' &&
+                                <div className={styles.card} >
+                                    {`${amountSub}円`}
+                                    <br />
+                                    {`${pay.tanka}円×${+ pay.quantity * 10} 分`}
                                 </div>
-                            )}
-                            {pay.star !== 0 && (
-                                <Stars star={pay.star} starSize={16} textSize={12} />
-                            )}
-                            {pay.star === 0 && (
+                            }
+                            {pay.star !== 0 &&
+                                <Stars star={pay.star} starSize={16} textSize={12} />}
+                            {pay.star === 0 &&
                                 <div>
                                     {/* <br /> */}
-                                    <button onClick={(e) => handleStar(1)}>
-                                        <BsStar />
-                                    </button>
-                                    <button onClick={(e) => handleStar(2)}>
-                                        <BsStar />
-                                    </button>
-                                    <button onClick={(e) => handleStar(3)}>
-                                        <BsStar />
-                                    </button>
-                                    <button onClick={(e) => handleStar(4)}>
-                                        <BsStar />
-                                    </button>
-                                    <button onClick={(e) => handleStar(5)}>
-                                        <BsStar />
-                                    </button>
+                                    <button onClick={(e) => handleStar(1)}><BsStar /></button>
+                                    <button onClick={(e) => handleStar(2)}><BsStar /></button>
+                                    <button onClick={(e) => handleStar(3)}><BsStar /></button>
+                                    <button onClick={(e) => handleStar(4)}><BsStar /></button>
+                                    <button onClick={(e) => handleStar(5)}><BsStar /></button>
                                     まだ評価されていません
                                     <br />
                                 </div>
-                            )}
-                            {`${pay.chip}`.toString() !== 'undefined' && `chip:${pay.chip}`}
-                            {`${pay.chip}`.toString() === 'undefined' && (
+                            }
+                            {`${pay.chip}`.toString() !== 'undefined' &&
+                                `chip:${pay.chip}`
+                            }
+                            {`${pay.cusPay}`.toString() === 'undefined' &&
+
                                 <div>
-                                    <button
-                                        className={styles.card}
-                                        onClick={(e) => handleChip(0)}
-                                    >
-                                        ﾁｯﾌﾟはなし
-                                    </button>
                                     <br />
                                     ﾁｯﾌﾟを送る
                                     <br />
-                                    <button
-                                        className={styles.card}
-                                        onClick={(e) => handleChip(500)}
-                                    >
-                                        500
-                                    </button>
-                                    <button
-                                        className={styles.card}
-                                        onClick={(e) => handleChip(1000)}
-                                    >
-                                        1000
-                                    </button>
-                                    <button
-                                        className={styles.card}
-                                        onClick={(e) => handleChip(1500)}
-                                    >
-                                        1500
-                                    </button>
-                                    <button
-                                        className={styles.card}
-                                        onClick={(e) => handleChip(2000)}
-                                    >
-                                        2000
-                                    </button>
+                                    <button className={styles.card} onClick={(e) => handleChip500(500)}>500</button>
+                                    <button className={styles.card} onClick={(e) => handleChip1000(1000)}>1000</button>
+                                    <button className={styles.card} onClick={(e) => handleChip(1500)}>1500</button>
+                                    <button className={styles.card} onClick={(e) => handleChip(2000)}>2000</button>
+                                    <button className={styles.card} onClick={(e) => handleChip(0)}>ﾁｯﾌﾟはなし</button>
                                 </div>
-                            )}
+
+                            }
                         </Typography>
                     </AccordionSummary>
                     <AccordionDetails>
@@ -239,7 +201,8 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
                         </Typography>
                     </AccordionDetails>
                 </Accordion>
-            )}
+            }
         </div>
     );
 }
+

@@ -29,28 +29,6 @@ const handler = async (req: any, res: any) => {
             // console.log('tomare::::', process.env.STRIPE_SECRET_500, `process.env.STRIPE_SECRET_${chip}`)
 
             const customer = await stripe.customers.create();
-            const session = await stripe.checkout.sessions.create({
-                line_items: [
-                    {
-                        // price: process.env.NEXT_PUBLIC_STRIPE_PRODUCT_KEY,
-                        price: 'price_1KT7IZIeKRfM8LCe7573kMRN',
-                        quantity: 10,
-                        // quantity: quantity as any * 1,
-                    },],
-                payment_method_types: ['card'],
-                mode: 'payment',
-                success_url: `${req.headers.origin}/?session_id={CHECKOUT_SESSION_ID}`,
-                cancel_url: `${req.headers.origin}/?canceled=true`,
-                // shipping_rates: ['shr_1KXTkfIeKRfM8LCeTmYH0csl']
-                // shipping_amount: 500 ×
-                // shipping_rates: [chipUrl]
-                shipping_rates: [process.env.STRIPE_SECRET_500]
-                // shipping_rates: [`process.env.STRIPE_SECRET_${chip}`]
-            });
-            console.log('session', session)
-            console.log('session.payment_intent', session.payment_intent)
-            console.log('session.id', session.id)
-
             const paymentMethod = await stripe.paymentMethods.create({
                 type: 'card',
                 card: {
@@ -61,15 +39,18 @@ const handler = async (req: any, res: any) => {
                 },
             });
             console.log('paymentMethod:::', paymentMethod)
+
+            const stAmount = yoyakuId.substr(107, 5) as any * 1
+            console.log("stAmount:::::::::::::", stAmount)
             const paymentIntent = await stripe.paymentIntents.create({
-                amount: session.amount_total,
+                amount: stAmount,
                 currency: 'jpy',
                 customer: customer.id,
                 payment_method: paymentMethod.id,
                 off_session: true,
                 confirm: true,
             });
-            const receipt_url =
+            const receipt_url: string =
                 paymentIntent.charges.data.map((data: any) => data.receipt_url)
             // console.log('paymentIntent*****************', paymentIntent)
             // setDoc(doc(db, 'users', `${uid}`, 'tomare', `${tomareId}`), { cusPay: session.amount_total, cusId: session.id, cusPayId: session.payment_intent }, { merge: true })
@@ -88,6 +69,30 @@ const handler = async (req: any, res: any) => {
             //     success_url: `${req.headers.origin}/?success=true`,
             //     cancel_url: `${req.headers.origin}/?canceled=true`,
             // });
+            const stChip = yoyakuId.substr(79, 28) as any
+            const stQuan = yoyakuId.substr(1, 2) as any
+            console.log(`quantity:::::::`, stQuan)
+            const session = await stripe.checkout.sessions.create({
+                line_items: [
+                    {
+                        // price: process.env.NEXT_PUBLIC_STRIPE_PRODUCT_KEY,
+                        price: 'price_1KT7IZIeKRfM8LCe7573kMRN',
+                        // quantity: 10,
+                        quantity: stQuan * 1,
+                    },],
+                payment_method_types: ['card'],
+                mode: 'payment',
+                success_url: `${req.headers.origin}/?${receipt_url}`,
+                cancel_url: `${req.headers.origin}/?canceled=true`,
+                // shipping_rates: ['shr_1KXTkfIeKRfM8LCeTmYH0csl']
+                // shipping_amount: 500 ×
+                // shipping_rates: [chipUrl]
+                shipping_rates: [stChip]
+                // shipping_rates: [`process.env.STRIPE_SECRET_${chip}`]
+            });
+            // console.log('session', session)
+            // console.log('session.payment_intent', session.payment_intent)
+            // console.log('session.id', session.id)
             res.redirect(303, session.url)
         } catch (err: any) {
             res.status(500).json(err.message);
