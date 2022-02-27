@@ -62,6 +62,7 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
     const [expanded, setExpanded] = React.useState<string | false>('panel1');
     const handleStar = (e: number) => {
         setDoc(doc(db, 'users', `${pay.uid}`, 'tomare', `${pay.tomareId}`), { star: e }, { merge: true })
+        location.reload();
     };
     const amountSub = pay.tanka * pay.quantity
     const amount = pay.tanka * pay.quantity + pay.chip
