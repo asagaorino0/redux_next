@@ -158,6 +158,7 @@ export default function App() {
     toPagePay()
   };
 
+
   return (
     <main>
       <div>
@@ -216,7 +217,7 @@ export default function App() {
       <div className="App">
         {uid === '' && (
           <div>
-            <button>
+            <button onClick={lineClick}>
               <h4 className="mb-4 text-green-500 text-3xl">ログイン</h4>
             </button>
           </div>
