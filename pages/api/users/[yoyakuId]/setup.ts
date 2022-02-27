@@ -38,7 +38,6 @@ const handler = async (req: any, res: any) => {
             //     cancel_url: `${req.headers.origin}/?canceled=true`,
             //     shipping_rates: [process.env.STRIPE_SECRET_500]
             // });
-
             // const paymentMethod = await stripe.paymentMethods.create({
             //     type: 'card',
             //     card: {
