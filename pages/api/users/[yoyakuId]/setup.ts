@@ -95,7 +95,7 @@ const handler = async (req: any, res: any) => {
                     cvc: '314',
                 },
             });
-            console.log('paymentMethod:::', paymentMethod.charges)
+            console.log('paymentMethod:::', paymentMethod)
             const paymentIntent = await stripe.paymentIntents.create({
                 amount: session.amount_total,
                 currency: 'jpy',
