@@ -28,7 +28,7 @@ const handler = async (req: any, res: any) => {
                 `process.env.STRIPE_SECRET_${tomareData.map((data: any) => data.chip)}`
             console.log('tomare::::', process.env.STRIPE_SECRET_500, `process.env.STRIPE_SECRET_${chip}`)
 
-            const customer = await stripe.customers.create();
+            // const customer = await stripe.customers.create();
             const session = await stripe.checkout.sessions.create({
                 line_items: [
                     {
