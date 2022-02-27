@@ -16,17 +16,17 @@ const handler = async (req: any, res: any) => {
             const tomareData = snapshot.docs.map(
                 (doc) => ({ ...doc.data(), }) as TomareState)
             console.log('props:', '===========')
-            const quantity =
-                tomareData.map((data: any) => data.quantity)
-            const uid =
-                tomareData.map((data: any) => data.uid)
-            const tomareId =
-                tomareData.map((data: any) => data.tomareId)
-            const chip =
-                tomareData.map((data: any) => data.chip)
-            const chipUrl =
-                `process.env.STRIPE_SECRET_${tomareData.map((data: any) => data.chip)}`
-            console.log('tomare::::', process.env.STRIPE_SECRET_500, `process.env.STRIPE_SECRET_${chip}`)
+            // const quantity =
+            //     tomareData.map((data: any) => data.quantity)
+            // const uid =
+            //     tomareData.map((data: any) => data.uid)
+            // const tomareId =
+            //     tomareData.map((data: any) => data.tomareId)
+            // const chip =
+            //     tomareData.map((data: any) => data.chip)
+            // const chipUrl =
+            //     `process.env.STRIPE_SECRET_${tomareData.map((data: any) => data.chip)}`
+            // console.log('tomare::::', process.env.STRIPE_SECRET_500, `process.env.STRIPE_SECRET_${chip}`)
 
             // const customer = await stripe.customers.create();
             const session = await stripe.checkout.sessions.create({
@@ -34,7 +34,8 @@ const handler = async (req: any, res: any) => {
                     {
                         // price: process.env.NEXT_PUBLIC_STRIPE_PRODUCT_KEY,
                         price: 'price_1KT7IZIeKRfM8LCe7573kMRN',
-                        quantity: quantity as any * 1,
+                        quantity: 10,
+                        // quantity: quantity as any * 1,
                     },],
                 payment_method_types: ['card'],
                 mode: 'payment',
