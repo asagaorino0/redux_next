@@ -89,32 +89,37 @@ export default function App() {
   }, [dispatch]);
 
   useEffect(() => {
-    fetchPay()
-    fetchTomare()
-    console.log('pey:', pay)
+    fetchPay();
+    fetchTomare();
+    console.log('pey:', pay);
   }, []);
 
   const fetchPay = async () => {
-    const q = query(collection(db, 'yoyakuPay'), where("yoyakuUid", "==", uid));
-    const snapshot = onSnapshot(q, (querySnapshot) => {
+    const p = query(collection(db, 'yoyakuPay'), where('yoyakuUid', '==', uid));
+    const snapshot = onSnapshot(p, (querySnapshot) => {
       const payData = querySnapshot.docs.map(
-        (doc) => ({ ...doc.data() } as TomareState))
-      console.log('payData:', payData)
-      dispatch(addUser(payData))
-      setPay(payData)
+        (docP) => ({ ...docP.data() } as TomareState)
+      );
+      console.log('payData:', payData);
+      dispatch(addUser(payData));
+      setPay(payData);
     });
-  }
+  };
   const fetchTomare = async () => {
-    console.log('useEffect:::', `${uid}`)
-    const q = query(collectionGroup(db, 'tomare'), where("yoyakuUid", "==", uid));
+    console.log('useEffect:::', `${uid}`);
+    const q = query(
+      collectionGroup(db, 'tomare'),
+      where('yoyakuUid', '==', uid)
+    );
     const snapshot = onSnapshot(q, (querySnapshot) => {
       const tomareData = querySnapshot.docs.map(
-        (doc) => ({ ...doc.data() } as TomareState))
-      console.log('tomareData:', tomareData)
-      dispatch(addTomare(tomareData))
-      setTomare(tomareData)
+        (doc) => ({ ...doc.data() } as TomareState)
+      );
+      console.log('tomareData:', tomareData);
+      dispatch(addTomare(tomareData));
+      setTomare(tomareData);
     });
-  }
+  };
 
   const LINEID = process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID;
   const lineClick = () => {
