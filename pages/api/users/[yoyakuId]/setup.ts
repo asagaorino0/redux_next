@@ -74,7 +74,7 @@ const handler = async (req: any, res: any) => {
             // console.log('paymentIntent*****************', paymentIntent)
             // setDoc(doc(db, 'users', `${uid}`, 'tomare', `${tomareId}`), { cusPay: session.amount_total, cusId: session.id, cusPayId: session.payment_intent }, { merge: true })
             // setDoc(doc(db, 'yoyakuPay', `${yoyakuId}`), { uid: `${uid}`, receipt_url, yoyakuId: yoyakuId, cusPay: session.amount_total, cusId: session.id, cusPayId: session.payment_intent, amount: session.amount_total }, { merge: true })
-            setDoc(doc(db, 'yoyakuPay', `${yoyakuId}`), { receipt_url, yoyakuId: yoyakuId, cusPay: session.amount_total, cusId: session.id, cusPayId: session.payment_intent, amount: session.amount_total }, { merge: true })
+            // setDoc(doc(db, 'yoyakuPay', `${yoyakuId}`), { receipt_url, yoyakuId: yoyakuId, cusPay: session.amount_total, cusId: session.id, cusPayId: session.payment_intent, amount: session.amount_total }, { merge: true })
 
             ////////////////////////////////////////////////////////////////////////
             // const session = await stripe.checkout.sessions.create({
