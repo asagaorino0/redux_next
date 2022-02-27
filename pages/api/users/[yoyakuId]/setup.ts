@@ -11,10 +11,10 @@ const handler = async (req: any, res: any) => {
             const yoyakuId = req.query.yoyakuId
             console.log('props:', '===========')
             console.log('props_yoyakuId:', yoyakuId)
-            const q = query(collectionGroup(db, 'tomare'), where("yoyakuId", "==", yoyakuId));
-            const snapshot = await getDocs(q)
-            const tomareData = snapshot.docs.map(
-                (doc) => ({ ...doc.data(), }) as TomareState)
+            // const q = query(collectionGroup(db, 'tomare'), where("yoyakuId", "==", yoyakuId));
+            // const snapshot = await getDocs(q)
+            // const tomareData = snapshot.docs.map(
+            //     (doc) => ({ ...doc.data(), }) as TomareState)
             // console.log('props:', '===========')
             // const quantity =
             //     tomareData.map((data: any) => data.quantity)
@@ -28,7 +28,7 @@ const handler = async (req: any, res: any) => {
             //     `process.env.STRIPE_SECRET_${tomareData.map((data: any) => data.chip)}`
             // console.log('tomare::::', process.env.STRIPE_SECRET_500, `process.env.STRIPE_SECRET_${chip}`)
 
-            // const customer = await stripe.customers.create();
+            const customer = await stripe.customers.create();
             const session = await stripe.checkout.sessions.create({
                 line_items: [
                     {
@@ -51,29 +51,31 @@ const handler = async (req: any, res: any) => {
             console.log('session.payment_intent', session.payment_intent)
             console.log('session.id', session.id)
 
-            // const paymentMethod = await stripe.paymentMethods.create({
-            //     type: 'card',
-            //     card: {
-            //         number: '4242424242424242',
-            //         exp_month: 2,
-            //         exp_year: 2023,
-            //         cvc: '314',
-            //     },
-            // });
-            // console.log('paymentMethod:::', paymentMethod)
-            // const paymentIntent = await stripe.paymentIntents.create({
-            //     amount: session.amount_total,
-            //     currency: 'jpy',
-            //     customer: customer.id,
-            //     payment_method: paymentMethod.id,
-            //     off_session: true,
-            //     confirm: true,
-            // });
-            // const receipt_url =
-            //     paymentIntent.charges.data.map((data: any) => data.receipt_url)
+            const paymentMethod = await stripe.paymentMethods.create({
+                type: 'card',
+                card: {
+                    number: '4242424242424242',
+                    exp_month: 2,
+                    exp_year: 2023,
+                    cvc: '314',
+                },
+            });
+            console.log('paymentMethod:::', paymentMethod)
+            const paymentIntent = await stripe.paymentIntents.create({
+                amount: session.amount_total,
+                currency: 'jpy',
+                customer: customer.id,
+                payment_method: paymentMethod.id,
+                off_session: true,
+                confirm: true,
+            });
+            const receipt_url =
+                paymentIntent.charges.data.map((data: any) => data.receipt_url)
             // console.log('paymentIntent*****************', paymentIntent)
             // setDoc(doc(db, 'users', `${uid}`, 'tomare', `${tomareId}`), { cusPay: session.amount_total, cusId: session.id, cusPayId: session.payment_intent }, { merge: true })
             // setDoc(doc(db, 'yoyakuPay', `${yoyakuId}`), { uid: `${uid}`, receipt_url, yoyakuId: yoyakuId, cusPay: session.amount_total, cusId: session.id, cusPayId: session.payment_intent, amount: session.amount_total }, { merge: true })
+            setDoc(doc(db, 'yoyakuPay', `${yoyakuId}`), { receipt_url, yoyakuId: yoyakuId, cusPay: session.amount_total, cusId: session.id, cusPayId: session.payment_intent, amount: session.amount_total }, { merge: true })
+
             ////////////////////////////////////////////////////////////////////////
             // const session = await stripe.checkout.sessions.create({
             //     line_items: [
