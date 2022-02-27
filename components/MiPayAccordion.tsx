@@ -150,7 +150,6 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
                             {`${pay.chip}`.toString() === 'undefined' &&
 
                                 <div>
-                                    <button className={styles.card} onClick={(e) => handleChip(0)}>ﾁｯﾌﾟはなし</button>
                                     <br />
                                     ﾁｯﾌﾟを送る
                                     <br />
@@ -158,6 +157,7 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
                                     <button className={styles.card} onClick={(e) => handleChip(1000)}>1000</button>
                                     <button className={styles.card} onClick={(e) => handleChip(1500)}>1500</button>
                                     <button className={styles.card} onClick={(e) => handleChip(2000)}>2000</button>
+                                    <button className={styles.card} onClick={(e) => handleChip(0)}>ﾁｯﾌﾟはなし</button>
                                 </div>
 
                             }

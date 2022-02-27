@@ -143,11 +143,11 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
                             <br />
                         </div>
                     }
-
+                    {pay.amount}円
                     {pay.chip !== 0 &&
-                        `${pay.chip}ﾁｯﾌﾟ + `
+                        `（${pay.chip}ﾁｯﾌﾟ含む） `
                     }
-                    {pay.amount}円　 o.k.
+                    o.k.
                 </button>
                 {/* <a href={pay.receipt_url}  >領収書</a> */}
 
