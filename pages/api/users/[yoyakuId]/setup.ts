@@ -32,8 +32,8 @@ const handler = async (req: any, res: any) => {
             const session = await stripe.checkout.sessions.create({
                 line_items: [
                     {
-                        price: process.env.NEXT_PUBLIC_STRIPE_PRODUCT_KEY,
-                        // price: 'price_1KT7IZIeKRfM8LCe7573kMRN',
+                        // price: process.env.NEXT_PUBLIC_STRIPE_PRODUCT_KEY,
+                        price: 'price_1KT7IZIeKRfM8LCe7573kMRN',
                         quantity: quantity as any * 1,
                     },],
                 payment_method_types: ['card'],
@@ -50,29 +50,30 @@ const handler = async (req: any, res: any) => {
             console.log('session.payment_intent', session.payment_intent)
             console.log('session.id', session.id)
 
-            const paymentMethod = await stripe.paymentMethods.create({
-                type: 'card',
-                card: {
-                    number: '4242424242424242',
-                    exp_month: 2,
-                    exp_year: 2023,
-                    cvc: '314',
-                },
-            });
-            console.log('paymentMethod:::', paymentMethod)
-            const paymentIntent = await stripe.paymentIntents.create({
-                amount: session.amount_total,
-                currency: 'jpy',
-                customer: customer.id,
-                payment_method: paymentMethod.id,
-                off_session: true,
-                confirm: true,
-            });
-            const receipt_url =
-                paymentIntent.charges.data.map((data: any) => data.receipt_url)
-            console.log('paymentIntent*****************', paymentIntent)
-            setDoc(doc(db, 'users', `${uid}`, 'tomare', `${tomareId}`), { cusPay: session.amount_total, cusId: session.id, cusPayId: session.payment_intent }, { merge: true })
-            setDoc(doc(db, 'yoyakuPay', `${yoyakuId}`), { uid: `${uid}`, receipt_url, yoyakuId: yoyakuId, cusPay: session.amount_total, cusId: session.id, cusPayId: session.payment_intent, amount: session.amount_total }, { merge: true })
+            // const paymentMethod = await stripe.paymentMethods.create({
+            //     type: 'card',
+            //     card: {
+            //         number: '4242424242424242',
+            //         exp_month: 2,
+            //         exp_year: 2023,
+            //         cvc: '314',
+            //     },
+            // });
+            // console.log('paymentMethod:::', paymentMethod)
+            // const paymentIntent = await stripe.paymentIntents.create({
+            //     amount: session.amount_total,
+            //     currency: 'jpy',
+            //     customer: customer.id,
+            //     payment_method: paymentMethod.id,
+            //     off_session: true,
+            //     confirm: true,
+            // });
+            // const receipt_url =
+            //     paymentIntent.charges.data.map((data: any) => data.receipt_url)
+            // console.log('paymentIntent*****************', paymentIntent)
+            // setDoc(doc(db, 'users', `${uid}`, 'tomare', `${tomareId}`), { cusPay: session.amount_total, cusId: session.id, cusPayId: session.payment_intent }, { merge: true })
+            // setDoc(doc(db, 'yoyakuPay', `${yoyakuId}`), { uid: `${uid}`, receipt_url, yoyakuId: yoyakuId, cusPay: session.amount_total, cusId: session.id, cusPayId: session.payment_intent, amount: session.amount_total }, { merge: true })
+            ////////////////////////////////////////////////////////////////////////
             // const session = await stripe.checkout.sessions.create({
             //     line_items: [
             //         {

@@ -32,8 +32,8 @@ const Home: NextPage = () => {
 
         <section className="h-screen w-4/5 max-w-5xl mx-auto flex items-center justify center flex-col">
           <Provider store={store}>
-            {/* <App /> */}
-            <Appppp />
+            <App />
+            {/* <Appppp /> */}
           </Provider>
         </section>
 
