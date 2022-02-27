@@ -11,11 +11,11 @@ const handler = async (req: any, res: any) => {
             const yoyakuId = req.query.yoyakuId
             console.log('props:', '===========')
             console.log('props_yoyakuId:', yoyakuId)
-            const q = query(collectionGroup(db, 'tomare'), where("yoyakuId", "==", yoyakuId));
-            const snapshot = await getDocs(q)
-            const tomareData = snapshot.docs.map(
-                (doc) => ({ ...doc.data(), }) as TomareState)
-            console.log('props:', '===========')
+            // const q = query(collectionGroup(db, 'tomare'), where("yoyakuId", "==", yoyakuId));
+            // const snapshot = await getDocs(q)
+            // const tomareData = snapshot.docs.map(
+            //     (doc) => ({ ...doc.data(), }) as TomareState)
+            // console.log('props:', '===========')
             // const quantity =
             //     tomareData.map((data: any) => data.quantity)
             // const uid =
