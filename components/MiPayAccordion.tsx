@@ -13,16 +13,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Stars } from "./Star";
 import { BsStar } from "react-icons/bs";
 import styles from '../styles/Home.module.css';
-import { doc, setDoc } from 'firebase/firestore'
 import { db } from "../src/firebase";
-import useSWR from 'swr'
-import Checkbox from '@mui/material/Checkbox';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import { UserState } from "../src/types/user";
-
-import TomareFileUpload from '../components/TomareFileUpload';
-import TomareFileChenge from '../components/TomareFileChenge';
-
+import {
+    collection,
+    query,
+    where,
+    doc,
+    setDoc,
+    onSnapshot,
+} from 'firebase/firestore';
+import { useRouter } from 'next/router';
 const Accordion = styled((props: AccordionProps) => (
     <MuiAccordion disableGutters elevation={0} square {...props} />
 ))(({ theme }) => ({
@@ -62,8 +62,8 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 export default function SimpleAccordion({ pay }: { pay: TomareState }) {
     const [expanded, setExpanded] = React.useState<string | false>('panel1');
     const handleStar = (e: number) => {
-        setDoc(doc(db, 'users', `${pay.uid}`, 'tomare', `${pay.tomareId}`), { star: e }, { merge: true })
-        // location.reload();
+        setDoc(doc(db, 'users', `${pay.uid}`, 'tomare', `${pay.tomareId}`), { star: e }, { merge: true });
+        toHome()
     };
     const amountSub = pay.tanka * pay.quantity
     const amount = pay.tanka * pay.quantity + pay.chip
@@ -75,23 +75,24 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
     };
     const handleChip500 = (e: number) => {
         setDoc(doc(db, 'users', `${pay.uid}`, 'tomare', `${pay.tomareId}`), { chip: e, cusPay: amount * 1 + e, chipUrl: "shr_1KXTkfIeKRfM8LCeTmYH0csl", yoyakuId: `${yoyakuId}shr_1KXTkfIeKRfM8LCeTmYH0csl` }, { merge: true })
+        toHome()
     };
     const handleChip1000 = (e: number) => {
         setDoc(doc(db, 'users', `${pay.uid}`, 'tomare', `${pay.tomareId}`), { chip: e, cusPay: amount + e, chipUrl: "shr_1KXaVyIeKRfM8LCeQ9dJPPvV", yoyakuId: `${yoyakuId}shr_1KXaVyIeKRfM8LCeQ9dJPPvV` }, { merge: true })
+        toHome()
     };
-
-
-
-
+    const [setPay] = useState<any>([]);
+    const dispatch = useDispatch();
     const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
     const user = useSelector(selectUser);
     const handleChange =
         (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
             setExpanded(newExpanded ? panel : false);
         };
-    // const [checked, setChecked] = React.useState([true, false]);
-    // const [checked, setChecked] = React.useState<boolean>(pay.checked);
-
+    const router = useRouter();
+    const toHome = () => {
+        router.push('./');
+    };
     const date = new Date()
     const Y = date.getFullYear()
     const M = ("00" + (date.getMonth() + 1)).slice(-2)
@@ -116,9 +117,19 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
             img_befor: pay.img_befor,
             img_after: pay.img_after,
         }, { merge: true })
-
+        toHome()
     };
 
+    // const fetchPay = async () => {
+    //     const p = query(collection(db, 'yoyakuPay'), where('yoyakuUid', '==', pay.uid));
+    //     const snapshot = onSnapshot(p, (querySnapshot) => {
+    //         const payData = querySnapshot.docs.map(
+    //             (docP) => ({ ...docP.data() } as TomareState)
+    //         );
+    //         dispatch(addUser(payData));
+    //         setPay(payData);
+    //     });
+    // };
 
     return (
         <div>

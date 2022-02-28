@@ -8,6 +8,7 @@ import MuiAccordionSummary, {
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import { TomareState } from "../src/types/tomare";
+import { useRouter } from 'next/router';
 import { addUser, selectUser } from '../src/features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { Stars } from "./Star";
@@ -75,6 +76,11 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
     const s = ("00" + date.getSeconds()).slice(-2)
     const now = Y + '-' + M + '-' + D + ' ' + h + ':' + m + ':' + s
     const receipt_url = location.search.substr(1, 200)
+    const router = useRouter();
+    const toHome = () => {
+        router.push('./');
+    };
+
     const toStripe = () => {
         const receipt_url = location.search.substr(1, 200)
         setDoc(doc(db, 'users', `${pay.uid}`, 'tomare', `${pay.tomareId}`), {
@@ -83,6 +89,7 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
             receipt_url,
             timestamp: now
         }, { merge: true })
+        toHome()
     };
     return (
 
