@@ -157,7 +157,7 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
                                 <Stars star={pay.star} starSize={16} textSize={12} />}
                             {pay.star === 0 &&
                                 <div>
-                                    {/* <br /> */}
+                                    <br />
                                     <button onClick={(e) => handleStar(1)}><BsStar /></button>
                                     <button onClick={(e) => handleStar(2)}><BsStar /></button>
                                     <button onClick={(e) => handleStar(3)}><BsStar /></button>
