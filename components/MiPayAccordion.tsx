@@ -134,13 +134,11 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
 
                         {`${pay.chip}`.toString() !== 'undefined' &&
                             // <form action={`/api/users/${apiYoyakuId}/setup`} method="POST">
-                            <section>
-                                <button type="submit" role="link" className={styles.card} onClick={() => toStripe()} >
-                                    {`${amountSub}円`}
-                                    <br />
-                                    {`${pay.tanka}円×${+ pay.quantity * 10} 分`}
-                                </button>
-                            </section>
+                            <button type="submit" role="link" className={styles.card} onClick={() => toStripe()} >
+                                {`${amountSub}円`}
+                                <br />
+                                {`${pay.tanka}円×${+ pay.quantity * 10} 分`}
+                            </button>
                             // </form>
                         }
 
@@ -157,21 +155,20 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
                                 <Stars star={pay.star} starSize={16} textSize={12} />}
                             {pay.star === 0 &&
                                 <div>
-                                    <br />
+                                    {/* <br /> */}
                                     <button onClick={(e) => handleStar(1)}><BsStar /></button>
                                     <button onClick={(e) => handleStar(2)}><BsStar /></button>
                                     <button onClick={(e) => handleStar(3)}><BsStar /></button>
                                     <button onClick={(e) => handleStar(4)}><BsStar /></button>
                                     <button onClick={(e) => handleStar(5)}><BsStar /></button>
-                                    まだ評価されていません
                                     <br />
+                                    まだ評価されていません
                                 </div>
                             }
                             {`${pay.chip}`.toString() !== 'undefined' &&
                                 `chip:${pay.chip}`
                             }
                             {`${pay.cusPay}`.toString() === 'undefined' &&
-
                                 <div>
                                     <br />
                                     ﾁｯﾌﾟを送る
@@ -182,7 +179,6 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
                                     <button className={styles.card} onClick={(e) => handleChip(2000)}>2000</button>
                                     <button className={styles.card} onClick={(e) => handleChip(0)}>ﾁｯﾌﾟはなし</button>
                                 </div>
-
                             }
                         </Typography>
                     </AccordionSummary>
@@ -205,7 +201,7 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
                     </AccordionDetails>
                 </Accordion>
             }
-        </div>
+        </div >
     );
 }
 
