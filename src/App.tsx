@@ -72,6 +72,7 @@ export default function App() {
               icon: profile.pictureUrl,
             })
           );
+          setUid(profile.userId)
           const setRef = setDoc(
             doc(db, 'users', `${uid}`),
             {
@@ -93,7 +94,7 @@ export default function App() {
     fetchPay();
     fetchTomare();
     console.log('pey:::', pay, uid, pay.uid);
-    console.log('tomare:::', tomare, uid.replace, tomare.uid);
+    console.log('tomare:::', tomare, uid, tomare.uid);
   }, []);
 
   const fetchPay = async () => {
