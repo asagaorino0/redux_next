@@ -172,7 +172,7 @@ export default function App() {
   return (
     <main>
       <div>
-        <button onClick={fetchPay}>
+        <button onClick={fetchTomare}>
           <img
             src={`${icon}`}
             alt=""
