@@ -81,17 +81,15 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
                         <h3 className="mb-4 text-green-500 text-3xl">
                             <a href={receipt_url}  >領収書</a>
                         </h3>
-                        search:::{receipt_url1}
-                        <br />
-                        href:::{receipt_url2}
-                        <br />
-                        get:::{receipt_url3}
-
                     </div >
                 </Typography>
             </AccordionDetails>
             {/* </Accordion> */}
-
+            search:::{receipt_url1}
+            <br />
+            href:::{receipt_url2}
+            <br />
+            get:::{receipt_url3}
         </div>
     );
 }
