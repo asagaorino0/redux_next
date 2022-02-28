@@ -18,6 +18,7 @@ import PayReceipt from '../components/PayReceipt';
 import MiPayAccordion from '../components/MiPayAccordion';
 import { Provider } from 'react-redux';
 import { store } from '../src/app/store';
+import { getURL } from 'next/dist/shared/lib/utils';
 
 export default function App() {
   const [uid, setUid] = useState<string>('');
@@ -91,7 +92,8 @@ export default function App() {
   useEffect(() => {
     fetchPay();
     fetchTomare();
-    console.log('pey:', pay);
+    console.log('pey:::', pay, uid, pay.uid);
+    console.log('tomare:::', tomare, uid.replace, tomare.uid);
   }, []);
 
   const fetchPay = async () => {
@@ -162,7 +164,9 @@ export default function App() {
     dispatch(addUser({ name, uid, icon }));
     toPagePay()
   };
-
+  const receipt_url1 = location.search.substr(1, 200)
+  const receipt_url2 = location.href
+  const receipt_url3 = getURL()
 
   return (
     <main>
@@ -176,7 +180,12 @@ export default function App() {
         </button>
         <h1 className="mb-4 text-green-500 text-3xl">{name}さま </h1>
         <br />
-
+        search:::{receipt_url1}
+        <br />
+        href:::{receipt_url2}
+        <br />
+        get:::{receipt_url3}
+        <br />
         {`${pay}`.length !== 0 && <h1>次の支払いを完了させてください</h1>}
         <React.StrictMode>
           <Provider store={store}>
