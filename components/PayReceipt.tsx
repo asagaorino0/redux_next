@@ -65,6 +65,7 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
     const receipt_url1 = location.search.substr(1, 200)
     const receipt_url2 = location.href
     const receipt_url3 = getURL()
+    console.log(`get:::`, receipt_url3)
     return (
         <div className={styles.card}>
 
@@ -79,10 +80,13 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
                         <br />
                         <h3 className="mb-4 text-green-500 text-3xl">
                             <a href={receipt_url}  >領収書</a>
-                            serchi:{receipt_url1}
-                            href{receipt_url2}
-                            get{receipt_url3}
                         </h3>
+                        search:::{receipt_url1}
+                        <br />
+                        href:::{receipt_url2}
+                        <br />
+                        get:::{receipt_url3}
+
                     </div >
                 </Typography>
             </AccordionDetails>
