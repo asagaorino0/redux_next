@@ -15,6 +15,7 @@ import { BsStar } from "react-icons/bs";
 import styles from '../styles/Home.module.css';
 import { doc, setDoc } from 'firebase/firestore'
 import { db } from "../src/firebase";
+import useSWR from 'swr'
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { UserState } from "../src/types/user";
@@ -115,6 +116,7 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
             img_befor: pay.img_befor,
             img_after: pay.img_after,
         }, { merge: true })
+
     };
 
 
@@ -131,15 +133,15 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
                     <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
 
                         {`${pay.chip}`.toString() !== 'undefined' &&
-                            <form action={`/api/users/${apiYoyakuId}/setup`} method="POST">
-                                <section>
-                                    <button type="submit" role="link" className={styles.card} onClick={() => toStripe()} >
-                                        {`${amountSub}円`}
-                                        <br />
-                                        {`${pay.tanka}円×${+ pay.quantity * 10} 分`}
-                                    </button>
-                                </section>
-                            </form>
+                            // <form action={`/api/users/${apiYoyakuId}/setup`} method="POST">
+                            <section>
+                                <button type="submit" role="link" className={styles.card} onClick={() => toStripe()} >
+                                    {`${amountSub}円`}
+                                    <br />
+                                    {`${pay.tanka}円×${+ pay.quantity * 10} 分`}
+                                </button>
+                            </section>
+                            // </form>
                         }
 
                         <Typography className={styles.grid}>{pay.tomareId}:{pay.yoyakuMenu}

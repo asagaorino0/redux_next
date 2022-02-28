@@ -163,9 +163,7 @@ export default function App() {
     dispatch(addUser({ name, uid, icon }));
     toPagePay()
   };
-  const receipt_url1 = location.search.substr(1, 200)
-  const receipt_url2 = location.href
-  const receipt_url3 = getURL()
+  const receipt_url = location.search.substr(1, 200)
 
   return (
     <main>
@@ -179,12 +177,12 @@ export default function App() {
         </button>
         <h1 className="mb-4 text-green-500 text-3xl">{name}さま </h1>
         <br />
-        search:::{receipt_url1}
+        {/* search:::{receipt_url1}
         <br />
         href:::{receipt_url2}
         <br />
         get:::{receipt_url3}
-        <br />
+        <br /> */}
         {`${pay}`.length !== 0 && <h1>次の支払いを完了させてください</h1>}
         <React.StrictMode>
           <Provider store={store}>
@@ -194,9 +192,13 @@ export default function App() {
               return (
                 <div key={pay.yoyakuId}>
                   <div className={styles.grid}>
-                    <PayAccordion pay={pay} key={pay.yoyakuId} />
+                    {`${receipt_url}`.length === 0 &&
+                      <PayAccordion pay={pay} key={pay.yoyakuId} />
+                    }
                     <br />
-                    <PayReceipt pay={pay} key={pay.yoyakuId} />
+                    {`${receipt_url}`.length !== 0 &&
+                      <PayReceipt pay={pay} key={pay.yoyakuId} />
+                    }
                   </div>
                 </div>
               );

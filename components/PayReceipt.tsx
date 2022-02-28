@@ -61,13 +61,33 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 
 export default function SimpleAccordion({ pay }: { pay: TomareState }) {
     // const receipt_url = location.search.substr(1, 200)
+    // const receipt_url = location.search.substr(1, 200)
+    // const receipt_url1 = location.search.substr(1, 200)
+    // const receipt_url2 = location.href
+    // const receipt_url3 = getURL()
+    // console.log(`get:::`, receipt_url3)
+    const date = new Date()
+    const Y = date.getFullYear()
+    const M = ("00" + (date.getMonth() + 1)).slice(-2)
+    const D = ("00" + date.getDate()).slice(-2)
+    const h = ("00" + date.getHours()).slice(-2)
+    const m = ("00" + date.getMinutes()).slice(-2)
+    const s = ("00" + date.getSeconds()).slice(-2)
+    const now = Y + '-' + M + '-' + D + ' ' + h + ':' + m + ':' + s
     const receipt_url = location.search.substr(1, 200)
-    const receipt_url1 = location.search.substr(1, 200)
-    const receipt_url2 = location.href
-    const receipt_url3 = getURL()
-    console.log(`get:::`, receipt_url3)
+    const toStripe = () => {
+        const receipt_url = location.search.substr(1, 200)
+        setDoc(doc(db, 'users', `${pay.uid}`, 'tomare', `${pay.tomareId}`), {
+            pay: pay.amount,
+            star: pay.star,
+            receipt_url,
+            timestamp: now
+        }, { merge: true })
+    };
     return (
+
         <div className={styles.card}>
+            {/* {`${receipt_url}`.length !== 0 && */}
 
             <Typography className={styles.grid}>
                 <br />
@@ -84,12 +104,13 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
                     </div >
                 </Typography>
             </AccordionDetails>
-            {/* </Accordion> */}
-            search:::{receipt_url1}
-            <br />
-            href:::{receipt_url2}
-            <br />
-            get:::{receipt_url3}
+            <div>
+                ご利用ありがとうございました。
+                <button type="submit" role="link" className={styles.card} onClick={() => toStripe()} >
+                    戻る
+                </button>
+            </div>
+            {/* } */}
         </div>
     );
 }
