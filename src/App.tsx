@@ -93,8 +93,6 @@ export default function App() {
   useEffect(() => {
     fetchPay();
     fetchTomare();
-    console.log('pey:::', pay, uid, pay.uid);
-    console.log('tomare:::', tomare, uid, tomare.uid);
   }, []);
 
   const fetchPay = async () => {
@@ -103,7 +101,7 @@ export default function App() {
       const payData = querySnapshot.docs.map(
         (docP) => ({ ...docP.data() } as TomareState)
       );
-      console.log('payData:', payData);
+      console.log('pey:::::', pay, uid, pay.uid);
       dispatch(addUser(payData));
       setPay(payData);
     });
@@ -118,7 +116,7 @@ export default function App() {
       const tomareData = querySnapshot.docs.map(
         (doc) => ({ ...doc.data() } as TomareState)
       );
-      console.log('tomareData:', tomareData);
+      console.log('tomare:::::', tomare, uid, tomare.uid);
       dispatch(addTomare(tomareData));
       setTomare(tomareData);
     });
