@@ -21,6 +21,7 @@ import { UserState } from "../src/types/user";
 
 import TomareFileUpload from '../components/TomareFileUpload';
 import TomareFileChenge from '../components/TomareFileChenge';
+import { getURL } from 'next/dist/shared/lib/utils';
 
 const Accordion = styled((props: AccordionProps) => (
     <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -59,8 +60,11 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 }));
 
 export default function SimpleAccordion({ pay }: { pay: TomareState }) {
-    // const [expanded, setExpanded] = React.useState<string | false>('panel1');
+    // const receipt_url = location.search.substr(1, 200)
     const receipt_url = location.search.substr(1, 200)
+    const receipt_url1 = location.search.substr(1, 200)
+    const receipt_url2 = location.href
+    const receipt_url3 = getURL()
     return (
         <div className={styles.card}>
 
@@ -75,6 +79,9 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
                         <br />
                         <h3 className="mb-4 text-green-500 text-3xl">
                             <a href={receipt_url}  >領収書</a>
+                            serchi:{receipt_url1}
+                            href{receipt_url2}
+                            get{receipt_url3}
                         </h3>
                     </div >
                 </Typography>
