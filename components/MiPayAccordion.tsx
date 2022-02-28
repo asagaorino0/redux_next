@@ -70,7 +70,7 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
     const stQua = 100 + pay.quantity * 1
     const yoyakuId = `${stQua}${pay.uid}${pay.yoyakuUid}${pay.tomareId}`
     const handleChip = (e: number) => {
-        setDoc(doc(db, 'users', `${pay.uid}`, 'tomare', `${pay.tomareId}`), { chip: e, chipUrl: `${process.env.STRIPE_SECRET_e}` }, { merge: true })
+        // setDoc(doc(db, 'users', `${pay.uid}`, 'tomare', `${pay.tomareId}`), { chip: e, chipUrl: `${process.env.STRIPE_SECRET_e}` }, { merge: true })
     };
     const handleChip500 = (e: number) => {
         setDoc(doc(db, 'users', `${pay.uid}`, 'tomare', `${pay.tomareId}`), { chip: e, cusPay: amount * 1 + e, chipUrl: "shr_1KXTkfIeKRfM8LCeTmYH0csl", yoyakuId: `${yoyakuId}shr_1KXTkfIeKRfM8LCeTmYH0csl` }, { merge: true })
