@@ -189,6 +189,7 @@ export default function App() {
                 <div key={pay.yoyakuId}>
                   <div className={styles.grid}>
                     {`${receipt_url}` === "" &&
+                      `${pay.succes_url}`.toString() !== 'undefined' &&
                       <PayAccordion pay={pay} key={pay.yoyakuId} />
                     }
                     <br />
