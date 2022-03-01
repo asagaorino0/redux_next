@@ -241,6 +241,21 @@ export default function App() {
               <h3 className="mb-4 text-green-500 text-3xl">履歴</h3>
             </button>
             <br />
+            {
+              tomare
+                .map((tomare: TomareState) => {
+                  return (
+                    <div key={tomare.tomareId}>
+                      {`${tomare.yoyakuMenu}` !== "" &&
+                        <div className={styles.grid}>
+                          <CustomerAccordion tomare={tomare} key={tomare.tomareId} />
+                        </div>
+                      }
+                    </div>
+                  )
+                })
+            }
+            <br />
             <button onClick={registC}>
               <h3 className="mb-4 text-green-500 text-3xl">予約枠設定</h3>
             </button>
@@ -249,7 +264,7 @@ export default function App() {
             <button onClick={registB}>
               <h3 className="mb-4 text-green-500 text-3xl">個人で申し込む</h3>
             </button>
-
+            <br />
             <button onClick={registB}>
               <h3 className="mb-4 text-green-500 text-3xl">施設で申し込む</h3>
             </button>

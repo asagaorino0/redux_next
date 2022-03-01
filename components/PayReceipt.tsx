@@ -9,21 +9,13 @@ import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import { TomareState } from "../src/types/tomare";
 import { useRouter } from 'next/router';
-import { addUser, selectUser } from '../src/features/userSlice';
-import { useDispatch, useSelector } from 'react-redux';
-import { Stars } from "./Star";
-import { BsStar } from "react-icons/bs";
 import styles from '../styles/Home.module.css';
 import { doc, setDoc } from 'firebase/firestore'
 import { db } from "../src/firebase";
-import Checkbox from '@mui/material/Checkbox';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import { UserState } from "../src/types/user";
+import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 
-import TomareFileUpload from '../components/TomareFileUpload';
-import TomareFileChenge from '../components/TomareFileChenge';
-import { getURL } from 'next/dist/shared/lib/utils';
-import { url } from 'inspector';
 
 const Accordion = styled((props: AccordionProps) => (
     <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -90,17 +82,26 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
             receipt_url,
             timestamp: now
         }, { merge: true });
-        toHome()
+        // toHome()
     };
     const setReceipt = () => {
         const receipt_url = location.search.substr(1, 200)
         const succes_url = location.href
         setDoc(doc(db, 'yoyakuPay', `${pay.yoyakuId}`), {
-            succes_url,
-            receipt_url,
+            // succes_url,
+            // receipt_url,
             timestamp: now
         }, { merge: true })
         toHome()
+    };
+
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
     };
     return (
 
@@ -109,19 +110,50 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
 
             <Typography className={styles.grid}>
                 <br />
-                領収書は決済後、履歴ページから確認できます---。
+                領収書は決済後、履歴ページから確認できます。
                 {/* <a href={receipt_url}  >領収書</a> */}
             </Typography>
             <AccordionDetails>
                 <Typography>
                     <div >
-                        <button onClick={() => setReceipt()} className="flex justify-between ...">
+                        {/* <button onClick={() => setReceipt()} className="flex justify-between ...">
                             <br />
                             <h3 className="mb-4 text-green-500 text-3xl">
-                                <a href={receipt_url}  >   領収書</a>
+                                <a href={pay.receipt_url}  > 領収書</a>
                             </h3>
-                        </button>
+                        </button> */}
                     </div >
+
+                    {/* <div> */}
+                    {/* <Button
+                            id="basic-button"
+                            aria-controls={open ? 'basic-menu' : undefined}
+                            aria-haspopup="true"
+                            aria-expanded={open ? 'true' : undefined}
+                            onClick={handleClick}
+                        >
+                            Dashboard
+                        </Button> */}
+                    {/* <Menu
+                            id="basic-menu"
+                            anchorEl={anchorEl}
+                            open={open}
+                            onClose={handleClose}
+                            MenuListProps={{
+                                'aria-labelledby': 'basic-button',
+                            }}
+                        >
+                            <button onClick={() => setReceipt()} className="flex justify-between ...">
+                                <br />
+                                <h3 className="mb-4 text-green-500 text-3xl">
+                                    <a href={pay.receipt_url}  >   領収書</a>
+                                </h3>
+                            </button>
+                        </Menu> */}
+                    {/* <iframe src={pay.receipt_url}
+                            width="320" height="320"></iframe>
+
+                    </div> */}
                 </Typography>
             </AccordionDetails>
             <div>

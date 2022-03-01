@@ -107,8 +107,7 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
 
     return (
         <div>
-            {`${tomare.tanka}`.toString() !== 'undefined' &&
-                // `${tomare.succes_url}`.toString() !== 'undefined' &&
+            {`${tomare.receipt_url}`.toString() !== 'undefined' &&                // `${tomare.succes_url}`.toString() !== 'undefined' &&
                 <Accordion
                     expanded={expanded === 'panel1'}
                     onChange={handleChange('panel1')}
@@ -150,7 +149,7 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
                                 `chip:${tomare.chip}`
                             }
                             <br />
-                            {tomare.receipt_url !== "" &&
+                            {`${tomare.receipt_url}`.toString() !== 'undefined' &&
                                 <section>
                                     <a href={tomare.receipt_url}  >領収書</a>
                                 </section>
