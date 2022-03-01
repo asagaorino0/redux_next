@@ -30,12 +30,12 @@ const Home: NextPage = () => {
       <main>
         <h1 className={styles.title}>{/* konoyubi */}</h1>
 
-        <section className="h-screen w-4/5 max-w-5xl mx-auto flex items-center justify center flex-col">
-          <Provider store={store}>
-            <App />
-            {/* <Appppp /> */}
-          </Provider>
-        </section>
+        {/* <section className="h-screen w-4/5 max-w-5xl mx-auto flex items-center justify center flex-col"> */}
+        <Provider store={store}>
+          <App />
+          {/* <Appppp /> */}
+        </Provider>
+        {/* </section> */}
 
         <div className={styles.grid}>
           {/* <p>Instantly deploy your Next.js site to a public URL with Vercel.</p> */}
