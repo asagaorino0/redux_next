@@ -13,16 +13,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Stars } from "./Star";
 import { BsStar } from "react-icons/bs";
 import styles from '../styles/Home.module.css';
+import { doc, setDoc } from 'firebase/firestore'
 import { db } from "../src/firebase";
-import {
-    collection,
-    query,
-    where,
-    doc,
-    setDoc,
-    onSnapshot,
-} from 'firebase/firestore';
-import { useRouter } from 'next/router';
+
 const Accordion = styled((props: AccordionProps) => (
     <MuiAccordion disableGutters elevation={0} square {...props} />
 ))(({ theme }) => ({
@@ -62,37 +55,16 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
     const [expanded, setExpanded] = React.useState<string | false>('panel1');
     const handleStar = (e: number) => {
-        setDoc(doc(db, 'users', `${tomare.uid}`, 'tomare', `${tomare.tomareId}`), { star: e }, { merge: true });
-        toHome()
+        setDoc(doc(db, 'users', `${tomare.uid}`, 'tomare', `${tomare.tomareId}`), { star: e }, { merge: true })
     };
-    const amountSub = tomare.tanka * tomare.quantity
-    const amount = tomare.tanka * tomare.quantity + tomare.chip
-    // const apiYoyakuId = `${tomare.yoyakuId}${amount}`
-    const stQua = 100 + tomare.quantity * 1
-    const yoyakuId = `${stQua}${tomare.uid}${tomare.yoyakuUid}${tomare.tomareId}`
-    const handleChip = (e: number) => {
-        // setDoc(doc(db, 'users', `${tomare.uid}`, 'tomare', `${tomare.tomareId}`), { chip: e, chipUrl: `${process.env.STRIPE_SECRET_e}` }, { merge: true })
-    };
-    const handleChip500 = (e: number) => {
-        setDoc(doc(db, 'users', `${tomare.uid}`, 'tomare', `${tomare.tomareId}`), { chip: e, cusPay: amount * 1 + e, chipUrl: "shr_1KXTkfIeKRfM8LCeTmYH0csl", yoyakuId: `${yoyakuId}shr_1KXTkfIeKRfM8LCeTmYH0csl` }, { merge: true })
-        toHome()
-    };
-    const handleChip1000 = (e: number) => {
-        setDoc(doc(db, 'users', `${tomare.uid}`, 'tomare', `${tomare.tomareId}`), { chip: e, cusPay: amount + e, chipUrl: "shr_1KXaVyIeKRfM8LCeQ9dJPPvV", yoyakuId: `${yoyakuId}shr_1KXaVyIeKRfM8LCeQ9dJPPvV` }, { merge: true })
-        toHome()
-    };
-    // const [setPay] = useState<any>([]);
-    // const dispatch = useDispatch();
     const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
     const user = useSelector(selectUser);
     const handleChange =
         (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
             setExpanded(newExpanded ? panel : false);
         };
-    const router = useRouter();
-    const toHome = () => {
-        router.push('./');
-    };
+    // const [checked, setChecked] = React.useState([true, false]);
+    const [checked, setChecked] = React.useState<boolean>(tomare.checked);
     const date = new Date()
     const Y = date.getFullYear()
     const M = ("00" + (date.getMonth() + 1)).slice(-2)
@@ -104,32 +76,19 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
 
     const toStripe = () => {
         setDoc(doc(db, 'yoyakuPay', `${tomare.yoyakuId}`), {
-            // pay: 1,
+            tomareId: tomare.tomareId,
+            pay: +tomare.tanka * tomare.quantity,
+            yoyakuUid: tomare.yoyakuUid,
             yoyakuId: tomare.yoyakuId,
-            amount,
             uid: tomare.uid,
             star: tomare.star,
             chip: tomare.chip,
-            timestamp: now,
-            tomareId: tomare.tomareId,
-            yoyakuMenu: tomare.yoyakuMenu,
-            yoyakuUid: tomare.yoyakuUid,
             img_befor: tomare.img_befor,
             img_after: tomare.img_after,
+            yoyakuMenu: tomare.yoyakuMenu,
+            timestamp: now
         }, { merge: true })
-        toHome()
     };
-
-    // const fetchPay = async () => {
-    //     const p = query(collection(db, 'yoyakuPay'), where('yoyakuUid', '==', tomare.uid));
-    //     const snapshot = onSnapshot(p, (querySnapshot) => {
-    //         const payData = querySnapshot.docs.map(
-    //             (docP) => ({ ...docP.data() } as TomareState)
-    //         );
-    //         dispatch(addUser(payData));
-    //         setPay(payData);
-    //     });
-    // };
 
     return (
         <div>
@@ -147,7 +106,7 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
                             <br />
                             {`${tomare.chip}`.toString() === 'undefined' &&
                                 <div className={styles.card} >
-                                    {`${amountSub}円`}
+                                    {`${tomare.amount}円`}
                                     <br />
                                     {`${tomare.tanka}円×${+ tomare.quantity * 10} 分`}
                                 </div>
@@ -181,14 +140,21 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
                             {/* <div className="flex justify-between ...">    */}
                             <div className="flex justify-evenly ...">
                                 <div>
-                                    <img src={tomare.img_befor} alt="" />
-                                    {/* {tomare.checked === true && user.o_befor_come !== 0 &&
-                                    `${tomare.come_befor}`} */}
+                                    {tomare.checked === true &&
+                                        <img src={tomare.img_befor} alt="" />
+                                    }
+                                    {tomare.checked === true && user.o_befor_come !== 0 &&
+                                        `${tomare.come_befor}`
+                                    }
                                 </div>
+
                                 <div>
-                                    <img src={tomare.img_after} alt="" />
-                                    {/* {tomare.checked === true && user.o_after_come !== 0 &&
-                                    `${tomare.come_after}`} */}
+                                    {tomare.checked === true &&
+                                        <img src={tomare.img_after} alt="" />
+                                    }
+                                    {tomare.checked === true && user.o_after_come !== 0 &&
+                                        `${tomare.come_after}`
+                                    }
                                 </div>
                             </div>
                         </Typography>
