@@ -96,8 +96,8 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
         const receipt_url = location.search.substr(1, 200)
         const succes_url = location.href
         setDoc(doc(db, 'yoyakuPay', `${pay.yoyakuId}`), {
-            succes_url,
-            receipt_url,
+            // succes_url,
+            // receipt_url,
             timestamp: now
         }, { merge: true })
         toHome()

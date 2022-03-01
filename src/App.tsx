@@ -13,6 +13,7 @@ import { getDocs, collection, collectionGroup, query, orderBy, where, doc, setDo
 import { TomareState } from "../src/types/tomare";
 import CustomerAccordion from '../components/CustomerAccordion';
 import styles from '../styles/Home.module.css'
+import SuccesReceipt from '../components/SuccesReceipt';
 import PayAccordion from '../components/PayAccordion';
 import PayReceipt from '../components/PayReceipt';
 import MiPayAccordion from '../components/MiPayAccordion';
@@ -177,12 +178,7 @@ export default function App() {
         </button>
         <h1 className="mb-4 text-green-500 text-3xl">{name}さま </h1>
         <br />
-        {/* search:::{receipt_url1}
-        <br />
-        href:::{receipt_url2}
-        <br />
-        get:::{receipt_url3}
-        <br /> */}
+
         {`${pay}`.length !== 0 && <h1>次の支払いを完了させてください</h1>}
         <React.StrictMode>
           <Provider store={store}>
@@ -192,15 +188,15 @@ export default function App() {
               return (
                 <div key={pay.yoyakuId}>
                   <div className={styles.grid}>
-                    {`${pay.receipt_url}`.length === 0 &&
+                    {`${pay.succes_url}`.length === 0 &&
                       <PayAccordion pay={pay} key={pay.yoyakuId} />
                     }
                     <br />
                     {`${receipt_url}`.length !== 0 &&
                       <PayReceipt pay={pay} key={pay.yoyakuId} />
                     }
-                    {`${pay.receipt_url}`.length !== 0 &&
-                      <PayReceipt pay={pay} key={pay.yoyakuId} />
+                    {`${pay.succes_url}`.length !== 0 &&
+                      <SuccesReceipt pay={pay} key={pay.yoyakuId} />
                     }
                   </div>
                 </div>

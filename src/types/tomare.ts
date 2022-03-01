@@ -31,6 +31,7 @@ export type TomareState = {
     cusPay: number
     amount: number
     chipUrl: string
+    succes_url: string
     paymentIntent: [
         {
             amount: number
