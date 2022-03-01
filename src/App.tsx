@@ -188,7 +188,7 @@ export default function App() {
               return (
                 <div key={pay.yoyakuId}>
                   <div className={styles.grid}>
-                    {`${pay.succes_url}`.toString() === 'undefined' &&
+                    {`${receipt_url}`.toString() === 'undefined' &&
                       <PayAccordion pay={pay} key={pay.yoyakuId} />
                     }
                     <br />
