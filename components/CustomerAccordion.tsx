@@ -108,7 +108,7 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
 
     return (
         <div>
-            {`${tomare.receipt_url}` !== "" &&
+            {`${tomare.receipt_url}`.toString() !== 'undefined' &&
                 // `${tomare.succes_url}`.toString() !== 'undefined' &&
                 <Accordion
                     expanded={expanded === 'panel1'}

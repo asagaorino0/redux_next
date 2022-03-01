@@ -93,71 +93,73 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
 
     return (
         <div className={styles.card}>
+            {`${pay.succes_url}`.toString() === 'undefined' &&
+                <div>
 
-            この内容で支払いが完了されます
-            <Typography className={styles.grid}>{pay.tomareId}:{pay.yoyakuMenu}
-                <br />
-                {/* <button type="submit" role="link" className={styles.card} onClick={() => toStripe()} > */}
-                {pay.star !== 0 &&
-                    <Stars star={pay.star} starSize={16} textSize={12} />}
-                {pay.star === 0 &&
-                    <div>
-                        {/* <br /> */}
-                        <button onClick={(e) => handleStar(1)}><BsStar /></button>
-                        <button onClick={(e) => handleStar(2)}><BsStar /></button>
-                        <button onClick={(e) => handleStar(3)}><BsStar /></button>
-                        <button onClick={(e) => handleStar(4)}><BsStar /></button>
-                        <button onClick={(e) => handleStar(5)}><BsStar /></button>
-                        まだ評価されていません
+                    この内容で支払いが完了されます
+                    <Typography className={styles.grid}>{pay.tomareId}:{pay.yoyakuMenu}
                         <br />
-                    </div>
-                }
-                <div className={styles.grid}>
-                    <h3 className="mb-4 text-green-500 text-3xl">
-                        {pay.amount}円
-                    </h3>
-                    {pay.chip !== 0 &&
-                        `（${pay.chip}ﾁｯﾌﾟ含む） `
-                    }
-                    <form action={`/api/users/${apiYoyakuId}/setup`} method="POST">
-                        <section>
-                            <button type="submit" role="link" className={styles.card}>
-                                <h3 className="mb-4 text-green-500 text-3xl">
-                                    カード決済画面へ
-                                </h3>
-                            </button>
-                        </ section>
-                    </form>
-                </div>
-                {/* </button> */}
-                {/* <div className="flex justify-between ...">
+                        {/* <button type="submit" role="link" className={styles.card} onClick={() => toStripe()} > */}
+                        {pay.star !== 0 &&
+                            <Stars star={pay.star} starSize={16} textSize={12} />}
+                        {pay.star === 0 &&
+                            <div>
+                                {/* <br /> */}
+                                <button onClick={(e) => handleStar(1)}><BsStar /></button>
+                                <button onClick={(e) => handleStar(2)}><BsStar /></button>
+                                <button onClick={(e) => handleStar(3)}><BsStar /></button>
+                                <button onClick={(e) => handleStar(4)}><BsStar /></button>
+                                <button onClick={(e) => handleStar(5)}><BsStar /></button>
+                                まだ評価されていません
+                                <br />
+                            </div>
+                        }
+                        <div className={styles.grid}>
+                            <h3 className="mb-4 text-green-500 text-3xl">
+                                {pay.amount}円
+                            </h3>
+                            {pay.chip !== 0 &&
+                                `（${pay.chip}ﾁｯﾌﾟ含む） `
+                            }
+                            <form action={`/api/users/${apiYoyakuId}/setup`} method="POST">
+                                <section>
+                                    <button type="submit" role="link" className={styles.card}>
+                                        <h3 className="mb-4 text-green-500 text-3xl">
+                                            カード決済画面へ
+                                        </h3>
+                                    </button>
+                                </ section>
+                            </form>
+                        </div>
+                        {/* </button> */}
+                        {/* <div className="flex justify-between ...">
                     <br />
                     <h3 className="mb-4 text-green-500 text-3xl">
                         <a href={receipt_url}  >領収書</a>
                     </h3>
                 </div > */}
 
-            </Typography>
-            {/* </AccordionSummary> */}
-            <AccordionDetails>
-                <Typography>
-                    {/* <div className="flex justify-between ...">    */}
-                    <div className="flex justify-evenly ...">
-                        <div>
-                            <img src={pay.img_befor} alt="" />
-                            {/* {pay.checked === true && user.o_befor_come !== 0 &&
+                    </Typography>
+                    {/* </AccordionSummary> */}
+                    <AccordionDetails>
+                        <Typography>
+                            {/* <div className="flex justify-between ...">    */}
+                            <div className="flex justify-evenly ...">
+                                <div>
+                                    <img src={pay.img_befor} alt="" />
+                                    {/* {pay.checked === true && user.o_befor_come !== 0 &&
                                     `${pay.come_befor}`} */}
-                        </div>
-                        <div>
-                            <img src={pay.img_after} alt="" />
-                            {/* {pay.checked === true && user.o_after_come !== 0 &&
+                                </div>
+                                <div>
+                                    <img src={pay.img_after} alt="" />
+                                    {/* {pay.checked === true && user.o_after_come !== 0 &&
                                     `${pay.come_after}`} */}
-                        </div>
-                    </div>
-                </Typography>
-            </AccordionDetails>
-            {/* </Accordion> */}
-
+                                </div>
+                            </div>
+                        </Typography>
+                    </AccordionDetails>
+                    {/* </Accordion> */}
+                </div>}
         </div>
     );
 }
