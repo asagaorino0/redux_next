@@ -217,9 +217,9 @@ export default function App() {
                 return (
                   <div key={tomare.tomareId}>
                     {/* {`${tomare.yoyakuMenu}` !== "" && */}
-                    <div className={styles.grid}>
-                      <MiPayAccordion pay={tomare} key={tomare.tomareId} />
-                    </div>
+                    {/* <div className={styles.grid}> */}
+                    <MiPayAccordion pay={tomare} key={tomare.tomareId} />
+                    {/* </div> */}
                     {/* } */}
                   </div>
                 );
