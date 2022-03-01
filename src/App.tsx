@@ -188,14 +188,14 @@ export default function App() {
               return (
                 <div key={pay.yoyakuId}>
                   <div className={styles.grid}>
-                    {`${pay.succes_url}`.length === 0 &&
+                    {`${pay.succes_url}`.toString() === 'undefined' &&
                       <PayAccordion pay={pay} key={pay.yoyakuId} />
                     }
                     <br />
                     {`${receipt_url}`.length !== 0 &&
                       <PayReceipt pay={pay} key={pay.yoyakuId} />
                     }
-                    {`${pay.succes_url}`.length !== 0 &&
+                    {`${pay.succes_url}`.toString() !== 'undefined' &&
                       <SuccesReceipt pay={pay} key={pay.yoyakuId} />
                     }
                   </div>

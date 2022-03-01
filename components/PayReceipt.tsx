@@ -109,7 +109,7 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
 
             <Typography className={styles.grid}>
                 <br />
-                領収書は決済後、履歴ページから確認できます。
+                領収書は決済後、履歴ページから確認できます---。
                 {/* <a href={receipt_url}  >領収書</a> */}
             </Typography>
             <AccordionDetails>
