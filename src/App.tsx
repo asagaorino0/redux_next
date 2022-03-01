@@ -108,20 +108,14 @@ export default function App() {
     });
   };
   const fetchTomare = async () => {
-    console.log('useEffect:::', `${uid}`);
-    const q = query(
-      collectionGroup(db, 'tomare'),
-      where('yoyakuUid', '==', uid)
-    );
+    const q = query(collectionGroup(db, 'tomare'), where("yoyakuUid", "==", `${user.uid}`));
     const snapshot = onSnapshot(q, (querySnapshot) => {
       const tomareData = querySnapshot.docs.map(
-        (doc) => ({ ...doc.data() } as TomareState)
-      );
-      console.log('tomare:::::', tomare, uid, tomare.uid);
-      dispatch(addTomare(tomareData));
-      setTomare(tomareData);
+        (doc) => ({ ...doc.data() } as TomareState))
+      dispatch(addTomare(tomareData))
+      setTomare(tomareData)
     });
-  };
+  }
 
   const LINEID = process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID;
   const lineClick = () => {
