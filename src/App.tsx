@@ -192,7 +192,7 @@ export default function App() {
               return (
                 <div key={pay.yoyakuId}>
                   <div className={styles.grid}>
-                    {`${receipt_url}`.length === 0 &&
+                    {`${pay.receipt_url}`.length === 0 &&
                       <PayAccordion pay={pay} key={pay.yoyakuId} />
                     }
                     <br />
