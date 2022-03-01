@@ -114,11 +114,11 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
             </Typography>
             <AccordionDetails>
                 <Typography>
-                    <div className="flex justify-between ...">
+                    <div >
                         <button onClick={() => setReceipt()} className="flex justify-between ...">
                             <br />
                             <h3 className="mb-4 text-green-500 text-3xl">
-                                <a href={receipt_url}  >領収書</a>
+                                <a href={receipt_url}  >   領収書</a>
                             </h3>
                         </button>
                     </div >
