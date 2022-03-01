@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 const App = dynamic(() => import('../src/App'), { ssr: false });
-const Appppp = dynamic(() => import('../src/Appppp'), { ssr: false });
+// const Appppp = dynamic(() => import('../src/Appppp'), { ssr: false });
 // const PagePay = dynamic(() => import('../src/PagePay'), { ssr: false });
 
 const Home: NextPage = () => {
