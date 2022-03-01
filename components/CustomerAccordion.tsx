@@ -15,6 +15,12 @@ import { BsStar } from "react-icons/bs";
 import styles from '../styles/Home.module.css';
 import { doc, setDoc } from 'firebase/firestore'
 import { db } from "../src/firebase";
+import Checkbox from '@mui/material/Checkbox';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import { UserState } from "../src/types/user";
+
+import TomareFileUpload from '../components/TomareFileUpload';
+import TomareFileChenge from '../components/TomareFileChenge';
 
 const Accordion = styled((props: AccordionProps) => (
     <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -54,6 +60,15 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 
 export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
     const [expanded, setExpanded] = React.useState<string | false>('panel1');
+    // const [checked, setChecked] = React.useState(true);
+    const handleCheck = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setChecked(event.target.checked);
+        // setChecked([event.target.checked, checked[1]]);
+        console.log(checked, `${tomare.tomareId}`)
+        setDoc(doc(db, 'users', `${tomare.uid}`, 'tomare', `${tomare.tomareId}`), {
+            checked: event.target.checked,
+        }, { merge: true })
+    };
     const handleStar = (e: number) => {
         setDoc(doc(db, 'users', `${tomare.uid}`, 'tomare', `${tomare.tomareId}`), { star: e }, { merge: true })
     };
@@ -89,79 +104,84 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
             timestamp: now
         }, { merge: true })
     };
+    // const quantity = `${tomare.quantity}`
 
     return (
         <div>
-            {tomare.pay === 0 &&
+            <Accordion
+                expanded={expanded === 'panel1'}
+                onChange={handleChange('panel1')}
+            >
+                {/* <Checkbox checked={checked[tomare.checked]} onChange={handleChange2} /> */}
 
-                <Accordion
-                    expanded={expanded === 'panel1'}
-                    onChange={handleChange('panel1')}
-                >
-                    {/* <Checkbox checked={checked[tomare.checked]} onChange={handleChange2} /> */}
+                <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
+                    {/* <Checkbox
+                        checked={checked}
+                        onChange={handleCheck}
+                        inputProps={{ 'aria-label': 'controlled' }}
+                    /> */}
+                    {tomare.pay !== 0 &&
+                        <section>
+                            {/* <div className={styles.card}  > */}
+                            {` ${tomare.tanka}円×${+ tomare.quantity * 10} 分`}
+                            {/* </div> */}
+                        </section>
+                    }
+                    <Typography className={styles.grid}>{tomare.tomareId}:{tomare.yoyakuMenu}
+                        <br />
+                        {tomare.star !== 0 &&
 
-                    <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
+                            <Stars star={tomare.star} starSize={16} textSize={12} />}
 
-                        <Typography className={styles.grid}>{tomare.tomareId}:{tomare.yoyakuMenu}
-                            <br />
-                            {`${tomare.chip}`.toString() === 'undefined' &&
-                                <div className={styles.card} >
-                                    {`${tomare.amount}円`}
-                                    <br />
-                                    {`${tomare.tanka}円×${+ tomare.quantity * 10} 分`}
-                                </div>
-                            }
-                            {tomare.star !== 0 &&
-                                <Stars star={tomare.star} starSize={16} textSize={12} />}
-                            {tomare.star === 0 &&
-                                <div>
-                                    {/* <br /> */}
-                                    <button onClick={(e) => handleStar(1)}><BsStar /></button>
-                                    <button onClick={(e) => handleStar(2)}><BsStar /></button>
-                                    <button onClick={(e) => handleStar(3)}><BsStar /></button>
-                                    <button onClick={(e) => handleStar(4)}><BsStar /></button>
-                                    <button onClick={(e) => handleStar(5)}><BsStar /></button>
-                                    <br />
-                                    まだ評価されていません
-                                </div>
-                            }
-                            {tomare.chip !== 0 &&
-                                `chip:${tomare.chip}`
-                            }
-                            {tomare.receipt_url !== "" &&
-                                <section>
-                                    <a href={tomare.receipt_url}  >領収書</a>
-                                </section>
-                            }
-                        </Typography>
-                    </AccordionSummary>
-                    <AccordionDetails>
-                        <Typography>
-                            {/* <div className="flex justify-between ...">    */}
-                            <div className="flex justify-evenly ...">
-                                <div>
-                                    {tomare.checked === true &&
-                                        <img src={tomare.img_befor} alt="" />
-                                    }
-                                    {tomare.checked === true && user.o_befor_come !== 0 &&
-                                        `${tomare.come_befor}`
-                                    }
-                                </div>
-
-                                <div>
-                                    {tomare.checked === true &&
-                                        <img src={tomare.img_after} alt="" />
-                                    }
-                                    {tomare.checked === true && user.o_after_come !== 0 &&
-                                        `${tomare.come_after}`
-                                    }
-                                </div>
+                        {tomare.star === 0 &&
+                            <div>
+                                {/* <br /> */}
+                                <button onClick={(e) => handleStar(1)}><BsStar /></button>
+                                <button onClick={(e) => handleStar(2)}><BsStar /></button>
+                                <button onClick={(e) => handleStar(3)}><BsStar /></button>
+                                <button onClick={(e) => handleStar(4)}><BsStar /></button>
+                                <button onClick={(e) => handleStar(5)}><BsStar /></button>
+                                まだ評価されていません
+                                <br />
                             </div>
-                        </Typography>
-                    </AccordionDetails>
-                </Accordion>
-            }
-        </div >
+                        }
+                        {tomare.chip !== 0 &&
+                            `chip:${tomare.chip}`
+                        }
+                        <br />
+                        {tomare.receipt_url !== "" &&
+                            <section>
+                                <a href={tomare.receipt_url}  >領収書</a>
+                            </section>
+                        }
+                    </Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                    <Typography>
+                        {/* <div className="flex justify-between ...">    */}
+                        <div className="flex justify-evenly ...">
+                            <div>
+                                {tomare.checked === true &&
+                                    <img src={tomare.img_befor} alt="" />
+                                }
+                                {tomare.checked === true && user.o_befor_come !== 0 &&
+                                    `${tomare.come_befor}`
+                                }
+                            </div>
+                            <div>
+                                {tomare.checked === true &&
+                                    <img src={tomare.img_after} alt="" />
+                                }
+                                {tomare.checked === true && user.o_after_come !== 0 &&
+                                    `${tomare.come_after}`
+                                }
+                            </div>
+                        </div>
+                    </Typography>
+                </AccordionDetails>
+            </Accordion>
+
+        </div>
     );
 }
 
