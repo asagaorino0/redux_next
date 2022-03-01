@@ -104,11 +104,10 @@ export default function SimpleAccordion({ tomare }: { tomare: TomareState }) {
             timestamp: now
         }, { merge: true })
     };
-    // const quantity = `${tomare.quantity}`
 
     return (
         <div>
-            {`${tomare.receipt_url}`.toString() !== 'undefined' &&
+            {`${tomare.amount}`.toString() !== 'undefined' &&
                 // `${tomare.succes_url}`.toString() !== 'undefined' &&
                 <Accordion
                     expanded={expanded === 'panel1'}
