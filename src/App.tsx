@@ -199,6 +199,9 @@ export default function App() {
                     {`${receipt_url}`.length !== 0 &&
                       <PayReceipt pay={pay} key={pay.yoyakuId} />
                     }
+                    {`${pay.receipt_url}`.length !== 0 &&
+                      <PayReceipt pay={pay} key={pay.yoyakuId} />
+                    }
                   </div>
                 </div>
               );
