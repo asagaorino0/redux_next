@@ -91,6 +91,14 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
         }, { merge: true })
         toHome()
     };
+    const setReceipt = () => {
+        const receipt_url = location.search.substr(1, 200)
+        setDoc(doc(db, 'yoyakuPay', `${pay.yoyakuId}`), {
+            receipt_url,
+            timestamp: now
+        }, { merge: true })
+        toHome()
+    };
     return (
 
         <div className={styles.card}>
@@ -104,10 +112,12 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
             <AccordionDetails>
                 <Typography>
                     <div className="flex justify-between ...">
-                        <br />
-                        <h3 className="mb-4 text-green-500 text-3xl">
-                            <a href={receipt_url}  >領収書</a>
-                        </h3>
+                        <button type="submit" role="link" className={styles.card} onClick={() => setReceipt()} >
+                            <br />
+                            <h3 className="mb-4 text-green-500 text-3xl">
+                                <a href={receipt_url}  >領収書</a>
+                            </h3>
+                        </button>
                     </div >
                 </Typography>
             </AccordionDetails>

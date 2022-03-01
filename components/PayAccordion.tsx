@@ -85,14 +85,9 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
             pay: pay.amount,
             star: pay.star,
             receipt_url,
-            // chip: pay.chip,
             timestamp: now
-            // tomareId: pay.tomareId,
-            // yoyakuUid: pay.yoyakuUid,
-            // yoyakuId: pay.yoyakuId,
-            // img_befor: pay.img_befor,
-            // img_after: pay.img_after,
         }, { merge: true })
+
     };
     const apiYoyakuId = `${pay.yoyakuId}${pay.amount}`
 

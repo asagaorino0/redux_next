@@ -67,7 +67,7 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
     };
     const amountSub = pay.tanka * pay.quantity
     const amount = pay.tanka * pay.quantity + pay.chip
-    const apiYoyakuId = `${pay.yoyakuId}${amount}`
+    // const apiYoyakuId = `${pay.yoyakuId}${amount}`
     const stQua = 100 + pay.quantity * 1
     const yoyakuId = `${stQua}${pay.uid}${pay.yoyakuUid}${pay.tomareId}`
     const handleChip = (e: number) => {
@@ -81,8 +81,8 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
         setDoc(doc(db, 'users', `${pay.uid}`, 'tomare', `${pay.tomareId}`), { chip: e, cusPay: amount + e, chipUrl: "shr_1KXaVyIeKRfM8LCeQ9dJPPvV", yoyakuId: `${yoyakuId}shr_1KXaVyIeKRfM8LCeQ9dJPPvV` }, { merge: true })
         toHome()
     };
-    const [setPay] = useState<any>([]);
-    const dispatch = useDispatch();
+    // const [setPay] = useState<any>([]);
+    // const dispatch = useDispatch();
     const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
     const user = useSelector(selectUser);
     const handleChange =
