@@ -31,7 +31,7 @@ export default function App() {
   const user = useSelector(selectUser);
   const router = useRouter();
   const PageA = dynamic(() => import('../pages/PageA'), { ssr: false });
-  // const PagePay = dynamic(() => import('./PagePay'), { ssr: false });
+  const PagePay = dynamic(() => import('../pages/PagePay'), { ssr: false });
 
   useEffect(() => {
     liff
@@ -240,6 +240,8 @@ export default function App() {
             <button onClick={registPay}>
               <h3 className="mb-4 text-green-500 text-3xl">履歴</h3>
             </button>
+            <br />
+            <PagePay />
             <br />
             {
               tomare
