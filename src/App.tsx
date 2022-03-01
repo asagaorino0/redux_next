@@ -20,6 +20,8 @@ import MiPayAccordion from '../components/MiPayAccordion';
 import { Provider } from 'react-redux';
 import { store } from '../src/app/store';
 import { getURL } from 'next/dist/shared/lib/utils';
+import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
 
 export default function App() {
   const [uid, setUid] = useState<string>('');
@@ -158,6 +160,14 @@ export default function App() {
     dispatch(addUser({ name, uid, icon }));
     toPagePay()
   };
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
   const receipt_url = location.search.substr(1, 200)
 
   return (
@@ -237,11 +247,44 @@ export default function App() {
               <h3 className="mb-4 text-green-500 text-3xl">マイページ</h3>
             </button>
             <br />
-            <button onClick={registPay}>
+            {/* <button onClick={registPay}>
+                            <h3 className="mb-4 text-green-500 text-3xl">履歴</h3>
+                        </button> */}
+            <Button
+              id="basic-button"
+              aria-controls={open ? 'basic-menu' : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? 'true' : undefined}
+              onClick={handleClick}
+            >
               <h3 className="mb-4 text-green-500 text-3xl">履歴</h3>
-            </button>
+            </Button>
             <br />
-            {
+            <Menu
+              id="basic-menu"
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleClose}
+              MenuListProps={{
+                'aria-labelledby': 'basic-button',
+              }}
+            >
+              {
+                tomare
+                  .map((tomare: TomareState) => {
+                    return (
+                      <div key={tomare.tomareId}>
+                        {`${tomare.yoyakuMenu}` !== "" &&
+                          <div className={styles.grid}>
+                            <CustomerAccordion tomare={tomare} key={tomare.tomareId} />
+                          </div>
+                        }
+                      </div>
+                    )
+                  })
+              }
+            </Menu>
+            {/* {
               tomare
                 .map((tomare: TomareState) => {
                   return (
@@ -254,7 +297,7 @@ export default function App() {
                     </div>
                   )
                 })
-            }
+            } */}
             <br />
             <button onClick={registC}>
               <h3 className="mb-4 text-green-500 text-3xl">予約枠設定</h3>
