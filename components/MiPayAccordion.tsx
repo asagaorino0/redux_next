@@ -117,8 +117,8 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
             img_befor: pay.img_befor,
             img_after: pay.img_after,
         }, { merge: true })
-        toHome()
-        location.reload
+        // toHome()
+        window.location.reload
         // location.replace
     };
 
