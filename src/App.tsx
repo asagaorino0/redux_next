@@ -97,7 +97,7 @@ export default function App() {
     setLoading(true);
     fetchPay();
     fetchTomare();
-
+    window.location.reload
   }, []);
 
   const fetchPay = async () => {
