@@ -96,6 +96,7 @@ export default function App() {
   useEffect(() => {
     fetchPay();
     fetchTomare();
+
   }, []);
 
   const fetchPay = async () => {
@@ -169,7 +170,7 @@ export default function App() {
     setAnchorEl(null);
   };
   const receipt_url = location.search.substr(1, 200)
-
+  const [display, setDisplay] = useState(true)
   return (
     <main>
       <div>
@@ -250,7 +251,7 @@ export default function App() {
             {/* <button onClick={registPay}>
                             <h3 className="mb-4 text-green-500 text-3xl">履歴</h3>
                         </button> */}
-            <Button
+            {/* <Button
               id="basic-button"
               aria-controls={open ? 'basic-menu' : undefined}
               aria-haspopup="true"
@@ -258,9 +259,28 @@ export default function App() {
               onClick={handleClick}
             >
               <h3 className="mb-4 text-green-500 text-3xl">履歴</h3>
-            </Button>
+            </Button> */}
             <br />
-            <Menu
+            <div className="App">
+              <button onClick={() => setDisplay(!display)}>
+                <h3 className="mb-4 text-green-500 text-3xl">履歴</h3>
+              </button>
+              {display &&
+                tomare
+                  .map((tomare: TomareState) => {
+                    return (
+                      <div key={tomare.tomareId}>
+                        {`${tomare.yoyakuMenu}` !== "" &&
+                          <div className={styles.grid}>
+                            <CustomerAccordion tomare={tomare} key={tomare.tomareId} />
+                          </div>
+                        }
+                      </div>
+                    )
+                  })
+              }
+            </div>
+            {/* <Menu
               id="basic-menu"
               anchorEl={anchorEl}
               open={open}
@@ -283,7 +303,7 @@ export default function App() {
                     )
                   })
               }
-            </Menu>
+            </Menu> */}
             {/* {
               tomare
                 .map((tomare: TomareState) => {

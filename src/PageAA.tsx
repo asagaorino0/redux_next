@@ -57,7 +57,7 @@ export default function PageAA() {
     //     });
     // }
     useEffect(() => {
-        const uid = "Ud4659ddaee321b794de35beeb141cec6"
+        const uid = "Uda1c6a4e5b348c5ba3c95de639e32414"
         const fetchUser = async () => {
             const q = query(collection(db, 'users'), where("uid", "==", uid));
             const snapshot = await getDocs(q)
