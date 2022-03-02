@@ -54,13 +54,27 @@ export default function App() {
           setName(displayName);
           setIcon(displayicon);
 
-          const q = query(collection(db, 'yoyakuPay',), where("yoyakuUid", "==", profile.userId));
-          const snapshot = await getDocs(q)
-          const payData = snapshot.docs.map(
-            (docP) => ({ ...docP.data() } as TomareState))
-          console.log('payData_profile.userId:', payData)
-          dispatch(addUser(payData))
-          setPay(payData)
+          const p = query(collection(db, 'yoyakuPay'), where('yoyakuUid', '==', uid));
+          const snapshot = onSnapshot(p, (querySnapshot) => {
+            const payData = querySnapshot.docs.map(
+              (docP) => ({ ...docP.data() } as TomareState)
+            );
+            console.log('pey:::::', pay, uid, pay.uid);
+            dispatch(addUser(payData));
+            setPay(payData);
+          });
+
+
+
+
+
+          // const q = query(collection(db, 'yoyakuPay',), where("yoyakuUid", "==", profile.userId));
+          // const snapshot = await getDocs(q)
+          // const payData = snapshot.docs.map(
+          //   (docP) => ({ ...docP.data() } as TomareState))
+          // console.log('payData_profile.userId:', payData)
+          // dispatch(addUser(payData))
+          // setPay(payData)
 
           const t = query(collectionGroup(db, 'tomare'), where("yoyakuUid", "==", profile.userId));
           const snapshotT = await getDocs(t)
