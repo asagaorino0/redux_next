@@ -108,9 +108,9 @@ export default function App() {
       const payData = querySnapshot.docs.map(
         (docP) => ({ ...docP.data() } as TomareState)
       );
-      console.log('pey:::::', pay, uid, pay.uid);
       dispatch(addUser(payData));
       setPay(payData);
+      console.log('pey:::::', pay, uid, pay.uid);
     });
   };
   const fetchTomare = async () => {
@@ -120,6 +120,7 @@ export default function App() {
         (doc) => ({ ...doc.data() } as TomareState))
       dispatch(addTomare(tomareData))
       setTomare(tomareData)
+      console.log('tomare:::::', tomare, uid, pay.uid);
     });
   }
 
