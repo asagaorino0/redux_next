@@ -110,14 +110,15 @@ export default function App() {
   }, []);
 
   useLayoutEffect(() => {
-    setLoading(true);
+    // setLoading(true);
     fetchPay();
     fetchTomare();
-    window.location.reload
+    // window.location.reload
   }, []);
 
   const fetchPay = async () => {
-    const p = query(collection(db, 'yoyakuPay'), where('yoyakuUid', '==', `${uid}`));
+    console.log('pey:uid::pay.uid::', uid, pay.uid);
+    const p = query(collection(db, 'yoyakuPay'), where('yoyakuUid', '==', uid));
     const snapshot = onSnapshot(p, (querySnapshot) => {
       const payData = querySnapshot.docs.map(
         (docP) => ({ ...docP.data() } as TomareState)
