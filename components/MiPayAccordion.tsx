@@ -118,6 +118,8 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
             img_after: pay.img_after,
         }, { merge: true })
         toHome()
+        location.reload
+        // location.replace
     };
 
     // const fetchPay = async () => {
