@@ -92,6 +92,7 @@ export default function App() {
         }
       });
     // liff
+    // }, [dispatch]);
   }, []);
 
   useLayoutEffect(() => {
@@ -113,7 +114,7 @@ export default function App() {
     });
   };
   const fetchTomare = async () => {
-    const q = query(collectionGroup(db, 'tomare'), where("yoyakuUid", "==", `${user.uid}`));
+    const q = query(collectionGroup(db, 'tomare'), where("yoyakuUid", "==", `${uid}`));
     const snapshot = onSnapshot(q, (querySnapshot) => {
       const tomareData = querySnapshot.docs.map(
         (doc) => ({ ...doc.data() } as TomareState))
