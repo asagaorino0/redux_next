@@ -61,6 +61,7 @@ export default function App() {
           console.log('payData_profile.userId:', payData)
           dispatch(addUser(payData))
           setPay(payData)
+
           const t = query(collectionGroup(db, 'tomare'), where("yoyakuUid", "==", profile.userId));
           const snapshotT = await getDocs(t)
           const tomareData = snapshotT.docs.map(
@@ -90,7 +91,7 @@ export default function App() {
           console.log('login status : [', false, ']');
         }
       });
-    // fetchUser()
+    liff
   }, [dispatch]);
 
   useLayoutEffect(() => {
