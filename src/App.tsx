@@ -34,7 +34,7 @@ export default function App() {
   const router = useRouter();
   const PageA = dynamic(() => import('../pages/PageA'), { ssr: false });
   // const PagePay = dynamic(() => import('./PagePay'), { ssr: false });
-
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     liff
       .init({ liffId: process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID as string })
@@ -94,6 +94,7 @@ export default function App() {
   }, [dispatch]);
 
   useLayoutEffect(() => {
+    setLoading(true);
     fetchPay();
     fetchTomare();
 
