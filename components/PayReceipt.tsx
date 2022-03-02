@@ -157,7 +157,7 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
                 </Typography>
             </AccordionDetails>
             <div>
-                ご利用ありがとうございました。
+                ご利用ありがとうございました
                 <button className={styles.card} onClick={() => toStripe()} >
                     戻る
                 </button>
