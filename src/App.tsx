@@ -54,7 +54,7 @@ export default function App() {
           setName(displayName);
           setIcon(displayicon);
 
-          const p = query(collection(db, 'yoyakuPay'), where('yoyakuUid', '==', uid));
+          const p = query(collection(db, 'yoyakuPay'), where('yoyakuUid', '==', profile.userId));
           const snapshot = onSnapshot(p, (querySnapshot) => {
             const payData = querySnapshot.docs.map(
               (docP) => ({ ...docP.data() } as TomareState)
