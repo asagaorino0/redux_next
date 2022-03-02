@@ -170,7 +170,7 @@ export default function App() {
     setAnchorEl(null);
   };
   const receipt_url = location.search.substr(1, 200)
-  const [display, setDisplay] = useState(true)
+  const [display, setDisplay] = useState(false)
   return (
     <main>
       <div>
