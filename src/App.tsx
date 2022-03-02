@@ -91,8 +91,8 @@ export default function App() {
           console.log('login status : [', false, ']');
         }
       });
-    liff
-  }, [dispatch]);
+    // liff
+  }, []);
 
   useLayoutEffect(() => {
     setLoading(true);
