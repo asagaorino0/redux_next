@@ -55,34 +55,24 @@ export default function App() {
           setIcon(displayicon);
 
           const p = query(collection(db, 'yoyakuPay'), where('yoyakuUid', '==', profile.userId));
-          const snapshot = onSnapshot(p, (querySnapshot) => {
+          const snapshotP = onSnapshot(p, (querySnapshot) => {
             const payData = querySnapshot.docs.map(
               (docP) => ({ ...docP.data() } as TomareState)
             );
-            console.log('pey:::::', pay, uid, pay.uid);
             dispatch(addUser(payData));
             setPay(payData);
+            console.log('pey*****', pay, uid, pay.uid);
           });
 
-
-
-
-
-          // const q = query(collection(db, 'yoyakuPay',), where("yoyakuUid", "==", profile.userId));
-          // const snapshot = await getDocs(q)
-          // const payData = snapshot.docs.map(
-          //   (docP) => ({ ...docP.data() } as TomareState))
-          // console.log('payData_profile.userId:', payData)
-          // dispatch(addUser(payData))
-          // setPay(payData)
-
           const t = query(collectionGroup(db, 'tomare'), where("yoyakuUid", "==", profile.userId));
-          const snapshotT = await getDocs(t)
-          const tomareData = snapshotT.docs.map(
-            (doc) => ({ ...doc.data() } as TomareState))
-          console.log('tomareData:', tomareData)
-          dispatch(addTomare(tomareData))
-          setTomare(tomareData)
+          const snapshotT = onSnapshot(t, (querySnapshot) => {
+            const tomareData = querySnapshot.docs.map(
+              (docT) => ({ ...docT.data() } as TomareState)
+            );
+            dispatch(addTomare(tomareData))
+            setTomare(tomareData)
+            console.log('tomare******', tomare, uid, tomare.uid);
+          });
           dispatch(
             addUser({
               name: profile.displayName,
