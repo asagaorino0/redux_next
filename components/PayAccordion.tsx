@@ -15,10 +15,10 @@ import { BsStar } from "react-icons/bs";
 import styles from '../styles/Home.module.css';
 import { doc, setDoc } from 'firebase/firestore'
 import { db } from "../src/firebase";
+import useSWR from 'swr'
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { UserState } from "../src/types/user";
-
 import TomareFileUpload from '../components/TomareFileUpload';
 import TomareFileChenge from '../components/TomareFileChenge';
 
@@ -65,10 +65,10 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
     };
     const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
     const user = useSelector(selectUser);
-    const handleChange =
-        (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
-            setExpanded(newExpanded ? panel : false);
-        };
+    // const handleChange =
+    //     (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
+    //         setExpanded(newExpanded ? panel : false);
+    //     };
 
     const date = new Date()
     const Y = date.getFullYear()
@@ -79,24 +79,29 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
     const s = ("00" + date.getSeconds()).slice(-2)
     const now = Y + '-' + M + '-' + D + ' ' + h + ':' + m + ':' + s
     // const receipt_url = location.search.substr(1, 200)
-    const toStripe = () => {
-        const receipt_url = location.search.substr(1, 200)
-        setDoc(doc(db, 'users', `${pay.uid}`, 'tomare', `${pay.tomareId}`), {
-            pay: pay.amount,
-            star: pay.star,
-            receipt_url,
+    // const toStripe = () => {
+    //     const receipt_url = location.search.substr(1, 200)
+    //     setDoc(doc(db, 'users', `${pay.uid}`, 'tomare', `${pay.tomareId}`), {
+    //         pay: pay.amount,
+    //         star: pay.star,
+    //         receipt_url,
+    //         timestamp: now
+    //     }, { merge: true })
+
+    // };
+    const apiYoyakuId = `${pay.yoyakuId}${pay.amount}`
+    const fetchAPI = () => {
+        setDoc(doc(db, 'yoyakuPay', `${pay.yoyakuId}`), {
+            loading: true,
             timestamp: now
         }, { merge: true })
-
-    };
-    const apiYoyakuId = `${pay.yoyakuId}${pay.amount}`
-
+    }
     return (
         <div className={styles.card}>
             {`${pay.succes_url}`.toString() === 'undefined' &&
                 <div>
 
-                    この内容で支払いが完了されます
+                    {/* この内容で支払いが完了されます */}
                     <Typography className={styles.grid}>{pay.tomareId}:{pay.yoyakuMenu}
                         <br />
                         {/* <button type="submit" role="link" className={styles.card} onClick={() => toStripe()} > */}
@@ -121,9 +126,9 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
                             {pay.chip !== 0 &&
                                 `（${pay.chip}ﾁｯﾌﾟ含む） `
                             }
-                            <form action={`/api/users/${apiYoyakuId}/setup`} method="POST">
+                            <form action={`/api/users/${apiYoyakuId}/setup`} method="POST" onClick={fetchAPI}>
                                 <section>
-                                    <button type="submit" role="link" className={styles.card}>
+                                    <button type="submit" role="link" className={styles.card} onClick={fetchAPI}>
                                         <h3 className="mb-4 text-green-500 text-3xl">
                                             カード決済画面へ
                                         </h3>
@@ -131,6 +136,7 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
                                 </ section>
                             </form>
                         </div>
+                        {pay.loading && <div>Loading...</div>}
                         {/* </button> */}
                         {/* <div className="flex justify-between ...">
                     <br />
