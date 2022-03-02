@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { addUser, selectUser } from '../src/features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
@@ -93,7 +93,7 @@ export default function App() {
     // fetchUser()
   }, [dispatch]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     fetchPay();
     fetchTomare();
 
