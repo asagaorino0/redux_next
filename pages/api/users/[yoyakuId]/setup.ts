@@ -40,7 +40,7 @@ const handler = async (req: any, res: any) => {
             });
             console.log('paymentMethod:::', paymentMethod)
 
-            const stAmount = yoyakuId.substr(107, 5) as any * 1
+            const stAmount = yoyakuId.substr(137, 5) as any * 1
             console.log("stAmount:::::::::::::", stAmount)
             const paymentIntent = await stripe.paymentIntents.create({
                 amount: stAmount,
@@ -70,13 +70,14 @@ const handler = async (req: any, res: any) => {
             //     cancel_url: `${req.headers.origin}/?canceled=true`,
             // });
             const stChip = yoyakuId.substr(79, 28) as any
+            const stTanka = yoyakuId.substr(107, 30) as any
             const stQuan = yoyakuId.substr(1, 2) as any
             console.log(`quantity:::::::`, stQuan)
             const session = await stripe.checkout.sessions.create({
                 line_items: [
                     {
                         // price: process.env.NEXT_PUBLIC_STRIPE_PRODUCT_KEY,
-                        price: 'price_1KT7IZIeKRfM8LCe7573kMRN',
+                        price: stTanka,
                         // quantity: 10,
                         quantity: stQuan * 1,
                     },],
@@ -84,9 +85,6 @@ const handler = async (req: any, res: any) => {
                 mode: 'payment',
                 success_url: `${req.headers.origin}/?${receipt_url}`,
                 cancel_url: `${req.headers.origin}/?canceled=true`,
-                // shipping_rates: ['shr_1KXTkfIeKRfM8LCeTmYH0csl']
-                // shipping_amount: 500 ×
-                // shipping_rates: [chipUrl]
                 shipping_rates: [stChip]
                 // shipping_rates: [`process.env.STRIPE_SECRET_${chip}`]
             });

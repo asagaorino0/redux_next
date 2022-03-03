@@ -198,6 +198,26 @@ const PageC = () => {
     const toHome = () => {
         router.push('./')
     }
+    const handleTanka500 = (e: number) => {
+        setDoc(doc(db, 'users', `${tomare.uid}`, 'tomare', `${tomare.tomareId}`), { tanka: e, tankaUrl: "price_1KT7IZIeKRfM8LCe7573kMRN" }, { merge: true })
+        toHome()
+    };
+    const handleTanka1000 = (e: number) => {
+        setDoc(doc(db, 'users', `${tomare.uid}`, 'tomare', `${tomare.tomareId}`), { tanka: e, tankaUrl: "price_1KT7IZIeKRfM8LCe7573kMRN" }, { merge: true })
+        toHome()
+    };
+    const handleTanka1500 = (e: number) => {
+        setDoc(doc(db, 'users', `${tomare.uid}`, 'tomare', `${tomare.tomareId}`), { tanka: e, tankaUrl: "price_1KT7IZIeKRfM8LCe7573kMRN" }, { merge: true })
+        toHome()
+    };
+    const handleTanka2000 = (e: number) => {
+        setDoc(doc(db, 'users', `${tomare.uid}`, 'tomare', `${tomare.tomareId}`), { tanka: e, tankaUrl: "price_1KT7IZIeKRfM8LCe7573kMRN" }, { merge: true })
+        toHome()
+    };
+    const handleTanka = (e: number) => {
+        setDoc(doc(db, 'users', `${tomare.uid}`, 'tomare', `${tomare.tomareId}`), { tanka: e, tankaUrl: "", yoyakuId: `${yoyakuId}shr_1KZCWKIeKRfM8LCe8dm0ktYU` }, { merge: true })
+        toHome()
+    };
     return (
         <div className={styles.main}>
             <button onClick={toHome}>
@@ -290,10 +310,22 @@ const PageC = () => {
                                     その他
                                 </button>
                             </div>
+
                             <br />
                         </div>
                     </p>
-
+                    {`${tomare.tanka}`.toString() === 'undefined' &&
+                        <div>
+                            <br />
+                            単価（10分あたりの金額）
+                            <br />
+                            <button className={styles.card} onClick={(e) => handleTanka500(500)}>500</button>
+                            <button className={styles.card} onClick={(e) => handleTanka1000(1000)}>1000</button>
+                            <button className={styles.card} onClick={(e) => handleTanka1500(1500)}>1500</button>
+                            <button className={styles.card} onClick={(e) => handleTanka2000(2000)}>2000</button>
+                            {/* <button className={styles.card} onClick={(e) => handleTanka(e)}><input type="number" /></button> */}
+                        </div>
+                    }
                     <p>
                         <br />
                         ***現在の登録内容***

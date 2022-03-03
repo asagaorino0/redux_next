@@ -69,7 +69,7 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
     const amount = pay.tanka * pay.quantity + pay.chip
     // const apiYoyakuId = `${pay.yoyakuId}${amount}`
     const stQua = 100 + pay.quantity * 1
-    const yoyakuId = `${stQua}${pay.uid}${pay.yoyakuUid}${pay.tomareId}`
+    const yoyakuId = `${stQua}${pay.uid}${pay.yoyakuUid}${pay.tomareId}${pay.tankaUrl}`
     const handleChip = (e: number) => {
         // setDoc(doc(db, 'users', `${pay.uid}`, 'tomare', `${pay.tomareId}`), { chip: e, chipUrl: `${process.env.STRIPE_SECRET_e}` }, { merge: true })
     };
