@@ -81,6 +81,18 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
         setDoc(doc(db, 'users', `${pay.uid}`, 'tomare', `${pay.tomareId}`), { chip: e, cusPay: amount + e, chipUrl: "shr_1KXaVyIeKRfM8LCeQ9dJPPvV", yoyakuId: `${yoyakuId}shr_1KXaVyIeKRfM8LCeQ9dJPPvV` }, { merge: true })
         toHome()
     };
+    const handleChip1500 = (e: number) => {
+        setDoc(doc(db, 'users', `${pay.uid}`, 'tomare', `${pay.tomareId}`), { chip: e, cusPay: amount + e, chipUrl: "shr_1KZCV1IeKRfM8LCe21AqBLpt", yoyakuId: `${yoyakuId}shr_1KZCV1IeKRfM8LCe21AqBLpt` }, { merge: true })
+        toHome()
+    };
+    const handleChip2000 = (e: number) => {
+        setDoc(doc(db, 'users', `${pay.uid}`, 'tomare', `${pay.tomareId}`), { chip: e, cusPay: amount + e, chipUrl: "shr_1KZCXaIeKRfM8LCeaWcael67", yoyakuId: `${yoyakuId}shr_1KZCXaIeKRfM8LCeaWcael67` }, { merge: true })
+        toHome()
+    };
+    const handleChip0 = (e: number) => {
+        setDoc(doc(db, 'users', `${pay.uid}`, 'tomare', `${pay.tomareId}`), { chip: e, cusPay: amount + e, chipUrl: "shr_1KZCWKIeKRfM8LCe8dm0ktYU", yoyakuId: `${yoyakuId}shr_1KZCWKIeKRfM8LCe8dm0ktYU` }, { merge: true })
+        toHome()
+    };
     // const [setPay] = useState<any>([]);
     // const dispatch = useDispatch();
     const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
@@ -117,21 +129,7 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
             img_befor: pay.img_befor,
             img_after: pay.img_after,
         }, { merge: true })
-        // toHome()
-        // window.location.reload
-        // location.replace
     };
-
-    // const fetchPay = async () => {
-    //     const p = query(collection(db, 'yoyakuPay'), where('yoyakuUid', '==', pay.uid));
-    //     const snapshot = onSnapshot(p, (querySnapshot) => {
-    //         const payData = querySnapshot.docs.map(
-    //             (docP) => ({ ...docP.data() } as TomareState)
-    //         );
-    //         dispatch(addUser(payData));
-    //         setPay(payData);
-    //     });
-    // };
 
     return (
         <div>
@@ -188,9 +186,9 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
                                     <br />
                                     <button className={styles.card} onClick={(e) => handleChip500(500)}>500</button>
                                     <button className={styles.card} onClick={(e) => handleChip1000(1000)}>1000</button>
-                                    <button className={styles.card} onClick={(e) => handleChip(1500)}>1500</button>
-                                    <button className={styles.card} onClick={(e) => handleChip(2000)}>2000</button>
-                                    <button className={styles.card} onClick={(e) => handleChip(0)}>ﾁｯﾌﾟはなし</button>
+                                    <button className={styles.card} onClick={(e) => handleChip1500(1500)}>1500</button>
+                                    <button className={styles.card} onClick={(e) => handleChip2000(2000)}>2000</button>
+                                    <button className={styles.card} onClick={(e) => handleChip0(0)}>ﾁｯﾌﾟはなし</button>
                                 </div>
                             }
                         </Typography>

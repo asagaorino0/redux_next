@@ -136,7 +136,7 @@ export default function SimpleAccordion({ pay }: { pay: TomareState }) {
                                 </ section>
                             </form>
                         </div>
-                        {pay.loading && <div>Loading...</div>}
+                        {/* {pay.loading && <div>Loading...</div>} */}
                         {/* </button> */}
                         {/* <div className="flex justify-between ...">
                     <br />
