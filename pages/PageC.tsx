@@ -385,6 +385,7 @@ const PageC = () => {
                                                     {`${targetTomare.tanka}円`}
                                                 </h3>
                                                 <br />
+                                                <br />
                                                 {targetTomare.yoyakuIcon && <p>
                                                     <button onClick={toChat}>
                                                         <img
