@@ -333,7 +333,7 @@ const PageC = () => {
                     }
                     <p>
                         <br />
-                        ***現在の登録内容***
+
 
                         {targetTomare
                             .map(
@@ -364,8 +364,8 @@ const PageC = () => {
 
                                     return (
                                         <div className={styles.card} key={targetTomare.tomareId}>
+                                            ***現在の登録内容***
                                             <br />
-
                                             <h3 className="mb-4  text-3xl">
                                                 {targetTomare.gappi}：
                                                 {targetTomare.am_pm}
@@ -380,7 +380,7 @@ const PageC = () => {
                                                 }
                                                 <br />
                                                 <br />
-                                                10分あたりの単価:
+                                                10分あたり:
                                                 <h3 className="mb-4  text-3xl">
                                                     {`${targetTomare.tanka}円`}
                                                 </h3>
@@ -405,36 +405,36 @@ const PageC = () => {
                         {`${am_pm}`.length !== 0 &&
                             <div>
                                 ***設定した内容*****
-
-                                <h3 className="mb-4  text-3xl">
-                                    {formatDate}{am_pm}
-                                </h3>
-                                <div className={styles.grid}>
-                                    {make === true && <p><img {...img_make} /></p>}
-                                    {nail === true && <p><img {...img_nail} /></p>}
-                                    {este === true && <p><img {...img_este} /></p>}
-                                    {sonota !== "" && <p><img {...img_sonota} /></p>}
+                                <div className={styles.card}>
+                                    <h3 className="mb-4  text-3xl">
+                                        {formatDate}{am_pm}
+                                    </h3>
+                                    <div className={styles.grid}>
+                                        {make === true && <p><img {...img_make} /></p>}
+                                        {nail === true && <p><img {...img_nail} /></p>}
+                                        {este === true && <p><img {...img_este} /></p>}
+                                        {sonota !== "" && <p><img {...img_sonota} /></p>}
+                                    </div>
+                                    <br />
+                                    {tanka === 0 &&
+                                        <h3 className="mb-4  text-3xl">
+                                            {`10分あたりの単価を設定してください`}
+                                        </h3>
+                                    }
+                                    {tanka !== 0 &&
+                                        <h3 className="mb-4  text-3xl">
+                                            {`10分あたりの単価:${tanka}円`}
+                                        </h3>
+                                    }
+                                    <br />
+                                    {tanka !== 0 &&
+                                        <h3 className="mb-4 text-green-500 text-3xl">
+                                            <button onClick={clickMenu888}>この内容で登録する</button>
+                                        </h3>
+                                    }
                                 </div>
-                                <br />
-                                {tanka === 0 &&
-                                    <h3 className="mb-4  text-3xl">
-                                        {`10分あたりの単価を設定してください`}
-                                    </h3>
-                                }
-                                {tanka !== 0 &&
-                                    <h3 className="mb-4  text-3xl">
-                                        {`10分あたりの単価:${tanka}円`}
-                                    </h3>
-                                }
-                                <br />
-                                {tanka !== 0 &&
-                                    <h3 className="mb-4 text-green-500 text-3xl">
-                                        <button onClick={clickMenu888}>この内容で登録する</button>
-                                    </h3>
-                                }
                             </div>
                         }
-
                         <div>
                             {
                                 chat
