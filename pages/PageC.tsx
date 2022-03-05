@@ -144,7 +144,7 @@ const PageC = () => {
     }
     const clickMenu888 = () => {
         setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}${am_pm}`), {
-            make, nail, este, sonota, gappi, uid: user.uid, am_pm: am_pm, menu: am_pm, timestamp: "", tomareId: `${formatDate}${am_pm}`, yoyakuMenu: "",
+            make, nail, este, sonota, gappi, uid: user.uid, am_pm: am_pm, menu: am_pm, tanka, timestamp: "", tomareId: `${formatDate}${am_pm}`, yoyakuMenu: "",
         }, { merge: true })
         fetchTomare()
         fetchTargetTomare()
@@ -343,17 +343,22 @@ const PageC = () => {
                                         fetchChat(`${targetTomare.yoyakuId}`)
                                         // setYoyakuIcon(`${tomare.yoyakuIcon}`)
                                         const fetchTargetTomare = async () => {
-                                            const q = query(collection(db, "users", user.uid, 'tomare'), where("tomareId", "==", `${targetTomare.tomareId}`));
-                                            const snapshot = await getDocs(q)
-                                            const tomareData = snapshot.docs.map(
-                                                (docT: any) => ({ ...docT.data() } as TomareState))
-                                            dispatch(addTargetTomare(tomareData))
-                                            setTargetTomare(tomareData)
+                                            // const q = query(collection(db, "users", user.uid, 'tomare'), where("tomareId", "==", `${targetTomare.tomareId}`));
+                                            const q = query(collectionGroup(db, 'tomare'), where("tomareId", "==", `${targetTomare.tomareId}`));
+                                            const snapshot = onSnapshot(q, (querySnapshot) => {
+                                                const tomareData = querySnapshot.docs.map(
+                                                    (doc) => ({ ...doc.data() } as TomareState))
+                                                // const snapshot = await getDocs(q)
+                                                // const tomareData = snapshot.docs.map(
+                                                //     (docT: any) => ({ ...docT.data() } as TomareState))
+                                                dispatch(addTargetTomare(tomareData))
+                                                setTargetTomare(tomareData)
+                                            })
                                         }
-                                        // useEffect(() => {
-                                        //     fetchTargetTomare()
-                                        // }, []);
-                                    };
+                                        useEffect(() => {
+                                            fetchTargetTomare()
+                                        }, []);
+                                    }
 
                                     return (
                                         <div className={styles.grid} key={targetTomare.tomareId}>
@@ -417,9 +422,6 @@ const PageC = () => {
                                         <button onClick={clickMenu888}>この内容で登録する</button>
                                     </h3>
                                 }
-
-
-
                             </div>
                         }
 
