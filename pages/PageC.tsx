@@ -365,8 +365,9 @@ const PageC = () => {
                                     return (
                                         <div className={styles.card} key={targetTomare.tomareId}>
                                             <br />
+
                                             <h3 className="mb-4  text-3xl">
-                                                {/* {targetTomare.gappi} */}
+                                                {targetTomare.gappi}：
                                                 {targetTomare.am_pm}
                                             </h3>
 
@@ -378,8 +379,9 @@ const PageC = () => {
                                                     <img {...img_sonota} />
                                                 }
                                                 <br />
+                                                10分あたりの単価:
                                                 <h3 className="mb-4  text-3xl">
-                                                    {`10分あたりの単価:${targetTomare.tanka}円`}
+                                                    {`${targetTomare.tanka}円`}
                                                 </h3>
                                                 <br />
                                                 {targetTomare.yoyakuIcon && <p>
