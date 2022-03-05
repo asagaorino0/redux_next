@@ -119,7 +119,7 @@ const PageM1 = () => {
                         return (
                             <div key={users.uid}>
                                 {
-                                    targetTomare.targetTomare
+                                    targetTomare.tomare
                                         // .filter((users: UsersState) => tomare.uid === users.uid)
                                         .filter((tomare: TomareState) => tomare.uid === users.uid)
                                         .map((tomare: TomareState) => {

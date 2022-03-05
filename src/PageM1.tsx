@@ -122,7 +122,7 @@ const PageM1 = () => {
 
     return (
         <div className={styles.main}>
-            <span>pageB3：登録</span>
+            <span>pageM1：登録</span>
             {/* {`${user.icon}`.length !== 0 && */}
             <img
                 src={`${user.icon}`}
