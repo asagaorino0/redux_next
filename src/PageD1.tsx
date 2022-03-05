@@ -239,7 +239,8 @@ const PageD1 = () => {
                                                                 <button onClick={fetchTarget2}>{tomare.nail === true && <img {...img_nail} />}</button>
                                                                 <button onClick={fetchTarget3}>{tomare.este === true && <img {...img_este} />}</button>
                                                                 <button onClick={fetchTarget5}>{tomare.hair === true && <img {...img_aroma} />}</button>
-                                                                <button onClick={fetchTarget6}>{tomare.este === true && <img {...img_hair} />}</button>                                                                {/* {`${tomare.sonota}`.length !== 0 &&
+                                                                <button onClick={fetchTarget6}>{tomare.este === true && <img {...img_hair} />}</button>
+                                                                {/* {`${tomare.sonota}`.length !== 0 &&
                                                                     <img {...img_sonota} />
                                                                 } */}
                                                             </div>
@@ -248,7 +249,7 @@ const PageD1 = () => {
                                                     }
 
                                                     <h3 className="mb-4 text-green-500 text-3xl">
-                                                        ***現在の登録内容***
+                                                        ***登録内容***
                                                     </h3>
                                                     {tomare.yoyakuUid === user.uid && <p>
                                                         <div className={styles.grid}>
