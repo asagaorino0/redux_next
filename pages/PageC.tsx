@@ -379,6 +379,7 @@ const PageC = () => {
                                                     <img {...img_sonota} />
                                                 }
                                                 <br />
+                                                <br />
                                                 10分あたりの単価:
                                                 <h3 className="mb-4  text-3xl">
                                                     {`${targetTomare.tanka}円`}
