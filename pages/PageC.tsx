@@ -310,41 +310,42 @@ const PageC = () => {
                                 }
 
                                 return (
-                                    <div className={styles.card} key={targetTomare.tomareId}>
+                                    <div>
+                                        <div className={styles.card} key={targetTomare.tomareId}>
 
-                                        <br />
-                                        <h3 className="mb-4  text-3xl">
-                                            {targetTomare.gappi}：
-                                            {targetTomare.am_pm}
-                                        </h3>
-
-                                        <div className={styles.grid} >
-                                            {targetTomare.make === true && <p><img {...img_make} /></p>}
-                                            {targetTomare.nail === true && <p><img {...img_nail} /></p>}
-                                            {targetTomare.este === true && <p><img {...img_este} /></p>}
-                                            {targetTomare.aroma === true && <p><img {...img_aroma} /></p>}
-                                            {targetTomare.hair === true && <p><img {...img_hair} /></p>}                                            {`${targetTomare.sonota}`.length !== 0 &&
-                                                <img {...img_sonota} />
-                                            }
-                                            <br />
                                             <br />
                                             <h3 className="mb-4  text-3xl">
-                                                {`${targetTomare.tanka}円/10分`}
+                                                {targetTomare.gappi}：
+                                                {targetTomare.am_pm}
                                             </h3>
-                                            <br />
-                                            <br />
-                                            {targetTomare.yoyakuIcon && <p>
-                                                <button onClick={toChat}>
-                                                    <img
-                                                        src={`${targetTomare.yoyakuIcon}`}
-                                                        alt="icon"
-                                                        style={{ borderRadius: '50%', width: '60px', height: '60px' }}
-                                                    />{targetTomare.yoyakuName}
-                                                </button>
-                                            </p>}
-                                            <br />
+
+                                            <div className={styles.grid} >
+                                                {targetTomare.make === true && <p><img {...img_make} /></p>}
+                                                {targetTomare.nail === true && <p><img {...img_nail} /></p>}
+                                                {targetTomare.este === true && <p><img {...img_este} /></p>}
+                                                {targetTomare.aroma === true && <p><img {...img_aroma} /></p>}
+                                                {targetTomare.hair === true && <p><img {...img_hair} /></p>}                                            {`${targetTomare.sonota}`.length !== 0 &&
+                                                    <img {...img_sonota} />
+                                                }
+                                                <br />
+                                                <br />
+                                                <h3 className="mb-4  text-3xl">
+                                                    {`${targetTomare.tanka}円/10分`}
+                                                </h3>
+                                                <br />
+                                                <br />
+                                                {targetTomare.yoyakuIcon && <p>
+                                                    <button onClick={toChat}>
+                                                        <img
+                                                            src={`${targetTomare.yoyakuIcon}`}
+                                                            alt="icon"
+                                                            style={{ borderRadius: '50%', width: '60px', height: '60px' }}
+                                                        />{targetTomare.yoyakuName}
+                                                    </button>
+                                                </p>}
+                                                <br />
+                                            </div>
                                         </div>
-                                        {/* </div> */}
 
 
                                         <div className={styles.grid}>
