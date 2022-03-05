@@ -401,9 +401,13 @@ const PageC = () => {
                                     {sonota !== "" && <p><img {...img_sonota} /></p>}
                                 </div>
                                 <br />
-                                <h3 className="mb-4  text-3xl">
-                                    {`10分あたりの単価${tanka}円`}
-                                </h3>
+                                {tanka !== 0 &&
+
+                                    <h3 className="mb-4  text-3xl">
+                                        {`10分あたりの単価${tanka}円`}
+                                    </h3>
+                                }
+                                <br />
                                 <h3 className="mb-4 text-green-500 text-3xl">
                                     <button onClick={clickMenu888}>この内容で登録する</button>
                                 </h3>
