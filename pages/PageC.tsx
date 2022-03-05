@@ -85,7 +85,7 @@ const PageC = () => {
                         .map((data: any) => {
                             if (formatDate === data.gappi && data.uid === user.uid) {
                                 return (
-                                    <div key={data.tomareId}>
+                                    <div key={data.id}>
                                         <div>
                                             {data.menu}
                                         </div>
@@ -201,8 +201,8 @@ const PageC = () => {
     const img_make: any = { src: "https://firebasestorage.googleapis.com/v0/b/next-app-db888.appspot.com/o/P_make.png?alt=media&token=eeaf12cd-39be-4fda-8945-ec2bcb1b24dd", alt: "ケアメイク", style: { width: '60px', height: '45px' } }
     const img_nail: any = { src: "https://firebasestorage.googleapis.com/v0/b/next-app-db888.appspot.com/o/P_nail.png?alt=media&token=42117e21-66df-4049-a948-46840912645a", alt: "ケアネイル", style: { width: '60px', height: '45px' } }
     const img_este: any = { src: "https://firebasestorage.googleapis.com/v0/b/next-app-db888.appspot.com/o/P_este.png?alt=media&token=5fe75701-ec95-424a-8ba7-a547e313dd19", alt: "ケアエステ", style: { width: '60px', height: '45px' } }
-    const img_aroma: any = { src: "https://firebasestorage.googleapis.com/v0/b/next-app-db888.appspot.com/o/P_hand.png?alt=media&token=90d11a38-d8a0-4c4a-9f32-4251d548e4a1", alt: "ケアアロマ", style: { width: '60px', height: '45px' } }
-    // const img_hair: any = { src: "https://firebasestorage.googleapis.com/v0/b/next-app-db888.appspot.com/o/P_este.png?alt=media&token=5fe75701-ec95-424a-8ba7-a547e313dd19", alt: "ケアヘアー", style: { width: '60px', height: '45px' } }
+    const img_aroma: any = { src: "https://firebasestorage.googleapis.com/v0/b/next-app-db888.appspot.com/o/P_este.png?alt=media&token=5fe75701-ec95-424a-8ba7-a547e313dd190", alt: "ケアアロマ", style: { width: '60px', height: '45px' } }
+    const img_hair: any = { src: "https://firebasestorage.googleapis.com/v0/b/next-app-db888.appspot.com/o/P_este.png?alt=media&token=5fe75701-ec95-424a-8ba7-a547e313dd191", alt: "ケアヘアー", style: { width: '60px', height: '45px' } }
     const img_sonota: any = { src: "https://firebasestorage.googleapis.com/v0/b/next-app-db888.appspot.com/o/P_hoka.png?alt=media&token=0d98a224-f460-4527-8208-209f6a52a55c", alt: "その他", style: { width: '60px', height: '45px' } }
     const img_icon: any = { src: targetTomare.yoyakuIcon, alt: "icon", style: { width: '60px', height: '45px' } }
     const toHome = () => {
@@ -310,42 +310,41 @@ const PageC = () => {
                                 }
 
                                 return (
-                                    <div>
-                                        <div className={styles.card} key={targetTomare.tomareId}>
+                                    <div className={styles.card} key={targetTomare.tomareId}>
 
+                                        <br />
+                                        <h3 className="mb-4  text-3xl">
+                                            {targetTomare.gappi}：
+                                            {targetTomare.am_pm}
+                                        </h3>
+
+                                        <div className={styles.grid} >
+                                            {targetTomare.make === true && <p><img {...img_make} /></p>}
+                                            {targetTomare.nail === true && <p><img {...img_nail} /></p>}
+                                            {targetTomare.este === true && <p><img {...img_este} /></p>}
+                                            {targetTomare.aroma === true && <p><img {...img_aroma} /></p>}
+                                            {targetTomare.hair === true && <p><img {...img_hair} /></p>}                                            {`${targetTomare.sonota}`.length !== 0 &&
+                                                <img {...img_sonota} />
+                                            }
+                                            <br />
                                             <br />
                                             <h3 className="mb-4  text-3xl">
-                                                {targetTomare.gappi}：
-                                                {targetTomare.am_pm}
+                                                {`${targetTomare.tanka}円/10分`}
                                             </h3>
-
-                                            <div className={styles.grid} >
-                                                {targetTomare.make === true && <p><img {...img_make} /></p>}
-                                                {targetTomare.nail === true && <p><img {...img_nail} /></p>}
-                                                {targetTomare.este === true && <p><img {...img_este} /></p>}
-                                                {targetTomare.aroma === true && <p><img {...img_aroma} /></p>}
-                                                {/* {targetTomare.hair === true && <p><img {...img_hair} /></p>}                                            {`${targetTomare.sonota}`.length !== 0 && */}
-                                                <img {...img_sonota} />
-
-                                                <br />
-                                                <br />
-                                                <h3 className="mb-4  text-3xl">
-                                                    {`${targetTomare.tanka}円/10分`}
-                                                </h3>
-                                                <br />
-                                                <br />
-                                                {targetTomare.yoyakuIcon && <p>
-                                                    <button onClick={toChat}>
-                                                        <img
-                                                            src={`${targetTomare.yoyakuIcon}`}
-                                                            alt="icon"
-                                                            style={{ borderRadius: '50%', width: '60px', height: '60px' }}
-                                                        />{targetTomare.yoyakuName}
-                                                    </button>
-                                                </p>}
-                                                <br />
-                                            </div>
+                                            <br />
+                                            <br />
+                                            {targetTomare.yoyakuIcon && <p>
+                                                <button onClick={toChat}>
+                                                    <img
+                                                        src={`${targetTomare.yoyakuIcon}`}
+                                                        alt="icon"
+                                                        style={{ borderRadius: '50%', width: '60px', height: '60px' }}
+                                                    />{targetTomare.yoyakuName}
+                                                </button>
+                                            </p>}
+                                            <br />
                                         </div>
+                                        {/* </div> */}
 
 
                                         <div className={styles.grid}>
@@ -364,7 +363,6 @@ const PageC = () => {
                                             </h3>
                                         </div>
                                     </div>
-
                                 )
                             })
                     }
@@ -372,58 +370,54 @@ const PageC = () => {
                     <br />
                     {`${am_pm}`.length !== 0 &&
                         <div>
-
-                            <p >登録menuをクリック
-                                <div className={styles.grid}>
-                                    {make === false && <p><button onClick={clickMenu1}><img　{...img_make} />ケアメイク</button></p>}
-                                    {nail === false && <p><button onClick={clickMenu2}><img {...img_nail} />ケアネイル</button></p>}
-                                    {este === false && <p><button onClick={clickMenu3}><img {...img_este} />ケアエステ</button></p>}
-                                    {aroma === false && <p><button onClick={clickMenu5}><img {...img_aroma} />アロマタッチ</button></p>}
-                                    {/* {hair === false && <p><button onClick={clickMenu6}><img {...img_hair} />ケアヘアー</button></p>} */}
-                                    {`${sonota}`.length !== 0 &&
-                                        <button onClick={clickMenu4}>
-                                            <img {...img_sonota} />
-                                            その他
-                                        </button>
-                                    }
-                                </div>
-                            </p>
-
-                            <br />
-                            {tanka === 0 &&
-                                <h3 className="mb-4  text-3xl">
-                                    {`10分あたりの単価を設定してください`}
-                                </h3>
-                            }
-                            <div>
-                                <br />
-                                単価（10分あたりの金額）
-                                <br />
-                                <button className={styles.card} onClick={(e) => handleTanka500(500)}>500</button>
-                                <button className={styles.card} onClick={(e) => handleTanka1000(1000)}>1000</button>
-                                <button className={styles.card} onClick={(e) => handleTanka1500(1500)}>1500</button>
-                                <button className={styles.card} onClick={(e) => handleTanka2000(2000)}>2000</button>
-                                {/* <button className={styles.card} onClick={(e) => handleTanka(e)}><input type="number" /></button> */}
-                            </div>
                             {/* ***設定内容***** */}
                             <div className={styles.card}>
                                 <h3 className="mb-4  text-3xl">
                                     {formatDate}：{am_pm}
                                 </h3>
-
+                                <p >登録menuをクリック
+                                    <div className={styles.grid}>
+                                        {make === false && <p><button onClick={clickMenu1}><img　{...img_make} />ケアメイク</button></p>}
+                                        {nail === false && <p><button onClick={clickMenu2}><img {...img_nail} />ケアネイル</button></p>}
+                                        {este === false && <p><button onClick={clickMenu3}><img {...img_este} />ケアエステ</button></p>}
+                                        {aroma === false && <p><button onClick={clickMenu5}><img {...img_aroma} />アロマタッチ</button></p>}
+                                        {hair === false && <p><button onClick={clickMenu6}><img {...img_hair} />ケアヘアー</button></p>}
+                                        {`${sonota}`.length !== 0 &&
+                                            <button onClick={clickMenu4}>
+                                                <img {...img_sonota} />
+                                                その他
+                                            </button>
+                                        }
+                                    </div>
+                                </p>
 
                                 <div className={styles.grid} >
-                                    <br />
+                                    **********
                                     {make === true && <p><img {...img_make} /></p>}
                                     {nail === true && <p><img {...img_nail} /></p>}
                                     {este === true && <p><img {...img_este} /></p>}
                                     {aroma === true && <p><img {...img_aroma} /></p>}
-                                    {/* {hair === true && <p><img {...img_hair} /></p>} */}
+                                    {hair === true && <p><img {...img_hair} /></p>}
                                     {`${sonota}`.length !== 0 &&
                                         <img {...img_sonota} />
                                     }
                                     <br />
-
+                                    <br />
+                                    {tanka === 0 &&
+                                        <h3 className="mb-4  text-3xl">
+                                            {`10分あたりの単価を設定してください`}
+                                        </h3>
+                                    }
+                                    <div>
+                                        <br />
+                                        単価（10分あたりの金額）
+                                        <br />
+                                        <button className={styles.card} onClick={(e) => handleTanka500(500)}>500</button>
+                                        <button className={styles.card} onClick={(e) => handleTanka1000(1000)}>1000</button>
+                                        <button className={styles.card} onClick={(e) => handleTanka1500(1500)}>1500</button>
+                                        <button className={styles.card} onClick={(e) => handleTanka2000(2000)}>2000</button>
+                                        {/* <button className={styles.card} onClick={(e) => handleTanka(e)}><input type="number" /></button> */}
+                                    </div>
                                     {tanka !== 0 &&
                                         <h3 className="mb-4  text-3xl">
                                             {`10分の単価:${tanka}円`}
@@ -449,7 +443,7 @@ const PageC = () => {
 
                                 </div>
                             </p>
-                            ：：：：チャット：：：：：：：：：：：：
+                            ：：：：チャット：：：：：：：：：：：：：：：：：：
                             <div>
                                 {
                                     chat
