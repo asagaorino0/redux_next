@@ -375,7 +375,10 @@ const PageC = () => {
                                                 {`${targetTomare.sonota}`.length !== 0 &&
                                                     <img {...img_sonota} />
                                                 }
-
+                                                <br />
+                                                <h3 className="mb-4  text-3xl">
+                                                    {`10分あたりの単価:${tanka}円`}
+                                                </h3>
                                                 {targetTomare.yoyakuIcon && <p>
                                                     <button onClick={toChat}>
                                                         <img
