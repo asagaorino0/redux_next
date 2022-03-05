@@ -34,6 +34,7 @@ export type TomareState = {
     chipUrl: string
     succes_url: string
     loading: boolean
+    yoyakuName: string
     paymentIntent: [
         {
             amount: number
