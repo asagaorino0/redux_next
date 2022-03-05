@@ -230,7 +230,7 @@ const PageD1 = () => {
                                                             </h3>
                                                             <h3 className="mb-4 text-3xl">
                                                                 {tomare.gappi}/{tomare.am_pm}
-                                                                <br />{tomareId}
+                                                                <br />{tomare.tomareId}
                                                             </h3>
                                                             <h3 className="mb-4 text-green-500 text-3xl">
                                                                 メニューを選択してください
