@@ -22,7 +22,6 @@ import {
     addTargetTomare,
     selectTargetTomare,
 } from './features/targetTomareSlice';
-import { TargetTomareState } from '../src/types/targetTomare';
 import { selectTarget } from './features/targetSlice';
 
 const PageM1 = () => {
@@ -51,8 +50,8 @@ const PageM1 = () => {
         }
         return (
             <div>
-                {targetTomare.targetTomare &&
-                    targetTomare.targetTomare.map((data: any) => {
+                {targetTomare.tomare &&
+                    targetTomare.tomare.map((data: any) => {
                         if (formatDate === data.gappi) {
                             return (
                                 <div key={data.id}>
@@ -80,7 +79,7 @@ const PageM1 = () => {
         );
         const snapshot = await getDocs(q);
         const tomareData = snapshot.docs.map(
-            (docT: any) => ({ ...docT.data() } as TargetTomareState)
+            (docT: any) => ({ ...docT.data() } as TomareState)
         );
         dispatch(addTargetTomare(tomareData));
         // setTargetTomare(tomareData)
@@ -185,7 +184,7 @@ const PageM1 = () => {
                         return (
                             <div key={users.uid}>
                                 {target &&
-                                    targetTomare.targetTomare
+                                    targetTomare.tomare
                                         .filter((tomare: TomareState) => tomare.uid === users.uid && tomare.menu !== "")
                                         .map((tomare: TomareState) => {
                                             if (`${users.uid}` === `${tomare.uid}`) {

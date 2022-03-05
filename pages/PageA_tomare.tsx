@@ -9,7 +9,6 @@ import { db } from "../src/firebase";
 import { getDocs, collection, collectionGroup, query, where, doc, setDoc, serverTimestamp, deleteDoc, onSnapshot } from 'firebase/firestore'
 import { TomareState } from "../src/types/tomare";
 import { UserState } from "../src/types/user";
-import { TargetTomareState } from "../src/types/targetTomare";
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import styles from '../styles/Home.module.css'
@@ -313,7 +312,7 @@ const PageA_profile = () => {
 
                         {targetTomare
                             .map(
-                                (targetTomare: TargetTomareState) => {
+                                (targetTomare: TomareState) => {
                                     const toChat = () => {
                                         dispatch(addTargetChat({
                                             yoyakuId: `${targetTomare.yoyakuId}`,

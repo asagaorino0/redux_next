@@ -18,7 +18,6 @@ import { computeSegDraggable } from '@fullcalendar/common';
 import { truncate } from 'fs';
 import { Provider } from 'react-redux';
 import { store } from '../src/app/store';
-import { TargetTomareState } from "../src/types/targetTomare";
 import Calendar from 'react-calendar';
 import { addTargetChat, selectTargetChat } from '../src/features/targetChatSlice';
 import { addMenu } from '../src/features/menuSlice';

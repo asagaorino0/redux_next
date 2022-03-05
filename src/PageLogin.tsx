@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { db } from "./firebase";
 import { getDocs, collection, collectionGroup, query, where, doc, setDoc, serverTimestamp, deleteDoc, onSnapshot } from 'firebase/firestore'
 import { TomareState } from "./types/tomare";
-// import { TargetTomareState } from "./types/targetTomare";
 // import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import styles from '../styles/Home.module.css'

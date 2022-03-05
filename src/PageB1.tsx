@@ -165,10 +165,6 @@ const PageB1 = () => {
             </h3>
             <div >
                 {
-                    // targetTomare.targetTomare
-                    //     .map((data: TargetTomareState) => {
-                    //         return (
-
                     users
                         // .filter(() => users.uid === data.uid)
                         .map((users: UsersState) => {

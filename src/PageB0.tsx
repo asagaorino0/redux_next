@@ -9,7 +9,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { db } from "./firebase";
 import { getFirestore, getDocs, collection, collectionGroup, query, where, onSnapshot, doc, setDoc, Timestamp, serverTimestamp, deleteDoc } from 'firebase/firestore'
 import { TomareState } from "./types/tomare";
-import { TargetTomareState } from "./types/targetTomare";
 import { TargetState } from "./types/target";
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
@@ -142,7 +141,7 @@ const PageB0 = () => {
         const q = query(collectionGroup(db, 'tomare'), where("gappi", "==", formatDate));
         const snapshot = await getDocs(q)
         const tomareData = snapshot.docs.map(
-            (docT: any) => ({ ...docT.data() } as TargetTomareState))
+            (docT: any) => ({ ...docT.data() } as TomareState))
         dispatch(addTargetTomare(tomareData))
         setTargetTomare(tomareData)
         toPageD();
@@ -166,7 +165,7 @@ const PageB0 = () => {
         const q = query(collectionGroup(db, 'tomare'), where("make", "==", true));
         const snapshot = await getDocs(q)
         const tomareData = snapshot.docs.map(
-            (docT: any) => ({ ...docT.data() } as TargetTomareState))
+            (docT: any) => ({ ...docT.data() } as TomareState))
         dispatch(addTargetTomare(tomareData))
         setTargetTomare(tomareData)
         toPageM()
@@ -175,7 +174,7 @@ const PageB0 = () => {
         const q = query(collectionGroup(db, 'tomare'), where("nail", "==", true));
         const snapshot = await getDocs(q)
         const tomareData = snapshot.docs.map(
-            (docT: any) => ({ ...docT.data() } as TargetTomareState))
+            (docT: any) => ({ ...docT.data() } as TomareState))
         dispatch(addTargetTomare(tomareData))
         setTargetTomare(tomareData)
         toPageM()
@@ -184,7 +183,7 @@ const PageB0 = () => {
         const q = query(collectionGroup(db, 'tomare'), where("este", "==", true));
         const snapshot = await getDocs(q)
         const tomareData = snapshot.docs.map(
-            (docT: any) => ({ ...docT.data() } as TargetTomareState))
+            (docT: any) => ({ ...docT.data() } as TomareState))
         dispatch(addTargetTomare(tomareData))
         setTargetTomare(tomareData)
         toPageM()
@@ -193,7 +192,7 @@ const PageB0 = () => {
         const q = query(collectionGroup(db, 'tomare'), where("その他", "!=", ""));
         const snapshot = await getDocs(q)
         const tomareData = snapshot.docs.map(
-            (docT: any) => ({ ...docT.data() } as TargetTomareState))
+            (docT: any) => ({ ...docT.data() } as TomareState))
         dispatch(addTargetTomare(tomareData))
         setTargetTomare(tomareData)
         toPageM()

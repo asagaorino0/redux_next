@@ -19,7 +19,6 @@ import 'react-calendar/dist/Calendar.css';
 import styles from '../styles/Home.module.css'
 import { addFormatdate, selectFormatdate } from './features/formatDateSlice';
 import { addTargetTomare, selectTargetTomare } from './features/targetTomareSlice';
-import { TargetTomareState } from "./types/targetTomare";
 
 
 const PageB3 = () => {
