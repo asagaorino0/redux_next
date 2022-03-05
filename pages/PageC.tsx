@@ -28,7 +28,7 @@ const PageC = () => {
     const [gappi, setGappi] = useState<string>('');
     const [am_pm, setAm_pm] = useState<string>('');
     const [yoyakuId, setYoyakuId] = useState<string>('');
-    const [yoyakuIcon, setYoyakuIcon] = useState<string>('');
+    const [tanka, setTanka] = useState<number>(0);
     const [tomareId, setTomareId] = useState<string>('');
     const dispatch = useDispatch();
     const user = useSelector(selectUser);
@@ -199,18 +199,23 @@ const PageC = () => {
         router.push('./')
     }
     const handleTanka500 = (e: number) => {
+        setTanka(e)
         setDoc(doc(db, 'users', `${tomare.uid}`, 'tomare', `${tomare.tomareId}`), { tanka: e, tankaUrl: "price_1KT7IZIeKRfM8LCe7573kMRN" }, { merge: true })
     };
     const handleTanka1000 = (e: number) => {
+        setTanka(e)
         setDoc(doc(db, 'users', `${tomare.uid}`, 'tomare', `${tomare.tomareId}`), { tanka: e, tankaUrl: "price_1KT7IZIeKRfM8LCe7573kMRN" }, { merge: true })
     };
     const handleTanka1500 = (e: number) => {
+        setTanka(e)
         setDoc(doc(db, 'users', `${tomare.uid}`, 'tomare', `${tomare.tomareId}`), { tanka: e, tankaUrl: "price_1KT7IZIeKRfM8LCe7573kMRN" }, { merge: true })
     };
     const handleTanka2000 = (e: number) => {
+        setTanka(e)
         setDoc(doc(db, 'users', `${tomare.uid}`, 'tomare', `${tomare.tomareId}`), { tanka: e, tankaUrl: "price_1KT7IZIeKRfM8LCe7573kMRN" }, { merge: true })
     };
     const handleTanka = (e: number) => {
+        setTanka(e)
         setDoc(doc(db, 'users', `${tomare.uid}`, 'tomare', `${tomare.tomareId}`), { tanka: e, tankaUrl: "", yoyakuId: `${yoyakuId}shr_1KZCWKIeKRfM8LCe8dm0ktYU` }, { merge: true })
     };
     return (
@@ -396,6 +401,9 @@ const PageC = () => {
                                     {sonota !== "" && <p><img {...img_sonota} /></p>}
                                 </div>
                                 <br />
+                                <h3 className="mb-4  text-3xl">
+                                    {`10分あたりの単価${tanka}円`}
+                                </h3>
                                 <h3 className="mb-4 text-green-500 text-3xl">
                                     <button onClick={clickMenu888}>この内容で登録する</button>
                                 </h3>
