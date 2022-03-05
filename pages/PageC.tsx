@@ -285,7 +285,7 @@ const PageC = () => {
             <br />
             {`${formatDate}`.length !== 0 &&
                 <div>
-                    {targetTomare && "***登録済の内容***"}
+                    {/* {targetTomare && "***登録済の内容***"} */}
                     {targetTomare
                         .map(
                             (targetTomare: TomareState) => {
@@ -356,8 +356,11 @@ const PageC = () => {
                         <br />
                         <h3 className="mb-4 text-green-500 text-3xl">
                             <div className={styles.grid}>
-                                <button className={styles.card} onClick={clickMenuAm}>午前</button>
-                                <button className={styles.card} onClick={clickMenuPm}>午後</button>
+                                {targetTomare.am_pm === "AM" && <p><button className={styles.card} onClick={clickMenuAm}>午前修正</button></p>}
+                                {targetTomare.am_pm !== "AM" && <p><button className={styles.card} onClick={clickMenuAm}>午前</button></p>}
+                                {targetTomare.am_pm === "PM" && <p><button className={styles.card} onClick={clickMenuPm}>午後修正</button></p>}
+                                {targetTomare.am_pm !== "PM" && <p><button className={styles.card} onClick={clickMenuPm}>午後</button></p>}
+                                {/* <button className={styles.card} onClick={clickMenuPm}>午後</button> */}
                             </div>
                         </h3>
                     </div>
