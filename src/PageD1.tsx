@@ -76,6 +76,7 @@ const PageD1 = () => {
         fetchUsers()
         fetchTomare()
         fetchChat(yoyakuId)
+        console.log(targetTomare)
     }, []);
     const fetchChat = async (yoyakuId: string) => {
         console.log('targetChat:', targetTomare);
