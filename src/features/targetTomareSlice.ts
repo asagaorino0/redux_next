@@ -10,6 +10,8 @@ const initialState: TomareState = {
     make: false,
     nail: false,
     este: false,
+    aroma: false,
+    hair: false,
     sonota: '',
     img_befor: '',
     img_after: '',
@@ -33,6 +35,8 @@ export const targetTomareSlice = createSlice({
             state.img_befor = action.payload.img_befor
             state.img_after = action.payload.img_after
             state.tanka = action.payload.tanka
+            state.aroma = action.payload.aroma
+            state.hair = action.payload.hair
         }
     },
 });

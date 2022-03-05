@@ -23,6 +23,8 @@ const PageC = () => {
     const [make, setMake] = useState<boolean>(false);
     const [nail, setNail] = useState<boolean>(false);
     const [este, setEste] = useState<boolean>(false);
+    const [aroma, setAroma] = useState<boolean>(false);
+    const [hair, setHair] = useState<boolean>(false);
     const [sonota, setSonota] = useState<string>("");
     const [gappi, setGappi] = useState<string>('');
     const [am_pm, setAm_pm] = useState<string>('');
@@ -197,6 +199,8 @@ const PageC = () => {
     const img_make: any = { src: "https://firebasestorage.googleapis.com/v0/b/next-app-db888.appspot.com/o/P_make.png?alt=media&token=eeaf12cd-39be-4fda-8945-ec2bcb1b24dd", alt: "ケアメイク", style: { width: '60px', height: '45px' } }
     const img_nail: any = { src: "https://firebasestorage.googleapis.com/v0/b/next-app-db888.appspot.com/o/P_nail.png?alt=media&token=42117e21-66df-4049-a948-46840912645a", alt: "ケアネイル", style: { width: '60px', height: '45px' } }
     const img_este: any = { src: "https://firebasestorage.googleapis.com/v0/b/next-app-db888.appspot.com/o/P_este.png?alt=media&token=5fe75701-ec95-424a-8ba7-a547e313dd19", alt: "ケアエステ", style: { width: '60px', height: '45px' } }
+    const img_aroma: any = { src: "https://firebasestorage.googleapis.com/v0/b/next-app-db888.appspot.com/o/P_este.png?alt=media&token=5fe75701-ec95-424a-8ba7-a547e313dd190", alt: "ケアアロマ", style: { width: '60px', height: '45px' } }
+    const img_hair: any = { src: "https://firebasestorage.googleapis.com/v0/b/next-app-db888.appspot.com/o/P_este.png?alt=media&token=5fe75701-ec95-424a-8ba7-a547e313dd191", alt: "ケアヘアー", style: { width: '60px', height: '45px' } }
     const img_sonota: any = { src: "https://firebasestorage.googleapis.com/v0/b/next-app-db888.appspot.com/o/P_hoka.png?alt=media&token=0d98a224-f460-4527-8208-209f6a52a55c", alt: "その他", style: { width: '60px', height: '45px' } }
     const img_icon: any = { src: targetTomare.yoyakuIcon, alt: "icon", style: { width: '60px', height: '45px' } }
     const toHome = () => {
@@ -279,7 +283,7 @@ const PageC = () => {
             <br />
             {`${formatDate}`.length !== 0 &&
                 <div>
-
+                    {targetTomare && "***登録済の内容***"}
                     {targetTomare
                         .map(
                             (targetTomare: TomareState) => {
@@ -293,14 +297,10 @@ const PageC = () => {
                                     fetchChat(`${targetTomare.yoyakuId}`)
                                     // setYoyakuIcon(`${tomare.yoyakuIcon}`)
                                     const fetchTargetTomare = async () => {
-                                        // const q = query(collection(db, "users", user.uid, 'tomare'), where("tomareId", "==", `${targetTomare.tomareId}`));
                                         const q = query(collectionGroup(db, 'tomare'), where("tomareId", "==", `${targetTomare.tomareId}`));
                                         const snapshot = onSnapshot(q, (querySnapshot) => {
                                             const tomareData = querySnapshot.docs.map(
                                                 (doc) => ({ ...doc.data() } as TomareState))
-                                            // const snapshot = await getDocs(q)
-                                            // const tomareData = snapshot.docs.map(
-                                            //     (docT: any) => ({ ...docT.data() } as TomareState))
                                             dispatch(addTargetTomare(tomareData))
                                             setTargetTomare(tomareData)
                                         })
@@ -309,7 +309,7 @@ const PageC = () => {
 
                                 return (
                                     <div className={styles.card} key={targetTomare.tomareId}>
-                                        ***登録済の内容***
+
                                         <br />
                                         <h3 className="mb-4  text-3xl">
                                             {targetTomare.gappi}：
@@ -320,15 +320,14 @@ const PageC = () => {
                                             {targetTomare.make === true && <p><img {...img_make} /></p>}
                                             {targetTomare.nail === true && <p><img {...img_nail} /></p>}
                                             {targetTomare.este === true && <p><img {...img_este} /></p>}
-                                            {/* {targetTomare.aroma === true && <p><img {...img_aroma} /></p>} */}
-                                            {`${targetTomare.sonota}`.length !== 0 &&
+                                            {targetTomare.aroma === true && <p><img {...img_aroma} /></p>}
+                                            {targetTomare.hair === true && <p><img {...img_hair} /></p>}                                            {`${targetTomare.sonota}`.length !== 0 &&
                                                 <img {...img_sonota} />
                                             }
                                             <br />
                                             <br />
-                                            10分あたり:
                                             <h3 className="mb-4  text-3xl">
-                                                {`${targetTomare.tanka}円`}
+                                                {`${targetTomare.tanka}円/10分`}
                                             </h3>
                                             <br />
                                             <br />
@@ -355,13 +354,8 @@ const PageC = () => {
                         <br />
                         <h3 className="mb-4 text-green-500 text-3xl">
                             <div className={styles.grid}>
-                                {/* <h3 className="mb-4 text-green-500 text-3xl"> */}
                                 <button className={styles.card} onClick={clickMenuAm}>午前</button>
-                                {/* </h3> */}
-
-                                {/* <h3 className="mb-4 text-green-500 text-3xl"> */}
                                 <button className={styles.card} onClick={clickMenuPm}>午後</button>
-
                             </div>
                         </h3>
                     </div>
@@ -379,7 +373,8 @@ const PageC = () => {
                                     {make === true && <p><img {...img_make} /></p>}
                                     {nail === true && <p><img {...img_nail} /></p>}
                                     {este === true && <p><img {...img_este} /></p>}
-                                    {/* {aroma === true && <p><img {...img_aroma} /></p>} */}
+                                    {aroma === true && <p><img {...img_aroma} /></p>}
+                                    {hair === true && <p><img {...img_hair} /></p>}
                                     {`${sonota}`.length !== 0 &&
                                         <img {...img_sonota} />
                                     }
@@ -394,7 +389,8 @@ const PageC = () => {
                                         {make === true && <p><img {...img_make} /></p>}
                                         {nail === true && <p><img {...img_nail} /></p>}
                                         {este === true && <p><img {...img_este} /></p>}
-                                        {/* {aroma === true && <p><img {...img_aroma} /></p>} */}
+                                        {aroma === true && <p><img {...img_aroma} /></p>}
+                                        {hair === true && <p><img {...img_hair} /></p>}
                                         {sonota !== "" && <p><img {...img_sonota} /></p>}
                                     </div>
                                     <br />

@@ -8,6 +8,8 @@ export type TomareState = {
     make: boolean
     nail: boolean
     este: boolean
+    aroma: boolean
+    hair: boolean
     sonota: string
     yoyakuId: string
     message: string

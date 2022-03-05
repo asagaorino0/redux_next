@@ -12,6 +12,8 @@ const initialState: TomareState = {
   make: false,
   nail: false,
   este: false,
+  aroma: false,
+  hair: false,
   sonota: '',
   yoyakuId: '',
   img_befor: '',
@@ -21,6 +23,7 @@ const initialState: TomareState = {
   star: 0,
   chip: 0,
   checked: false,
+  tanka: 0,
 } as TomareState;
 
 export const tomareSlice = createSlice({
@@ -46,6 +49,9 @@ export const tomareSlice = createSlice({
       state.star = action.payload.star
       state.chip = action.payload.chip
       state.checked = action.payload.checked
+      state.tanka = action.payload.tanka
+      state.aroma = action.payload.aroma
+      state.hair = action.payload.hair
     }
   },
 });
