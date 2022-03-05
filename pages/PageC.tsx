@@ -85,7 +85,7 @@ const PageC = () => {
                         .map((data: any) => {
                             if (formatDate === data.gappi && data.uid === user.uid) {
                                 return (
-                                    <div key={data.id}>
+                                    <div key={data.tomareId}>
                                         <div>
                                             {data.menu}
                                         </div>
