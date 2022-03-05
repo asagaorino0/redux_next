@@ -390,7 +390,7 @@ const PageC = () => {
                                                             src={`${targetTomare.yoyakuIcon}`}
                                                             alt="icon"
                                                             style={{ borderRadius: '50%', width: '60px', height: '60px' }}
-                                                        />
+                                                        />{targetTomare.yoyakuName}
                                                     </button>
                                                 </p>}
                                                 <br />
