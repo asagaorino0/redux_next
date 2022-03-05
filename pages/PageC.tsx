@@ -310,60 +310,64 @@ const PageC = () => {
                                 }
 
                                 return (
-                                    <div>
-                                        <div className={styles.card} key={targetTomare.tomareId}>
+                                    <div className={styles.card} key={targetTomare.tomareId}>
 
+                                        <br />
+                                        <h3 className="mb-4  text-3xl">
+                                            {targetTomare.gappi}：
+                                            {targetTomare.am_pm}
+                                        </h3>
+
+                                        <div className={styles.grid} >
+                                            {targetTomare.make === true && <p><img {...img_make} /></p>}
+                                            {targetTomare.nail === true && <p><img {...img_nail} /></p>}
+                                            {targetTomare.este === true && <p><img {...img_este} /></p>}
+                                            {targetTomare.aroma === true && <p><img {...img_aroma} /></p>}
+                                            {targetTomare.hair === true && <p><img {...img_hair} /></p>}                                            {`${targetTomare.sonota}`.length !== 0 &&
+                                                <img {...img_sonota} />
+                                            }
+                                            <br />
                                             <br />
                                             <h3 className="mb-4  text-3xl">
-                                                {targetTomare.gappi}：
-                                                {targetTomare.am_pm}
-                                            </h3>
-
-                                            <div className={styles.grid} >
-                                                {targetTomare.make === true && <p><img {...img_make} /></p>}
-                                                {targetTomare.nail === true && <p><img {...img_nail} /></p>}
-                                                {targetTomare.este === true && <p><img {...img_este} /></p>}
-                                                {targetTomare.aroma === true && <p><img {...img_aroma} /></p>}
-                                                {targetTomare.hair === true && <p><img {...img_hair} /></p>}                                            {`${targetTomare.sonota}`.length !== 0 &&
-                                                    <img {...img_sonota} />
-                                                }
-                                                <br />
-                                                <br />
-                                                <h3 className="mb-4  text-3xl">
-                                                    {`${targetTomare.tanka}円/10分`}
-                                                </h3>
-                                                <br />
-                                                <br />
-                                                {targetTomare.yoyakuIcon && <p>
-                                                    <button onClick={toChat}>
-                                                        <img
-                                                            src={`${targetTomare.yoyakuIcon}`}
-                                                            alt="icon"
-                                                            style={{ borderRadius: '50%', width: '60px', height: '60px' }}
-                                                        />{targetTomare.yoyakuName}
-                                                    </button>
-                                                </p>}
-                                                <br />
-                                            </div>
-                                        </div>
-
-
-                                        <div className={styles.grid}>
-                                            <h3 className="mb-4  text-3xl">
-                                                {formatDate}
+                                                {`${targetTomare.tanka}円/10分`}
                                             </h3>
                                             <br />
-                                            <h3 className="mb-4 text-green-500 text-3xl">
-                                                <div className={styles.grid}>
-                                                    {targetTomare.am_pm === "AM" && <p><button className={styles.card} onClick={clickMenuAm}>午前修正</button></p>}
-                                                    {targetTomare.am_pm !== "AM" && <p><button className={styles.card} onClick={clickMenuAm}>午前</button></p>}
-                                                    {targetTomare.am_pm === "PM" && <p><button className={styles.card} onClick={clickMenuPm}>午後修正</button></p>}
-                                                    {targetTomare.am_pm !== "PM" && <p><button className={styles.card} onClick={clickMenuPm}>午後</button></p>}
-                                                    {/* <button className={styles.card} onClick={clickMenuPm}>午後</button> */}
-                                                </div>
-                                            </h3>
+                                            <br />
+                                            {targetTomare.yoyakuIcon && <p>
+                                                <button onClick={toChat}>
+                                                    <img
+                                                        src={`${targetTomare.yoyakuIcon}`}
+                                                        alt="icon"
+                                                        style={{ borderRadius: '50%', width: '60px', height: '60px' }}
+                                                    />{targetTomare.yoyakuName}
+                                                </button>
+                                            </p>}
+                                            <br />
                                         </div>
                                     </div>
+                                )
+                            })
+                    }
+                    {targetTomare
+                        .map(
+                            (targetTomare: TomareState) => {
+                                return (
+                                    <div className={styles.grid}>
+                                        <h3 className="mb-4  text-3xl">
+                                            {formatDate}
+                                        </h3>
+                                        <br />
+                                        <h3 className="mb-4 text-green-500 text-3xl">
+                                            <div className={styles.grid}>
+                                                {targetTomare.am_pm === "AM" && <p><button className={styles.card} onClick={clickMenuAm}>午前修正</button></p>}
+                                                {targetTomare.am_pm !== "AM" && <p><button className={styles.card} onClick={clickMenuAm}>午前</button></p>}
+                                                {targetTomare.am_pm === "PM" && <p><button className={styles.card} onClick={clickMenuPm}>午後修正</button></p>}
+                                                {targetTomare.am_pm !== "PM" && <p><button className={styles.card} onClick={clickMenuPm}>午後</button></p>}
+                                                {/* <button className={styles.card} onClick={clickMenuPm}>午後</button> */}
+                                            </div>
+                                        </h3>
+                                    </div>
+
                                 )
                             })
                     }
