@@ -344,37 +344,38 @@ const PageC = () => {
                                             </p>}
                                             <br />
                                         </div>
+                                        {/* </div> */}
+
+
+                                        <div className={styles.grid}>
+                                            <h3 className="mb-4  text-3xl">
+                                                {formatDate}
+                                            </h3>
+                                            <br />
+                                            <h3 className="mb-4 text-green-500 text-3xl">
+                                                <div className={styles.grid}>
+                                                    {targetTomare.am_pm === "AM" && <p><button className={styles.card} onClick={clickMenuAm}>午前修正</button></p>}
+                                                    {targetTomare.am_pm !== "AM" && <p><button className={styles.card} onClick={clickMenuAm}>午前</button></p>}
+                                                    {targetTomare.am_pm === "PM" && <p><button className={styles.card} onClick={clickMenuPm}>午後修正</button></p>}
+                                                    {targetTomare.am_pm !== "PM" && <p><button className={styles.card} onClick={clickMenuPm}>午後</button></p>}
+                                                    {/* <button className={styles.card} onClick={clickMenuPm}>午後</button> */}
+                                                </div>
+                                            </h3>
+                                        </div>
                                     </div>
                                 )
                             })
                     }
 
-                    <div className={styles.grid}>
-                        <h3 className="mb-4  text-3xl">
-                            {formatDate}
-                        </h3>
-                        <br />
-                        <h3 className="mb-4 text-green-500 text-3xl">
-                            <div className={styles.grid}>
-                                {targetTomare.am_pm === "AM" && <p><button className={styles.card} onClick={clickMenuAm}>午前修正</button></p>}
-                                {targetTomare.am_pm !== "AM" && <p><button className={styles.card} onClick={clickMenuAm}>午前</button></p>}
-                                {targetTomare.am_pm === "PM" && <p><button className={styles.card} onClick={clickMenuPm}>午後修正</button></p>}
-                                {targetTomare.am_pm !== "PM" && <p><button className={styles.card} onClick={clickMenuPm}>午後</button></p>}
-                                {/* <button className={styles.card} onClick={clickMenuPm}>午後</button> */}
-                            </div>
-                        </h3>
-                    </div>
-
-
                     <br />
                     {`${am_pm}`.length !== 0 &&
                         <div>
-                            ***設定内容*****
+                            {/* ***設定内容***** */}
                             <div className={styles.card}>
                                 <h3 className="mb-4  text-3xl">
                                     {formatDate}：{am_pm}
                                 </h3>
-                                <p >menuをクリック
+                                <p >登録menuをクリック
                                     <div className={styles.grid}>
                                         {make === false && <p><button onClick={clickMenu1}><img　{...img_make} />ケアメイク</button></p>}
                                         {nail === false && <p><button onClick={clickMenu2}><img {...img_nail} />ケアネイル</button></p>}
@@ -387,12 +388,11 @@ const PageC = () => {
                                                 その他
                                             </button>
                                         }
-
-
                                     </div>
                                 </p>
 
                                 <div className={styles.grid} >
+                                    **********
                                     {make === true && <p><img {...img_make} /></p>}
                                     {nail === true && <p><img {...img_nail} /></p>}
                                     {este === true && <p><img {...img_este} /></p>}
@@ -420,13 +420,13 @@ const PageC = () => {
                                     </div>
                                     {tanka !== 0 &&
                                         <h3 className="mb-4  text-3xl">
-                                            {`10分あたりの単価:${tanka}円`}
+                                            {`10分の単価:${tanka}円`}
                                         </h3>
                                     }
                                     <br />
                                     {tanka !== 0 &&
                                         <h3 className="mb-4 text-green-500 text-3xl">
-                                            <button onClick={clickMenu888}>この内容で登録する</button>
+                                            <button onClick={clickMenu888}>登録する</button>
                                         </h3>
                                     }
                                 </div>
