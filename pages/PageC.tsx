@@ -62,6 +62,11 @@ const PageC = () => {
         fetchChat(yoyakuId)
     }, []);
 
+    useEffect(() => {
+        fetchTargetTomare()
+    }, []);
+
+
     const getTileContent = (props: any) => {
         let year = props.date.getFullYear();
         let month = props.date.getMonth() + 1;
@@ -355,9 +360,6 @@ const PageC = () => {
                                                 setTargetTomare(tomareData)
                                             })
                                         }
-                                        useEffect(() => {
-                                            fetchTargetTomare()
-                                        }, []);
                                     }
 
                                     return (
