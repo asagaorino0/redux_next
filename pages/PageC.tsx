@@ -286,16 +286,17 @@ const PageC = () => {
                 <div>
                     <div className={styles.grid}>
                         <h3 className="mb-4  text-3xl">
-                            {formatDate}＿
+                            {formatDate}
                         </h3>
+                        <br />
                         <h3 className="mb-4 text-green-500 text-3xl">
                             <div className={styles.grid}>
                                 {/* <h3 className="mb-4 text-green-500 text-3xl"> */}
-                                <button onClick={clickMenuAm}>午前  </button>
+                                <button className={styles.card} onClick={clickMenuAm}>午前</button>
                                 {/* </h3> */}
-                                ／
+
                                 {/* <h3 className="mb-4 text-green-500 text-3xl"> */}
-                                <button onClick={clickMenuPm}>   午後</button>
+                                <button className={styles.card} onClick={clickMenuPm}>午後</button>
 
                             </div>
                         </h3>
