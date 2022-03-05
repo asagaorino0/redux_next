@@ -143,6 +143,8 @@ const PageC = () => {
     const clickMenu1 = () => { setMake(true); fetchTargetTomare() }
     const clickMenu2 = () => { setNail(true); fetchTargetTomare() }
     const clickMenu3 = () => { setEste(true); fetchTargetTomare() }
+    const clickMenu5 = () => { setAroma(true); fetchTargetTomare() }
+    const clickMenu6 = () => { setHair(true); fetchTargetTomare() }
     const clickMenu4 = () => {
         setSonota("その他")
         fetchTomare()
@@ -364,11 +366,29 @@ const PageC = () => {
                     <br />
                     {`${am_pm}`.length !== 0 &&
                         <div>
-                            ***設定した内容*****
+                            ***設定内容*****
                             <div className={styles.card}>
                                 <h3 className="mb-4  text-3xl">
                                     {formatDate}：{am_pm}
                                 </h3>
+                                <p >menuをクリック
+                                    <div className={styles.grid}>
+                                        {make === false && <p><button onClick={clickMenu1}><img　{...img_make} />ケアメイク</button></p>}
+                                        {nail === false && <p><button onClick={clickMenu2}><img {...img_nail} />ケアネイル</button></p>}
+                                        {este === false && <p><button onClick={clickMenu3}><img {...img_este} />ケアエステ</button></p>}
+                                        {aroma === false && <p><button onClick={clickMenu5}><img {...img_aroma} />アロマタッチ</button></p>}
+                                        {hair === false && <p><button onClick={clickMenu6}><img {...img_hair} />ケアヘアー</button></p>}
+                                        {`${sonota}`.length !== 0 &&
+                                            <button onClick={clickMenu4}>
+                                                <img {...img_sonota} />
+                                                その他
+                                            </button>
+                                        }
+
+
+                                    </div>
+                                </p>
+
                                 <div className={styles.grid} >
                                     {make === true && <p><img {...img_make} /></p>}
                                     {nail === true && <p><img {...img_nail} /></p>}
@@ -380,25 +400,21 @@ const PageC = () => {
                                     }
                                     <br />
                                     <br />
-                                    <h3 className="mb-4  text-3xl">
-                                        {`${targetTomare.tanka}円/10分`}
-                                    </h3>
-                                    <br />
-                                    <br />
-                                    <div className={styles.grid}>
-                                        {make === true && <p><img {...img_make} /></p>}
-                                        {nail === true && <p><img {...img_nail} /></p>}
-                                        {este === true && <p><img {...img_este} /></p>}
-                                        {aroma === true && <p><img {...img_aroma} /></p>}
-                                        {hair === true && <p><img {...img_hair} /></p>}
-                                        {sonota !== "" && <p><img {...img_sonota} /></p>}
-                                    </div>
-                                    <br />
                                     {tanka === 0 &&
                                         <h3 className="mb-4  text-3xl">
                                             {`10分あたりの単価を設定してください`}
                                         </h3>
                                     }
+                                    <div>
+                                        <br />
+                                        単価（10分あたりの金額）
+                                        <br />
+                                        <button className={styles.card} onClick={(e) => handleTanka500(500)}>500</button>
+                                        <button className={styles.card} onClick={(e) => handleTanka1000(1000)}>1000</button>
+                                        <button className={styles.card} onClick={(e) => handleTanka1500(1500)}>1500</button>
+                                        <button className={styles.card} onClick={(e) => handleTanka2000(2000)}>2000</button>
+                                        {/* <button className={styles.card} onClick={(e) => handleTanka(e)}><input type="number" /></button> */}
+                                    </div>
                                     {tanka !== 0 &&
                                         <h3 className="mb-4  text-3xl">
                                             {`10分あたりの単価:${tanka}円`}
@@ -412,45 +428,6 @@ const PageC = () => {
                                     }
                                 </div>
                             </div>
-
-
-
-
-
-
-                            {/* // {`${targetTomare.am_pm}`.length !== 0 && */}
-                            <p >menuをクリック
-                                <div className={styles.grid}>
-                                    <div >
-                                        <button onClick={clickMenu1}><img　{...img_make} />ケアメイク</button>
-                                    </div>
-                                    <div>
-                                        <button onClick={clickMenu2}><img {...img_nail} />ケアネイル</button>
-                                    </div>
-                                    <div>
-                                        <button onClick={clickMenu3}><img {...img_este} />ケアエステ</button>
-                                    </div>
-                                    <div>
-                                        <button onClick={clickMenu4}>
-                                            <img {...img_sonota} />
-                                            その他
-                                        </button>
-                                    </div>
-                                    <br />
-                                </div>
-                            </p>
-                            {/* {`${tomare.tanka}`.toString() === 'undefined' && */}
-                            <div>
-                                <br />
-                                単価（10分あたりの金額）
-                                <br />
-                                <button className={styles.card} onClick={(e) => handleTanka500(500)}>500</button>
-                                <button className={styles.card} onClick={(e) => handleTanka1000(1000)}>1000</button>
-                                <button className={styles.card} onClick={(e) => handleTanka1500(1500)}>1500</button>
-                                <button className={styles.card} onClick={(e) => handleTanka2000(2000)}>2000</button>
-                                {/* <button className={styles.card} onClick={(e) => handleTanka(e)}><input type="number" /></button> */}
-                            </div>
-                            {/* } */}
                             <p>
                                 <br />
                                 <div>
