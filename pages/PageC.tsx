@@ -320,6 +320,7 @@ const PageC = () => {
                                             {targetTomare.make === true && <p><img {...img_make} /></p>}
                                             {targetTomare.nail === true && <p><img {...img_nail} /></p>}
                                             {targetTomare.este === true && <p><img {...img_este} /></p>}
+                                            {/* {targetTomare.aroma === true && <p><img {...img_aroma} /></p>} */}
                                             {`${targetTomare.sonota}`.length !== 0 &&
                                                 <img {...img_sonota} />
                                             }
@@ -372,100 +373,121 @@ const PageC = () => {
                             ***設定した内容*****
                             <div className={styles.card}>
                                 <h3 className="mb-4  text-3xl">
-                                    {formatDate}{am_pm}
+                                    {formatDate}：{am_pm}
                                 </h3>
-                                <div className={styles.grid}>
+                                <div className={styles.grid} >
                                     {make === true && <p><img {...img_make} /></p>}
                                     {nail === true && <p><img {...img_nail} /></p>}
                                     {este === true && <p><img {...img_este} /></p>}
-                                    {sonota !== "" && <p><img {...img_sonota} /></p>}
-                                </div>
-                                <br />
-                                {tanka === 0 &&
-                                    <h3 className="mb-4  text-3xl">
-                                        {`10分あたりの単価を設定してください`}
-                                    </h3>
-                                }
-                                {tanka !== 0 &&
-                                    <h3 className="mb-4  text-3xl">
-                                        {`10分あたりの単価:${tanka}円`}
-                                    </h3>
-                                }
-                                <br />
-                                {tanka !== 0 &&
-                                    <h3 className="mb-4 text-green-500 text-3xl">
-                                        <button onClick={clickMenu888}>この内容で登録する</button>
-                                    </h3>
-                                }
-                            </div>
-                        </div>
-                    }
-
-
-
-
-
-                    {/* // {`${targetTomare.am_pm}`.length !== 0 && */}
-                    <p >menuをクリック
-                        <div className={styles.grid}>
-                            <div >
-                                <button onClick={clickMenu1}><img　{...img_make} />ケアメイク</button>
-                            </div>
-                            <div>
-                                <button onClick={clickMenu2}><img {...img_nail} />ケアネイル</button>
-                            </div>
-                            <div>
-                                <button onClick={clickMenu3}><img {...img_este} />ケアエステ</button>
-                            </div>
-                            <div>
-                                <button onClick={clickMenu4}>
-                                    <img {...img_sonota} />
-                                    その他
-                                </button>
-                            </div>
-                            <br />
-                        </div>
-                    </p>
-                    {`${tomare.tanka}`.toString() === 'undefined' &&
-                        <div>
-                            <br />
-                            単価（10分あたりの金額）
-                            <br />
-                            <button className={styles.card} onClick={(e) => handleTanka500(500)}>500</button>
-                            <button className={styles.card} onClick={(e) => handleTanka1000(1000)}>1000</button>
-                            <button className={styles.card} onClick={(e) => handleTanka1500(1500)}>1500</button>
-                            <button className={styles.card} onClick={(e) => handleTanka2000(2000)}>2000</button>
-                            {/* <button className={styles.card} onClick={(e) => handleTanka(e)}><input type="number" /></button> */}
-                        </div>
-                    }
-                    <p>
-                        <br />
-
-                        ：：：：チャット：：：：：：：：：：：：：：：：：：
-
-
-
-
-                        <div>
-                            {
-                                chat
-                                    .map((data: TomareState) => {
-                                        return (
-                                            <div key={chat.timestamp}>
-                                                <br />
-                                                <img
-                                                    src={`${data.yoyakuIcon}`}
-                                                    alt=""
-                                                    style={{ borderRadius: '50%', width: '40px', height: '40px' }}
-                                                />
-                                                {data.message}
-                                                <br />
-                                                {data.timestamp}
-                                            </div>
-                                        )
+                                    {/* {aroma === true && <p><img {...img_aroma} /></p>} */}
+                                    {`${sonota}`.length !== 0 &&
+                                        <img {...img_sonota} />
                                     }
-                                    )}
-                            {/* {
+                                    <br />
+                                    <br />
+                                    <h3 className="mb-4  text-3xl">
+                                        {`${targetTomare.tanka}円/10分`}
+                                    </h3>
+                                    <br />
+                                    <br />
+                                    <div className={styles.grid}>
+                                        {make === true && <p><img {...img_make} /></p>}
+                                        {nail === true && <p><img {...img_nail} /></p>}
+                                        {este === true && <p><img {...img_este} /></p>}
+                                        {/* {aroma === true && <p><img {...img_aroma} /></p>} */}
+                                        {sonota !== "" && <p><img {...img_sonota} /></p>}
+                                    </div>
+                                    <br />
+                                    {tanka === 0 &&
+                                        <h3 className="mb-4  text-3xl">
+                                            {`10分あたりの単価を設定してください`}
+                                        </h3>
+                                    }
+                                    {tanka !== 0 &&
+                                        <h3 className="mb-4  text-3xl">
+                                            {`10分あたりの単価:${tanka}円`}
+                                        </h3>
+                                    }
+                                    <br />
+                                    {tanka !== 0 &&
+                                        <h3 className="mb-4 text-green-500 text-3xl">
+                                            <button onClick={clickMenu888}>この内容で登録する</button>
+                                        </h3>
+                                    }
+                                </div>
+                            </div>
+
+
+
+
+
+
+                            {/* // {`${targetTomare.am_pm}`.length !== 0 && */}
+                            <p >menuをクリック
+                                <div className={styles.grid}>
+                                    <div >
+                                        <button onClick={clickMenu1}><img　{...img_make} />ケアメイク</button>
+                                    </div>
+                                    <div>
+                                        <button onClick={clickMenu2}><img {...img_nail} />ケアネイル</button>
+                                    </div>
+                                    <div>
+                                        <button onClick={clickMenu3}><img {...img_este} />ケアエステ</button>
+                                    </div>
+                                    <div>
+                                        <button onClick={clickMenu4}>
+                                            <img {...img_sonota} />
+                                            その他
+                                        </button>
+                                    </div>
+                                    <br />
+                                </div>
+                            </p>
+                            {/* {`${tomare.tanka}`.toString() === 'undefined' && */}
+                            <div>
+                                <br />
+                                単価（10分あたりの金額）
+                                <br />
+                                <button className={styles.card} onClick={(e) => handleTanka500(500)}>500</button>
+                                <button className={styles.card} onClick={(e) => handleTanka1000(1000)}>1000</button>
+                                <button className={styles.card} onClick={(e) => handleTanka1500(1500)}>1500</button>
+                                <button className={styles.card} onClick={(e) => handleTanka2000(2000)}>2000</button>
+                                {/* <button className={styles.card} onClick={(e) => handleTanka(e)}><input type="number" /></button> */}
+                            </div>
+                            {/* } */}
+                            <p>
+                                <br />
+                                <div>
+                                    <br />
+                                    ***予約枠の取り消し***
+                                    <br />
+                                    <button onClick={clickMenu9am}>AM:午前　</button>
+                                    /
+                                    <button onClick={clickMenu9pm}>　PM：午後</button>
+
+                                </div>
+                            </p>
+                            ：：：：チャット：：：：：：：：：：：：：：：：：：
+                            <div>
+                                {
+                                    chat
+                                        .map((data: TomareState) => {
+                                            return (
+                                                <div key={chat.timestamp}>
+                                                    <br />
+                                                    <img
+                                                        src={`${data.yoyakuIcon}`}
+                                                        alt=""
+                                                        style={{ borderRadius: '50%', width: '40px', height: '40px' }}
+                                                    />
+                                                    {data.message}
+                                                    <br />
+                                                    {data.timestamp}
+                                                </div>
+                                            )
+                                        }
+                                        )}
+                                {/* {
                                 chat
                                     .map((chat: TomareState) => {
                                         return (
@@ -474,24 +496,17 @@ const PageC = () => {
 
                                     }
                                     )} */}
-                            <div >
-                                <input type="text" onChange={(e) => setMessage(e.target.value)} />
-                                <br />
-                                <button onClick={handleCreate}>
-                                    send！
-                                </button>
-                                <Chat />
+                                <div >
+                                    <input type="text" onChange={(e) => setMessage(e.target.value)} />
+                                    <br />
+                                    <button onClick={handleCreate}>
+                                        send！
+                                    </button>
+                                    <Chat />
+                                </div>
                             </div>
                         </div>
-                    </p>
-                    <div>
-                        <br />
-                        ***予約枠の取り消し***
-                        <br />
-                        <button onClick={clickMenu9am}>AM:午前　</button>
-                        /
-                        <button onClick={clickMenu9pm}>　PM：午後</button>
-                    </div>
+                    }
                 </div>
             }
         </div>
