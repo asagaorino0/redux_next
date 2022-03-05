@@ -3,6 +3,7 @@ export type TomareState = {
     menu: string,
     gappi: string,
     tomare: [],
+    targetTomare: [],
     tomareId: string,
     am_pm: string
     make: boolean
