@@ -152,11 +152,11 @@ const PageC = () => {
     }
     const clickMenu888 = () => {
         setDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}${am_pm}`), {
-            make, nail, este, sonota, gappi, uid: user.uid, am_pm: am_pm, menu: am_pm, tanka, timestamp: "", tomareId: `${formatDate}${am_pm}`, yoyakuMenu: "",
+            make, nail, este, aroma, hair, sonota, gappi, uid: user.uid, am_pm: am_pm, menu: am_pm, tanka, timestamp: "", tomareId: `${formatDate}${am_pm}`, yoyakuMenu: "",
         }, { merge: true })
         fetchTomare()
         fetchTargetTomare()
-        setMake(false), setNail(false), setEste(false), setSonota(""), setAm_pm(""), setTanka(0)
+        setMake(false), setNail(false), setEste(false), setAroma(false), setHair(false), setSonota(""), setAm_pm(""), setTanka(0)
     }
     const clickMenu9am = () => {
         deleteDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}AM`))
