@@ -152,7 +152,7 @@ const PageC = () => {
         }, { merge: true })
         fetchTomare()
         fetchTargetTomare()
-        setMake(false), setNail(false), setEste(false), setSonota(""), setAm_pm("")
+        setMake(false), setNail(false), setEste(false), setSonota(""), setAm_pm(""), setTanka(0)
     }
     const clickMenu9am = () => {
         deleteDoc(doc(db, 'users', user.uid, 'tomare', `${formatDate}AM`))
@@ -205,27 +205,22 @@ const PageC = () => {
     const handleTanka500 = (e: number) => {
         setTanka(e)
         setDoc(doc(db, 'users', `${tomare.uid}`, 'tomare', `${tomare.tomareId}`), { tanka: e, tankaUrl: "price_1KT7IZIeKRfM8LCe7573kMRN" }, { merge: true })
-        setTanka(0)
     };
     const handleTanka1000 = (e: number) => {
         setTanka(e)
         setDoc(doc(db, 'users', `${tomare.uid}`, 'tomare', `${tomare.tomareId}`), { tanka: e, tankaUrl: "price_1KT7IZIeKRfM8LCe7573kMRN" }, { merge: true })
-        setTanka(0)
     };
     const handleTanka1500 = (e: number) => {
         setTanka(e)
         setDoc(doc(db, 'users', `${tomare.uid}`, 'tomare', `${tomare.tomareId}`), { tanka: e, tankaUrl: "price_1KT7IZIeKRfM8LCe7573kMRN" }, { merge: true })
-        setTanka(0)
     };
     const handleTanka2000 = (e: number) => {
         setTanka(e)
         setDoc(doc(db, 'users', `${tomare.uid}`, 'tomare', `${tomare.tomareId}`), { tanka: e, tankaUrl: "price_1KT7IZIeKRfM8LCe7573kMRN" }, { merge: true })
-        setTanka(0)
     };
     const handleTanka = (e: number) => {
         setTanka(e)
         setDoc(doc(db, 'users', `${tomare.uid}`, 'tomare', `${tomare.tomareId}`), { tanka: e, tankaUrl: "", yoyakuId: `${yoyakuId}shr_1KZCWKIeKRfM8LCe8dm0ktYU` }, { merge: true })
-        setTanka(0)
     };
     return (
         <div className={styles.main}>
@@ -368,14 +363,14 @@ const PageC = () => {
                                     }
 
                                     return (
-                                        <div className={styles.grid} key={targetTomare.tomareId}>
+                                        <div className={styles.card} key={targetTomare.tomareId}>
                                             <br />
                                             <h3 className="mb-4  text-3xl">
                                                 {/* {targetTomare.gappi} */}
                                                 {targetTomare.am_pm}
                                             </h3>
 
-                                            <div className={styles.grid}>
+                                            <div className={styles.grid} >
                                                 {targetTomare.make === true && <p><img {...img_make} /></p>}
                                                 {targetTomare.nail === true && <p><img {...img_nail} /></p>}
                                                 {targetTomare.este === true && <p><img {...img_este} /></p>}
@@ -384,8 +379,9 @@ const PageC = () => {
                                                 }
                                                 <br />
                                                 <h3 className="mb-4  text-3xl">
-                                                    {`10分あたりの単価:${tanka}円`}
+                                                    {`10分あたりの単価:${targetTomare.tanka}円`}
                                                 </h3>
+                                                <br />
                                                 {targetTomare.yoyakuIcon && <p>
                                                     <button onClick={toChat}>
                                                         <img
