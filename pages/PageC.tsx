@@ -395,7 +395,6 @@ const PageC = () => {
                             }
                             <div>
                                 <br />
-                                単価（10分あたりの金額）
                                 <br />
                                 <button className={styles.card} onClick={(e) => handleTanka500(500)}>500</button>
                                 <button className={styles.card} onClick={(e) => handleTanka1000(1000)}>1000</button>
@@ -424,7 +423,7 @@ const PageC = () => {
 
                                     {tanka !== 0 &&
                                         <h3 className="mb-4  text-3xl">
-                                            {`10分の単価:${tanka}円`}
+                                            {`${tanka}円/10分`}
                                         </h3>
                                     }
                                     <br />
