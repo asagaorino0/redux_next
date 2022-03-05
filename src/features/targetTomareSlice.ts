@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../app/store';
-import { TargetTomareState } from "../../src/types/targetTomare";
+import { TomareState } from "../../src/types/tomare";
 
-const initialState: TargetTomareState = {
+const initialState: TomareState = {
     menu: '',
     gappi: '',
     uid: '',
@@ -12,15 +12,16 @@ const initialState: TargetTomareState = {
     este: false,
     sonota: '',
     img_befor: '',
-    img_after: ''
-} as TargetTomareState;
+    img_after: '',
+    tanka: 0,
+} as TomareState;
 
 export const targetTomareSlice = createSlice({
     name: 'targetTomare',
     initialState,
     reducers: {
         addTargetTomare: (state, action) => {
-            state.targetTomare = action.payload
+            state.tomare = action.payload
             state.menu = action.payload.menu
             state.gappi = action.payload.gappi
             state.uid = action.payload.uid
@@ -31,6 +32,7 @@ export const targetTomareSlice = createSlice({
             state.am_pm = action.payload.am_pm
             state.img_befor = action.payload.img_befor
             state.img_after = action.payload.img_after
+            state.tanka = action.payload.tanka
         }
     },
 });

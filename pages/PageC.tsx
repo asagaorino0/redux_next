@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { db } from "../src/firebase";
 import { getDocs, collection, collectionGroup, query, where, doc, setDoc, serverTimestamp, deleteDoc, onSnapshot } from 'firebase/firestore'
 import { TomareState } from "../src/types/tomare";
-import { TargetTomareState } from "../src/types/targetTomare";
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import styles from '../styles/Home.module.css'
@@ -206,22 +205,27 @@ const PageC = () => {
     const handleTanka500 = (e: number) => {
         setTanka(e)
         setDoc(doc(db, 'users', `${tomare.uid}`, 'tomare', `${tomare.tomareId}`), { tanka: e, tankaUrl: "price_1KT7IZIeKRfM8LCe7573kMRN" }, { merge: true })
+        setTanka(0)
     };
     const handleTanka1000 = (e: number) => {
         setTanka(e)
         setDoc(doc(db, 'users', `${tomare.uid}`, 'tomare', `${tomare.tomareId}`), { tanka: e, tankaUrl: "price_1KT7IZIeKRfM8LCe7573kMRN" }, { merge: true })
+        setTanka(0)
     };
     const handleTanka1500 = (e: number) => {
         setTanka(e)
         setDoc(doc(db, 'users', `${tomare.uid}`, 'tomare', `${tomare.tomareId}`), { tanka: e, tankaUrl: "price_1KT7IZIeKRfM8LCe7573kMRN" }, { merge: true })
+        setTanka(0)
     };
     const handleTanka2000 = (e: number) => {
         setTanka(e)
         setDoc(doc(db, 'users', `${tomare.uid}`, 'tomare', `${tomare.tomareId}`), { tanka: e, tankaUrl: "price_1KT7IZIeKRfM8LCe7573kMRN" }, { merge: true })
+        setTanka(0)
     };
     const handleTanka = (e: number) => {
         setTanka(e)
         setDoc(doc(db, 'users', `${tomare.uid}`, 'tomare', `${tomare.tomareId}`), { tanka: e, tankaUrl: "", yoyakuId: `${yoyakuId}shr_1KZCWKIeKRfM8LCe8dm0ktYU` }, { merge: true })
+        setTanka(0)
     };
     return (
         <div className={styles.main}>
@@ -337,7 +341,7 @@ const PageC = () => {
 
                         {targetTomare
                             .map(
-                                (targetTomare: TargetTomareState) => {
+                                (targetTomare: TomareState) => {
                                     const toChat = () => {
                                         dispatch(addTargetChat({
                                             yoyakuId: `${targetTomare.yoyakuId}`,
