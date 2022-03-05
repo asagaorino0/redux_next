@@ -159,28 +159,28 @@ const PageB3 = () => {
 
                                             const fetchTarget1 = async () => {
                                                 setDoc(doc(db, 'users', users.uid, 'tomare', `${tomare.gappi}${tomare.am_pm}`), {
-                                                    menu: "make", yoyakuMenu: "ケアメイク", make: true, nail: false, este: false, aroma: false, tanka: 0, quantity: 0, star: 0, checked: true, pay: 0, yoyakuUid: user.uid, yoyakuName, yoyakuIcon: user.icon, yoyakuId: users.uid + user.uid + tomare.tomareId, timestamp: now, img_befor: "", img_after: "", come_befor: "", come_after: "",
+                                                    menu: "make", yoyakuMenu: "ケアメイク", make: true, nail: false, este: false, aroma: false, tanka: 0, quantity: 0, star: 0, checked: true, pay: 0, yoyakuUid: user.uid, yoyakuName: user.name, yoyakuIcon: user.icon, yoyakuId: users.uid + user.uid + tomare.tomareId, timestamp: now, img_befor: "", img_after: "", come_befor: "", come_after: "",
                                                 }, { merge: true })
                                                 alert("登録しました！")
                                                 fetchTomare()
                                             };
                                             const fetchTarget2 = async () => {
                                                 setDoc(doc(db, 'users', users.uid, 'tomare', `${tomare.gappi}${tomare.am_pm}`), {
-                                                    menu: "nail", yoyakuMenu: "ケアネイル", make: false, nail: true, este: false, aroma: false, tanka: 0, quantity: 0, star: 0, checked: true, pay: 0, yoyakuUid: user.uid, yoyakuName, yoyakuIcon: user.icon, yoyakuId: users.uid + user.uid + tomare.tomareId, timestamp: now, img_befor: "", img_after: "", come_befor: "", come_after: "",
+                                                    menu: "nail", yoyakuMenu: "ケアネイル", make: false, nail: true, este: false, aroma: false, tanka: 0, quantity: 0, star: 0, checked: true, pay: 0, yoyakuUid: user.uid, yoyakuName: user.name, yoyakuIcon: user.icon, yoyakuId: users.uid + user.uid + tomare.tomareId, timestamp: now, img_befor: "", img_after: "", come_befor: "", come_after: "",
                                                 }, { merge: true })
                                                 alert("登録しました！")
                                                 fetchTomare()
                                             };
                                             const fetchTarget3 = async () => {
                                                 setDoc(doc(db, 'users', users.uid, 'tomare', `${tomare.gappi}${tomare.am_pm}`), {
-                                                    menu: "este", yoyakuMenu: "ケアエステ", make: false, nail: false, este: true, aroma: false, tanka: 0, quantity: 0, star: 0, checked: true, pay: 0, yoyakuUid: user.uid, yoyakuName, yoyakuIcon: user.icon, yoyakuId: users.uid + user.uid + tomare.tomareId, timestamp: now, img_befor: "", img_after: "", come_befor: "", come_after: "",
+                                                    menu: "este", yoyakuMenu: "ケアエステ", make: false, nail: false, este: true, aroma: false, tanka: 0, quantity: 0, star: 0, checked: true, pay: 0, yoyakuUid: user.uid, yoyakuName: user.name, yoyakuIcon: user.icon, yoyakuId: users.uid + user.uid + tomare.tomareId, timestamp: now, img_befor: "", img_after: "", come_befor: "", come_after: "",
                                                 }, { merge: true })
                                                 alert("登録しました！")
                                                 fetchTomare()
                                             };
                                             const fetchTarget4 = async () => {
                                                 setDoc(doc(db, 'users', users.uid, 'tomare', `${tomare.gappi}${tomare.am_pm}`), {
-                                                    menu: "este", yoyakuMenu: "アロマケア", make: false, nail: false, este: false, aroma: true, tanka: 0, quantity: 0, star: 0, checked: true, pay: 0, yoyakuUid: user.uid, yoyakuName, yoyakuIcon: user.icon, yoyakuId: users.uid + user.uid + tomare.tomareId, timestamp: now, img_befor: "", img_after: "", come_befor: "", come_after: "",
+                                                    menu: "este", yoyakuMenu: "アロマケア", make: false, nail: false, este: false, aroma: true, tanka: 0, quantity: 0, star: 0, checked: true, pay: 0, yoyakuUid: user.uid, yoyakuName: user.name, yoyakuIcon: user.icon, yoyakuId: users.uid + user.uid + tomare.tomareId, timestamp: now, img_befor: "", img_after: "", come_befor: "", come_after: "",
                                                 }, { merge: true })
                                                 alert("登録しました！")
                                                 fetchTomare()
