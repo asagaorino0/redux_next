@@ -157,35 +157,35 @@ const PageD1 = () => {
                                                 setDoc(doc(db, 'users', users.uid, 'tomare', `${tomare.gappi}${tomare.am_pm}`), {
                                                     menu: "make", yoyakuMenu: "ケアメイク", make: true, nail: false, este: false, aroma: false, hair: false, yoyakuUid: user.uid, yoyakuName, yoyakuIcon: user.icon, yoyakuId: users.uid + user.uid + tomare.tomareId, timestamp: now, img_befor: "", img_after: "", come_befor: "", come_after: "",
                                                 }, { merge: true })
-                                                alert("登録しました！")
+                                                // alert("登録しました！")
                                                 fetchTomare()
                                             };
                                             const fetchTarget2 = async () => {
                                                 setDoc(doc(db, 'users', users.uid, 'tomare', `${tomare.gappi}${tomare.am_pm}`), {
                                                     menu: "nail", yoyakuMenu: "ケアネイル", make: false, nail: true, este: false, aroma: false, hair: false, yoyakuUid: user.uid, yoyakuName, yoyakuIcon: user.icon, yoyakuId: users.uid + user.uid + tomare.tomareId, timestamp: now, img_befor: "", img_after: "", come_befor: "", come_after: "",
                                                 }, { merge: true })
-                                                alert("登録しました！")
+                                                // alert("登録しました！")
                                                 fetchTomare()
                                             };
                                             const fetchTarget3 = async () => {
                                                 setDoc(doc(db, 'users', users.uid, 'tomare', `${tomare.gappi}${tomare.am_pm}`), {
                                                     menu: "este", yoyakuMenu: "ケアエステ", make: false, nail: false, este: true, aroma: false, hair: false, yoyakuUid: user.uid, yoyakuName, yoyakuIcon: user.icon, yoyakuId: users.uid + user.uid + tomare.tomareId, timestamp: now, img_befor: "", img_after: "", come_befor: "", come_after: "",
                                                 }, { merge: true })
-                                                alert("登録しました！")
+                                                // alert("登録しました！")
                                                 fetchTomare()
                                             };
                                             const fetchTarget5 = async () => {
                                                 setDoc(doc(db, 'users', users.uid, 'tomare', `${tomare.gappi}${tomare.am_pm}`), {
                                                     menu: "este", yoyakuMenu: "アロマタッチ", make: false, nail: false, este: false, aroma: true, hair: false, yoyakuUid: user.uid, yoyakuName, yoyakuIcon: user.icon, yoyakuId: users.uid + user.uid + tomare.tomareId, timestamp: now, img_befor: "", img_after: "", come_befor: "", come_after: "",
                                                 }, { merge: true })
-                                                alert("登録しました！")
+                                                // alert("登録しました！")
                                                 fetchTomare()
                                             };
                                             const fetchTarget6 = async () => {
                                                 setDoc(doc(db, 'users', users.uid, 'tomare', `${tomare.gappi}${tomare.am_pm}`), {
                                                     menu: "este", yoyakuMenu: "ケアヘアー", make: false, nail: false, este: false, aroma: false, hair: true, yoyakuUid: user.uid, yoyakuName, yoyakuIcon: user.icon, yoyakuId: users.uid + user.uid + tomare.tomareId, timestamp: now, img_befor: "", img_after: "", come_befor: "", come_after: "",
                                                 }, { merge: true })
-                                                alert("登録しました！")
+                                                // alert("登録しました！")
                                                 fetchTomare()
                                             };
                                             const toChat = () => {
@@ -232,14 +232,14 @@ const PageD1 = () => {
                                                                 {tomare.gappi}/{tomare.am_pm}
                                                             </h3>
                                                             <h3 className="mb-4 text-green-500 text-3xl">
-                                                                新規予約：メニューを選択してください
+                                                                メニューを選択してください
                                                             </h3>
                                                             <div className={styles.grid}>
-                                                                <button onClick={fetchTarget1}>{tomare.make === true && <img {...img_make} />}</button>
-                                                                <button onClick={fetchTarget2}>{tomare.nail === true && <img {...img_nail} />}</button>
-                                                                <button onClick={fetchTarget3}>{tomare.este === true && <img {...img_este} />}</button>
-                                                                <button onClick={fetchTarget5}>{tomare.hair === true && <img {...img_aroma} />}</button>
-                                                                <button onClick={fetchTarget6}>{tomare.este === true && <img {...img_hair} />}</button>
+                                                                {tomare.make === true && <p><button onClick={fetchTarget1}><img {...img_make} /></button></p>}
+                                                                {tomare.nail === true && <p><button onClick={fetchTarget2}><img {...img_nail} /></button></p>}
+                                                                {tomare.este === true && <p><button onClick={fetchTarget3}><img {...img_este} /></button></p>}
+                                                                {tomare.aroma === true && <p><button onClick={fetchTarget5}><img {...img_aroma} /></button></p>}
+                                                                {tomare.hair === true && <p><button onClick={fetchTarget6}><img {...img_hair} /></button></p>}
                                                                 {/* {`${tomare.sonota}`.length !== 0 &&
                                                                     <img {...img_sonota} />
                                                                 } */}
