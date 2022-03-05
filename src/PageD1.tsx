@@ -23,7 +23,9 @@ import { TargetTomareState } from "./types/targetTomare";
 
 
 const PageD1 = () => {
-    const [name, setName] = useState<string>('');
+    const user = useSelector(selectUser);
+    const [users, setUsers] = useState<any>([]);
+    const [yoyakuName, setYoyakuName] = useState<string>(user.namae);
     const [icon, setIcon] = useState<string | undefined>('');
     const [age, setAge] = useState<number>(0);
     const [namae, setNamae] = useState<string>("");
@@ -31,8 +33,7 @@ const PageD1 = () => {
     const [tokoro, setTokoro] = useState<string>('');
     const [star, setStar] = useState<number>(0);
     const dispatch = useDispatch();
-    const user = useSelector(selectUser);
-    const [users, setUsers] = useState<any>([]);
+
     const [tomare, setTomare] = useState<any>([]);
     const [newT, setNewT] = useState<any>([])
     const [setTargetTomare] = useState<any>([])
@@ -125,9 +126,10 @@ const PageD1 = () => {
             {/* <h1>氏名</h1> */}
             {user.namae}
             <br />
-            {/* <h1>氏名</h1>
-            <input type="text" onChange={(e) => setNamae(e.target.value)} />
-            <br /> */}
+
+            <h1>予約名</h1>
+            <input type="text" onChange={(e) => setYoyakuName(e.target.value)} />
+            <br />
             <h1>住所</h1>
             <input type="text" onChange={(e) => setTokoro(e.target.value)} />
             <br />
@@ -152,21 +154,21 @@ const PageD1 = () => {
 
                                             const fetchTarget1 = async () => {
                                                 setDoc(doc(db, 'users', users.uid, 'tomare', `${tomare.gappi}${tomare.am_pm}`), {
-                                                    menu: "make", yoyakuMenu: "ケアメイク", make: true, nail: false, este: false, yoyakuUid: user.uid, yoyakuName: user.name, yoyakuIcon: user.icon, yoyakuId: users.uid + user.uid + tomare.tomareId, timestamp: now, img_befor: "", img_after: "", come_befor: "", come_after: "",
+                                                    menu: "make", yoyakuMenu: "ケアメイク", make: true, nail: false, este: false, yoyakuUid: user.uid, yoyakuName, yoyakuIcon: user.icon, yoyakuId: users.uid + user.uid + tomare.tomareId, timestamp: now, img_befor: "", img_after: "", come_befor: "", come_after: "",
                                                 }, { merge: true })
                                                 alert("登録しました！")
                                                 fetchTomare()
                                             };
                                             const fetchTarget2 = async () => {
                                                 setDoc(doc(db, 'users', users.uid, 'tomare', `${tomare.gappi}${tomare.am_pm}`), {
-                                                    menu: "nail", yoyakuMenu: "ケアネイル", make: false, nail: true, este: false, yoyakuUid: user.uid, yoyakuName: user.name, yoyakuIcon: user.icon, yoyakuId: users.uid + user.uid + tomare.tomareId, timestamp: now, img_befor: "", img_after: "", come_befor: "", come_after: "",
+                                                    menu: "nail", yoyakuMenu: "ケアネイル", make: false, nail: true, este: false, yoyakuUid: user.uid, yoyakuName, yoyakuIcon: user.icon, yoyakuId: users.uid + user.uid + tomare.tomareId, timestamp: now, img_befor: "", img_after: "", come_befor: "", come_after: "",
                                                 }, { merge: true })
                                                 alert("登録しました！")
                                                 fetchTomare()
                                             };
                                             const fetchTarget3 = async () => {
                                                 setDoc(doc(db, 'users', users.uid, 'tomare', `${tomare.gappi}${tomare.am_pm}`), {
-                                                    menu: "este", yoyakuMenu: "ケアエステ", make: false, nail: false, este: true, yoyakuUid: user.uid, yoyakuName: user.name, yoyakuIcon: user.icon, yoyakuId: users.uid + user.uid + tomare.tomareId, timestamp: now, img_befor: "", img_after: "", come_befor: "", come_after: "",
+                                                    menu: "este", yoyakuMenu: "ケアエステ", make: false, nail: false, este: true, yoyakuUid: user.uid, yoyakuName, yoyakuIcon: user.icon, yoyakuId: users.uid + user.uid + tomare.tomareId, timestamp: now, img_befor: "", img_after: "", come_befor: "", come_after: "",
                                                 }, { merge: true })
                                                 alert("登録しました！")
                                                 fetchTomare()
