@@ -403,7 +403,7 @@ const PageC = () => {
                                 <br />
                                 {tanka !== 0 &&
                                     <h3 className="mb-4  text-3xl">
-                                        {`10分あたりの単価${tanka}円`}
+                                        {`10分あたりの単価:${tanka}円`}
                                     </h3>
                                 }
                                 <br />
