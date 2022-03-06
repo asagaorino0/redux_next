@@ -228,8 +228,9 @@ const PageD1 = () => {
                                                 setDoc(doc(db, 'users', users.uid, 'tomare', `${tomare.gappi}${tomare.am_pm}`), {
                                                     quantity: e, timestamp: now,
                                                 }, { merge: true })
+                                                setQuantity(e)
                                             };
-                                            // if (`${users.uid}` === `${tomare.uid}`) {
+
                                             return (
                                                 <div key={users.uid}>
                                                     {tomare.yoyakuMenu === "" &&
@@ -320,56 +321,61 @@ const PageD1 = () => {
                                                     {/* {tomare.yoyakuUid === user.uid && */}
                                                     <p>
                                                         <div className={styles.grid}>
-                                                            <div>
-                                                                <br />
-                                                                <h3 className="mb-4  text-3xl">
-                                                                    {targetTomare.gappi}
-                                                                    {targetTomare.am_pm}
-                                                                </h3>
-                                                                <div className={styles.grid}>
-                                                                    {targetTomare.make === true && <p><img {...img_make} /></p>}
-                                                                    {targetTomare.nail === true && <p><img {...img_nail} /></p>}
-                                                                    {targetTomare.este === true && <p><img {...img_este} /></p>}
-                                                                    {targetTomare.aroma === true && <p><img {...img_aroma} /></p>}
-                                                                    {targetTomare.hair === true && <p><img {...img_hair} /></p>}
-                                                                    {/* {`${tomare.sonota}`.length !== 0 &&
+
+                                                            <br />
+                                                            <h3 className="mb-4  text-3xl">
+                                                                {targetTomare.gappi}
+                                                                {targetTomare.am_pm}
+                                                            </h3>
+                                                            <div className={styles.grid}>
+                                                                {targetTomare.make === true && <p><img {...img_make} /></p>}
+                                                                {targetTomare.nail === true && <p><img {...img_nail} /></p>}
+                                                                {targetTomare.este === true && <p><img {...img_este} /></p>}
+                                                                {targetTomare.aroma === true && <p><img {...img_aroma} /></p>}
+                                                                {targetTomare.hair === true && <p><img {...img_hair} /></p>}
+                                                                {/* {`${tomare.sonota}`.length !== 0 &&
                                                                         <img {...img_sonota} />
                                                                     } */}
-                                                                    <br />
+                                                                <br />
 
-                                                                    {yoyakuZikoku !== "" &&
-                                                                        <h3 className="mb-4  text-3xl">
-                                                                            {`${yoyakuZikoku}に訪問希望`}
+                                                                {yoyakuZikoku !== "" &&
+                                                                    <h3 className="mb-4  text-3xl">
+                                                                        {`${yoyakuZikoku}に訪問希望`}
+                                                                    </h3>
+                                                                }
+                                                                <br />
+                                                                {yoyakuZikoku !== "" &&
+                                                                    <div>
+                                                                        <br />
+                                                                        <h3 className="mb-4 text-3xl">
+                                                                            {`施術時間：${quantity * 10}分間`}
                                                                         </h3>
-                                                                    }
-                                                                    <br />
-                                                                    {yoyakuZikoku !== "" &&
-                                                                        <div>
-                                                                            <h3 className="mb-4 text-3xl">
-                                                                                {`施術時間：${quantity * 10}分間`}
-                                                                            </h3>
-                                                                            <br />
-                                                                            <h3 className="mb-4 text-green-500 text-3xl">
-                                                                                <button onClick={fetchTarget888}>この内容で申し込む</button>
-                                                                            </h3>
-                                                                            ******************************
-                                                                        </div>
-                                                                    }
-                                                                </div>
-                                                                <div>
+                                                                        <br />
+                                                                        <h3 className="mb-4 text-green-500 text-3xl">
+                                                                            <button onClick={fetchTarget888}>この内容で申し込む</button>
+                                                                        </h3>
+                                                                        ******************************
+                                                                    </div>
+                                                                }
+                                                            </div>
 
 
-                                                                    <p>
-                                                                        <button onClick={toChat}>
-                                                                            <img
-                                                                                src={`${tomare.yoyakuIcon}`}
-                                                                                alt="icon"
-                                                                                style={{ borderRadius: '50%', width: '60px', height: '60px' }}
-                                                                            />
-                                                                        </button>
-                                                                    </p>
-                                                                    <br />
-                                                                </div>
+                                                            <div>
+
+
+                                                                <p>
+                                                                    <button onClick={toChat}>
+                                                                        <img
+                                                                            src={`${tomare.yoyakuIcon}`}
+                                                                            alt="icon"
+                                                                            style={{ borderRadius: '50%', width: '60px', height: '60px' }}
+                                                                        />
+                                                                    </button>
+                                                                </p>
+                                                                <br />
+                                                            </div>
+
+                                                            <div>
                                                                 <div>
                                                                     {
                                                                         chat
@@ -423,6 +429,6 @@ export default PageD1
 // One time slot every 30 minutes.
 const timeSlots = Array.from(new Array(24 * 2)).map(
     (_, index) =>
-        `${index < 20 ? '0' : ''}${Math.floor(index / 4)}:${index % 4 === 0 ? '00' : '15'
+        `${index < 20 ? '0' : ''}${Math.floor(index / 2)}:${index % 2 === 0 ? '00' : '30'
         }`,
 );
