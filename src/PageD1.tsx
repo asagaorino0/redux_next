@@ -244,7 +244,6 @@ const PageD1 = () => {
                                                             </h3>
                                                             <h3 className="mb-4 text-3xl">
                                                                 {tomare.gappi}/{tomare.am_pm}
-                                                                <br />{tomare.tomareId}
                                                             </h3>
                                                             <h3 className="mb-4 text-green-500 text-3xl">
                                                                 メニューを選択してください
@@ -264,16 +263,16 @@ const PageD1 = () => {
                                                                 <h3 className="mb-4 text-green-500 text-3xl">
                                                                     ご希望の開始時間（お伺する時間）
                                                                 </h3>
-
                                                                 <Autocomplete
                                                                     id="yoyakuZikoku"
+                                                                    value={yoyakuZikoku}
                                                                     options={timeSlots}
                                                                     getOptionDisabled={(option) =>
                                                                         option === timeSlots[0] || option === timeSlots[2]
                                                                     }
                                                                     sx={{ width: 150 }}
                                                                     renderInput={(params) => <TextField {...params} label="訪問時刻" />}
-                                                                // onChange={(params) => setYoyakuZikoku(params)}
+                                                                    onChange={(params) => setYoyakuZikoku(yoyakuZikoku)}
                                                                 />
 
 
@@ -312,7 +311,7 @@ const PageD1 = () => {
 
                                                                     {yoyakuZikoku !== "" &&
                                                                         <h3 className="mb-4  text-3xl">
-                                                                            {/* {`${yoyakuZikoki}に訪問希望`} */}
+                                                                            {`${yoyakuZikoku}に訪問希望`}
                                                                         </h3>
                                                                     }
                                                                     <br />
