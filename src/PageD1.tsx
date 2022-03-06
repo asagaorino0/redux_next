@@ -299,20 +299,20 @@ const PageD1 = () => {
                                                     <h3 className="mb-4 text-green-500 text-3xl">
                                                         ***登録内容***
                                                     </h3>
-                                                    {tomare.yoyakuUid === user.uid && <p>
+                                                    {targetTomare.yoyakuUid === user.uid && <p>
                                                         <div className={styles.grid}>
                                                             <div>
                                                                 <br />
                                                                 <h3 className="mb-4  text-3xl">
-                                                                    {tomare.gappi}
-                                                                    {tomare.am_pm}
+                                                                    {targetTomare.gappi}
+                                                                    {targetTomare.am_pm}
                                                                 </h3>
                                                                 <div className={styles.grid}>
-                                                                    {tomare.make === true && <p><img {...img_make} /></p>}
-                                                                    {tomare.nail === true && <p><img {...img_nail} /></p>}
-                                                                    {tomare.este === true && <p><img {...img_este} /></p>}
-                                                                    {tomare.aroma === true && <p><img {...img_aroma} /></p>}
-                                                                    {tomare.hair === true && <p><img {...img_hair} /></p>}
+                                                                    {targetTomare.make === true && <p><img {...img_make} /></p>}
+                                                                    {targetTomare.nail === true && <p><img {...img_nail} /></p>}
+                                                                    {targetTomare.este === true && <p><img {...img_este} /></p>}
+                                                                    {targetTomare.aroma === true && <p><img {...img_aroma} /></p>}
+                                                                    {targetTomare.hair === true && <p><img {...img_hair} /></p>}
                                                                     {/* {`${tomare.sonota}`.length !== 0 &&
                                                                         <img {...img_sonota} />
                                                                     } */}
@@ -324,10 +324,10 @@ const PageD1 = () => {
                                                                         </h3>
                                                                     }
                                                                     <br />
-                                                                    {quantity !== 0 &&
+                                                                    {targetTomare.quantity !== 0 &&
                                                                         <div>
                                                                             <h3 className="mb-4 text-3xl">
-                                                                                {`施術時間：${tomare.quantity * 10}分間`}
+                                                                                {`施術時間：${targetTomare.quantity * 10}分間`}
                                                                             </h3>
                                                                             <br />
                                                                             <h3 className="mb-4 text-green-500 text-3xl">
@@ -402,8 +402,8 @@ const PageD1 = () => {
 export default PageD1
 
 // One time slot every 30 minutes.
-const timeSlots = Array.from(new Array(24 * 2)).map(
+const timeSlots = Array.from(new Array(24 * 4)).map(
     (_, index) =>
-        `${index < 20 ? '9' : ''}${Math.floor(index / 2)}:${index % 2 === 0 ? '00' : '15'
+        `${index < 20 ? '09' : ''}${Math.floor(index / 2)}:${index % 2 === 0 ? '00' : '15'
         }`,
 );
