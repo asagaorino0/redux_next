@@ -262,7 +262,7 @@ const PageD1 = () => {
                                                             <br />
                                                             <div>
                                                                 <h3 className="mb-4 text-green-500 text-3xl">
-                                                                    ご希望の開始時間（お伺する時間）
+                                                                    ご希望の訪問時刻
                                                                 </h3>
                                                                 <Autocomplete
                                                                     id="yoyakuZikoku"
