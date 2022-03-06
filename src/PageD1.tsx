@@ -317,7 +317,8 @@ const PageD1 = () => {
                                                     <h3 className="mb-4 text-green-500 text-3xl">
                                                         ***登録内容***
                                                     </h3>
-                                                    {tomare.yoyakuUid === user.uid && <p>
+                                                    {/* {tomare.yoyakuUid === user.uid && */}
+                                                    <p>
                                                         <div className={styles.grid}>
                                                             <div>
                                                                 <br />
@@ -401,7 +402,7 @@ const PageD1 = () => {
                                                             </div>
                                                         </div>
                                                     </p>
-                                                    }
+                                                    {/* } */}
                                                 </div >
                                             )
                                             // }
