@@ -148,7 +148,7 @@ const PageD1 = () => {
                         return (
                             <div key={users.uid}>
                                 {
-                                    targetTomare.tomare
+                                    targetTomare.targetTomare
                                         // .filter((users: UsersState) => tomare.uid === users.uid)
                                         .filter((tomare: TomareState) => tomare.uid === users.uid)
                                         .map((tomare: TomareState) => {
