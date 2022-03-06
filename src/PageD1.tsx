@@ -155,7 +155,7 @@ const PageD1 = () => {
 
                                             const fetchTarget1 = async () => {
                                                 setDoc(doc(db, 'users', users.uid, 'tomare', `${tomare.tomareId}`), {
-                                                    menu: "make", yoyakuMenu: "ケアメイク", make: true, nail: false, este: false, aroma: false, hair: false, yoyakuUid: user.uid, yoyakuName, yoyakuIcon: user.icon, yoyakuId: users.uid + user.uid + tomare.tomareId, timestamp: now, img_befor: "", img_after: "", come_befor: "", come_after: "",
+                                                    menu: "make", yoyakuMenu: "ケアメイク", make: true, nail: false,
                                                 }, { merge: true })
                                                 // alert("登録しました！")
                                                 fetchTomare()
