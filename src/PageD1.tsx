@@ -30,7 +30,7 @@ const PageD1 = () => {
     const [icon, setIcon] = useState<string | undefined>('');
     const [age, setAge] = useState<number>(0);
     const [namae, setNamae] = useState<string>("");
-    const [yoyakuZikoku, setYoyakuZikoku] = useState<string>("");
+    const [yoyakuZikoku, setYoyakuZikoku] = useState<string | null>("");
     const [tokoro, setTokoro] = useState<string>('');
     const [quantity, setQuantity] = useState<number>(0);
     const dispatch = useDispatch();
@@ -213,6 +213,7 @@ const PageD1 = () => {
                                                 }
                                                 useEffect(() => {
                                                     fetchTargetTomare()
+                                                    console.log(targetTomare)
                                                 }, []);
                                             };
                                             const handleCreate = async () => {
@@ -275,7 +276,26 @@ const PageD1 = () => {
                                                                     renderInput={(params) => <TextField {...params} label="訪問時刻" />}
                                                                     onChange={(params) => setYoyakuZikoku(yoyakuZikoku)}
                                                                 />
-
+                                                                <div>{`value: ${yoyakuZikoku !== null ? `'${yoyakuZikoku}'` : 'null'}`}</div>
+                                                                {/* <div>{`inputValue: '${inputValue}'`}</div> */}
+                                                                <br />
+                                                                <Autocomplete
+                                                                    value={yoyakuZikoku}
+                                                                    onChange={(event: any, newYoyakuZikoku: string | null) => {
+                                                                        setYoyakuZikoku(newYoyakuZikoku);
+                                                                    }}
+                                                                    // inputValue={inputYoyakuZikoku}
+                                                                    // onInputChange={(event, newInputYoyakuZikoku) => {
+                                                                    //   setYoyakuZikoku(newInputYoyakuZikoku);
+                                                                    // }}
+                                                                    id="controllable-yoyakuZikoku"
+                                                                    options={timeSlots}
+                                                                    getOptionDisabled={(option) =>
+                                                                        option === timeSlots[0] || option === timeSlots[2]
+                                                                    }
+                                                                    sx={{ width: 150 }}
+                                                                    renderInput={(params) => <TextField {...params} label="訪問希望時刻" />}
+                                                                />
 
 
                                                                 <br />
