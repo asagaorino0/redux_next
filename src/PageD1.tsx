@@ -224,7 +224,7 @@ const PageD1 = () => {
                                             }
                                             const handleQuantity = (e: number) => {
                                                 setDoc(doc(db, 'users', users.uid, 'tomare', `${tomare.gappi}${tomare.am_pm}`), {
-                                                    quantity: quantity / 10, timestamp: now,
+                                                    quantity: quantity % 10, timestamp: now,
                                                 }, { merge: true })
                                             };
                                             // if (`${users.uid}` === `${tomare.uid}`) {
@@ -265,7 +265,7 @@ const PageD1 = () => {
                                                                 </h3>
                                                                 <Autocomplete
                                                                     id="yoyakuZikoku"
-                                                                    value={yoyakuZikoku}
+                                                                    // value={yoyakuZikoku}
                                                                     options={timeSlots}
                                                                     getOptionDisabled={(option) =>
                                                                         option === timeSlots[0] || option === timeSlots[2]
@@ -388,6 +388,6 @@ export default PageD1
 // One time slot every 30 minutes.
 const timeSlots = Array.from(new Array(24 * 2)).map(
     (_, index) =>
-        `${index < 20 ? '0' : ''}${Math.floor(index / 2)}:${index % 2 === 0 ? '09' : '00'
+        `${index < 20 ? '09' : ''}${Math.floor(index / 2)}:${index % 2 === 0 ? '00' : '15'
         }`,
 );
