@@ -224,7 +224,7 @@ const PageD1 = () => {
                                             }
                                             const handleQuantity = (e: number) => {
                                                 setDoc(doc(db, 'users', users.uid, 'tomare', `${tomare.gappi}${tomare.am_pm}`), {
-                                                    quantity: quantity % 10, timestamp: now,
+                                                    quantity: e, timestamp: now,
                                                 }, { merge: true })
                                             };
                                             // if (`${users.uid}` === `${tomare.uid}`) {
@@ -281,7 +281,16 @@ const PageD1 = () => {
                                                                 <h3 className="mb-4 text-green-500 text-3xl">
                                                                     ご希望の施術時間
                                                                 </h3>
-                                                                10分単位で入力してください。（準備、片付けの時間を含めない）
+                                                                10分単位で選択してください。
+                                                                （準備、片付けの時間を含めない）
+                                                                <button onClick={(e) => handleQuantity(1)}>10分</button>
+                                                                <button onClick={(e) => handleQuantity(2)}>20分</button>
+                                                                <button onClick={(e) => handleQuantity(3)}>30分</button>
+                                                                <button onClick={(e) => handleQuantity(4)}>40分</button>
+                                                                <button onClick={(e) => handleQuantity(5)}>50分</button>
+                                                                <button onClick={(e) => handleQuantity(6)}>60分</button>
+                                                                <button onClick={(e) => handleQuantity(9)}>90分</button>
+                                                                <button onClick={(e) => handleQuantity(12)}>120分</button>
                                                                 <input type="number" onChange={(e) => setQuantity(e.target.valueAsNumber)} />
                                                             </div>
                                                         </p>
@@ -316,9 +325,16 @@ const PageD1 = () => {
                                                                     }
                                                                     <br />
                                                                     {quantity !== 0 &&
-                                                                        <h3 className="mb-4 text-green-500 text-3xl">
-                                                                            <button onClick={fetchTarget888}>この内容で申し込む</button>
-                                                                        </h3>
+                                                                        <div>
+                                                                            <h3 className="mb-4 text-3xl">
+                                                                                {`施術時間：${tomare.quantity * 10}分間`}
+                                                                            </h3>
+                                                                            <br />
+                                                                            <h3 className="mb-4 text-green-500 text-3xl">
+                                                                                <button onClick={fetchTarget888}>この内容で申し込む</button>
+                                                                            </h3>
+                                                                            ******************************
+                                                                        </div>
                                                                     }
                                                                 </div>
                                                                 <div>
