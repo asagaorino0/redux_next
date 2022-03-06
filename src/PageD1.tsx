@@ -30,7 +30,7 @@ const PageD1 = () => {
     const [icon, setIcon] = useState<string | undefined>('');
     const [age, setAge] = useState<number>(0);
     const [namae, setNamae] = useState<string>("");
-    const [sei, setSei] = useState<string>("");
+    const [yoyakuZikoku, setYoyakuZikoku] = useState<string>("");
     const [tokoro, setTokoro] = useState<string>('');
     const [quantity, setQuantity] = useState<number>(0);
     const dispatch = useDispatch();
@@ -194,7 +194,7 @@ const PageD1 = () => {
                                                 setDoc(doc(db, 'users', users.uid, 'tomare', `${tomare.gappi}${tomare.am_pm}`), {
                                                     quantity: 5, timestamp: now,
                                                 }, { merge: true })
-                                                alert("登録しました！")
+                                                alert("予約が完了しました！")
                                                 fetchTomare()
                                             };
                                             const toChat = () => {
@@ -222,6 +222,11 @@ const PageD1 = () => {
                                                 fetchChat(yoyakuId),
                                                     setMessage("");
                                             }
+                                            const handleQuantity = (e: number) => {
+                                                setDoc(doc(db, 'users', users.uid, 'tomare', `${tomare.gappi}${tomare.am_pm}`), {
+                                                    quantity: quantity / 10, timestamp: now,
+                                                }, { merge: true })
+                                            };
                                             // if (`${users.uid}` === `${tomare.uid}`) {
                                             return (
                                                 <div key={users.uid}>
@@ -261,13 +266,14 @@ const PageD1 = () => {
                                                                 </h3>
 
                                                                 <Autocomplete
-                                                                    id="disabled-options-demo"
+                                                                    id="yoyakuZikoku"
                                                                     options={timeSlots}
                                                                     getOptionDisabled={(option) =>
                                                                         option === timeSlots[0] || option === timeSlots[2]
                                                                     }
-                                                                    sx={{ width: 300 }}
-                                                                    renderInput={(params) => <TextField {...params} label="Disabled options" />}
+                                                                    sx={{ width: 150 }}
+                                                                    renderInput={(params) => <TextField {...params} label="訪問時刻" />}
+                                                                // onChange={(params) => setYoyakuZikoku(params)}
                                                                 />
 
 
@@ -277,7 +283,7 @@ const PageD1 = () => {
                                                                     ご希望の施術時間
                                                                 </h3>
                                                                 10分単位で入力してください。（準備、片付けの時間を含めない）
-
+                                                                <input type="number" onChange={(e) => setQuantity(e.target.valueAsNumber)} />
                                                             </div>
                                                         </p>
                                                     }
@@ -302,6 +308,23 @@ const PageD1 = () => {
                                                                     {/* {`${tomare.sonota}`.length !== 0 &&
                                                                         <img {...img_sonota} />
                                                                     } */}
+                                                                    <br />
+
+                                                                    {yoyakuZikoku !== "" &&
+                                                                        <h3 className="mb-4  text-3xl">
+                                                                            {/* {`${yoyakuZikoki}に訪問希望`} */}
+                                                                        </h3>
+                                                                    }
+                                                                    <br />
+                                                                    {quantity !== 0 &&
+                                                                        <h3 className="mb-4 text-green-500 text-3xl">
+                                                                            <button onClick={fetchTarget888}>この内容で申し込む</button>
+                                                                        </h3>
+                                                                    }
+                                                                </div>
+                                                                <div>
+
+
                                                                     <p>
                                                                         <button onClick={toChat}>
                                                                             <img
@@ -366,6 +389,6 @@ export default PageD1
 // One time slot every 30 minutes.
 const timeSlots = Array.from(new Array(24 * 2)).map(
     (_, index) =>
-        `${index < 20 ? '0' : ''}${Math.floor(index / 2)}:${index % 2 === 0 ? '00' : '30'
+        `${index < 20 ? '0' : ''}${Math.floor(index / 2)}:${index % 2 === 0 ? '09' : '00'
         }`,
 );
