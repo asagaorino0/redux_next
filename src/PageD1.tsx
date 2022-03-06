@@ -30,7 +30,7 @@ const PageD1 = () => {
     const [namae, setNamae] = useState<string>("");
     const [sei, setSei] = useState<string>("");
     const [tokoro, setTokoro] = useState<string>('');
-    const [star, setStar] = useState<number>(0);
+    const [quantity, setQuantity] = useState<number>(0);
     const dispatch = useDispatch();
 
     const [tomare, setTomare] = useState<any>([]);
@@ -148,45 +148,51 @@ const PageD1 = () => {
                         return (
                             <div key={users.uid}>
                                 {
-                                    targetTomare.targetTomare
+                                    targetTomare.tomare
                                         // .filter((users: UsersState) => tomare.uid === users.uid)
                                         .filter((tomare: TomareState) => tomare.uid === users.uid)
                                         .map((tomare: TomareState) => {
 
                                             const fetchTarget1 = async () => {
-                                                console.log(yoyakuName, user.name, user.namae)
                                                 setDoc(doc(db, 'users', users.uid, 'tomare', `${tomare.tomareId}`), {
-                                                    menu: "make", yoyakuMenu: "ケアメイク", make: true, nail: false, este: false, aroma: false, hair: false, yoyakuUid: user.uid, yoyakuIcon: user.icon, yoyakuId: users.uid + user.uid + tomare.tomareId, timestamp: now, img_befor: "", img_after: "", come_befor: "", come_after: "",
+                                                    menu: "make", yoyakuMenu: "ケアメイク", make: true, nail: false, este: false, aroma: false, hair: false, yoyakuUid: user.uid, yoyakuName: user.name, yoyakuIcon: user.icon, yoyakuId: users.uid + user.uid + tomare.tomareId, timestamp: now, img_befor: "", img_after: "", come_befor: "", come_after: "",
                                                 }, { merge: true })
                                                 // alert("登録しました！")
                                                 fetchTomare()
                                             };
                                             const fetchTarget2 = async () => {
                                                 setDoc(doc(db, 'users', users.uid, 'tomare', `${tomare.gappi}${tomare.am_pm}`), {
-                                                    menu: "nail", yoyakuMenu: "ケアネイル", make: false, nail: true, este: false, aroma: false, hair: false, yoyakuUid: user.uid, yoyakuName, yoyakuIcon: user.icon, yoyakuId: users.uid + user.uid + tomare.tomareId, timestamp: now, img_befor: "", img_after: "", come_befor: "", come_after: "",
+                                                    menu: "nail", yoyakuMenu: "ケアネイル", make: false, nail: true, este: false, aroma: false, hair: false, yoyakuUid: user.uid, yoyakuName: user.name, yoyakuIcon: user.icon, yoyakuId: users.uid + user.uid + tomare.tomareId, timestamp: now, img_befor: "", img_after: "", come_befor: "", come_after: "",
                                                 }, { merge: true })
                                                 // alert("登録しました！")
                                                 fetchTomare()
                                             };
                                             const fetchTarget3 = async () => {
                                                 setDoc(doc(db, 'users', users.uid, 'tomare', `${tomare.gappi}${tomare.am_pm}`), {
-                                                    menu: "este", yoyakuMenu: "ケアエステ", make: false, nail: false, este: true, aroma: false, hair: false, yoyakuUid: user.uid, yoyakuName, yoyakuIcon: user.icon, yoyakuId: users.uid + user.uid + tomare.tomareId, timestamp: now, img_befor: "", img_after: "", come_befor: "", come_after: "",
+                                                    menu: "este", yoyakuMenu: "ケアエステ", make: false, nail: false, este: true, aroma: false, hair: false, yoyakuUid: user.uid, yoyakuName: user.name, yoyakuIcon: user.icon, yoyakuId: users.uid + user.uid + tomare.tomareId, timestamp: now, img_befor: "", img_after: "", come_befor: "", come_after: "",
                                                 }, { merge: true })
                                                 // alert("登録しました！")
                                                 fetchTomare()
                                             };
                                             const fetchTarget5 = async () => {
                                                 setDoc(doc(db, 'users', users.uid, 'tomare', `${tomare.gappi}${tomare.am_pm}`), {
-                                                    menu: "aroma", yoyakuMenu: "アロマタッチ", make: false, nail: false, este: false, aroma: true, hair: false, yoyakuUid: user.uid, yoyakuName, yoyakuIcon: user.icon, yoyakuId: users.uid + user.uid + tomare.tomareId, timestamp: now, img_befor: "", img_after: "", come_befor: "", come_after: "",
+                                                    menu: "aroma", yoyakuMenu: "アロマタッチ", make: false, nail: false, este: false, aroma: true, hair: false, yoyakuUid: user.uid, yoyakuName: user.name, yoyakuIcon: user.icon, yoyakuId: users.uid + user.uid + tomare.tomareId, timestamp: now, img_befor: "", img_after: "", come_befor: "", come_after: "",
                                                 }, { merge: true })
                                                 alert("登録しました！")
                                                 fetchTomare()
                                             };
                                             const fetchTarget6 = async () => {
                                                 setDoc(doc(db, 'users', users.uid, 'tomare', `${tomare.gappi}${tomare.am_pm}`), {
-                                                    menu: "hair", yoyakuMenu: "ケアヘアー", make: false, nail: false, este: false, aroma: false, hair: true, yoyakuUid: user.uid, yoyakuName, yoyakuIcon: user.icon, yoyakuId: users.uid + user.uid + tomare.tomareId, timestamp: now, img_befor: "", img_after: "", come_befor: "", come_after: "",
+                                                    menu: "hair", yoyakuMenu: "ケアヘアー", make: false, nail: false, este: false, aroma: false, hair: true, yoyakuUid: user.uid, yoyakuName: user.name, yoyakuIcon: user.icon, yoyakuId: users.uid + user.uid + tomare.tomareId, timestamp: now, img_befor: "", img_after: "", come_befor: "", come_after: "",
                                                 }, { merge: true })
                                                 // alert("登録しました！")
+                                                fetchTomare()
+                                            };
+                                            const fetchTarget888 = async () => {
+                                                setDoc(doc(db, 'users', users.uid, 'tomare', `${tomare.gappi}${tomare.am_pm}`), {
+                                                    quantity: , timestamp: now,
+                                                }, { merge: true })
+                                                alert("登録しました！")
                                                 fetchTomare()
                                             };
                                             const toChat = () => {
@@ -247,6 +253,13 @@ const PageD1 = () => {
                                                                 } */}
                                                             </div>
                                                             <br />
+                                                            <div>
+                                                                <h3 className="mb-4 text-green-500 text-3xl">
+                                                                    ご希望の施術時間
+                                                                </h3>
+                                                                10分単位で入力してください。（準備、片付けの時間を含めない）
+
+                                                            </div>
                                                         </p>
                                                     }
 
