@@ -62,12 +62,17 @@ const PageD1 = () => {
         console.log('users:', users)
     }
     const fetchTomare = async () => {
+        console.log(formatdate)
         const q = query(collectionGroup(db, 'tomare'));
+        // const q = query(collectionGroup(db, 'tomare'), where("gappi", "==", formatdate));
         const snapshot = await getDocs(q)
         const tomareData = snapshot.docs.map(
             (docT: any) => ({ ...docT.data() } as TomareState))
-        dispatch(addTargetTomare(tomareData))
-        setTargetTomare(tomareData)
+        // setTomare(tomareData)
+        dispatch(addTomare(tomareData))
+        setTomare(tomareData)
+        console.log('tomareData:', tomareData)
+        console.log('tomare:', tomare)
     }
     useEffect(() => {
         fetchUsers()
@@ -278,14 +283,14 @@ const PageD1 = () => {
                                                                 </h3>
                                                                 10分単位で選択してください。
                                                                 （準備、片付けの時間を含めない）
-                                                                <button className={styles.card} onClick={(e) => handleQuantity(1)}>10分</button>
-                                                                <button className={styles.card} onClick={(e) => handleQuantity(2)}>20分</button>
-                                                                <button className={styles.card} onClick={(e) => handleQuantity(3)}>30分</button>
-                                                                <button className={styles.card} onClick={(e) => handleQuantity(4)}>40分</button>
-                                                                <button className={styles.card} onClick={(e) => handleQuantity(5)}>50分</button>
-                                                                <button className={styles.card} onClick={(e) => handleQuantity(6)}>60分</button>
-                                                                <button className={styles.card} onClick={(e) => handleQuantity(9)}>90分</button>
-                                                                <button className={styles.card} onClick={(e) => handleQuantity(12)}>120分</button>
+                                                                <button onClick={(e) => handleQuantity(1)}>10分</button>
+                                                                <button onClick={(e) => handleQuantity(2)}>20分</button>
+                                                                <button onClick={(e) => handleQuantity(3)}>30分</button>
+                                                                <button onClick={(e) => handleQuantity(4)}>40分</button>
+                                                                <button onClick={(e) => handleQuantity(5)}>50分</button>
+                                                                <button onClick={(e) => handleQuantity(6)}>60分</button>
+                                                                <button onClick={(e) => handleQuantity(9)}>90分</button>
+                                                                <button onClick={(e) => handleQuantity(12)}>120分</button>
                                                                 <input type="number" onChange={(e) => setQuantity(e.target.valueAsNumber)} />
                                                             </div>
                                                         </p>
