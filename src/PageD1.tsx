@@ -276,8 +276,7 @@ const PageD1 = () => {
                                                                     renderInput={(params) => <TextField {...params} label="訪問時刻" />}
                                                                     onChange={(params) => setYoyakuZikoku(yoyakuZikoku)}
                                                                 />
-                                                                <div>{`value: ${yoyakuZikoku !== null ? `'${yoyakuZikoku}'` : 'null'}`}</div>
-                                                                {/* <div>{`inputValue: '${inputValue}'`}</div> */}
+                                                                {/* <div>{`value: ${yoyakuZikoku !== null ? `'${yoyakuZikoku}'` : 'null'}`}</div> */}
                                                                 <br />
                                                                 <Autocomplete
                                                                     value={yoyakuZikoku}
@@ -344,10 +343,10 @@ const PageD1 = () => {
                                                                         </h3>
                                                                     }
                                                                     <br />
-                                                                    {targetTomare.quantity !== 0 &&
+                                                                    {yoyakuZikoku !== "" &&
                                                                         <div>
                                                                             <h3 className="mb-4 text-3xl">
-                                                                                {`施術時間：${targetTomare.quantity * 10}分間`}
+                                                                                {`施術時間：${quantity * 10}分間`}
                                                                             </h3>
                                                                             <br />
                                                                             <h3 className="mb-4 text-green-500 text-3xl">
@@ -424,6 +423,6 @@ export default PageD1
 // One time slot every 30 minutes.
 const timeSlots = Array.from(new Array(24 * 4)).map(
     (_, index) =>
-        `${index < 20 ? '09' : ''}${Math.floor(index / 2)}:${index % 2 === 0 ? '00' : '15'
+        `${index < 20 ? '0' : ''}${Math.floor(index / 2)}:${index % 2 === 0 ? '00' : '15'
         }`,
 );
