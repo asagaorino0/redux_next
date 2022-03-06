@@ -154,8 +154,9 @@ const PageD1 = () => {
                                         .map((tomare: TomareState) => {
 
                                             const fetchTarget1 = async () => {
+                                                console.log(yoyakuName, user.name, user.namae)
                                                 setDoc(doc(db, 'users', users.uid, 'tomare', `${tomare.tomareId}`), {
-                                                    menu: "make", yoyakuMenu: "ケアメイク", make: true, nail: false, este: false, aroma: false, hair: false,
+                                                    menu: "make", yoyakuMenu: "ケアメイク", make: true, nail: false, este: false, aroma: false, hair: false, yoyakuUid: user.uid, yoyakuIcon: user.icon, yoyakuId: users.uid + user.uid + tomare.tomareId, timestamp: now, img_befor: "", img_after: "", come_befor: "", come_after: "",
                                                 }, { merge: true })
                                                 // alert("登録しました！")
                                                 fetchTomare()
