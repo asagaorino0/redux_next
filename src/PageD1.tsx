@@ -265,7 +265,7 @@ const PageD1 = () => {
                                                                 <h3 className="mb-4 text-green-500 text-3xl">
                                                                     ご希望の訪問時刻
                                                                 </h3>
-                                                                <Autocomplete
+                                                                {/* <Autocomplete
                                                                     id="yoyakuZikoku"
                                                                     // value={yoyakuZikoku}
                                                                     options={timeSlots}
@@ -275,7 +275,7 @@ const PageD1 = () => {
                                                                     sx={{ width: 150 }}
                                                                     renderInput={(params) => <TextField {...params} label="訪問時刻" />}
                                                                     onChange={(params) => setYoyakuZikoku(yoyakuZikoku)}
-                                                                />
+                                                                /> */}
                                                                 {/* <div>{`value: ${yoyakuZikoku !== null ? `'${yoyakuZikoku}'` : 'null'}`}</div> */}
                                                                 <br />
                                                                 <Autocomplete
@@ -301,8 +301,7 @@ const PageD1 = () => {
                                                                 <h3 className="mb-4 text-green-500 text-3xl">
                                                                     ご希望の施術時間
                                                                 </h3>
-                                                                10分単位で選択してください。
-                                                                （準備、片付けの時間を含めない）
+                                                                準備、片付けの時間は含めません
                                                                 <button className={styles.card} onClick={(e) => handleQuantity(1)}>10分</button>
                                                                 <button className={styles.card} onClick={(e) => handleQuantity(2)}>20分</button>
                                                                 <button className={styles.card} onClick={(e) => handleQuantity(3)}>30分</button>
@@ -318,7 +317,7 @@ const PageD1 = () => {
                                                     <h3 className="mb-4 text-green-500 text-3xl">
                                                         ***登録内容***
                                                     </h3>
-                                                    {targetTomare.yoyakuUid === user.uid && <p>
+                                                    {tomare.yoyakuUid === user.uid && <p>
                                                         <div className={styles.grid}>
                                                             <div>
                                                                 <br />
@@ -421,8 +420,8 @@ const PageD1 = () => {
 export default PageD1
 
 // One time slot every 30 minutes.
-const timeSlots = Array.from(new Array(24 * 4)).map(
+const timeSlots = Array.from(new Array(24 * 2)).map(
     (_, index) =>
-        `${index < 20 ? '0' : ''}${Math.floor(index / 2)}:${index % 2 === 0 ? '00' : '15'
+        `${index < 20 ? '0' : ''}${Math.floor(index / 4)}:${index % 4 === 0 ? '00' : '15'
         }`,
 );
