@@ -404,6 +404,6 @@ export default PageD1
 // One time slot every 30 minutes.
 const timeSlots = Array.from(new Array(24 * 2)).map(
     (_, index) =>
-        `${index < 20 ? '9' : ''}${Math.floor(index / 2)}:${index % 4 === 0 ? '00' : '15'
+        `${index < 20 ? '9' : ''}${Math.floor(index / 2)}:${index % 2 === 0 ? '00' : '15'
         }`,
 );
