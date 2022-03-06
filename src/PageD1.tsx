@@ -204,11 +204,12 @@ const PageD1 = () => {
                                                 setYoyakuIcon(`${tomare.yoyakuIcon}`)
                                                 const fetchTargetTomare = async () => {
                                                     const q = query(collection(db, "users", tomare.uid, 'tomare'), where("tomareId", "==", `${tomare.tomareId}`));
-                                                    const snapshot = await getDocs(q)
-                                                    const tomareData = snapshot.docs.map(
-                                                        (docT: any) => ({ ...docT.data() } as TomareState))
-                                                    dispatch(addTargetTomare(tomareData))
-                                                    setTargetTomare(tomareData)
+                                                    const snapshot = onSnapshot(q, (querySnapshot) => {
+                                                        const tomareData = querySnapshot.docs.map(
+                                                            (doc) => ({ ...doc.data() } as TomareState))
+                                                        dispatch(addTargetTomare(tomareData))
+                                                        setTargetTomare(tomareData)
+                                                    })
                                                 }
                                                 useEffect(() => {
                                                     fetchTargetTomare()
