@@ -190,7 +190,7 @@ const PageD1 = () => {
                                             };
                                             const fetchTarget888 = async () => {
                                                 setDoc(doc(db, 'users', users.uid, 'tomare', `${tomare.gappi}${tomare.am_pm}`), {
-                                                    quantity: , timestamp: now,
+                                                    quantity: 5, timestamp: now,
                                                 }, { merge: true })
                                                 alert("登録しました！")
                                                 fetchTomare()
