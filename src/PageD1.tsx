@@ -19,6 +19,8 @@ import 'react-calendar/dist/Calendar.css';
 import styles from '../styles/Home.module.css'
 import { addFormatdate, selectFormatdate } from './features/formatDateSlice';
 import { addTargetTomare, selectTargetTomare } from './features/targetTomareSlice';
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
 
 
 const PageD1 = () => {
@@ -255,6 +257,23 @@ const PageD1 = () => {
                                                             <br />
                                                             <div>
                                                                 <h3 className="mb-4 text-green-500 text-3xl">
+                                                                    ご希望の開始時間（お伺する時間）
+                                                                </h3>
+
+                                                                <Autocomplete
+                                                                    id="disabled-options-demo"
+                                                                    options={timeSlots}
+                                                                    getOptionDisabled={(option) =>
+                                                                        option === timeSlots[0] || option === timeSlots[2]
+                                                                    }
+                                                                    sx={{ width: 300 }}
+                                                                    renderInput={(params) => <TextField {...params} label="Disabled options" />}
+                                                                />
+
+
+
+                                                                <br />
+                                                                <h3 className="mb-4 text-green-500 text-3xl">
                                                                     ご希望の施術時間
                                                                 </h3>
                                                                 10分単位で入力してください。（準備、片付けの時間を含めない）
@@ -343,3 +362,10 @@ const PageD1 = () => {
     )
 }
 export default PageD1
+
+// One time slot every 30 minutes.
+const timeSlots = Array.from(new Array(24 * 2)).map(
+    (_, index) =>
+        `${index < 20 ? '0' : ''}${Math.floor(index / 2)}:${index % 2 === 0 ? '00' : '30'
+        }`,
+);
