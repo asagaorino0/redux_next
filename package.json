@@ -20,6 +20,7 @@
     "@line/liff": "^2.18.1",
     "@mui/icons-material": "^5.3.1",
     "@mui/material": "^5.4.0",
+    "@mui/styles": "^5.11.9",
     "@nuxtjs/axios": "^5.13.6",
     "@react-icons/all-files": "^4.1.0",
     "@reduxjs/toolkit": "^1.7.1",
