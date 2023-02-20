@@ -303,6 +303,7 @@ const PageD1 = () => {
                                                                     ご希望の施術時間
                                                                 </h3>
                                                                 準備、片付けの時間は含めません
+                                                                <br />
                                                                 <button className={styles.card} onClick={(e) => handleQuantity(1)}>10分</button>
                                                                 <button className={styles.card} onClick={(e) => handleQuantity(2)}>20分</button>
                                                                 <button className={styles.card} onClick={(e) => handleQuantity(3)}>30分</button>
@@ -318,51 +319,48 @@ const PageD1 = () => {
                                                     <h3 className="mb-4 text-green-500 text-3xl">
                                                         ***登録内容***
                                                     </h3>
-                                                    {/* {tomare.yoyakuUid === user.uid && */}
-                                                    <p>
+                                                    <br />
+                                                    <div className={styles.grid}>
+                                                        <br />
+                                                        <h3 className="mb-4  text-3xl">
+                                                            {tomare.gappi}
+                                                            {tomare.am_pm}
+                                                        </h3>
                                                         <div className={styles.grid}>
-
+                                                            {targetTomare.make === true && <p><img {...img_make} /></p>}
+                                                            {targetTomare.nail === true && <p><img {...img_nail} /></p>}
+                                                            {targetTomare.este === true && <p><img {...img_este} /></p>}
+                                                            {targetTomare.aroma === true && <p><img {...img_aroma} /></p>}
+                                                            {targetTomare.hair === true && <p><img {...img_hair} /></p>}
+                                                            {`${tomare.yoyakuMenu}`}
                                                             <br />
-                                                            <h3 className="mb-4  text-3xl">
-                                                                {targetTomare.gappi}
-                                                                {targetTomare.am_pm}
-                                                            </h3>
-                                                            <div className={styles.grid}>
-                                                                {targetTomare.make === true && <p><img {...img_make} /></p>}
-                                                                {targetTomare.nail === true && <p><img {...img_nail} /></p>}
-                                                                {targetTomare.este === true && <p><img {...img_este} /></p>}
-                                                                {targetTomare.aroma === true && <p><img {...img_aroma} /></p>}
-                                                                {targetTomare.hair === true && <p><img {...img_hair} /></p>}
-                                                                {/* {`${tomare.sonota}`.length !== 0 &&
-                                                                        <img {...img_sonota} />
-                                                                    } */}
-                                                                <br />
 
-                                                                {yoyakuZikoku !== "" &&
-                                                                    <h3 className="mb-4  text-3xl">
-                                                                        {`${yoyakuZikoku}に訪問希望`}
+                                                            {yoyakuZikoku !== "" &&
+                                                                <h3 className="mb-4  text-3xl">
+                                                                    {`${yoyakuZikoku}に訪問希望`}
+                                                                </h3>
+                                                            }
+                                                            <br />
+                                                            {yoyakuZikoku !== "" &&
+                                                                <div>
+                                                                    <br />
+                                                                    {`${tomare.tanka}円/10分`}
+                                                                    <br />
+                                                                    <h3 className="mb-4 text-3xl">
+                                                                        {`施術時間：${quantity * 10}分間`}
                                                                     </h3>
-                                                                }
-                                                                <br />
-                                                                {yoyakuZikoku !== "" &&
-                                                                    <div>
-                                                                        <br />
-                                                                        <h3 className="mb-4 text-3xl">
-                                                                            {`施術時間：${quantity * 10}分間`}
-                                                                        </h3>
-                                                                        <br />
-                                                                        <h3 className="mb-4 text-green-500 text-3xl">
-                                                                            <button onClick={fetchTarget888}>この内容で申し込む</button>
-                                                                        </h3>
-                                                                        ******************************
-                                                                    </div>
-                                                                }
-                                                            </div>
-
-
+                                                                    <br />
+                                                                    <h3 className="mb-4 text-green-500 text-3xl">
+                                                                        <button onClick={fetchTarget888}>この内容で申し込む</button>
+                                                                    </h3>
+                                                                    ******************************
+                                                                </div>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                    {tomare.yoyakuUid === user.uid &&
+                                                        <p>
                                                             <div>
-
-
                                                                 <p>
                                                                     <button onClick={toChat}>
                                                                         <img
@@ -406,12 +404,12 @@ const PageD1 = () => {
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                    </p>
-                                                    {/* } */}
+
+                                                        </p>
+                                                    }
                                                 </div >
                                             )
-                                            // }
+
                                         })
                                 }
                             </div >
