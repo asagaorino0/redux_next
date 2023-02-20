@@ -2,7 +2,6 @@ import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../app/store';
 import { ColorStateType } from '../types/ColorStateType';
 
-
 const initialState: ColorStateType = {
     base: 0,
     accent: 0,
