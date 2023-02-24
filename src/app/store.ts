@@ -12,8 +12,7 @@ import targetYoyakuReducer from '../features/targetYoyakuSlice';
 import targetChatReducer from '../features/targetChatSlice';
 import customerReducer from '../features/customerSlice';
 
-
-export const store = configureStore({
+export const store: any = configureStore({
   reducer: {
     user: userReducer,
     color: colorReducer,
@@ -27,7 +26,6 @@ export const store = configureStore({
     targetYoyaku: targetYoyakuReducer,
     targetChat: targetChatReducer,
     customer: customerReducer,
-
   },
 });
 export type AppDispatch = typeof store.dispatch;

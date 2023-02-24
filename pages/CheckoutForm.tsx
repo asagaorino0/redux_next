@@ -16,21 +16,21 @@ const CheckoutForm = (props: any) => {
         //     item: props.item
         // })
 
-        const confirm_result = window.confirm('選択した商品を購入します。よろしいですか？');
+        // const confirm_result = window.confirm('選択した商品を購入します。よろしいですか？');
 
-        if (confirm_result) {
-            const paymentResult = await stripe.confirmCardPayment({
-                customer_id: props.customerId,
-                item: props.item
-            })
-            if (paymentResult.error) {
-                setMessage('失敗しました')
-            } else {
-                setMessage('購入しました')
-            }
-        } else {
-            setMessage('')
-        }
+        // if (confirm_result) {
+        //     const paymentResult = await stripe.confirmCardPayment({
+        //         customer_id: props.customerId,
+        //         item: props.item
+        //     })
+        //     if (paymentResult.error) {
+        //         setMessage('失敗しました')
+        //     } else {
+        //         setMessage('購入しました')
+        //     }
+        // } else {
+        //     setMessage('')
+        // }
     }
 
     return (
