@@ -60,13 +60,13 @@ const PageA_profile = () => {
             setUserProfile(userData)
         }
         fetchUser()
-        fetchTomare()
+        // fetchTomare()
         console.log('User:', user)
         console.log('tomare:', tomare)
     }, []);
     const clickMenu4 = () => {
         setSonota("その他")
-        fetchTomare()
+        // fetchTomare()
         // fetchTargetTomare()
     }
     // const fetchTomare = async () => {
@@ -78,20 +78,20 @@ const PageA_profile = () => {
     //     dispatch(addTomare(tomareData))
     //     setTomare(tomareData)
     // }
-    const fetchTomare = async () => {
-        const q = query(collection(db, "users", user.uid, 'tomare'), where("uid", "==", user.uid));
-        const snapshot = onSnapshot(q, (querySnapshot) => {
-            // const snapshot = await getDocs(q)
-            // const tomareData = snapshot.docs.map(
-            //     (docT: any) => ({ ...docT.data() } as TomareState))
-            // setTomare(
-            const tomareData = querySnapshot.docs.map(
-                (doc) => ({ ...doc.data() } as TomareState))
-            // );
-            dispatch(addTomare(tomareData))
-            setTomare(tomareData)
-        });
-    }
+    // const fetchTomare = async () => {
+    //     const q = query(collection(db, "users", user.uid, 'tomare'), where("uid", "==", user.uid));
+    //     const snapshot = onSnapshot(q, (querySnapshot) => {
+    //         // const snapshot = await getDocs(q)
+    //         // const tomareData = snapshot.docs.map(
+    //         //     (docT: any) => ({ ...docT.data() } as TomareState))
+    //         // setTomare(
+    //         const tomareData = querySnapshot.docs.map(
+    //             (doc) => ({ ...doc.data() } as TomareState))
+    //         // );
+    //         dispatch(addTomare(tomareData))
+    //         setTomare(tomareData)
+    //     });
+    // }
 
     const date = new Date()
     const Y = date.getFullYear()
