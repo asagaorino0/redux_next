@@ -138,7 +138,7 @@ export default function App() {
     liff.init({ liffId: LINEID as string }).then(() => {
       if (!liff.isLoggedIn()) {
         setUid('k00000');
-        liff.login(); // ログインしていなければ最初にログインする
+        liff.login(); // ログインしていなければ最初にログイン
       } else if (liff.isInClient()) {
         console.log('hello world');
       }
