@@ -259,7 +259,7 @@ export default function App() {
               }
             </div>
             <br />
-            <button onClick={registC}>
+            {/* <button onClick={registC}>
               <h3 className="mb-4 text-green-500 text-3xl">予約枠設定</h3>
             </button>
             <br />
@@ -270,7 +270,7 @@ export default function App() {
             <br />
             <button onClick={registB}>
               <h3 className="mb-4 text-green-500 text-3xl">施設で申し込む</h3>
-            </button>
+            </button> */}
           </div>
         )}
       </div>
