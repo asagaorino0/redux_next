@@ -1,8 +1,9 @@
 
-import { styled } from '@mui/material/styles';
+
 import { useSelector } from 'react-redux';
 import MuiBox from '@mui/material/Box';
 import { selectColor } from '../src/features/colorSlice';
+import { styled } from '@mui/material/styles';
 
 export default function Copy() {
     const color = useSelector(selectColor);
