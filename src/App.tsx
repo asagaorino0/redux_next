@@ -20,7 +20,6 @@ import { store } from '../src/app/store';
 
 import Copy from '../components/Copy';
 import InputColor from '../components/InputColor';
-import { styled } from '@mui/material/styles';
 import MuiBox from '@mui/material/Box';
 import { selectColor } from './features/colorSlice';
 
