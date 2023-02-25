@@ -1,5 +1,6 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import userReducer from '../features/userSlice'
+import colorReducer from '../features/colorSlice'
 import usersReducer from '../features/usersSlice';
 import tomareReducer from '../features/tomareSlice';
 import targetTomareReducer from '../features/targetTomareSlice';
@@ -10,11 +11,11 @@ import targetUidReducer from '../features/targetUidSlice';
 import targetYoyakuReducer from '../features/targetYoyakuSlice';
 import targetChatReducer from '../features/targetChatSlice';
 import customerReducer from '../features/customerSlice';
-import colorReducer from '../features/colorSlice'
 
 export const store: any = configureStore({
   reducer: {
     user: userReducer,
+    color: colorReducer,
     users: usersReducer,
     tomare: tomareReducer,
     targetTomare: targetTomareReducer,
@@ -25,7 +26,6 @@ export const store: any = configureStore({
     targetYoyaku: targetYoyakuReducer,
     targetChat: targetChatReducer,
     customer: customerReducer,
-    color: colorReducer,
   },
 });
 export type AppDispatch = typeof store.dispatch;

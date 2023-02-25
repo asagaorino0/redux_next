@@ -44,7 +44,6 @@ const PageA = () => {
   useEffect(() => {
     fetchTomare()
     console.log('tomare:', tomare)
-    // fetchChat(yoyakuId)
   }, []);
   const fetchTomare = async () => {
     const q = query(collectionGroup(db, 'tomare'));
@@ -56,11 +55,7 @@ const PageA = () => {
   }
   const uid = `${user.uid}`
   return (
-    // <div className="App">
     <div className={styles.main}>
-      {/* <button onClick={toHome}>
-        <h3 className="mb-4 text-green-500 text-3xl">施術履歴</h3>
-      </button> */}
       {uid === '' && (
         <div>
           <button onClick={toHome}>
@@ -69,13 +64,10 @@ const PageA = () => {
         </div>
       )}
       <br />
-      {/* {user.uid}
-      <button onClick={toPagePay}>PagePay </button> */}
       <h1>
         <React.StrictMode>
           <Provider store={store}>
             <PageA_profile />
-            {/* <PagePay /> */}
           </Provider>
         </React.StrictMode>
 
@@ -99,7 +91,7 @@ const PageA = () => {
         <form action='/api/create-connect-account' method="POST">
           <section>
             <button type="submit" role="link" className={styles.card} >
-              銀行口座を登録する
+              銀行口座を登録
             </button>
           </section>
         </form>

@@ -20,6 +20,10 @@ import { store } from '../src/app/store';
 
 import Copy from '../components/Copy';
 import InputColor from '../components/InputColor';
+import { styled } from '@mui/material/styles';
+import MuiBox from '@mui/material/Box';
+import { selectColor } from './features/colorSlice';
+
 
 
 export default function App() {
@@ -140,7 +144,14 @@ export default function App() {
       }
     });
   }; ///先生
-
+  // const color = useSelector(selectColor);
+  // const MtBox_p = styled(MuiBox)(() => ({
+  //   fontSize: '1.2em',
+  //   fontWeight: 'bold',
+  //   color: `${color.accent}`,
+  //   padding: '15px 10px 10px 10px',
+  //   textAlign: 'left',
+  // }));
   const toPageA = () => {
     router.push('./PageA');
   };
@@ -188,19 +199,21 @@ export default function App() {
           {/* <br />
           <Copy /> */}
 
-          <p className="mb-2 text-center">sample text</p>
+          {/* <p className="mb-2 text-center">sample text</p> */}
         </section>
       </div>
-
-      <button onClick={fetchTomare}>
-        <img
-          src={`${icon}`}
-          alt=""
-          style={{ borderRadius: '50%', width: '60px', height: '60px' }}
-        />
-      </button>
-      <h1 className="mb-4 text-green-500 text-3xl">{name}さま </h1>
-      <br />
+      {icon &&
+        <>
+          <button onClick={fetchTomare}>
+            <img
+              src={`${icon}`}
+              alt=""
+              style={{ borderRadius: '50%', width: '60px', height: '60px' }} />
+          </button>
+          <h1 className="mb-4 text-green-500 text-3xl">{name}さま </h1>
+          <br />
+        </>
+      }
 
       {`${pay}`.length !== 0 && <h1>次の支払いを完了させてください</h1>}
 
@@ -209,18 +222,6 @@ export default function App() {
       {`${pay}`.length === 0 && (
         <div>
           {`${tomare}`.length !== 0 && <h1>未払い</h1>}
-          {/* <React.StrictMode>
-            <Provider store={store}>
-              <br />
-              {tomare.map((tomare: TomareState) => {
-                return (
-                  <div key={tomare.tomareId}>
-                    <MiPayAccordion pay={tomare} key={tomare.tomareId} />
-                  </div>
-                );
-              })}
-            </Provider>
-          </React.StrictMode> */}
         </div>
       )}
       <br />
@@ -234,11 +235,14 @@ export default function App() {
         )}
         {`${pay}`.length === 0 && (
           <div>
+            {/* <section className="p-5"> */}
             <button onClick={registA}>
-              <h3 className="mb-4 text-green-500 text-3xl">マイページ</h3>
+              {/* <MtBox_p > */}
+              <h3 className="mb-4 text-3xl">マイページ</h3>
+              {/* </MtBox_p> */}
             </button>
-            <br />
-            <br />
+            {/* </section> */}
+            {/* <br />
             <div className="App">
               <button onClick={() => setDisplay(!display)}>
                 <h3 className="mb-4 text-green-500 text-3xl">履歴</h3>
@@ -257,18 +261,18 @@ export default function App() {
                     )
                   })
               }
-            </div>
+            </div> */}
             <br />
             {/* <button onClick={registC}>
               <h3 className="mb-4 text-green-500 text-3xl">予約枠設定</h3>
             </button>
-            <br />
-            <h3 className="mb-4  text-3xl">施術申込み</h3>
+            <br /> */}
+            {/* <h3 className="mb-4  text-3xl">施術申込み</h3>
             <button onClick={registB}>
               <h3 className="mb-4 text-green-500 text-3xl">個人で申し込む</h3>
             </button>
-            <br />
-            <button onClick={registB}>
+            <br /> */}
+            {/* <button onClick={registB}>
               <h3 className="mb-4 text-green-500 text-3xl">施設で申し込む</h3>
             </button> */}
           </div>
