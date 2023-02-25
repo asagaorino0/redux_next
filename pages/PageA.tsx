@@ -91,7 +91,7 @@ const PageA = () => {
         <form action='/api/create-connect-account' method="POST">
           <section>
             <button type="submit" role="link" className={styles.card} >
-              銀行口座を登録する
+              銀行口座を登録
             </button>
           </section>
         </form>
