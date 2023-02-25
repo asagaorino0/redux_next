@@ -143,7 +143,7 @@ export default function App() {
         console.log('hello world');
       }
     });
-  }; ///先生
+  };
   // const color = useSelector(selectColor);
   // const MtBox_p = styled(MuiBox)(() => ({
   //   fontSize: '1.2em',
