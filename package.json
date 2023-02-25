@@ -14,7 +14,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/react-fontawesome": "^0.1.17",
     "@fullcalendar/daygrid": "^5.10.1",
-    "@fullcalendar/react": "^5.10.1",
+    "@fullcalendar/react": "^6.1.4",
     "@google-cloud/vision": "^2.4.2",
     "@line/bot-sdk": "^7.4.0",
     "@line/liff": "^2.18.1",
