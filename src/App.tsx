@@ -9,16 +9,6 @@ import liff from '@line/liff';
 import { collection, collectionGroup, query, where, doc, setDoc, onSnapshot } from 'firebase/firestore'
 import { TomareState } from "../src/types/tomare";
 
-<<<<<<< HEAD
-=======
-import Copy from '../components/Copy';
-import InputColor from '../components/InputColor';
-import MuiBox from '@mui/material/Box';
-import { selectColor } from './features/colorSlice';
->>>>>>> e79c8e797c7ae237624716d882ff15549bc5d3d8
-
-
-
 export default function App() {
   const [uid, setUid] = useState<string>('');
   const [name, setName] = useState<string>('');
@@ -28,9 +18,6 @@ export default function App() {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const router = useRouter();
-  // const PageA = dynamic(() => import('../pages/PageA'), { ssr: false });
-  // const PagePay = dynamic(() => import('./PagePay'), { ssr: false });
-  const [loading, setLoading] = useState(false);
   useEffect(() => {
     liff
       .init({ liffId: process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID as string })
@@ -42,7 +29,6 @@ export default function App() {
             '🚀 ~ file: Login.tsx ~ line 15 ~ liff.init ~ profile',
             profile
           );
-          // const userId: string = profile.userId
           const displayName: string = profile.displayName;
           const displayicon: string | undefined = profile.pictureUrl;
           setName(profile.displayName);
@@ -50,15 +36,6 @@ export default function App() {
           setName(displayName);
           setIcon(displayicon);
 
-          const p = query(collection(db, 'yoyakuPay'), where('yoyakuUid', '==', profile.userId));
-          const snapshotP = onSnapshot(p, (querySnapshot) => {
-            const payData = querySnapshot.docs.map(
-              (docP) => ({ ...docP.data() } as TomareState)
-            );
-            dispatch(addUser(payData));
-            setPay(payData);
-            console.log('pey*****', pay, uid, pay.uid);
-          });
 
           const t = query(collectionGroup(db, 'tomare'), where("yoyakuUid", "==", profile.userId));
           const snapshotT = onSnapshot(t, (querySnapshot) => {
@@ -86,7 +63,7 @@ export default function App() {
               timestamp: '',
             },
             { merge: true });
-
+          console.log(user)
         } else {
           console.log('login status : [', false, ']');
         }
@@ -96,24 +73,10 @@ export default function App() {
   }, []);
 
   useLayoutEffect(() => {
-    // setLoading(true);
-    fetchPay();
     fetchTomare();
     // window.location.reload
   }, []);
 
-  const fetchPay = async () => {
-    console.log('pey:uid::pay.uid::', uid, pay.uid);
-    const p = query(collection(db, 'yoyakuPay'), where('yoyakuUid', '==', uid));
-    const snapshot = onSnapshot(p, (querySnapshot) => {
-      const payData = querySnapshot.docs.map(
-        (docP) => ({ ...docP.data() } as TomareState)
-      );
-      dispatch(addUser(payData));
-      setPay(payData);
-      console.log('pey:::::', pay, uid, pay.uid);
-    });
-  };
   const fetchTomare = async () => {
     const q = query(collectionGroup(db, 'tomare'), where("yoyakuUid", "==", `${uid}`));
     const snapshot = onSnapshot(q, (querySnapshot) => {
@@ -137,54 +100,16 @@ export default function App() {
       }
     });
   };
-  // const color = useSelector(selectColor);
-  // const MtBox_p = styled(MuiBox)(() => ({
-  //   fontSize: '1.2em',
-  //   fontWeight: 'bold',
-  //   color: `${color.accent}`,
-  //   padding: '15px 10px 10px 10px',
-  //   textAlign: 'left',
-  // }));
   const toPageA = () => {
     router.push('./PageA');
-  };
-  const toPageB = () => {
-    router.push('./PageB');
-  };
-  const toPageC = () => {
-    router.push('./PageC');
-  };
-  const toPagePay = () => {
-    router.push('./PagePay');
   };
   const registA = () => {
     dispatch(addUser({ name, uid, icon }));
     toPageA()
   };
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-  // const receipt_url = location.search.substr(1, 200)
-  const [display, setDisplay] = useState(false)
+
   return (
     <main>
-      <div className="h-screen w-4/5 max-w-5xl mx-auto flex justifycenter flex-col">
-
-        <section className="h-screen w-4/5 max-w-5xl mx-auto flex justifycenter flex-col">
-          {/* <InputColor /> */}
-          {/* <br />
-          <Copy /> */}
-
-          {/* <p className="mb-2 text-center">sample text</p> */}
-        </section>
-      </div>
-<<<<<<< HEAD
-
       <button onClick={fetchTomare}>
         <img
           src={`${icon}`}
@@ -193,30 +118,6 @@ export default function App() {
         />
       </button>
       <h1 className="mb-4 text-green-500 text-3xl">{name}さま </h1>
-=======
-      {icon &&
-        <>
-          <button onClick={fetchTomare}>
-            <img
-              src={`${icon}`}
-              alt=""
-              style={{ borderRadius: '50%', width: '60px', height: '60px' }} />
-          </button>
-          <h1 className="mb-4 text-green-500 text-3xl">{name}さま </h1>
-          <br />
-        </>
-      }
-
-      {`${pay}`.length !== 0 && <h1>次の支払いを完了させてください</h1>}
-
-
-      <br />
-      {`${pay}`.length === 0 && (
-        <div>
-          {`${tomare}`.length !== 0 && <h1>未払い</h1>}
-        </div>
-      )}
->>>>>>> 9b2b76fcc8deea83e95c70f7f7c18abe4aa82568
       <br />
       <div className="App">
         {uid === '' && (
@@ -226,51 +127,11 @@ export default function App() {
             </button>
           </div>
         )}
-        {`${pay}`.length === 0 && (
-          <div>
-            {/* <section className="p-5"> */}
-            <button onClick={registA}>
-              {/* <MtBox_p > */}
-              <h3 className="mb-4 text-3xl">マイページ</h3>
-              {/* </MtBox_p> */}
-            </button>
-            {/* </section> */}
-            {/* <br />
-            <div className="App">
-              {display &&
-                tomare
-                  .map((tomare: TomareState) => {
-                    return (
-                      <div key={tomare.tomareId}>
-                        {`${tomare.yoyakuMenu}` !== "" &&
-                          <div className={styles.grid}>
-                            <CustomerAccordion tomare={tomare} key={tomare.tomareId} />
-                          </div>
-                        }
-                      </div>
-                    )
-                  })
-              }
-<<<<<<< HEAD
-            </div>
-=======
-            </div> */}
-            <br />
-            {/* <button onClick={registC}>
-              <h3 className="mb-4 text-green-500 text-3xl">予約枠設定</h3>
-            </button>
-            <br /> */}
-            {/* <h3 className="mb-4  text-3xl">施術申込み</h3>
-            <button onClick={registB}>
-              <h3 className="mb-4 text-green-500 text-3xl">個人で申し込む</h3>
-            </button>
-            <br /> */}
-            {/* <button onClick={registB}>
-              <h3 className="mb-4 text-green-500 text-3xl">施設で申し込む</h3>
-            </button> */}
->>>>>>> 9b2b76fcc8deea83e95c70f7f7c18abe4aa82568
-          </div>
-        )}
+        <div>
+          <button onClick={registA}>
+            <h3 className="mb-4 text-3xl">マイページ</h3>
+          </button>
+        </div>
       </div>
       <a
         href="https://konoyubi.site"
