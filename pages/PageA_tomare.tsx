@@ -2,30 +2,24 @@ import React, { useState, useEffect } from 'react';
 import { addFormatdate, } from '../src/features/formatDateSlice';
 import { addTomare } from '../src/features/tomareSlice';
 import { addTargetTomare } from '../src/features/targetTomareSlice';
-import { addTargetChat, selectTargetChat } from '../src/features/targetChatSlice';
+import { addTargetChat } from '../src/features/targetChatSlice';
 import { addMenu } from '../src/features/menuSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { db } from "../src/firebase";
-import { getDocs, collection, collectionGroup, query, where, doc, setDoc, serverTimestamp, deleteDoc, onSnapshot } from 'firebase/firestore'
+import { getDocs, collection, collectionGroup, query, where, doc, setDoc, deleteDoc, onSnapshot } from 'firebase/firestore'
 import { TomareState } from "../src/types/tomare";
-import { UserState } from "../src/types/user";
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import styles from '../styles/Home.module.css'
-import { addUser, selectUser } from '../src/features/userSlice';
-import liff from '@line/liff';
-import P_make from "./img/P_make.png"
-import { computeSegDraggable } from '@fullcalendar/common';
-import { truncate } from 'fs';
+import { selectUser } from '../src/features/userSlice';
 import { useRouter } from "next/router";
 import { Provider } from 'react-redux';
 import { store } from '../src/app/store';
 import dynamic from 'next/dynamic'
 
 
-const PageA_profile = () => {
-    const Chat = dynamic(() => import('./srcChat'), { ssr: false });
-    const PageLogin = dynamic(() => import('../src/PageLogin'), { ssr: false });
+const PageA_tomare = () => {
+
     const [menus, setMenus] = useState<any>([]);
     const [make, setMake] = useState<boolean>(false);
     const [nail, setNail] = useState<boolean>(false);
@@ -375,4 +369,4 @@ const PageA_profile = () => {
     )
 }
 
-export default PageA_profile
+export default PageA_tomare

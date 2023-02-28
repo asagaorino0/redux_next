@@ -38,66 +38,10 @@ import router from 'next/router';
 const drawerWidth = 200;
 const Header = () => {
   const dispatch = useDispatch();
-  // const page = useSelector(selectPage);
-  // const url = location.pathname;
-  // const formatDate = useSelector(selectFormatDate);
   const [follow, setFollow] = useState<any>([]);
-  // const user = useSelector(selectUser);
   const [mobileOpen, setMobileOpen] = useState<boolean>(true);
-  // const navigate = useNavigate();
-  // const handleHomeDispatch = (() => {
-  //   dispatch(addChat({
-  //     tomareId: '',
-  //     tomareUid: '',
-  //   }))
-  //   dispatch(
-  //     addFormatDate({
-  //       formatDate: "",
-  //       formatMonth: formatDate.formatMonth,
-  //       bDtate: formatDate.bDate,
-  //     })
-  //   );
-  //   dispatch(
-  //     addMenu0({
-  //       yoyakuMenu: '',
-  //       menu: false,
-  //       make: false,
-  //       nail: false,
-  //       este: false,
-  //       aroma: false,
-  //       hair: false,
-  //       foot: false,
-  //       count: 0,
-  //     })
-  //   );
-  //   dispatch(
-  //     addPage({
-  //       pageMenu: page.pageMenu,
-  //       tomareId: page.tomareId,
-  //       menu: '',
-  //       page: '/',
-  //       url: '/',
-  //       expanded: page.expanded
-  //     }))
-
-  // })
-  // const fetchFollowerData = async () => {
-  //   const result = await fetchFollower(user.uid);
-  //   setFollow(result);
-  // }
   const [userData, setUserData] = useState<any>([]);
-  // const targetUid = useSelector(selectTargetUid);
-  // const fetchUserData = async () => {
-  //   const result = await fetchUser(`${targetUid.uid}`)
-  //   setUserData(result)
-  //   {
-  //     userData &&
-  //       userData.map((preUser: UserStateType) => {
-  //         dispatch(addUser(preUser))
-  //         console.log(user)
-  //       })
-  //   }
-  // }
+
   const handleDrawerToggle = () => {
     // fetchUserData()
     // fetchFollowerData()
@@ -165,14 +109,6 @@ const Header = () => {
           </ListItem>
 
           <ListItem button
-          // onClick={() => {
-          //   dispatch(addPage({
-          //     yoyakuMenu: '施術履歴',
-          //     menu: '',
-          //     page: '../PageHistory'
-          //   }));
-          //   navigate('../PageHistory');
-          // }}
           >
             <ListItemText primary='施術履歴' />
           </ListItem>
@@ -256,94 +192,7 @@ const Header = () => {
           >
             <MenuIcon />
           </IconButton>
-          {/* {url !== '/' && (
-            page.pageMenu === '*LINE通知*' ||
-              page.pageMenu !== '' ?
-              (
-                <>
-                  <nav>
-                    {
-                      page.page === '/PageSteps*' ?
-                        <ArrowBackIosIcon
-                          sx={{ p: 0 }}
-                          onClick={() => {
-                            handleHomeDispatch()
-                            navigate(-2);
-                          }}
-                        />
-                        :
-                        <HomeIcon
-                          sx={{ p: 0 }}
-                          onClick={() => {
-                            handleHomeDispatch()
-                            navigate(-1);
-                          }}
-                        />
-                    }
-                    <Box
-                      onClick={() => {
-                        handleHomeDispatch()
-                        navigate(page.url);
-                      }}
-                      className='header-memu-text'
-                    >
-                    </Box>
-                  </nav>
-                  {formatDate.formatDate && (////calender関連////////////////////////////////////
-                    <div className='header-memu-text'>
-                      <Button
-                        className='header-memu-text'
-                        onClick={() => {
-                          dispatch(
-                            addFormatDate({
-                              formatDate: "",
-                              formatMonth: formatDate.formatMonth,
-                              bDtate: formatDate.bDate
-                            })
-                          );
-                          dispatch(/////要る？
-                            addPage({
-                              pageMenu: page.pageMenu,
-                              tomareId: page.tomareId,
-                              menu: page.menu,
-                              page: page.page,
-                              url: page.url
-                            })
-                          )
-                        }}
-                      >
-                        <EventIcon
-                          sx={{
-                            minWidth: 36, p: 0
-                          }}
-                        />
-                      </Button>
-                      <CalendarSub />
-                      <Box sx={{ width: 50 }}>
-                        {formatDate.formatDate && `${formatDate.formatDate}`}
-                      </Box>
-                      <CalendarAdd />
-                    </div>
-                  )}
-                </>
-              ) : (///page.pageMenu !== '' かLINE 通知
-                <>
-                  <nav>
-                    <HomeIcon
-                      sx={{ p: 0 }}
-                      onClick={() => {
-                        handleHomeDispatch()
-                        console.log(page.pageMenu, page.menu)
-                        navigate('/');
-                      }}
-                    />
-                  </nav>
-                  <div className='header-memu-text'>
-                    {page.pageMenu}
-                  </div>
-                </>
-              )
-          )} */}
+
           <Typography
             variant="h6"
             component="div"

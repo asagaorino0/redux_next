@@ -6,20 +6,17 @@ import { addTomare } from '../src/features/tomareSlice';
 import 'firebase/compat/firestore';
 import { db } from './firebase';
 import liff from '@line/liff';
-import dynamic from 'next/dynamic';
-import { collection, collectionGroup, query, orderBy, where, doc, setDoc, serverTimestamp, deleteDoc, onSnapshot } from 'firebase/firestore'
+import { collection, collectionGroup, query, where, doc, setDoc, onSnapshot } from 'firebase/firestore'
 import { TomareState } from "../src/types/tomare";
-import CustomerAccordion from '../components/CustomerAccordion';
-import styles from '../styles/Home.module.css'
-import SuccesReceipt from '../components/SuccesReceipt';
-import PayAccordion from '../components/PayAccordion';
-import PayReceipt from '../components/PayReceipt';
-import MiPayAccordion from '../components/MiPayAccordion';
-import { Provider } from 'react-redux';
-import { store } from '../src/app/store';
 
+<<<<<<< HEAD
+=======
 import Copy from '../components/Copy';
 import InputColor from '../components/InputColor';
+import MuiBox from '@mui/material/Box';
+import { selectColor } from './features/colorSlice';
+>>>>>>> e79c8e797c7ae237624716d882ff15549bc5d3d8
+
 
 
 export default function App() {
@@ -134,13 +131,20 @@ export default function App() {
     liff.init({ liffId: LINEID as string }).then(() => {
       if (!liff.isLoggedIn()) {
         setUid('k00000');
-        liff.login(); // ログインしていなければ最初にログインする
+        liff.login(); // ログインしていなければ最初にログイン
       } else if (liff.isInClient()) {
         console.log('hello world');
       }
     });
-  }; ///先生
-
+  };
+  // const color = useSelector(selectColor);
+  // const MtBox_p = styled(MuiBox)(() => ({
+  //   fontSize: '1.2em',
+  //   fontWeight: 'bold',
+  //   color: `${color.accent}`,
+  //   padding: '15px 10px 10px 10px',
+  //   textAlign: 'left',
+  // }));
   const toPageA = () => {
     router.push('./PageA');
   };
@@ -176,9 +180,10 @@ export default function App() {
           {/* <br />
           <Copy /> */}
 
-          <p className="mb-2 text-center">sample text</p>
+          {/* <p className="mb-2 text-center">sample text</p> */}
         </section>
       </div>
+<<<<<<< HEAD
 
       <button onClick={fetchTomare}>
         <img
@@ -188,6 +193,30 @@ export default function App() {
         />
       </button>
       <h1 className="mb-4 text-green-500 text-3xl">{name}さま </h1>
+=======
+      {icon &&
+        <>
+          <button onClick={fetchTomare}>
+            <img
+              src={`${icon}`}
+              alt=""
+              style={{ borderRadius: '50%', width: '60px', height: '60px' }} />
+          </button>
+          <h1 className="mb-4 text-green-500 text-3xl">{name}さま </h1>
+          <br />
+        </>
+      }
+
+      {`${pay}`.length !== 0 && <h1>次の支払いを完了させてください</h1>}
+
+
+      <br />
+      {`${pay}`.length === 0 && (
+        <div>
+          {`${tomare}`.length !== 0 && <h1>未払い</h1>}
+        </div>
+      )}
+>>>>>>> 9b2b76fcc8deea83e95c70f7f7c18abe4aa82568
       <br />
       <div className="App">
         {uid === '' && (
@@ -199,11 +228,14 @@ export default function App() {
         )}
         {`${pay}`.length === 0 && (
           <div>
+            {/* <section className="p-5"> */}
             <button onClick={registA}>
-              <h3 className="mb-4 text-green-500 text-3xl">マイページ</h3>
+              {/* <MtBox_p > */}
+              <h3 className="mb-4 text-3xl">マイページ</h3>
+              {/* </MtBox_p> */}
             </button>
-            <br />
-            <br />
+            {/* </section> */}
+            {/* <br />
             <div className="App">
               {display &&
                 tomare
@@ -219,7 +251,24 @@ export default function App() {
                     )
                   })
               }
+<<<<<<< HEAD
             </div>
+=======
+            </div> */}
+            <br />
+            {/* <button onClick={registC}>
+              <h3 className="mb-4 text-green-500 text-3xl">予約枠設定</h3>
+            </button>
+            <br /> */}
+            {/* <h3 className="mb-4  text-3xl">施術申込み</h3>
+            <button onClick={registB}>
+              <h3 className="mb-4 text-green-500 text-3xl">個人で申し込む</h3>
+            </button>
+            <br /> */}
+            {/* <button onClick={registB}>
+              <h3 className="mb-4 text-green-500 text-3xl">施設で申し込む</h3>
+            </button> */}
+>>>>>>> 9b2b76fcc8deea83e95c70f7f7c18abe4aa82568
           </div>
         )}
       </div>
