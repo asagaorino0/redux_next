@@ -15,7 +15,7 @@ import styles from '../styles/Home.module.css';
 import FileUpload from '../components/FileUpload';
 const PageA = () => {
   // const PagePay = dynamic(() => import('../src/PagePay'), { ssr: false });
-  const PageAA = dynamic(() => import('../src/PageAA'), { ssr: false });
+  // const PageAA = dynamic(() => import('../src/PageAA'), { ssr: false });
   const PageA_profile = dynamic(() => import('./PageA_profile'), { ssr: false });
   const user = useSelector(selectUser);
   const router = useRouter()
@@ -23,9 +23,7 @@ const PageA = () => {
   const [tomare, setTomare] = useState<any>([]);
   const dispatch = useDispatch();
   const toHome = () => { router.push('./') }
-  const toPagePay = () => {
-    router.push('./PagePay')
-  }
+
   useEffect(() => {
     const fetchMenus = async () => {
       const q = query(collection(db, 'users'), where("uid", "==", uid));
@@ -56,11 +54,7 @@ const PageA = () => {
   }
   const uid = `${user.uid}`
   return (
-    // <div className="App">
     <div className={styles.main}>
-      {/* <button onClick={toHome}>
-        <h3 className="mb-4 text-green-500 text-3xl">施術履歴</h3>
-      </button> */}
       {uid === '' && (
         <div>
           <button onClick={toHome}>
@@ -69,26 +63,21 @@ const PageA = () => {
         </div>
       )}
       <br />
-      {/* {user.uid}
-      <button onClick={toPagePay}>PagePay </button> */}
       <h1>
-        <React.StrictMode>
+        {/* <React.StrictMode>
           <Provider store={store}>
             <PageA_profile />
-            {/* <PagePay /> */}
           </Provider>
-        </React.StrictMode>
+        </React.StrictMode> */}
 
         <br />
         <form action={`/api/checkin/${uid}/card`} method="POST">
           <section>
-            {/* <h2>お客さまメニュー</h2> */}
             <button type="submit" role="link" className={styles.card} >
               クレジットカードの登録
             </button>
           </section>
         </form>
-        {/* <form action={`https://buy.stripe.com/test_dR628mfhs1ZLaGIaEE`} method="POST"> */}
         <section>
           <button type="submit" role="link" className={styles.card} >
             <a href="https://buy.stripe.com/test_dR628mfhs1ZLaGIaEE" >

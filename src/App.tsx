@@ -157,18 +157,6 @@ export default function App() {
     dispatch(addUser({ name, uid, icon }));
     toPageA()
   };
-  const registB = () => {
-    dispatch(addUser({ name, uid, icon }));
-    toPageB();
-  };
-  const registC = () => {
-    dispatch(addUser({ name, uid, icon }));
-    toPageC();
-  };
-  const registPay = () => {
-    dispatch(addUser({ name, uid, icon }));
-    toPagePay()
-  };
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -201,29 +189,6 @@ export default function App() {
       </button>
       <h1 className="mb-4 text-green-500 text-3xl">{name}さま </h1>
       <br />
-
-      {`${pay}`.length !== 0 && <h1>次の支払いを完了させてください</h1>}
-
-
-      <br />
-      {`${pay}`.length === 0 && (
-        <div>
-          {`${tomare}`.length !== 0 && <h1>未払い</h1>}
-          {/* <React.StrictMode>
-            <Provider store={store}>
-              <br />
-              {tomare.map((tomare: TomareState) => {
-                return (
-                  <div key={tomare.tomareId}>
-                    <MiPayAccordion pay={tomare} key={tomare.tomareId} />
-                  </div>
-                );
-              })}
-            </Provider>
-          </React.StrictMode> */}
-        </div>
-      )}
-      <br />
       <div className="App">
         {uid === '' && (
           <div>
@@ -240,9 +205,6 @@ export default function App() {
             <br />
             <br />
             <div className="App">
-              <button onClick={() => setDisplay(!display)}>
-                <h3 className="mb-4 text-green-500 text-3xl">履歴</h3>
-              </button>
               {display &&
                 tomare
                   .map((tomare: TomareState) => {
@@ -258,24 +220,9 @@ export default function App() {
                   })
               }
             </div>
-            <br />
-            <button onClick={registC}>
-              <h3 className="mb-4 text-green-500 text-3xl">予約枠設定</h3>
-            </button>
-            <br />
-            <h3 className="mb-4  text-3xl">施術申込み</h3>
-            <button onClick={registB}>
-              <h3 className="mb-4 text-green-500 text-3xl">個人で申し込む</h3>
-            </button>
-            <br />
-            <button onClick={registB}>
-              <h3 className="mb-4 text-green-500 text-3xl">施設で申し込む</h3>
-            </button>
           </div>
         )}
       </div>
-
-      {/* <footer className={styles.footer}> */}
       <a
         href="https://konoyubi.site"
         target="_blank"
