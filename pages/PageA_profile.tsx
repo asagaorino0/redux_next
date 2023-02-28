@@ -11,7 +11,6 @@ import styles from '../styles/Home.module.css'
 import { addUser, selectUser } from '../src/features/userSlice';
 import { useRouter } from "next/router";
 import dynamic from 'next/dynamic'
-import TomareAccordion from '../components/TomareAccordion';
 import liff from '@line/liff';
 import P_make from "./img/P_make.png"
 import { computeSegDraggable } from '@fullcalendar/common';
@@ -207,11 +206,11 @@ const PageA_profile = () => {
                                         .map((tomare: TomareState) => {
                                             return (
                                                 <div key={tomare.tomareId}>
-                                                    {`${tomare.yoyakuMenu}` !== "" &&
+                                                    {/* {`${tomare.yoyakuMenu}` !== "" &&
                                                         <div className={styles.grid}>
                                                             <TomareAccordion tomare={tomare} key={tomare.tomareId} />
                                                         </div>
-                                                    }
+                                                    } */}
                                                 </div>
                                             )
                                         })

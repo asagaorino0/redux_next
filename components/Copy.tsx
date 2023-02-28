@@ -13,7 +13,7 @@ export default function Copy() {
         background: `${color.base}`,
         fontSize: '1.2em',
         fontWeight: 'bold',
-        color: `${color.accent}`,
+        color: `${color.moji}`,
         '&::before': {
             position: 'absolute',
             content: '""',
@@ -28,7 +28,7 @@ export default function Copy() {
         padding: '6px',
         fontSize: '1.2em',
         fontWeight: 'bold',
-        color: `${color.accent}`,
+        color: `${color.moji}`,
         background: `${color.base}`,
         borderBottom: `solid 6px ${color.sub}`
     }));
@@ -40,7 +40,7 @@ export default function Copy() {
         boxShadow: `0px 0px 0px 5px ${color.base}`,
         border: 'dashed 2px white',
         padding: '0.2em 0.5em',
-        color: `${color.accent}`,
+        color: `${color.moji}`,
         '&::after': {
             position: 'absolute',
             content: '""',
@@ -58,7 +58,7 @@ export default function Copy() {
         padding: '0.25em 2em',
         fontSize: '1.2em',
         fontWeight: 'bold',
-        color: `${color.accent}`,
+        color: `${color.moji}`,
         transform: 'rotate(-3deg)',
         left: '3px',
     }));
@@ -70,7 +70,7 @@ export default function Copy() {
     const MtBox_p = styled(MuiBox)(() => ({
         fontSize: '1.2em',
         fontWeight: 'bold',
-        color: `${color.accent}`,
+        color: `${color.moji}`,
         padding: '15px 10px 10px 10px',
         textAlign: 'left',
     }));
