@@ -16,7 +16,7 @@ const Home: NextPage = () => {
           <InputColor />
           <br />
           <Copy />
-          {/* <App /> */}
+          <App />
         </div>
       </div>
     </Layout>
