@@ -9,6 +9,13 @@ import liff from '@line/liff';
 import { collection, collectionGroup, query, where, doc, setDoc, onSnapshot } from 'firebase/firestore'
 import { TomareState } from "../src/types/tomare";
 
+<<<<<<< HEAD
+=======
+import Copy from '../components/Copy';
+import InputColor from '../components/InputColor';
+import MuiBox from '@mui/material/Box';
+import { selectColor } from './features/colorSlice';
+>>>>>>> e79c8e797c7ae237624716d882ff15549bc5d3d8
 
 
 
@@ -124,12 +131,12 @@ export default function App() {
     liff.init({ liffId: LINEID as string }).then(() => {
       if (!liff.isLoggedIn()) {
         setUid('k00000');
-        liff.login(); // ログインしていなければ最初にログインする
+        liff.login(); // ログインしていなければ最初にログイン
       } else if (liff.isInClient()) {
         console.log('hello world');
       }
     });
-  }; ///先生
+  };
   // const color = useSelector(selectColor);
   // const MtBox_p = styled(MuiBox)(() => ({
   //   fontSize: '1.2em',

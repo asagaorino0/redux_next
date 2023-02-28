@@ -2,6 +2,7 @@ import type { NextPage } from 'next';
 import Copy from '../components/Copy';
 import InputColor from '../components/InputColor';
 import Layout from '../components/Layout';
+
 import { siteConfig } from '../const/site.config';
 import App from '../src/App';
 
