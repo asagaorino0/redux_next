@@ -4,11 +4,10 @@ import { ColorStateType } from '../types/ColorStateType';
 
 const initialState: ColorStateType = {
     base: 0,
-    accent: 0,
     sub: 0,
     shopUid: '',
-    mozi: 0
-} as ColorStateType
+    moji: 0
+}
 
 export const colorSlice = createSlice({
     name: 'color',
