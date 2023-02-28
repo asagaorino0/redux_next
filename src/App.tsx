@@ -6,23 +6,9 @@ import { addTomare } from '../src/features/tomareSlice';
 import 'firebase/compat/firestore';
 import { db } from './firebase';
 import liff from '@line/liff';
-import dynamic from 'next/dynamic';
-import { collection, collectionGroup, query, orderBy, where, doc, setDoc, serverTimestamp, deleteDoc, onSnapshot } from 'firebase/firestore'
+import { collection, collectionGroup, query, where, doc, setDoc, onSnapshot } from 'firebase/firestore'
 import { TomareState } from "../src/types/tomare";
-import CustomerAccordion from '../components/CustomerAccordion';
-import styles from '../styles/Home.module.css'
-import SuccesReceipt from '../components/SuccesReceipt';
-import PayAccordion from '../components/PayAccordion';
-import PayReceipt from '../components/PayReceipt';
-import MiPayAccordion from '../components/MiPayAccordion';
-import { Provider } from 'react-redux';
-import { store } from '../src/app/store';
 
-import Copy from '../components/Copy';
-import InputColor from '../components/InputColor';
-import { styled } from '@mui/material/styles';
-import MuiBox from '@mui/material/Box';
-import { selectColor } from './features/colorSlice';
 
 
 

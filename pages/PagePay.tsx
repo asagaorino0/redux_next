@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { addTomare } from '../src/features/tomareSlice';
-import { addTargetTomare } from '../src/features/targetTomareSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { db } from "../src/firebase";
-import { getDocs, collection, collectionGroup, query, orderBy, where, doc, setDoc, serverTimestamp, deleteDoc, onSnapshot } from 'firebase/firestore'
+import { getDocs, collection, collectionGroup, query, where, onSnapshot } from 'firebase/firestore'
 import { TomareState } from "../src/types/tomare";
 import { UserState } from "../src/types/user";
 import 'react-calendar/dist/Calendar.css';
@@ -12,23 +11,10 @@ import { addUser, selectUser } from '../src/features/userSlice';
 import { useRouter } from "next/router";
 import dynamic from 'next/dynamic'
 import CustomerAccordion from '../components/CustomerAccordion';
-import liff from '@line/liff';
-import P_make from "./img/P_make.png"
-import { computeSegDraggable } from '@fullcalendar/common';
-import { truncate } from 'fs';
 import { Provider } from 'react-redux';
 import { store } from '../src/app/store';
-import Calendar from 'react-calendar';
-import { addTargetChat, selectTargetChat } from '../src/features/targetChatSlice';
-import { addMenu } from '../src/features/menuSlice';
-import { addFormatdate, } from '../src/features/formatDateSlice';
 
 const PagePay = () => {
-    const Chat = dynamic(() => import('./srcChat'), { ssr: false });
-    const PageLogin = dynamic(() => import('../src/PageLogin'), { ssr: false });
-    const PageA_profile = dynamic(() => import('./PageA_profile'), { ssr: false });
-
-    // const CustomerAccordion = dynamic(() => import('../components/CustomerAccordion'), { ssr: false }); const [make, setMake] = useState<boolean>(false);
     const [nail, setNail] = useState<boolean>(false);
     const [este, setEste] = useState<boolean>(false);
     const [sonota, setSonota] = useState<string>("");
