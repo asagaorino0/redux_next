@@ -1,8 +1,6 @@
-
 import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../app/store';
 import { LoginUidStateType } from '../types/LoginUidStateType';
-
 
 const initialState: LoginUidStateType = {
     uid: '',

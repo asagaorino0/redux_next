@@ -1,9 +1,9 @@
 
 
 import { useSelector } from 'react-redux';
+import MuiBox from '@mui/material/Box';
 import { selectColor } from '../src/features/colorSlice';
 import { ColorStateType } from '../src/types/ColorStateType';
-
 
 ////PageEditCopyStyleに表示するキャッチコピーのサンプル集////
 export default function CopyStyleExample() {

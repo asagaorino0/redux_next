@@ -1,3 +1,4 @@
+import { store } from '@/app/store';
 import type { NextPage } from 'next';
 import dynamic from 'next/dynamic';
 import React from 'react';
@@ -7,7 +8,6 @@ import InputColor from '../components/InputColor';
 import Layout from '../components/Layout';
 import { siteConfig } from '../const/site.config';
 import App from '../src/App';
-import { store } from '../src/app/store';
 
 const Home: NextPage = () => {
   const App: any = dynamic(() => import('../src/App'), { ssr: false });

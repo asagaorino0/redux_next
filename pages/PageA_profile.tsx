@@ -11,7 +11,6 @@ import styles from '../styles/Home.module.css'
 import { addUser, selectUser } from '../src/features/userSlice';
 import { useRouter } from "next/router";
 import dynamic from 'next/dynamic'
-import TomareAccordion from '../components/TomareAccordion';
 import liff from '@line/liff';
 import P_make from "./img/P_make.png"
 import { computeSegDraggable } from '@fullcalendar/common';
@@ -24,8 +23,6 @@ import { addMenu } from '../src/features/menuSlice';
 import { addFormatdate, } from '../src/features/formatDateSlice';
 
 const PageA_profile = () => {
-    const Chat = dynamic(() => import('./srcChat'), { ssr: false });
-    const PageLogin = dynamic(() => import('../src/PageLogin'), { ssr: false });
     const [make, setMake] = useState<boolean>(false);
     const [nail, setNail] = useState<boolean>(false);
     const [este, setEste] = useState<boolean>(false);
@@ -60,38 +57,29 @@ const PageA_profile = () => {
             setUserProfile(userData)
         }
         fetchUser()
-        fetchTomare()
+        // fetchTomare()
         console.log('User:', user)
         console.log('tomare:', tomare)
     }, []);
     const clickMenu4 = () => {
         setSonota("その他")
-        fetchTomare()
-        // fetchTargetTomare()
+        // fetchTomare()
     }
+
     // const fetchTomare = async () => {
     //     const q = query(collection(db, "users", user.uid, 'tomare'), where("uid", "==", user.uid));
-    //     // const q = query(collection(db, "users", user.uid, 'tomare'), where("uid", "==", user.uid), orderBy("gappi"));
-    //     const snapshot = await getDocs(q)
-    //     const tomareData = snapshot.docs.map(
-    //         (docT: any) => ({ ...docT.data() } as TomareState))
-    //     dispatch(addTomare(tomareData))
-    //     setTomare(tomareData)
+    //     const snapshot = onSnapshot(q, (querySnapshot) => {
+    //         // const snapshot = await getDocs(q)
+    //         // const tomareData = snapshot.docs.map(
+    //         //     (docT: any) => ({ ...docT.data() } as TomareState))
+    //         // setTomare(
+    //         const tomareData = querySnapshot.docs.map(
+    //             (doc) => ({ ...doc.data() } as TomareState))
+    //         // );
+    //         dispatch(addTomare(tomareData))
+    //         setTomare(tomareData)
+    //     });
     // }
-    const fetchTomare = async () => {
-        const q = query(collection(db, "users", user.uid, 'tomare'), where("uid", "==", user.uid));
-        const snapshot = onSnapshot(q, (querySnapshot) => {
-            // const snapshot = await getDocs(q)
-            // const tomareData = snapshot.docs.map(
-            //     (docT: any) => ({ ...docT.data() } as TomareState))
-            // setTomare(
-            const tomareData = querySnapshot.docs.map(
-                (doc) => ({ ...doc.data() } as TomareState))
-            // );
-            dispatch(addTomare(tomareData))
-            setTomare(tomareData)
-        });
-    }
 
     const date = new Date()
     const Y = date.getFullYear()
@@ -218,11 +206,11 @@ const PageA_profile = () => {
                                         .map((tomare: TomareState) => {
                                             return (
                                                 <div key={tomare.tomareId}>
-                                                    {`${tomare.yoyakuMenu}` !== "" &&
+                                                    {/* {`${tomare.yoyakuMenu}` !== "" &&
                                                         <div className={styles.grid}>
                                                             <TomareAccordion tomare={tomare} key={tomare.tomareId} />
                                                         </div>
-                                                    }
+                                                    } */}
                                                 </div>
                                             )
                                         })
