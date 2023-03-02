@@ -18,16 +18,15 @@ const Home: NextPage = () => {
         <InputColor />
         <br />
         <Copy />
-        <React.StrictMode >
+        {/* <React.StrictMode >
           <Provider store={store}>
             <div className="bg-blue-500 sticky top-0">
-              {/* <h1 className="text-3xl mb-4">{siteConfig.title}</h1> */}
               <div className="grid md:gap-6 mt-10 md:grid-cols-2 w-full my-12">
                 <App />
               </div>
             </div>
           </Provider>
-        </React.StrictMode>
+        </React.StrictMode> */}
 
       </div>
     </Layout>

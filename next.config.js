@@ -4,12 +4,9 @@
 const config = {
   experimental: {
     swcLoader: true,
-    swcMinify: true,
+    swcMinify: false,
     cpus: 4,
 
   },
 };
-module.exports = {
-  swcMinify: false // 追記
-}
 module.exports = config;
