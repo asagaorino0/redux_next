@@ -20,6 +20,7 @@ import { store } from '../src/app/store';
 
 import Copy from '../components/Copy';
 import InputColor from '../components/InputColor';
+import Login from '../components/Login';
 
 
 export default function App() {
@@ -34,66 +35,67 @@ export default function App() {
   // const PageA = dynamic(() => import('../pages/PageA'), { ssr: false });
   // const PagePay = dynamic(() => import('./PagePay'), { ssr: false });
   const [loading, setLoading] = useState(false);
+  const Login: any = dynamic(() => import('../components/Login'), { ssr: false });
   useEffect(() => {
-    liff
-      .init({ liffId: process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID as string })
-      .then(async () => {
-        if (liff.isLoggedIn()) {
-          console.log('login status : [', true, ']');
-          const profile = await liff.getProfile();
-          console.log(
-            '🚀 ~ file: Login.tsx ~ line 15 ~ liff.init ~ profile',
-            profile
-          );
-          // const userId: string = profile.userId
-          const displayName: string = profile.displayName;
-          const displayicon: string | undefined = profile.pictureUrl;
-          setName(profile.displayName);
-          setUid(profile.userId);
-          setName(displayName);
-          setIcon(displayicon);
+    // liff
+    //   .init({ liffId: process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID as string })
+    //   .then(async () => {
+    //     if (liff.isLoggedIn()) {
+    //       console.log('login status : [', true, ']');
+    //       const profile = await liff.getProfile();
+    //       console.log(
+    //         '🚀 ~ file: Login.tsx ~ line 15 ~ liff.init ~ profile',
+    //         profile
+    //       );
+    //       // const userId: string = profile.userId
+    //       const displayName: string = profile.displayName;
+    //       const displayicon: string | undefined = profile.pictureUrl;
+    //       setName(profile.displayName);
+    //       setUid(profile.userId);
+    //       setName(displayName);
+    //       setIcon(displayicon);
 
-          const p = query(collection(db, 'yoyakuPay'), where('yoyakuUid', '==', profile.userId));
-          const snapshotP = onSnapshot(p, (querySnapshot) => {
-            const payData = querySnapshot.docs.map(
-              (docP) => ({ ...docP.data() } as TomareState)
-            );
-            dispatch(addUser(payData));
-            setPay(payData);
-            console.log('pey*****', pay, uid, pay.uid);
-          });
+    //       const p = query(collection(db, 'yoyakuPay'), where('yoyakuUid', '==', profile.userId));
+    //       const snapshotP = onSnapshot(p, (querySnapshot) => {
+    //         const payData = querySnapshot.docs.map(
+    //           (docP) => ({ ...docP.data() } as TomareState)
+    //         );
+    //         dispatch(addUser(payData));
+    //         setPay(payData);
+    //         console.log('pey*****', pay, uid, pay.uid);
+    //       });
 
-          const t = query(collectionGroup(db, 'tomare'), where("yoyakuUid", "==", profile.userId));
-          const snapshotT = onSnapshot(t, (querySnapshot) => {
-            const tomareData = querySnapshot.docs.map(
-              (docT) => ({ ...docT.data() } as TomareState)
-            );
-            dispatch(addTomare(tomareData))
-            setTomare(tomareData)
-            console.log('tomare******', tomare, uid, tomare.uid);
-          });
-          dispatch(
-            addUser({
-              name: profile.displayName,
-              uid: profile.userId,
-              icon: profile.pictureUrl,
-            })
-          );
-          setUid(profile.userId)
-          const setRef = setDoc(
-            doc(db, 'users', `${uid}`),
-            {
-              uid,
-              name,
-              icon,
-              timestamp: '',
-            },
-            { merge: true });
+    //       const t = query(collectionGroup(db, 'tomare'), where("yoyakuUid", "==", profile.userId));
+    //       const snapshotT = onSnapshot(t, (querySnapshot) => {
+    //         const tomareData = querySnapshot.docs.map(
+    //           (docT) => ({ ...docT.data() } as TomareState)
+    //         );
+    //         dispatch(addTomare(tomareData))
+    //         setTomare(tomareData)
+    //         console.log('tomare******', tomare, uid, tomare.uid);
+    //       });
+    //       dispatch(
+    //         addUser({
+    //           name: profile.displayName,
+    //           uid: profile.userId,
+    //           icon: profile.pictureUrl,
+    //         })
+    //       );
+    //       setUid(profile.userId)
+    //       const setRef = setDoc(
+    //         doc(db, 'users', `${uid}`),
+    //         {
+    //           uid,
+    //           name,
+    //           icon,
+    //           timestamp: '',
+    //         },
+    //         { merge: true });
 
-        } else {
-          console.log('login status : [', false, ']');
-        }
-      });
+    //     } else {
+    //       console.log('login status : [', false, ']');
+    //     }
+    //   });
     // liff
     // }, [dispatch]);
   }, []);
@@ -129,17 +131,17 @@ export default function App() {
   }
 
   const LINEID = process.env.NEXT_PUBLIC_REACT_APP_LIFF_ID;
-  const lineClick = () => {
-    setUid('');
-    liff.init({ liffId: LINEID as string }).then(() => {
-      if (!liff.isLoggedIn()) {
-        setUid('k00000');
-        liff.login(); // ログインしていなければ最初にログインする
-      } else if (liff.isInClient()) {
-        console.log('hello world');
-      }
-    });
-  }; ///先生
+  // const lineClick = () => {
+  //   setUid('');
+  //   liff.init({ liffId: LINEID as string }).then(() => {
+  //     if (!liff.isLoggedIn()) {
+  //       setUid('k00000');
+  //       liff.login(); // ログインしていなければ最初にログインする
+  //     } else if (liff.isInClient()) {
+  //       console.log('hello world');
+  //     }
+  //   });
+  // }; ///先生
 
   const toPageA = () => {
     router.push('./PageA');
@@ -227,9 +229,14 @@ export default function App() {
       <div className="App">
         {uid === '' && (
           <div>
-            <button onClick={lineClick}>
+            {/* <button onClick={lineClick}>
               <h4 className="mb-4 text-green-500 text-3xl">ログイン</h4>
-            </button>
+            </button> */}
+            <React.StrictMode >
+              <Provider store={store}>
+                <Login />
+              </Provider>
+            </React.StrictMode>
           </div>
         )}
         {`${pay}`.length === 0 && (
