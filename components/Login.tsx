@@ -100,6 +100,7 @@ export default function Login() {
                 ) : (
                     <img
                         src={`${icon}`}
+                        onClick={lineClick}
                         alt=""
                         style={{ borderRadius: '50%', width: '60px', height: '60px' }} />
                 )
