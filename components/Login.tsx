@@ -24,7 +24,7 @@ export default function Login() {
                     console.log('login status : [', true, ']');
                     const profile = await liff.getProfile();
                     console.log(
-                        '🚀 ~ file: Login.tsx ~ line 15 ~ liff.init ~ profile',
+                        '🚀 ~ file: Login.tsx ~ line 27 ~ liff.init ~ profile',
                         profile
                     );
                     // const userId: string = profile.userId
@@ -41,6 +41,13 @@ export default function Login() {
                         displayName,
                         displayicon,
                     );
+                    dispatch(
+                        addUser({
+                            name: profile.displayName,
+                            uid: profile.userId,
+                            icon: profile.pictureUrl,
+                        })
+                    );
                 } else {
                     console.log('login status : [', false, ']');
                 }
@@ -54,7 +61,7 @@ export default function Login() {
                 console.log('hello world');
                 const profile = await liff.getProfile();
                 console.log(
-                    '🚀 ~ file: Login.tsx ~ line 15 ~ liff.init ~ profile',
+                    '🚀 ~ file: Login.tsx ~ line 57 ~ liff.init ~ profile',
                     profile
                 );
                 const displayName: string = profile.displayName;
@@ -63,7 +70,7 @@ export default function Login() {
                 setUid(profile.userId);
                 setName(displayName);
                 setIcon(displayicon);
-                dispatch(addUser({ name, uid, icon }));
+                // dispatch(addUser({ name, uid, icon }));
                 dispatch(
                     addLoginUid({
                         name: profile.displayName,
