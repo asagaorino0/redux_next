@@ -62,9 +62,7 @@ export default function InputColor() {
     return (
         <>
             <div className="flex  flex-row justify-between" >
-                <br />
-                {user.uid}
-                {/* {loginUid.uid} */}
+
                 <br />
                 <div className="flex flex-col">
                     ベース
