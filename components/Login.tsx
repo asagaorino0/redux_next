@@ -104,7 +104,7 @@ export default function Login() {
                         </button>
                     </div>
                 ) : (
-                    <button>
+                    <button onClick={lineClick}>
                         <img
                             src={`${icon}`}
                             alt=""
