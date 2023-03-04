@@ -54,11 +54,7 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     addUser: (state, action) => {
-      state.user = action.payload
-      //   return action.payload
-      // }
-      // addUser: (state, action) => {
-
+      // state.user = action.payload
       state.name = action.payload.name
       state.uid = action.payload.uid
       state.icon = action.payload.icon
