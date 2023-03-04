@@ -4,8 +4,8 @@ import { useRouter } from 'next/router';
 import liff from '@line/liff';
 import { setLoginUser } from '../src/lib/firebase';
 import { addLoginUid, selectLoginUid } from '../src/features/loginUidSlice';
-import { addUser } from '@/features/userSlice';
 import Link from 'next/link';
+import { addUser } from '@/features/userSlice';
 const Logout = () => {
     const dispatch = useDispatch();
     console.log('login status : [', false, ']');

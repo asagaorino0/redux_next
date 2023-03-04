@@ -11,7 +11,7 @@ export default function CopyStyleExample() {
     return (
         <>
             <div className="w-full my-16">
-                <h2>キャッチコピーをデザイン</h2>
+                {/* <h2>キャッチコピーをデザイン</h2> */}
                 <br />
                 パターンA
                 <SelectCopyPatternA color={color} copy="１２３４５６７８９０１２３４５６７８９０：sample" />

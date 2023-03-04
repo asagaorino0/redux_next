@@ -7,9 +7,7 @@ import {
 import { setCopyColor } from '@/lib/firebase';
 import { selectLoginUid } from '@/features/loginUidSlice';
 import { selectUser } from '@/features/userSlice';
-// const url = window.location.search;
-// let id = url.replace("?", "")
-// 
+
 
 export default function InputColor() {
     const color = useSelector(selectColor);

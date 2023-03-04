@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { db } from "../src/firebase";
 import { getDocs, collection, collectionGroup, query, orderBy, where, doc, setDoc, serverTimestamp, deleteDoc, onSnapshot } from 'firebase/firestore'
 import { TomareState } from "../src/types/tomare";
-import { UserState } from "../src/types/user";
+import { UserStateType } from "../src/types/UserStateType";
 import 'react-calendar/dist/Calendar.css';
 import styles from '../styles/Home.module.css'
 import { addUser, selectUser } from '../src/features/userSlice';
@@ -51,7 +51,7 @@ const PageA_profile = () => {
             const q = query(collection(db, 'users'), where("uid", "==", user.uid));
             const snapshot = await getDocs(q)
             const userData = snapshot.docs.map(
-                (doc) => ({ ...doc.data() } as UserState))
+                (doc) => ({ ...doc.data() } as UserStateType))
             console.log('userData:', userData)
             // dispatch(addUser(userData))
             setUserProfile(userData)
