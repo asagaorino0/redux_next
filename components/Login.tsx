@@ -5,7 +5,6 @@ import liff from '@line/liff';
 import { setLoginUser } from '../src/lib/firebase';
 import { addLoginUid, selectLoginUid } from '../src/features/loginUidSlice';
 import { addUser } from '@/features/userSlice';
-import Link from 'next/link';
 const Logout = () => {
     const dispatch = useDispatch();
     console.log('login status : [', false, ']');
@@ -23,9 +22,9 @@ const Logout = () => {
 
             }}
         >
-            <Link href="/" >
+            < a href="/" >
                 ログアウト
-            </Link>
+            </a>
         </button>
     )
 }
@@ -125,7 +124,6 @@ export default function Login() {
                         <button onClick={lineClick}>
                             <h4 className="mb-4 text-green-500 text-3xl">ログイン</h4>
                         </button>
-                        <Logout />
                     </div>
                 ) : (
                     <>
