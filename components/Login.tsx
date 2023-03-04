@@ -71,6 +71,13 @@ export default function Login() {
                         icon: profile.pictureUrl,
                     })
                 );
+                dispatch(
+                    addUser({
+                        name: profile.displayName,
+                        uid: profile.userId,
+                        icon: profile.pictureUrl,
+                    })
+                );
                 await setLoginUser(
                     loginUid,
                     profile.userId,
