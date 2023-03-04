@@ -1,4 +1,5 @@
 import { store } from '@/app/store';
+import { Todo } from 'components/Todo';
 import type { NextPage } from 'next';
 import dynamic from 'next/dynamic';
 import React from 'react';
@@ -20,6 +21,7 @@ const Home: NextPage = () => {
           <InputColor />
           <br />
           <Copy />
+          <Todo />
           <React.StrictMode >
             <Provider store={store}>
               <Login />

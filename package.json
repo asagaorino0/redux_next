@@ -16,6 +16,8 @@
     "@fullcalendar/daygrid": "^5.10.1",
     "@fullcalendar/react": "^6.1.4",
     "@google-cloud/vision": "^2.4.2",
+    "@headlessui/react": "^1.7.13",
+    "@heroicons/react": "^2.0.16",
     "@line/bot-sdk": "^7.4.0",
     "@line/liff": "^2.21.4",
     "@mui/icons-material": "^5.11.9",
