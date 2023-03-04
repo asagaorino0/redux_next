@@ -1,26 +1,36 @@
 import React, { } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addColor, selectColor } from '../src/features/colorSlice';
-import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import { addColor, selectColor } from '@/features/colorSlice';
+import {
+    HiOutlineClipboardCopy
+} from 'react-icons/hi';
+import { setCopyColor } from '@/lib/firebase';
+import { selectLoginUid } from '@/features/loginUidSlice';
+import { selectUser } from '@/features/userSlice';
+// const url = window.location.search;
+// let id = url.replace("?", "")
+// 
 
 export default function InputColor() {
     const color = useSelector(selectColor);
+    const user = useSelector(selectUser);
     const dispatch = useDispatch();
-
+    const loginUid = useSelector(selectLoginUid);
+    const id = user.uid
     const inputBase = (event: any) => {
         const newValueB = event.target.value
         dispatch(addColor({
             base: newValueB,
-            accent: color.accent,
+            moji: color.moji,
             sub: color.sub,
             mozi: color.mozi,
         }))
     }
-    const inputAccent = (event: any) => {
+    const inputmoji = (event: any) => {
         const newValueA = event.target.value
         dispatch(addColor({
             base: color.base,
-            accent: newValueA,
+            moji: newValueA,
             sub: color.sub,
             mozi: color.mozi,
         }))
@@ -29,36 +39,32 @@ export default function InputColor() {
         const newValueS = event.target.value
         dispatch(addColor({
             base: color.base,
-            accent: color.accent,
+            moji: color.moji,
             sub: newValueS,
             mozi: color.mozi,
         }))
     }
-    const inputMozi = (event: any) => {
-        const newValueM = event.target.value
-        dispatch(addColor({
-            base: color.base,
-            accent: color.accent,
-            sub: color.sub,
-            mozi: newValueM,
-        }))
-    }
-    const copyB = () => {
+    const copyBaseColor = () => {
         var clipboardText = `${color.base}`;
         navigator.clipboard.writeText(clipboardText);
     }
-    const copyA = () => {
-        var clipboardText = `${color.accent}`;
+    const copyMojiColor = () => {
+        var clipboardText = `${color.moji}`;
         navigator.clipboard.writeText(clipboardText);
     }
-    const copyS = () => {
+    const copySubColor = () => {
         var clipboardText = `${color.sub}`;
         navigator.clipboard.writeText(clipboardText);
     }
+    const handleSetClick = () => {
+        setCopyColor(id, color);
+    };
     return (
         <>
             <div className="flex  flex-row justify-between" >
-                <div className=" flex  flex-col">
+                <div className="flex flex-col">
+                    ベース
+                    <br />
                     <label htmlFor="BaseColor" >
                         <input
                             type="color"
@@ -70,36 +76,37 @@ export default function InputColor() {
                     </label>
                     <div className="flex  flex-row" >
                         {color.base}
-                        <button onClick={copyB}>
-                            < ContentCopyIcon
-                                sx={{ color: `${color.base}` }}
-                            />
+                        <button onClick={copyBaseColor}>
+                            < HiOutlineClipboardCopy />
                         </button>
                     </div>
                 </div>
 
                 <div className=" flex  flex-col">
-                    <label htmlFor="AccentColor">
+                    文字
+                    <br />
+                    <label htmlFor="mojiColor">
                         <input
                             type="color"
                             list={`${color.base}`}
-                            value={color.accent}
-                            id="AccentColor"
+                            value={color.moji}
+                            id="mojiColor"
                             width="30px"
-                            onInput={inputAccent}
+                            onInput={inputmoji}
                         />
                     </label>
                     <div className="flex  flex-row">
-                        {color.accent}
-                        <button onClick={copyA}>
-                            < ContentCopyIcon
-                                sx={{ color: `${color.accent}` }}
+                        {color.moji}
+                        <button onClick={copyMojiColor}>
+                            < HiOutlineClipboardCopy
                             />
                         </button>
                     </div>
                 </div>
 
                 <div className=" flex  flex-col">
+                    サブ
+                    <br />
                     <label htmlFor="SubColor" >
                         <input
                             type="color"
@@ -111,16 +118,18 @@ export default function InputColor() {
                     </label>
                     <div className="flex  flex-row" >
                         {color.sub}
-                        <button onClick={copyS}>
-                            < ContentCopyIcon
-                                sx={{ color: `${color.sub}` }}
-                            />
+                        <button onClick={copySubColor}>
+                            < HiOutlineClipboardCopy />
                         </button>
                     </div>
                 </div>
             </div>
+            <br />
+            <button onClick={handleSetClick}>
+                配色を保存
+            </button>
             <datalist id="data1">
-                {/* <option value={`${color.accent}`}></option>
+                {/* <option value={`${color.moji}`}></option>
                 <option value={`${color.sub}`}></option> */}
                 <option value="#f7c3bf"></option>
                 <option value="#f3eed5"></option>

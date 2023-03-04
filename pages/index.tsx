@@ -21,7 +21,6 @@ const Home: NextPage = () => {
           hello
           <br />
           <Copy />
-          {/* <Login /> */}
           <React.StrictMode >
             <Provider store={store}>
               <Login />

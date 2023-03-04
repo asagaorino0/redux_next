@@ -6,7 +6,6 @@ const initialState: LoginUidStateType = {
     uid: '',
     name: '',
     icon: '',
-    value: false
 };
 
 export const loginUidSlice = createSlice({

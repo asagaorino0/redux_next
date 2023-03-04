@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import liff from '@line/liff';
 import { setLoginUser } from '../src/lib/firebase';
 import { addLoginUid, selectLoginUid } from '../src/features/loginUidSlice';
+import { addUser } from '@/features/userSlice';
 
 
 
@@ -62,12 +63,12 @@ export default function Login() {
                 setUid(profile.userId);
                 setName(displayName);
                 setIcon(displayicon);
+                dispatch(addUser({ name, uid, icon }));
                 dispatch(
                     addLoginUid({
                         name: profile.displayName,
                         uid: profile.userId,
                         icon: profile.pictureUrl,
-                        statusC: true
                     })
                 );
                 await setLoginUser(
