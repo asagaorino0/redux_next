@@ -5,7 +5,26 @@ import liff from '@line/liff';
 import { setLoginUser } from '../src/lib/firebase';
 import { addLoginUid, selectLoginUid } from '../src/features/loginUidSlice';
 import { addUser } from '@/features/userSlice';
-
+const Logout = () => {
+    const dispatch = useDispatch();
+    console.log('login status : [', false, ']');
+    return (
+        <button
+            onClick={() => {
+                dispatch(
+                    addUser({
+                        name: '',
+                        uid: '',
+                        icon: '',
+                    })
+                );
+                liff.logout()
+            }}
+        >
+            ログアウト
+        </button>
+    )
+}
 
 
 export default function Login() {
@@ -104,12 +123,15 @@ export default function Login() {
                         </button>
                     </div>
                 ) : (
-                    <button onClick={lineClick}>
-                        <img
-                            src={`${icon}`}
-                            alt=""
-                            style={{ borderRadius: '50%', width: '60px', height: '60px' }} />
-                    </button>
+                    <>
+                        <button onClick={lineClick}>
+                            <img
+                                src={`${icon}`}
+                                alt=""
+                                style={{ borderRadius: '50%', width: '60px', height: '60px' }} />
+                        </button>
+                        <Logout />
+                    </>
                 )
                 }
             </div>
