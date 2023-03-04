@@ -96,15 +96,6 @@ export default function Login() {
     };
     return (
         <>
-            {icon &&
-                <button>
-                    <img
-                        src={`${icon}`}
-                        alt=""
-                        style={{ borderRadius: '50%', width: '60px', height: '60px' }} />
-                </button>
-            }
-
             <div className="App">
                 {uid === '' ? (
                     <div>
@@ -113,11 +104,12 @@ export default function Login() {
                         </button>
                     </div>
                 ) : (
-                    <img
-                        src={`${icon}`}
-                        onClick={lineClick}
-                        alt=""
-                        style={{ borderRadius: '50%', width: '60px', height: '60px' }} />
+                    <button>
+                        <img
+                            src={`${icon}`}
+                            alt=""
+                            style={{ borderRadius: '50%', width: '60px', height: '60px' }} />
+                    </button>
                 )
                 }
             </div>
