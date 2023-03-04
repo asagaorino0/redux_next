@@ -19,9 +19,12 @@ const Logout = () => {
                     })
                 );
                 liff.logout()
+
             }}
         >
-            ログアウト
+            < a href="/" >
+                ログアウト
+            </a>
         </button>
     )
 }
