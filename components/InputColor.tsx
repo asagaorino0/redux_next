@@ -65,6 +65,7 @@ export default function InputColor() {
                 <br />
                 {user.uid}
                 {/* {loginUid.uid} */}
+                <br />
                 <div className="flex flex-col">
                     ベース
                     <br />
