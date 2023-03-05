@@ -19,6 +19,7 @@ export const Logout = () => {
                     })
                 );
                 liff.logout()
+
             }}
         >
             <Link href="/" >
@@ -82,9 +83,24 @@ export default function Login() {
     };
     return (
         <>
-            <button onClick={lineClick}>
-                ログイン
-            </button>
+            <div className="App">
+                {uid === '' ? (
+                    <button onClick={lineClick}>
+                        ログイン
+                    </button>
+                ) : (
+                    <>
+                        <button onClick={lineClick}>
+                            <img
+                                src={`${icon}`}
+                                alt=""
+                                style={{ borderRadius: '50%', width: '60px', height: '60px' }}
+                            />
+                        </button>
+                    </>
+                )
+                }
+            </div>
         </>
     );
 }
