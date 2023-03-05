@@ -4,10 +4,9 @@ import { addColor, selectColor } from '@/features/colorSlice';
 import {
     HiOutlineClipboardCopy
 } from 'react-icons/hi';
+import { setCopyColor, setCopyColors } from '../lib/firebase';
 import { selectUser } from '@/features/userSlice';
-import { fetchColorList, fetchSubColorList } from 'lib/firebaseFetch';
-import { setCopyColors } from 'lib/firebase';
-
+import { fetchColorList, fetchSubColorList } from '../lib/firebaseFetch';
 
 
 export default function InputColor() {
@@ -16,6 +15,7 @@ export default function InputColor() {
     const dispatch = useDispatch();
     const [colorList, setColorList] = useState<any>([]);
     const [subColorList, setSubColorList] = useState<any>([]);
+    const [copy, setCopy] = useState<string>('');
     const id = user.uid
     const fetchColorListData = async () => {
         const resultBase = await fetchColorList();
@@ -70,14 +70,42 @@ export default function InputColor() {
     //     setCopyColor(id, color);
     // };///後で戻す
     const handleSetClick = () => {
-        setCopyColors(id, color);
+        setCopyColors(copy, color);
     };
+    // const addTodoItem = () => {
+    //     // const maxId = todos.reduce((prev: any, curr: any) => Math.max(prev.id, curr.id), 0) + 1;
+    //     const maxId = todos.length + 1;
+    //     const newTodo: Todo = {
+    //       id: maxId,
+    //       todo: event,
+    //       complete: false,
+    //       auth: false,
+    //     };
+    //     dispatch(addTodo(newTodo));
+    //     // setTodo(newTodo, maxId)
+    //     setEvent('');
+    //     setLimit('');
+    //   };
 
     return (
-        <>
+
+        <><br /><br />
+            <div className="flex flex-col">
+                キャチコピー
+                <br />
+                <label htmlFor="copy" >
+                    <input
+                        id="copy"
+                        name="copy"
+                        type="text"
+                        autoFocus
+                        onChange={(e) => setCopy(e.target.value)}
+                    />
+                </label>
+            </div>
+            <br />
             <div className="flex  flex-row justify-between" >
 
-                <br />
                 <div className="flex flex-col">
                     ベース
                     <br />

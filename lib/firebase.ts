@@ -37,9 +37,9 @@ export const setCopyColor = async (uid: string, color: ColorStateType) => {
         timestamp: serverTimestamp(),
     }, { merge: true })
 }
-export const setCopyColors = async (uid: string, color: ColorStateType) => {
-    await setDoc(doc(db, 'colors', `service${color.base}`,), {
-        chapter: "service",
+export const setCopyColors = async (copy: string, color: ColorStateType) => {
+    await setDoc(doc(db, 'colors', `${copy}${color.base}`,), {
+        chapter: copy,
         copyColorBase: color.base,
         copyColorMoji: color.moji,
         copyColorSub: color.sub,
