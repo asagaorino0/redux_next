@@ -81,7 +81,7 @@ export function Todo() {
         /> */}
         <br />
       </div>
-      <button aria-label="add_todo" onClick={addTodoItem}>
+      <button aria-label="addTodo" onClick={addTodoItem}>
         Add Todo/
       </button>
       <button aria-label="delete_all_todos" onClick={deleteAllTodos}>

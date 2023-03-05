@@ -18,7 +18,7 @@ import { doc, setDoc } from 'firebase/firestore'
 import { db } from "../src/firebase";
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import { UserState } from "../src/types/user";
+// import { UserState } from "../src/types/user";
 
 import TomareFileUpload from '../components/TomareFileUpload';
 import TomareFileChenge from '../components/TomareFileChenge';

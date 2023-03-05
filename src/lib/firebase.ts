@@ -1,5 +1,6 @@
 import { ColorStateType } from "@/types/ColorStateType";
 import { LoginUidStateType } from "@/types/LoginUidStateType";
+import { TodoStateType } from "@/types/TodoStateType";
 import { initializeApp } from "@firebase/app";
 import { getAuth } from '@firebase/auth';
 import {
@@ -44,4 +45,10 @@ export const setLoginUser = async (loginUid: LoginUidStateType, uid: string, nam
         icon: icon,
         timestamp: serverTimestamp(),
     }, { merge: true })
+}
+
+export const setTodo = async (todo: TodoStateType, id: number) => {
+    await setDoc(
+        doc(db, 'todos', `${id}`), todo, { merge: true });
+    console.log(todo)
 }

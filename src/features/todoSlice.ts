@@ -1,82 +1,59 @@
-import { TodoStateType } from '@/types/TodoStateType';
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../app/store';
-const initialState: TodoStateType = {
-  id: 0,
-  todo: "",
-  complete: false,
-  auth: false,
 
+interface Todo {
+  id: number;
+  todo: string;
+  complete: boolean;
+  auth: boolean;
+}
+
+interface TodoStateType {
+  todos: Todo[];
+}
+
+const initialState: TodoStateType = {
+  todos: [],
 };
 
 export const todoSlice = createSlice({
   name: 'todo',
   initialState,
   reducers: {
-    add_todo: (state, action) => {
-      const event = action.payload
-      state.push({ ...event })
+    addTodo: (state, action: PayloadAction<Todo>) => {
+      state.todos.push(action.payload);
     },
-    del_todo: (state, action) => {
-      const del = action.payload
-      const todos = del.todos.filter(todos => {
-        return todos.todo !== del.todo;
-      });
-      state = todos
+    deleteTodo: (state, action: PayloadAction<number>) => {
+      state.todos = state.todos.filter(todo => todo.id !== action.payload);
     },
-    DONE_LIST: (state, action) => {
-      const done = action.payload
-      const todos = done.todos.map(todos => {
-        if (todos.id === done.id)
-          return {
-            id: todos.id,
-            todo: todos.todo,
-            complete: true,
-            auth: todos.auth,
-          }
-        else {
-          return {
-            id: todos.id,
-            todo: todos.todo,
-            complete: todos.complete,
-            auth: todos.auth,
-          }
-        }
-      })
-      state = todos
+    completeTodo: (state, action: PayloadAction<number>) => {
+      state.todos = state.todos.map(todo =>
+        todo.id === action.payload ? { ...todo, complete: true } : todo
+      );
     },
-    check_list: (state, action) => {
-      const check = action.payload
-      const todos = check.todos.map(todos => {
-        if (todos.id === check.id)
-          return {
-            id: todos.id,
-            todo: todos.todo,
-            complete: todos.complete,
-            auth: true,
-          }
-        else {
-          return {
-            id: todos.id,
-            todo: todos.todo,
-            complete: todos.complete,
-            auth: todos.auth,
-          }
-        }
-      })
-      state = todos
+    authorizeTodo: (state, action: PayloadAction<number>) => {
+      state.todos = state.todos.map(todo =>
+        todo.id === action.payload ? { ...todo, auth: true } : todo
+      );
     },
-    all_delete: (state) => {
-      state = [];
+    clearAllTodos: (state) => {
+      state.todos = [];
     },
-    db_input: (state) => {
+    dbInput: (state) => {
       // setColor(todo)
     },
-  }
+  },
 });
 
-export const { add_todo, del_todo, all_delete, DONE_LIST, check_list, db_input } = todoSlice.actions;
+export const {
+  addTodo,
+  deleteTodo,
+  completeTodo,
+  authorizeTodo,
+  clearAllTodos,
+  dbInput,
+} = todoSlice.actions;
 
-export const selectTodo = (state: RootState) => state.todo;
+export const selectTodos = (state: RootState) => state.todo.todos;
 
 export default todoSlice.reducer;

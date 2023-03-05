@@ -1,7 +1,7 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import userReducer from '../features/userSlice'
 import colorReducer from '../features/colorSlice'
-import usersReducer from '../features/usersSlice';
+import todoReducer from '../features/todoSlice'
 import tomareReducer from '../features/tomareSlice';
 import targetTomareReducer from '../features/targetTomareSlice';
 import formatdateReducer from '../features/formatDateSlice';
@@ -16,7 +16,7 @@ export const store: any = configureStore({
   reducer: {
     user: userReducer,
     color: colorReducer,
-    users: usersReducer,
+    todo: todoReducer,
     tomare: tomareReducer,
     targetTomare: targetTomareReducer,
     formatdate: formatdateReducer,
