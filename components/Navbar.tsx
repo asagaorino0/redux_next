@@ -28,7 +28,7 @@ const Navbar = () => {
   useEffect(() => {
     user.uid === "" &&
       console.log(
-        '🚀 ~ file: Login.tsx ~ line 30 ~ liff.init ~ profile',
+        '🚀 ~ file: Login.tsx ~ line 31 ~ liff.init ~ profile',
         user
       );
     setIcon(user.icon)
