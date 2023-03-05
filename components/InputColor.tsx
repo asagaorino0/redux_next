@@ -1,20 +1,32 @@
-import React, { } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addColor, selectColor } from '@/features/colorSlice';
 import {
     HiOutlineClipboardCopy
 } from 'react-icons/hi';
-import { setCopyColor } from '@/lib/firebase';
-import { selectLoginUid } from '@/features/loginUidSlice';
 import { selectUser } from '@/features/userSlice';
+import { fetchColorList, fetchSubColorList } from 'lib/firebaseFetch';
+import { setCopyColors } from 'lib/firebase';
+
 
 
 export default function InputColor() {
     const color = useSelector(selectColor);
     const user = useSelector(selectUser);
     const dispatch = useDispatch();
-    const loginUid = useSelector(selectLoginUid);
+    const [colorList, setColorList] = useState<any>([]);
+    const [subColorList, setSubColorList] = useState<any>([]);
     const id = user.uid
+    const fetchColorListData = async () => {
+        const resultBase = await fetchColorList();
+        setColorList(resultBase);
+        const resultSub = await fetchSubColorList(color);
+        setSubColorList(resultSub);
+        console.log('colorList:', colorList)
+    }
+    useEffect(() => {
+        fetchColorListData()
+    }, [color.base]);
     const inputBase = (event: any) => {
         const newValueB = event.target.value
         dispatch(addColor({
@@ -54,9 +66,13 @@ export default function InputColor() {
         var clipboardText = `${color.sub}`;
         navigator.clipboard.writeText(clipboardText);
     }
+    // const handleSetClick = () => {
+    //     setCopyColor(id, color);
+    // };///後で戻す
     const handleSetClick = () => {
-        setCopyColor(id, color);
+        setCopyColors(id, color);
     };
+
     return (
         <>
             <div className="flex  flex-row justify-between" >
@@ -125,12 +141,13 @@ export default function InputColor() {
                 </div>
             </div>
             <br />
-            <button onClick={handleSetClick}>
+            {/* <button onClick={handleSetClick}>
                 配色を保存
+            </button> */}
+            <button onClick={handleSetClick}>
+                配色見本を保存
             </button>
             <datalist id="data1">
-                {/* <option value={`${color.moji}`}></option>
-                <option value={`${color.sub}`}></option> */}
                 <option value="#f7c3bf"></option>
                 <option value="#f3eed5"></option>
                 <option value="#b9cdbf"></option>
@@ -144,15 +161,13 @@ export default function InputColor() {
                 <option value="#1f1e63"></option>
                 <option value="#e99bc1"></option>
                 <option value="#aed265"></option>
-                <option value="#"></option>
-                <option value="#"></option>
-                <option value="#"></option>
-                <option value="#"></option>
-                <option value="#"></option>
-                <option value="#"></option>
-                <option value="#"></option>
-                <option value="#"></option>
-                <option value="#"></option>
+                {colorList.map((list: any) => (
+                    <>
+                        <option value={`${list.copyColorBase}`}></option>
+                        <option value={`${list.copyColorMoji}`}></option>
+                        <option value={`${list.copyColorSub}`}></option>
+                    </>
+                ))}
             </datalist>
             <datalist id="#f7c3bf">
                 <option value="#8ac8cf"></option>
@@ -206,7 +221,15 @@ export default function InputColor() {
                 <option value="#5188b1"></option>
                 <option value="#e0f1f1"></option>
             </datalist>
-
+            {subColorList.map((list: any) => (
+                <>
+                    <datalist id={`${list.copyColorBase}`}>
+                        <option value={`${list.copyColorSub}`}></option>
+                        <option value={`${list.copyColorMoji}`}></option>
+                        <option value={`${list.copyColorBase}`}></option>
+                    </datalist>
+                </>
+            ))}
         </>
     );
 }
