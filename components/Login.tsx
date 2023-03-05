@@ -112,26 +112,26 @@ export default function Login() {
     };
     return (
         <>
-            <div className="App">
-                {uid === '' ? (
-                    <div>
-                        <button onClick={lineClick}>
-                            {/* <h4 className="mb-4 text-green-500 text-3xl"> */}
-                            ログイン
-                        </button>
-                    </div>
-                ) : (
-                    <>
-                        <button onClick={lineClick}>
-                            <img
-                                src={`${icon}`}
-                                alt=""
-                                style={{ borderRadius: '50%', width: '60px', height: '60px' }}
-                            />
-                        </button>
-                    </>
-                )
-                }
+            <div >
+                {/* {uid === '' ? ( */}
+                <div>
+                    <button onClick={lineClick}>
+                        {/* <h4 className="mb-4 text-green-500 text-3xl"> */}
+                        ログイン
+                    </button>
+                </div>
+                {/* // ) : (
+                //     <>
+                //         <button onClick={lineClick}>
+                //             <img
+                //                 src={`${icon}`}
+                //                 alt=""
+                //                 style={{ borderRadius: '50%', width: '60px', height: '60px' }}
+                //             />
+                //         </button>
+                //     </>
+                // )
+                // } */}
             </div>
         </>
     );

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { siteConfig } from '../const/site.config';
-import { Fragment } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import loginUidSlice, { selectLoginUid } from '@/features/loginUidSlice';
@@ -22,8 +22,18 @@ function classNames(...classes: any) {
 
 const Navbar = () => {
   const user = useSelector(selectUser);
+  const [icon, setIcon] = useState<string>('');
   const Login: any = dynamic(() => import('../components/Login'), { ssr: false });
   const Logout: any = dynamic(() => import('../components/Login'), { ssr: false });
+  useEffect(() => {
+    user.uid === "" &&
+      console.log(
+        '🚀 ~ file: Login.tsx ~ line 30 ~ liff.init ~ profile',
+        user
+      );
+    setIcon(user.icon)
+  }, [user]);
+
   return (
     <>
       <Disclosure as="nav" className="bg-gray-800">
@@ -70,7 +80,7 @@ const Navbar = () => {
                     <BellIcon className="h-6 w-6" aria-hidden="true" />
                   </button>
                   <Menu as="div" className="relative ml-3">
-                    {/* {user.icon ? (
+                    {icon ? (
                       <div>
                         <Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                           <span className="sr-only">Open user menu</span>
@@ -80,10 +90,11 @@ const Navbar = () => {
                             alt="" />
                         </Menu.Button>
                       </div>
-                    ) : ( */}
-                    <div className="flex rounded-full bg-gray-900 text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-                      <Login />
-                    </div>
+                    ) : (
+                      <div className="flex rounded-full bg-gray-900 text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                        <Login />
+                      </div>
+                    )}
                     <Transition
                       as={Fragment}
                       enter="transition ease-out duration-100"
