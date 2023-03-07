@@ -28,13 +28,24 @@ const firebaseAuth = getAuth()
 export { app, firebaseAuth, db, firebaseConfig, storage };
 
 /////キャッチコピーの配色を設定する////
-export const setCopyColor = async (uid: string, color: ColorStateType) => {
-    alert(uid)
+export const setCopyColor = async (uid: string, copy: string, pattern: string, color: ColorStateType) => {
     await setDoc(doc(db, 'shopProf', uid), {
         shopUid: uid,///FK
+        copy: copy,
+        pattern: pattern,
         copyColorBase: color.base,
         copyColorMoji: color.moji,
         copyColorSub: color.sub,
+        timestamp: serverTimestamp(),
+    }, { merge: true })
+}
+export const setCopyColors = async (copy: string, color: ColorStateType) => {
+    await setDoc(doc(db, 'colors', `${copy}${color.base}`,), {
+        chapter: copy,
+        copyColorBase: color.base,
+        copyColorMoji: color.moji,
+        copyColorSub: color.sub,
+        timestamp: serverTimestamp(),
     }, { merge: true })
 }
 export const setLoginUser = async (loginUid: LoginUidStateType, uid: string, name: string, icon: string | undefined) => {

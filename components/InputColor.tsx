@@ -4,9 +4,9 @@ import { addColor, selectColor } from '@/features/colorSlice';
 import {
     HiOutlineClipboardCopy
 } from 'react-icons/hi';
-import { setCopyColor, setCopyColors } from '../lib/firebase';
+import { setCopyColor, setCopyColors } from '@/lib/firebase';
 import { selectUser } from '@/features/userSlice';
-import { fetchColorList, fetchSubColorList } from '../lib/firebaseFetch';
+import { fetchColorList, fetchSubColorList } from '@/lib/firebaseFetch';
 
 
 export default function InputColor() {
@@ -22,7 +22,6 @@ export default function InputColor() {
         setColorList(resultBase);
         const resultSub = await fetchSubColorList(color);
         setSubColorList(resultSub);
-        console.log('colorList:', colorList)
     }
     useEffect(() => {
         fetchColorListData()
@@ -66,32 +65,17 @@ export default function InputColor() {
         var clipboardText = `${color.sub}`;
         navigator.clipboard.writeText(clipboardText);
     }
-    // const handleSetClick = () => {
-    //     setCopyColor(id, color);
-    // };///後で戻す
     const handleSetClick = () => {
         setCopyColors(copy, color);
     };
-    // const addTodoItem = () => {
-    //     // const maxId = todos.reduce((prev: any, curr: any) => Math.max(prev.id, curr.id), 0) + 1;
-    //     const maxId = todos.length + 1;
-    //     const newTodo: Todo = {
-    //       id: maxId,
-    //       todo: event,
-    //       complete: false,
-    //       auth: false,
-    //     };
-    //     dispatch(addTodo(newTodo));
-    //     // setTodo(newTodo, maxId)
-    //     setEvent('');
-    //     setLimit('');
-    //   };
-
     return (
-
-        <><br /><br />
+        <>
+            <br />
+            <br />
+            <br />
+            <br />
             <div className="flex flex-col">
-                キャチコピー
+                ＊chapter＊
                 <br />
                 <label htmlFor="copy" >
                     <input
@@ -104,19 +88,30 @@ export default function InputColor() {
                 </label>
             </div>
             <br />
-            <div className="flex  flex-row justify-between" >
-
+            {/* <!-- Colors --> */}
+            <label htmlFor="color" className="block text-sm font-semibold leading-6 text-gray-900">
+                colors
+            </label>
+            <div className="flex  flex-row justify-between mt-1.5" >
                 <div className="flex flex-col">
-                    ベース
+                    ベース▸▸
                     <br />
-                    <label htmlFor="BaseColor" >
+                    <label
+                        htmlFor="BaseColor"
+                        className="relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none ring-gray-900"
+                    >
                         <input
+                            className="sr-only"
                             type="color"
                             list="data1"
                             value={color.base}
                             id="BaseColor"
                             onInput={inputBase}
                         />
+                        <span aria-hidden="true"
+                            className="h-8 w-8 bg-gray-200 rounded-full border border-black border-opacity-10"
+                            style={{ backgroundColor: color.base }}
+                        ></span>
                     </label>
                     <div className="flex  flex-row" >
                         {color.base}
@@ -127,17 +122,25 @@ export default function InputColor() {
                 </div>
 
                 <div className=" flex  flex-col">
-                    文字
+                    文字▸▸
                     <br />
-                    <label htmlFor="mojiColor">
+                    <label
+                        htmlFor="mojiColor"
+                        className="relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none ring-gray-900"
+                    >
                         <input
+                            className="sr-only"
                             type="color"
                             list={`${color.base}`}
                             value={color.moji}
                             id="mojiColor"
-                            width="30px"
+                            // width="30px"
                             onInput={inputmoji}
                         />
+                        <span aria-hidden="true"
+                            className="h-8 w-8 bg-gray-200 rounded-full border border-black border-opacity-10"
+                            style={{ backgroundColor: color.moji }}
+                        ></span>
                     </label>
                     <div className="flex  flex-row">
                         {color.moji}
@@ -151,14 +154,22 @@ export default function InputColor() {
                 <div className=" flex  flex-col">
                     サブ
                     <br />
-                    <label htmlFor="SubColor" >
+                    <label
+                        htmlFor="SubColor"
+                        className="relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none ring-gray-900"
+                    >
                         <input
+                            className="sr-only"
                             type="color"
                             list={`${color.base}`}
                             value={color.sub}
                             id="SubColor"
                             onInput={inputSub}
                         />
+                        <span aria-hidden="true"
+                            className="h-8 w-8 bg-gray-200 rounded-full border border-black border-opacity-10"
+                            style={{ backgroundColor: color.sub }}
+                        ></span>
                     </label>
                     <div className="flex  flex-row" >
                         {color.sub}
