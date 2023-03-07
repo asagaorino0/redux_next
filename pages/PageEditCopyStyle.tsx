@@ -13,7 +13,7 @@ export default function PageEditCopyStyle() {
         <>
             <Layout>
                 {/* <div className="pt-12"> */}
-                <div className="grid md:gap-6 mt-10 md:grid-cols-2 w-full my-24">
+                <div className="grid md:gap-6 mt-10 md:grid-cols-2 w-full my-2">
                     <React.StrictMode >
                         <Provider store={store}>
                             <br />

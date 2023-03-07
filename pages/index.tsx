@@ -17,7 +17,7 @@ const Home: NextPage = () => {
     <Layout>
       <div className="pt-12">
         {/* <h1 className="text-3xl mb-4">{siteConfig.title}</h1> */}
-        <div className="grid md:gap-6 mt-10 md:grid-cols-2 w-full my-12">
+        <div className="grid md:gap-6 mt-10 md:grid-cols-2 w-full my-6">
           <InputColor />
           <br />
           <Copy />

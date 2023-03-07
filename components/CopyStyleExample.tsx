@@ -6,8 +6,8 @@ export default function CopyStyleExample() {
     const color = useSelector(selectColor);
     return (
         <>
-            <div className="w-full my-16">
-                <h2>キャッチコピーをデザイン</h2>
+            <div className="w-full mt-12">
+                <h2>色見本</h2>
                 <br />
                 パターンA
                 <SelectCopyPatternA color={color} copy="１２３４５６７８９０１２３４５６７８９０：sample" />

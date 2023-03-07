@@ -64,17 +64,17 @@ export const fetchShopProf = (uid: string) => {
         }
     })
 }
-export const fetchColorList = () => {
+export const fetchColorList = (copy: string) => {
     const p = query(
         collection(db, 'colors'),
-        // where('chapter', '==', "service"),
+        where('chapter', '==', copy),
         orderBy("timestamp", "asc"),
     );
     return new Promise(async (resolve, reject) => {
         try {
             const snapshot = await getDocs(p);
             const colorData = snapshot.docs.map(
-                (doc) => ({ ...doc.data() } as unknown as number)
+                (doc) => ({ ...doc.data() })
             );
             resolve(colorData)
         } catch (e) {
@@ -82,10 +82,10 @@ export const fetchColorList = () => {
         }
     })
 }
-export const fetchSubColorList = (color: ColorStateType) => {
+export const fetchSubColorList = (copy: string, color: ColorStateType) => {
     const p = query(
         collection(db, 'colors'),
-        // where('chapter', '==', "modern"),
+        where('chapter', '==', copy),
         where('copyColorBase', '==', `${color.base}`),
     );
     return new Promise(async (resolve, reject) => {
@@ -101,3 +101,39 @@ export const fetchSubColorList = (color: ColorStateType) => {
     })
 }
 
+export const fetchColorAll = () => {
+    const p = query(
+        collection(db, 'colors'),
+        // where('chapter', '==', copy),
+        orderBy("timestamp", "asc"),
+    );
+    return new Promise(async (resolve, reject) => {
+        try {
+            const snapshot = await getDocs(p);
+            const colorData = snapshot.docs.map(
+                (doc) => ({ ...doc.data() })
+            );
+            resolve(colorData)
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
+export const fetchSubColorAll = (color: ColorStateType) => {
+    const p = query(
+        collection(db, 'colors'),
+        // where('chapter', '==', copy),
+        where('copyColorBase', '==', `${color.base}`),
+    );
+    return new Promise(async (resolve, reject) => {
+        try {
+            const snapshot = await getDocs(p);
+            const colorData = snapshot.docs.map(
+                (doc) => ({ ...doc.data() } as unknown as number)
+            );
+            resolve(colorData)
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
