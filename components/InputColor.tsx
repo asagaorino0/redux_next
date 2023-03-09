@@ -71,11 +71,11 @@ export default function InputColor() {
     useEffect(() => {
         fetchColorListData()
     }, [color.base]);
-    useEffect(() => {
-        setChapter(color.chapter)
-    }, [
-        color.chapter
-    ]);
+    // useEffect(() => {
+    //     setChapter(color.chapter)
+    // }, [
+    //     color.chapter
+    // ]);
     const fetchBase = async (event: React.ChangeEvent<HTMLInputElement>) => {
         const newValueB = event.target.value;
         dispatch(addColor({
