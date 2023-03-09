@@ -20,7 +20,7 @@ export default function InputColor() {
     const [chapter, setChapter] = useState<string>('');
     const [copy, setCopy] = useState<string>('');
     const id = user.uid
-    const fetchColorListData = async () => {
+    const fetchColorListData = async (chapter: string) => {
         const resultBase = await fetchColorList(chapter);
         setColorList(resultBase);
         const resultSub = await fetchSubColorList(chapter, color);
@@ -69,13 +69,13 @@ export default function InputColor() {
         }
     };
     useEffect(() => {
-        fetchColorListData()
+        fetchColorListData(chapter)
     }, [color.base]);
-    useEffect(() => {
-        setChapter(color.chapter)
-    }, [
-        color.chapter
-    ]);
+    // useEffect(() => {
+    //     setChapter(color.chapter)
+    // }, [
+    //     color.chapter
+    // ]);
     const fetchBase = async (event: React.ChangeEvent<HTMLInputElement>) => {
         const newValueB = event.target.value;
         dispatch(addColor({
@@ -144,7 +144,7 @@ export default function InputColor() {
                         autoFocus
                         onChange={(e) => {
                             setChapter(e.target.value)
-                            fetchColorListData()
+                            fetchColorListData(e.target.value)
                         }}
                     />
                 </label>
