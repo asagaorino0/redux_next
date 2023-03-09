@@ -2,15 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { db } from '@/lib/firebase';
 import { collection, getDocs } from 'firebase/firestore';
 import { fetchColorList, fetchSubColorList } from '@/lib/firebaseFetch';
-import { useSelector } from 'react-redux';
-import { selectColor } from '@/features/colorSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { addColor, selectColor } from '@/features/colorSlice';
 
 export default function InputChapterList() {
     const [chapterList, setChapterList] = useState<string[]>([]);
     const [colorList, setColorList] = useState<any>([]);
     const [subColorList, setSubColorList] = useState<any>([]);
+    const dispatch = useDispatch();
     const color = useSelector(selectColor);
-    const [chapter, setChapter] = useState<string>('');
+    // const [chapter, setChapter] = useState<string>('');
     useEffect(() => {
         const fetchChapter = async () => {
             try {
@@ -18,6 +19,7 @@ export default function InputChapterList() {
                 const chapterData = querySnapshot.docs.map((doc) => doc.data().chapter);
                 const result: string[] = chapterData.filter((value, index) => chapterData.indexOf(value) === index)
                 setChapterList(result);
+
                 // console.log(chapterList, result)
             } catch (error) {
                 console.error(error);
@@ -26,20 +28,20 @@ export default function InputChapterList() {
         fetchChapter();
     }, []);
     const fetchColorListData = async () => {
-        const resultBase = await fetchColorList(chapter);
+        const resultBase = await fetchColorList(color.chapter);
         setColorList(resultBase);
-        const resultSub = await fetchSubColorList(chapter, color);
+        const resultSub = await fetchSubColorList(color.chapter, color);
         setSubColorList(resultSub);
     }
     useEffect(() => {
         fetchColorListData()
     }, [
-        chapter
+        color.chapter
     ]);
     return (
         <>
-            <p>
-                <label>
+
+            {/* <label>
                     １行テキスト入力欄：
                     <input list="sampleDatalist"></input>
                 </label>
@@ -47,19 +49,27 @@ export default function InputChapterList() {
                     <option value="Internet Explorer"></option>
                     <option value="Chrome"></option>
                     <option value="FireFox"></option>
-                </datalist>
-            </p>
+                </datalist> */}
+
 
             <div>
-                <label htmlFor="chapterList">Chapter List:</label>
+                <label
+                    htmlFor="chapterList"
+                >
+                    Chapter List:
+                </label>
                 <input
                     id="chapterList"
                     name="chapterList"
                     list="chapterListOptions"
                     type="text"
+                    autoFocus
                     // value={chapter}
                     onChange={(e) => {
-                        setChapter(e.target.value)
+                        dispatch(addColor({
+                            chapter: e.target.value,
+                            base: color.base,
+                        }));
                         fetchColorListData()
                     }}
                 />

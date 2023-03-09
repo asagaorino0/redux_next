@@ -4,12 +4,11 @@ import { addColor, selectColor } from '@/features/colorSlice';
 import {
     HiOutlineClipboardCopy
 } from 'react-icons/hi';
-import { db, setCopyColor, setCopyColors } from '@/lib/firebase';
 import { selectUser } from '@/features/userSlice';
-import { fetchColorAll, fetchColorList, fetchSubColorAll, fetchSubColorList } from '@/lib/firebaseFetch';
-import { ColorStateType } from '@/types/ColorStateType';
-import { collection, getDocs, query, where } from 'firebase/firestore';
+import { fetchColorList, fetchShopProf, fetchSubColorList } from '@/lib/firebaseFetch';
 import InputChapterList from './InputChapterList';
+import { db, setCopyColor, setCopyColors } from '@/lib/firebase';
+import { collection, getDocs, query, where } from 'firebase/firestore';
 
 
 export default function InputColor() {
@@ -18,9 +17,6 @@ export default function InputColor() {
     const dispatch = useDispatch();
     const [colorList, setColorList] = useState<any>([]);
     const [subColorList, setSubColorList] = useState<any>([]);
-    const [colorAll, setColorAll] = useState<any>([]);
-    const [subColorAll, setSubColorAll] = useState<any>([]);
-    const [chapterList, setChapterList] = useState<any>([]);
     const [chapter, setChapter] = useState<string>('');
     const [copy, setCopy] = useState<string>('');
     const id = user.uid
@@ -33,7 +29,7 @@ export default function InputColor() {
     const fetchSubColorList = async (chapter: string, colorBase: string) => {
         const p = query(collection(db, 'colors'),
             where('chapter', '==', chapter),
-            where('copyColorBase', '==', `${colorBase}`));
+            where('copyColorBase', '==', `${color.base}`));
         try {
             const snapshot = await getDocs(p);
             const colorData = snapshot.docs.map((doc) => ({ ...doc.data() }));
@@ -74,8 +70,11 @@ export default function InputColor() {
     };
     useEffect(() => {
         fetchColorListData()
+    }, [color.base]);
+    useEffect(() => {
+        setChapter(color.chapter)
     }, [
-        chapter
+        color.chapter
     ]);
     const fetchBase = async (event: React.ChangeEvent<HTMLInputElement>) => {
         const newValueB = event.target.value;
@@ -133,7 +132,7 @@ export default function InputColor() {
         setCopyColors(chapter, color);
     };
     return (
-        <><>
+        <>
             <div className="flex flex-col">
                 ＊chapter＊
                 <br />
@@ -154,7 +153,6 @@ export default function InputColor() {
             ＊リストから呼び出し＊
             <br />
             <label htmlFor="chapterList">
-
                 <>
                     <input
                         id="chapterList"
@@ -170,9 +168,7 @@ export default function InputColor() {
                     />
                 </>
                 <InputChapterList />
-
             </label>
-        </><br />
             {/* <!-- Colors --> */}
             <label htmlFor="color" className="block text-sm font-semibold leading-6 text-gray-900">
                 colors
@@ -194,7 +190,7 @@ export default function InputColor() {
                             onInput={inputBase}
                         />
                         <span aria-hidden="true"
-                            className="h-8 w-8 bg-gray-200 rounded-full border border-black border-opacity-10"
+                            className="h-8 w-8  rounded-full border border-black border-opacity-10"
                             style={{ backgroundColor: color.base }}
                         ></span>
                     </label>
@@ -223,7 +219,7 @@ export default function InputColor() {
                             onInput={inputmoji}
                         />
                         <span aria-hidden="true"
-                            className="h-8 w-8 bg-gray-200 rounded-full border border-black border-opacity-10"
+                            className="h-8 w-8  rounded-full border border-black border-opacity-10"
                             style={{ backgroundColor: color.moji }}
                         ></span>
                     </label>
@@ -265,9 +261,6 @@ export default function InputColor() {
                 </div>
             </div>
             <br />
-            {/* <button onClick={handleSetClick}>
-                配色を保存
-            </button> */}
             <button onClick={handleSetClick}>
                 配色見本を保存
             </button>
