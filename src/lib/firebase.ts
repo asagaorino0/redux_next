@@ -41,6 +41,7 @@ export const setCopyColor = async (uid: string, copy: string, pattern: string, c
 }
 export const setCopyColors = async (copy: string, color: ColorStateType) => {
     await setDoc(doc(db, 'colors', `${copy}${color.base}`,), {
+        id: `${copy}${color.base}`,
         chapter: copy,
         copyColorBase: color.base,
         copyColorMoji: color.moji,
