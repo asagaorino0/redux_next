@@ -6,7 +6,8 @@ const initialState: ColorStateType = {
     base: 0,
     sub: 0,
     shopUid: '',
-    moji: 0
+    moji: 0,
+    chapter: ''
 };
 
 
