@@ -4,9 +4,12 @@ import { addColor, selectColor } from '@/features/colorSlice';
 import {
     HiOutlineClipboardCopy
 } from 'react-icons/hi';
-import { setCopyColor, setCopyColors } from '@/lib/firebase';
+import { db, setCopyColor, setCopyColors } from '@/lib/firebase';
 import { selectUser } from '@/features/userSlice';
 import { fetchColorAll, fetchColorList, fetchSubColorAll, fetchSubColorList } from '@/lib/firebaseFetch';
+import { ColorStateType } from '@/types/ColorStateType';
+import { collection, getDocs, query, where } from 'firebase/firestore';
+import InputChapterList from './InputChapterList';
 
 
 export default function InputColor() {
@@ -15,31 +18,88 @@ export default function InputColor() {
     const dispatch = useDispatch();
     const [colorList, setColorList] = useState<any>([]);
     const [subColorList, setSubColorList] = useState<any>([]);
+    const [colorAll, setColorAll] = useState<any>([]);
+    const [subColorAll, setSubColorAll] = useState<any>([]);
+    const [chapterList, setChapterList] = useState<any>([]);
+    const [chapter, setChapter] = useState<string>('');
     const [copy, setCopy] = useState<string>('');
     const id = user.uid
     const fetchColorListData = async () => {
-        const resultBase = await fetchColorList(copy);
+        const resultBase = await fetchColorList(chapter);
         setColorList(resultBase);
-        const resultSub = await fetchSubColorList(copy, color);
+        const resultSub = await fetchSubColorList(chapter, color);
         setSubColorList(resultSub);
     }
-    const fetchColorAllData = async () => {
-        const resultBase = await fetchColorAll();
-        setColorList(resultBase);
-        const resultSub = await fetchSubColorAll(color);
-        setSubColorList(resultSub);
-    }
+    const fetchSubColorList = async (chapter: string, colorBase: string) => {
+        const p = query(collection(db, 'colors'),
+            where('chapter', '==', chapter),
+            where('copyColorBase', '==', `${colorBase}`));
+        try {
+            const snapshot = await getDocs(p);
+            const colorData = snapshot.docs.map((doc) => ({ ...doc.data() }));
+            console.log(colorData);
+            return colorData;
+        } catch (e) {
+            console.error(e);
+            return [];
+        }
+    };
+    const fetchSubColor = async (chapter: string, colorBase: string) => {
+        const p = query(collection(db, 'colors'),
+            where('chapter', '==', chapter),
+            where('copyColorBase', '==', `${colorBase}`));
+        try {
+            const snapshot = await getDocs(p);
+            const colorData = snapshot.docs.map((doc) => doc.data().copyColorSub);
+            console.log(colorData);
+            return colorData;
+        } catch (e) {
+            console.error(e);
+            return [];
+        }
+    };
+    const fetchMojiColor = async (chapter: string, colorBase: string) => {
+        const p = query(collection(db, 'colors'),
+            where('chapter', '==', chapter),
+            where('copyColorBase', '==', `${colorBase}`));
+        try {
+            const snapshot = await getDocs(p);
+            const colorData = snapshot.docs.map((doc) => (doc.data().copyColorMoji as number));
+            console.log(colorData);
+            return colorData;
+        } catch (e) {
+            console.error(e);
+            return [];
+        }
+    };
     useEffect(() => {
         fetchColorListData()
-    }, [color.base, copy]);
-    const inputBase = (event: any) => {
+    }, [
+        chapter
+    ]);
+    const fetchBase = async (event: React.ChangeEvent<HTMLInputElement>) => {
+        const newValueB = event.target.value;
+        dispatch(addColor({
+            base: newValueB,
+        }));
+        const resultSub = await fetchSubColor(chapter, event.target.value);
+        const resultMoji = await fetchMojiColor(chapter, event.target.value);
+        dispatch(addColor({
+            base: event.target.value,
+            moji: resultMoji,
+            sub: resultSub,
+        }));
+    };
+
+    const inputBase = async (event: any) => {
         const newValueB = event.target.value
         dispatch(addColor({
             base: newValueB,
             moji: color.moji,
             sub: color.sub,
-            mozi: color.mozi,
         }))
+        const resultSub = await fetchSubColorList(chapter, color);
+        setSubColorList(resultSub);
     }
     const inputmoji = (event: any) => {
         const newValueA = event.target.value
@@ -47,7 +107,6 @@ export default function InputColor() {
             base: color.base,
             moji: newValueA,
             sub: color.sub,
-            mozi: color.mozi,
         }))
     }
     const inputSub = (event: any) => {
@@ -56,7 +115,6 @@ export default function InputColor() {
             base: color.base,
             moji: color.moji,
             sub: newValueS,
-            mozi: color.mozi,
         }))
     }
     const copyBaseColor = () => {
@@ -72,25 +130,49 @@ export default function InputColor() {
         navigator.clipboard.writeText(clipboardText);
     }
     const handleSetClick = () => {
-        setCopyColors(copy, color);
+        setCopyColors(chapter, color);
     };
     return (
-        <>
-
+        <><>
             <div className="flex flex-col">
                 ＊chapter＊
                 <br />
-                <label htmlFor="copy" >
+                <label htmlFor="chapter">
                     <input
-                        id="copy"
-                        name="copy"
+                        id="chapter"
+                        name="chapter"
                         type="text"
                         autoFocus
-                        onChange={(e) => setCopy(e.target.value)}
+                        onChange={(e) => {
+                            setChapter(e.target.value)
+                            fetchColorListData()
+                        }}
                     />
                 </label>
             </div>
             <br />
+            ＊リストから呼び出し＊
+            <br />
+            <label htmlFor="chapterList">
+
+                <>
+                    <input
+                        id="chapterList"
+                        list="data1"
+                        name="chapterList"
+                        // list={`${chapter}`}
+                        type="color"
+                        // autoFocus
+                        onChange={(e) => {
+                            fetchBase(e)
+                        }}
+                    // onInput={inputBase}
+                    />
+                </>
+                <InputChapterList />
+
+            </label>
+        </><br />
             {/* <!-- Colors --> */}
             <label htmlFor="color" className="block text-sm font-semibold leading-6 text-gray-900">
                 colors
@@ -192,18 +274,18 @@ export default function InputColor() {
             <datalist id="data1">
                 {colorList.map((list: any) => (
                     <>
-                        <option value={`${list.copyColorBase}`}></option>
-                        <option value={`${list.copyColorMoji}`}></option>
-                        <option value={`${list.copyColorSub}`}></option>
+                        <option key={list.copyColorBase} value={`${list.copyColorBase}`}></option>
+                        {/* <option value={`${list.copyColorMoji}`}></option>
+                        <option value={`${list.copyColorSub}`}></option> */}
                     </>
                 ))}
             </datalist>
             {subColorList.map((list: any) => (
                 <>
                     <datalist id={`${list.copyColorBase}`}>
-                        <option value={`${list.copyColorSub}`}></option>
-                        <option value={`${list.copyColorMoji}`}></option>
-                        <option value={`${list.copyColorBase}`}></option>
+                        <option key={list.copyColorSub} value={`${list.copyColorSub}`}></option>
+                        <option key={list.copyColorMoji} value={`${list.copyColorMoji}`}></option>
+                        <option key={list.copyColorBase} value={`${list.copyColorBase}`}></option>
                     </datalist>
                 </>
             ))}
