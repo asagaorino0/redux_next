@@ -13,14 +13,13 @@ import { useRouter } from "next/router";
 import dynamic from 'next/dynamic'
 import liff from '@line/liff';
 import P_make from "./img/P_make.png"
-import { computeSegDraggable } from '@fullcalendar/common';
 import { truncate } from 'fs';
 import { Provider } from 'react-redux';
 import { store } from '../src/app/store';
 import Calendar from 'react-calendar';
 import { addTargetChat, selectTargetChat } from '../src/features/targetChatSlice';
 import { addMenu } from '../src/features/menuSlice';
-import { addFormatdate, } from '../src/features/formatDateSlice';
+import Image from 'next/image';
 
 const PageA_profile = () => {
     const [make, setMake] = useState<boolean>(false);
@@ -106,7 +105,9 @@ const PageA_profile = () => {
     // }
     const [logo, setLogo] = useState<string>('');
     return (
-        <div className={styles.main}>
+        <div
+        // className={styles.main}
+        >
             <button onClick={toHome}>
                 <h3 className="mb-4 text-green-500 text-3xl">プロフィール登録内容</h3>
             </button>
@@ -117,7 +118,9 @@ const PageA_profile = () => {
                     </button>
                 </div>
             )}
-            <div className={styles.container}>
+            <div
+            // className={styles.container}
+            >
                 {/* <h1>LINE message送信</h1>
                 <br />
                 <input type="text" onChange={(e) => setText(e.target.value)} />
@@ -149,16 +152,9 @@ const PageA_profile = () => {
                         const img_img: any = { src: `${user.img}`, alt: "img", style: { width: '100%' } }
                         return (
                             <div key={user.uid}>
-                                {/* <input type="file" name="logo" onChange={handleFile} /> */}
-                                {/* {`${user.rogo}` &&
-                                    <img
-                                        src={logo}
-                                        alt=""
-                                        style={{ width: '80px', height: '80px' }}
-                                    />
-                                } */}
-
-                                <div className={styles.grid}>
+                                <div
+                                // className={styles.grid}
+                                >
                                     <img
                                         src={`${user.icon}`}
                                         alt=""
@@ -167,7 +163,9 @@ const PageA_profile = () => {
                                     <h1 className="mb-4  text-3xl">{user.name}さま </h1>
                                 </div>
                                 <br />
-                                <div className={styles.grid}>
+                                <div
+                                // className={styles.grid}
+                                >
                                     {user.o_rogo !== 0 && <p><img {...img_rogo} /></p>}
                                     <div>
                                         <h1>表示名（屋号）</h1>
@@ -176,7 +174,9 @@ const PageA_profile = () => {
                                 </div>
 
                                 {user.o_copy !== 0 && <h1 className="mb-4  text-3xl">{user.copy} </h1>}
-                                <div className={styles.grid}>
+                                <div
+                                // className={styles.grid}
+                                >
                                     {user.o_img !== 0 && <p><a href={user.url}><img {...img_img} /></a></p>}
                                 </div>
                                 <br />
@@ -186,7 +186,9 @@ const PageA_profile = () => {
                                 <h1 className="mb-4  text-3xl">主な活動地域：{user.area}</h1>
                                 <br />
                                 <h1>メニュー</h1>
-                                <div className={styles.grid}>
+                                <div
+                                // className={styles.grid}
+                                >
                                     {user.make === true && <p><img {...img_make} /></p>}
                                     {user.nail === true && <p><img {...img_nail} /></p>}
                                     {user.este === true && <p><img {...img_este} /></p>}

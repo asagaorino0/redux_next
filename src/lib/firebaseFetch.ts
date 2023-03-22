@@ -1,4 +1,7 @@
 import { ColorStateType } from "@/types/ColorStateType";
+import { FormatDateStateType } from "@/types/FormatdateStateType";
+import { ReservableDateStateType } from "@/types/ReservableDateStateType";
+import { ReservableStateType } from "@/types/ReservableStateType";
 import { initializeApp } from "firebase/app";
 import { getAuth } from 'firebase/auth';
 import {
@@ -30,7 +33,7 @@ export { app, firebaseAuth, db, firebaseConfig, storage };
 export const fetchUser = (userUid: string) => {
     // console.log(userUid)
     const p = query(
-        collection(db, 'users'),
+        collection(db, 'user'),
         where('uid', '==', userUid)
     );
     return new Promise(async (resolve, reject) => {
@@ -40,6 +43,23 @@ export const fetchUser = (userUid: string) => {
                 (doc) => (doc.data() as UserStateType)
             );
             // console.log('userDate:::::', userData)
+            resolve(userData)
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
+export const fetchUsers = () => {
+    // console.log(userUid)
+    const p = query(
+        collection(db, 'user'),
+    );
+    return new Promise(async (resolve, reject) => {
+        try {
+            const snapshot = await getDocs(p);
+            const userData = snapshot.docs.map(
+                (doc) => (doc.data() as UserStateType)
+            );
             resolve(userData)
         } catch (e) {
             reject(e)
@@ -57,6 +77,56 @@ export const fetchShopProf = (uid: string) => {
             const snapshot = await getDocs(p);
             const colorData = snapshot.docs.map(
                 (doc) => ({ ...doc.data() } as unknown as number)
+            );
+            resolve(colorData)
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
+export const fetchReservableFav = async (shopUid: string) => {
+    const q = query(collectionGroup(db, 'reservableDate'),
+        where('shopUid', '==', shopUid),
+    );
+    return new Promise(async (resolve, reject) => {
+        try {
+            const snapshot = await getDocs(q)
+            const reservableData = snapshot.docs.map(
+                (doc) => ({ ...doc.data() } as ReservableDateStateType)
+            );
+            resolve(reservableData)
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
+export const fetchReservable = async () => {
+    // const q = query(collection(db, 'reservable'),//////データをfetchしてくれない
+    const q = query(collectionGroup(db, 'reservableDate'),
+    );
+    return new Promise(async (resolve, reject) => {
+        try {
+            const snapshot = await getDocs(q)
+            const reservableData = snapshot.docs.map(
+                (doc) => ({ ...doc.data() } as ReservableDateStateType)
+            );
+            resolve(reservableData)
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
+export const fetchReservationTimeList = (formatDate: FormatDateStateType, shopUid: string) => {
+    const p = query(
+        collection(db, 'reservation', `${shopUid}`, `${formatDate.formatDate}`),
+        // where('shopUid', '==', shopUid),
+        // where('reservationDate', '==', `${formatDate.formatDate}`),
+    );
+    return new Promise(async (resolve, reject) => {
+        try {
+            const snapshot = await getDocs(p);
+            const colorData = snapshot.docs.map(
+                (doc) => ({ ...doc.data() } as FormatDateStateType)
             );
             resolve(colorData)
         } catch (e) {

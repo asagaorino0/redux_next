@@ -1,6 +1,8 @@
 import { ColorStateType } from "@/types/ColorStateType";
-import { LoginUidStateType } from "@/types/LoginUidStateType";
+import { FormatDateStateType } from "@/types/FormatdateStateType";
+// import { LoginUidStateType } from "@/types/LoginUidStateType";
 import { TodoStateType } from "@/types/TodoStateType";
+import { UserStateType } from "@/types/UserStateType";
 import { initializeApp } from "@firebase/app";
 import { getAuth } from '@firebase/auth';
 import {
@@ -8,6 +10,7 @@ import {
     deleteDoc, deleteField, doc, getDocs, getFirestore, query, serverTimestamp, setDoc, updateDoc, where
 } from '@firebase/firestore';
 import { getStorage } from "@firebase/storage";
+import { addDoc } from "firebase/firestore";
 
 const firebaseConfig = {
     apiKey: process.env.NEXT_PUBLIC_FIREBASE_APIKEY,
@@ -49,8 +52,8 @@ export const setCopyColors = async (copy: string, color: ColorStateType) => {
         timestamp: serverTimestamp(),
     }, { merge: true })
 }
-export const setLoginUser = async (loginUid: LoginUidStateType, uid: string, name: string, icon: string | undefined) => {
-    console.log(loginUid)
+export const setLoginUser = async (user: UserStateType, uid: string, name: string, icon: string | undefined) => {
+    console.log(user)
     await setDoc(doc(db, 'user', uid), {
         uid: uid,
         name: name,
@@ -64,3 +67,34 @@ export const setTodo = async (todo: TodoStateType, id: number) => {
         doc(db, 'todos', `${id}`), todo, { merge: true });
     console.log(todo)
 }
+////////////////////////////////////////////////////
+export const setReservableDateToReservable = async (formatDate: FormatDateStateType, shopUid: string) => {
+    await setDoc(doc(db, 'reservable', `${shopUid}`, `reservableDate`, `${formatDate.formatDate}`), {
+        shopUid: `${shopUid}`,
+        reservableDate: `${formatDate.formatDate}`,
+        startTime: `${formatDate.formatDate}T${formatDate.start}`,
+        endTime: `${formatDate.formatDate}T${formatDate.end}`,
+        reservableDateId: `${formatDate.formatDate}${shopUid}`,
+        updatedAt: serverTimestamp(),
+    }, { merge: true })
+}
+export const setReservationDateToReservation = async (formatDate: FormatDateStateType, shopUid: string, uid: string) => {
+    await addDoc(collection(db, 'reservation', `${shopUid}`, `${formatDate.formatDate}`), {
+        shopUid,
+        uid,
+        startTime: formatDate.start,
+        endTime: formatDate.end,
+        reservationDateId: `${formatDate.formatDate}${shopUid}${uid}`,
+        updatedAt: serverTimestamp(),
+    },)
+}
+// export const setReservationDateToReservation = async (formatDate: FormatDateStateType, shopUid: string, uid: string) => {
+//     await setDoc(doc(db, 'reservation', `${shopUid}`, `${formatDate.formatDate}`, `${formatDate.formatDate}${uid}`), {
+//         shopUid,
+//         uid,
+//         startTime: formatDate.start,
+//         endTime: formatDate.end,
+//         reservationDateId: `${formatDate.formatDate}${shopUid}${uid}`,
+//         updatedAt: serverTimestamp(),
+//     }, { merge: true })
+// }

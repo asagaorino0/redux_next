@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { addFormatdate, } from '../src/features/formatDateSlice';
+// import { addFormatdate, } from '../src/features/formatDateSlice';
 import { addTomare } from '../src/features/tomareSlice';
 import { addTargetTomare } from '../src/features/targetTomareSlice';
 import { addTargetChat } from '../src/features/targetChatSlice';
@@ -16,6 +16,8 @@ import { useRouter } from "next/router";
 import { Provider } from 'react-redux';
 import { store } from '../src/app/store';
 import dynamic from 'next/dynamic'
+import { addFormatDate } from '@/features/formatDateSlice';
+import Image from 'next/image';
 
 
 const PageA_tomare = () => {
@@ -103,7 +105,7 @@ const PageA_tomare = () => {
         month = ('0' + month).slice(-2);
         day = ('0' + day).slice(-2);
         const formatDate = year + month + day;
-        dispatch(addFormatdate(formatDate))
+        dispatch(addFormatDate(formatDate))
         setFormatDate(formatDate)
         setGappi(formatDate)
         const q = query(collection(db, "users", user.uid, 'tomare'), where("gappi", "==", formatDate));
@@ -282,7 +284,7 @@ const PageA_tomare = () => {
                     <p >menuをクリック
                         <div className={styles.grid}>
                             <div >
-                                <button onClick={clickMenu1}><img　{...img_make} />ケアメイク</button>
+                                <button onClick={clickMenu1}><img {...img_make} />ケアメイク</button>
                             </div>
                             <div>
                                 <button onClick={clickMenu2}><img {...img_nail} />ケアネイル</button>

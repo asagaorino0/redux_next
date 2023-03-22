@@ -10,17 +10,18 @@ import Navbar from './Navbar';
 const Layout: FC<LayoutProps> = ({ children }) => {
   return (
 
-    <div className="flex flex-col h-screen z-50">
+    <div className="flex flex-col h-screen">
       <React.StrictMode >
         <Provider store={store}>
-          <div className="bg-blue-500 sticky top-0 z-auto">
+          <div className="bg-blue-500 sticky top-0 z-50">
+            {/* <Header /> */}
             <Navbar />
           </div>
-          <main className="flex-grow w-full pb-12 px-4">
+          <main className="flex-grow w-full pb-12 px-4 z-10">
             {children}
           </main>
-          <div className="bg-blue-500 sticky bottom-0">
-            {/* <Footer /> */}
+          <div className="bg-blue-500 sticky bottom-0 z-50">
+            <Footer />
           </div>
         </Provider>
       </React.StrictMode>

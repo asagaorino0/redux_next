@@ -3,13 +3,12 @@ import { RootState } from '../app/store';
 import { ColorStateType } from '../types/ColorStateType';
 
 const initialState: ColorStateType = {
-    base: 0,
-    sub: 0,
     shopUid: '',
-    moji: 0,
+    base: '',
+    moji: '',
+    sub: '',
     chapter: ''
-};
-
+}
 
 export const colorSlice = createSlice({
     name: 'color',

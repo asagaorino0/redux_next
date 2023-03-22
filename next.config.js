@@ -8,5 +8,9 @@ const config = {
     cpus: 4,
 
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
 module.exports = config;
+

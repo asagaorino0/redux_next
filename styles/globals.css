@@ -22,5 +22,5 @@ p {
 }
 
 main {
-    @apply min-h-screen flex flex-col justify-center items-center;
+    @apply flex flex-col justify-center items-center mt-0;
 }

@@ -26,7 +26,6 @@ export default function PageEditCopyStyle() {
                     </React.StrictMode>
                 </div>
             </Layout>
-
         </>
     );
 }

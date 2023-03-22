@@ -23,10 +23,10 @@ export default function InputColor() {
     const fetchColorListData = async (chapter: string) => {
         const resultBase = await fetchColorList(chapter);
         setColorList(resultBase);
-        const resultSub = await fetchSubColorList(chapter, color);
+        const resultSub = await fetchSubColorList(chapter);
         setSubColorList(resultSub);
     }
-    const fetchSubColorList = async (chapter: string, colorBase: string) => {
+    const fetchSubColorList = async (chapter: string) => {
         const p = query(collection(db, 'colors'),
             where('chapter', '==', chapter),
             where('copyColorBase', '==', `${color.base}`));
@@ -97,7 +97,7 @@ export default function InputColor() {
             moji: color.moji,
             sub: color.sub,
         }))
-        const resultSub = await fetchSubColorList(chapter, color);
+        const resultSub = await fetchSubColorList(chapter);
         setSubColorList(resultSub);
     }
     const inputmoji = (event: any) => {
@@ -173,7 +173,7 @@ export default function InputColor() {
             <label htmlFor="color" className="block text-sm font-semibold leading-6 text-gray-900">
                 colors
             </label>
-            <div className="flex  flex-row justify-between mt-1.5" >
+            <div className="flex  flex-row gap-x-14 justify-center mt-1.5" >
                 <div className="flex flex-col">
                     ベース▸▸
                     <br />
@@ -268,8 +268,8 @@ export default function InputColor() {
                 {colorList.map((list: any) => (
                     <>
                         <option key={list.copyColorBase} value={`${list.copyColorBase}`}></option>
-                        {/* <option value={`${list.copyColorMoji}`}></option>
-                        <option value={`${list.copyColorSub}`}></option> */}
+                        <option value={`${list.copyColorMoji}`}></option>
+                        <option value={`${list.copyColorSub}`}></option>
                     </>
                 ))}
             </datalist>
