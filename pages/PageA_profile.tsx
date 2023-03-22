@@ -20,7 +20,7 @@ import { store } from '../src/app/store';
 import Calendar from 'react-calendar';
 import { addTargetChat, selectTargetChat } from '../src/features/targetChatSlice';
 import { addMenu } from '../src/features/menuSlice';
-import { addFormatdate, } from '../src/features/formatDateSlice';
+import Image from 'next/image';
 
 const PageA_profile = () => {
     const [make, setMake] = useState<boolean>(false);
@@ -149,15 +149,6 @@ const PageA_profile = () => {
                         const img_img: any = { src: `${user.img}`, alt: "img", style: { width: '100%' } }
                         return (
                             <div key={user.uid}>
-                                {/* <input type="file" name="logo" onChange={handleFile} /> */}
-                                {/* {`${user.rogo}` &&
-                                    <img
-                                        src={logo}
-                                        alt=""
-                                        style={{ width: '80px', height: '80px' }}
-                                    />
-                                } */}
-
                                 <div className={styles.grid}>
                                     <img
                                         src={`${user.icon}`}

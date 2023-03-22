@@ -1,21 +1,37 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../app/store';
-import { FormatdateState } from "../../src/types/formatDate";
+import { FormatDateStateType } from '@/types/FormatdateStateType';
+import { Timestamp } from 'firebase/firestore';
 
-const initialState: FormatdateState = {
-    formatdate: '',
-} as FormatdateState;
 
-export const formatdateSlice = createSlice({
-    name: 'formatdate',
+const initialState: FormatDateStateType = {
+    formatDate: '',
+    nextDate: '',
+    value: false,
+    yoyakuMenu: '',
+    menu: '',
+    editMode: false,
+    template: false,
+    next: false,
+    formatMonth: new Date(),
+    bDate: new Date(),
+    start: '',
+    end: '',
+    updatedAt: new Date()
+}
+
+export const formatDateSlice = createSlice({
+    name: 'formatDate',
     initialState,
     reducers: {
-        addFormatdate: (state, action) => {
-            state.formatdate = action.payload.formatdate
-        }
+        addFormatDate: (state, action) => {
+            return {
+                ...state, ...action.payload
+            };
+        },
     },
 });
 
-export const { addFormatdate } = formatdateSlice.actions;
-export const selectFormatdate = (state: RootState) => state.formatdate;
-export default formatdateSlice.reducer;
+export const { addFormatDate } = formatDateSlice.actions;
+export const selectFormatDate = (state: RootState) => state.formatDate;
+export default formatDateSlice.reducer;
