@@ -14,6 +14,8 @@ import Copy from '../components/Copy';
 import InputColor from '../components/InputColor';
 import Login from '../components/Login';
 import dynamic from 'next/dynamic';
+import Fun_0Calendar from 'components/Fun_0Calendar';
+import Image from 'next/image';
 
 export default function App() {
   const [uid, setUid] = useState<string>('');
@@ -24,6 +26,7 @@ export default function App() {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const router = useRouter();
+  const Fun_0Calendar = dynamic(() => import('components/Fun_0Calendar'), { ssr: false });
   // const PageA = dynamic(() => import('../pages/PageA'), { ssr: false });
   // const PagePay = dynamic(() => import('./PagePay'), { ssr: false });
   const [loading, setLoading] = useState(false);
@@ -150,6 +153,9 @@ export default function App() {
             <React.StrictMode >
               <Provider store={store}>
                 <Login />
+                <div>
+                  <Fun_0Calendar />
+                </div>
               </Provider>
             </React.StrictMode>
           </div>

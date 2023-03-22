@@ -1,7 +1,7 @@
 export type ColorStateType = {
     shopUid: string,
-    base: number,
-    sub: number,
-    moji: number,
+    base: string,
+    sub: string,
+    moji: string,
     chapter: string
 }

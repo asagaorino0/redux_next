@@ -12,6 +12,7 @@ import router from 'next/router';
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ')
 }
+
 const Navbar = () => {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
@@ -21,8 +22,11 @@ const Navbar = () => {
   const navigation = [
     { name: 'Home', href: '/', current: false },
     { name: 'Team', href: '#', current: false },
-    { name: 'Reservable', href: 'PageReservable', current: false },
+    { name: 'Projects', href: '#', current: false },
     { name: 'Color', href: 'PageEditCatchCopyStyle', current: false },
+    // {
+    //   name: currentNavigation.name, href: '/', current: true
+    // }
   ];
   const handleNavigationClick = (item: any) => {
     dispatch(addCurrentNavigation(
@@ -80,24 +84,25 @@ const Navbar = () => {
                     <span className="sr-only">View notifications</span>
                     <BellIcon className="h-6 w-6" aria-hidden="true" />
                   </button>
+                  {/* Profile dropdown */}
                   <Menu as="div" className="relative ml-3">
-                    {/* {user.icon ? ( */}
-                    <div>
-                      <Menu.Button className="flex rounded-full bg-pink-900 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-pink-900">
-                        <span className="sr-only">Open user menu</span>
-                        <img
-                          className="h-8 w-8 rounded-full"
-                          src={`${user.icon}`}
-                          alt="" />
-                      </Menu.Button>
-                    </div>
-                    {/*  ) : ( */}
-                    <div className="flex rounded-full  text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-pink-900">
-                      <Link href="/" >
-                        <Login />
-                      </Link>
-                    </div>
-                    {/*  )} */}
+                    {user.icon ? (
+                      <div>
+                        <Menu.Button className="flex rounded-full bg-pink-900 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-pink-900">
+                          <span className="sr-only">Open user menu</span>
+                          <img
+                            className="h-8 w-8 rounded-full"
+                            src={`${user.icon}`}
+                            alt="" />
+                        </Menu.Button>
+                      </div>
+                    ) : (
+                      <div className="flex rounded-full  text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-pink-900">
+                        <Link href="/" >
+                          <Login />
+                        </Link>
+                      </div>
+                    )}
                     <Transition
                       as={Fragment}
                       enter="transition ease-out duration-100"
@@ -111,7 +116,7 @@ const Navbar = () => {
                         <Menu.Item>
                           {({ active }) => (
                             <a
-                              href="/PageExample"
+                              href="#"
                               className={classNames(active ? 'bg-pink-100' : '', 'block px-4 py-2 text-sm text-pink-800')}
                             >
                               Your Profile
@@ -121,20 +126,10 @@ const Navbar = () => {
                         <Menu.Item>
                           {({ active }) => (
                             <a
-                              href="/PageReservable"
-                              onClick={() =>
-                                dispatch(addCurrentNavigation(
-                                  {
-                                    name: 'Reservable',
-                                    href: "/PageReservable",
-                                    current: true
-                                  }
-                                ))
-                              }
-
+                              href="/PageExample"
                               className={classNames(active ? 'bg-pink-100' : '', 'block px-4 py-2 text-sm text-pink-800')}
                             >
-                              reservable
+                              Settings
                             </a>
                           )}
                         </Menu.Item>

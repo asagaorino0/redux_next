@@ -11,8 +11,8 @@ import { storage } from "../src/firebase";
 import { db } from "../src/firebase";
 import { getDocs, collection, collectionGroup, query, where, doc, setDoc, serverTimestamp, deleteDoc, onSnapshot } from 'firebase/firestore'
 import dynamic from 'next/dynamic';
-// import styles from '../styles/Home.module.css';
-// import FileUpload from '../components/FileUpload';
+import styles from '../styles/Home.module.css';
+import FileUpload from '../components/FileUpload';
 const PageA = () => {
   // const PagePay = dynamic(() => import('../src/PagePay'), { ssr: false });
   // const PageAA = dynamic(() => import('../src/PageAA'), { ssr: false });
@@ -53,7 +53,7 @@ const PageA = () => {
   }
   const uid = `${user.uid}`
   return (
-    <div>
+    <div className={styles.main}>
       {uid === '' && (
         <div>
           <button onClick={toHome}>
@@ -72,17 +72,13 @@ const PageA = () => {
         <br />
         <form action={`/api/checkin/${uid}/card`} method="POST">
           <section>
-            <button type="submit" role="link"
-            // className={styles.card}
-            >
+            <button type="submit" role="link" className={styles.card} >
               クレジットカードの登録
             </button>
           </section>
         </form>
         <section>
-          <button type="submit" role="link"
-          //  className={styles.card}
-          >
+          <button type="submit" role="link" className={styles.card} >
             <a href="https://buy.stripe.com/test_dR628mfhs1ZLaGIaEE" >
               サブスク
             </a>
@@ -90,9 +86,7 @@ const PageA = () => {
         </section>
         <form action='/api/create-connect-account' method="POST">
           <section>
-            <button type="submit" role="link"
-            // className={styles.card}
-            >
+            <button type="submit" role="link" className={styles.card} >
               銀行口座を登録
             </button>
           </section>
