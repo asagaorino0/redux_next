@@ -12,6 +12,7 @@ import { db } from "../src/firebase";
 import { getDocs, collection, collectionGroup, query, where, doc, setDoc, serverTimestamp, deleteDoc, onSnapshot } from 'firebase/firestore'
 import dynamic from 'next/dynamic';
 import styles from '../styles/Home.module.css';
+
 // import FileUpload from '../components/FileUpload';
 const PageA = () => {
   // const PagePay = dynamic(() => import('../src/PagePay'), { ssr: false });
