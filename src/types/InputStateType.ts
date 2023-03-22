@@ -1,0 +1,56 @@
+export type InputStateType = {
+    yoyakuNameDairi: string
+    yoyakuzikoku: string
+    yoyakuTel: string
+    yoyakuName: string
+    yoyakuIcon: string
+    yoyakuZip: string
+    yoyakuAddress1: string
+    yoyakuAddress2: string
+    yoyakuAddress3: string
+    yoyakuNinzu: number
+    tanka: number
+    quantity: number
+    intervalM: number
+    memo: string
+    kotuhi: boolean
+    kotuZippi: number
+
+    uid: string
+    namae: string
+    sns: string
+    t_sns: string
+    o_sns: number
+    copy: string
+    o_copy: number
+    sikaku: string
+    o_sikaku: number
+    img: string
+    o_img: number
+    pv: string
+    t_pv: string
+    o_pv: number
+    url: string
+    t_url: string
+    o_url: number
+    qr: string
+    o_qr: number
+    manabi: string
+    manabi_url: string
+
+    zikoku: number
+    icon: string
+    menu: string
+    name: string
+    gappi: string
+    yoyakuUid: string
+    yoyakuId: string
+    profile: string
+    area: string
+    next1: string,
+    next2: string,
+    nextGappi: string,
+    backId: string
+    backGappi: string
+    backZikan: string
+}
